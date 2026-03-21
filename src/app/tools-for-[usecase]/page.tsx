@@ -7,6 +7,7 @@ import Link from "next/link";
 export const revalidate = 3600;
 
 function formatUseCase(slug: string) {
+  if (!slug || slug.startsWith('[') || slug === 'undefined') return 'Tools';
   return slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
@@ -28,6 +29,7 @@ async function getToolsForUseCase(useCaseSlug: string): Promise<Tool[]> {
 
 export async function generateMetadata({ params }: { params: Promise<{ usecase: string }> }): Promise<Metadata> {
   const { usecase } = await params;
+  if (!usecase || usecase.startsWith('[') || usecase === 'undefined') return { title: 'AI Tools' };
   const title = formatUseCase(usecase);
   return {
     title: `Best Tools for ${title} in 2026`,
@@ -37,6 +39,9 @@ export async function generateMetadata({ params }: { params: Promise<{ usecase: 
 
 export default async function UseCasePage({ params }: { params: Promise<{ usecase: string }> }) {
   const { usecase } = await params;
+  if (!usecase || usecase.startsWith('[') || usecase === 'undefined') {
+     return <div className="py-20 text-center">Loading...</div>;
+  }
   const tools = await getToolsForUseCase(usecase);
   const title = formatUseCase(usecase);
 
