@@ -140,9 +140,6 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
     return (
       <div className="flex flex-col gap-12 pb-24 animate-fade-in">
         <section className="relative pt-12 md:pt-20 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium mb-6">
-            <span>{targetTool.category || 'Software'} Alternatives</span>
-          </div>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-foreground mx-auto max-w-4xl">
             {page.title}
           </h1>

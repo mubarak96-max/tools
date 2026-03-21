@@ -111,7 +111,7 @@ export interface GeneratedPageResponse {
 }
 
 export async function generateCustomPage(topic: string, templateType: 'comparison' | 'alternatives' | 'curated-list', availableTools: {slug: string, name: string, category: string}[]): Promise<GeneratedPageResponse | null> {
-  const toolsContext = availableTools.map(t => `${t.name} (Slug: ${t.slug}, Category: ${t.category})`).join('\\n');
+  const toolsContext = availableTools.map(t => `${t.name} (Slug: ${t.slug}, Category: ${t.category})`).join('\n');
   
   let instructions = "";
   if (templateType === 'comparison') {
@@ -151,7 +151,7 @@ Return ONLY JSON.`;
     });
 
     const content = response.choices[0]?.message?.content || '';
-    const jsonMatch = content.match(/\\{[\\s\\S]*\\}/);
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
     if (!jsonMatch) throw new Error("No JSON found");
     return JSON.parse(jsonMatch[0]) as GeneratedPageResponse;
   } catch (error) {
