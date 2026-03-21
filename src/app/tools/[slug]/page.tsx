@@ -8,6 +8,7 @@ import { Metadata } from 'next';
 export const revalidate = 3600;
 
 async function getTool(slug: string): Promise<Tool | null> {
+  if (!slug || slug.startsWith('[') || slug === 'undefined') return null;
   try {
     const doc = await adminDb.collection('tools').doc(slug).get();
     if (!doc.exists) return null;

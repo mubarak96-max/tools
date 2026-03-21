@@ -11,6 +11,7 @@ function formatUseCase(slug: string) {
 }
 
 async function getToolsForUseCase(useCaseSlug: string): Promise<Tool[]> {
+  if (!useCaseSlug || useCaseSlug.startsWith('[') || useCaseSlug === 'undefined') return [];
   const formattedUseCase = formatUseCase(useCaseSlug);
   try {
     const snapshot = await adminDb.collection('tools')

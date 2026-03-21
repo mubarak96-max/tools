@@ -16,6 +16,7 @@ async function getCategories(): Promise<ToolCategory[]> {
 }
 
 async function getTool(slug: string): Promise<Tool | null> {
+  if (!slug || slug.startsWith('[') || slug === 'undefined') return null;
   if (!adminDb) return null;
   const doc = await adminDb.collection('tools').doc(slug).get();
   return doc.exists ? ({ id: doc.id, ...serializeData(doc.data()) } as Tool) : null;

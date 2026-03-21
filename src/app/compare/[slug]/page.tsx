@@ -8,6 +8,7 @@ import Link from "next/link";
 export const revalidate = 3600;
 
 async function getTool(slug: string): Promise<Tool | null> {
+  if (!slug || slug.startsWith('[') || slug === 'undefined') return null;
   const doc = await adminDb.collection('tools').doc(slug).get();
   return doc.exists ? ({ id: doc.id, ...doc.data() } as Tool) : null;
 }

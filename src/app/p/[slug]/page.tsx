@@ -9,6 +9,7 @@ import Link from "next/link";
 export const revalidate = 3600;
 
 async function getPage(slug: string): Promise<CustomPage | null> {
+  if (!slug || slug.startsWith('[') || slug === 'undefined') return null;
   const doc = await adminDb.collection('pages').doc(slug).get();
   return doc.exists ? ({ id: doc.id, ...doc.data() } as CustomPage) : null;
 }
