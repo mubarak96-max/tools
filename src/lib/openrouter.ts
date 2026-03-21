@@ -7,7 +7,7 @@ const openai = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
   defaultHeaders: {
     'HTTP-Referer': 'http://localhost:3000', // Required by OpenRouter
-    'X-Title': 'Tool Intelligence Platform',   // Required by OpenRouter
+    'X-Title': 'findmytool',   // Required by OpenRouter
   }
 });
 

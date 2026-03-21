@@ -9,7 +9,7 @@ export default function Footer() {
         </div>
         <div className="mt-8 md:mt-0 md:order-1">
           <p className="text-center text-xs leading-5 text-muted-foreground">
-            &copy; {new Date().getFullYear()} Tool Intelligence Platform. Programmatically generated with AI.
+            &copy; {new Date().getFullYear()} findmytool. Programmatically generated with AI.
           </p>
         </div>
       </div>

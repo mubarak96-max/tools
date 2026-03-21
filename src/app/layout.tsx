@@ -8,7 +8,7 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Tool Intelligence Platform",
+  title: "findmytool",
   description: "Discover the best tools powered by data and AI insights.",
 };
 

@@ -56,7 +56,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
       reviewBody: tool.aiInsights.whyThisToolFits,
       author: {
         '@type': 'Organization',
-        name: 'Tool Intelligence AI'
+        name: 'findmytool'
       }
     } : undefined
   };

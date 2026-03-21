@@ -8,7 +8,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Sparkles className="w-6 h-6 text-primary" />
           <Link href="/" className="text-xl font-bold tracking-tight text-gradient-primary">
-            Tool Intelligence
+            findmytool
           </Link>
         </div>
         

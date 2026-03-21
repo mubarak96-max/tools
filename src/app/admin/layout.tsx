@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Settings, Wrench, Home, Search } from 'lucide-react';
 
 export const metadata = {
-  title: 'Admin Dashboard | Tool Intelligence',
+  title: 'Admin Dashboard | findmytool',
   robots: {
     index: false,
     follow: false,
