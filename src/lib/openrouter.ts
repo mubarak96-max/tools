@@ -156,3 +156,21 @@ Return ONLY JSON.`;
     return null;
   }
 }
+
+/**
+ * Compatibility helper for scripts that only need the AI Insights block.
+ */
+export async function generateToolInsights(tool: { name: string }): Promise<AIInsights | null> {
+  const profile = await generateFullTool(tool.name, []);
+  if (!profile) return null;
+
+  return {
+    whyThisToolFits: profile.why_this_tool,
+    pros: profile.pros,
+    cons: profile.cons,
+    bestFor: profile.best_for,
+    antiRecommendation: profile.anti_recommendation,
+    comparisonSummary: profile.comparison_summary
+  };
+}
+
