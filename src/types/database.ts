@@ -1,6 +1,28 @@
 export type PricingModel = 'Free' | 'Freemium' | 'Paid';
 export type DifficultyLevel = 'Beginner' | 'Intermediate' | 'Advanced';
 
+export interface CustomPage {
+  id?: string;
+  slug: string;
+  title: string;
+  metaDescription: string;
+  templateType: 'curated-list' | 'comparison' | 'alternatives';
+  toolSlugs: string[];
+  editorialVerdict?: string;
+  createdAt?: any;
+  updatedAt?: any;
+}
+
+export interface ToolCategory {
+  id?: string;
+  slug: string;
+  name: string;
+  description: string;
+  iconId?: string;
+  createdAt?: any;
+  updatedAt?: any;
+}
+
 export interface AIInsights {
   whyThisToolFits: string;
   pros: string[];
