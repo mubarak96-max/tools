@@ -42,7 +42,7 @@ Basic Info
 - Price range: starting price -> highest tier
 - Official Website URL (The main domain or affiliate landing page)
 
-Description (280-350 characters, plain language, explains what the tool does and who it helps)
+Description (200 to 250 characters, plain language, explains what the tool does and who it helps)
 Use Cases (minimum 5, written as action-oriented phrases)
 Key Features (minimum 5, written as short, benefit-focused bullet points)
 Supported Platforms (select all that apply: Web, iOS, Android, Desktop)
@@ -110,9 +110,9 @@ export interface GeneratedPageResponse {
   editorialVerdict: string;
 }
 
-export async function generateCustomPage(topic: string, templateType: 'comparison' | 'alternatives' | 'curated-list', availableTools: {slug: string, name: string, category: string}[]): Promise<GeneratedPageResponse | null> {
+export async function generateCustomPage(topic: string, templateType: 'comparison' | 'alternatives' | 'curated-list', availableTools: { slug: string, name: string, category: string }[]): Promise<GeneratedPageResponse | null> {
   const toolsContext = availableTools.map(t => `${t.name} (Slug: ${t.slug}, Category: ${t.category})`).join('\n');
-  
+
   let instructions = "";
   if (templateType === 'comparison') {
     instructions = `This is a HEAD-TO-HEAD COMPARISON page. You MUST choose exactly 2 tools from the database to compare. Focus the SEO title, meta description, and the editorial verdict heavily on directly comparing these two tools, stating pros, cons, and who wins the matchup.`;
@@ -131,7 +131,7 @@ CRITICAL RULES:
 ${instructions}
 
 Select the relevant tool "Slugs" exclusively from the Available Tools list above that should be featured on this page based on the rules. If none strictly fit, pick the closest.
-Write a powerful click-generating SEO title, a strong meta description, and a 2-to-3 paragraph editorial verdict/introduction thoroughly analyzing the topic in HTML format (use <p> and <strong>).
+Write a powerful click-generating SEO title, a strong meta description, and a concise 1-to-2 paragraph editorial verdict/introduction analyzing the topic in HTML format (use <p> and <strong>). Keep the total HTML content under 300 characters.
 
 Your response MUST be valid JSON matching this exact structure:
 {
@@ -146,7 +146,7 @@ Return ONLY JSON.`;
 
   try {
     const response = await openai.chat.completions.create({
-      model: 'google/gemini-2.5-flash-lite', 
+      model: 'google/gemini-2.5-flash-lite',
       messages: [{ role: 'user', content: prompt }]
     });
 

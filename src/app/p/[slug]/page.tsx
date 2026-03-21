@@ -62,7 +62,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
           </h1>
           {page.editorialVerdict ? (
             <div
-              className="text-lg text-muted-foreground max-w-3xl mx-auto text-left glass-card p-6 md:p-8 rounded-2xl mt-8 mb-8 leading-relaxed prose prose-invert prose-p:mb-4 last:prose-p:mb-0"
+              className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mt-8 mb-8 leading-relaxed prose prose-invert prose-p:mb-4 last:prose-p:mb-0"
               dangerouslySetInnerHTML={{ __html: page.editorialVerdict }}
             />
           ) : (
@@ -142,7 +142,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
           </h1>
           {page.editorialVerdict ? (
             <div
-              className="text-lg text-muted-foreground max-w-3xl mx-auto text-left glass-card p-6 md:p-8 rounded-2xl mt-8 mb-8 leading-relaxed prose prose-invert prose-p:mb-4 last:prose-p:mb-0 border-red-500/10"
+              className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mt-8 mb-8 leading-relaxed prose prose-invert prose-p:mb-4 last:prose-p:mb-0"
               dangerouslySetInnerHTML={{ __html: page.editorialVerdict }}
             />
           ) : (
@@ -182,7 +182,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
         </h1>
         {page.editorialVerdict ? (
           <div
-            className="text-lg text-muted-foreground max-w-3xl mx-auto text-left glass-card p-6 md:p-8 rounded-2xl mt-8 mb-8 leading-relaxed prose prose-invert prose-p:mb-4 last:prose-p:mb-0 border-primary/10"
+            className="text-lg text-muted-foreground max-w-3xl mx-auto text-center mt-8 mb-8 leading-relaxed prose prose-invert prose-p:mb-4 last:prose-p:mb-0"
             dangerouslySetInnerHTML={{ __html: page.editorialVerdict }}
           />
         ) : (
