@@ -75,7 +75,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
           <div className="glass-card p-8 rounded-2xl flex flex-col h-full border-t-4 border-t-blue-500">
             <h2 className="text-3xl font-bold mb-2">{tool1.name}</h2>
-            <p className="text-muted-foreground mb-6 h-20 line-clamp-3">{tool1.description}</p>
+            <p className="text-muted-foreground mb-6">{tool1.description}</p>
 
             <div className="bg-background/50 rounded-xl p-4 mb-6">
               <span className="text-sm text-muted-foreground block mb-1">Pricing</span>
@@ -101,7 +101,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
 
           <div className="glass-card p-8 rounded-2xl flex flex-col h-full border-t-4 border-t-purple-500">
             <h2 className="text-3xl font-bold mb-2">{tool2.name}</h2>
-            <p className="text-muted-foreground mb-6 h-20 line-clamp-3">{tool2.description}</p>
+            <p className="text-muted-foreground mb-6">{tool2.description}</p>
 
             <div className="bg-background/50 rounded-xl p-4 mb-6">
               <span className="text-sm text-muted-foreground block mb-1">Pricing</span>
