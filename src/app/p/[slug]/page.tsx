@@ -57,9 +57,6 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
     return (
       <div className="flex flex-col gap-12 pb-24 animate-fade-in">
         <section className="relative pt-12 md:pt-20 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            <span>Head to Head Comparison</span>
-          </div>
           <h1 className="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-foreground">
             {page.title}
           </h1>
