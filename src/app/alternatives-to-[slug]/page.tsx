@@ -20,7 +20,7 @@ async function getAlternatives(targetTool: Tool): Promise<Tool[]> {
       .where('category', '==', targetTool.category)
       .limit(10)
       .get();
-      
+
     const tools = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as Tool[];
     return tools.filter(t => t.slug !== targetTool.slug);
   } catch (error) {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const tool = await getTargetTool(slug);
   if (!tool) return { title: 'Not Found' };
-  
+
   return {
     title: `Top ${tool.name} Alternatives & Competitors (2026)`,
     description: `Looking for a better, cheaper, or different tool than ${tool.name}? Discover the best alternatives based on use case and expert AI insights.`,
@@ -50,7 +50,7 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
   return (
     <div className="flex flex-col gap-12 pb-24 animate-fade-in">
       <section className="relative pt-12 md:pt-20 text-center">
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-foreground">
+        <h1 className="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-foreground">
           Best alternatives to <span className="text-gradient-primary">{targetTool.name}</span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">

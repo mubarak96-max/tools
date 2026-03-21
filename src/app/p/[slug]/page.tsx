@@ -60,7 +60,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
             <span>Head to Head Comparison</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-foreground">
+          <h1 className="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-foreground">
             {page.title}
           </h1>
           {page.editorialVerdict ? (
@@ -140,7 +140,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
     return (
       <div className="flex flex-col gap-12 pb-24 animate-fade-in">
         <section className="relative pt-12 md:pt-20 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-foreground mx-auto max-w-4xl">
+          <h1 className="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-foreground mx-auto max-w-4xl">
             {page.title}
           </h1>
           {page.editorialVerdict ? (
@@ -177,7 +177,7 @@ export default async function CustomDynamicPage({ params }: { params: Promise<{ 
   return (
     <div className="flex flex-col gap-12 pb-24 animate-fade-in">
       <section className="relative pt-12 md:pt-20 text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-foreground max-w-4xl mx-auto leading-tight">
+        <h1 className="text-2xl md:text-4xl font-bold tracking-tight mb-3 text-foreground max-w-4xl mx-auto leading-tight">
           {page.title.split(' ').map((word, i, arr) => {
              if (i >= arr.length - 2) return <span key={i} className="text-gradient-primary" style={{ display: "inline-block" }}> {word}</span>;
              return ' ' + word;
