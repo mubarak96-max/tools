@@ -100,6 +100,7 @@ export async function autoCreateTool(toolName: string, config: { categories: str
       pros: profile.pros || [],
       cons: profile.cons || []
     },
+    website: profile.website || '',
     createdAt: new Date(),
     updatedAt: new Date(),
   });

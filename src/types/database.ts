@@ -45,6 +45,7 @@ export interface Tool {
   features: string[];
   integrations: string[];
   description: string;
+  website?: string;
   // Embedded for performance (1 read per page)
   aiInsights?: AIInsights;
   createdAt?: any;

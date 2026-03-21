@@ -28,6 +28,7 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
     features: [],
     platforms: [],
     integrations: [],
+    website: '',
     aiInsights: undefined
   });
 
@@ -91,7 +92,8 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
           comparisonSummary: profile.comparison_summary,
           pros: profile.pros || [],
           cons: profile.cons || []
-        }
+        },
+        website: profile.website || prev.website
       }));
     } catch (err: any) {
       setError(err.message || 'Failed to auto-generate tool profile.');
@@ -176,6 +178,11 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
           <div>
             <label className="block text-sm font-medium text-muted-foreground mb-1">Description *</label>
             <textarea required name="description" value={formData.description} onChange={handleChange} rows={3} className="w-full bg-background border border-white/10 rounded-lg px-4 py-2 text-foreground focus:ring-2 focus:ring-primary outline-none resize-none" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Website / Affiliate Link</label>
+            <input type="url" name="website" value={formData.website || ''} onChange={handleChange} placeholder="https://example.com" className="w-full bg-background border border-white/10 rounded-lg px-4 py-2 text-foreground focus:ring-2 focus:ring-primary outline-none" />
           </div>
         </div>
 

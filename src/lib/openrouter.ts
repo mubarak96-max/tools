@@ -27,6 +27,7 @@ export interface GeneratedToolResponse {
   anti_recommendation: string;
   pros: string[];
   cons: string[];
+  website: string;
 }
 
 export async function generateFullTool(toolName: string, availableCategories: string[]): Promise<GeneratedToolResponse | null> {
@@ -39,6 +40,7 @@ Basic Info
 - Pricing model: Free | Freemium | Paid
 - Difficulty level: Beginner | Intermediate | Advanced
 - Price range: starting price -> highest tier
+- Official Website URL (The main domain or affiliate landing page)
 
 Description (280-350 characters, plain language, explains what the tool does and who it helps)
 Use Cases (minimum 5, written as action-oriented phrases)
@@ -70,7 +72,8 @@ Your response MUST be valid JSON matching exactly this structure:
   "best_for": "",
   "anti_recommendation": "",
   "pros": [],
-  "cons": []
+  "cons": [],
+  "website": ""
 }
 Return ONLY the JSON. No markdown formatting, no code blocks, just the raw JSON object.`;
 

@@ -102,7 +102,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
                 <span className="font-medium text-foreground">{tool.pricingRange}</span>
               </div>
               <div className="pt-4 mt-4 border-t border-white/10">
-                <a href="#" className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all">
+                <a href={tool.website || "#"} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all">
                   Visit Website
                   <ArrowRight className="w-4 h-4" />
                 </a>
