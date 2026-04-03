@@ -1,17 +1,10 @@
 import ToolForm from "@/components/admin/ToolForm";
+import { listCategories } from "@/lib/db/taxonomies";
 import Link from 'next/link';
-import { adminDb } from "@/lib/firebase-admin";
-import { ToolCategory } from "@/types/database";
-import { serializeData } from "@/lib/utils";
+import type { ToolCategory } from "@/types/database";
 
 async function getCategories(): Promise<ToolCategory[]> {
-  try {
-    if (!adminDb) return [];
-    const snapshot = await adminDb.collection('categories').orderBy('name').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...serializeData(doc.data()) })) as ToolCategory[];
-  } catch (error) {
-    return [];
-  }
+  return listCategories();
 }
 
 export default async function NewToolPage() {

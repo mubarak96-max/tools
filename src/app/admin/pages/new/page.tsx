@@ -1,18 +1,10 @@
 import PageForm from "@/components/admin/PageForm";
-import { adminDb } from "@/lib/firebase-admin";
-import { Tool } from "@/types/database";
+import { listTools } from "@/lib/db/tools";
 import Link from 'next/link';
-import { serializeData } from "@/lib/utils";
+import type { Tool } from "@/types/database";
 
 async function getAvailableTools(): Promise<Tool[]> {
-  try {
-    if (!adminDb) return [];
-    const snapshot = await adminDb.collection('tools').orderBy('name').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...serializeData(doc.data()) })) as Tool[];
-  } catch (error) {
-    console.error("Error fetching tools:", error);
-    return [];
-  }
+  return listTools();
 }
 
 export default async function NewCustomPage() {

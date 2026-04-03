@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next';
-import { adminDb } from "@/lib/firebase-admin";
+import { listPages } from "@/lib/db/pages";
+import { listTools } from "@/lib/db/tools";
+import { listCategoryAudienceHubSlugs, listCategoryHubSlugs } from "@/lib/discovery/hubs";
+import { slugify } from "@/lib/slug";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.yourdomain.com';
 
@@ -17,38 +20,95 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'daily',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${BASE_URL}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE_URL}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ];
 
-  try {
-    if (!adminDb) return sitemapEntries; // Fallback if no DB
-    
-    // Fetch all tools to build dynamic URLs
-    const snapshot = await adminDb.collection('tools').get();
-    
-    snapshot.docs.forEach((doc) => {
-      const slug = doc.id;
-      const data = doc.data();
-      const updated = data.updatedAt?.toDate ? data.updatedAt.toDate() : new Date();
+  const [tools, pages, categorySlugs, categoryAudiencePairs] = await Promise.all([
+    listTools({ status: ["published"] }),
+    listPages({ status: ["published"] }),
+    listCategoryHubSlugs(),
+    listCategoryAudienceHubSlugs(),
+  ]);
 
-      // Tool Detail Page
-      sitemapEntries.push({
-        url: `${BASE_URL}/tools/${slug}`,
-        lastModified: updated,
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      });
+  const useCaseSlugs = new Set<string>();
 
-      // Alternative Page
-      sitemapEntries.push({
-        url: `${BASE_URL}/alternatives-to-${slug}`,
-        lastModified: updated,
-        changeFrequency: 'weekly',
-        priority: 0.7,
-      });
+  tools.forEach((tool) => {
+    const updated = tool.updatedAt ? new Date(tool.updatedAt) : new Date();
+
+    sitemapEntries.push({
+      url: `${BASE_URL}/tools/${tool.slug}`,
+      lastModified: updated,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     });
-  } catch (error) {
-    console.error("Error generating sitemap:", error);
-  }
+
+    sitemapEntries.push({
+      url: `${BASE_URL}/alternatives-to-${tool.slug}`,
+      lastModified: updated,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    });
+
+    tool.useCases.forEach((useCase) => {
+      const useCaseSlug = slugify(useCase);
+      if (useCaseSlug) {
+        useCaseSlugs.add(useCaseSlug);
+      }
+    });
+  });
+
+  useCaseSlugs.forEach((useCaseSlug) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/tools-for-${useCaseSlug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.65,
+    });
+  });
+
+  categorySlugs.forEach((categorySlug) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/best/${categorySlug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    });
+  });
+
+  categoryAudiencePairs.forEach(({ category, audience }) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/best/${category}/for/${audience}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    });
+  });
+
+  pages.forEach((page) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/p/${page.slug}`,
+      lastModified: page.updatedAt ? new Date(page.updatedAt) : new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    });
+  });
 
   return sitemapEntries;
 }

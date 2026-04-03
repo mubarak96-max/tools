@@ -1,211 +1,412 @@
 'use server';
 
-import { adminDb } from "@/lib/firebase-admin";
-import { Tool } from "@/types/database";
-import { generateFullTool, generateCustomPage } from "@/lib/openrouter";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export async function createTool(data: Partial<Tool>) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-  
-  const slug = data.slug || data.name?.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  if (!slug) throw new Error("Tool name is required to generate a slug");
+import {
+  createPageRecord,
+  deletePageRecord,
+  getPageBySlug,
+  updatePageRecord,
+} from "@/lib/db/pages";
+import { createCategoryRecord, deleteCategoryRecord, updateCategoryRecord } from "@/lib/db/taxonomies";
+import {
+  createToolRecord,
+  deleteToolRecord,
+  getToolBySlug,
+  getToolsBySlugs,
+  listTools,
+  updateToolRecord,
+} from "@/lib/db/tools";
+import { nowIso } from "@/lib/dates";
+import {
+  generatePageEditorialPreview,
+  generatePageStructurePreview,
+} from "@/lib/generation/generate-page";
+import {
+  generateToolEditorialPreview,
+  generateToolFactsPreview,
+} from "@/lib/generation/generate-tool";
+import { slugify } from "@/lib/slug";
+import type { CustomPage, Tool, ToolCategory } from "@/types/database";
 
-  const docRef = adminDb.collection('tools').doc(slug);
-  const doc = await docRef.get();
-  
-  if (doc.exists) {
-    throw new Error("A tool with this slug already exists.");
-  }
-
-  await docRef.set({
-    ...data,
-    slug,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
-
-  revalidatePath('/admin/tools');
-  revalidatePath('/');
-  revalidatePath('/tools');
-  redirect('/admin/tools');
+function revalidateSharedPublicPaths() {
+  revalidatePath("/");
+  revalidatePath("/tools");
+  revalidatePath("/sitemap.xml");
+  revalidatePath("/admin/review");
 }
 
-export async function updateTool(slug: string, data: Partial<Tool>) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-
-  const docRef = adminDb.collection('tools').doc(slug);
-  await docRef.update({
-    ...data,
-    updatedAt: new Date(),
-  });
-
-  revalidatePath('/admin/tools');
+function revalidateToolPaths(slug: string) {
+  revalidatePath("/admin/tools");
+  revalidatePath(`/admin/tools/${slug}/edit`);
   revalidatePath(`/tools/${slug}`);
-  revalidatePath('/');
-  revalidatePath('/tools');
-  redirect('/admin/tools');
+  revalidateSharedPublicPaths();
 }
 
-export async function deleteTool(slug: string) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-
-  await adminDb.collection('tools').doc(slug).delete();
-
-  revalidatePath('/admin/tools');
-  revalidatePath('/');
-  revalidatePath('/tools');
+function revalidatePagePaths(slug: string) {
+  revalidatePath("/admin/pages");
+  revalidatePath(`/admin/pages/${slug}/edit`);
+  revalidatePath(`/p/${slug}`);
+  revalidateSharedPublicPaths();
 }
 
-export async function generateFullToolProfile(toolName: string, config: { categories: string[] }) {
-  const profile = await generateFullTool(toolName, config.categories);
-  if (!profile) {
-    throw new Error("Failed to generate AI insights from OpenRouter.");
-  }
-  return profile;
+function estimateToolConfidence(profile: {
+  website?: string;
+  category?: string;
+  price_range?: string;
+  features?: string[];
+  use_cases?: string[];
+}) {
+  let score = 0.35;
+
+  if (profile.website) score += 0.2;
+  if (profile.category) score += 0.15;
+  if (profile.price_range) score += 0.1;
+  if ((profile.features?.length ?? 0) >= 5) score += 0.1;
+  if ((profile.use_cases?.length ?? 0) >= 5) score += 0.1;
+
+  return Math.min(score, 0.95);
 }
 
-export async function autoCreateTool(toolName: string, config: { categories: string[] }) {
-  const profile = await generateFullToolProfile(toolName, config);
-  if (!adminDb) throw new Error("Firebase not initialized");
-  
-  const slug = profile.slug || toolName.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  
-  const docRef = adminDb.collection('tools').doc(slug);
-  const doc = await docRef.get();
-  if (doc.exists) {
-    throw new Error("A tool with this name/slug already exists.");
-  }
-  
-  const pricingMapping: any = { 'free': 'Free', 'freemium': 'Freemium', 'paid': 'Paid' };
-  const diffMapping: any = { 'beginner': 'Beginner', 'intermediate': 'Intermediate', 'advanced': 'Advanced' };
+export async function createTool(data: Partial<Tool>) {
+  const slug = await createToolRecord(data, "draft");
 
-  await docRef.set({
-    name: toolName,
-    slug,
-    category: profile.category,
-    pricing: pricingMapping[profile.pricing_model?.toLowerCase()] || 'Freemium',
-    difficulty: diffMapping[profile.difficulty_level?.toLowerCase()] || 'Intermediate',
-    pricingRange: profile.price_range,
-    description: profile.description,
-    useCases: profile.use_cases || [],
-    features: profile.features || [],
-    platforms: profile.platforms || [],
-    aiInsights: {
-      whyThisToolFits: profile.why_this_tool,
-      bestFor: profile.best_for,
-      antiRecommendation: profile.anti_recommendation,
-      comparisonSummary: profile.comparison_summary,
-      pros: profile.pros || [],
-      cons: profile.cons || []
-    },
-    website: profile.website || '',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
-
-  revalidatePath('/admin/tools');
-  revalidatePath('/');
-  revalidatePath('/tools');
+  revalidatePath("/admin/tools");
+  revalidateSharedPublicPaths();
   redirect(`/admin/tools/${slug}/edit`);
 }
 
-export async function createPage(data: Partial<any>) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-  
-  const slug = data.slug;
-  if (!slug) throw new Error("Page slug is required");
+export async function updateTool(slug: string, data: Partial<Tool>) {
+  await updateToolRecord(slug, data);
 
-  const docRef = adminDb.collection('pages').doc(slug);
-  const doc = await docRef.get();
-  
-  if (doc.exists) {
-    throw new Error("A page with this slug already exists.");
+  revalidateToolPaths(slug);
+  redirect("/admin/tools");
+}
+
+export async function deleteTool(slug: string) {
+  await deleteToolRecord(slug);
+
+  revalidatePath("/admin/tools");
+  revalidatePath("/admin/review");
+  revalidatePath(`/tools/${slug}`);
+  revalidateSharedPublicPaths();
+}
+
+export async function generateFullToolProfile(toolName: string, config: { categories: string[] }) {
+  const facts = await generateToolFactsPreview({
+    toolName,
+    categories: config.categories,
+  });
+  if (!facts) {
+    throw new Error("Failed to generate AI insights from OpenRouter.");
   }
 
-  await docRef.set({
-    ...data,
-    slug,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
+  const editorial = await generateToolEditorialPreview(facts.draft);
+  if (!editorial) {
+    throw new Error("Failed to generate AI editorial layer.");
+  }
 
-  revalidatePath('/admin/pages');
-  revalidatePath(`/p/${slug}`);
-  redirect('/admin/pages');
+  return {
+    slug: editorial.draft.slug || slugify(toolName),
+    category: editorial.draft.category || "",
+    pricing_model: editorial.draft.pricingModel || "freemium",
+    difficulty_level: editorial.draft.difficultyLevel || "intermediate",
+    price_range: editorial.draft.pricingRange || "",
+    description: editorial.draft.shortDescription || editorial.draft.description || "",
+    use_cases: editorial.draft.useCases || [],
+    features: editorial.draft.features || [],
+    platforms: editorial.draft.platforms || [],
+    why_this_tool: editorial.draft.editorialSummary || "",
+    comparison_summary: editorial.draft.aiInsights?.comparisonSummary || "",
+    best_for: editorial.draft.bestFor || "",
+    anti_recommendation: editorial.draft.notIdealFor || "",
+    pros: editorial.draft.pros || [],
+    cons: editorial.draft.cons || [],
+    website: editorial.draft.website || "",
+  };
 }
 
-export async function updatePage(slug: string, data: Partial<any>) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-
-  const docRef = adminDb.collection('pages').doc(slug);
-  await docRef.update({
-    ...data,
-    updatedAt: new Date(),
+export async function autoCreateTool(toolName: string, config: { categories: string[] }) {
+  const preview = await previewGeneratedToolFacts({
+    toolName,
+    categories: config.categories,
   });
-
-  revalidatePath('/admin/pages');
-  revalidatePath(`/p/${slug}`);
-  redirect('/admin/pages');
+  const completed = await previewGeneratedToolEditorial(preview.draft);
+  await saveGeneratedToolDraft(completed.draft);
 }
 
-export async function deletePage(slug: string) {
-  if (!adminDb) throw new Error("Firebase not initialized");
+export async function createPage(data: Partial<CustomPage>) {
+  const slug = await createPageRecord(data, "draft");
 
-  await adminDb.collection('pages').doc(slug).delete();
-
-  revalidatePath('/admin/pages');
-  revalidatePath(`/p/${slug}`);
-}
-
-export async function autoCreateCustomPage(topic: string, templateType: 'comparison' | 'alternatives' | 'curated-list', toolsList: {slug: string, name: string, category: string}[]) {
-  const profile = await generateCustomPage(topic, templateType, toolsList);
-  if (!adminDb || !profile) throw new Error("Failed to generate page or database uninitialized.");
-  
-  const slug = profile.slug || topic.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const docRef = adminDb.collection('pages').doc(slug);
-  const doc = await docRef.get();
-  if (doc.exists) throw new Error("A page with this slug already exists.");
-  
-  await docRef.set({
-    slug,
-    title: profile.title,
-    metaDescription: profile.metaDescription,
-    templateType: profile.templateType,
-    toolSlugs: profile.toolSlugs || [],
-    editorialVerdict: profile.editorialVerdict,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  });
-
-  revalidatePath('/admin/pages');
-  revalidatePath('/');
-  revalidatePath(`/p/${slug}`);
+  revalidatePagePaths(slug);
   redirect(`/admin/pages/${slug}/edit`);
 }
 
-export async function createCategory(data: Partial<any>) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-  const slug = data.slug;
-  if (!slug) throw new Error("Slug is required");
-  const docRef = adminDb.collection('categories').doc(slug);
-  if ((await docRef.get()).exists) throw new Error("Category exists");
-  await docRef.set({ ...data, slug, createdAt: new Date(), updatedAt: new Date() });
-  revalidatePath('/admin/categories');
-  redirect('/admin/categories');
+export async function updatePage(slug: string, data: Partial<CustomPage>) {
+  await updatePageRecord(slug, data);
+
+  revalidatePagePaths(slug);
+  redirect("/admin/pages");
 }
 
-export async function updateCategory(slug: string, data: Partial<any>) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-  await adminDb.collection('categories').doc(slug).update({ ...data, updatedAt: new Date() });
-  revalidatePath('/admin/categories');
-  revalidatePath(`/tools/categories/${slug}`);
-  redirect('/admin/categories');
+export async function deletePage(slug: string) {
+  await deletePageRecord(slug);
+
+  revalidatePath("/admin/pages");
+  revalidatePath("/admin/review");
+  revalidatePath(`/p/${slug}`);
+}
+
+export async function autoCreateCustomPage(
+  topic: string,
+  templateType: "comparison" | "alternatives" | "curated-list",
+  toolsList: { slug: string; name: string; category: string }[],
+) {
+  const publishedTools = (await listTools({ status: ["published"] })).filter((tool) =>
+    toolsList.some((candidate) => candidate.slug === tool.slug),
+  );
+  const structure = await generatePageStructurePreview({
+    topic,
+    templateType,
+    availableTools: publishedTools,
+  });
+  const editorial = await generatePageEditorialPreview({
+    topic,
+    templateType,
+    draft: structure.draft,
+    selectedTools: structure.selectedTools,
+  });
+
+  if (!editorial) {
+    throw new Error("Failed to generate the custom page draft.");
+  }
+
+  await saveGeneratedPageDraft(editorial.draft);
+}
+
+export async function previewGeneratedToolFacts(input: {
+  toolName: string;
+  website?: string;
+  categories: string[];
+}) {
+  const existingTools = (await listTools()).map((tool) => ({ slug: tool.slug, name: tool.name }));
+  const preview = await generateToolFactsPreview({
+    toolName: input.toolName,
+    website: input.website,
+    categories: input.categories,
+    existingTools,
+  });
+
+  if (!preview) {
+    throw new Error("Failed to generate structured tool facts.");
+  }
+
+  return preview;
+}
+
+export async function previewGeneratedToolEditorial(draft: Partial<Tool>) {
+  const existingTools = (await listTools()).map((tool) => ({ slug: tool.slug, name: tool.name }));
+  const preview = await generateToolEditorialPreview(draft, existingTools);
+
+  if (!preview) {
+    throw new Error("Failed to generate editorial copy for this tool.");
+  }
+
+  return preview;
+}
+
+export async function saveGeneratedToolDraft(draft: Partial<Tool>) {
+  const slug = await createToolRecord(
+    {
+      ...draft,
+      sourceConfidence: draft.sourceConfidence ?? estimateToolConfidence({}),
+      status: draft.status ?? "review",
+      aiLastGeneratedAt: draft.aiLastGeneratedAt ?? nowIso(),
+    },
+    draft.status ?? "review",
+  );
+
+  revalidateToolPaths(slug);
+  redirect(`/admin/tools/${slug}/edit`);
+}
+
+export async function previewGeneratedPageStructure(input: {
+  topic: string;
+  templateType: CustomPage["templateType"];
+}) {
+  const tools = await listTools({ status: ["published"] });
+  return generatePageStructurePreview({
+    topic: input.topic,
+    templateType: input.templateType,
+    availableTools: tools,
+  });
+}
+
+export async function previewGeneratedPageEditorial(input: {
+  topic: string;
+  templateType: CustomPage["templateType"];
+  draft: Partial<CustomPage>;
+  selectedToolSlugs: string[];
+}) {
+  const selectedTools = await getToolsBySlugs(input.selectedToolSlugs, { includeDrafts: true });
+  const preview = await generatePageEditorialPreview({
+    topic: input.topic,
+    templateType: input.templateType,
+    draft: input.draft,
+    selectedTools,
+  });
+
+  if (!preview) {
+    throw new Error("Failed to generate editorial blocks for this page.");
+  }
+
+  return preview;
+}
+
+export async function saveGeneratedPageDraft(draft: Partial<CustomPage>) {
+  const slug = await createPageRecord(
+    {
+      ...draft,
+      slug: draft.slug || slugify(draft.title || "generated-page"),
+      pageType: draft.pageType || draft.templateType || "curated-list",
+      templateType: draft.templateType || "curated-list",
+      sourceMethod: draft.sourceMethod || "ai-assisted",
+      status: draft.status || "review",
+    },
+    draft.status || "review",
+  );
+
+  revalidatePagePaths(slug);
+  redirect(`/admin/pages/${slug}/edit`);
+}
+
+export async function approveToolForPublish(slug: string) {
+  const tool = await getToolBySlug(slug, { includeDrafts: true });
+
+  if (!tool) {
+    throw new Error("Tool not found.");
+  }
+
+  await updateToolRecord(slug, {
+    ...tool,
+    status: "published",
+    factsLastVerifiedAt: nowIso(),
+  });
+
+  revalidateToolPaths(slug);
+}
+
+export async function returnToolToDraft(slug: string) {
+  const tool = await getToolBySlug(slug, { includeDrafts: true });
+
+  if (!tool) {
+    throw new Error("Tool not found.");
+  }
+
+  await updateToolRecord(slug, {
+    ...tool,
+    status: "draft",
+  });
+
+  revalidateToolPaths(slug);
+}
+
+export async function regenerateToolEditorial(slug: string) {
+  const tool = await getToolBySlug(slug, { includeDrafts: true });
+
+  if (!tool) {
+    throw new Error("Tool not found.");
+  }
+
+  const preview = await previewGeneratedToolEditorial(tool);
+  await updateToolRecord(slug, {
+    ...tool,
+    ...preview.draft,
+    status: preview.draft.status ?? "review",
+    sourceConfidence: preview.confidence,
+  });
+
+  revalidateToolPaths(slug);
+}
+
+export async function approvePageForPublish(slug: string) {
+  const page = await getPageBySlug(slug, { includeDrafts: true });
+
+  if (!page) {
+    throw new Error("Page not found.");
+  }
+
+  await updatePageRecord(slug, {
+    ...page,
+    status: "published",
+  });
+
+  revalidatePagePaths(slug);
+}
+
+export async function returnPageToDraft(slug: string) {
+  const page = await getPageBySlug(slug, { includeDrafts: true });
+
+  if (!page) {
+    throw new Error("Page not found.");
+  }
+
+  await updatePageRecord(slug, {
+    ...page,
+    status: "draft",
+  });
+
+  revalidatePagePaths(slug);
+}
+
+export async function regeneratePageEditorial(slug: string) {
+  const page = await getPageBySlug(slug, { includeDrafts: true });
+
+  if (!page) {
+    throw new Error("Page not found.");
+  }
+
+  const selectedTools = await getToolsBySlugs(page.toolSlugs, { includeDrafts: true });
+
+  if (selectedTools.length === 0) {
+    throw new Error("Page has no linked tools to regenerate against.");
+  }
+
+  const preview = await generatePageEditorialPreview({
+    topic: page.useCase || page.title,
+    templateType: page.templateType,
+    draft: page,
+    selectedTools,
+  });
+
+  if (!preview) {
+    throw new Error("Failed to regenerate page editorial.");
+  }
+
+  await updatePageRecord(slug, {
+    ...page,
+    ...preview.draft,
+    status: preview.draft.status ?? "review",
+    qualityScore: preview.qualityScore,
+  });
+
+  revalidatePagePaths(slug);
+}
+
+export async function createCategory(data: Partial<ToolCategory>) {
+  await createCategoryRecord(data);
+  revalidatePath("/admin/categories");
+  redirect("/admin/categories");
+}
+
+export async function updateCategory(slug: string, data: Partial<ToolCategory>) {
+  await updateCategoryRecord(slug, data);
+  revalidatePath("/admin/categories");
+  redirect("/admin/categories");
 }
 
 export async function deleteCategory(slug: string) {
-  if (!adminDb) throw new Error("Firebase not initialized");
-  await adminDb.collection('categories').doc(slug).delete();
-  revalidatePath('/admin/categories');
+  await deleteCategoryRecord(slug);
+  revalidatePath("/admin/categories");
 }

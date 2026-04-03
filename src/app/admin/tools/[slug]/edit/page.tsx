@@ -1,25 +1,16 @@
-import { adminDb } from "@/lib/firebase-admin";
-import { Tool, ToolCategory } from "@/types/database";
-import { notFound } from "next/navigation";
 import ToolForm from "@/components/admin/ToolForm";
+import { listCategories } from "@/lib/db/taxonomies";
+import { getToolBySlug } from "@/lib/db/tools";
 import Link from "next/link";
-import { serializeData } from "@/lib/utils";
+import { notFound } from "next/navigation";
+import type { Tool, ToolCategory } from "@/types/database";
 
 async function getCategories(): Promise<ToolCategory[]> {
-  try {
-    if (!adminDb) return [];
-    const snapshot = await adminDb.collection('categories').orderBy('name').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...serializeData(doc.data()) })) as ToolCategory[];
-  } catch (error) {
-    return [];
-  }
+  return listCategories();
 }
 
 async function getTool(slug: string): Promise<Tool | null> {
-  if (!slug || slug.startsWith('[') || slug === 'undefined') return null;
-  if (!adminDb) return null;
-  const doc = await adminDb.collection('tools').doc(slug).get();
-  return doc.exists ? ({ id: doc.id, ...serializeData(doc.data()) } as Tool) : null;
+  return getToolBySlug(slug, { includeDrafts: true });
 }
 
 export default async function EditToolPage({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,65 +1,55 @@
-import { adminDb } from "@/lib/firebase-admin";
-import { CustomPage, Tool } from "@/types/database";
 import { deletePage } from "@/app/admin/actions";
+import AutoGeneratePage from "@/components/admin/AutoGeneratePage";
+import { listPages } from "@/lib/db/pages";
+import { listTools } from "@/lib/db/tools";
 import Link from "next/link";
 import { Plus, Edit2, Trash2, ExternalLink, LayoutTemplate } from "lucide-react";
-import AutoGeneratePage from "@/components/admin/AutoGeneratePage";
-import { serializeData } from "@/lib/utils";
+import type { CustomPage, Tool } from "@/types/database";
 
 export const dynamic = 'force-dynamic';
 
 async function getAdminPages(): Promise<CustomPage[]> {
-  try {
-    if (!adminDb) return [];
-    const snapshot = await adminDb.collection('pages').orderBy('createdAt', 'desc').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...serializeData(doc.data()) })) as CustomPage[];
-  } catch (error) {
-    console.error("Error fetching pages:", error);
-    return [];
-  }
+  return listPages();
 }
 
 async function getAvailableTools(): Promise<Tool[]> {
-  try {
-    if (!adminDb) return [];
-    const snapshot = await adminDb.collection('tools').orderBy('name').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...serializeData(doc.data()) })) as Tool[];
-  } catch (error) {
-    return [];
-  }
+  return listTools();
 }
 
 export default async function AdminPagesDataTable() {
   const [pages, tools] = await Promise.all([getAdminPages(), getAvailableTools()]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <AutoGeneratePage tools={tools} />
       
-      <div className="flex justify-between items-center bg-card p-6 rounded-2xl border border-white/5 mt-8">
+      <div className="flex flex-col gap-4 rounded-[1.75rem] border border-border/70 bg-card/80 p-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Custom SEO Pages</h1>
-          <p className="text-muted-foreground mt-1">Manage dynamic programmatic pages (like 'Best Tools for X').</p>
+          <h1 className="text-2xl font-bold text-foreground">Custom SEO Pages</h1>
+          <p className="mt-1 text-muted-foreground">
+            Review deterministic tool selections, then add editorial blocks before publishing.
+          </p>
         </div>
-        <Link href="/admin/pages/new" className="px-4 py-2 bg-primary text-primary-foreground font-medium rounded-lg flex items-center gap-2 hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+        <Link href="/admin/pages/new" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20">
           <Plus className="w-4 h-4" /> Create Page
         </Link>
       </div>
 
-      <div className="glass-card rounded-2xl overflow-hidden border border-white/5">
+      <div className="glass-card overflow-hidden rounded-[1.75rem]">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-white/5 border-b border-white/10">
+            <thead className="border-b border-border/70 bg-background/75">
               <tr>
                 <th className="px-6 py-4 text-sm font-semibold text-muted-foreground">Page Title & Slug</th>
                 <th className="px-6 py-4 text-sm font-semibold text-muted-foreground">Template</th>
+                <th className="px-6 py-4 text-sm font-semibold text-muted-foreground">Status</th>
                 <th className="px-6 py-4 text-sm font-semibold text-muted-foreground">Curated Tools</th>
                 <th className="px-6 py-4 text-sm font-semibold text-muted-foreground text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-white/5">
+            <tbody className="divide-y divide-border/60">
               {pages.map((page) => (
-                <tr key={page.slug} className="hover:bg-white/[0.02] transition-colors group">
+                <tr key={page.slug} className="group transition-colors hover:bg-background/60">
                   <td className="px-6 py-4">
                     <div className="font-medium text-foreground flex items-center gap-2">
                       {page.title}
@@ -70,8 +60,13 @@ export default async function AdminPagesDataTable() {
                     <div className="text-xs text-muted-foreground mt-0.5">/p/{page.slug}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="px-2.5 py-1 bg-white/5 rounded-md text-xs text-muted-foreground border border-white/5 flex items-center gap-1.5 w-fit">
+                    <span className="flex w-fit items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs text-muted-foreground">
                       <LayoutTemplate className="w-3 h-3" /> {page.templateType}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-medium capitalize text-muted-foreground">
+                      {page.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-foreground">
@@ -94,7 +89,7 @@ export default async function AdminPagesDataTable() {
               
               {pages.length === 0 && (
                 <tr>
-                  <td colSpan={4} className="px-6 py-12 text-center text-muted-foreground">
+                  <td colSpan={5} className="px-6 py-12 text-center text-muted-foreground">
                     No custom pages found. Create your first programmatic SEO page!
                   </td>
                 </tr>

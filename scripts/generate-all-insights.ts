@@ -1,75 +1,47 @@
-import { config } from 'dotenv';
-import { resolve } from 'path';
+import { listTools, updateToolRecord } from "../src/lib/db/tools";
+import { generateToolEditorialPreview } from "../src/lib/generation/generate-tool";
 
-// Load .env.local variables
-config({ path: resolve(__dirname, '../.env.local') });
+import { fail, info, requireOpenRouterKey, sleep } from "./_shared";
 
-import { adminDb } from '../src/lib/firebase-admin';
-import { generateToolInsights } from '../src/lib/openrouter';
-import { Tool } from '../src/types/database';
+async function main() {
+  requireOpenRouterKey();
 
-async function generateAllInsights() {
-  console.log('🤖 Starting batch AI insight generation...');
+  const tools = await listTools();
+  let generated = 0;
+  let skipped = 0;
 
-  if (!process.env.OPENROUTER_API_KEY) {
-    console.error('❌ OPENROUTER_API_KEY is missing from .env.local!');
-    process.exit(1);
-  }
-
-  const toolsCollection = adminDb.collection('tools');
-  let toolsSnapshot;
-  
-  try {
-    toolsSnapshot = await toolsCollection.get();
-  } catch (error) {
-    console.error('❌ Error fetching tools from Firestore:', error);
-    process.exit(1);
-  }
-
-  let successCount = 0;
-  let skipCount = 0;
-  let failCount = 0;
-
-  for (const doc of toolsSnapshot.docs) {
-    const rawData = doc.data();
-    const tool = { id: doc.id, ...rawData } as Tool;
-
-    if (tool.aiInsights) {
-      console.log(`⏩ Skipping ${tool.name} - Insights already exist.`);
-      skipCount++;
+  for (const tool of tools) {
+    if (tool.aiInsights && tool.editorialSummary && (tool.sourceConfidence ?? 0) >= 0.82) {
+      skipped += 1;
       continue;
     }
 
-    console.log(`\n⏳ Generating insights for: ${tool.name}...`);
-    const newInsights = await generateToolInsights(tool);
+    info(`Generating insights for ${tool.slug}`);
+    const preview = await generateToolEditorialPreview(
+      tool,
+      tools.map((entry) => ({ slug: entry.slug, name: entry.name })),
+    );
 
-    if (newInsights) {
-      try {
-        await toolsCollection.doc(doc.id).update({
-          aiInsights: newInsights,
-          updatedAt: new Date()
-        });
-        console.log(`✅ Success: Updated insights for ${tool.name}`);
-        successCount++;
-        
-        // Sleep to respect API rate limits
-        await new Promise((r) => setTimeout(r, 1000));
-      } catch (dbError) {
-        console.error(`❌ Failed to update Firestore for ${tool.name}:`, dbError);
-        failCount++;
-      }
-    } else {
-      console.error(`❌ Failed to generate insights from OpenRouter for ${tool.name}`);
-      failCount++;
+    if (!preview) {
+      fail(`Failed to generate insights for ${tool.slug}`);
+      continue;
     }
+
+    await updateToolRecord(tool.slug, {
+      ...tool,
+      ...preview.draft,
+      sourceConfidence: preview.confidence,
+      status: preview.draft.status ?? "review",
+    });
+
+    generated += 1;
+    await sleep(500);
   }
 
-  console.log('\n=============================================');
-  console.log('🎉 Batch Generation Complete!');
-  console.log(`✅ Generated: ${successCount}`);
-  console.log(`⏩ Skipped: ${skipCount}`);
-  console.log(`❌ Failed: ${failCount}`);
-  console.log('=============================================');
+  info(`Insight generation complete. Generated ${generated}, skipped ${skipped}.`);
 }
 
-generateAllInsights();
+void main().catch((error) => {
+  fail(error instanceof Error ? error.message : "Insight generation failed.");
+  process.exit(1);
+});

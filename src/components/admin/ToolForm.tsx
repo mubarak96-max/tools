@@ -11,6 +11,19 @@ interface ToolFormProps {
   isEdit?: boolean;
 }
 
+const emptyAiInsights = (): AIInsights => ({
+  whyThisToolFits: '',
+  pros: [],
+  cons: [],
+  bestFor: '',
+  antiRecommendation: '',
+  comparisonSummary: '',
+});
+
+function getErrorMessage(error: unknown, fallback: string) {
+  return error instanceof Error ? error.message : fallback;
+}
+
 export default function ToolForm({ initialData, categories, isEdit }: ToolFormProps) {
   const [loading, setLoading] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
@@ -24,6 +37,7 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
     pricingRange: '',
     difficulty: 'Intermediate',
     description: '',
+    status: 'draft',
     useCases: [],
     features: [],
     platforms: [],
@@ -45,18 +59,31 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
 
   const handleAiInsightsChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, field: keyof AIInsights) => {
     const value = e.target.value;
-    let parsedValue: any = value;
-    if (field === 'pros' || field === 'cons') {
-      parsedValue = value.split('\n').map(s => s.trim()).filter(Boolean);
-    }
+    const parsedValue: AIInsights[keyof AIInsights] =
+      field === 'pros' || field === 'cons'
+        ? value.split('\n').map(s => s.trim()).filter(Boolean)
+        : value;
     
     setFormData(prev => ({
       ...prev,
       aiInsights: {
-        ...(prev.aiInsights || {} as AIInsights),
+        ...(prev.aiInsights ?? emptyAiInsights()),
         [field]: parsedValue
       }
     }));
+  };
+
+  const updateAiInsightList = (field: 'pros' | 'cons', updater: (values: string[]) => string[]) => {
+    setFormData(prev => {
+      const currentInsights = prev.aiInsights ?? emptyAiInsights();
+      return {
+        ...prev,
+        aiInsights: {
+          ...currentInsights,
+          [field]: updater(currentInsights[field]),
+        },
+      };
+    });
   };
 
   const handleGenerateAI = async () => {
@@ -71,8 +98,8 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
         categories: categories.map(c => c.name) 
       });
       
-      const pricingMapping: any = { 'free': 'Free', 'freemium': 'Freemium', 'paid': 'Paid' };
-      const diffMapping: any = { 'beginner': 'Beginner', 'intermediate': 'Intermediate', 'advanced': 'Advanced' };
+      const pricingMapping: Record<string, Tool["pricing"]> = { free: 'Free', freemium: 'Freemium', paid: 'Paid' };
+      const diffMapping: Record<string, Tool["difficulty"]> = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' };
 
       setFormData(prev => ({
         ...prev,
@@ -95,8 +122,8 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
         },
         website: profile.website || prev.website
       }));
-    } catch (err: any) {
-      setError(err.message || 'Failed to auto-generate tool profile.');
+    } catch (err: unknown) {
+      setError(getErrorMessage(err, 'Failed to auto-generate tool profile.'));
     } finally {
       setAiLoading(false);
     }
@@ -112,8 +139,8 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
       } else {
         await createTool(formData);
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred while saving.');
+    } catch (err: unknown) {
+      setError(getErrorMessage(err, 'An error occurred while saving.'));
       setLoading(false);
     }
   };
@@ -148,6 +175,15 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
               {categories.map(cat => (
                 <option key={cat.slug} value={cat.name}>{cat.name}</option>
               ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Status</label>
+            <select name="status" value={formData.status as string} onChange={handleChange} className="w-full bg-background border border-white/10 rounded-lg px-4 py-2 text-foreground focus:ring-2 focus:ring-primary outline-none appearance-none">
+              <option value="draft">Draft</option>
+              <option value="review">Review</option>
+              <option value="published">Published</option>
             </select>
           </div>
 
@@ -254,8 +290,7 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-medium text-muted-foreground">Pros List</label>
                 <button type="button" onClick={() => {
-                  const current = formData.aiInsights?.pros || [];
-                  setFormData(p => ({ ...p, aiInsights: { ...(p.aiInsights as any), pros: [...current, ''] } }));
+                  updateAiInsightList('pros', (current) => [...current, '']);
                 }} className="text-xs text-primary hover:text-primary/80 cursor-pointer">+ Add Pro</button>
               </div>
               <div className="space-y-2">
@@ -264,11 +299,11 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
                     <input type="text" value={pro} onChange={(e) => {
                       const newPros = [...(formData.aiInsights?.pros || [])];
                       newPros[i] = e.target.value;
-                      setFormData(p => ({ ...p, aiInsights: { ...(p.aiInsights as any), pros: newPros } }));
+                      updateAiInsightList('pros', () => newPros);
                     }} className="flex-1 bg-background border border-white/10 rounded-lg px-3 py-1.5 text-sm text-foreground focus:ring-2 focus:ring-primary outline-none" />
                     <button type="button" onClick={() => {
                       const newPros = (formData.aiInsights?.pros || []).filter((_, index) => index !== i);
-                      setFormData(p => ({ ...p, aiInsights: { ...(p.aiInsights as any), pros: newPros } }));
+                      updateAiInsightList('pros', () => newPros);
                     }} className="text-muted-foreground hover:text-red-400 font-bold px-2 cursor-pointer">&times;</button>
                   </div>
                 ))}
@@ -279,8 +314,7 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-medium text-muted-foreground">Cons List</label>
                 <button type="button" onClick={() => {
-                  const current = formData.aiInsights?.cons || [];
-                  setFormData(p => ({ ...p, aiInsights: { ...(p.aiInsights as any), cons: [...current, ''] } }));
+                  updateAiInsightList('cons', (current) => [...current, '']);
                 }} className="text-xs text-red-500 hover:text-red-400 cursor-pointer">+ Add Con</button>
               </div>
               <div className="space-y-2">
@@ -289,11 +323,11 @@ export default function ToolForm({ initialData, categories, isEdit }: ToolFormPr
                     <input type="text" value={con} onChange={(e) => {
                       const newCons = [...(formData.aiInsights?.cons || [])];
                       newCons[i] = e.target.value;
-                      setFormData(p => ({ ...p, aiInsights: { ...(p.aiInsights as any), cons: newCons } }));
+                      updateAiInsightList('cons', () => newCons);
                     }} className="flex-1 bg-background border border-white/10 rounded-lg px-3 py-1.5 text-sm text-foreground focus:ring-2 focus:ring-primary outline-none" />
                     <button type="button" onClick={() => {
                        const newCons = (formData.aiInsights?.cons || []).filter((_, index) => index !== i);
-                       setFormData(p => ({ ...p, aiInsights: { ...(p.aiInsights as any), cons: newCons } }));
+                       updateAiInsightList('cons', () => newCons);
                     }} className="text-muted-foreground hover:text-red-400 font-bold px-2 cursor-pointer">&times;</button>
                   </div>
                 ))}

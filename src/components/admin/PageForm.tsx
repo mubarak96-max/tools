@@ -11,6 +11,10 @@ interface PageFormProps {
   isEdit?: boolean;
 }
 
+function getErrorMessage(error: unknown, fallback: string) {
+  return error instanceof Error ? error.message : fallback;
+}
+
 export default function PageForm({ initialData, availableTools, isEdit }: PageFormProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -20,6 +24,7 @@ export default function PageForm({ initialData, availableTools, isEdit }: PageFo
     title: '',
     metaDescription: '',
     templateType: 'curated-list',
+    status: 'draft',
     toolSlugs: []
   });
 
@@ -56,8 +61,8 @@ export default function PageForm({ initialData, availableTools, isEdit }: PageFo
       } else {
         await createPage(formData);
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred while saving.');
+    } catch (err: unknown) {
+      setError(getErrorMessage(err, 'An error occurred while saving.'));
       setLoading(false);
     }
   };
@@ -102,6 +107,15 @@ export default function PageForm({ initialData, availableTools, isEdit }: PageFo
               <option value="curated-list">Curated List / Use Case (Hero + Grid)</option>
               <option value="comparison">Head-to-Head Comparison (2 Tools)</option>
               <option value="alternatives">Alternatives Highlight (1 Target + Grid)</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">Status</label>
+            <select name="status" value={formData.status as string} onChange={handleChange} className="w-full bg-background border border-white/10 rounded-lg px-4 py-2 text-foreground focus:ring-2 focus:ring-primary outline-none appearance-none cursor-pointer">
+              <option value="draft">Draft</option>
+              <option value="review">Review</option>
+              <option value="published">Published</option>
             </select>
           </div>
         </div>

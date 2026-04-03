@@ -1,21 +1,16 @@
-import { adminDb } from "@/lib/firebase-admin";
-import { Tool, CustomPage } from "@/types/database";
-import { notFound } from "next/navigation";
 import PageForm from "@/components/admin/PageForm";
+import { getPageBySlug } from "@/lib/db/pages";
+import { listTools } from "@/lib/db/tools";
 import Link from "next/link";
-import { serializeData } from "@/lib/utils";
+import { notFound } from "next/navigation";
+import type { Tool, CustomPage } from "@/types/database";
 
 async function getPage(slug: string): Promise<CustomPage | null> {
-  if (!slug || slug.startsWith('[') || slug === 'undefined') return null;
-  if (!adminDb) return null;
-  const doc = await adminDb.collection('pages').doc(slug).get();
-  return doc.exists ? ({ id: doc.id, ...serializeData(doc.data()) } as CustomPage) : null;
+  return getPageBySlug(slug, { includeDrafts: true });
 }
 
 async function getAvailableTools(): Promise<Tool[]> {
-  if (!adminDb) return [];
-  const snapshot = await adminDb.collection('tools').orderBy('name').get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...serializeData(doc.data()) })) as Tool[];
+  return listTools();
 }
 
 export default async function EditPagePage({ params }: { params: Promise<{ slug: string }> }) {

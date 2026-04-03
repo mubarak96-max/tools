@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "validate:content": "tsx scripts/validate-all.ts",
+    "regenerate:editorial": "tsx scripts/regenerate-editorial.ts",
+    "sync:taxonomies": "tsx scripts/sync-taxonomies.ts",
+    "backfill:pages": "tsx scripts/backfill-pages.ts",
+    "generate:insights": "tsx scripts/generate-all-insights.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -18,7 +23,8 @@
     "openai": "^6.32.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

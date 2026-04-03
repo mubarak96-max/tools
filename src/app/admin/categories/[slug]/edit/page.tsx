@@ -1,14 +1,11 @@
-import { adminDb } from "@/lib/firebase-admin";
-import { ToolCategory } from "@/types/database";
-import { notFound } from "next/navigation";
 import CategoryForm from "@/components/admin/CategoryForm";
+import { getCategoryBySlug } from "@/lib/db/taxonomies";
 import Link from "next/link";
-import { serializeData } from "@/lib/utils";
+import { notFound } from "next/navigation";
+import type { ToolCategory } from "@/types/database";
 
 async function getCategory(slug: string): Promise<ToolCategory | null> {
-  if (!adminDb) return null;
-  const doc = await adminDb.collection('categories').doc(slug).get();
-  return doc.exists ? ({ id: doc.id, ...serializeData(doc.data()) } as ToolCategory) : null;
+  return getCategoryBySlug(slug);
 }
 
 export default async function EditCategoryPage({ params }: { params: Promise<{ slug: string }> }) {

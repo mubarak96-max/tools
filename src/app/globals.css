@@ -1,29 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-border: hsl(240 10% 15%);
-  --color-input: hsl(240 10% 15%);
-  --color-ring: hsl(252 83% 65%);
-  --color-background: hsl(240 10% 4%);
-  --color-foreground: hsl(0 0% 98%);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 
-  --color-primary: hsl(252 83% 65%);
-  --color-primary-foreground: hsl(0 0% 100%);
+  --color-border: hsl(30 20% 82%);
+  --color-input: hsl(36 25% 92%);
+  --color-ring: hsl(18 72% 42%);
+  --color-background: hsl(40 45% 96%);
+  --color-foreground: hsl(218 38% 18%);
 
-  --color-secondary: hsl(240 10% 15%);
-  --color-secondary-foreground: hsl(0 0% 98%);
+  --color-primary: hsl(18 72% 42%);
+  --color-primary-foreground: hsl(36 40% 98%);
 
-  --color-destructive: hsl(0 84% 60%);
-  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-secondary: hsl(210 33% 24%);
+  --color-secondary-foreground: hsl(36 40% 98%);
 
-  --color-muted: hsl(240 10% 15%);
-  --color-muted-foreground: hsl(240 5% 65%);
+  --color-destructive: hsl(0 72% 48%);
+  --color-destructive-foreground: hsl(36 40% 98%);
 
-  --color-accent: hsl(252 83% 65%);
-  --color-accent-foreground: hsl(0 0% 98%);
+  --color-muted: hsl(35 24% 90%);
+  --color-muted-foreground: hsl(220 16% 42%);
 
-  --color-card: hsl(240 10% 6%);
-  --color-card-foreground: hsl(0 0% 98%);
+  --color-accent: hsl(45 75% 54%);
+  --color-accent-foreground: hsl(218 38% 18%);
+
+  --color-card: hsl(36 42% 99%);
+  --color-card-foreground: hsl(218 38% 18%);
 
   --radius-lg: 1rem;
   --radius-md: calc(1rem - 2px);
@@ -46,30 +49,51 @@
   *, ::before, ::after {
     border-color: var(--color-border);
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    background-image: radial-gradient(ellipse 80% 80% at 50% -20%, rgba(120, 119, 198, 0.15), rgba(255, 255, 255, 0));
+    font-family: var(--font-sans), sans-serif;
+  }
+  h1, h2, h3, h4 {
+    letter-spacing: -0.03em;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-primary) 24%, transparent);
+  }
+  a, button, input, textarea, select {
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   }
 }
 
+.site-backdrop {
+  background:
+    radial-gradient(circle at top left, rgba(218, 119, 72, 0.16), transparent 32%),
+    radial-gradient(circle at top right, rgba(24, 70, 133, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(255, 248, 237, 0.95) 0%, rgba(248, 241, 230, 0.92) 100%);
+}
+
 @utility glass {
-  background-color: color-mix(in srgb, var(--color-background) 40%, transparent);
-  backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background-color: color-mix(in srgb, var(--color-card) 84%, transparent);
+  backdrop-filter: blur(22px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+  box-shadow: 0 24px 60px -42px rgba(17, 31, 55, 0.42);
 }
 
 @utility glass-card {
-  background-color: color-mix(in srgb, var(--color-card) 40%, transparent);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 249, 244, 0.92) 100%);
+  backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent);
+  box-shadow: 0 26px 58px -44px rgba(17, 31, 55, 0.38);
   transition: all 300ms;
 
   &:hover {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 32px 62px -42px rgba(17, 31, 55, 0.45);
+    border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+    transform: translateY(-2px);
   }
 }
 
@@ -77,12 +101,28 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, white, rgba(255, 255, 255, 0.6));
+  background-image: linear-gradient(120deg, var(--color-secondary), color-mix(in srgb, var(--color-secondary) 60%, white));
 }
 
 @utility text-gradient-primary {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, var(--color-primary), #c084fc);
+  background-image: linear-gradient(120deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 60%, var(--color-primary)));
+}
+
+@utility surface-outline {
+  border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+@utility section-heading {
+  font-family: var(--font-serif), serif;
+  line-height: 1.02;
+}
+
+@utility muted-chip {
+  background: color-mix(in srgb, var(--color-muted) 75%, white);
+  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  color: var(--color-muted-foreground);
 }

@@ -1,20 +1,13 @@
-import { adminDb } from "@/lib/firebase-admin";
-import { ToolCategory } from "@/types/database";
 import { deleteCategory } from "@/app/admin/actions";
+import { listCategories } from "@/lib/db/taxonomies";
 import Link from "next/link";
 import { Plus, Edit2, Trash2 } from "lucide-react";
+import type { ToolCategory } from "@/types/database";
 
 export const dynamic = 'force-dynamic';
 
 async function getCategories(): Promise<ToolCategory[]> {
-  try {
-    if (!adminDb) return [];
-    const snapshot = await adminDb.collection('categories').orderBy('name').get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as ToolCategory[];
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return [];
-  }
+  return listCategories();
 }
 
 export default async function AdminCategoriesPage() {

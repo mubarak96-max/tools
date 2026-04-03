@@ -4,10 +4,10 @@ import { resolve } from 'path';
 // Load .env.local variables
 config({ path: resolve(__dirname, '../.env.local') });
 
-import { adminDb } from '../src/lib/firebase-admin';
+import { requireAdminDb } from '../src/lib/firebase-admin';
 import { Tool } from '../src/types/database';
 
-const mockTools: Tool[] = [
+const mockTools: Array<Partial<Tool>> = [
   {
     name: 'Notion',
     slug: 'notion',
@@ -28,8 +28,8 @@ const mockTools: Tool[] = [
       antiRecommendation: 'Avoid Notion if you want a simple, rigid task list out of the box without setup.',
       comparisonSummary: 'Compared to Evernote, Notion offers much more structural flexibility and databases, but has a steeper learning curve.'
     },
-    createdAt: new Date(),
-    updatedAt: new Date()
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   },
   {
     name: 'ChatGPT',
@@ -51,8 +51,8 @@ const mockTools: Tool[] = [
       antiRecommendation: 'Avoid for highly deterministic mathematical or factual analysis without human review.',
       comparisonSummary: 'Compared to Claude, ChatGPT often has more features (Plugins/Vision) but Claude sometimes feels more natural and safer in its responses.'
     },
-    createdAt: new Date(),
-    updatedAt: new Date()
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   }
 ];
 
@@ -64,11 +64,16 @@ async function seedDatabase() {
     process.exit(1);
   }
 
+  const adminDb = requireAdminDb();
   const batch = adminDb.batch();
   const toolsCollection = adminDb.collection('tools');
 
   try {
     for (const tool of mockTools) {
+      if (!tool.slug) {
+        throw new Error(`Tool slug missing for ${tool.name ?? "unknown tool"}.`);
+      }
+
       // Use the slug as the document ID for cleaner URLs and prevention of duplicates
       const docRef = toolsCollection.doc(tool.slug);
       batch.set(docRef, {

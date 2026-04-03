@@ -6,9 +6,25 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function serializeData(data: any): any {
-  if (!data) return data;
-  const serialized = { ...data };
-  if (serialized.createdAt?.toDate) serialized.createdAt = serialized.createdAt.toDate().toISOString();
-  if (serialized.updatedAt?.toDate) serialized.updatedAt = serialized.updatedAt.toDate().toISOString();
-  return serialized;
+  if (data === null || data === undefined) return data;
+
+  if (Array.isArray(data)) {
+    return data.map((value) => serializeData(value));
+  }
+
+  if (typeof data === "object") {
+    if (typeof data.toDate === "function") {
+      return data.toDate().toISOString();
+    }
+
+    const serialized = { ...data };
+
+    for (const [key, value] of Object.entries(serialized)) {
+      serialized[key] = serializeData(value);
+    }
+
+    return serialized;
+  }
+
+  return data;
 }

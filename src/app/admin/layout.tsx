@@ -1,58 +1,105 @@
-import Link from 'next/link';
-import { Settings, Wrench, Home, Search } from 'lucide-react';
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  LayoutDashboard,
+  ListChecks,
+  Files,
+  Tags,
+  ArrowRightLeft,
+  Wrench,
+} from "lucide-react";
 
 export const metadata = {
-  title: 'Admin Dashboard | findmytool',
+  title: "Admin Dashboard | findmytool",
   robots: {
     index: false,
     follow: false,
   },
 };
 
+const navItems = [
+  { href: "/admin", label: "Overview", icon: LayoutDashboard },
+  { href: "/admin/tools", label: "Tools", icon: Wrench },
+  { href: "/admin/pages", label: "Pages", icon: Files },
+  { href: "/admin/comparisons", label: "Comparisons", icon: ArrowRightLeft },
+  { href: "/admin/review", label: "Review Queue", icon: ListChecks },
+  { href: "/admin/categories", label: "Taxonomies", icon: Tags },
+];
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen bg-background !pt-0">
-      {/* Sidebar */}
-      <aside className="w-64 border-r border-white/10 bg-card flex-col h-full hidden md:flex z-50">
-        <div className="p-6 border-b border-white/10">
-          <Link href="/admin" className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
-             <Wrench className="w-5 h-5 text-primary" /> Admin Panel
+    <div className="flex min-h-screen bg-background !pt-0">
+      <aside className="hidden w-72 shrink-0 border-r border-border/70 bg-card/70 p-5 md:flex md:flex-col">
+        <Link
+          href="/admin"
+          className="flex items-center gap-3 rounded-[1.5rem] border border-border/70 bg-background/65 px-4 py-4 shadow-[0_20px_42px_-34px_rgba(17,31,55,0.45)]"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground">
+            <Wrench className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-foreground">findmytool Admin</p>
+            <p className="text-xs text-muted-foreground">Publishing workflow</p>
+          </div>
+        </Link>
+
+        <nav className="mt-8 flex-1 space-y-2">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="group flex items-center gap-3 rounded-[1.2rem] px-4 py-3 text-sm font-medium text-muted-foreground hover:bg-card hover:text-foreground"
+              >
+                <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="mt-6 rounded-[1.5rem] border border-border/70 bg-background/60 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Live Site
+          </p>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+            Check the public experience after publishing or editing records.
+          </p>
+          <Link
+            href="/"
+            target="_blank"
+            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-foreground"
+          >
+            Open site
+            <ArrowUpRight className="h-4 w-4" />
           </Link>
         </div>
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
-          <Link href="/admin/tools" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-muted-foreground hover:text-foreground transition-colors group">
-            <Wrench className="w-4 h-4 group-hover:text-primary transition-colors" />
-            <span className="font-medium text-sm">Tools Database</span>
-          </Link>
-          <Link href="/admin/categories" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-muted-foreground hover:text-foreground transition-colors group">
-            <Search className="w-4 h-4 group-hover:text-primary transition-colors" />
-            <span className="font-medium text-sm">Categories</span>
-          </Link>
-          <Link href="/admin/pages" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-muted-foreground hover:text-foreground transition-colors group">
-            <Search className="w-4 h-4 group-hover:text-primary transition-colors" />
-            <span className="font-medium text-sm">Custom Pages</span>
-          </Link>
-          
-          <div className="pt-6 mt-6 border-t border-white/5">
-            <Link href="/" target="_blank" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/5 text-muted-foreground hover:text-foreground transition-colors group">
-              <Home className="w-4 h-4" />
-              <span className="font-medium text-sm">View Live Site</span>
-            </Link>
-          </div>
-        </nav>
       </aside>
 
-      {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-background/50 relative pt-16 md:pt-0">
-        {/* Mobile Header */}
-        <div className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-card fixed top-0 left-0 right-0 z-40">
-          <span className="font-bold text-lg">Admin Panel</span>
-          <Link href="/" className="text-sm text-primary">Live Site</Link>
+      <main className="flex-1 overflow-y-auto">
+        <div className="border-b border-border/70 bg-card/60 px-4 py-4 md:hidden">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold text-foreground">findmytool Admin</span>
+            <Link href="/" className="text-sm font-medium text-primary">
+              Live Site
+            </Link>
+          </div>
+          <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-medium text-muted-foreground"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
-        
-        <div className="p-6 md:p-10 max-w-6xl mx-auto">
-          {children}
-        </div>
+
+        <div className="mx-auto max-w-7xl p-6 md:p-10">{children}</div>
       </main>
     </div>
   );
