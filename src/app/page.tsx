@@ -140,10 +140,10 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-16 pb-8 md:gap-24">
       <section className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card/70 px-6 py-10 shadow-[0_36px_90px_-58px_rgba(17,31,55,0.45)] sm:px-8 md:px-12 md:py-14">
-        <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top,rgba(218,119,72,0.18),transparent_52%)] lg:block" />
+        <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top,rgba(79,70,229,0.12),transparent_52%)] lg:block" />
         <div className="relative grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            <div className="primary-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
               <Compass className="h-4 w-4" />
               Search-first software discovery
             </div>
@@ -181,7 +181,7 @@ export default async function Home() {
                 <Link
                   key={term}
                   href={`/tools?q=${encodeURIComponent(term)}`}
-                  className="muted-chip rounded-full px-4 py-2 text-sm hover:text-foreground"
+                  className="muted-chip rounded-full px-4 py-2 text-sm hover:border-primary/20 hover:text-primary"
                 >
                   {term}
                 </Link>
@@ -258,27 +258,31 @@ export default async function Home() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-        <div className="space-y-6 rounded-[2rem] border border-border/70 bg-secondary px-6 py-7 text-secondary-foreground shadow-[0_30px_80px_-58px_rgba(17,31,55,0.52)] sm:px-8">
-          <SectionHeader
-            eyebrow="Free and Freemium"
-            title="Best-value starting points."
-            description="Shortlist tools with lower adoption cost when you need speed before procurement."
-          />
+        <div className="space-y-6 rounded-[2rem] border border-success/15 bg-success-soft/65 px-6 py-7 text-foreground shadow-[0_30px_80px_-58px_rgba(15,23,42,0.18)] sm:px-8">
+          <div className="space-y-4">
+            <p className="success-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+              Free and Freemium
+            </p>
+            <h2 className="section-heading text-3xl text-foreground md:text-4xl">Best-value starting points.</h2>
+            <p className="text-base leading-7 text-slate-700 md:text-lg">
+              Shortlist tools with lower adoption cost when you need speed before procurement.
+            </p>
+          </div>
           <div className="grid gap-4">
             {freeTools.map((tool) => (
               <Link
                 key={tool.slug}
                 href={`/tools/${tool.slug}`}
-                className="rounded-[1.5rem] border border-white/10 bg-white/6 px-5 py-4 hover:bg-white/10"
+                className="rounded-[1.5rem] border border-success/15 bg-card px-5 py-4 shadow-[0_18px_36px_-30px_rgba(5,150,105,0.22)] hover:border-success/25"
               >
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <h3 className="text-lg font-semibold">{tool.name}</h3>
-                    <p className="mt-2 text-sm leading-6 text-secondary-foreground/72">
+                    <h3 className="text-lg font-semibold text-foreground">{tool.name}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-700">
                       {tool.shortDescription}
                     </p>
                   </div>
-                  <span className="rounded-full bg-white/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+                  <span className="success-chip rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
                     {tool.pricing}
                   </span>
                 </div>
@@ -384,11 +388,11 @@ export default async function Home() {
         <div className="grid gap-6 lg:grid-cols-3">
           {editorialPicks.map((tool) => (
             <div key={tool.slug} className="glass-card rounded-[1.75rem] p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
                 {tool.category}
               </p>
               <h3 className="mt-4 text-2xl font-semibold text-foreground">{tool.name}</h3>
-              <p className="mt-4 text-sm leading-6 text-muted-foreground">
+              <p className="mt-4 text-sm leading-6 text-slate-700">
                 {tool.editorialSummary || tool.aiInsights?.whyThisToolFits || tool.shortDescription}
               </p>
               <Link
@@ -429,7 +433,7 @@ export default async function Home() {
           ].map((item) => (
             <div key={item.question} className="glass-card rounded-[1.5rem] p-5">
               <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-              <p className="mt-3 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+              <p className="mt-3 text-sm leading-6 text-slate-700">{item.answer}</p>
             </div>
           ))}
         </div>

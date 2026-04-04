@@ -17,11 +17,11 @@ export default function CategorySpotlightCard({
   return (
     <Link
       href={href}
-      className="glass-card group flex h-full flex-col justify-between rounded-[1.75rem] p-6"
+      className="glass-card group flex h-full flex-col justify-between rounded-[1.75rem] border border-border/80 p-6"
     >
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <span className="muted-chip rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+          <span className="primary-chip rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
             {count} tools
           </span>
           <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
@@ -31,7 +31,7 @@ export default function CategorySpotlightCard({
           <p className="text-sm leading-6 text-muted-foreground">{description}</p>
         </div>
       </div>
-      <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-4 text-sm text-muted-foreground">
+      <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-4 text-sm text-slate-700">
         <span>Browse recommendations</span>
         <span className="font-medium text-primary">Open</span>
       </div>

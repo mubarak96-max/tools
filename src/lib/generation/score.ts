@@ -14,7 +14,6 @@ const criticalToolWarnings = new Set([
   "Weak metadata description",
   "Editorial summary is too short",
   "FAQ needs at least 2 items",
-  "Missing internal comparison links",
   "Pricing is too vague for publish confidence",
 ]);
 

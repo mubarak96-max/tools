@@ -23,6 +23,24 @@ export async function mapQuerySnapshot<T>(
   );
 }
 
+/**
+ * Remove undefined values from an object to prevent Firestore errors.
+ * Firestore does not allow undefined as a field value.
+ */
+export function stripUndefinedValues<T extends Record<string, unknown>>(
+  data: T,
+): Partial<T> {
+  const cleaned: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(data)) {
+    if (value !== undefined) {
+      cleaned[key] = value;
+    }
+  }
+
+  return cleaned as Partial<T>;
+}
+
 export function withTimestamps<T extends Record<string, unknown>>(
   data: T,
   options?: {
@@ -30,9 +48,10 @@ export function withTimestamps<T extends Record<string, unknown>>(
   },
 ) {
   const timestamp = nowIso();
+  const cleaned = stripUndefinedValues(data);
 
   return {
-    ...data,
+    ...cleaned,
     createdAt: options?.preserveCreatedAt ?? timestamp,
     updatedAt: timestamp,
   };

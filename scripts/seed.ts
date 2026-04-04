@@ -5,6 +5,7 @@ import { resolve } from 'path';
 config({ path: resolve(__dirname, '../.env.local') });
 
 import { requireAdminDb } from '../src/lib/firebase-admin';
+import { stripUndefinedValues, withTimestamps } from '../src/lib/db/shared';
 import { Tool } from '../src/types/database';
 
 const mockTools: Array<Partial<Tool>> = [
@@ -58,7 +59,7 @@ const mockTools: Array<Partial<Tool>> = [
 
 async function seedDatabase() {
   console.log('🌱 Starting database seed...');
-  
+
   if (!process.env.FIREBASE_PROJECT_ID && !process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) {
     console.error('❌ Firebase configuration not found in .env.local. Please make sure the placeholder values are updated.');
     process.exit(1);
@@ -76,9 +77,8 @@ async function seedDatabase() {
 
       // Use the slug as the document ID for cleaner URLs and prevention of duplicates
       const docRef = toolsCollection.doc(tool.slug);
-      batch.set(docRef, {
-        ...tool,
-      });
+      const cleaned = stripUndefinedValues(tool);
+      batch.set(docRef, withTimestamps(cleaned));
       console.log(`Prepared ${tool.name} for insertion.`);
     }
 

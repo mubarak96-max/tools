@@ -20,9 +20,9 @@ function hasAdminCredentials() {
 
   return Boolean(
     projectId &&
-      clientEmail &&
-      clientEmail !== "your_client_email_here" &&
-      privateKey,
+    clientEmail &&
+    clientEmail !== "your_client_email_here" &&
+    privateKey,
   );
 }
 
@@ -57,6 +57,13 @@ function initializeFirebaseAdmin() {
     });
 
   adminDbInstance = getFirestore(app);
+
+  if (!existingApp) {
+    // Only set Firestore settings when the admin app is created here,
+    // otherwise settings() may be called after Firestore initialization.
+    adminDbInstance.settings({ ignoreUndefinedProperties: true });
+  }
+
   adminStorageInstance = getStorage(app);
 }
 

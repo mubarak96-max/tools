@@ -84,14 +84,29 @@ async function listApprovedCategoryNames() {
   return approved.length > 0 ? approved : categories.map((category) => category.name);
 }
 
-async function assertToolPublishableTaxonomy(draft: Partial<Tool>) {
+async function assessToolDraft(draft: Partial<Tool>, currentSlug?: string) {
   const approvedCategories = await listApprovedCategoryNames();
   const allTools = await listTools();
-  const blockers = getToolPublishBlockers(
-    draft,
-    allTools.map((tool) => ({ slug: tool.slug, name: tool.name })),
+  const comparableTools = allTools
+    .filter((tool) => tool.slug !== currentSlug)
+    .map((tool) => ({ slug: tool.slug, name: tool.name }));
+  const assessment = getToolPublishBlockers(
+    {
+      ...draft,
+      sourceConfidence: undefined,
+    },
+    comparableTools,
     { approvedCategories },
-  ).blockers;
+  );
+
+  return {
+    approvedCategories,
+    ...assessment,
+  };
+}
+
+async function assertToolPublishableTaxonomy(draft: Partial<Tool>, currentSlug?: string) {
+  const blockers = (await assessToolDraft(draft, currentSlug)).blockers;
 
   if (blockers.length > 0) {
     throw new Error(`Fix publish blockers before publishing: ${blockers.join("; ")}`);
@@ -107,11 +122,17 @@ async function assertPagePublishableTaxonomy(draft: Partial<CustomPage>) {
 }
 
 export async function createTool(data: Partial<Tool>) {
-  if (data.status === "published") {
-    await assertToolPublishableTaxonomy(data);
+  const assessment = await assessToolDraft(data);
+  const nextData = {
+    ...data,
+    sourceConfidence: assessment.confidence,
+  };
+
+  if (nextData.status === "published") {
+    await assertToolPublishableTaxonomy(nextData);
   }
 
-  const slug = await createToolRecord(data, "draft");
+  const slug = await createToolRecord(nextData, "draft");
 
   revalidatePath("/admin/tools");
   revalidateSharedPublicPaths();
@@ -119,11 +140,17 @@ export async function createTool(data: Partial<Tool>) {
 }
 
 export async function updateTool(slug: string, data: Partial<Tool>) {
-  if (data.status === "published") {
-    await assertToolPublishableTaxonomy(data);
+  const assessment = await assessToolDraft(data, slug);
+  const nextData = {
+    ...data,
+    sourceConfidence: assessment.confidence,
+  };
+
+  if (nextData.status === "published") {
+    await assertToolPublishableTaxonomy(nextData, slug);
   }
 
-  await updateToolRecord(slug, data);
+  await updateToolRecord(slug, nextData);
 
   revalidateToolPaths(slug);
   redirect("/admin/tools");
@@ -355,11 +382,13 @@ export async function approveToolForPublish(slug: string) {
     throw new Error("Tool not found.");
   }
 
-  await assertToolPublishableTaxonomy(tool);
+  const assessment = await assessToolDraft(tool, slug);
+  await assertToolPublishableTaxonomy(tool, slug);
 
   await updateToolRecord(slug, {
     ...tool,
     status: "published",
+    sourceConfidence: assessment.confidence,
     factsLastVerifiedAt: nowIso(),
   });
 

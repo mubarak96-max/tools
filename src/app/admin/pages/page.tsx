@@ -2,6 +2,8 @@ import { deletePage } from "@/app/admin/actions";
 import AutoGeneratePage from "@/components/admin/AutoGeneratePage";
 import { listPages } from "@/lib/db/pages";
 import { listTools } from "@/lib/db/tools";
+import { getWorkflowStatusTone } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Plus, Edit2, Trash2, ExternalLink, LayoutTemplate } from "lucide-react";
 import type { CustomPage, Tool } from "@/types/database";
@@ -65,7 +67,7 @@ export default async function AdminPagesDataTable() {
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-medium capitalize text-muted-foreground">
+                    <span className={cn("inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-medium capitalize", getWorkflowStatusTone(page.status))}>
                       {page.status}
                     </span>
                   </td>

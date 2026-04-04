@@ -15,7 +15,7 @@ export default function SectionHeader({
     <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl space-y-3">
         {eyebrow ? (
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
             {eyebrow}
           </p>
         ) : null}

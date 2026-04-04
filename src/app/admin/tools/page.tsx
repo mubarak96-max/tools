@@ -2,6 +2,8 @@ import { deleteTool } from "@/app/admin/actions";
 import AutoGenerateTool from "@/components/admin/AutoGenerateTool";
 import { listCategories } from "@/lib/db/taxonomies";
 import { listTools } from "@/lib/db/tools";
+import { getWorkflowStatusTone } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Plus, Edit2, Trash2, Sparkles, ExternalLink } from "lucide-react";
 import type { Tool, ToolCategory } from "@/types/database";
@@ -72,7 +74,7 @@ export default async function AdminToolsPage() {
                     {tool.pricing}
                   </td>
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-medium capitalize text-muted-foreground">
+                    <span className={cn("inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-xs font-medium capitalize", getWorkflowStatusTone(tool.status))}>
                       {tool.status}
                     </span>
                   </td>

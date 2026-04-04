@@ -1,14 +1,22 @@
 import ToolForm from "@/components/admin/ToolForm";
 import { listCategories } from "@/lib/db/taxonomies";
+import { listTools } from "@/lib/db/tools";
 import Link from 'next/link';
-import type { ToolCategory } from "@/types/database";
+import type { Tool, ToolCategory } from "@/types/database";
 
 async function getCategories(): Promise<ToolCategory[]> {
   return listCategories();
 }
 
+async function getExistingTools(): Promise<Array<Pick<Tool, "slug" | "name">>> {
+  return (await listTools()).map((tool) => ({ slug: tool.slug, name: tool.name }));
+}
+
 export default async function NewToolPage() {
-  const categories = await getCategories();
+  const [categories, existingTools] = await Promise.all([getCategories(), getExistingTools()]);
+  const approvedCategories = categories
+    .filter((category) => category.status === "published")
+    .map((category) => category.name);
   
   return (
     <div className="space-y-6">
@@ -20,7 +28,12 @@ export default async function NewToolPage() {
         <p className="text-muted-foreground mt-1">Create a new tool to list in the directory.</p>
       </div>
 
-      <ToolForm categories={categories} isEdit={false} />
+      <ToolForm
+        categories={categories}
+        existingTools={existingTools}
+        approvedCategories={approvedCategories.length > 0 ? approvedCategories : categories.map((category) => category.name)}
+        isEdit={false}
+      />
     </div>
   );
 }

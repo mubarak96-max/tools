@@ -4,6 +4,8 @@ import { ArrowRightLeft, ExternalLink } from "lucide-react";
 import { listTools } from "@/lib/db/tools";
 import { scoreComparisonPair } from "@/lib/ranking/comparisons";
 import { comparisonSlug } from "@/lib/slug";
+import { getComparisonScoreTone } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 import type { Tool } from "@/types/database";
 
 type ComparisonOpportunity = {
@@ -41,7 +43,7 @@ export default async function AdminComparisonsPage() {
     <div className="space-y-8">
       <section className="overflow-hidden rounded-[2rem] border border-border/70 bg-card/80 px-6 py-8 sm:px-8 md:px-10">
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+          <div className="primary-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
             Comparisons
           </div>
           <h1 className="section-heading text-4xl text-foreground md:text-5xl">
@@ -53,7 +55,7 @@ export default async function AdminComparisonsPage() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] p-6">
+      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
         <div className="flex items-center justify-between gap-4">
           <div>
             <h2 className="text-2xl font-semibold text-foreground">Suggested comparison pairs</h2>
@@ -61,7 +63,7 @@ export default async function AdminComparisonsPage() {
               Higher scores indicate stronger overlap in category, use case, audience, pricing, and workflow fit.
             </p>
           </div>
-          <span className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground">
+          <span className="slate-chip rounded-full px-4 py-2 text-sm font-medium">
             {opportunities.length} pairs
           </span>
         </div>
@@ -87,7 +89,11 @@ export default async function AdminComparisonsPage() {
                     <div className="text-xs text-muted-foreground">{item.slug}</div>
                   </td>
                   <td className="px-4 py-4 text-sm text-muted-foreground">{item.left.category}</td>
-                  <td className="px-4 py-4 text-sm text-muted-foreground">{item.score.toFixed(1)}</td>
+                  <td className="px-4 py-4">
+                    <span className={cn("inline-flex rounded-full border px-3 py-1 text-xs font-semibold", getComparisonScoreTone(item.score))}>
+                      {item.score.toFixed(1)}
+                    </span>
+                  </td>
                   <td className="px-4 py-4 text-sm text-muted-foreground">
                     {[...new Set([...item.left.useCases, ...item.right.useCases])].slice(0, 3).join(", ")}
                   </td>

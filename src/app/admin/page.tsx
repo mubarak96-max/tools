@@ -3,15 +3,17 @@ import { AlertTriangle, ArrowRight, ShieldCheck } from "lucide-react";
 
 import { listPages } from "@/lib/db/pages";
 import { listTools } from "@/lib/db/tools";
+import { getWorkflowStatusTone } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 
-function metricCard(label: string, value: string, note: string) {
+function metricCard(label: string, value: string, note: string, tone: string) {
   return (
-    <div className="glass-card rounded-[1.6rem] p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+    <div className="glass-card rounded-[1.6rem] border border-border/80 p-6">
+      <p className={cn("inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]", tone)}>
         {label}
       </p>
       <p className="mt-4 text-4xl font-bold text-foreground">{value}</p>
-      <p className="mt-3 text-sm leading-6 text-muted-foreground">{note}</p>
+      <p className="mt-3 text-sm leading-6 text-slate-700">{note}</p>
     </div>
   );
 }
@@ -59,7 +61,7 @@ export default async function AdminIndex() {
       <section className="overflow-hidden rounded-[2rem] border border-border/70 bg-card/80 px-6 py-8 sm:px-8 md:px-10">
         <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr] xl:items-end">
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/8 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            <div className="primary-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
               Admin Overview
             </div>
             <div className="space-y-4">
@@ -73,18 +75,18 @@ export default async function AdminIndex() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {metricCard("Published Tools", String(publishedTools), "Public records currently visible in the live directory.")}
-            {metricCard("Draft Tools", String(draftTools), "Records that still need editorial cleanup or factual completion.")}
-            {metricCard("Review Queue", String(reviewItems.length), "Items that should be checked before publish status is approved.")}
-            {metricCard("Low Confidence", String(lowConfidenceTools.length), "Tool records flagged by the current confidence heuristic.")}
+            {metricCard("Published Tools", String(publishedTools), "Public records currently visible in the live directory.", "border-success/20 bg-success-soft text-success-soft-foreground")}
+            {metricCard("Draft Tools", String(draftTools), "Records that still need editorial cleanup or factual completion.", "border-border/90 bg-muted text-muted-foreground")}
+            {metricCard("Review Queue", String(reviewItems.length), "Items that should be checked before publish status is approved.", "border-warning/20 bg-warning-soft text-warning-soft-foreground")}
+            {metricCard("Low Confidence", String(lowConfidenceTools.length), "Tool records flagged by the current confidence heuristic.", "border-destructive/20 bg-danger-soft text-danger-soft-foreground")}
           </div>
         </div>
       </section>
 
       <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-        <div className="glass-card rounded-[1.75rem] p-6">
+        <div className="glass-card rounded-[1.75rem] border border-success/15 p-6">
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5 text-primary" />
+            <ShieldCheck className="h-5 w-5 text-success" />
             <h2 className="text-2xl font-semibold text-foreground">Publishing priorities</h2>
           </div>
           <div className="mt-6 space-y-4 text-sm leading-6 text-muted-foreground">
@@ -100,9 +102,9 @@ export default async function AdminIndex() {
           </div>
         </div>
 
-        <div className="glass-card rounded-[1.75rem] p-6">
+        <div className="glass-card rounded-[1.75rem] border border-primary/15 p-6">
           <div className="flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-primary" />
+            <AlertTriangle className="h-5 w-5 text-warning" />
             <h2 className="text-2xl font-semibold text-foreground">Next editorial actions</h2>
           </div>
           <div className="mt-6 grid gap-3">
@@ -131,7 +133,7 @@ export default async function AdminIndex() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] p-6">
+      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
         <div className="flex items-center justify-between gap-4">
           <div>
             <h2 className="text-2xl font-semibold text-foreground">Recently updated records</h2>
@@ -159,7 +161,7 @@ export default async function AdminIndex() {
                   <td className="px-4 py-4 text-sm font-medium text-foreground">{item.title}</td>
                   <td className="px-4 py-4 text-sm text-muted-foreground">{item.slug}</td>
                   <td className="px-4 py-4">
-                    <span className="inline-flex rounded-full border border-border bg-background px-3 py-1 text-xs font-medium capitalize text-muted-foreground">
+                    <span className={cn("inline-flex rounded-full border px-3 py-1 text-xs font-medium capitalize", getWorkflowStatusTone(item.status))}>
                       {item.status}
                     </span>
                   </td>

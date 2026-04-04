@@ -4,29 +4,43 @@
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
 
-  --color-border: hsl(30 20% 82%);
-  --color-input: hsl(36 25% 92%);
-  --color-ring: hsl(18 72% 42%);
-  --color-background: hsl(40 45% 96%);
-  --color-foreground: hsl(218 38% 18%);
+  --color-border: #E2E8F0;
+  --color-input: #F1F5F9;
+  --color-ring: #4F46E5;
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
 
-  --color-primary: hsl(18 72% 42%);
-  --color-primary-foreground: hsl(36 40% 98%);
+  --color-primary: #4F46E5;
+  --color-primary-foreground: #FFFFFF;
+  --color-primary-soft: #EEF2FF;
+  --color-primary-soft-foreground: #3730A3;
 
-  --color-secondary: hsl(210 33% 24%);
-  --color-secondary-foreground: hsl(36 40% 98%);
+  --color-secondary: #F1F5F9;
+  --color-secondary-foreground: #0F172A;
 
-  --color-destructive: hsl(0 72% 48%);
-  --color-destructive-foreground: hsl(36 40% 98%);
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #FFFFFF;
+  --color-danger-soft: #FEF2F2;
+  --color-danger-soft-foreground: #991B1B;
 
-  --color-muted: hsl(35 24% 90%);
-  --color-muted-foreground: hsl(220 16% 42%);
+  --color-muted: #F1F5F9;
+  --color-muted-foreground: #64748B;
 
-  --color-accent: hsl(45 75% 54%);
-  --color-accent-foreground: hsl(218 38% 18%);
+  --color-accent: #EEF2FF;
+  --color-accent-foreground: #3730A3;
 
-  --color-card: hsl(36 42% 99%);
-  --color-card-foreground: hsl(218 38% 18%);
+  --color-success: #059669;
+  --color-success-foreground: #FFFFFF;
+  --color-success-soft: #ECFDF5;
+  --color-success-soft-foreground: #065F46;
+
+  --color-warning: #D97706;
+  --color-warning-foreground: #FFFFFF;
+  --color-warning-soft: #FFFBEB;
+  --color-warning-soft-foreground: #92400E;
+
+  --color-card: #FFFFFF;
+  --color-card-foreground: #0F172A;
 
   --radius-lg: 1rem;
   --radius-md: calc(1rem - 2px);
@@ -70,29 +84,29 @@
 
 .site-backdrop {
   background:
-    radial-gradient(circle at top left, rgba(218, 119, 72, 0.16), transparent 32%),
-    radial-gradient(circle at top right, rgba(24, 70, 133, 0.12), transparent 26%),
-    linear-gradient(180deg, rgba(255, 248, 237, 0.95) 0%, rgba(248, 241, 230, 0.92) 100%);
+    radial-gradient(circle at top left, rgba(79, 70, 229, 0.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(5, 150, 105, 0.08), transparent 26%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.98) 0%, rgba(241, 245, 249, 0.96) 100%);
 }
 
 @utility glass {
-  background-color: color-mix(in srgb, var(--color-card) 84%, transparent);
-  backdrop-filter: blur(22px);
-  border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
-  box-shadow: 0 24px 60px -42px rgba(17, 31, 55, 0.42);
+  background-color: color-mix(in srgb, var(--color-card) 92%, transparent);
+  backdrop-filter: blur(18px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 88%, transparent);
+  box-shadow: 0 24px 60px -48px rgba(15, 23, 42, 0.18);
 }
 
 @utility glass-card {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(252, 249, 244, 0.92) 100%);
-  backdrop-filter: blur(18px);
-  border: 1px solid color-mix(in srgb, var(--color-border) 68%, transparent);
-  box-shadow: 0 26px 58px -44px rgba(17, 31, 55, 0.38);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.98) 100%);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--color-border) 94%, transparent);
+  box-shadow: 0 24px 48px -40px rgba(15, 23, 42, 0.16);
   transition: all 300ms;
 
   &:hover {
-    box-shadow: 0 32px 62px -42px rgba(17, 31, 55, 0.45);
-    border-color: color-mix(in srgb, var(--color-primary) 28%, var(--color-border));
+    box-shadow: 0 30px 54px -42px rgba(15, 23, 42, 0.2);
+    border-color: color-mix(in srgb, var(--color-primary) 18%, var(--color-border));
     transform: translateY(-2px);
   }
 }
@@ -108,7 +122,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(120deg, var(--color-primary), color-mix(in srgb, var(--color-accent) 60%, var(--color-primary)));
+  background-image: linear-gradient(120deg, var(--color-foreground), color-mix(in srgb, var(--color-primary) 65%, var(--color-foreground)));
 }
 
 @utility surface-outline {
@@ -122,7 +136,55 @@
 }
 
 @utility muted-chip {
-  background: color-mix(in srgb, var(--color-muted) 75%, white);
-  border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
+  background: color-mix(in srgb, var(--color-muted) 88%, white);
+  border: 1px solid color-mix(in srgb, var(--color-border) 92%, transparent);
   color: var(--color-muted-foreground);
+}
+
+@utility primary-chip {
+  background: var(--color-primary-soft);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 18%, white);
+  color: var(--color-primary-soft-foreground);
+}
+
+@utility success-chip {
+  background: var(--color-success-soft);
+  border: 1px solid color-mix(in srgb, var(--color-success) 18%, white);
+  color: var(--color-success-soft-foreground);
+}
+
+@utility warning-chip {
+  background: var(--color-warning-soft);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 20%, white);
+  color: var(--color-warning-soft-foreground);
+}
+
+@utility danger-chip {
+  background: var(--color-danger-soft);
+  border: 1px solid color-mix(in srgb, var(--color-destructive) 18%, white);
+  color: var(--color-danger-soft-foreground);
+}
+
+@utility slate-chip {
+  background: color-mix(in srgb, var(--color-muted) 88%, white);
+  border: 1px solid color-mix(in srgb, var(--color-border) 92%, transparent);
+  color: var(--color-muted-foreground);
+}
+
+@utility status-chip-draft {
+  background: color-mix(in srgb, var(--color-muted) 88%, white);
+  border: 1px solid color-mix(in srgb, var(--color-border) 92%, transparent);
+  color: var(--color-muted-foreground);
+}
+
+@utility status-chip-review {
+  background: var(--color-warning-soft);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 20%, white);
+  color: var(--color-warning-soft-foreground);
+}
+
+@utility status-chip-published {
+  background: var(--color-success-soft);
+  border: 1px solid color-mix(in srgb, var(--color-success) 18%, white);
+  color: var(--color-success-soft-foreground);
 }
