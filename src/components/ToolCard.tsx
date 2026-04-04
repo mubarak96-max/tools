@@ -39,7 +39,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
         </div>
         <div
           className={cn(
-            "rounded-2xl border px-4 py-3 text-right shadow-[0_20px_42px_-34px_rgba(15,23,42,0.18)]",
+            "rounded-2xl border px-4 py-3 text-right",
             getPricingTone(tool.pricingModel, tool.pricing),
           )}
         >
@@ -48,7 +48,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
         </div>
       </div>
 
-      <p className="mb-6 line-clamp-3 flex-grow text-sm leading-6 text-slate-700">
+      <p className="mb-6 line-clamp-3 flex-grow text-sm leading-6 text-muted-foreground">
         {tool.shortDescription || tool.description}
       </p>
 
@@ -77,7 +77,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
         
         <Link
           href={`/tools/${tool.slug}`}
-          className="ml-4 inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:-translate-y-0.5"
+          className="ml-4 inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary-hover"
         >
           Review
           <ArrowRight className="w-4 h-4" />

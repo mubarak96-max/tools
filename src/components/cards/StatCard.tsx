@@ -13,8 +13,8 @@ export default function StatCard({ label, value, note }: StatCardProps) {
           {label}
         </p>
       </div>
-      <p className="mt-4 text-4xl font-bold tracking-tight text-foreground">{value}</p>
-      <p className="mt-3 text-sm leading-6 text-slate-700">{note}</p>
+      <p className="mt-4 text-4xl font-semibold tracking-tight text-foreground">{value}</p>
+      <p className="mt-3 text-sm leading-6 text-muted-foreground">{note}</p>
     </div>
   );
 }

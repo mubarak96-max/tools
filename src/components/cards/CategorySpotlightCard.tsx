@@ -31,7 +31,7 @@ export default function CategorySpotlightCard({
           <p className="text-sm leading-6 text-muted-foreground">{description}</p>
         </div>
       </div>
-      <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-4 text-sm text-slate-700">
+      <div className="mt-8 flex items-center justify-between border-t border-border/60 pt-4 text-sm text-muted-foreground">
         <span>Browse recommendations</span>
         <span className="font-medium text-primary">Open</span>
       </div>

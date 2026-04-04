@@ -1,20 +1,36 @@
 'use client';
 
-import Link from 'next/link';
-import { useDeferredValue, useEffect, useMemo, useState, useTransition } from 'react';
+import { useMemo, useTransition } from 'react';
+import { Search, X } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ChevronRight, Compass, Search } from 'lucide-react';
 
-import ToolDirectoryRow from '@/components/ToolDirectoryRow';
+import ToolDirectoryGridCard from '@/components/ToolDirectoryGridCard';
 import type { Tool } from '@/types/database';
+
+type SortOption = 'name' | 'pricing' | 'confidence';
+type FilterGroup = 'category' | 'pricing' | 'platform' | 'difficulty';
+type SearchParamsLike = {
+  get: (name: string) => string | null;
+  getAll: (name: string) => string[];
+};
+
+const sortOrder: SortOption[] = ['name', 'pricing', 'confidence'];
+
+function uniqueSorted(values: string[]) {
+  return Array.from(new Set(values.filter(Boolean))).sort((left, right) =>
+    left.localeCompare(right),
+  );
+}
 
 function matchesQuery(tool: Tool, query: string) {
   const haystack = [
     tool.name,
     tool.category,
     tool.shortDescription,
+    tool.description,
     tool.pricing,
     tool.pricingRange,
+    tool.bestFor,
     ...tool.useCases,
     ...tool.features,
     ...tool.platforms,
@@ -26,243 +42,351 @@ function matchesQuery(tool: Tool, query: string) {
   return haystack.includes(query.toLowerCase());
 }
 
-function uniqueSorted(values: string[]) {
-  return Array.from(new Set(values.filter(Boolean))).sort((left, right) =>
-    left.localeCompare(right),
-  );
+function getFilters(searchParams: SearchParamsLike) {
+  return {
+    categories: searchParams.getAll('category'),
+    pricings: searchParams.getAll('pricing'),
+    platforms: searchParams.getAll('platform'),
+    difficulties: searchParams.getAll('difficulty'),
+    sort: (searchParams.get('sort') as SortOption | null) ?? 'name',
+  };
+}
+
+function getPricingRank(tool: Tool) {
+  const order = ['free', 'freemium', 'paid', 'custom'];
+  const rank = order.indexOf(tool.pricingModel);
+  return rank === -1 ? order.length : rank;
 }
 
 export default function ToolsDirectoryClient({ tools }: { tools: Tool[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const queryFromUrl = searchParams.get('q')?.trim() || '';
-  const [draftQuery, setDraftQuery] = useState(queryFromUrl);
   const [isPending, startTransition] = useTransition();
-  const deferredQuery = useDeferredValue(queryFromUrl);
+  const query = searchParams.get('q')?.trim() || '';
 
-  useEffect(() => {
-    setDraftQuery(queryFromUrl);
-  }, [queryFromUrl]);
+  const { categories, pricings, platforms, difficulties, sort } = useMemo(
+    () => getFilters(searchParams),
+    [searchParams],
+  );
+
+  const categoryOptions = useMemo(
+    () => uniqueSorted(tools.map((tool) => tool.category)),
+    [tools],
+  );
+  const pricingOptions = useMemo(
+    () => uniqueSorted(tools.map((tool) => tool.pricing)),
+    [tools],
+  );
+  const platformOptions = useMemo(
+    () => uniqueSorted(tools.flatMap((tool) => tool.platforms)),
+    [tools],
+  );
+  const difficultyOptions = useMemo(
+    () => uniqueSorted(tools.map((tool) => tool.difficulty)),
+    [tools],
+  );
 
   const filteredTools = useMemo(() => {
-    if (!deferredQuery) {
-      return tools;
+    const q = searchParams.get('q')?.trim() || '';
+
+    let result = tools.filter((tool) => {
+      if (q && !matchesQuery(tool, q)) return false;
+      if (categories.length > 0 && !categories.includes(tool.category)) return false;
+      if (pricings.length > 0 && !pricings.includes(tool.pricing)) return false;
+      if (
+        platforms.length > 0 &&
+        !platforms.some((platform: string) => tool.platforms.includes(platform))
+      ) {
+        return false;
+      }
+      if (difficulties.length > 0 && !difficulties.includes(tool.difficulty)) return false;
+      return true;
+    });
+
+    if (sort === 'pricing') {
+      result = [...result].sort(
+        (left, right) =>
+          getPricingRank(left) - getPricingRank(right) || left.name.localeCompare(right.name),
+      );
+    } else if (sort === 'confidence') {
+      result = [...result].sort(
+        (left, right) =>
+          (right.sourceConfidence ?? 0.8) - (left.sourceConfidence ?? 0.8) ||
+          left.name.localeCompare(right.name),
+      );
+    } else {
+      result = [...result].sort((left, right) => left.name.localeCompare(right.name));
     }
 
-    return tools.filter((tool) => matchesQuery(tool, deferredQuery));
-  }, [deferredQuery, tools]);
+    return result;
+  }, [categories, difficulties, platforms, pricings, searchParams, sort, tools]);
 
-  const topCategories = useMemo(
-    () =>
-      [...filteredTools.reduce((map, tool) => {
-        map.set(tool.category, (map.get(tool.category) ?? 0) + 1);
-        return map;
-      }, new Map<string, number>()).entries()]
-        .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
-        .slice(0, 5),
-    [filteredTools],
-  );
+  const activeFilters = [
+    ...categories.map((value: string) => ({ group: 'category' as const, value })),
+    ...pricings.map((value: string) => ({ group: 'pricing' as const, value })),
+    ...platforms.map((value: string) => ({ group: 'platform' as const, value })),
+    ...difficulties.map((value: string) => ({ group: 'difficulty' as const, value })),
+  ];
 
-  const quickQueries = useMemo(
-    () => uniqueSorted(filteredTools.flatMap((tool) => tool.useCases)).slice(0, 6),
-    [filteredTools],
-  );
-
-  const freeToolsCount = useMemo(
-    () =>
-      filteredTools.filter(
-        (tool) => tool.pricingModel === 'free' || tool.pricingModel === 'freemium',
-      ).length,
-    [filteredTools],
-  );
+  function updateParams(mutator: (nextParams: URLSearchParams) => void) {
+    startTransition(() => {
+      const nextParams = new URLSearchParams(searchParams.toString());
+      mutator(nextParams);
+      const next = nextParams.toString();
+      router.replace(next ? `${pathname}?${next}` : pathname);
+    });
+  }
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    startTransition(() => {
-      const nextParams = new URLSearchParams(searchParams.toString());
-      const trimmed = draftQuery.trim();
+    updateParams((nextParams) => {
+      const formData = new FormData(event.currentTarget);
+      const submittedQuery = String(formData.get('q') || '').trim();
 
-      if (trimmed) {
-        nextParams.set('q', trimmed);
+      if (submittedQuery) {
+        nextParams.set('q', submittedQuery);
       } else {
         nextParams.delete('q');
       }
+    });
+  }
 
-      router.replace(nextParams.size > 0 ? `${pathname}?${nextParams}` : pathname);
+  function toggleFilter(group: FilterGroup, value: string) {
+    updateParams((nextParams) => {
+      const current = nextParams.getAll(group);
+      nextParams.delete(group);
+
+      if (current.includes(value)) {
+        current.filter((entry) => entry !== value).forEach((entry) => nextParams.append(group, entry));
+      } else {
+        [...current, value].sort((left, right) => left.localeCompare(right)).forEach((entry) =>
+          nextParams.append(group, entry),
+        );
+      }
+    });
+  }
+
+  function removeFilter(group: FilterGroup, value: string) {
+    updateParams((nextParams) => {
+      const current = nextParams.getAll(group).filter((entry) => entry !== value);
+      nextParams.delete(group);
+      current.forEach((entry) => nextParams.append(group, entry));
+    });
+  }
+
+  function clearFilters() {
+    startTransition(() => {
+      router.replace(pathname);
     });
   }
 
   return (
-    <div className="animate-fade-in pb-24">
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
-        <main className="space-y-6">
-          <nav className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-            <Link href="/" className="hover:text-primary">
-              Home
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span>Directory</span>
-            <ChevronRight className="h-3.5 w-3.5" />
-            <span className="text-foreground">All tools</span>
-          </nav>
+    <div className="animate-fade-in pb-20">
+      <div className="space-y-6">
+        <section className="space-y-2">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">Software directory</h1>
+          <p className="text-sm text-muted-foreground">
+            Browse and filter reviewed tools by category, pricing, and platform.
+          </p>
+        </section>
 
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-            <div className="space-y-6">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div className="max-w-3xl space-y-4">
-                  <div className="primary-chip inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em]">
-                    <Compass className="h-4 w-4" />
-                    Software Directory
-                  </div>
-                  <div className="space-y-3">
-                    <h1 className="section-heading text-4xl text-foreground md:text-5xl">
-                      Browse software in a review-first format.
-                    </h1>
-                    <p className="max-w-2xl text-base leading-7 text-slate-700 md:text-lg">
-                      Search the live directory across tool names, pricing, platforms,
-                      features, and use cases without leaving the current page structure.
-                    </p>
-                  </div>
-                </div>
+        <form
+          action="/tools"
+          onSubmit={handleSubmit}
+          className="flex flex-wrap items-center gap-3"
+        >
+          <div className="flex min-w-[220px] flex-1 items-center gap-3 rounded-[1rem] border border-border bg-card px-4 py-3">
+            <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
+            <input
+              key={query}
+              type="search"
+              name="q"
+              defaultValue={query}
+              placeholder="Search tools..."
+              className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+            />
+          </div>
 
-                <div className="grid shrink-0 gap-3 sm:grid-cols-3 lg:w-[17rem] lg:grid-cols-1">
-                  <div className="rounded-[1rem] border border-border/80 bg-background/70 px-4 py-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                      Results
-                    </p>
-                    <p className="mt-2 text-3xl font-semibold text-foreground">{filteredTools.length}</p>
-                  </div>
-                  <div className="rounded-[1rem] border border-border/80 bg-background/70 px-4 py-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                      Categories
-                    </p>
-                    <p className="mt-2 text-3xl font-semibold text-foreground">{topCategories.length}</p>
-                  </div>
-                  <div className="rounded-[1rem] border border-border/80 bg-background/70 px-4 py-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                      Free or Freemium
-                    </p>
-                    <p className="mt-2 text-3xl font-semibold text-foreground">{freeToolsCount}</p>
-                  </div>
-                </div>
-              </div>
+          <select
+            value={sort}
+            onChange={(event) =>
+              updateParams((nextParams) => {
+                const nextSort = event.target.value as SortOption;
+                if (nextSort === 'name') {
+                  nextParams.delete('sort');
+                } else if (sortOrder.includes(nextSort)) {
+                  nextParams.set('sort', nextSort);
+                }
+              })
+            }
+            className="rounded-[1rem] border border-border bg-card px-4 py-3 text-sm text-foreground outline-none"
+          >
+            <option value="name">Sort: A-Z</option>
+            <option value="pricing">Sort: Free first</option>
+            <option value="confidence">Sort: Confidence</option>
+          </select>
 
-              <form
-                action="/tools"
-                onSubmit={handleSubmit}
-                className="glass flex flex-col gap-4 rounded-[1.4rem] border border-border/80 p-4 md:flex-row md:items-center"
+          <button
+            type="submit"
+            disabled={isPending}
+            className="rounded-[1rem] border border-border bg-muted px-4 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary disabled:opacity-70"
+          >
+            Search
+          </button>
+
+          <span className="ml-auto text-sm text-muted-foreground">
+            {filteredTools.length} tool{filteredTools.length === 1 ? '' : 's'}
+          </span>
+        </form>
+
+        {activeFilters.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {activeFilters.map((filter) => (
+              <button
+                key={`${filter.group}:${filter.value}`}
+                type="button"
+                onClick={() => removeFilter(filter.group, filter.value)}
+                className="inline-flex items-center gap-1.5 rounded-full bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary"
               >
-                <div className="surface-outline flex flex-1 items-center gap-3 rounded-[1rem] bg-background/80 px-4 py-3">
-                  <Search className="h-5 w-5 text-muted-foreground" />
-                  <input
-                    type="search"
-                    name="q"
-                    value={draftQuery}
-                    onChange={(event) => setDraftQuery(event.target.value)}
-                    placeholder="Search by tool, pricing, use case, or platform"
-                    className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={isPending}
-                  className="rounded-[1rem] bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:-translate-y-0.5 disabled:opacity-70"
-                >
-                  {isPending ? 'Updating...' : 'Search directory'}
-                </button>
-              </form>
+                {filter.value}
+                <X className="h-3.5 w-3.5" />
+              </button>
+            ))}
+          </div>
+        ) : null}
 
-              <div className="flex flex-wrap gap-2">
-                {quickQueries.map((query) => (
-                  <Link
-                    key={query}
-                    href={`/tools?q=${encodeURIComponent(query)}`}
-                    className="muted-chip rounded-full px-3 py-1.5 text-xs hover:border-primary/20 hover:text-primary"
-                  >
-                    {query}
-                  </Link>
-                ))}
-                {quickQueries.length === 0 ? (
-                  <span className="slate-chip rounded-full px-3 py-1.5 text-xs">
-                    Search to narrow the directory
-                  </span>
-                ) : null}
-              </div>
+        <div className="flex items-start gap-6">
+          <aside className="sticky top-28 hidden w-[210px] shrink-0 rounded-[1.5rem] border border-border bg-card p-5 lg:block">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              Filter
+            </p>
+
+            <div className="mt-5 space-y-5">
+              <FilterBlock
+                label="Category"
+                options={categoryOptions}
+                selected={categories}
+                onToggle={(value) => toggleFilter('category', value)}
+              />
+              <FilterBlock
+                label="Pricing"
+                options={pricingOptions}
+                selected={pricings}
+                onToggle={(value) => toggleFilter('pricing', value)}
+              />
+              <FilterBlock
+                label="Platform"
+                options={platformOptions}
+                selected={platforms}
+                onToggle={(value) => toggleFilter('platform', value)}
+              />
+              <FilterBlock
+                label="Difficulty"
+                options={difficultyOptions}
+                selected={difficulties}
+                onToggle={(value) => toggleFilter('difficulty', value)}
+                bordered={false}
+              />
             </div>
-          </section>
+          </aside>
 
-          <section className="space-y-4">
+          <div className="min-w-0 flex-1">
             {filteredTools.length > 0 ? (
-              filteredTools.map((tool) => <ToolDirectoryRow key={tool.slug} tool={tool} />)
+              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                {filteredTools.map((tool) => (
+                  <ToolDirectoryGridCard key={tool.slug} tool={tool} />
+                ))}
+              </div>
             ) : (
-              <div className="glass-card rounded-[1.75rem] border border-border/80 p-12 text-center">
-                <h2 className="text-2xl font-semibold text-foreground">No matching tools found.</h2>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                  Try a broader term like free, AI writing, project management, or desktop.
+              <div className="rounded-[1.5rem] border border-border bg-card px-6 py-16 text-center">
+                <p className="text-sm text-muted-foreground">
+                  No tools match your filters.{' '}
+                  <button
+                    type="button"
+                    onClick={clearFilters}
+                    className="font-medium text-primary hover:text-primary-hover"
+                  >
+                    Clear filters
+                  </button>
                 </p>
               </div>
             )}
-          </section>
-        </main>
+          </div>
+        </div>
 
-        <aside className="space-y-5 xl:sticky xl:top-28 xl:self-start">
-          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Directory snapshot
-            </p>
-            <div className="mt-4 space-y-3">
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
-                <span className="text-muted-foreground">Published tools</span>
-                <span className="font-medium text-foreground">{tools.length}</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
-                <span className="text-muted-foreground">Visible results</span>
-                <span className="font-medium text-foreground">{filteredTools.length}</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
-                <span className="text-muted-foreground">Free or freemium</span>
-                <span className="font-medium text-foreground">{freeToolsCount}</span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Top categories</span>
-                <span className="font-medium text-foreground">{topCategories.length}</span>
-              </div>
+        <div className="grid gap-3 lg:hidden">
+          <details className="rounded-[1.5rem] border border-border bg-card p-5">
+            <summary className="cursor-pointer text-sm font-medium text-foreground">Filters</summary>
+            <div className="mt-4 space-y-5">
+              <FilterBlock
+                label="Category"
+                options={categoryOptions}
+                selected={categories}
+                onToggle={(value) => toggleFilter('category', value)}
+              />
+              <FilterBlock
+                label="Pricing"
+                options={pricingOptions}
+                selected={pricings}
+                onToggle={(value) => toggleFilter('pricing', value)}
+              />
+              <FilterBlock
+                label="Platform"
+                options={platformOptions}
+                selected={platforms}
+                onToggle={(value) => toggleFilter('platform', value)}
+              />
+              <FilterBlock
+                label="Difficulty"
+                options={difficultyOptions}
+                selected={difficulties}
+                onToggle={(value) => toggleFilter('difficulty', value)}
+                bordered={false}
+              />
             </div>
-          </section>
+          </details>
+        </div>
 
-          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Browse categories
-            </p>
-            <div className="mt-4 space-y-3">
-              {topCategories.map(([category, count]) => (
-                <Link
-                  key={category}
-                  href={`/tools?q=${encodeURIComponent(category)}`}
-                  className="flex items-center justify-between rounded-[1rem] border border-border/70 bg-background/70 px-4 py-3 text-sm hover:border-primary/20"
-                >
-                  <span className="text-foreground">{category}</span>
-                  <span className="text-muted-foreground">{count}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
+        {query ? (
+          <div className="text-xs text-muted-foreground">
+            Search is matching tool names, descriptions, categories, pricing, features, platforms, and use cases.
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
 
-          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Search guidance
-            </p>
-            <div className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
-              <p>Search supports tool names, pricing terms, platforms, feature names, and use cases.</p>
-              <p>
-                Examples: <code>freemium</code>, <code>Windows</code>, <code>AI Writing</code>,
-                {' '}or <code>task tracking</code>.
-              </p>
-            </div>
-          </section>
-        </aside>
+function FilterBlock({
+  label,
+  options,
+  selected,
+  onToggle,
+  bordered = true,
+}: {
+  label: string;
+  options: string[];
+  selected: string[];
+  onToggle: (value: string) => void;
+  bordered?: boolean;
+}) {
+  return (
+    <div className={bordered ? 'border-b border-border pb-5' : ''}>
+      <p className="mb-2 text-sm text-muted-foreground">{label}</p>
+      <div className="space-y-2">
+        {options.map((option) => (
+          <label key={option} className="flex cursor-pointer items-center gap-2 text-sm text-foreground">
+            <input
+              type="checkbox"
+              checked={selected.includes(option)}
+              onChange={() => onToggle(option)}
+              className="h-4 w-4 accent-primary"
+            />
+            <span>{option}</span>
+          </label>
+        ))}
       </div>
     </div>
   );

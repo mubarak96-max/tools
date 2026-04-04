@@ -2,12 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  BadgeCheck,
   Check,
   ChevronRight,
-  CircleOff,
   ExternalLink,
-  Sparkles,
 } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -22,7 +19,7 @@ import {
   getUseCasePath,
   serializeJsonLd,
 } from "@/lib/seo/jsonld";
-import { getConfidenceTone, getPricingTone, getWorkflowStatusTone } from "@/lib/ui";
+import { getPricingTone } from "@/lib/ui";
 import { getComparisonPath, slugify } from "@/lib/slug";
 import { cn } from "@/lib/utils";
 import type { Tool } from "@/types/database";
@@ -146,6 +143,16 @@ export async function generateMetadata({
   return buildToolPageMetadata(tool);
 }
 
+function Card({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <section className={cn("rounded-[1.5rem] border border-border bg-card p-5", className)}>{children}</section>;
+}
+
 export default async function ToolPage({
   params,
 }: {
@@ -162,37 +169,6 @@ export default async function ToolPage({
     getAlternativeTools(tool, 3),
     getComparisonSuggestions(tool),
   ]);
-
-  const decisionPoints = [
-    {
-      label: "Best for",
-      value: tool.bestFor || tool.aiInsights?.bestFor || "General evaluation and workflow fit",
-      tone: "text-success",
-    },
-    {
-      label: "Not ideal for",
-      value:
-        tool.notIdealFor ||
-        tool.aiInsights?.antiRecommendation ||
-        "Teams that need fully verified procurement data before review",
-      tone: "text-danger",
-    },
-    {
-      label: "Team fit",
-      value: formatList(tool.teamFit, "Solo operators, small teams, and mixed workflows"),
-      tone: "text-muted-foreground",
-    },
-    {
-      label: "Difficulty",
-      value:
-        tool.difficulty === "Advanced"
-          ? "Steeper learning curve with more setup or system depth."
-          : tool.difficulty === "Intermediate"
-            ? "Accessible after a short onboarding pass."
-            : "Easy to pick up quickly for most teams.",
-      tone: "text-muted-foreground",
-    },
-  ];
 
   const faqItems =
     tool.faq.length > 0
@@ -224,37 +200,33 @@ export default async function ToolPage({
     tool.factsLastVerifiedAt || tool.aiLastGeneratedAt || tool.updatedAt || tool.createdAt,
   );
   const scoreOutOfTen = getEditorScore(tool);
-  const scoreOutOfHundred = Math.round(scoreOutOfTen * 10);
-  const detailLine = [
-    reviewDate,
-    formatList(tool.platforms, "Platform details pending"),
-    tool.difficulty || "Intermediate",
-  ].join(" · ");
-  const pricingLine = [
-    tool.pricingRange || "Pricing range pending",
-    tool.hasFreePlan ? "Free plan available" : null,
-    tool.hasFreeTrial ? "Free trial available" : null,
-  ].filter(Boolean);
-  const ratingBreakdown = [
-    { label: "Features", value: getFeatureScore(tool) },
-    { label: "Ease of use", value: getDifficultyScore(tool) },
-    { label: "Value", value: getValueScore(tool) },
-    { label: "Collaboration", value: getCollaborationScore(tool) },
-    { label: "Support confidence", value: getSupportScore(tool) },
-  ];
   const overviewText =
     tool.longDescription ||
     tool.editorialSummary ||
     tool.aiInsights?.whyThisToolFits ||
     tool.shortDescription;
+  const ratingBreakdown = [
+    { label: "Features", value: getFeatureScore(tool) },
+    { label: "Ease of use", value: getDifficultyScore(tool) },
+    { label: "Value for money", value: getValueScore(tool) },
+    { label: "Collaboration", value: getCollaborationScore(tool) },
+    { label: "Support", value: getSupportScore(tool) },
+  ];
+
+  const bestForText =
+    tool.bestFor || tool.aiInsights?.bestFor || "General evaluation and workflow fit.";
+  const notIdealText =
+    tool.notIdealFor ||
+    tool.aiInsights?.antiRecommendation ||
+    "Teams that need deeper enterprise controls or a more rigid workflow model.";
 
   return (
     <div className="pb-24">
       <JsonLd data={serializeJsonLd(jsonLd as Record<string, unknown>[])} />
 
-      <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
-        <main className="space-y-6">
-          <nav className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_260px]">
+        <main className="space-y-4">
+          <nav className="flex flex-wrap items-center gap-2 border-b border-border/80 bg-card px-4 py-3 text-sm text-muted-foreground sm:px-5">
             <Link href="/" className="hover:text-primary">
               Home
             </Link>
@@ -270,375 +242,294 @@ export default async function ToolPage({
             <span className="text-foreground">{tool.name}</span>
           </nav>
 
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-            <div className="space-y-6">
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                <div className="flex gap-4">
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.1rem] border border-primary/15 bg-primary-soft text-lg font-semibold text-primary">
-                    {getInitials(tool.name)}
-                  </div>
+          <Card>
+            <div className="mb-5 flex items-start gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1rem] bg-primary-soft text-sm font-semibold text-primary">
+                {getInitials(tool.name)}
+              </div>
 
-                  <div className="space-y-3">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="primary-chip rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                        {tool.category}
-                      </span>
-                      <span
-                        className={cn(
-                          "rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]",
-                          getPricingTone(tool.pricingModel, tool.pricing),
-                        )}
-                      >
-                        {tool.pricing}
-                      </span>
-                      <span
-                        className={cn(
-                          "rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]",
-                          getWorkflowStatusTone(tool.status),
-                        )}
-                      >
-                        {tool.status}
-                      </span>
-                    </div>
-
-                    <div className="space-y-2">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h1 className="section-heading text-4xl text-foreground md:text-5xl">
-                          {tool.name}
-                        </h1>
-                        {tool.aiInsights ? <BadgeCheck className="h-5 w-5 text-success" /> : null}
-                      </div>
-                      <p className="text-sm text-muted-foreground">{detailLine}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="shrink-0 text-center">
-                  <div
+              <div className="min-w-0 flex-1">
+                <h1 className="text-[1.65rem] font-semibold tracking-tight text-foreground">
+                  {tool.name}
+                </h1>
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <span
                     className={cn(
-                      "mx-auto flex h-20 w-20 flex-col items-center justify-center rounded-full border text-center",
-                      getConfidenceTone(scoreOutOfHundred),
+                      "rounded-md border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em]",
+                      getPricingTone(tool.pricingModel, tool.pricing),
                     )}
                   >
-                    <span className="text-2xl font-semibold text-current">
-                      {scoreOutOfTen.toFixed(1)}
-                    </span>
-                    <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-current/80">
-                      /10
-                    </span>
-                  </div>
-                  <p className="mt-2 text-xs text-muted-foreground">Editor score</p>
-                </div>
-              </div>
-
-              <div className="rounded-[1rem] border border-success/20 bg-success-soft px-5 py-4">
-                <p className="text-sm leading-7 text-success-soft-foreground">
-                  {overviewText}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {tool.website ? (
-                  <a
-                    href={tool.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-[0.9rem] bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:-translate-y-0.5"
-                  >
-                    Visit website
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                ) : null}
-
-                <Link
-                  href={`/alternatives-to-${tool.slug}`}
-                  className="inline-flex items-center gap-2 rounded-[0.9rem] border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/20 hover:text-primary"
-                >
-                  Compare alternatives
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-
-                <a
-                  href="#tool-specs"
-                  className="inline-flex items-center gap-2 rounded-[0.9rem] border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground hover:border-primary/20 hover:text-primary"
-                >
-                  View pricing
-                </a>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {pricingLine.map((item) => (
-                  <span key={item} className="muted-chip rounded-full px-3 py-1.5 text-xs">
-                    {item}
+                    {tool.pricing}
                   </span>
-                ))}
-                {tool.platforms.slice(0, 2).map((platform) => (
-                  <span key={platform} className="muted-chip rounded-full px-3 py-1.5 text-xs">
-                    {platform}
+                  <span className="rounded-md border border-border bg-muted px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                    {tool.category}
                   </span>
-                ))}
-                {tool.integrations.slice(0, 2).map((integration) => (
-                  <span key={integration} className="muted-chip rounded-full px-3 py-1.5 text-xs">
-                    {integration}
+                  <span className="rounded-md border border-warning/20 bg-warning-soft px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-warning-soft-foreground">
+                    {tool.difficulty}
                   </span>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Quick verdict
-            </p>
-            <div className="mt-5 grid gap-px overflow-hidden rounded-[1rem] border border-border bg-border sm:grid-cols-2">
-              {decisionPoints.map((point) => (
-                <div key={point.label} className="bg-card px-5 py-4">
-                  <p className={cn("text-xs font-semibold uppercase tracking-[0.16em]", point.tone)}>
-                    {point.label}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-700">{point.value}</p>
+                  <span className="text-xs text-muted-foreground">{reviewDate}</span>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Pros and cons
-            </p>
-            <div className="mt-5 grid gap-4 lg:grid-cols-2">
-              <div className="rounded-[1rem] border border-success/20 bg-success-soft/50 p-5">
-                <div className="flex items-center gap-2 border-b border-success/15 pb-3">
-                  <BadgeCheck className="h-4 w-4 text-success" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-success-soft-foreground">
-                    Pros
-                  </p>
-                </div>
-                <ul className="mt-4 space-y-3">
-                  {tool.pros.map((pro) => (
-                    <li key={pro} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-                      <span>{pro}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
 
-              <div className="rounded-[1rem] border border-danger/20 bg-danger-soft/50 p-5">
-                <div className="flex items-center gap-2 border-b border-danger/15 pb-3">
-                  <CircleOff className="h-4 w-4 text-danger" />
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-danger-soft-foreground">
-                    Cons
-                  </p>
+              <div className="shrink-0 text-right">
+                <div className="text-4xl font-semibold leading-none text-foreground">
+                  {scoreOutOfTen.toFixed(1)}
                 </div>
-                <ul className="mt-4 space-y-3">
-                  {tool.cons.map((con) => (
-                    <li key={con} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
-                      <CircleOff className="mt-0.5 h-4 w-4 shrink-0 text-danger" />
-                      <span>{con}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="text-sm text-muted-foreground">/10</div>
+                <div className="mt-1 text-xs text-muted-foreground">editor score</div>
               </div>
             </div>
-          </section>
 
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Core features
-            </p>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {tool.features.map((feature) => (
-                <div
-                  key={feature}
-                  className="rounded-[0.95rem] border border-border bg-background/70 px-4 py-3 text-sm text-slate-700"
-                >
-                  <div className="flex items-start gap-3">
-                    <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                    <span>{feature}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+            <p className="text-[15px] leading-7 text-muted-foreground">{overviewText}</p>
 
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Use cases
-            </p>
             <div className="mt-5 flex flex-wrap gap-2">
+              {tool.website ? (
+                <a
+                  href={tool.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-[0.9rem] border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+                >
+                  Visit {tool.name}
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              ) : null}
+              <Link
+                href={`/alternatives-to-${tool.slug}`}
+                className="inline-flex items-center gap-2 rounded-[0.9rem] border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground transition-colors hover:border-primary/20 hover:text-foreground"
+              >
+                Compare alternatives
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href={`/alternatives-to-${tool.slug}`}
+                className="inline-flex items-center gap-2 rounded-[0.9rem] border border-border bg-card px-4 py-2.5 text-sm text-muted-foreground transition-colors hover:border-primary/20 hover:text-foreground"
+              >
+                Get recommendation
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Card>
+
+          <Card>
+            <h2 className="text-base font-semibold text-foreground">Quick verdict</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="rounded-[1rem] bg-success-soft p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-success-soft-foreground">
+                  Best for
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">{bestForText}</p>
+              </div>
+              <div className="rounded-[1rem] bg-danger-soft p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-danger-soft-foreground">
+                  Not ideal for
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-700">{notIdealText}</p>
+              </div>
+            </div>
+            <div className="mt-3 rounded-[1rem] bg-muted px-4 py-3 text-sm leading-6 text-muted-foreground">
+              <span className="font-medium text-foreground">Team fit:</span>{" "}
+              {formatList(tool.teamFit, "Solo operators, small teams, and mixed workflows")}
+              {" · "}
+              <span className="font-medium text-foreground">Pricing:</span>{" "}
+              {tool.pricingRange || "Pricing range pending"}
+            </div>
+          </Card>
+
+          <Card>
+            <h2 className="text-base font-semibold text-foreground">Pros and cons</h2>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              <div>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-success">
+                  Strengths
+                </p>
+                <div className="space-y-2">
+                  {tool.pros.map((pro) => (
+                    <div key={pro} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-success" />
+                      <span>{pro}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-danger">
+                  Weaknesses
+                </p>
+                <div className="space-y-2">
+                  {tool.cons.map((con) => (
+                    <div key={con} className="flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-danger" />
+                      <span>{con}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          <Card>
+            <h2 className="text-base font-semibold text-foreground">Rating breakdown</h2>
+            <div className="mt-4 space-y-3">
+              {ratingBreakdown.map((item) => (
+                <div key={item.label} className="flex items-center gap-3">
+                  <span className="w-32 shrink-0 text-sm text-muted-foreground">{item.label}</span>
+                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-muted">
+                    <div
+                      className="h-full rounded-full bg-primary"
+                      style={{ width: `${Math.round(item.value * 10)}%` }}
+                    />
+                  </div>
+                  <span className="w-8 shrink-0 text-right text-sm font-medium text-foreground">
+                    {item.value.toFixed(1)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card>
+            <h2 className="text-base font-semibold text-foreground">Core features</h2>
+            <div className="mt-4 space-y-2">
+              {tool.features.map((feature) => (
+                <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-success" />
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <Card>
+            <h2 className="text-base font-semibold text-foreground">Use cases</h2>
+            <div className="mt-4 space-y-2">
               {tool.useCases.map((useCase) => (
                 <Link
                   key={useCase}
                   href={getUseCasePath(useCase)}
-                  className="muted-chip rounded-full px-3 py-1.5 text-sm hover:border-primary/20 hover:text-primary"
+                  className="flex items-center gap-3 rounded-[0.9rem] border border-border px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-primary/20 hover:text-foreground"
                 >
-                  {useCase}
+                  <span>{useCase}</span>
+                  <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground" />
                 </Link>
               ))}
             </div>
-          </section>
-
-          {alternatives.length > 0 ? (
-            <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    Top alternatives
-                  </p>
-                  <h2 className="mt-2 text-2xl font-semibold text-foreground">
-                    Closest substitutes worth checking.
-                  </h2>
-                </div>
-                <Link
-                  href={`/alternatives-to-${tool.slug}`}
-                  className="text-sm font-medium text-primary hover:text-primary-hover"
-                >
-                  View all
-                </Link>
-              </div>
-
-              <div className="mt-5 divide-y divide-border">
-                {alternatives.map((alternative) => (
-                  <Link
-                    key={alternative.slug}
-                    href={`/tools/${alternative.slug}`}
-                    className="flex items-start gap-4 py-4 first:pt-0 last:pb-0"
-                  >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.9rem] border border-border bg-primary-soft text-sm font-semibold text-primary">
-                      {getInitials(alternative.name)}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-semibold text-foreground">{alternative.name}</span>
-                        <span
-                          className={cn(
-                            "rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.14em]",
-                            getPricingTone(alternative.pricingModel, alternative.pricing),
-                          )}
-                        >
-                          {alternative.pricing}
-                        </span>
-                      </div>
-                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                        {alternative.aiInsights?.comparisonSummary ||
-                          alternative.shortDescription ||
-                          alternative.description}
-                      </p>
-                    </div>
-                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Common questions
-            </p>
-            <div className="mt-5 space-y-3">
-              {faqItems.map((item) => (
-                <div key={item.question} className="rounded-[1rem] border border-border bg-card px-4 py-4">
-                  <h2 className="text-sm font-semibold text-foreground">{item.question}</h2>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+          </Card>
         </main>
 
-        <aside className="space-y-5 xl:sticky xl:top-28 xl:self-start">
-          <section
-            id="tool-specs"
-            className="glass-card rounded-[1.5rem] border border-border/80 p-5"
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Tool specs
-            </p>
-            <div className="mt-4 space-y-3">
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
+        <aside className="space-y-4 xl:sticky xl:top-28 xl:self-start">
+          <Card>
+            <h2 className="text-base font-semibold text-foreground">Tool specs</h2>
+            <div className="mt-3 divide-y divide-border">
+              <div className="flex items-center justify-between gap-4 py-3 text-sm">
                 <span className="text-muted-foreground">Pricing</span>
                 <span className="font-medium text-foreground">{tool.pricingRange || tool.pricing}</span>
               </div>
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
-                <span className="text-muted-foreground">Pricing model</span>
+              <div className="flex items-center justify-between gap-4 py-3 text-sm">
+                <span className="text-muted-foreground">Model</span>
                 <span className="font-medium text-foreground">{tool.pricing}</span>
               </div>
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
-                <span className="text-muted-foreground">Platforms</span>
-                <span className="max-w-[11rem] text-right font-medium text-foreground">
-                  {formatList(tool.platforms, "Pending")}
-                </span>
-              </div>
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
-                <span className="text-muted-foreground">Difficulty</span>
-                <span className="font-medium text-foreground">{tool.difficulty}</span>
-              </div>
-              <div className="flex items-center justify-between border-b border-border/70 pb-3 text-sm">
+              <div className="flex items-center justify-between gap-4 py-3 text-sm">
                 <span className="text-muted-foreground">Free plan</span>
                 <span className={cn("font-medium", tool.hasFreePlan ? "text-success" : "text-foreground")}>
                   {tool.hasFreePlan ? "Yes" : "No"}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Status</span>
-                <span className="font-medium text-foreground">{tool.status}</span>
+              <div className="flex items-center justify-between gap-4 py-3 text-sm">
+                <span className="text-muted-foreground">Difficulty</span>
+                <span className="font-medium text-foreground">{tool.difficulty}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4 py-3 text-sm">
+                <span className="text-muted-foreground">Team fit</span>
+                <span className="text-right font-medium text-foreground">
+                  {tool.teamFit.slice(0, 2).join(" + ") || "Solo + small teams"}
+                </span>
+              </div>
+              <div className="py-3 text-sm">
+                <div className="mb-2 text-muted-foreground">Platforms</div>
+                <div className="flex flex-wrap justify-end gap-1.5">
+                  {tool.platforms.map((platform) => (
+                    <span
+                      key={platform}
+                      className="rounded-full border border-border px-2.5 py-1 text-[11px] text-muted-foreground"
+                    >
+                      {platform}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </section>
-
-          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Rating breakdown
-            </p>
-            <div className="mt-4 space-y-4">
-              {ratingBreakdown.map((item) => (
-                <div key={item.label}>
-                  <div className="mb-1.5 flex items-center justify-between text-xs text-slate-700">
-                    <span>{item.label}</span>
-                    <span>{item.value.toFixed(1)}</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-muted">
-                    <div
-                      className="h-full rounded-full bg-success"
-                      style={{ width: `${Math.round(item.value * 10)}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+          </Card>
 
           {comparisonSuggestions.length > 0 ? (
-            <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Compare with
-              </p>
-              <div className="mt-4 space-y-2">
+            <Card>
+              <h2 className="text-base font-semibold text-foreground">Compare with</h2>
+              <div className="mt-3 space-y-2">
                 {comparisonSuggestions.map((suggestion) => (
                   <Link
                     key={suggestion.slug}
                     href={getComparisonPath(tool.slug, suggestion.slug)}
-                    className="flex items-center justify-between rounded-[0.95rem] border border-border bg-background/70 px-4 py-3 text-sm text-foreground hover:border-primary/20 hover:text-primary"
+                    className="flex items-center justify-between rounded-[0.9rem] border border-border px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-primary/20 hover:text-foreground"
                   >
-                    <span>{suggestion.name}</span>
+                    <span className="flex items-center gap-2">
+                      <span className="rounded-md border border-border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+                        VS
+                      </span>
+                      <span>{suggestion.name}</span>
+                    </span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 ))}
               </div>
-            </section>
+            </Card>
           ) : null}
 
-          <section className="rounded-[1.5rem] border border-success/20 bg-success-soft p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-success-soft-foreground">
-              Editorial note
+          {alternatives.length > 0 ? (
+            <Card>
+              <h2 className="text-base font-semibold text-foreground">Top alternatives</h2>
+              <div className="mt-3 space-y-2">
+                {alternatives.map((alternative) => (
+                  <Link
+                    key={alternative.slug}
+                    href={`/tools/${alternative.slug}`}
+                    className="flex items-center gap-3 rounded-[0.9rem] border border-border px-3 py-3 transition-colors hover:border-primary/20"
+                  >
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.75rem] bg-primary-soft text-[11px] font-semibold text-primary">
+                      {getInitials(alternative.name)}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="text-sm font-medium text-foreground">{alternative.name}</div>
+                      <div className="mt-0.5 text-xs text-muted-foreground">
+                        {alternative.aiInsights?.comparisonSummary ||
+                          alternative.shortDescription ||
+                          alternative.description}
+                      </div>
+                    </div>
+                    <span
+                      className={cn(
+                        "shrink-0 rounded-md border px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em]",
+                        getPricingTone(alternative.pricingModel, alternative.pricing),
+                      )}
+                    >
+                      {alternative.pricing}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </Card>
+          ) : null}
+
+          <section className="rounded-[1.5rem] border border-border bg-muted p-5 text-center">
+            <p className="text-sm leading-6 text-muted-foreground">
+              Not sure if {tool.name} is right for your workflow?
             </p>
-            <p className="mt-3 text-sm leading-6 text-success-soft-foreground">
-              {tool.editorialSummary ||
-                tool.aiInsights?.whyThisToolFits ||
-                `${tool.name} remains a strong option when you need a dependable ${tool.category.toLowerCase()} workflow with clear trade-offs.`}
-            </p>
+            <Link
+              href={`/alternatives-to-${tool.slug}`}
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[0.9rem] border border-border bg-background px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-card"
+            >
+              Get a recommendation
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </section>
         </aside>
       </div>

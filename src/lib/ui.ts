@@ -17,7 +17,12 @@ export function getPricingTone(pricingModel?: string | null, pricing?: string | 
     return "border-success/20 bg-success-soft text-success-soft-foreground";
   }
 
-  if (value.includes("enterprise") || value.includes("contact") || value.includes("custom")) {
+  if (
+    value.includes("paid") ||
+    value.includes("enterprise") ||
+    value.includes("contact") ||
+    value.includes("custom")
+  ) {
     return "border-warning/20 bg-warning-soft text-warning-soft-foreground";
   }
 

@@ -19,11 +19,11 @@ export default function SectionHeader({
             {eyebrow}
           </p>
         ) : null}
-        <h2 className="section-heading text-3xl text-foreground md:text-4xl">
+        <h2 className="section-heading text-3xl text-foreground md:text-[2.5rem]">
           {title}
         </h2>
         {description ? (
-          <p className="text-base leading-7 text-muted-foreground md:text-lg">
+          <p className="text-base leading-7 text-muted-foreground md:text-[1.05rem]">
             {description}
           </p>
         ) : null}
