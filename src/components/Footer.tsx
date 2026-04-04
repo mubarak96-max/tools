@@ -21,7 +21,6 @@ export default function Footer() {
             <Link href="/about" className="text-slate-700 hover:text-primary">About</Link>
             <Link href="/privacy" className="text-slate-700 hover:text-primary">Privacy</Link>
             <Link href="/terms" className="text-slate-700 hover:text-primary">Terms</Link>
-            <Link href="/admin" className="text-slate-700 hover:text-primary">Admin</Link>
           </div>
         </div>
 

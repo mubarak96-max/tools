@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Search, Sparkles } from 'lucide-react';
+import { Search, Sparkles } from 'lucide-react';
 
 export default function Header() {
   return (
@@ -33,13 +33,6 @@ export default function Header() {
           >
             <Search className="h-4 w-4" />
             Search the directory
-          </Link>
-          <Link
-            href="/admin"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:-translate-y-0.5"
-          >
-            Admin
-            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </div>
