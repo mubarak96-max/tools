@@ -3,6 +3,7 @@ import { buildToolEditorialPrompt, buildToolFactsPrompt } from "@/lib/generation
 import { scoreToolDraft } from "@/lib/generation/score";
 import { requestStructuredObject } from "@/lib/openrouter";
 import { slugify } from "@/lib/slug";
+import { getToolTaxonomyHints } from "@/lib/taxonomy/registry";
 import { compactText } from "@/lib/text";
 import type { Tool } from "@/types/database";
 
@@ -52,6 +53,7 @@ function normalizeToolDraft(
   },
   facts: GeneratedToolFacts,
   existingTools: Array<Pick<Tool, "slug" | "name">>,
+  approvedCategories: string[],
 ): ToolDraftPreview {
   const slug = slugify(facts.slug || input.toolName);
   const draft: Partial<Tool> = {
@@ -103,7 +105,9 @@ function normalizeToolDraft(
     aiLastGeneratedAt: nowIso(),
   };
 
-  const { confidence, warnings } = scoreToolDraft(draft, existingTools);
+  const { confidence, warnings } = scoreToolDraft(draft, existingTools, {
+    approvedCategories,
+  });
   draft.sourceConfidence = confidence;
 
   return { draft, confidence, warnings };
@@ -115,11 +119,12 @@ export async function generateToolFactsPreview(input: {
   categories: string[];
   existingTools?: Array<Pick<Tool, "slug" | "name">>;
 }): Promise<ToolDraftPreview | null> {
+  const taxonomyHints = getToolTaxonomyHints(input.categories);
   const facts = await requestStructuredObject<GeneratedToolFacts>(
     buildToolFactsPrompt({
       toolName: input.toolName,
       website: input.website,
-      categories: input.categories,
+      categories: taxonomyHints.categories,
     }),
   );
 
@@ -134,12 +139,16 @@ export async function generateToolFactsPreview(input: {
     },
     facts,
     input.existingTools || [],
+    taxonomyHints.categories,
   );
 }
 
 export async function generateToolEditorialPreview(
   draft: Partial<Tool>,
   existingTools: Array<Pick<Tool, "slug" | "name">> = [],
+  options?: {
+    approvedCategories?: string[];
+  },
 ): Promise<ToolDraftPreview | null> {
   const editorial = await requestStructuredObject<GeneratedToolEditorial>(
     buildToolEditorialPrompt(draft),
@@ -166,7 +175,9 @@ export async function generateToolEditorialPreview(
     aiLastGeneratedAt: nowIso(),
   };
 
-  const { confidence, warnings } = scoreToolDraft(nextDraft, existingTools);
+  const { confidence, warnings } = scoreToolDraft(nextDraft, existingTools, {
+    approvedCategories: options?.approvedCategories,
+  });
   nextDraft.sourceConfidence = confidence;
   nextDraft.status = confidence >= 0.82 ? "draft" : "review";
 

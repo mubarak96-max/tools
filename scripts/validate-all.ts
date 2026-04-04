@@ -18,6 +18,9 @@ async function validateAll() {
 
   const invalidRecords: string[] = [];
   const warningRecords: string[] = [];
+  const approvedCategories = categorySnapshot.docs
+    .map((doc) => String(doc.data().name || ""))
+    .filter(Boolean);
   const parsedTools = toolSnapshot.docs.flatMap((doc) => {
     try {
       const tool = normalizeToolRecord(serializeData(doc.data()), { id: doc.id });
@@ -27,6 +30,7 @@ async function validateAll() {
           slug: entry.id,
           name: String(entry.data().name || ""),
         })),
+        { approvedCategories },
       ).warnings;
 
       if (warnings.length > 0) {

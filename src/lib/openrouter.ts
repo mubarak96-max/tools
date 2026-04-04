@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 
+import { logServerError } from "@/lib/monitoring/logger";
 import type { AIInsights } from "@/types/database";
 
 const openai = new OpenAI({
@@ -27,7 +28,9 @@ export async function requestStructuredObject<T>(prompt: string): Promise<T | nu
 
     return JSON.parse(jsonMatch[0]) as T;
   } catch (error) {
-    console.error("OpenRouter structured request failed:", error);
+    logServerError("openrouter_structured_request_failed", error, {
+      model: "google/gemini-2.5-flash-lite",
+    });
     return null;
   }
 }

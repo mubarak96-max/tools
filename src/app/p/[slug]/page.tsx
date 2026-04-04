@@ -5,12 +5,18 @@ import { notFound } from "next/navigation";
 
 import SectionHeader from "@/components/sections/SectionHeader";
 import ToolCard from "@/components/ToolCard";
-import { getPageBySlug } from "@/lib/db/pages";
+import { getPageBySlug, listPages } from "@/lib/db/pages";
 import { getToolsBySlugs } from "@/lib/db/tools";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { buildEditorialPageMetadata } from "@/lib/seo/metadata";
 import type { CustomPage, Tool } from "@/types/database";
 
-export const revalidate = 3600;
+export const revalidate = 7200;
+
+export async function generateStaticParams() {
+  const pages = await listPages({ status: ["published"] });
+
+  return pages.map((page) => ({ slug: page.slug }));
+}
 
 async function getPage(slug: string): Promise<CustomPage | null> {
   return getPageBySlug(slug);
@@ -25,11 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const page = await getPage(slug);
   if (!page) return { title: "Not Found" };
 
-  return buildMetadata({
-    title: page.title,
-    description: page.metaDescription,
-    path: `/p/${page.slug}`,
-  });
+  return buildEditorialPageMetadata(page, (page.toolSlugs || []).length);
 }
 
 function renderComparisonTemplate(page: CustomPage, tools: Tool[]) {

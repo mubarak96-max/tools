@@ -1,3 +1,5 @@
+import "server-only";
+
 import type { TaxonomyRecord } from "@/types/database";
 
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";

@@ -8,10 +8,10 @@ import ToolCard from "@/components/ToolCard";
 import { getFeaturedTools, listTools } from "@/lib/db/tools";
 import { scoreComparisonPair } from "@/lib/ranking/comparisons";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { slugify } from "@/lib/slug";
+import { comparisonSlug, slugify } from "@/lib/slug";
 import type { Tool } from "@/types/database";
 
-export const revalidate = 3600;
+export const revalidate = 1800;
 
 export const metadata = buildMetadata({
   title: "Find Software With Structure",
@@ -84,7 +84,7 @@ async function getHomePageData(): Promise<HomePageData> {
     .sort((left, right) => right.score - left.score)
     .slice(0, 3)
     .map(({ left, right }) => ({
-      slug: `${left.slug}-vs-${right.slug}`,
+      slug: comparisonSlug(left.slug, right.slug),
       label: `${left.name} vs ${right.name}`,
       summary:
         left.aiInsights?.comparisonSummary ||

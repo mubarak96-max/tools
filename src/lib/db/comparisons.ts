@@ -1,7 +1,29 @@
+import "server-only";
+
 import type { ComparisonRecord } from "@/types/database";
 
-import { getToolBySlug } from "@/lib/db/tools";
+import { scoreComparisonPair } from "@/lib/ranking/comparisons";
+import { comparisonSlug } from "@/lib/slug";
+import { listTools, getToolBySlug } from "@/lib/db/tools";
 import { normalizeComparisonRecord } from "@/lib/validation/comparison";
+
+const MAX_STATIC_COMPARISON_PAGES = 120;
+
+export async function listComparisonSlugs() {
+  const tools = await listTools({ status: ["published"] });
+
+  return tools
+    .flatMap((tool, index) =>
+      tools.slice(index + 1).map((candidate) => ({
+        slug: comparisonSlug(tool.slug, candidate.slug),
+        score: scoreComparisonPair(tool, candidate),
+      })),
+    )
+    .filter((entry) => entry.score > 0)
+    .sort((left, right) => right.score - left.score || left.slug.localeCompare(right.slug))
+    .slice(0, MAX_STATIC_COMPARISON_PAGES)
+    .map((entry) => entry.slug);
+}
 
 export async function getComparisonBySlug(slug: string): Promise<ComparisonRecord | null> {
   if (!slug.includes("-vs-")) {

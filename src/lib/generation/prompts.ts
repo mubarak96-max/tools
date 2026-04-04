@@ -1,15 +1,5 @@
+import { getToolTaxonomyHints } from "@/lib/taxonomy/registry";
 import type { CustomPage, Tool } from "@/types/database";
-
-const allowedPlatforms = [
-  "Web",
-  "iOS",
-  "Android",
-  "Windows",
-  "macOS",
-  "Linux",
-  "API",
-  "Chrome Extension",
-] as const;
 
 const allowedPricingModels = ["free", "freemium", "paid", "custom"] as const;
 const allowedDifficultyLevels = ["beginner", "intermediate", "advanced"] as const;
@@ -19,17 +9,23 @@ export function buildToolFactsPrompt(input: {
   website?: string;
   categories: string[];
 }) {
+  const taxonomyHints = getToolTaxonomyHints(input.categories);
+
   return `You are preparing a structured software record for "${input.toolName}".
 
 Known facts:
 - Official website provided by the editor: ${input.website || "unknown"}
-- Approved categories: ${input.categories.join(", ") || "None supplied"}
+- Approved categories: ${taxonomyHints.categories.join(", ") || "None supplied"}
 - Allowed pricing_model values: ${allowedPricingModels.join(", ")}
 - Allowed difficulty_level values: ${allowedDifficultyLevels.join(", ")}
-- Allowed platforms: ${allowedPlatforms.join(", ")}
+- Allowed platforms: ${taxonomyHints.platforms.join(", ")}
+- Allowed audiences: ${taxonomyHints.audiences.join(", ")}
+- Allowed use_cases: ${taxonomyHints.useCases.join(", ")}
+- Allowed team_fit values: ${taxonomyHints.teamFit.join(", ")}
 
 Rules:
 - Do not invent a category. If none fits, return an empty string for category.
+- Do not invent audiences, use cases, platforms, or team_fit values. Use only approved values or return an empty array.
 - Do not invent a website. Use the supplied website if present, otherwise return an empty string.
 - Keep descriptions factual and concise.
 - Return empty arrays or empty strings when uncertain.

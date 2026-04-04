@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Tool } from '@/types/database';
 import { BadgeCheck, ArrowRight, Zap } from 'lucide-react';

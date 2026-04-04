@@ -6,8 +6,8 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/sections/SectionHeader";
 import ToolCard from "@/components/ToolCard";
-import { getUseCaseHubData } from "@/lib/discovery/hubs";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { getUseCaseHubData, listUseCaseHubSlugs } from "@/lib/discovery/hubs";
+import { buildUseCaseHubMetadata } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
   buildItemListJsonLd,
@@ -16,6 +16,12 @@ import {
 } from "@/lib/seo/jsonld";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const useCases = await listUseCaseHubSlugs();
+
+  return useCases.map((usecase) => ({ usecase }));
+}
 
 export async function generateMetadata({
   params,
@@ -29,11 +35,7 @@ export async function generateMetadata({
     return { title: "Use Case Not Found" };
   }
 
-  return buildMetadata({
-    title: `Best Tools for ${hub.useCaseLabel} (2026)`,
-    description: `Discover the best tools for ${hub.useCaseLabel.toLowerCase()} with structured picks, category links, and comparison paths.`,
-    path: getUseCasePath(hub.useCaseSlug),
-  });
+  return buildUseCaseHubMetadata(hub);
 }
 
 export default async function UseCasePage({

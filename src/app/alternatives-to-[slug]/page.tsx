@@ -6,16 +6,23 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/sections/SectionHeader";
 import ToolCard from "@/components/ToolCard";
-import { getAlternativeTools, getToolBySlug } from "@/lib/db/tools";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { getAlternativeTools, getToolBySlug, listTools } from "@/lib/db/tools";
+import { buildAlternativesPageMetadata } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
   buildItemListJsonLd,
   serializeJsonLd,
 } from "@/lib/seo/jsonld";
+import { getComparisonPath } from "@/lib/slug";
 import type { Tool } from "@/types/database";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const tools = await listTools({ status: ["published"] });
+
+  return tools.map((tool) => ({ slug: tool.slug }));
+}
 
 async function getTargetTool(slug: string): Promise<Tool | null> {
   return getToolBySlug(slug);
@@ -30,11 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const tool = await getTargetTool(slug);
   if (!tool) return { title: "Not Found" };
 
-  return buildMetadata({
-    title: `Top ${tool.name} Alternatives & Competitors (2026)`,
-    description: `Looking for a better, cheaper, or different tool than ${tool.name}? Discover the best alternatives based on use case and expert AI insights.`,
-    path: `/alternatives-to-${tool.slug}`,
-  });
+  return buildAlternativesPageMetadata(tool, 8);
 }
 
 export default async function AlternativesPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -185,7 +188,7 @@ export default async function AlternativesPage({ params }: { params: Promise<{ s
                 {alternatives.slice(0, 3).map((tool) => (
                   <Link
                     key={tool.slug}
-                    href={`/compare/${targetTool.slug}-vs-${tool.slug}`}
+                    href={getComparisonPath(targetTool.slug, tool.slug)}
                     className="rounded-[1.25rem] border border-border/70 px-4 py-3 text-sm font-medium text-foreground hover:border-primary/30 hover:text-primary"
                   >
                     Compare {targetTool.name} vs {tool.name}

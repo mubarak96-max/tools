@@ -1,10 +1,13 @@
 import { MetadataRoute } from 'next';
+import { listComparisonSlugs } from "@/lib/db/comparisons";
 import { listPages } from "@/lib/db/pages";
 import { listTools } from "@/lib/db/tools";
 import { listCategoryAudienceHubSlugs, listCategoryHubSlugs } from "@/lib/discovery/hubs";
 import { slugify } from "@/lib/slug";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.yourdomain.com';
+
+export const revalidate = 14400;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemapEntries: MetadataRoute.Sitemap = [
@@ -40,11 +43,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const [tools, pages, categorySlugs, categoryAudiencePairs] = await Promise.all([
+  const [tools, pages, categorySlugs, categoryAudiencePairs, comparisonSlugs] = await Promise.all([
     listTools({ status: ["published"] }),
     listPages({ status: ["published"] }),
     listCategoryHubSlugs(),
     listCategoryAudienceHubSlugs(),
+    listComparisonSlugs(),
   ]);
 
   const useCaseSlugs = new Set<string>();
@@ -101,6 +105,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
+  comparisonSlugs.forEach((slug) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/compare/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    });
+  });
+
   pages.forEach((page) => {
     sitemapEntries.push({
       url: `${BASE_URL}/p/${page.slug}`,
@@ -110,5 +123,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   });
 
-  return sitemapEntries;
+  const seen = new Set<string>();
+
+  return sitemapEntries.filter((entry) => {
+    if (seen.has(entry.url)) {
+      return false;
+    }
+
+    seen.add(entry.url);
+    return true;
+  });
 }

@@ -1,3 +1,5 @@
+import "server-only";
+
 import { getAdminDb } from "@/lib/firebase/admin";
 
 export {

@@ -1,10 +1,12 @@
+import { Suspense } from "react";
+
+import ToolsDirectoryClient from "@/components/ToolsDirectoryClient";
 import ToolCard from "@/components/ToolCard";
 import { listTools } from "@/lib/db/tools";
 import { buildMetadata } from "@/lib/seo/metadata";
 import type { Metadata } from 'next';
-import type { Tool } from "@/types/database";
 
-export const revalidate = 3600;
+export const revalidate = 1800;
 
 export const metadata: Metadata = buildMetadata({
   title: "All AI Tools & Software Directory (2026)",
@@ -12,42 +14,11 @@ export const metadata: Metadata = buildMetadata({
   path: "/tools",
 });
 
-function matchesQuery(tool: Tool, query: string) {
-  const haystack = [
-    tool.name,
-    tool.category,
-    tool.shortDescription,
-    tool.pricing,
-    tool.pricingRange,
-    ...tool.useCases,
-    ...tool.features,
-    ...tool.platforms,
-    ...tool.integrations,
-  ]
-    .join(" ")
-    .toLowerCase();
-
-  return haystack.includes(query.toLowerCase());
-}
-
-async function getAllTools(query?: string): Promise<Tool[]> {
-  const tools = await listTools({ status: ["published"] });
-
-  if (!query) {
-    return tools;
-  }
-
-  return tools.filter((tool) => matchesQuery(tool, query));
-}
-
-export default async function AllToolsPage(props: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
+function ToolsDirectoryFallback({
+  tools,
+}: {
+  tools: Awaited<ReturnType<typeof listTools>>;
 }) {
-  const searchParams = await props.searchParams;
-  const queryValue = searchParams.q;
-  const query = Array.isArray(queryValue) ? queryValue[0] : queryValue;
-  const tools = await getAllTools(query);
-
   return (
     <div className="flex flex-col gap-12 pb-24 animate-fade-in">
       <section className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-card/80 px-6 py-10 sm:px-8 md:px-10">
@@ -62,52 +33,26 @@ export default async function AllToolsPage(props: {
           <p className="text-lg leading-8 text-muted-foreground">
             Search the live directory across tool names, pricing, platforms, features, and use cases.
           </p>
-
-          <form action="/tools" className="glass flex flex-col gap-4 rounded-[1.75rem] p-4 md:flex-row md:items-center">
-            <input
-              type="search"
-              name="q"
-              defaultValue={query ?? ""}
-              placeholder="Search by tool, pricing, use case, or platform"
-              className="surface-outline w-full flex-1 rounded-[1.25rem] bg-background/70 px-4 py-3 text-sm text-foreground outline-none placeholder:text-muted-foreground"
-            />
-            <button
-              type="submit"
-              className="rounded-[1.25rem] bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:-translate-y-0.5"
-            >
-              Search
-            </button>
-          </form>
-
-          <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-            <span>{tools.length} results</span>
-            {query ? (
-              <span>
-                for <strong className="text-foreground">{query}</strong>
-              </span>
-            ) : (
-              <span>across all published tools</span>
-            )}
-          </div>
         </div>
       </section>
 
       <section>
-        {tools.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {tools.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        ) : (
-          <div className="glass-card rounded-[1.75rem] p-12 text-center">
-            <h3 className="text-xl font-semibold mb-2">No matching tools found.</h3>
-            <p className="text-muted-foreground">
-              Try a broader term like free, AI, project management, or desktop.
-            </p>
-          </div>
-        )}
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {tools.map((tool) => (
+            <ToolCard key={tool.slug} tool={tool} />
+          ))}
+        </div>
       </section>
     </div>
+  );
+}
+
+export default async function AllToolsPage() {
+  const tools = await listTools({ status: ["published"] });
+
+  return (
+    <Suspense fallback={<ToolsDirectoryFallback tools={tools} />}>
+      <ToolsDirectoryClient tools={tools} />
+    </Suspense>
   );
 }

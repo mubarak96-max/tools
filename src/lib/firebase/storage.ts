@@ -1,3 +1,5 @@
+import "server-only";
+
 import { getAdminStorage } from "@/lib/firebase/admin";
 import { slugify } from "@/lib/slug";
 

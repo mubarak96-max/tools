@@ -6,8 +6,8 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/sections/SectionHeader";
 import ToolCard from "@/components/ToolCard";
-import { getCategoryHubData } from "@/lib/discovery/hubs";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { getCategoryHubData, listCategoryHubSlugs } from "@/lib/discovery/hubs";
+import { buildCategoryHubMetadata } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
   getUseCasePath,
@@ -16,6 +16,12 @@ import {
 } from "@/lib/seo/jsonld";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const categories = await listCategoryHubSlugs();
+
+  return categories.map((category) => ({ category }));
+}
 
 export async function generateMetadata({
   params,
@@ -29,11 +35,7 @@ export async function generateMetadata({
     return { title: "Category Not Found" };
   }
 
-  return buildMetadata({
-    title: `Best ${hub.categoryLabel} Tools (2026)`,
-    description: `Discover the best ${hub.categoryLabel.toLowerCase()} tools with structured picks, audience fit, workflow links, and comparison paths.`,
-    path: `/best/${hub.categorySlug}`,
-  });
+  return buildCategoryHubMetadata(hub);
 }
 
 export default async function BestCategoryPage({

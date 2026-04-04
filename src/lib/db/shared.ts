@@ -1,3 +1,5 @@
+import "server-only";
+
 import type { DocumentData, Query } from "firebase-admin/firestore";
 
 import { nowIso } from "@/lib/dates";

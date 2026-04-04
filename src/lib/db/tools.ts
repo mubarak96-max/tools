@@ -1,9 +1,23 @@
+import "server-only";
+
 import type { RecordStatus, Tool } from "@/types/database";
 
+import { listCategories } from "@/lib/db/taxonomies";
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { logServerError } from "@/lib/monitoring/logger";
 import { scoreAlternative } from "@/lib/ranking/alternatives";
+import { enforceToolTaxonomy } from "@/lib/taxonomy/registry";
 import { normalizeToolRecord, prepareToolWrite } from "@/lib/validation/tool";
+
+async function listApprovedCategoryNames() {
+  const categories = await listCategories();
+  const approved = categories
+    .filter((category) => category.status === "published")
+    .map((category) => category.name);
+
+  return approved.length > 0 ? approved : categories.map((category) => category.name);
+}
 
 async function listAllTools(): Promise<Tool[]> {
   const db = getAdminDb();
@@ -16,7 +30,8 @@ async function listAllTools(): Promise<Tool[]> {
       db.collection(COLLECTIONS.tools).orderBy("name"),
       (id, data) => normalizeToolRecord(data, { id }),
     );
-  } catch {
+  } catch (error) {
+    logServerError("list_tools_failed", error);
     return [];
   }
 }
@@ -94,9 +109,15 @@ export async function getAlternativeTools(targetTool: Tool, limit = 10): Promise
     .map((entry) => entry.tool);
 }
 
-export async function createToolRecord(data: Partial<Tool>, fallbackStatus: RecordStatus = "draft") {
+export async function createToolRecord(
+  data: Partial<Tool>,
+  fallbackStatus: RecordStatus = "draft",
+): Promise<string> {
   const db = requireAdminDb();
-  const prepared = prepareToolWrite(data, { fallbackStatus });
+  const approvedCategories = await listApprovedCategoryNames();
+  const normalized = normalizeToolRecord(data, { fallbackStatus });
+  const enforced = enforceToolTaxonomy(normalized, { approvedCategories }).data;
+  const prepared = prepareToolWrite(enforced, { fallbackStatus });
   const docRef = db.collection(COLLECTIONS.tools).doc(prepared.slug);
   const existingDoc = await docRef.get();
 
@@ -104,7 +125,7 @@ export async function createToolRecord(data: Partial<Tool>, fallbackStatus: Reco
     throw new Error("A tool with this slug already exists.");
   }
 
-  await docRef.set(withTimestamps(prepared));
+  await docRef.set(withTimestamps(enforced));
 
   return prepared.slug;
 }
@@ -113,8 +134,9 @@ export async function updateToolRecord(
   slug: string,
   data: Partial<Tool>,
   fallbackStatus: RecordStatus = "draft",
-) {
+): Promise<string> {
   const db = requireAdminDb();
+  const approvedCategories = await listApprovedCategoryNames();
   const existingDoc = await db.collection(COLLECTIONS.tools).doc(slug).get();
 
   if (!existingDoc.exists) {
@@ -122,7 +144,7 @@ export async function updateToolRecord(
   }
 
   const existing = normalizeToolRecord(existingDoc.data(), { id: existingDoc.id });
-  const merged = prepareToolWrite(
+  const merged = normalizeToolRecord(
     {
       ...existing,
       ...data,
@@ -130,9 +152,11 @@ export async function updateToolRecord(
     },
     { id: slug, fallbackStatus },
   );
+  const enforced = enforceToolTaxonomy(merged, { approvedCategories }).data;
+  const prepared = prepareToolWrite(enforced, { id: slug, fallbackStatus });
 
   await db.collection(COLLECTIONS.tools).doc(slug).set(
-    withTimestamps(merged, { preserveCreatedAt: existing.createdAt }),
+    withTimestamps(prepared, { preserveCreatedAt: existing.createdAt }),
   );
 
   return slug;

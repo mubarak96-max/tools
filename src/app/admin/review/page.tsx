@@ -10,6 +10,7 @@ import {
   returnToolToDraft,
 } from "@/app/admin/actions";
 import { listPages } from "@/lib/db/pages";
+import { listCategories } from "@/lib/db/taxonomies";
 import { listTools } from "@/lib/db/tools";
 import { scorePageDraft, scoreToolDraft } from "@/lib/generation/score";
 
@@ -27,11 +28,13 @@ export const dynamic = "force-dynamic";
 
 function buildToolWarnings(
   allTools: Awaited<ReturnType<typeof listTools>>,
+  approvedCategories: string[],
 ): (tool: Awaited<ReturnType<typeof listTools>>[number]) => string[] {
   return (tool) => {
     return scoreToolDraft(
       tool,
       allTools.map((entry) => ({ slug: entry.slug, name: entry.name })),
+      { approvedCategories },
     ).warnings;
   };
 }
@@ -43,8 +46,11 @@ function buildPageWarnings(): (page: Awaited<ReturnType<typeof listPages>>[numbe
 }
 
 export default async function ReviewQueuePage() {
-  const [tools, pages] = await Promise.all([listTools(), listPages()]);
-  const toolWarnings = buildToolWarnings(tools);
+  const [tools, pages, categories] = await Promise.all([listTools(), listPages(), listCategories()]);
+  const approvedCategories = categories
+    .filter((category) => category.status === "published")
+    .map((category) => category.name);
+  const toolWarnings = buildToolWarnings(tools, approvedCategories);
   const pageWarnings = buildPageWarnings();
 
   const reviewRows: ReviewRow[] = [

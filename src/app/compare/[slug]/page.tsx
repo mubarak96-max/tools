@@ -5,9 +5,9 @@ import { notFound } from "next/navigation";
 
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/sections/SectionHeader";
-import { getComparisonBySlug } from "@/lib/db/comparisons";
+import { getComparisonBySlug, listComparisonSlugs } from "@/lib/db/comparisons";
 import { getToolBySlug } from "@/lib/db/tools";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { buildComparisonPageMetadata } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
   buildItemListJsonLd,
@@ -16,6 +16,12 @@ import {
 import type { Tool } from "@/types/database";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const slugs = await listComparisonSlugs();
+
+  return slugs.map((slug) => ({ slug }));
+}
 
 async function getTool(slug: string): Promise<Tool | null> {
   return getToolBySlug(slug);
@@ -45,11 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   if (!tool1 || !tool2) return { title: "Comparison Not Found" };
 
-  return buildMetadata({
-    title: `${tool1.name} vs ${tool2.name} (2026 Comparison)`,
-    description: `Which is better: ${tool1.name} or ${tool2.name}? Compare pricing, features, and expert insights to make the right choice.`,
-    path: `/compare/${comparison.slug}`,
-  });
+  return buildComparisonPageMetadata(tool1, tool2);
 }
 
 export default async function ComparisonPage({ params }: { params: Promise<{ slug: string }> }) {

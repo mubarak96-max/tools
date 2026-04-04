@@ -1,6 +1,9 @@
+import "server-only";
+
 import { cert, getApps, initializeApp } from "firebase-admin/app";
 import { getFirestore, type Firestore } from "firebase-admin/firestore";
 import { getStorage, type Storage } from "firebase-admin/storage";
+import { logServerWarn } from "@/lib/monitoring/logger";
 
 function normalizePrivateKey(value?: string): string | undefined {
   if (!value || value === "your_private_key_here") {
@@ -35,9 +38,9 @@ function initializeFirebaseAdmin() {
   adminInitTried = true;
 
   if (!hasAdminCredentials()) {
-    console.warn(
-      "Firebase Admin credentials are missing. Server reads will fall back to empty results.",
-    );
+    logServerWarn("firebase_admin_credentials_missing", {
+      message: "Firebase Admin credentials are missing. Server reads will fall back to empty results.",
+    });
     return;
   }
 

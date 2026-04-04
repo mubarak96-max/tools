@@ -9,7 +9,12 @@ import {
   getPageBySlug,
   updatePageRecord,
 } from "@/lib/db/pages";
-import { createCategoryRecord, deleteCategoryRecord, updateCategoryRecord } from "@/lib/db/taxonomies";
+import {
+  createCategoryRecord,
+  deleteCategoryRecord,
+  listCategories,
+  updateCategoryRecord,
+} from "@/lib/db/taxonomies";
 import {
   createToolRecord,
   deleteToolRecord,
@@ -27,6 +32,7 @@ import {
   generateToolEditorialPreview,
   generateToolFactsPreview,
 } from "@/lib/generation/generate-tool";
+import { getPagePublishBlockers, getToolPublishBlockers } from "@/lib/generation/score";
 import { slugify } from "@/lib/slug";
 import type { CustomPage, Tool, ToolCategory } from "@/types/database";
 
@@ -69,7 +75,42 @@ function estimateToolConfidence(profile: {
   return Math.min(score, 0.95);
 }
 
+async function listApprovedCategoryNames() {
+  const categories = await listCategories();
+  const approved = categories
+    .filter((category) => category.status === "published")
+    .map((category) => category.name);
+
+  return approved.length > 0 ? approved : categories.map((category) => category.name);
+}
+
+async function assertToolPublishableTaxonomy(draft: Partial<Tool>) {
+  const approvedCategories = await listApprovedCategoryNames();
+  const allTools = await listTools();
+  const blockers = getToolPublishBlockers(
+    draft,
+    allTools.map((tool) => ({ slug: tool.slug, name: tool.name })),
+    { approvedCategories },
+  ).blockers;
+
+  if (blockers.length > 0) {
+    throw new Error(`Fix publish blockers before publishing: ${blockers.join("; ")}`);
+  }
+}
+
+async function assertPagePublishableTaxonomy(draft: Partial<CustomPage>) {
+  const blockers = getPagePublishBlockers(draft).blockers;
+
+  if (blockers.length > 0) {
+    throw new Error(`Fix publish blockers before publishing: ${blockers.join("; ")}`);
+  }
+}
+
 export async function createTool(data: Partial<Tool>) {
+  if (data.status === "published") {
+    await assertToolPublishableTaxonomy(data);
+  }
+
   const slug = await createToolRecord(data, "draft");
 
   revalidatePath("/admin/tools");
@@ -78,6 +119,10 @@ export async function createTool(data: Partial<Tool>) {
 }
 
 export async function updateTool(slug: string, data: Partial<Tool>) {
+  if (data.status === "published") {
+    await assertToolPublishableTaxonomy(data);
+  }
+
   await updateToolRecord(slug, data);
 
   revalidateToolPaths(slug);
@@ -94,15 +139,18 @@ export async function deleteTool(slug: string) {
 }
 
 export async function generateFullToolProfile(toolName: string, config: { categories: string[] }) {
+  const approvedCategories = await listApprovedCategoryNames();
   const facts = await generateToolFactsPreview({
     toolName,
-    categories: config.categories,
+    categories: approvedCategories.length > 0 ? approvedCategories : config.categories,
   });
   if (!facts) {
     throw new Error("Failed to generate AI insights from OpenRouter.");
   }
 
-  const editorial = await generateToolEditorialPreview(facts.draft);
+  const editorial = await generateToolEditorialPreview(facts.draft, [], {
+    approvedCategories,
+  });
   if (!editorial) {
     throw new Error("Failed to generate AI editorial layer.");
   }
@@ -137,6 +185,10 @@ export async function autoCreateTool(toolName: string, config: { categories: str
 }
 
 export async function createPage(data: Partial<CustomPage>) {
+  if (data.status === "published") {
+    await assertPagePublishableTaxonomy(data);
+  }
+
   const slug = await createPageRecord(data, "draft");
 
   revalidatePagePaths(slug);
@@ -144,6 +196,10 @@ export async function createPage(data: Partial<CustomPage>) {
 }
 
 export async function updatePage(slug: string, data: Partial<CustomPage>) {
+  if (data.status === "published") {
+    await assertPagePublishableTaxonomy(data);
+  }
+
   await updatePageRecord(slug, data);
 
   revalidatePagePaths(slug);
@@ -191,10 +247,11 @@ export async function previewGeneratedToolFacts(input: {
   categories: string[];
 }) {
   const existingTools = (await listTools()).map((tool) => ({ slug: tool.slug, name: tool.name }));
+  const approvedCategories = await listApprovedCategoryNames();
   const preview = await generateToolFactsPreview({
     toolName: input.toolName,
     website: input.website,
-    categories: input.categories,
+    categories: approvedCategories.length > 0 ? approvedCategories : input.categories,
     existingTools,
   });
 
@@ -207,7 +264,9 @@ export async function previewGeneratedToolFacts(input: {
 
 export async function previewGeneratedToolEditorial(draft: Partial<Tool>) {
   const existingTools = (await listTools()).map((tool) => ({ slug: tool.slug, name: tool.name }));
-  const preview = await generateToolEditorialPreview(draft, existingTools);
+  const preview = await generateToolEditorialPreview(draft, existingTools, {
+    approvedCategories: await listApprovedCategoryNames(),
+  });
 
   if (!preview) {
     throw new Error("Failed to generate editorial copy for this tool.");
@@ -217,6 +276,10 @@ export async function previewGeneratedToolEditorial(draft: Partial<Tool>) {
 }
 
 export async function saveGeneratedToolDraft(draft: Partial<Tool>) {
+  if (draft.status === "published") {
+    await assertToolPublishableTaxonomy(draft);
+  }
+
   const slug = await createToolRecord(
     {
       ...draft,
@@ -265,6 +328,10 @@ export async function previewGeneratedPageEditorial(input: {
 }
 
 export async function saveGeneratedPageDraft(draft: Partial<CustomPage>) {
+  if (draft.status === "published") {
+    await assertPagePublishableTaxonomy(draft);
+  }
+
   const slug = await createPageRecord(
     {
       ...draft,
@@ -287,6 +354,8 @@ export async function approveToolForPublish(slug: string) {
   if (!tool) {
     throw new Error("Tool not found.");
   }
+
+  await assertToolPublishableTaxonomy(tool);
 
   await updateToolRecord(slug, {
     ...tool,
@@ -336,6 +405,8 @@ export async function approvePageForPublish(slug: string) {
   if (!page) {
     throw new Error("Page not found.");
   }
+
+  await assertPagePublishableTaxonomy(page);
 
   await updatePageRecord(slug, {
     ...page,

@@ -3,9 +3,25 @@ import { getToolsBySlugs, getToolBySlug, listTools, updateToolRecord } from "../
 import { generatePageEditorialPreview } from "../src/lib/generation/generate-page";
 import { generateToolEditorialPreview } from "../src/lib/generation/generate-tool";
 
-import { fail, info, parseArgs, requireOpenRouterKey, sleep } from "./_shared";
+import {
+  createProgressTracker,
+  fail,
+  info,
+  isDryRun,
+  parseArgs,
+  parseNumberArg,
+  requireOpenRouterKey,
+  runWithConcurrency,
+  withRetry,
+} from "./_shared";
 
-async function regenerateTools(slugFilter?: string) {
+async function regenerateTools(
+  slugFilter: string | undefined,
+  options: {
+    concurrency: number;
+    dryRun: boolean;
+  },
+) {
   const tools: Awaited<ReturnType<typeof listTools>> = slugFilter
     ? [await getToolBySlug(slugFilter, { includeDrafts: true })].filter(
         (tool): tool is NonNullable<Awaited<ReturnType<typeof getToolBySlug>>> => Boolean(tool),
@@ -18,31 +34,54 @@ async function regenerateTools(slugFilter?: string) {
           (tool.sourceConfidence ?? 1) < 0.82,
       );
 
-  for (const tool of tools) {
-    if (!tool) {
-      continue;
-    }
+  const tracker = createProgressTracker("tools", tools.length);
 
+  await runWithConcurrency(tools, options.concurrency, async (tool) => {
     info(`Regenerating tool editorial: ${tool.slug}`);
-    const preview = await generateToolEditorialPreview(tool, tools.map((entry) => ({ slug: entry.slug, name: entry.name })));
 
-    if (!preview) {
-      fail(`Failed to regenerate tool editorial for ${tool.slug}`);
-      continue;
+    try {
+      const preview = await withRetry(`tool editorial ${tool.slug}`, async () => {
+        const result = await generateToolEditorialPreview(
+          tool,
+          tools.map((entry) => ({ slug: entry.slug, name: entry.name })),
+        );
+
+        if (!result) {
+          throw new Error("Generator returned no preview.");
+        }
+
+        return result;
+      });
+
+      if (options.dryRun) {
+        tracker.success(`dry-run ${tool.slug} (${Math.round(preview.confidence * 100)}%)`);
+        return;
+      }
+
+      await updateToolRecord(tool.slug, {
+        ...tool,
+        ...preview.draft,
+        sourceConfidence: preview.confidence,
+        status: preview.draft.status ?? "review",
+      });
+
+      tracker.success(tool.slug);
+    } catch (error) {
+      tracker.failure(`${tool.slug}: ${error instanceof Error ? error.message : "unknown error"}`);
     }
+  });
 
-    await updateToolRecord(tool.slug, {
-      ...tool,
-      ...preview.draft,
-      sourceConfidence: preview.confidence,
-      status: preview.draft.status ?? "review",
-    });
-
-    await sleep(500);
-  }
+  const summary = tracker.summary();
+  info(`Tool regeneration summary: ${summary.succeeded} updated, ${summary.failed} failed.`);
 }
 
-async function regeneratePages(slugFilter?: string) {
+async function regeneratePages(
+  slugFilter: string | undefined,
+  options: {
+    concurrency: number;
+    dryRun: boolean;
+  },
+) {
   const pages: Awaited<ReturnType<typeof listPages>> = slugFilter
     ? [await getPageBySlug(slugFilter, { includeDrafts: true })].filter(
         (page): page is NonNullable<Awaited<ReturnType<typeof getPageBySlug>>> => Boolean(page),
@@ -54,39 +93,54 @@ async function regeneratePages(slugFilter?: string) {
           (page.qualityScore ?? 0) < 78,
       );
 
-  for (const page of pages) {
-    if (!page) {
-      continue;
+  const tracker = createProgressTracker("pages", pages.length);
+
+  await runWithConcurrency(pages, options.concurrency, async (page) => {
+    try {
+      const selectedTools = await getToolsBySlugs(page.toolSlugs, { includeDrafts: true });
+      if (selectedTools.length === 0) {
+        tracker.skip(`${page.slug}: no linked tools`);
+        return;
+      }
+
+      info(`Regenerating page editorial: ${page.slug}`);
+      const preview = await withRetry(`page editorial ${page.slug}`, async () => {
+        const result = await generatePageEditorialPreview({
+          topic: page.useCase || page.title,
+          templateType: page.templateType,
+          draft: page,
+          selectedTools,
+        });
+
+        if (!result) {
+          throw new Error("Generator returned no preview.");
+        }
+
+        return result;
+      });
+
+      if (options.dryRun) {
+        tracker.success(`dry-run ${page.slug} (${preview.qualityScore}%)`);
+        return;
+      }
+
+      await updatePageRecord(page.slug, {
+        ...page,
+        ...preview.draft,
+        qualityScore: preview.qualityScore,
+        status: preview.draft.status ?? "review",
+      });
+
+      tracker.success(page.slug);
+    } catch (error) {
+      tracker.failure(`${page.slug}: ${error instanceof Error ? error.message : "unknown error"}`);
     }
+  });
 
-    const selectedTools = await getToolsBySlugs(page.toolSlugs, { includeDrafts: true });
-    if (selectedTools.length === 0) {
-      fail(`Skipping ${page.slug}: no linked tools.`);
-      continue;
-    }
-
-    info(`Regenerating page editorial: ${page.slug}`);
-    const preview = await generatePageEditorialPreview({
-      topic: page.useCase || page.title,
-      templateType: page.templateType,
-      draft: page,
-      selectedTools,
-    });
-
-    if (!preview) {
-      fail(`Failed to regenerate page editorial for ${page.slug}`);
-      continue;
-    }
-
-    await updatePageRecord(page.slug, {
-      ...page,
-      ...preview.draft,
-      qualityScore: preview.qualityScore,
-      status: preview.draft.status ?? "review",
-    });
-
-    await sleep(500);
-  }
+  const summary = tracker.summary();
+  info(
+    `Page regeneration summary: ${summary.succeeded} updated, ${summary.failed} failed, ${summary.skipped} skipped.`,
+  );
 }
 
 async function main() {
@@ -96,13 +150,17 @@ async function main() {
   const runTools = flags.has("tools") || (!flags.has("tools") && !flags.has("pages"));
   const runPages = flags.has("pages") || (!flags.has("tools") && !flags.has("pages"));
   const slug = values.get("slug");
+  const concurrency = parseNumberArg(values, "concurrency", 2, { min: 1, max: 4 });
+  const dryRun = isDryRun(flags);
+
+  info(`Editorial regeneration starting. dryRun=${dryRun} concurrency=${concurrency}`);
 
   if (runTools) {
-    await regenerateTools(slug);
+    await regenerateTools(slug, { concurrency, dryRun });
   }
 
   if (runPages) {
-    await regeneratePages(slug);
+    await regeneratePages(slug, { concurrency, dryRun });
   }
 
   info("Editorial regeneration complete.");

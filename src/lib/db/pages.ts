@@ -1,8 +1,21 @@
+import "server-only";
+
 import type { CustomPage, RecordStatus } from "@/types/database";
 
+import { listCategories } from "@/lib/db/taxonomies";
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { enforcePageTaxonomy } from "@/lib/taxonomy/registry";
 import { normalizePageRecord, preparePageWrite } from "@/lib/validation/page";
+
+async function listApprovedCategoryNames() {
+  const categories = await listCategories();
+  const approved = categories
+    .filter((category) => category.status === "published")
+    .map((category) => category.name);
+
+  return approved.length > 0 ? approved : categories.map((category) => category.name);
+}
 
 export async function listPages(options?: {
   status?: RecordStatus[];
@@ -46,9 +59,12 @@ export async function getPageBySlug(slug: string, options?: { includeDrafts?: bo
 export async function createPageRecord(
   data: Partial<CustomPage>,
   fallbackStatus: RecordStatus = "draft",
-) {
+): Promise<string> {
   const db = requireAdminDb();
-  const prepared = preparePageWrite(data, { fallbackStatus });
+  const approvedCategories = await listApprovedCategoryNames();
+  const normalized = normalizePageRecord(data, { fallbackStatus });
+  const enforced = enforcePageTaxonomy(normalized, { approvedCategories }).data;
+  const prepared = preparePageWrite(enforced, { fallbackStatus });
   const docRef = db.collection(COLLECTIONS.pages).doc(prepared.slug);
   const existingDoc = await docRef.get();
 
@@ -56,7 +72,7 @@ export async function createPageRecord(
     throw new Error("A page with this slug already exists.");
   }
 
-  await docRef.set(withTimestamps(prepared));
+  await docRef.set(withTimestamps(enforced));
 
   return prepared.slug;
 }
@@ -65,8 +81,9 @@ export async function updatePageRecord(
   slug: string,
   data: Partial<CustomPage>,
   fallbackStatus: RecordStatus = "draft",
-) {
+): Promise<string> {
   const db = requireAdminDb();
+  const approvedCategories = await listApprovedCategoryNames();
   const existingDoc = await db.collection(COLLECTIONS.pages).doc(slug).get();
 
   if (!existingDoc.exists) {
@@ -74,7 +91,7 @@ export async function updatePageRecord(
   }
 
   const existing = normalizePageRecord(existingDoc.data(), { id: existingDoc.id });
-  const merged = preparePageWrite(
+  const merged = normalizePageRecord(
     {
       ...existing,
       ...data,
@@ -82,9 +99,11 @@ export async function updatePageRecord(
     },
     { id: slug, fallbackStatus },
   );
+  const enforced = enforcePageTaxonomy(merged, { approvedCategories }).data;
+  const prepared = preparePageWrite(enforced, { id: slug, fallbackStatus });
 
   await db.collection(COLLECTIONS.pages).doc(slug).set(
-    withTimestamps(merged, { preserveCreatedAt: existing.createdAt }),
+    withTimestamps(prepared, { preserveCreatedAt: existing.createdAt }),
   );
 
   return slug;

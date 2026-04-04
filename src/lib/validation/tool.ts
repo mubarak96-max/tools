@@ -12,6 +12,7 @@ import {
   stringArray,
   stringOrUndefined,
 } from "@/lib/validation/shared";
+import { resolveStorageAssetUrl } from "@/lib/media/storage-url";
 
 const recordStatusSchema = z.enum(recordStatusValues);
 const pricingModelSchema = z.enum(["free", "freemium", "paid", "custom"]);
@@ -211,7 +212,7 @@ export function normalizeToolRecord(
     slug,
     name,
     website: stringOrUndefined(raw.website),
-    logoUrl: stringOrUndefined(raw.logoUrl),
+    logoUrl: resolveStorageAssetUrl(stringOrUndefined(raw.logoUrl)),
     category: stringOrUndefined(raw.category) ?? "General",
     subcategories: stringArray(raw.subcategories),
     shortDescription: compactText(shortDescription),
@@ -238,7 +239,9 @@ export function normalizeToolRecord(
     cons: stringArray(raw.cons ?? asRecord(raw.aiInsights).cons),
     alternatives: stringArray(raw.alternatives),
     competitors: stringArray(raw.competitors),
-    screenshots: stringArray(raw.screenshots),
+    screenshots: stringArray(raw.screenshots)
+      .map((screenshot) => resolveStorageAssetUrl(screenshot))
+      .filter((screenshot): screenshot is string => Boolean(screenshot)),
     editorialSummary,
     faq: Array.isArray(raw.faq) ? raw.faq : [],
     status,

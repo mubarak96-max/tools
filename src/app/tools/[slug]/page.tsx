@@ -16,7 +16,7 @@ import SectionHeader from "@/components/sections/SectionHeader";
 import ToolCard from "@/components/ToolCard";
 import { getAlternativeTools, getToolBySlug, listTools } from "@/lib/db/tools";
 import { scoreComparisonPair } from "@/lib/ranking/comparisons";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { buildToolPageMetadata } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
   buildFaqJsonLd,
@@ -24,10 +24,16 @@ import {
   getUseCasePath,
   serializeJsonLd,
 } from "@/lib/seo/jsonld";
-import { slugify } from "@/lib/slug";
+import { getComparisonPath, slugify } from "@/lib/slug";
 import type { Tool } from "@/types/database";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const tools = await listTools({ status: ["published"] });
+
+  return tools.map((tool) => ({ slug: tool.slug }));
+}
 
 async function getTool(slug: string): Promise<Tool | null> {
   return getToolBySlug(slug);
@@ -57,11 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const tool = await getTool(slug);
   if (!tool) return { title: "Tool Not Found" };
 
-  return buildMetadata({
-    title: `${tool.name} Review, Pricing & AI Insights (2026)`,
-    description: tool.shortDescription,
-    path: `/tools/${tool.slug}`,
-  });
+  return buildToolPageMetadata(tool);
 }
 
 export default async function ToolPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -367,9 +369,9 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           {comparisonSuggestions.map((suggestion) => (
             <Link
               key={suggestion.slug}
-              href={`/compare/${tool.slug}-vs-${suggestion.slug}`}
-              className="glass-card rounded-[1.75rem] p-6"
-            >
+                href={getComparisonPath(tool.slug, suggestion.slug)}
+                className="glass-card rounded-[1.75rem] p-6"
+              >
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 Comparison
               </p>

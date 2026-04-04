@@ -6,8 +6,8 @@ import { notFound } from "next/navigation";
 import JsonLd from "@/components/seo/JsonLd";
 import SectionHeader from "@/components/sections/SectionHeader";
 import ToolCard from "@/components/ToolCard";
-import { getCategoryAudienceHubData } from "@/lib/discovery/hubs";
-import { buildMetadata } from "@/lib/seo/metadata";
+import { getCategoryAudienceHubData, listCategoryAudienceHubSlugs } from "@/lib/discovery/hubs";
+import { buildCategoryAudienceHubMetadata } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
   getUseCasePath,
@@ -16,6 +16,10 @@ import {
 } from "@/lib/seo/jsonld";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return listCategoryAudienceHubSlugs();
+}
 
 export async function generateMetadata({
   params,
@@ -29,11 +33,7 @@ export async function generateMetadata({
     return { title: "Audience Hub Not Found" };
   }
 
-  return buildMetadata({
-    title: `Best ${hub.categoryLabel} Tools for ${hub.audienceLabel} (2026)`,
-    description: `Find the best ${hub.categoryLabel.toLowerCase()} tools for ${hub.audienceLabel.toLowerCase()}, with structured picks, comparisons, and workflow links.`,
-    path: `/best/${hub.categorySlug}/for/${hub.audienceSlug}`,
-  });
+  return buildCategoryAudienceHubMetadata(hub);
 }
 
 export default async function BestCategoryAudiencePage({
