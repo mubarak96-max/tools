@@ -51,7 +51,9 @@ async function getHomePageData(): Promise<HomePageData> {
   const useCaseMap = new Map<string, number>();
 
   for (const tool of allTools) {
-    categoryMap.set(tool.category, (categoryMap.get(tool.category) ?? 0) + 1);
+    for (const category of tool.categories?.length ? tool.categories : [tool.category]) {
+      categoryMap.set(category, (categoryMap.get(category) ?? 0) + 1);
+    }
 
     for (const useCase of tool.useCases) {
       useCaseMap.set(useCase, (useCaseMap.get(useCase) ?? 0) + 1);

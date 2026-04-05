@@ -3,7 +3,7 @@ import type { CustomPage, RecordStatus, Tool } from "@/types/database";
 import { slugify } from "@/lib/slug";
 import { compactText } from "@/lib/text";
 
-type ControlledToolTaxonomyField = "category" | "audiences" | "useCases" | "platforms" | "teamFit";
+type ControlledToolTaxonomyField = "category" | "categories" | "audiences" | "useCases" | "platforms" | "teamFit";
 type ControlledPageTaxonomyField = "category" | "audience" | "useCase";
 
 export type TaxonomyIssue = {
@@ -199,7 +199,7 @@ export function getToolTaxonomyHints(categories: string[] = []) {
 }
 
 export function inspectToolTaxonomy(
-  tool: Partial<Pick<Tool, "category" | "audiences" | "useCases" | "platforms" | "teamFit">>,
+  tool: Partial<Pick<Tool, "category" | "categories" | "audiences" | "useCases" | "platforms" | "teamFit">>,
   options?: {
     approvedCategories?: string[];
   },
@@ -211,6 +211,12 @@ export function inspectToolTaxonomy(
         invalidLabel: "Unapproved category",
       })
     : { value: normalizeInput(tool.category || ""), issues: [] as TaxonomyIssue[] };
+  const categories = categoryValues.length
+    ? inspectControlledList("categories", tool.categories, {
+        values: categoryValues,
+        invalidLabel: "Unapproved category",
+      })
+    : { values: normalizeStringList(tool.categories), issues: [] as TaxonomyIssue[] };
   const audiences = inspectControlledList("audiences", tool.audiences, {
     values: approvedAudienceValues,
     invalidLabel: "Unknown audience",
@@ -230,7 +236,6 @@ export function inspectToolTaxonomy(
 
   return {
     issues: [
-      ...category.issues,
       ...audiences.issues,
       ...useCases.issues,
       ...platforms.issues,
@@ -239,6 +244,9 @@ export function inspectToolTaxonomy(
     data: {
       ...tool,
       category: category.value,
+      categories: Array.from(
+        new Map([category.value, ...categories.values].filter(Boolean).map((value) => [slugify(value), value])).values(),
+      ),
       audiences: audiences.values,
       useCases: useCases.values,
       platforms: platforms.values,

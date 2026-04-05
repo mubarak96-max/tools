@@ -38,6 +38,7 @@ export const toolSchema = z.object({
   website: z.url().optional(),
   logoUrl: z.url().optional(),
   category: z.string().trim().min(1).max(80),
+  categories: z.array(z.string().trim().min(1).max(80)).max(10),
   subcategories: z.array(z.string().trim().min(1).max(80)).max(10),
   shortDescription: z.string().trim().min(20).max(320),
   longDescription: z.string().trim().max(4000).optional(),
@@ -170,6 +171,15 @@ function buildAIInsights(raw: Record<string, unknown>): AIInsights | undefined {
   });
 }
 
+function normalizeCategories(raw: Record<string, unknown>, primaryCategory: string) {
+  const values = stringArray(raw.categories);
+  const merged = [primaryCategory, ...values]
+    .map((value) => compactText(value))
+    .filter(Boolean);
+
+  return Array.from(new Map(merged.map((value) => [value.toLowerCase(), value])).values()).slice(0, 10);
+}
+
 function normalizeStatus(value: unknown, fallbackStatus: RecordStatus): RecordStatus {
   const parsed = recordStatusSchema.safeParse(value);
   return parsed.success ? parsed.data : fallbackStatus;
@@ -206,6 +216,8 @@ export function normalizeToolRecord(
     stringOrUndefined(asRecord(raw.aiInsights).antiRecommendation);
   const aiInsights = buildAIInsights(raw);
   const status = normalizeStatus(raw.status, options?.fallbackStatus ?? "published");
+  const category = stringOrUndefined(raw.category) ?? "General";
+  const categories = normalizeCategories(raw, category);
 
   return toolSchema.parse({
     id: options?.id,
@@ -213,7 +225,8 @@ export function normalizeToolRecord(
     name,
     website: stringOrUndefined(raw.website),
     logoUrl: resolveStorageAssetUrl(stringOrUndefined(raw.logoUrl)),
-    category: stringOrUndefined(raw.category) ?? "General",
+    category,
+    categories,
     subcategories: stringArray(raw.subcategories),
     shortDescription: compactText(shortDescription),
     longDescription: stringOrUndefined(raw.longDescription),
@@ -273,6 +286,7 @@ export function prepareToolWrite(
     website: normalized.website ?? "",
     logoUrl: normalized.logoUrl ?? "",
     category: normalized.category,
+    categories: normalized.categories,
     subcategories: normalized.subcategories,
     shortDescription: normalized.shortDescription,
     longDescription: normalized.longDescription ?? "",

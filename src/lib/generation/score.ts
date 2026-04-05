@@ -9,7 +9,6 @@ type DraftCandidate = Pick<Tool, "slug" | "name">;
 
 const criticalToolWarnings = new Set([
   "Missing website",
-  "Missing approved category",
   "Missing pricing snapshot",
   "Weak metadata description",
   "Editorial summary is too short",
@@ -75,20 +74,12 @@ export function scoreToolDraft(
     score += 0.16;
   }
 
-  if (!draft.category) {
-    warnings.push("Missing approved category");
-  } else {
-    score += 0.12;
-  }
-
   const taxonomyIssues = inspectToolTaxonomy(draft, {
     approvedCategories: options?.approvedCategories,
   }).issues;
   if (taxonomyIssues.length > 0) {
     warnings.push(...taxonomyIssues.map((issue) => issue.message));
     score -= Math.min(0.22, taxonomyIssues.length * 0.05);
-  } else if (draft.category) {
-    score += 0.05;
   }
 
   if (!draft.pricingRange) {
@@ -141,7 +132,6 @@ export function scoreToolDraft(
 
   if (((draft.alternatives?.length ?? 0) + (draft.competitors?.length ?? 0)) < 2) {
     warnings.push("Missing internal comparison links");
-    score -= 0.04;
   }
 
   if (

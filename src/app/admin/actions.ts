@@ -12,6 +12,7 @@ import {
 import {
   createCategoryRecord,
   deleteCategoryRecord,
+  getCategoryBySlug,
   listCategories,
   updateCategoryRecord,
 } from "@/lib/db/taxonomies";
@@ -34,6 +35,7 @@ import {
 } from "@/lib/generation/generate-tool";
 import { getPagePublishBlockers, getToolPublishBlockers } from "@/lib/generation/score";
 import { slugify } from "@/lib/slug";
+import { compactText } from "@/lib/text";
 import type { CustomPage, Tool, ToolCategory } from "@/types/database";
 
 function revalidateSharedPublicPaths() {
@@ -77,11 +79,34 @@ function estimateToolConfidence(profile: {
 
 async function listApprovedCategoryNames() {
   const categories = await listCategories();
-  const approved = categories
-    .filter((category) => category.status === "published")
-    .map((category) => category.name);
+  return categories.map((category) => category.name);
+}
 
-  return approved.length > 0 ? approved : categories.map((category) => category.name);
+async function ensureCategoryRecords(categoryNames: string[] = []) {
+  const normalizedNames = Array.from(
+    new Map(
+      categoryNames
+        .map((name) => compactText(name || ""))
+        .filter(Boolean)
+        .map((name) => [name.toLowerCase(), name]),
+    ).values(),
+  );
+
+  for (const normalizedName of normalizedNames) {
+    const slug = slugify(normalizedName);
+    const existing = await getCategoryBySlug(slug);
+    if (existing) {
+      continue;
+    }
+
+    await createCategoryRecord({
+      slug,
+      name: normalizedName,
+      description: `${normalizedName} tools.`,
+      synonyms: [],
+      status: "draft",
+    });
+  }
 }
 
 async function assessToolDraft(draft: Partial<Tool>, currentSlug?: string) {
@@ -122,6 +147,7 @@ async function assertPagePublishableTaxonomy(draft: Partial<CustomPage>) {
 }
 
 export async function createTool(data: Partial<Tool>) {
+  await ensureCategoryRecords([data.category || "", ...(data.categories || [])]);
   const assessment = await assessToolDraft(data);
   const nextData = {
     ...data,
@@ -140,6 +166,7 @@ export async function createTool(data: Partial<Tool>) {
 }
 
 export async function updateTool(slug: string, data: Partial<Tool>) {
+  await ensureCategoryRecords([data.category || "", ...(data.categories || [])]);
   const assessment = await assessToolDraft(data, slug);
   const nextData = {
     ...data,
@@ -192,12 +219,17 @@ export async function generateFullToolProfile(toolName: string, config: { catego
     use_cases: editorial.draft.useCases || [],
     features: editorial.draft.features || [],
     platforms: editorial.draft.platforms || [],
+    integrations: editorial.draft.integrations || [],
+    audiences: editorial.draft.audiences || [],
+    team_fit: editorial.draft.teamFit || [],
+    setup_time: editorial.draft.setupTime || "",
     why_this_tool: editorial.draft.editorialSummary || "",
     comparison_summary: editorial.draft.aiInsights?.comparisonSummary || "",
     best_for: editorial.draft.bestFor || "",
     anti_recommendation: editorial.draft.notIdealFor || "",
     pros: editorial.draft.pros || [],
     cons: editorial.draft.cons || [],
+    faq: editorial.draft.faq || [],
     website: editorial.draft.website || "",
   };
 }

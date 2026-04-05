@@ -38,6 +38,7 @@ export interface Tool {
   website?: string;
   logoUrl?: string;
   category: string;
+  categories: string[];
   subcategories: string[];
   shortDescription: string;
   longDescription?: string;

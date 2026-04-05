@@ -45,7 +45,9 @@ export type AlternativeScoreDetail = {
 
 export function scoreAlternativeDetailed(target: Tool, candidate: Tool): AlternativeScoreDetail {
   let score = 0;
-  const sharedCategory = target.category === candidate.category;
+  const targetCategories = new Set((target.categories?.length ? target.categories : [target.category]).map((value) => value.toLowerCase()));
+  const candidateCategories = new Set((candidate.categories?.length ? candidate.categories : [candidate.category]).map((value) => value.toLowerCase()));
+  const sharedCategory = [...targetCategories].some((value) => candidateCategories.has(value));
   const sharedUseCases = sharedCount(target.useCases, candidate.useCases);
   const sharedAudiences = sharedCount(target.audiences, candidate.audiences);
   const sharedPlatforms = sharedCount(target.platforms, candidate.platforms);

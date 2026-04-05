@@ -85,7 +85,8 @@ function getComparisonHighlights(tools: Tool[], limit = 4): ComparisonHighlight[
 }
 
 function matchesCategory(tool: Tool, categorySlug: string) {
-  return slugify(tool.category) === categorySlug;
+  const categories = tool.categories?.length ? tool.categories : [tool.category];
+  return categories.some((category) => slugify(category) === categorySlug);
 }
 
 function matchesAudience(tool: Tool, audienceSlug: string) {
@@ -182,7 +183,9 @@ export async function listCategoryHubSlugs() {
     listCategories(),
     listTools({ status: ["published"] }),
   ]);
-  const toolCategorySlugs = new Set(tools.map((tool) => slugify(tool.category)));
+  const toolCategorySlugs = new Set(
+    tools.flatMap((tool) => (tool.categories?.length ? tool.categories : [tool.category]).map((category) => slugify(category))),
+  );
   const categorySlugs = new Set<string>();
 
   for (const category of categories) {
@@ -192,7 +195,9 @@ export async function listCategoryHubSlugs() {
   }
 
   for (const tool of tools) {
-    categorySlugs.add(slugify(tool.category));
+    for (const category of tool.categories?.length ? tool.categories : [tool.category]) {
+      categorySlugs.add(slugify(category));
+    }
   }
 
   return [...categorySlugs].sort((left, right) => left.localeCompare(right));
@@ -203,9 +208,11 @@ export async function listCategoryAudienceHubSlugs() {
   const categoryAudiencePairs = new Set<string>();
 
   for (const tool of tools) {
-    const categorySlug = slugify(tool.category);
-    for (const audience of tool.audiences) {
-      categoryAudiencePairs.add(`${categorySlug}::${slugify(audience)}`);
+    for (const category of tool.categories?.length ? tool.categories : [tool.category]) {
+      const categorySlug = slugify(category);
+      for (const audience of tool.audiences) {
+        categoryAudiencePairs.add(`${categorySlug}::${slugify(audience)}`);
+      }
     }
   }
 
@@ -237,7 +244,9 @@ export async function getUseCaseHubData(useCaseSlug: string): Promise<UseCaseHub
     description: `Browse ${label.toLowerCase()} tools by category, audience fit, pricing model, and comparison path.`,
     tools: rankedTools,
     featuredTools: rankedTools.slice(0, 6),
-    categoryLinks: countLinks(rankedTools.map((tool) => tool.category)).slice(0, 8),
+    categoryLinks: countLinks(
+      rankedTools.flatMap((tool) => (tool.categories?.length ? tool.categories : [tool.category])),
+    ).slice(0, 8),
     audienceLinks: countLinks(rankedTools.flatMap((tool) => tool.audiences)).slice(0, 8),
     comparisonHighlights: getComparisonHighlights(rankedTools),
     alternativeTargets: rankedTools.slice(0, 4),

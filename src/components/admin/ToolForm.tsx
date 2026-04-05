@@ -18,6 +18,8 @@ interface ToolFormProps {
   isEdit?: boolean;
 }
 
+const NEW_CATEGORY_VALUE = '__new__';
+
 function emptyAiInsights(): AIInsights {
   return {
     whyThisToolFits: '',
@@ -110,11 +112,16 @@ function normalizeBillingPeriod(value: string | undefined) {
 
 function buildInitialData(
   initialData: Tool | undefined,
-  categories: ToolCategory[],
 ): Partial<Tool> {
   if (initialData) {
     return {
       ...initialData,
+      categories:
+        initialData.categories?.length > 0
+          ? initialData.categories
+          : initialData.category
+            ? [initialData.category]
+            : [],
       pricingModel: initialData.pricingModel ?? toPricingModel(initialData.pricing),
       difficultyLevel: initialData.difficultyLevel ?? toDifficultyLevel(initialData.difficulty),
       billingPeriod: normalizeBillingPeriod(initialData.billingPeriod),
@@ -131,7 +138,8 @@ function buildInitialData(
   return {
     name: '',
     slug: '',
-    category: categories[0]?.name || '',
+    category: '',
+    categories: [],
     subcategories: [],
     pricingModel: 'freemium',
     startingPrice: undefined,
@@ -172,9 +180,20 @@ function normalizeDraftForSubmit(draft: Partial<Tool>): Partial<Tool> {
       answer: item.answer.trim(),
     }))
     .filter((item) => item.question && item.answer);
+  const categories = Array.from(
+    new Map(
+      [draft.category || '', ...(draft.categories || [])]
+        .map((value) => value.trim())
+        .filter(Boolean)
+        .map((value) => [value.toLowerCase(), value]),
+    ).values(),
+  );
+  const primaryCategory = categories[0] || (draft.category || '').trim();
 
   return {
     ...draft,
+    category: primaryCategory,
+    categories,
     pricingModel,
     pricing: toLegacyPricingLabel(pricingModel),
     difficultyLevel,
@@ -228,9 +247,17 @@ export default function ToolForm({
   const [loading, setLoading] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isErrorDialogOpen, setIsErrorDialogOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<Partial<Tool>>(buildInitialData(initialData, categories));
+  const [formData, setFormData] = useState<Partial<Tool>>(buildInitialData(initialData));
   const [generatorName, setGeneratorName] = useState(initialData?.name ?? '');
+  const [categoryMode, setCategoryMode] = useState<'existing' | 'new'>(() =>
+    initialData?.category && categories.some((category) => category.name === initialData.category)
+      ? 'existing'
+      : initialData?.category
+        ? 'new'
+        : 'existing',
+  );
 
   const comparisonOptions = useMemo(
     () => existingTools.filter((tool) => tool.slug !== initialData?.slug),
@@ -302,6 +329,8 @@ export default function ToolForm({
       tone: normalizedDraft.editorialSummary?.trim() ? 'ok' : 'bad',
     },
   ];
+  const selectedExistingCategory =
+    categoryMode === 'existing' ? formData.category || '' : '';
 
   const jumpToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -310,6 +339,41 @@ export default function ToolForm({
   const goToStep = (step: number) => {
     setCurrentStep(step);
     document.getElementById(mobileSteps[step]?.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const openErrorDialog = (message: string) => {
+    setError(message);
+    setIsErrorDialogOpen(true);
+  };
+
+  const closeErrorDialog = () => {
+    setIsErrorDialogOpen(false);
+  };
+
+  const handleCategoryModeChange = (value: string) => {
+    if (value === NEW_CATEGORY_VALUE) {
+      setCategoryMode('new');
+          setFormData((prev) => ({
+            ...prev,
+            category:
+              prev.category && categories.some((category) => category.name === prev.category)
+                ? ''
+                : prev.category,
+            categories: prev.categories?.filter(
+              (categoryName) => !categories.some((category) => category.name === categoryName),
+            ) || [],
+          }));
+      return;
+    }
+
+    setCategoryMode('existing');
+      setFormData((prev) => ({
+        ...prev,
+        category: value,
+        categories: Array.from(
+          new Map([value, ...(prev.categories || [])].filter(Boolean).map((entry) => [entry.toLowerCase(), entry])).values(),
+        ),
+      }));
   };
 
   const handleChange = (
@@ -377,12 +441,13 @@ export default function ToolForm({
     const nameToGenerate = (requestedName || generatorName || formData.name || '').trim();
 
     if (!nameToGenerate) {
-      setError('Please enter a tool name first.');
+      openErrorDialog('Please enter a tool name first.');
       return;
     }
 
     setAiLoading(true);
     setError('');
+    setIsErrorDialogOpen(false);
     setFormData((prev) => ({ ...prev, name: nameToGenerate }));
     setGeneratorName(nameToGenerate);
 
@@ -396,6 +461,13 @@ export default function ToolForm({
         name: prev.name || nameToGenerate,
         slug: profile.slug || prev.slug,
         category: profile.category || prev.category,
+        categories: Array.from(
+          new Map(
+            [profile.category || prev.category || '', ...(prev.categories || [])]
+              .filter(Boolean)
+              .map((entry) => [entry.toLowerCase(), entry]),
+          ).values(),
+        ),
         pricingModel: toPricingModel(profile.pricing_model),
         difficultyLevel: toDifficultyLevel(profile.difficulty_level),
         pricingRange: profile.price_range || prev.pricingRange,
@@ -405,6 +477,11 @@ export default function ToolForm({
         useCases: profile.use_cases?.length ? profile.use_cases : prev.useCases,
         features: profile.features?.length ? profile.features : prev.features,
         platforms: profile.platforms?.length ? profile.platforms : prev.platforms,
+        integrations: profile.integrations?.length ? profile.integrations : prev.integrations,
+        audiences: profile.audiences?.length ? profile.audiences : prev.audiences,
+        teamFit: profile.team_fit?.length ? profile.team_fit : prev.teamFit,
+        setupTime: profile.setup_time || prev.setupTime,
+        faq: profile.faq?.length ? profile.faq : prev.faq,
         website: profile.website || prev.website,
         aiInsights: {
           whyThisToolFits: profile.why_this_tool,
@@ -415,8 +492,15 @@ export default function ToolForm({
           cons: profile.cons || [],
         },
       }));
+      setCategoryMode(
+        profile.category && categories.some((category) => category.name === profile.category)
+          ? 'existing'
+          : profile.category
+            ? 'new'
+            : categoryMode,
+      );
     } catch (err: unknown) {
-      setError(getErrorMessage(err, 'Failed to auto-generate tool profile.'));
+      openErrorDialog(getErrorMessage(err, 'Failed to auto-generate tool profile.'));
     } finally {
       setAiLoading(false);
     }
@@ -430,6 +514,7 @@ export default function ToolForm({
     e.preventDefault();
     setLoading(true);
     setError('');
+    setIsErrorDialogOpen(false);
     const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
     const shouldSaveDraft = submitter?.value === 'draft';
     const payload = shouldSaveDraft ? { ...normalizedDraft, status: 'draft' as const } : normalizedDraft;
@@ -441,13 +526,41 @@ export default function ToolForm({
         await createTool(payload);
       }
     } catch (err: unknown) {
-      setError(getErrorMessage(err, 'An error occurred while saving.'));
+      openErrorDialog(getErrorMessage(err, 'An error occurred while saving.'));
       setLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 pb-24 md:pb-10">
+      {isErrorDialogOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/45 px-4">
+          <div className="w-full max-w-md rounded-[1.5rem] border border-destructive/15 bg-white p-6 shadow-2xl shadow-slate-900/15">
+            <div className="flex items-start gap-3">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-danger-soft text-danger-soft-foreground">
+                <AlertCircle className="h-5 w-5" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h2 className="text-base font-semibold leading-6 text-foreground">{error}</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Review the issue above, update the form, and try again.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-end">
+              <button
+                type="button"
+                onClick={closeErrorDialog}
+                className="rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary-hover"
+              >
+                Got it
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-0 md:p-6">
         <div className="md:hidden">
           <div className="border-b border-border/80 px-4 py-3">
@@ -660,13 +773,6 @@ export default function ToolForm({
         </div>
       </section>
 
-      {error ? (
-        <div className="danger-chip flex items-start gap-3 rounded-2xl p-4">
-          <AlertCircle className="mt-0.5 h-5 w-5" />
-          <p className="text-sm">{error}</p>
-        </div>
-      ) : null}
-
       {!isEdit ? (
         <section className="glass-card rounded-[1.5rem] border border-border/80 p-4 md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -801,14 +907,67 @@ export default function ToolForm({
 
           <div>
             <label className="mb-1 block text-sm font-medium text-muted-foreground">Category *</label>
-            <select required name="category" value={(formData.category as string) || ''} onChange={handleChange} className="w-full appearance-none rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-primary">
-              <option value="" disabled>Select a category</option>
-              {categories.map((category) => (
-                <option key={category.slug} value={category.name}>
-                  {category.name}
+            <div className="space-y-3">
+              <select
+                required={categoryMode === 'existing'}
+                value={categoryMode === 'new' ? NEW_CATEGORY_VALUE : selectedExistingCategory}
+                onChange={(event) => handleCategoryModeChange(event.target.value)}
+                className="w-full appearance-none rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-primary"
+              >
+                <option value="" disabled>
+                  Select an existing category
                 </option>
-              ))}
-            </select>
+                {categories.map((category) => (
+                  <option key={category.slug} value={category.name}>
+                    {category.name}
+                  </option>
+                ))}
+                <option value={NEW_CATEGORY_VALUE}>Add new category</option>
+              </select>
+
+              {categoryMode === 'new' ? (
+                <input
+                  required
+                  type="text"
+                  name="category"
+                  value={(formData.category as string) || ''}
+                  onChange={handleChange}
+                  placeholder="Enter a new category name"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-primary"
+                />
+              ) : null}
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-muted-foreground">
+                  Additional Categories (comma separated)
+                </label>
+                <input
+                  type="text"
+                  value={(formData.categories || [])
+                    .filter((value) => value !== formData.category)
+                    .join(', ')}
+                  onChange={(event) => {
+                    const values = event.target.value
+                      .split(',')
+                      .map((item) => item.trim())
+                      .filter(Boolean);
+
+                    setFormData((prev) => ({
+                      ...prev,
+                      categories: Array.from(
+                        new Map(
+                          [prev.category || '', ...values]
+                            .filter(Boolean)
+                            .map((entry) => [entry.toLowerCase(), entry]),
+                        ).values(),
+                      ),
+                    }));
+                  }}
+                  placeholder="Add one or more extra categories"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground outline-none focus:ring-2 focus:ring-primary"
+                />
+              </div>
+            </div>
           </div>
 
           <div>

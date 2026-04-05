@@ -67,7 +67,7 @@ export default async function AdminToolsPage() {
                   </td>
                   <td className="px-6 py-4">
                     <span className="rounded-md border border-border bg-background px-2.5 py-1 text-xs text-muted-foreground">
-                      {tool.category}
+                      {(tool.categories?.length ? tool.categories : [tool.category]).join(", ")}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-foreground">

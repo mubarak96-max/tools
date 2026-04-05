@@ -20,8 +20,10 @@ async function main() {
   const candidateNames = new Set<string>();
 
   for (const tool of tools) {
-    if (tool.category) {
-      candidateNames.add(tool.category);
+    for (const category of tool.categories?.length ? tool.categories : [tool.category]) {
+      if (category) {
+        candidateNames.add(category);
+      }
     }
   }
 

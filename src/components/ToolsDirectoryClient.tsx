@@ -26,6 +26,7 @@ function matchesQuery(tool: Tool, query: string) {
   const haystack = [
     tool.name,
     tool.category,
+    ...(tool.categories || []),
     tool.shortDescription,
     tool.description,
     tool.pricing,
@@ -71,7 +72,7 @@ export default function ToolsDirectoryClient({ tools }: { tools: Tool[] }) {
   );
 
   const categoryOptions = useMemo(
-    () => uniqueSorted(tools.map((tool) => tool.category)),
+    () => uniqueSorted(tools.flatMap((tool) => tool.categories?.length ? tool.categories : [tool.category])),
     [tools],
   );
   const pricingOptions = useMemo(
@@ -92,7 +93,8 @@ export default function ToolsDirectoryClient({ tools }: { tools: Tool[] }) {
 
     let result = tools.filter((tool) => {
       if (q && !matchesQuery(tool, q)) return false;
-      if (categories.length > 0 && !categories.includes(tool.category)) return false;
+      const toolCategories = tool.categories?.length ? tool.categories : [tool.category];
+      if (categories.length > 0 && !categories.some((category) => toolCategories.includes(category))) return false;
       if (pricings.length > 0 && !pricings.includes(tool.pricing)) return false;
       if (
         platforms.length > 0 &&

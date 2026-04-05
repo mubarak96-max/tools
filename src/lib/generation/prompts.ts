@@ -15,7 +15,7 @@ export function buildToolFactsPrompt(input: {
 
 Known facts:
 - Official website provided by the editor: ${input.website || "unknown"}
-- Approved categories: ${taxonomyHints.categories.join(", ") || "None supplied"}
+- Available categories: ${taxonomyHints.categories.join(", ") || "None supplied"}
 - Allowed pricing_model values: ${allowedPricingModels.join(", ")}
 - Allowed difficulty_level values: ${allowedDifficultyLevels.join(", ")}
 - Allowed platforms: ${taxonomyHints.platforms.join(", ")}
@@ -86,13 +86,18 @@ Return exactly this shape:
 {
   "editorial_summary": "",
   "comparison_summary": "",
-  "pros": ["", ""],
-  "cons": ["", ""],
+  "pros": ["", "", "", "", ""],
+  "cons": ["", "", ""],
   "faq": [
     { "question": "", "answer": "" },
     { "question": "", "answer": "" }
   ]
-}`;
+}
+
+Additional requirements:
+- Provide at least 5 distinct pros.
+- Provide at least 3 distinct cons.
+- FAQ should include at least 2 items.`;
 }
 
 export function buildPageEditorialPrompt(input: {

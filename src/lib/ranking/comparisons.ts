@@ -26,7 +26,9 @@ export function scoreComparisonPairDetailed(left: Tool, right: Tool): Comparison
 
   const leftDetail = scoreAlternativeDetailed(left, right);
   const rightDetail = scoreAlternativeDetailed(right, left);
-  const categoryMatch = left.category === right.category;
+  const leftCategories = new Set((left.categories?.length ? left.categories : [left.category]).map((value) => value.toLowerCase()));
+  const rightCategories = new Set((right.categories?.length ? right.categories : [right.category]).map((value) => value.toLowerCase()));
+  const categoryMatch = [...leftCategories].some((value) => rightCategories.has(value));
   const useCaseOverlap = Math.min(leftDetail.sharedUseCases, rightDetail.sharedUseCases);
   const audienceOverlap = Math.min(leftDetail.sharedAudiences, rightDetail.sharedAudiences);
   const pricingParity = left.pricingModel === right.pricingModel;
