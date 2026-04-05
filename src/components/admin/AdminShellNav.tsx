@@ -62,7 +62,7 @@ const mobileTabs: MobileTab[] = [
   { href: '/admin/tools', label: 'Tools', icon: Wrench },
   { href: '/admin/tools/new', label: 'Add', icon: Plus, prominent: true },
   { href: '/admin/pages', label: 'Pages', icon: Files },
-  { href: '/admin/review', label: 'Review', icon: ListChecks },
+  { href: '/', label: 'Profile', icon: UserCircle2 },
 ];
 
 function matchesPath(pathname: string, href: string) {
@@ -209,7 +209,8 @@ export default function AdminShellNav({
           </div>
         </div>
 
-        <div className="mt-3 rounded-[0.95rem] border border-border bg-muted px-3 py-2.5 text-sm text-muted-foreground">
+        <div className="mt-3 flex items-center gap-2 rounded-[0.95rem] border border-border bg-muted px-3 py-2.5 text-sm text-muted-foreground">
+          <SearchIcon />
           Search records...
         </div>
       </div>
@@ -248,5 +249,14 @@ export default function AdminShellNav({
         </div>
       </nav>
     </>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <circle cx="7" cy="7" r="4" />
+      <path d="M11 11l2.5 2.5" />
+    </svg>
   );
 }

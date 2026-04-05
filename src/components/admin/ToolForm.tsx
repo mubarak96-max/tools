@@ -1,7 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { AlertCircle, CheckCircle2, Loader2, Save, Sparkles } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronLeft, Loader2, Save, Sparkles } from 'lucide-react';
 
 import { createTool, generateFullToolProfile, updateTool } from '@/app/admin/actions';
 import { getToolPublishBlockers } from '@/lib/generation/score';
@@ -201,6 +202,22 @@ function normalizeDraftForSubmit(draft: Partial<Tool>): Partial<Tool> {
   };
 }
 
+function getProgressBarTone(value: number) {
+  if (value >= 80) {
+    return 'bg-success';
+  }
+
+  if (value >= 60) {
+    return 'bg-primary';
+  }
+
+  if (value >= 40) {
+    return 'bg-warning';
+  }
+
+  return 'bg-destructive';
+}
+
 export default function ToolForm({
   initialData,
   categories,
@@ -211,6 +228,7 @@ export default function ToolForm({
   const [loading, setLoading] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
   const [error, setError] = useState('');
+  const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Partial<Tool>>(buildInitialData(initialData, categories));
 
   const comparisonOptions = useMemo(
@@ -231,6 +249,67 @@ export default function ToolForm({
 
   const confidencePercent = Math.round(readiness.confidence * 100);
   const comparisonExamples = comparisonOptions.slice(0, 4).map((tool) => tool.slug).join(', ');
+  const title = isEdit ? `Edit ${initialData?.name ?? 'tool'}` : 'Add new tool';
+  const description = isEdit
+    ? 'Update the structured record, editorial context, and publish readiness in one place.'
+    : 'Fill in each section to build confidence, complete coverage, and create a review-ready tool entry.';
+  const primarySubmitLabel = isEdit ? 'Save changes' : 'Create tool';
+  const sectionLinks = [
+    { id: 'basic-details', label: 'Basic details' },
+    { id: 'pricing-fit', label: 'Pricing & fit' },
+    { id: 'coverage', label: 'Coverage' },
+    { id: 'editorial', label: 'Editorial' },
+  ];
+  const mobileSteps = [
+    { id: 'basic-details', label: 'Basic', nextLabel: 'Next: Pricing' },
+    { id: 'pricing-fit', label: 'Pricing', nextLabel: 'Next: Coverage' },
+    { id: 'coverage', label: 'Coverage', nextLabel: 'Next: Editorial' },
+    { id: 'editorial', label: 'Editorial', nextLabel: primarySubmitLabel },
+  ];
+  const checklistItems = [
+    {
+      label: normalizedDraft.name?.trim() ? 'Tool name added' : 'Tool name missing',
+      tone: normalizedDraft.name?.trim() ? 'ok' : 'bad',
+    },
+    {
+      label: normalizedDraft.shortDescription?.trim()
+        ? 'Short description added'
+        : 'Short description missing',
+      tone: normalizedDraft.shortDescription?.trim() ? 'ok' : 'bad',
+    },
+    {
+      label: normalizedDraft.website?.trim() ? 'Website added' : 'Website missing',
+      tone: normalizedDraft.website?.trim() ? 'ok' : 'bad',
+    },
+    {
+      label: normalizedDraft.pricingRange?.trim()
+        ? 'Pricing snapshot added'
+        : 'Pricing snapshot needed',
+      tone: normalizedDraft.pricingRange?.trim() ? 'ok' : 'warn',
+    },
+    {
+      label:
+        (normalizedDraft.faq?.length ?? 0) >= 2
+          ? 'FAQ coverage added'
+          : 'FAQ needs 2+ items',
+      tone: (normalizedDraft.faq?.length ?? 0) >= 2 ? 'ok' : 'warn',
+    },
+    {
+      label: normalizedDraft.editorialSummary?.trim()
+        ? 'Editorial summary added'
+        : 'Editorial summary missing',
+      tone: normalizedDraft.editorialSummary?.trim() ? 'ok' : 'bad',
+    },
+  ];
+
+  const jumpToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const goToStep = (step: number) => {
+    setCurrentStep(step);
+    document.getElementById(mobileSteps[step]?.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -334,16 +413,19 @@ export default function ToolForm({
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    const submitter = (e.nativeEvent as SubmitEvent).submitter as HTMLButtonElement | null;
+    const shouldSaveDraft = submitter?.value === 'draft';
+    const payload = shouldSaveDraft ? { ...normalizedDraft, status: 'draft' as const } : normalizedDraft;
 
     try {
       if (isEdit && initialData?.slug) {
-        await updateTool(initialData.slug, normalizedDraft);
+        await updateTool(initialData.slug, payload);
       } else {
-        await createTool(normalizedDraft);
+        await createTool(payload);
       }
     } catch (err: unknown) {
       setError(getErrorMessage(err, 'An error occurred while saving.'));
@@ -352,52 +434,216 @@ export default function ToolForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-foreground">Publish Readiness</h2>
-            <p className="max-w-3xl text-sm leading-6 text-slate-700">
-              Manual saves now recalculate confidence from the current form values. Fix blockers here before switching the tool to published.
-            </p>
+    <form onSubmit={handleSubmit} className="space-y-6 pb-24 md:pb-10">
+      <section className="glass-card rounded-[1.75rem] border border-border/80 p-0 md:p-6">
+        <div className="md:hidden">
+          <div className="border-b border-border/80 px-4 py-3">
+            <div className="flex items-center justify-between gap-3">
+              <Link href="/admin/tools" className="inline-flex items-center gap-1 text-sm font-medium text-primary">
+                <ChevronLeft className="h-4 w-4" />
+                Tools
+              </Link>
+              <div className="flex items-center gap-2">
+                <button
+                  type="submit"
+                  value="draft"
+                  disabled={loading}
+                  className="rounded-lg border border-border bg-white px-3 py-2 text-xs font-semibold text-slate-700 disabled:opacity-70"
+                >
+                  Save draft
+                </button>
+                <button
+                  type="submit"
+                  value="default"
+                  disabled={loading}
+                  className="rounded-lg bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground disabled:opacity-70"
+                >
+                  {primarySubmitLabel}
+                </button>
+              </div>
+            </div>
+
+            <h1 className="mt-3 text-base font-semibold text-foreground">{title}</h1>
+
+            <div className="mt-3 rounded-xl bg-slate-50 px-3 py-3">
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-medium text-muted-foreground">Confidence</span>
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-border/70">
+                  <div
+                    className={cn('h-full rounded-full', getProgressBarTone(confidencePercent))}
+                    style={{ width: `${confidencePercent}%` }}
+                  />
+                </div>
+                <span
+                  className={cn(
+                    'min-w-9 text-right text-xs font-semibold',
+                    confidencePercent >= 80
+                      ? 'text-success'
+                      : confidencePercent >= 60
+                        ? 'text-primary'
+                        : confidencePercent >= 40
+                          ? 'text-warning'
+                          : 'text-destructive',
+                  )}
+                >
+                  {confidencePercent}%
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <span
-              className={cn(
-                'inline-flex rounded-full border px-4 py-2 text-sm font-semibold',
-                getConfidenceTone(confidencePercent),
-              )}
-            >
-              Confidence {confidencePercent}%
-            </span>
-            <span className="slate-chip rounded-full px-4 py-2 text-sm font-medium">
-              {readiness.warnings.length} warnings
-            </span>
+
+          <div className="flex overflow-x-auto border-b border-border/80 bg-white px-2">
+            {mobileSteps.map((step, index) => (
+              <button
+                key={step.id}
+                type="button"
+                onClick={() => goToStep(index)}
+                className={cn(
+                  'flex min-w-[72px] flex-1 flex-col items-center gap-1 border-b-2 px-2 py-3 text-center',
+                  currentStep === index ? 'border-primary' : 'border-transparent',
+                )}
+              >
+                <span
+                  className={cn(
+                    'flex h-5 w-5 items-center justify-center rounded-full border text-[10px] font-semibold',
+                    currentStep === index
+                      ? 'border-primary bg-primary text-white'
+                      : currentStep > index
+                        ? 'border-success/20 bg-success-soft text-success-soft-foreground'
+                        : 'border-border bg-white text-muted-foreground',
+                  )}
+                >
+                  {index + 1}
+                </span>
+                <span
+                  className={cn(
+                    'text-[10px] font-medium',
+                    currentStep === index
+                      ? 'text-foreground'
+                      : currentStep > index
+                        ? 'text-success-soft-foreground'
+                        : 'text-muted-foreground',
+                  )}
+                >
+                  {step.label}
+                </span>
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="mt-6 rounded-[1.5rem] border border-border/80 bg-background/70 p-5">
+        <div className="hidden flex-col gap-5 md:flex xl:flex-row xl:items-start xl:justify-between">
+          <div className="space-y-4">
+            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+              <Link
+                href="/admin/tools"
+                className="inline-flex items-center gap-1 rounded-full border border-border/80 bg-white px-3 py-1.5 font-medium text-slate-700 hover:border-primary/20 hover:text-primary"
+              >
+                <ChevronLeft className="h-3.5 w-3.5" />
+                Tools
+              </Link>
+              <span>/</span>
+              <span className="font-medium text-foreground">{title}</span>
+            </div>
+
+            <div>
+              <h1 className="text-2xl font-semibold tracking-tight text-foreground md:text-[2rem]">
+                {title}
+              </h1>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-700">{description}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
+            <span
+              className={cn(
+                'inline-flex items-center gap-3 rounded-full border px-4 py-2 text-sm font-semibold',
+                getConfidenceTone(confidencePercent),
+              )}
+            >
+              <span>Confidence</span>
+              <div className="h-2 w-20 overflow-hidden rounded-full bg-white/70">
+                <div
+                  className={cn('h-full rounded-full', getProgressBarTone(confidencePercent))}
+                  style={{ width: `${confidencePercent}%` }}
+                />
+              </div>
+              <span>{confidencePercent}%</span>
+            </span>
+            <button
+              type="submit"
+              value="draft"
+              disabled={loading}
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold text-slate-700 hover:border-primary/20 hover:text-primary disabled:opacity-70"
+            >
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+              Save draft
+            </button>
+            <button
+              type="submit"
+              value="default"
+              disabled={loading}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary-hover disabled:opacity-70"
+            >
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+              {primarySubmitLabel}
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-6 hidden gap-3 md:grid md:grid-cols-2 xl:grid-cols-4">
+          {sectionLinks.map((section, index) => (
+            <button
+              key={section.id}
+              type="button"
+              onClick={() => jumpToSection(section.id)}
+              className="flex items-center gap-3 rounded-2xl border border-border/80 bg-slate-50/80 px-4 py-4 text-left hover:border-primary/20 hover:bg-primary-soft/40"
+            >
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border bg-white text-sm font-semibold text-muted-foreground">
+                {index + 1}
+              </span>
+              <span className="text-sm font-semibold text-foreground">{section.label}</span>
+            </button>
+          ))}
+        </div>
+
+        <div
+          className={cn(
+            'mt-6 hidden rounded-[1.5rem] border p-5 md:block',
+            readiness.blockers.length > 0
+              ? 'border-destructive/15 bg-danger-soft/70'
+              : 'border-success/15 bg-success-soft/60',
+          )}
+        >
           <div className="flex items-center gap-2">
             {readiness.blockers.length === 0 ? (
               <CheckCircle2 className="h-5 w-5 text-success" />
             ) : (
               <AlertCircle className="h-5 w-5 text-warning" />
             )}
-            <h3 className="text-lg font-semibold text-foreground">Publish blockers</h3>
+            <h2 className="text-lg font-semibold text-foreground">
+              {readiness.blockers.length > 0
+                ? `${readiness.blockers.length} publish blocker${readiness.blockers.length === 1 ? '' : 's'} to resolve`
+                : 'No publish blockers from the current form values'}
+            </h2>
           </div>
-          {readiness.blockers.length > 0 ? (
-            <div className="mt-4 flex flex-wrap gap-3">
-              {readiness.blockers.map((blocker) => (
-                <div key={blocker} className="warning-chip rounded-full px-4 py-2 text-sm font-medium">
-                  {blocker}
-                </div>
-              ))}
-            </div>
-          ) : (
-            <p className="mt-4 text-sm leading-6 text-success-soft-foreground">
-              No publish blockers detected from the current form values.
-            </p>
-          )}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {readiness.blockers.map((blocker) => (
+              <span key={blocker} className="danger-chip rounded-full px-3 py-1.5 text-xs font-medium">
+                {blocker}
+              </span>
+            ))}
+            {readiness.warnings.map((warning) => (
+              <span key={warning} className="warning-chip rounded-full px-3 py-1.5 text-xs font-medium">
+                {warning}
+              </span>
+            ))}
+            {readiness.blockers.length === 0 && readiness.warnings.length === 0 ? (
+              <span className="success-chip rounded-full px-3 py-1.5 text-xs font-medium">
+                Ready for review
+              </span>
+            ) : null}
+          </div>
         </div>
       </section>
 
@@ -408,8 +654,81 @@ export default function ToolForm({
         </div>
       ) : null}
 
+      <div className="space-y-3 md:hidden">
+        <div
+          className={cn(
+            'rounded-[1.25rem] border p-4',
+            readiness.blockers.length > 0
+              ? 'border-destructive/15 bg-danger-soft/70'
+              : 'border-success/15 bg-success-soft/60',
+            currentStep === 0 ? 'block' : 'hidden',
+          )}
+        >
+          <div className="flex items-center gap-2">
+            {readiness.blockers.length === 0 ? (
+              <CheckCircle2 className="h-4 w-4 text-success" />
+            ) : (
+              <AlertCircle className="h-4 w-4 text-warning" />
+            )}
+            <h2 className="text-sm font-semibold text-foreground">
+              {readiness.blockers.length > 0
+                ? `${readiness.blockers.length} blocker${readiness.blockers.length === 1 ? '' : 's'} preventing publish`
+                : 'No blockers from the current draft'}
+            </h2>
+          </div>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {readiness.blockers.map((blocker) => (
+              <span key={blocker} className="danger-chip rounded-full px-2.5 py-1 text-[11px] font-medium">
+                {blocker}
+              </span>
+            ))}
+            {readiness.warnings.map((warning) => (
+              <span key={warning} className="warning-chip rounded-full px-2.5 py-1 text-[11px] font-medium">
+                {warning}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className={cn('glass-card rounded-[1.25rem] border border-border/80 p-4', currentStep === 0 ? 'block' : 'hidden')}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            Publish checklist
+          </p>
+          <div className="mt-3 space-y-2">
+            {checklistItems.map((item) => (
+              <div key={item.label} className="flex items-start gap-2 border-b border-border/70 pb-2 last:border-b-0 last:pb-0">
+                <span
+                  className={cn(
+                    'mt-1 h-1.5 w-1.5 shrink-0 rounded-full',
+                    item.tone === 'ok'
+                      ? 'bg-success'
+                      : item.tone === 'warn'
+                        ? 'bg-warning'
+                        : 'bg-destructive',
+                  )}
+                />
+                <span
+                  className={cn(
+                    'text-xs leading-5',
+                    item.tone === 'ok'
+                      ? 'text-success-soft-foreground'
+                      : item.tone === 'warn'
+                        ? 'text-warning-soft-foreground'
+                        : 'text-danger-soft-foreground',
+                  )}
+                >
+                  {item.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="space-y-6">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="glass-card rounded-2xl border border-border/80 p-6 space-y-4">
+        <div id="basic-details" className={cn('glass-card scroll-mt-6 rounded-2xl border border-border/80 p-6 space-y-4', currentStep === 0 ? 'block' : 'hidden md:block')}>
           <h2 className="text-xl font-bold text-foreground">Basic Details</h2>
 
           <div>
@@ -490,7 +809,7 @@ export default function ToolForm({
           </div>
         </div>
 
-        <div className="glass-card rounded-2xl border border-border/80 p-6 space-y-4">
+        <div id="pricing-fit" className={cn('glass-card scroll-mt-6 rounded-2xl border border-border/80 p-6 space-y-4', currentStep === 1 ? 'block' : 'hidden md:block')}>
           <h2 className="text-xl font-bold text-foreground">Commercial &amp; Fit</h2>
 
           <div className="grid grid-cols-2 gap-4">
@@ -548,7 +867,7 @@ export default function ToolForm({
         </div>
       </div>
 
-      <div className="glass-card rounded-2xl border border-border/80 p-6 space-y-4">
+      <div id="coverage" className={cn('glass-card scroll-mt-6 rounded-2xl border border-border/80 p-6 space-y-4', currentStep === 2 ? 'block' : 'hidden md:block')}>
         <h2 className="text-xl font-bold text-foreground">Coverage &amp; Relationships</h2>
 
           <div>
@@ -589,7 +908,7 @@ export default function ToolForm({
           </div>
       </div>
 
-      <div className="glass-card rounded-2xl border border-border/80 p-6 relative overflow-hidden flex flex-col gap-6">
+      <div id="editorial" className={cn('glass-card scroll-mt-6 rounded-2xl border border-border/80 p-6 relative overflow-hidden flex flex-col gap-6', currentStep === 3 ? 'block md:flex' : 'hidden md:flex')}>
         <div className="relative z-10 flex justify-between gap-4">
           <div>
             <h2 className="flex items-center gap-2 text-xl font-bold text-foreground">
@@ -680,7 +999,7 @@ export default function ToolForm({
         <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl" />
       </div>
 
-      <div className="glass-card rounded-2xl border border-border/80 p-6">
+      <div className={cn('glass-card rounded-2xl border border-border/80 p-6', currentStep === 3 ? 'block' : 'hidden md:block')}>
         <div className="flex items-center justify-between gap-4">
           <div>
             <h2 className="text-xl font-bold text-foreground">FAQ</h2>
@@ -714,14 +1033,121 @@ export default function ToolForm({
         </div>
       </div>
 
-      <div className="flex justify-end gap-4 border-t border-border/70 pt-6">
+      <div className="hidden justify-end gap-4 border-t border-border/70 pt-6 md:flex">
         <button type="button" onClick={() => window.history.back()} className="rounded-xl px-6 py-3 font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground">
           Cancel
         </button>
-        <button type="submit" disabled={loading} className="inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-3 font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 disabled:opacity-70">
+        <button type="submit" value="default" disabled={loading} className="inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-3 font-semibold text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:bg-primary/90 disabled:opacity-70">
           {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}
-          {isEdit ? 'Save Changes' : 'Create Tool'}
+          {primarySubmitLabel}
         </button>
+      </div>
+        </div>
+
+        <aside className="space-y-4 xl:sticky xl:top-4 xl:self-start">
+          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Confidence score
+            </p>
+            <div className="mt-4 text-4xl font-semibold tracking-tight text-foreground">
+              {confidencePercent}%
+            </div>
+            <div className="mt-4 h-2 overflow-hidden rounded-full bg-slate-100">
+              <div
+                className={cn('h-full rounded-full', getProgressBarTone(confidencePercent))}
+                style={{ width: `${confidencePercent}%` }}
+              />
+            </div>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Complete the sections below to improve confidence and clear publish blockers.
+            </p>
+          </section>
+
+          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Publish checklist
+            </p>
+            <div className="mt-4 space-y-3">
+              {checklistItems.map((item) => (
+                <div key={item.label} className="flex items-start gap-3 border-b border-border/70 pb-3 last:border-b-0 last:pb-0">
+                  <span
+                    className={cn(
+                      'mt-1 h-2.5 w-2.5 shrink-0 rounded-full',
+                      item.tone === 'ok'
+                        ? 'bg-success'
+                        : item.tone === 'warn'
+                          ? 'bg-warning'
+                          : 'bg-destructive',
+                    )}
+                  />
+                  <span
+                    className={cn(
+                      'text-sm leading-6',
+                      item.tone === 'ok'
+                        ? 'text-success-soft-foreground'
+                        : item.tone === 'warn'
+                          ? 'text-warning-soft-foreground'
+                          : 'text-danger-soft-foreground',
+                    )}
+                  >
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="glass-card rounded-[1.5rem] border border-border/80 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              AI assist
+            </p>
+            <button
+              type="button"
+              onClick={handleGenerateAI}
+              disabled={aiLoading || !formData.name}
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-primary/20 bg-primary-soft px-4 py-3 text-sm font-medium text-primary-soft-foreground hover:bg-primary-soft/80 disabled:opacity-50"
+            >
+              {aiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+              {aiLoading ? 'Generating...' : 'Auto-generate insights'}
+            </button>
+            <p className="mt-3 text-xs leading-5 text-muted-foreground">
+              Generates editorial summary, best-for, pros, cons, and comparison context using the current tool data.
+            </p>
+          </section>
+        </aside>
+      </div>
+
+      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-border/80 bg-white/95 px-4 py-3 backdrop-blur md:hidden">
+        <div className="mx-auto flex max-w-md items-center gap-2">
+          {currentStep > 0 ? (
+            <button
+              type="button"
+              onClick={() => goToStep(currentStep - 1)}
+              className="flex-1 rounded-xl border border-border bg-white px-4 py-3 text-sm font-semibold text-slate-700"
+            >
+              Back
+            </button>
+          ) : null}
+
+          {currentStep < mobileSteps.length - 1 ? (
+            <button
+              type="button"
+              onClick={() => goToStep(currentStep + 1)}
+              className="flex-[1.5] rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground"
+            >
+              {mobileSteps[currentStep].nextLabel}
+            </button>
+          ) : (
+            <button
+              type="submit"
+              value="default"
+              disabled={loading}
+              className="flex-[1.5] rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground disabled:opacity-70"
+            >
+              {loading ? 'Saving...' : primarySubmitLabel}
+            </button>
+          )}
+        </div>
       </div>
     </form>
   );

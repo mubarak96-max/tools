@@ -21,14 +21,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const lowConfidenceCount = tools.filter((tool) => (tool.sourceConfidence ?? 1) < 0.6).length;
 
   return (
-    <div className="flex min-h-screen bg-background !pt-0">
+    <div className="min-h-screen bg-background !pt-0 md:flex">
       <AdminShellNav
         toolCount={tools.length}
         reviewCount={reviewCount}
         lowConfidenceCount={lowConfidenceCount}
       />
 
-      <main className="flex-1 overflow-y-auto pb-24 md:pb-0">
+      <main className="min-w-0 flex-1 overflow-y-auto pb-24 md:pb-0">
         <div className="hidden h-[52px] items-center justify-between border-b border-border bg-card px-6 lg:flex">
           <div>
             <p className="text-sm font-semibold text-foreground">Admin workspace</p>

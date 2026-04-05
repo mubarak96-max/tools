@@ -166,13 +166,9 @@ export default async function AdminIndex() {
 
   return (
     <div className="space-y-6">
-      <section className="space-y-2 md:hidden">
+      <section className="md:hidden">
         <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground">
           Overview
-        </p>
-        <h1 className="text-xl font-semibold text-foreground">Admin dashboard</h1>
-        <p className="text-sm text-muted-foreground">
-          Review publishing health, recent edits, and editorial actions.
         </p>
       </section>
 
@@ -216,7 +212,7 @@ export default async function AdminIndex() {
           </div>
         </div>
 
-        <div className="rounded-[1.5rem] border border-border bg-card">
+        <div className="hidden rounded-[1.5rem] border border-border bg-card lg:block">
           <div className="border-b border-border px-4 py-3">
             <h2 className="text-sm font-semibold text-foreground">Publishing priorities</h2>
           </div>
@@ -245,7 +241,16 @@ export default async function AdminIndex() {
       </section>
 
       <section className="overflow-hidden rounded-[1.5rem] border border-border bg-card">
-        <div className="flex flex-col gap-3 border-b border-border px-4 py-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="border-b border-border px-4 py-3 lg:hidden">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-foreground">Records</h2>
+            <Link href="/admin/tools" className="text-xs text-primary">
+              See all →
+            </Link>
+          </div>
+        </div>
+
+        <div className="hidden flex-col gap-3 border-b border-border px-4 py-3 lg:flex lg:flex-row lg:items-center lg:justify-between">
           <div>
             <h2 className="text-sm font-semibold text-foreground">Recently updated records</h2>
           </div>
