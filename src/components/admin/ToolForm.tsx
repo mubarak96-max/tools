@@ -230,6 +230,7 @@ export default function ToolForm({
   const [error, setError] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<Partial<Tool>>(buildInitialData(initialData, categories));
+  const [generatorName, setGeneratorName] = useState(initialData?.name ?? '');
 
   const comparisonOptions = useMemo(
     () => existingTools.filter((tool) => tool.slug !== initialData?.slug),
@@ -316,6 +317,9 @@ export default function ToolForm({
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === 'name') {
+      setGeneratorName(value);
+    }
   };
 
   const handleArrayChange = (e: React.ChangeEvent<HTMLInputElement>, field: keyof Tool) => {
@@ -369,22 +373,27 @@ export default function ToolForm({
     }));
   };
 
-  const handleGenerateAI = async () => {
-    if (!formData.name?.trim()) {
+  const generateToolData = async (requestedName?: string) => {
+    const nameToGenerate = (requestedName || generatorName || formData.name || '').trim();
+
+    if (!nameToGenerate) {
       setError('Please enter a tool name first.');
       return;
     }
 
     setAiLoading(true);
     setError('');
+    setFormData((prev) => ({ ...prev, name: nameToGenerate }));
+    setGeneratorName(nameToGenerate);
 
     try {
-      const profile = await generateFullToolProfile(formData.name, {
+      const profile = await generateFullToolProfile(nameToGenerate, {
         categories: categories.map((category) => category.name),
       });
 
       setFormData((prev) => ({
         ...prev,
+        name: prev.name || nameToGenerate,
         slug: profile.slug || prev.slug,
         category: profile.category || prev.category,
         pricingModel: toPricingModel(profile.pricing_model),
@@ -411,6 +420,10 @@ export default function ToolForm({
     } finally {
       setAiLoading(false);
     }
+  };
+
+  const handleGenerateAI = async () => {
+    await generateToolData();
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -652,6 +665,51 @@ export default function ToolForm({
           <AlertCircle className="mt-0.5 h-5 w-5" />
           <p className="text-sm">{error}</p>
         </div>
+      ) : null}
+
+      {!isEdit ? (
+        <section className="glass-card rounded-[1.5rem] border border-border/80 p-4 md:p-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-foreground">Start with generated tool data</h2>
+              <p className="text-sm leading-6 text-muted-foreground">
+                Enter the tool name, generate the initial draft, then review and complete the remaining fields manually.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => void generateToolData()}
+              disabled={aiLoading || !generatorName.trim()}
+              className="hidden items-center gap-2 rounded-xl border border-primary/20 bg-primary-soft px-4 py-3 text-sm font-medium text-primary-soft-foreground hover:bg-primary-soft/80 disabled:opacity-50 md:inline-flex"
+            >
+              {aiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+              {aiLoading ? 'Generating...' : 'Generate tool data'}
+            </button>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3 md:flex-row">
+            <input
+              type="text"
+              value={generatorName}
+              onChange={(event) => {
+                const value = event.target.value;
+                setGeneratorName(value);
+                setFormData((prev) => ({ ...prev, name: value }));
+              }}
+              placeholder="Enter a tool name, e.g. Notion, Figma, Linear"
+              className="flex-1 rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/15"
+            />
+            <button
+              type="button"
+              onClick={() => void generateToolData()}
+              disabled={aiLoading || !generatorName.trim()}
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary-hover disabled:opacity-70 md:hidden"
+            >
+              {aiLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+              {aiLoading ? 'Generating...' : 'Generate tool data'}
+            </button>
+          </div>
+        </section>
       ) : null}
 
       <div className="space-y-3 md:hidden">
