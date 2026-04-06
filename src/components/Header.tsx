@@ -18,7 +18,7 @@ export default function Header() {
           <Link href="/tools" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             All Tools
           </Link>
-          <Link href="/tools?q=free" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
+          <Link href="/free-tools" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             Free Tools
           </Link>
           <Link href="/tools?q=compare" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
@@ -41,7 +41,7 @@ export default function Header() {
                   All Tools
                 </Link>
                 <Link
-                  href="/tools?q=free"
+                  href="/free-tools"
                   className="rounded-[0.95rem] px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-muted hover:text-primary"
                 >
                   Free Tools

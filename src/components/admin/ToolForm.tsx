@@ -110,6 +110,42 @@ function normalizeBillingPeriod(value: string | undefined) {
   }
 }
 
+function buildGeneratedPricingRange(input: {
+  pricingModel: Tool['pricingModel'];
+  pricingRange?: string;
+  startingPrice?: number;
+  startingPriceCurrency?: string;
+  billingPeriod?: string;
+  hasFreePlan?: boolean;
+}) {
+  const explicitRange = (input.pricingRange || '').trim();
+  if (explicitRange) {
+    return explicitRange;
+  }
+
+  if (input.pricingModel === 'free') {
+    return 'Free';
+  }
+
+  if (input.pricingModel === 'custom') {
+    return 'Custom pricing';
+  }
+
+  if (typeof input.startingPrice !== 'number' || Number.isNaN(input.startingPrice)) {
+    return input.hasFreePlan ? 'Free plan available' : '';
+  }
+
+  const currency = (input.startingPriceCurrency || 'USD').toUpperCase();
+  const amount = currency === 'USD' ? `$${input.startingPrice}` : `${currency} ${input.startingPrice}`;
+  const periodSuffix = input.billingPeriod ? `/${input.billingPeriod}` : '';
+
+  if (input.pricingModel === 'freemium' || input.hasFreePlan) {
+    return `Free plan, paid from ${amount}${periodSuffix}`;
+  }
+
+  return `From ${amount}${periodSuffix}`;
+}
+
 function buildInitialData(
   initialData: Tool | undefined,
 ): Partial<Tool> {
@@ -470,7 +506,27 @@ export default function ToolForm({
         ),
         pricingModel: toPricingModel(profile.pricing_model),
         difficultyLevel: toDifficultyLevel(profile.difficulty_level),
-        pricingRange: profile.price_range || prev.pricingRange,
+        pricingRange: buildGeneratedPricingRange({
+          pricingModel: toPricingModel(profile.pricing_model),
+          pricingRange: profile.price_range,
+          startingPrice:
+            typeof profile.starting_price === 'number' ? profile.starting_price : undefined,
+          startingPriceCurrency: profile.starting_price_currency,
+          billingPeriod: normalizeBillingPeriod(profile.billing_period),
+          hasFreePlan: profile.has_free_plan ?? (profile.pricing_model === 'free' ? true : prev.hasFreePlan),
+        }) || prev.pricingRange,
+        startingPrice:
+          typeof profile.starting_price === 'number' ? profile.starting_price : prev.startingPrice,
+        startingPriceCurrency:
+          profile.starting_price_currency?.trim().toUpperCase() || prev.startingPriceCurrency,
+        billingPeriod: normalizeBillingPeriod(profile.billing_period || prev.billingPeriod),
+        hasFreePlan:
+          typeof profile.pricing_model === 'string' && profile.pricing_model.toLowerCase() === 'free'
+            ? true
+            : typeof profile.pricing_model === 'string' && profile.pricing_model.toLowerCase() === 'paid'
+              ? Boolean(profile.has_free_plan ?? prev.hasFreePlan)
+              : Boolean(profile.has_free_plan ?? prev.hasFreePlan),
+        hasFreeTrial: Boolean(profile.has_free_trial ?? prev.hasFreeTrial),
         shortDescription: profile.description || prev.shortDescription,
         description: profile.description || prev.description,
         editorialSummary: profile.why_this_tool || prev.editorialSummary,

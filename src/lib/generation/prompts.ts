@@ -38,6 +38,9 @@ Return exactly this JSON shape:
   "short_description": "",
   "pricing_model": "freemium",
   "pricing_range": "",
+  "starting_price": null,
+  "starting_price_currency": "",
+  "billing_period": "",
   "difficulty_level": "intermediate",
   "platforms": [],
   "use_cases": [],
@@ -51,7 +54,19 @@ Return exactly this JSON shape:
   "best_for": "",
   "not_ideal_for": "",
   "website": ""
-}`;
+}
+
+Pricing rules:
+- Prefer the most current publicly visible pricing you know for the tool's official product.
+- If pricing is unclear, outdated, enterprise-only, or you are not confident, return an empty string for pricing_range and null for starting_price.
+- Use starting_price as a numeric amount only, without currency symbols.
+- Use starting_price_currency as a 3-letter code such as USD, EUR, or GBP.
+- Use billing_period as one of: daily, weekly, monthly, yearly, or an empty string.
+- pricing_range should be concise and factual, for example:
+  - "Free"
+  - "Free plan, paid from $20/month"
+  - "From $12/month"
+  - "Custom pricing"`;
 }
 
 export function buildToolEditorialPrompt(tool: Partial<Tool>) {

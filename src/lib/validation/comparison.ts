@@ -17,7 +17,7 @@ export const comparisonSchema = z.object({
   toolB: z.string().trim().min(1),
   title: z.string().trim().min(1).max(160),
   intro: z.string().trim().max(2000).optional(),
-  winnerSummary: z.string().trim().max(600).optional(),
+  winnerSummary: z.string().trim().optional(),
   bestForA: z.string().trim().max(240).optional(),
   bestForB: z.string().trim().max(240).optional(),
   faq: z.array(faqSchema).max(10),

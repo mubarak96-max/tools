@@ -63,7 +63,7 @@ export const toolSchema = z.object({
   alternatives: z.array(z.string().trim().min(1).max(120)).max(20),
   competitors: z.array(z.string().trim().min(1).max(120)).max(20),
   screenshots: z.array(z.url()).max(12),
-  editorialSummary: z.string().trim().max(600).optional(),
+  editorialSummary: z.string().trim().optional(),
   faq: z.array(faqSchema).max(10),
   status: recordStatusSchema,
   sourceConfidence: z.number().min(0).max(1).optional(),

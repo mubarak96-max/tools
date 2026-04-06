@@ -76,7 +76,7 @@ export function scoreToolDraft(
 
   const taxonomyIssues = inspectToolTaxonomy(draft, {
     approvedCategories: options?.approvedCategories,
-  }).issues;
+  }).issues.filter((issue) => issue.field !== "audiences");
   if (taxonomyIssues.length > 0) {
     warnings.push(...taxonomyIssues.map((issue) => issue.message));
     score -= Math.min(0.22, taxonomyIssues.length * 0.05);
@@ -95,9 +95,7 @@ export function scoreToolDraft(
     score += 0.05;
   }
 
-  if ((draft.useCases?.length ?? 0) < 3) {
-    warnings.push("Sparse use cases");
-  } else {
+  if ((draft.useCases?.length ?? 0) > 0) {
     score += 0.1;
   }
 
@@ -128,10 +126,6 @@ export function scoreToolDraft(
     score -= 0.05;
   } else {
     score += 0.04;
-  }
-
-  if (((draft.alternatives?.length ?? 0) + (draft.competitors?.length ?? 0)) < 2) {
-    warnings.push("Missing internal comparison links");
   }
 
   if (

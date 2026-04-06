@@ -5,6 +5,7 @@ import { getFeaturedTools, listTools } from "@/lib/db/tools";
 import { scoreComparisonPair } from "@/lib/ranking/comparisons";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { comparisonSlug, slugify } from "@/lib/slug";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 import { getPricingTone } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import type { Tool } from "@/types/database";
@@ -169,16 +170,54 @@ export default async function Home() {
             { label: "Project management", query: "Project management" },
             { label: "Design", query: "Design" },
             { label: "For freelancers", query: "freelancers" },
-            { label: "Free only", query: "free" },
+            { label: "Free tools", query: "" },
           ].map((item) => (
             <Link
               key={item.label}
-              href={`/tools?q=${encodeURIComponent(item.query)}`}
+              href={item.label === "Free tools" ? "/free-tools" : `/tools?q=${encodeURIComponent(item.query)}`}
               className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
+        </div>
+      </section>
+
+      <div className="border-t border-border/80" />
+
+      <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <SectionHeader title="Free utility spotlight" href="/free-tools" ctaLabel="Browse free tools →" />
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
+          <Link
+            href={FREE_TOOLS[0]?.href || "/free-tools"}
+            className="glass-card rounded-[1.75rem] border border-border/80 p-6 transition-colors hover:border-primary/20"
+          >
+            <div className="inline-flex rounded-full border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+              Finance
+            </div>
+            <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
+              {FREE_TOOLS[0]?.name || "EMI Calculator"}
+            </h3>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+              {FREE_TOOLS[0]?.description ||
+                "Calculate monthly loan repayments with instant amortization breakdowns and multi-currency defaults."}
+            </p>
+          </Link>
+
+          <Link
+            href="/free-tools"
+            className="glass-card rounded-[1.75rem] border border-border/80 p-6 transition-colors hover:border-primary/20"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Free tools hub
+            </p>
+            <p className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
+              {FREE_TOOLS.length}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Lightweight calculators and utilities built for fast search intent.
+            </p>
+          </Link>
         </div>
       </section>
 

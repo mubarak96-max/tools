@@ -16,6 +16,8 @@ const approvedAudienceValues = [
   "Developers",
   "Designers",
   "Marketers",
+  "Writers",
+  "Students",
   "Sales Teams",
   "Support Teams",
   "Product Teams",
