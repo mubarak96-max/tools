@@ -105,6 +105,20 @@ export interface PriceFromMarkupResult {
 
 export type MarginMode = "margin-from-prices" | "price-from-margin" | "price-from-markup";
 
+export interface WordFrequencyItem {
+  word: string;
+  count: number;
+}
+
+export interface WordFrequencyComparisonItem {
+  word: string;
+  primaryCount: number;
+  secondaryCount: number;
+  primaryDensity: number;
+  secondaryDensity: number;
+  countDelta: number;
+}
+
 export interface FreeToolMeta {
   name: string;
   href: string;

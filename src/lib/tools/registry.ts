@@ -64,6 +64,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Finance",
     icon: "CAGR",
   },
+  {
+    name: "Word Frequency Counter",
+    href: "/free-tools/word-frequency-counter",
+    description: "Analyze repeated words, filter stop words, and surface the most-used terms in any text block.",
+    category: "Utility",
+    icon: "WORD",
+  },
 ];
 
 export function getRelatedFreeTools(currentHref: string, limit = 3) {
