@@ -83,6 +83,12 @@ export const CURRENCIES = [
       usedCarRate: 9.5,
       tenure: 60,
     },
+    savingsDefaults: {
+      principal: 10_000,
+      monthlyContribution: 500,
+      rate: 7.0,
+      years: 10,
+    },
   },
   {
     code: "EUR",
@@ -102,6 +108,12 @@ export const CURRENCIES = [
       newCarRate: 5.5,
       usedCarRate: 8.0,
       tenure: 48,
+    },
+    savingsDefaults: {
+      principal: 10_000,
+      monthlyContribution: 300,
+      rate: 5.0,
+      years: 10,
     },
   },
   {
@@ -123,6 +135,12 @@ export const CURRENCIES = [
       usedCarRate: 10.0,
       tenure: 48,
     },
+    savingsDefaults: {
+      principal: 5_000,
+      monthlyContribution: 200,
+      rate: 6.0,
+      years: 10,
+    },
   },
   {
     code: "AED",
@@ -143,6 +161,12 @@ export const CURRENCIES = [
       usedCarRate: 7.0,
       tenure: 60,
     },
+    savingsDefaults: {
+      principal: 50_000,
+      monthlyContribution: 2_000,
+      rate: 6.0,
+      years: 10,
+    },
   },
   {
     code: "INR",
@@ -162,6 +186,12 @@ export const CURRENCIES = [
       newCarRate: 8.5,
       usedCarRate: 12.0,
       tenure: 60,
+    },
+    savingsDefaults: {
+      principal: 100_000,
+      monthlyContribution: 10_000,
+      rate: 12.0,
+      years: 10,
     },
   },
 ] as const;
