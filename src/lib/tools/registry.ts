@@ -120,6 +120,34 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Text",
     icon: "REV",
   },
+  {
+    name: "Morse Code Translator",
+    href: "/text/morse-code-translator",
+    description: "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",
+    category: "Text",
+    icon: "MORSE",
+  },
+  {
+    name: "Binary Code Translator",
+    href: "/text/binary-code-translator",
+    description: "Translate text to binary and binary back to text with 8-bit byte conversion and validation.",
+    category: "Text",
+    icon: "BIN",
+  },
+  {
+    name: "ASCII Art Generator",
+    href: "/text/ascii-art-generator",
+    description: "Generate FIGlet-style ASCII art banners with a curated font set and layout controls.",
+    category: "Text",
+    icon: "ASCII",
+  },
+  {
+    name: "Image to Text OCR",
+    href: "/text/image-to-text",
+    description: "Extract text from an image online with OCR, progress feedback, and copy-ready output.",
+    category: "Text",
+    icon: "OCR",
+  },
 ];
 
 export function getRelatedFreeTools(currentHref: string, limit = 3) {

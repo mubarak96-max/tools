@@ -19,6 +19,7 @@ export default function Footer() {
           <div className="flex flex-wrap gap-6 text-sm">
             <Link href="/about" className="text-slate-700 hover:text-primary">About</Link>
             <Link href="/contact" className="text-slate-700 hover:text-primary">Contact</Link>
+            <Link href="/sitemap" className="text-slate-700 hover:text-primary">Sitemap</Link>
             <Link href="/privacy" className="text-slate-700 hover:text-primary">Privacy</Link>
             <Link href="/terms" className="text-slate-700 hover:text-primary">Terms</Link>
           </div>
