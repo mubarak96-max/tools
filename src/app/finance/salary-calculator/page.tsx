@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import SalaryCalculator from "@/app/free-tools/salary-calculator/components/SalaryCalculator";
+import SalaryCalculator from "@/app/finance/salary-calculator/components/SalaryCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { COUNTRIES } from "@/lib/tools/salary";
@@ -10,7 +10,7 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/salary-calculator";
+const PAGE_PATH = "/finance/salary-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -106,7 +106,7 @@ export default function SalaryCalculatorPage() {
   const relatedTools = getRelatedFreeTools(PAGE_PATH);
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Finance", path: "/finance" },
     { name: "Salary Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -123,7 +123,7 @@ export default function SalaryCalculatorPage() {
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
             <li>/</li>
-            <li><Link href="/free-tools" className="hover:text-primary">Free Tools</Link></li>
+            <li><Link href="/finance" className="hover:text-primary">Finance</Link></li>
             <li>/</li>
             <li className="text-foreground">Salary Calculator</li>
           </ol>
@@ -213,10 +213,10 @@ export default function SalaryCalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Move across calculators, loan tools, and upcoming utility pages from the central hub.
             </p>

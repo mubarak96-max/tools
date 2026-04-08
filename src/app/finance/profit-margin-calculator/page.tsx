@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import ProfitMarginCalculator from "@/app/free-tools/profit-margin-calculator/components/ProfitMarginCalculator";
+import ProfitMarginCalculator from "@/app/finance/profit-margin-calculator/components/ProfitMarginCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -9,7 +9,7 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/profit-margin-calculator";
+const PAGE_PATH = "/finance/profit-margin-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -94,7 +94,7 @@ function buildProfitApplicationJsonLd() {
 export default function ProfitMarginCalculatorPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Finance", path: "/finance" },
     { name: "Profit Margin Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -112,7 +112,7 @@ export default function ProfitMarginCalculatorPage() {
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
             <li>/</li>
-            <li><Link href="/free-tools" className="hover:text-primary">Free Tools</Link></li>
+            <li><Link href="/finance" className="hover:text-primary">Finance</Link></li>
             <li>/</li>
             <li className="text-foreground">Profit Margin Calculator</li>
           </ol>
@@ -174,16 +174,16 @@ export default function ProfitMarginCalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Return to the hub for pricing, salary, tax, and finance tools.
             </p>
           </Link>
           <Link
-            href="/free-tools/vat-calculator"
+            href="/finance/vat-calculator"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
             <h3 className="text-base font-semibold text-foreground">VAT Calculator</h3>

@@ -1,16 +1,21 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, Search, Sparkles } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 
 export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/80 bg-card/92 backdrop-blur-xl">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/15 bg-primary-soft text-primary">
-            <Sparkles className="h-5 w-5" />
-          </div>
-          <Link href="/" className="text-xl font-bold tracking-tight text-foreground">
-            findmytool
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/logo.svg"
+              alt="findbesttool"
+              width={182}
+              height={42}
+              priority
+              className="h-9 w-auto sm:h-10"
+            />
           </Link>
         </div>
         
@@ -18,8 +23,11 @@ export default function Header() {
           <Link href="/tools" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             All Tools
           </Link>
-          <Link href="/free-tools" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
-            Free Tools
+          <Link href="/finance" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
+            Finance
+          </Link>
+          <Link href="/text" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
+            Text
           </Link>
           <Link href="/tools?q=compare" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             Compare
@@ -41,10 +49,16 @@ export default function Header() {
                   All Tools
                 </Link>
                 <Link
-                  href="/free-tools"
+                  href="/finance"
                   className="rounded-[0.95rem] px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-muted hover:text-primary"
                 >
-                  Free Tools
+                  Finance
+                </Link>
+                <Link
+                  href="/text"
+                  className="rounded-[0.95rem] px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-muted hover:text-primary"
+                >
+                  Text
                 </Link>
                 <Link
                   href="/tools?q=compare"

@@ -10,7 +10,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Information We Collect</h2>
         <p>
-          findmytool is designed to be a research-first platform. We do not require account creation for casual browsing. 
+          findbesttool is designed to be a research-first platform. We do not require account creation for casual browsing. 
           We may collect anonymous usage data such as which tool pages are visited and general traffic patterns via Google Analytics.
         </p>
 
@@ -22,7 +22,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Affiliate Links</h2>
         <p>
-          Some links on findmytool are affiliate links. If you click one of these links and make a purchase, we may receive 
+          Some links on findbesttool are affiliate links. If you click one of these links and make a purchase, we may receive 
           a small commission at no extra cost to you. This helps support our research and maintenance of the platform.
         </p>
 

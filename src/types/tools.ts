@@ -123,6 +123,6 @@ export interface FreeToolMeta {
   name: string;
   href: string;
   description: string;
-  category: "Finance" | "Converter" | "Utility";
+  category: "Finance" | "Converter" | "Utility" | "Text";
   icon?: string;
 }

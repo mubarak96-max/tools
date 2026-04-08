@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import CompoundInterestCalculator from "@/app/free-tools/compound-interest-calculator/components/CompoundInterestCalculator";
+import CompoundInterestCalculator from "@/app/finance/compound-interest-calculator/components/CompoundInterestCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -9,7 +9,7 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/compound-interest-calculator";
+const PAGE_PATH = "/finance/compound-interest-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -94,7 +94,7 @@ function buildCompoundApplicationJsonLd() {
 export default function CompoundInterestCalculatorPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Finance", path: "/finance" },
     { name: "Compound Interest Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -112,7 +112,7 @@ export default function CompoundInterestCalculatorPage() {
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
             <li>/</li>
-            <li><Link href="/free-tools" className="hover:text-primary">Free Tools</Link></li>
+            <li><Link href="/finance" className="hover:text-primary">Finance</Link></li>
             <li>/</li>
             <li className="text-foreground">Compound Interest Calculator</li>
           </ol>
@@ -174,16 +174,16 @@ export default function CompoundInterestCalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Return to the calculator hub for savings, loans, salary, and pricing tools.
             </p>
           </Link>
           <Link
-            href="/free-tools/emi-calculator"
+            href="/finance/emi-calculator"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
             <h3 className="text-base font-semibold text-foreground">EMI Calculator</h3>

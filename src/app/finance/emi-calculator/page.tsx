@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
-import EMICalculator from "@/app/free-tools/emi-calculator/components/EMICalculator";
+import EMICalculator from "@/app/finance/emi-calculator/components/EMICalculator";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import {
@@ -13,7 +13,7 @@ import {
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/emi-calculator";
+const PAGE_PATH = "/finance/emi-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -107,7 +107,7 @@ export default function EMICalculatorPage() {
   const relatedTools = getRelatedFreeTools(PAGE_PATH);
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Finance", path: "/finance" },
     { name: "EMI Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -129,8 +129,8 @@ export default function EMICalculatorPage() {
             </li>
             <li>/</li>
             <li>
-              <Link href="/free-tools" className="hover:text-primary">
-                Free Tools
+              <Link href="/finance" className="hover:text-primary">
+                Finance
               </Link>
             </li>
             <li>/</li>
@@ -234,12 +234,12 @@ export default function EMICalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the free-tools hub and navigate upcoming calculators and utilities.
+              Return to the finance hub and navigate upcoming calculators and utilities.
             </p>
           </Link>
 
@@ -267,7 +267,7 @@ export default function EMICalculatorPage() {
             <div className="rounded-[1.25rem] border border-dashed border-border bg-background p-5">
               <h3 className="text-base font-semibold text-foreground">More calculators soon</h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                This free-tools section is ready for more finance and conversion utilities.
+                This finance section is ready for more finance and conversion utilities.
               </p>
             </div>
           )}

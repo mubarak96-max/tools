@@ -5,7 +5,7 @@ import { listPages } from "@/lib/db/pages";
 import { listTools } from "@/lib/db/tools";
 
 export const metadata = {
-  title: "Admin Dashboard | findmytool",
+  title: "Admin Dashboard | findbesttool",
   robots: {
     index: false,
     follow: false,

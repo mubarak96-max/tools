@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import MortgageCalculator from "@/app/free-tools/mortgage-calculator/components/MortgageCalculator";
+import MortgageCalculator from "@/app/finance/mortgage-calculator/components/MortgageCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -9,7 +9,7 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/mortgage-calculator";
+const PAGE_PATH = "/finance/mortgage-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -108,7 +108,7 @@ function buildMortgageApplicationJsonLd() {
 export default function MortgageCalculatorPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Finance", path: "/finance" },
     { name: "Mortgage Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -131,8 +131,8 @@ export default function MortgageCalculatorPage() {
             </li>
             <li>/</li>
             <li>
-              <Link href="/free-tools" className="hover:text-primary">
-                Free Tools
+              <Link href="/finance" className="hover:text-primary">
+                Finance
               </Link>
             </li>
             <li>/</li>
@@ -221,10 +221,10 @@ export default function MortgageCalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               See the full calculator hub and move between finance utilities quickly.
             </p>
@@ -250,7 +250,7 @@ export default function MortgageCalculatorPage() {
             <div className="rounded-[1.25rem] border border-dashed border-border bg-background p-5">
               <h3 className="text-base font-semibold text-foreground">More calculators soon</h3>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                This free-tools section is ready for more finance and conversion utilities.
+                This finance section is ready for more finance and conversion utilities.
               </p>
             </div>
           )}

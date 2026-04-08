@@ -5,7 +5,7 @@ import { listTools } from "@/lib/db/tools";
 import { listCategoryAudienceHubSlugs, listCategoryHubSlugs } from "@/lib/discovery/hubs";
 import { slugify } from "@/lib/slug";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.yourdomain.com';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://findbest.tools';
 
 export const revalidate = 14400;
 
@@ -24,67 +24,73 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools`,
+      url: `${BASE_URL}/finance`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/free-tools/emi-calculator`,
+      url: `${BASE_URL}/text`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/finance/emi-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools/salary-calculator`,
+      url: `${BASE_URL}/finance/salary-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.95,
     },
     {
-      url: `${BASE_URL}/free-tools/uae-salary-calculator`,
+      url: `${BASE_URL}/finance/uae-salary-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools/discount-calculator`,
+      url: `${BASE_URL}/finance/discount-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
-      url: `${BASE_URL}/free-tools/vat-calculator`,
+      url: `${BASE_URL}/finance/vat-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools/profit-margin-calculator`,
+      url: `${BASE_URL}/finance/profit-margin-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools/compound-interest-calculator`,
+      url: `${BASE_URL}/finance/compound-interest-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools/word-frequency-counter`,
+      url: `${BASE_URL}/text/word-frequency`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/free-tools/mortgage-calculator`,
+      url: `${BASE_URL}/finance/mortgage-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/free-tools/car-loan-calculator`,
+      url: `${BASE_URL}/finance/car-loan-calculator`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,

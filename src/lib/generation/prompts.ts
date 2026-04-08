@@ -120,7 +120,7 @@ export function buildPageEditorialPrompt(input: {
   templateType: CustomPage["templateType"];
   selectedTools: Pick<Tool, "name" | "slug" | "category" | "shortDescription" | "pricingRange" | "bestFor" | "useCases">[];
 }) {
-  return `Write editorial blocks for a findmytool page.
+  return `Write editorial blocks for a findbesttool page.
 
 Topic: ${input.topic}
 Template type: ${input.templateType}

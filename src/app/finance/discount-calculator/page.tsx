@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import VATCalculator from "@/app/free-tools/vat-calculator/components/VATCalculator";
+import DiscountCalculator from "@/app/finance/discount-calculator/components/DiscountCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -9,46 +9,43 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/vat-calculator";
+const PAGE_PATH = "/finance/discount-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "How do I add VAT to a net price?",
+    question: "How do I calculate the final price after a discount?",
     answer:
-      "Multiply the net price by the VAT rate to get the VAT amount, then add that tax amount to the net price to get the gross price.",
+      "Multiply the original price by the discount percentage to find the amount saved, then subtract that amount from the original price.",
   },
   {
-    question: "How do I remove VAT from a gross price?",
+    question: "How do I calculate what percent off a sale price is?",
     answer:
-      "Use the VAT fraction method: gross price multiplied by rate divided by 100 plus rate. This extracts only the tax portion correctly.",
+      "Subtract the sale price from the original price, then divide the savings by the original price and multiply by 100.",
   },
   {
-    question: "What is the difference between VAT and GST?",
+    question: "Does this discount calculator work with any currency?",
     answer:
-      "The names differ by market, but the calculation structure is usually the same for price-add and price-remove workflows. This tool supports both VAT and GST-style setups.",
+      "Yes. The tool does not lock you to one market. You can type the currency symbol you want and use the same calculation flow.",
   },
   {
-    question: "Can I use a custom VAT rate?",
+    question: "What counts as a good discount?",
     answer:
-      "Yes. You can use the country presets or type your own rate manually when you need a custom setup.",
+      "That depends on the product category, but many shoppers treat 20 percent or more as a meaningful sale threshold.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "VAT Calculator | Add VAT or Remove VAT from Gross Price",
+  title: "Discount Calculator | Final Price and Percent Off Calculator",
   description:
-    "Add VAT to a net price or remove VAT from a gross price with country presets, reduced rates, and custom VAT input.",
+    "Calculate final price after discount or reverse-calculate percent off from original and sale price. Fast, free, and no sign-up required.",
   keywords: [
-    "VAT calculator",
-    "add VAT calculator",
-    "remove VAT calculator",
-    "VAT removal calculator",
-    "gross to net VAT",
-    "net to gross VAT",
-    "GST calculator",
-    "UK VAT calculator",
-    "UAE VAT calculator",
+    "discount calculator",
+    "sale price calculator",
+    "percent off calculator",
+    "discount percentage calculator",
+    "price after discount calculator",
+    "how much is 20 percent off",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -56,25 +53,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "VAT Calculator for Net to Gross and Gross to Net",
+    title: "Discount Calculator for Final Price and Percent Off",
     description:
-      "Calculate VAT amount, net price, and gross price with country presets and custom rates.",
+      "Use one page to calculate final price after discount or reverse-calculate the discount percentage from prices.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "VAT Calculator",
+    title: "Discount Calculator",
     description:
-      "Add VAT or remove VAT from a gross price with presets for major countries.",
+      "Calculate sale price, amount saved, and discount percentage instantly.",
   },
 };
 
-function buildVatApplicationJsonLd() {
+function buildDiscountApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "VAT Calculator",
+    name: "Discount Calculator",
     url: PAGE_URL,
-    applicationCategory: "FinanceApplication",
+    applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript",
     offers: {
@@ -83,30 +80,29 @@ function buildVatApplicationJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free VAT calculator for adding VAT to a net price or removing VAT from a gross price using country-specific presets and custom rates.",
+      "Free discount calculator with two modes: final price from discount percent, and reverse percent-off calculation from original and sale price.",
     featureList: [
-      "Add VAT mode",
-      "Remove VAT mode",
-      "Country VAT presets",
-      "Reduced-rate shortcuts",
-      "Custom VAT input",
+      "Final price calculation",
+      "Reverse discount percent calculation",
+      "Amount saved output",
+      "Custom currency symbol support",
     ],
   };
 }
 
-export default function VATCalculatorPage() {
+export default function DiscountCalculatorPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
-    { name: "VAT Calculator", path: PAGE_PATH },
+    { name: "Finance", path: "/finance" },
+    { name: "Discount Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
   const relatedTools = getRelatedFreeTools(PAGE_PATH);
-  const vatTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
+  const discountTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
     <div className="space-y-8">
-      <JsonLd data={serializeJsonLd(buildVatApplicationJsonLd())} />
+      <JsonLd data={serializeJsonLd(buildDiscountApplicationJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
@@ -115,50 +111,52 @@ export default function VATCalculatorPage() {
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
             <li>/</li>
-            <li><Link href="/free-tools" className="hover:text-primary">Free Tools</Link></li>
+            <li><Link href="/finance" className="hover:text-primary">Finance</Link></li>
             <li>/</li>
-            <li className="text-foreground">VAT Calculator</li>
+            <li className="text-foreground">Discount Calculator</li>
           </ol>
         </nav>
 
         <div className="max-w-3xl">
           <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            Finance calculator
+            Shopping utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            VAT Calculator
+            Discount Calculator
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Add VAT to a net price or remove VAT from a gross price with presets for major countries, reduced rates, and custom-rate support.
+            Use one page to calculate the final price after a discount or reverse-calculate how much percent off a sale really is.
           </p>
-          {vatTool ? (
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">{vatTool.description}</p>
+          {discountTool ? (
+            <p className="mt-4 text-sm leading-6 text-muted-foreground">{discountTool.description}</p>
           ) : null}
         </div>
       </section>
 
-      <VATCalculator />
+      <DiscountCalculator />
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How VAT calculations work</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Why a discount calculator is useful</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            VAT is usually calculated from a net price by multiplying the amount by the VAT rate and adding the result back on top. That gives the final gross price a customer pays.
+            Shopping pages often show a mix of original prices, coupon percentages, and sale prices. A quick discount calculator removes the guesswork and shows the real amount saved.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Removing VAT is slightly different. You do not take a simple percentage of the gross price. Instead, you extract the VAT portion using the VAT fraction method, which correctly separates the tax from the tax-inclusive total.
+            This version supports both directions. You can start with the original price and the discount percentage, or start with the original price and the sale price and work backward to the percent off.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">When to add VAT vs remove VAT</h2>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How the math works</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Use <strong className="text-foreground">Add VAT</strong> when you are starting from an ex-VAT or net figure.</li>
-            <li>Use <strong className="text-foreground">Remove VAT</strong> when the amount already includes VAT and you want the underlying net value.</li>
+            <li>Discount amount = original price × discount percentage</li>
+            <li>Final price = original price − discount amount</li>
+            <li>Percent off = (amount saved ÷ original price) × 100</li>
           </ul>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Why country presets matter</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            VAT and GST rates vary by country, and some countries use reduced or zero rates for specific categories. Presets help you move quickly while still allowing manual rate changes when needed.
-          </p>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">When to use each mode</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>Use <strong className="text-foreground">Final Price</strong> when a store advertises a discount percentage.</li>
+            <li>Use <strong className="text-foreground">% Off</strong> when you only know the original price and sale price.</li>
+          </ul>
         </div>
       </section>
 
@@ -178,21 +176,21 @@ export default function VATCalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the tool hub and move across finance, salary, and pricing utilities.
+              Return to the utility hub and move across calculators and quick decision tools.
             </p>
           </Link>
           <Link
-            href="/free-tools/discount-calculator"
+            href="/tools"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Discount Calculator</h3>
+            <h3 className="text-base font-semibold text-foreground">Explore software tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Compare VAT-inclusive pricing with sale-discount calculations on a separate utility page.
+              Go back to the main software directory for structured comparisons and reviews.
             </p>
           </Link>
           {relatedTools[0] ? (

@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import { useMemo, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-import BracketVisualizer from "@/app/free-tools/salary-calculator/components/BracketVisualizer";
-import TaxBreakdownTable from "@/app/free-tools/salary-calculator/components/TaxBreakdownTable";
+import BracketVisualizer from "@/app/finance/salary-calculator/components/BracketVisualizer";
+import TaxBreakdownTable from "@/app/finance/salary-calculator/components/TaxBreakdownTable";
 import {
   CANADA_PROVINCES,
   COUNTRIES,

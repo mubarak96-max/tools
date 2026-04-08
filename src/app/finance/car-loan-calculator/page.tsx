@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import CarLoanCalculator from "@/app/free-tools/car-loan-calculator/components/CarLoanCalculator";
+import CarLoanCalculator from "@/app/finance/car-loan-calculator/components/CarLoanCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -9,7 +9,7 @@ import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/car-loan-calculator";
+const PAGE_PATH = "/finance/car-loan-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -102,7 +102,7 @@ function buildCarLoanApplicationJsonLd() {
 export default function CarLoanCalculatorPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Finance", path: "/finance" },
     { name: "Car Loan Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -125,8 +125,8 @@ export default function CarLoanCalculatorPage() {
             </li>
             <li>/</li>
             <li>
-              <Link href="/free-tools" className="hover:text-primary">
-                Free Tools
+              <Link href="/finance" className="hover:text-primary">
+                Finance
               </Link>
             </li>
             <li>/</li>
@@ -231,7 +231,7 @@ export default function CarLoanCalculatorPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools/emi-calculator"
+            href="/finance/emi-calculator"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
             <h3 className="text-base font-semibold text-foreground">EMI Calculator</h3>
@@ -240,10 +240,10 @@ export default function CarLoanCalculatorPage() {
             </p>
           </Link>
           <Link
-            href="/free-tools"
+            href="/finance"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Return to the finance and utility tool hub.
             </p>

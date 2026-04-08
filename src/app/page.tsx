@@ -13,7 +13,7 @@ import type { Tool } from "@/types/database";
 export const revalidate = 1800;
 
 export const metadata = buildMetadata({
-  title: "Find Software With Structure",
+  title: "Find best the tools for the job",
   description:
     "Search, compare, and shortlist software tools with structured facts, editorial context, and stronger discovery paths.",
   path: "/",
@@ -127,6 +127,8 @@ function SectionHeader({
 export default async function Home() {
   const { featuredTools, allTools, popularCategories, comparisonHighlights, useCaseLinks } =
     await getHomePageData();
+  const financeTools = FREE_TOOLS.filter((tool) => tool.category === "Finance");
+  const textTools = FREE_TOOLS.filter((tool) => tool.category === "Text");
 
   return (
     <div className="pb-16">
@@ -135,9 +137,7 @@ export default async function Home() {
           {allTools.length}+ tools indexed
         </div>
         <h1 className="mx-auto mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-          Find the right tool.
-          <br />
-          Skip the wrong trial.
+          Find best the tools for the job
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Structured software discovery with real pricing, comparisons, and alternatives instead of another generic list.
@@ -170,11 +170,12 @@ export default async function Home() {
             { label: "Project management", query: "Project management" },
             { label: "Design", query: "Design" },
             { label: "For freelancers", query: "freelancers" },
-            { label: "Free tools", query: "" },
+            { label: "Finance calculators", href: "/finance" },
+            { label: "Text tools", href: "/text" },
           ].map((item) => (
             <Link
               key={item.label}
-              href={item.label === "Free tools" ? "/free-tools" : `/tools?q=${encodeURIComponent(item.query)}`}
+              href={item.href ?? `/tools?q=${encodeURIComponent(item.query ?? "")}`}
               className="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
@@ -186,36 +187,36 @@ export default async function Home() {
       <div className="border-t border-border/80" />
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
-        <SectionHeader title="Free utility spotlight" href="/free-tools" ctaLabel="Browse free tools →" />
+        <SectionHeader title="Category spotlight" href="/finance" ctaLabel="Browse finance" />
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
           <Link
-            href={FREE_TOOLS[0]?.href || "/free-tools"}
+            href={financeTools[0]?.href || "/finance"}
             className="glass-card rounded-[1.75rem] border border-border/80 p-6 transition-colors hover:border-primary/20"
           >
             <div className="inline-flex rounded-full border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
               Finance
             </div>
             <h3 className="mt-4 text-2xl font-semibold tracking-tight text-foreground">
-              {FREE_TOOLS[0]?.name || "EMI Calculator"}
+              {financeTools[0]?.name || "EMI Calculator"}
             </h3>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
-              {FREE_TOOLS[0]?.description ||
+              {financeTools[0]?.description ||
                 "Calculate monthly loan repayments with instant amortization breakdowns and multi-currency defaults."}
             </p>
           </Link>
 
           <Link
-            href="/free-tools"
+            href="/text"
             className="glass-card rounded-[1.75rem] border border-border/80 p-6 transition-colors hover:border-primary/20"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Free tools hub
+              Text tools
             </p>
             <p className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
-              {FREE_TOOLS.length}
+              {textTools.length}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Lightweight calculators and utilities built for fast search intent.
+              Focused text utilities for quick analysis and lightweight content workflows.
             </p>
           </Link>
         </div>

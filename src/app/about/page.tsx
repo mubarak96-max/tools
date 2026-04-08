@@ -3,16 +3,16 @@ import React from 'react';
 export default function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 animate-fade-in">
-      <h1 className="text-4xl font-bold mb-8 text-gradient-primary">About findmytool</h1>
+      <h1 className="text-4xl font-bold mb-8 text-gradient-primary">About findbesttool</h1>
       
       <div className="glass-card p-8 rounded-2xl space-y-6 text-muted-foreground leading-relaxed">
         <p className="text-lg text-foreground">
-          Welcome to <strong className="text-primary">findmytool</strong>, your intelligent guide to the rapidly evolving world of software and AI tools.
+          Welcome to <strong className="text-primary">findbesttool</strong>, your intelligent guide to the rapidly evolving world of software and AI tools.
         </p>
         
         <p>
           In an era where thousands of new tools are launched every month, finding the right one can feel impossible. 
-          We built findmytool to cut through the noise using a unique blend of data-driven analysis and AI-powered insights.
+          We built findbesttool to cut through the noise using a unique blend of data-driven analysis and AI-powered insights.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-12 mb-4">Our Mission</h2>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import WordFrequency from "@/app/free-tools/word-frequency-counter/components/WordFrequency";
+import WordFrequency from "@/app/text/word-frequency/components/WordFrequency";
 import JsonLd from "@/components/seo/JsonLd";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -9,7 +9,7 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/free-tools/word-frequency-counter";
+const PAGE_PATH = "/text/word-frequency";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
@@ -94,7 +94,7 @@ function buildWordFrequencyApplicationJsonLd() {
 export default function WordFrequencyCounterPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Free Tools", path: "/free-tools" },
+    { name: "Text", path: "/text" },
     { name: "Word Frequency Counter", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
@@ -112,7 +112,7 @@ export default function WordFrequencyCounterPage() {
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
             <li>/</li>
-            <li><Link href="/free-tools" className="hover:text-primary">Free Tools</Link></li>
+            <li><Link href="/text" className="hover:text-primary">Text</Link></li>
             <li>/</li>
             <li className="text-foreground">Word Frequency Counter</li>
           </ol>
@@ -180,12 +180,12 @@ export default function WordFrequencyCounterPage() {
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
-            href="/free-tools"
+            href="/text"
             className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
           >
-            <h3 className="text-base font-semibold text-foreground">Browse free tools</h3>
+            <h3 className="text-base font-semibold text-foreground">Browse text tools</h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the tools hub and move across calculators and focused utility pages.
+              Return to the text hub and move across focused language and analysis utilities.
             </p>
           </Link>
           <Link

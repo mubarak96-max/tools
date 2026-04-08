@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { LucideIcon } from 'lucide-react';
@@ -119,12 +120,15 @@ export default function AdminShellNav({
     <>
       <aside className="hidden w-[220px] shrink-0 border-r border-border bg-card md:flex md:flex-col">
         <div className="flex items-center gap-3 border-b border-border px-5 py-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-[0.8rem] bg-primary-soft text-xs font-semibold text-primary">
-            F
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="text-sm font-semibold text-foreground">findmytool</p>
-          </div>
+          <Link href="/" className="min-w-0 flex-1" target="_blank">
+            <Image
+              src="/images/logo.svg"
+              alt="findbesttool"
+              width={154}
+              height={36}
+              className="h-7 w-auto"
+            />
+          </Link>
           <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
             Admin
           </span>
@@ -196,10 +200,15 @@ export default function AdminShellNav({
       <div className="border-b border-border bg-card px-4 py-3 md:hidden">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-[0.7rem] bg-primary-soft text-[11px] font-semibold text-primary">
-              F
-            </div>
-            <span className="text-sm font-semibold text-foreground">findmytool</span>
+            <Link href="/" target="_blank">
+              <Image
+                src="/images/logo.svg"
+                alt="findbesttool"
+                width={140}
+                height={32}
+                className="h-6 w-auto"
+              />
+            </Link>
             <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Admin
             </span>

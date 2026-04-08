@@ -10,7 +10,7 @@ export default function TermsPage() {
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Acceptable Use</h2>
         <p>
-          By using findmytool, you agree to use the platform for informational and research purposes only. 
+          By using findbesttool, you agree to use the platform for informational and research purposes only. 
           Scraping our database or AI-generated insights for commercial resale is strictly prohibited.
         </p>
 
@@ -24,12 +24,12 @@ export default function TermsPage() {
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Intellectual Property</h2>
         <p>
           All trademarks and logos of third-party tools featured on this site belong to their respective owners. 
-          findmytool is an independent research platform and is not necessarily affiliated with every tool featured.
+          findbesttool is an independent research platform and is not necessarily affiliated with every tool featured.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Limitation of Liability</h2>
         <p>
-          findmytool shall not be held liable for any decisions made or actions taken based on the information provided 
+          findbesttool shall not be held liable for any decisions made or actions taken based on the information provided 
           on this website. Your use of the service is at your own risk.
         </p>
 
