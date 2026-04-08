@@ -4,39 +4,47 @@ export default function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 animate-fade-in">
       <h1 className="text-4xl font-bold mb-8 text-gradient-primary">Terms of Service</h1>
-      
+
       <div className="glass-card p-8 rounded-2xl space-y-6 text-muted-foreground leading-relaxed">
         <p>Last Updated: March 21, 2026</p>
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Acceptable Use</h2>
         <p>
-          By using findbesttool, you agree to use the platform for informational and research purposes only. 
-          Scraping our database or AI-generated insights for commercial resale is strictly prohibited.
+          By accessing and using FindBest Tools, you agree to comply with and be bound by the following
+          terms and conditions. If you do not agree to these terms, please do not use our services.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. AI Content Disclaimer</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Use of Tools</h2>
         <p>
-          The tool reviews, pros, cons, and comparisons on this site are generated or assisted by Artificial Intelligence. 
-          While we strive for 100% accuracy, we do not guarantee the completeness or reliability of any information. 
-          Always verify tool pricing and features on the official vendor websites before making a purchase.
+          All tools on this website are provided for free for personal or professional use. You agree
+          not to use these tools for any illegal purposes or to attempt to disrupt the website&apos;s
+          functionality.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Intellectual Property</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Disclaimer of Warranty</h2>
         <p>
-          All trademarks and logos of third-party tools featured on this site belong to their respective owners. 
-          findbesttool is an independent research platform and is not necessarily affiliated with every tool featured.
+          The tools and generators on FindBest Tools are provided &quot;as is&quot; without any warranties,
+          express or implied. While we strive for 100% accuracy in our calculators and converters, we
+          cannot guarantee the results and are not liable for any errors or financial losses resulting
+          from the use of our tools.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Limitation of Liability</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Intellectual Property</h2>
         <p>
-          findbesttool shall not be held liable for any decisions made or actions taken based on the information provided 
-          on this website. Your use of the service is at your own risk.
+          The design, code, and original content of FindBest Tools are the property of the site owners.
+          You may not scrape, mirror, or redistribute our tools without prior written consent.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Changes to Terms</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Third-Party Links</h2>
         <p>
-          We reserve the right to modify these terms at any time. Continued use of the site constitutes acceptance 
-          of the updated terms.
+          Our site may contain links to third-party websites. We have no control over and assume no
+          responsibility for the content or practices of any third-party sites.
+        </p>
+
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">6. Limitations of Liability</h2>
+        <p>
+          In no event shall FindBest Tools be liable for any damages arising out of the use or inability
+          to use the tools on this website.
         </p>
       </div>
     </div>

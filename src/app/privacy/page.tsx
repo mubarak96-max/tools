@@ -4,36 +4,47 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 animate-fade-in">
       <h1 className="text-4xl font-bold mb-8 text-gradient-primary">Privacy Policy</h1>
-      
+
       <div className="glass-card p-8 rounded-2xl space-y-6 text-muted-foreground leading-relaxed">
         <p>Last Updated: March 21, 2026</p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Information We Collect</h2>
-        <p>
-          findbesttool is designed to be a research-first platform. We do not require account creation for casual browsing. 
-          We may collect anonymous usage data such as which tool pages are visited and general traffic patterns via Google Analytics.
+        <p className="text-lg text-foreground">
+          At <strong className="text-primary">FindBest Tools</strong> (findbest.tools), the privacy of
+          our visitors is a top priority. This policy outlines the types of information collected and
+          how it is used.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Cookies</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Data Usage</h2>
         <p>
-          We use essential cookies to maintain site performance and analytics. Third-party partners (like Google Analytics) 
-          may use cookies to track traffic patterns.
+          Most of our tools process data locally in your browser. We do not store or collect the data
+          you input into these tools unless explicitly stated.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Affiliate Links</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Log Files</h2>
         <p>
-          Some links on findbesttool are affiliate links. If you click one of these links and make a purchase, we may receive 
-          a small commission at no extra cost to you. This helps support our research and maintenance of the platform.
+          Like most standard website servers, we use log files. This includes internet protocol (IP)
+          addresses, browser type, Internet Service Provider (ISP), date/time stamps, and
+          referring/exit pages. This data is used solely to analyze trends and administer the site.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Data Security</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Cookies and Google AdSense</h2>
         <p>
-          We implement industry-standard security measures to protect the integrity of our platform and any data we manage.
+          Google, as a third-party vendor, uses cookies to serve ads on this site.
+        </p>
+        <p>
+          Google&apos;s use of the DART cookie enables it to serve ads to our users based on their visit
+          to this site and other sites on the Internet.
+        </p>
+        <p>
+          Users may opt out of the use of the DART cookie by visiting the Google Ad and Content Network
+          privacy policy.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Contact Us</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Third-Party Privacy</h2>
         <p>
-          If you have questions about this policy, please reach out via our official support channels.
+          Our Privacy Policy does not apply to other advertisers or websites. We advise you to consult
+          the respective Privacy Policies of these third-party ad servers for more detailed information
+          on their practices.
         </p>
       </div>
     </div>
