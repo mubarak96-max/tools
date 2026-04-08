@@ -1,12 +1,12 @@
 import type { FreeToolMeta } from "@/types/tools";
+import { IMAGE_FORMAT_CONVERSIONS, IMAGE_FORMAT_LABELS, type ImageFormatConversionSpec, type ImageFormatConverterKind } from "@/lib/tools/image-format-conversion";
 
 type BaseImageTool = Omit<FreeToolMeta, "href" | "category"> & {
   slug: string;
   category: "Image";
 };
 
-export type ImageTool = BaseImageTool & {
-  kind:
+type BaseImageKind =
     | "random-color-generator"
     | "image-to-base64"
     | "image-colors-inverter"
@@ -28,9 +28,35 @@ export type ImageTool = BaseImageTool & {
     | "image-exif-viewer-metadata-remover"
     | "website-color-palette-extractor"
     | "website-screenshot-tool";
+
+type NativeImageTool = BaseImageTool & {
+  kind: BaseImageKind;
+  conversion?: undefined;
 };
 
+type ImageFormatConverterTool = BaseImageTool & {
+  kind: ImageFormatConverterKind;
+  conversion: ImageFormatConversionSpec;
+};
+
+export type ImageTool = NativeImageTool | ImageFormatConverterTool;
+
 const tool = (value: ImageTool) => value;
+
+function createFormatTool(kind: ImageFormatConverterKind, conversion: ImageFormatConversionSpec): ImageFormatConverterTool {
+  const sourceLabel = IMAGE_FORMAT_LABELS[conversion.source];
+  const targetLabel = IMAGE_FORMAT_LABELS[conversion.target];
+
+  return {
+    slug: kind,
+    name: `${sourceLabel} to ${targetLabel} Converter`,
+    description: `Convert ${sourceLabel} files into ${targetLabel} format online and download the converted image directly in the browser.`,
+    category: "Image",
+    icon: "CNV",
+    kind,
+    conversion,
+  };
+}
 
 export const IMAGE_TOOLS = [
   tool({
@@ -201,6 +227,7 @@ export const IMAGE_TOOLS = [
     icon: "SHOT",
     kind: "website-screenshot-tool",
   }),
+  ...Object.entries(IMAGE_FORMAT_CONVERSIONS).map(([kind, conversion]) => createFormatTool(kind as ImageFormatConverterKind, conversion)),
 ] as const;
 
 export const IMAGE_TOOL_MAP = Object.fromEntries(IMAGE_TOOLS.map((entry) => [entry.slug, entry])) as Record<string, ImageTool>;

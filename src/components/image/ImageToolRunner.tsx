@@ -5,6 +5,7 @@ import type { ImageTool } from "@/lib/tools/image-catalog";
 import AddBordersToImageTool from "@/components/image/AddBordersToImageTool";
 import FlipImageOnlineTool from "@/components/image/FlipImageOnlineTool";
 import ImageExifViewerTool from "@/components/image/ImageExifViewerTool";
+import ImageFormatConverterTool from "@/components/image/ImageFormatConverterTool";
 import ImageToAsciiConverterTool from "@/components/image/ImageToAsciiConverterTool";
 import ImageBlurPixelateTool from "@/components/image/ImageBlurPixelateTool";
 import ImageCropperResizerTool from "@/components/image/ImageCropperResizerTool";
@@ -25,6 +26,10 @@ import WebsiteColorPaletteExtractorTool from "@/components/image/WebsiteColorPal
 import WebsiteScreenshotTool from "@/components/image/WebsiteScreenshotTool";
 
 export default function ImageToolRunner({ tool }: { tool: ImageTool }) {
+  if (tool.conversion) {
+    return <ImageFormatConverterTool tool={tool} />;
+  }
+
   switch (tool.kind) {
     case "random-color-generator":
       return <RandomColorGeneratorTool />;

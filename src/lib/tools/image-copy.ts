@@ -1,4 +1,5 @@
 import type { ImageTool } from "@/lib/tools/image-catalog";
+import { IMAGE_FORMAT_LABELS } from "@/lib/tools/image-format-conversion";
 
 export function buildImageToolCopy(tool: ImageTool) {
   const reviewFaq = {
@@ -6,6 +7,32 @@ export function buildImageToolCopy(tool: ImageTool) {
     answer:
       "Yes. Browser-based image tools are fast, but it is still worth checking dimensions, legibility, file size, and color appearance before you use the output anywhere public.",
   };
+
+  if (tool.conversion) {
+    const sourceLabel = IMAGE_FORMAT_LABELS[tool.conversion.source];
+    const targetLabel = IMAGE_FORMAT_LABELS[tool.conversion.target];
+
+    return {
+      heading: `When converting ${sourceLabel} to ${targetLabel} is useful`,
+      paragraphs: [
+        `${sourceLabel} to ${targetLabel} conversion helps when a file is in the wrong format for a website, CMS, upload field, email attachment, or editing workflow. Sometimes the content is fine and only the format needs to change.`,
+        `This page keeps that job focused on one exact conversion. Upload a ${sourceLabel} file, export it as ${targetLabel}, and download the result without switching through unrelated image tools.`,
+      ],
+      faqs: [
+        {
+          question: `Why would I convert ${sourceLabel} to ${targetLabel}?`,
+          answer:
+            `${targetLabel} may be easier to upload, edit, share, or reuse depending on the tool you are working in. Converting the file is often faster than recreating the image from scratch.`,
+        },
+        {
+          question: `Will the converted ${targetLabel} file look exactly the same as the original ${sourceLabel}?`,
+          answer:
+            "The visible image should stay close to the original, but some formats handle compression, transparency, and metadata differently. It is always worth checking the output before you use it publicly.",
+        },
+        reviewFaq,
+      ],
+    };
+  }
 
   switch (tool.kind) {
     case "random-color-generator":
