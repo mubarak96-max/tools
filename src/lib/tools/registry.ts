@@ -78,6 +78,48 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Text",
     icon: "WORD",
   },
+  {
+    name: "Character Counter",
+    href: "/text/character-counter",
+    description: "Count characters, no-space characters, words, sentences, paragraphs, and reading time instantly.",
+    category: "Text",
+    icon: "CHAR",
+  },
+  {
+    name: "Case Converter",
+    href: "/text/case-converter",
+    description: "Convert text into uppercase, lowercase, title case, sentence case, camelCase, PascalCase, kebab-case, and snake_case.",
+    category: "Text",
+    icon: "CASE",
+  },
+  {
+    name: "Duplicate Word Finder",
+    href: "/text/duplicate-word-finder",
+    description: "Find repeated words, duplicate counts, and overused terms quickly in any text block.",
+    category: "Text",
+    icon: "DUP",
+  },
+  {
+    name: "Em Dash Remover",
+    href: "/text/em-dash-remover",
+    description: "Replace em dashes and en dashes with a comma, hyphen, space, or nothing in one pass.",
+    category: "Text",
+    icon: "DASH",
+  },
+  {
+    name: "Strikethrough Text",
+    href: "/text/strikethrough-text",
+    description: "Generate strike-through, underline, double underline, dotted, and wave-style Unicode text effects.",
+    category: "Text",
+    icon: "LINE",
+  },
+  {
+    name: "Reverse Text Generator",
+    href: "/text/reverse-text-generator",
+    description: "Reverse full text, reverse word order, or reverse each word instantly in one text utility.",
+    category: "Text",
+    icon: "REV",
+  },
 ];
 
 export function getRelatedFreeTools(currentHref: string, limit = 3) {
