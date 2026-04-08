@@ -14,7 +14,7 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does a binary code translator do?",
+    question: "When is a binary code translator useful?",
     answer:
       "It converts normal text into 8-bit binary and converts valid binary byte groups back into readable text.",
   },
@@ -176,7 +176,7 @@ export default function BinaryCodeTranslatorPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/text"

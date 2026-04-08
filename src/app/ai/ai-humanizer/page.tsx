@@ -14,9 +14,9 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What is an AI humanizer?",
+    question: "When should I use an AI humanizer?",
     answer:
-      "An AI humanizer rewrites AI-generated text so it sounds more natural, varied, and human without changing the core meaning.",
+      "Use it when a draft sounds stiff, overly polished, or too obviously AI-written. The goal is to make short passages read more naturally while keeping the original point intact.",
   },
   {
     question: "Does this work on text from ChatGPT, Claude, and Gemini?",
@@ -24,24 +24,19 @@ const faq = [
       "Yes. It targets writing patterns that show up across major AI tools, including ChatGPT, Claude, Gemini, and Copilot.",
   },
   {
-    question: "Why is the limit 300 characters?",
-    answer:
-      "The short cap keeps the tool fast, reduces abuse, and controls API cost while still being useful for paragraphs and short sections.",
-  },
-  {
     question: "Will the meaning of my text change?",
     answer:
-      "It should not. The prompt is designed to preserve facts, technical terms, and intent while changing phrasing and rhythm.",
+      "It should not. The rewrite is meant to preserve the idea, facts, and direction of the original text while changing cadence, phrasing, and tone.",
   },
   {
-    question: "Why is there a queue before the result appears?",
+    question: "What kind of text works best here?",
     answer:
-      "The queue is a client-side delay that spaces requests out, slows abuse, and gives users visible processing feedback instead of instant low-trust output.",
+      "Short paragraphs, intros, answers, bios, and compact sections usually work best. If the input is too long or too dense, it is better to run it in smaller chunks and review the output in context.",
   },
   {
-    question: "Is the API key exposed in the browser?",
+    question: "Should I publish the rewrite without checking it?",
     answer:
-      "No. The browser only calls a local API route. The OpenRouter key stays on the server.",
+      "No. Treat the result as a cleaner draft, not a final answer. Read it once for tone, facts, and voice before using it in anything public or client-facing.",
   },
 ];
 
@@ -218,7 +213,7 @@ export default function AIHumanizerPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/ai"

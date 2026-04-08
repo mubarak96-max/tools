@@ -231,7 +231,7 @@ export default function EMICalculatorPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/finance"

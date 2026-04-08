@@ -14,7 +14,7 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does a case converter do?",
+    question: "When would I use a case converter?",
     answer:
       "It rewrites the same text into a different letter case style, such as uppercase, lowercase, title case, sentence case, camelCase, snake_case, or kebab-case.",
   },
@@ -183,7 +183,7 @@ export default function CaseConverterPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/text"

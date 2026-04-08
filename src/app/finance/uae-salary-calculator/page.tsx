@@ -179,7 +179,7 @@ export default function UAESalaryCalculatorPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link href="/finance/salary-calculator" className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft">
             <h3 className="text-base font-semibold text-foreground">Global Salary Calculator</h3>

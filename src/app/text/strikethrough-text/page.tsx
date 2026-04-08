@@ -14,7 +14,7 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does this text styling tool do?",
+    question: "When would I use styled text like strikethrough or underline?",
     answer:
       "It converts plain text into stylized Unicode text using line effects such as strike-through, double underline, underline, dotted line, and wave line.",
   },
@@ -179,7 +179,7 @@ export default function StrikethroughTextPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/text"

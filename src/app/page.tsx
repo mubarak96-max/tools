@@ -22,11 +22,13 @@ const MOST_USED_TOOL_HREFS = [
   "/finance/mortgage-calculator",
 ];
 
-const CATEGORY_ORDER = ["Text", "Finance", "AI"] as const;
+const CATEGORY_ORDER = ["Text", "Finance", "Converter", "Utility", "AI"] as const;
 
 const CATEGORY_ROUTES: Record<string, string> = {
   Text: "/text",
   Finance: "/finance",
+  Converter: "/converter",
+  Utility: "/utility",
   AI: "/ai",
 };
 

@@ -4,6 +4,7 @@ import { listPages } from "@/lib/db/pages";
 import { listTools } from "@/lib/db/tools";
 import { listCategoryAudienceHubSlugs, listCategoryHubSlugs } from "@/lib/discovery/hubs";
 import { slugify } from "@/lib/slug";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://findbest.tools';
 
@@ -30,162 +31,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
     {
-      url: `${BASE_URL}/finance`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/ai`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/ai/ai-humanizer`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/finance/emi-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/finance/salary-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.95,
-    },
-    {
-      url: `${BASE_URL}/finance/uae-salary-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/finance/discount-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${BASE_URL}/finance/vat-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/finance/profit-margin-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/finance/compound-interest-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/text/word-frequency`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/case-converter`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/duplicate-word-finder`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/em-dash-remover`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/strikethrough-text`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/reverse-text-generator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/morse-code-translator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/binary-code-translator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/ascii-art-generator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/image-to-text`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    },
-    {
-      url: `${BASE_URL}/text/word-cloud-generator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/remove-duplicate-lines`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/text/character-counter`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/finance/mortgage-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/finance/car-loan-calculator`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
       url: `${BASE_URL}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -210,6 +55,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.3,
     },
   ];
+
+  const utilityCategoryRoutes = [...new Set(FREE_TOOLS.map((tool) => tool.category.toLowerCase()))];
+
+  utilityCategoryRoutes.forEach((category) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}/${category}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: category === 'finance' || category === 'ai' ? 0.8 : 0.6,
+    });
+  });
+
+  FREE_TOOLS.forEach((tool) => {
+    sitemapEntries.push({
+      url: `${BASE_URL}${tool.href}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: tool.category === 'Finance' ? 0.9 : tool.category === 'AI' ? 0.9 : 0.8,
+    });
+  });
 
   const [tools, pages, categorySlugs, categoryAudiencePairs, comparisonSlugs] = await Promise.all([
     listTools({ status: ["published"] }),

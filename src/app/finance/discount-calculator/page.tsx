@@ -147,9 +147,9 @@ export default function DiscountCalculatorPage() {
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How the math works</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Discount amount = original price × discount percentage</li>
-            <li>Final price = original price − discount amount</li>
-            <li>Percent off = (amount saved ÷ original price) × 100</li>
+            <li>Discount amount = original price x discount percentage</li>
+            <li>Final price = original price - discount amount</li>
+            <li>Percent off = (amount saved / original price) x 100</li>
           </ul>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">When to use each mode</h2>
@@ -173,7 +173,7 @@ export default function DiscountCalculatorPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/finance"

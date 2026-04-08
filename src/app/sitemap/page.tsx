@@ -57,7 +57,11 @@ export default async function SitemapPage() {
                       ? "Calculators and finance-focused utility tools."
                       : category === "Text"
                         ? "Text cleanup, transformation, and analysis tools."
-                        : "Focused utility tools in this category."}
+                        : category === "Converter"
+                          ? "Format, data, encoding, and value conversion tools."
+                          : category === "Utility"
+                            ? "Formatting and generation tools for quick browser work."
+                            : "Focused utility tools in this category."}
                   </p>
                 </div>
                 <Link

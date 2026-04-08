@@ -1,4 +1,5 @@
 import type { FreeToolMeta } from "@/types/tools";
+import { EXACT_TOOL_REGISTRY } from "@/lib/tools/exact-catalog";
 
 export const FREE_TOOLS: FreeToolMeta[] = [
   {
@@ -162,6 +163,7 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Text",
     icon: "LINES",
   },
+  ...EXACT_TOOL_REGISTRY,
 ];
 
 export function getRelatedFreeTools(currentHref: string, limit = 3) {

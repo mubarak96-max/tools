@@ -14,7 +14,7 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does a reverse text generator do?",
+    question: "What can I do with a reverse text generator?",
     answer:
       "It transforms text by reversing all characters, reversing the word order, or reversing each word individually depending on the mode you choose.",
   },
@@ -176,7 +176,7 @@ export default function ReverseTextGeneratorPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/text"

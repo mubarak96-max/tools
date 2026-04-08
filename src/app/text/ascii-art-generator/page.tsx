@@ -14,7 +14,7 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does an ASCII art generator do?",
+    question: "When would I use an ASCII art generator?",
     answer:
       "It converts normal text into stylized ASCII art using FIGlet-style fonts, which render characters as multi-line text banners.",
   },
@@ -171,7 +171,7 @@ export default function AsciiArtGeneratorPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tool paths</h2>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <Link
             href="/text"
