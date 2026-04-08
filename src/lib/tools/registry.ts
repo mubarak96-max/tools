@@ -148,6 +148,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Text",
     icon: "OCR",
   },
+  {
+    name: "Word Cloud Generator",
+    href: "/text/word-cloud-generator",
+    description: "Generate a word cloud from text with frequency sizing, filters, and copyable top-word output.",
+    category: "Text",
+    icon: "CLOUD",
+  },
 ];
 
 export function getRelatedFreeTools(currentHref: string, limit = 3) {
