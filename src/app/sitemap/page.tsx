@@ -34,11 +34,9 @@ export default async function SitemapPage() {
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Utility categories
-            </p>
+
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">
-              Utility tools by category
+              All Tools
             </h2>
           </div>
           <span className="rounded-full border border-border bg-card px-3 py-1 text-sm text-muted-foreground">
@@ -57,11 +55,17 @@ export default async function SitemapPage() {
                       ? "Calculators and finance-focused utility tools."
                       : category === "Text"
                         ? "Text cleanup, transformation, and analysis tools."
-                        : category === "Converter"
-                          ? "Format, data, encoding, and value conversion tools."
-                          : category === "Utility"
-                            ? "Formatting and generation tools for quick browser work."
-                            : "Focused utility tools in this category."}
+                        : category === "Image"
+                          ? "Image editing, conversion, and quick browser-based visual utilities."
+                          : category === "PDF"
+                            ? "PDF utilities for merging, splitting, extracting, and cleaning up document pages."
+                          : category === "Tailwind"
+                            ? "Tailwind CSS generators, palettes, layout builders, and class converters."
+                          : category === "Converter"
+                            ? "Format, data, encoding, and value conversion tools."
+                            : category === "Utility"
+                              ? "Formatting and generation tools for quick browser work."
+                              : "Focused utility tools in this category."}
                   </p>
                 </div>
                 <Link

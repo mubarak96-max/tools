@@ -7,26 +7,31 @@ import type { FreeToolMeta } from "@/types/tools";
 export const revalidate = 1800;
 
 export const metadata = buildMetadata({
-  title: "Utility Tools for Text, Finance, and AI Workflows",
+  title: "Utility Tools for Text, Image, Finance, Tailwind, and AI Workflows",
   description:
-    "Browse practical utility tools for text cleanup, finance calculations, OCR, and lightweight AI workflows.",
+    "Browse practical utility tools for text cleanup, browser-based image editing, Tailwind CSS generation, finance calculations, OCR, and lightweight AI workflows.",
   path: "/",
 });
 
 const MOST_USED_TOOL_HREFS = [
   "/text/image-to-text",
+  "/pdf/merge-pdf",
+  "/image/image-to-base64",
   "/text/ascii-art-generator",
   "/text/character-counter",
   "/text/case-converter",
+  "/image/flip-image-online",
   "/finance/salary-calculator",
-  "/finance/mortgage-calculator",
 ];
 
-const CATEGORY_ORDER = ["Text", "Finance", "Converter", "Utility", "AI"] as const;
+const CATEGORY_ORDER = ["Text", "Image", "PDF", "Finance", "Tailwind", "Converter", "Utility", "AI"] as const;
 
 const CATEGORY_ROUTES: Record<string, string> = {
   Text: "/text",
+  Image: "/image",
+  PDF: "/pdf",
   Finance: "/finance",
+  Tailwind: "/tailwind",
   Converter: "/converter",
   Utility: "/utility",
   AI: "/ai",

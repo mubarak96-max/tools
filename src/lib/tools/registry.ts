@@ -1,5 +1,8 @@
 import type { FreeToolMeta } from "@/types/tools";
 import { EXACT_TOOL_REGISTRY } from "@/lib/tools/exact-catalog";
+import { IMAGE_TOOL_REGISTRY } from "@/lib/tools/image-catalog";
+import { PDF_TOOL_REGISTRY } from "@/lib/tools/pdf-catalog";
+import { TAILWIND_TOOL_REGISTRY } from "@/lib/tools/tailwind-catalog";
 
 export const FREE_TOOLS: FreeToolMeta[] = [
   {
@@ -163,6 +166,9 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Text",
     icon: "LINES",
   },
+  ...PDF_TOOL_REGISTRY,
+  ...IMAGE_TOOL_REGISTRY,
+  ...TAILWIND_TOOL_REGISTRY,
   ...EXACT_TOOL_REGISTRY,
 ];
 
