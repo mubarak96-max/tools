@@ -119,10 +119,12 @@ export interface WordFrequencyComparisonItem {
   countDelta: number;
 }
 
+export type HumanizerStatus = "idle" | "queued" | "processing" | "done" | "error";
+
 export interface FreeToolMeta {
   name: string;
   href: string;
   description: string;
-  category: "Finance" | "Converter" | "Utility" | "Text";
+  category: "Finance" | "Converter" | "Utility" | "Text" | "AI";
   icon?: string;
 }

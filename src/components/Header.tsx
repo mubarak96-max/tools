@@ -23,6 +23,9 @@ export default function Header() {
           <Link href="/tools" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             All Tools
           </Link>
+          <Link href="/ai" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
+            AI
+          </Link>
           <Link href="/finance" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             Finance
           </Link>
@@ -47,6 +50,12 @@ export default function Header() {
                   className="rounded-[0.95rem] px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-muted hover:text-primary"
                 >
                   All Tools
+                </Link>
+                <Link
+                  href="/ai"
+                  className="rounded-[0.95rem] px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:bg-muted hover:text-primary"
+                >
+                  AI
                 </Link>
                 <Link
                   href="/finance"

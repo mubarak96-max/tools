@@ -2,6 +2,13 @@ import type { FreeToolMeta } from "@/types/tools";
 
 export const FREE_TOOLS: FreeToolMeta[] = [
   {
+    name: "AI Humanizer",
+    href: "/ai/ai-humanizer",
+    description: "Rewrite AI-generated text to sound natural and human, with a short queue flow and no sign-up.",
+    category: "AI",
+    icon: "HUMN",
+  },
+  {
     name: "Salary Calculator",
     href: "/finance/salary-calculator",
     description: "Estimate salary after tax, take-home pay, and employer cost across major countries.",

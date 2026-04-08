@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  other: {
+    "google-adsense-account": "ca-pub-8237514940582521",
+  },
   icons: {
     icon: "/images/favicon.svg",
     shortcut: "/images/favicon.svg",
@@ -38,6 +41,13 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+
+        <Script
+          id="google-adsense"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8237514940582521"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
 
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <>

@@ -127,8 +127,8 @@ function SectionHeader({
 export default async function Home() {
   const { featuredTools, allTools, popularCategories, comparisonHighlights, useCaseLinks } =
     await getHomePageData();
+  const aiTools = FREE_TOOLS.filter((tool) => tool.category === "AI");
   const financeTools = FREE_TOOLS.filter((tool) => tool.category === "Finance");
-  const textTools = FREE_TOOLS.filter((tool) => tool.category === "Text");
 
   return (
     <div className="pb-16">
@@ -170,6 +170,7 @@ export default async function Home() {
             { label: "Project management", query: "Project management" },
             { label: "Design", query: "Design" },
             { label: "For freelancers", query: "freelancers" },
+            { label: "AI tools", href: "/ai" },
             { label: "Finance calculators", href: "/finance" },
             { label: "Text tools", href: "/text" },
           ].map((item) => (
@@ -206,17 +207,17 @@ export default async function Home() {
           </Link>
 
           <Link
-            href="/text"
+            href={aiTools[0]?.href || "/ai"}
             className="glass-card rounded-[1.75rem] border border-border/80 p-6 transition-colors hover:border-primary/20"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Text tools
+              AI tools
             </p>
             <p className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
-              {textTools.length}
+              {aiTools.length}
             </p>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Focused text utilities for quick analysis and lightweight content workflows.
+              High-intent AI writing tools built for fast experiments and repeat usage.
             </p>
           </Link>
         </div>
