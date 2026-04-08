@@ -62,7 +62,15 @@ export async function getToolBySlug(slug: string, options?: { includeDrafts?: bo
     return null;
   }
 
-  const doc = await db.collection(COLLECTIONS.tools).doc(slug).get();
+  let doc;
+
+  try {
+    doc = await db.collection(COLLECTIONS.tools).doc(slug).get();
+  } catch (error) {
+    logServerError("get_tool_by_slug_failed", error, { slug });
+    return null;
+  }
+
   if (!doc.exists) {
     return null;
   }
@@ -87,9 +95,16 @@ export async function getToolsBySlugs(slugs: string[], options?: { includeDrafts
     return [];
   }
 
-  const snapshots = await db.getAll(
-    ...requested.map((slug) => db.collection(COLLECTIONS.tools).doc(slug)),
-  );
+  let snapshots;
+
+  try {
+    snapshots = await db.getAll(
+      ...requested.map((slug) => db.collection(COLLECTIONS.tools).doc(slug)),
+    );
+  } catch (error) {
+    logServerError("get_tools_by_slugs_failed", error, { slugs: requested });
+    return [];
+  }
 
   return snapshots
     .filter((snapshot) => snapshot.exists)

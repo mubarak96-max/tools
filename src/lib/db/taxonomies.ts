@@ -4,6 +4,7 @@ import type { TaxonomyRecord } from "@/types/database";
 
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { logServerError } from "@/lib/monitoring/logger";
 import { normalizeTaxonomyRecord, prepareTaxonomyWrite } from "@/lib/validation/taxonomy";
 
 export async function listCategories(): Promise<TaxonomyRecord[]> {
@@ -12,10 +13,15 @@ export async function listCategories(): Promise<TaxonomyRecord[]> {
     return [];
   }
 
-  return mapQuerySnapshot(
-    db.collection(COLLECTIONS.categories).orderBy("name"),
-    (id, data) => normalizeTaxonomyRecord(data, { id, taxonomyType: "category" }),
-  );
+  try {
+    return await mapQuerySnapshot(
+      db.collection(COLLECTIONS.categories).orderBy("name"),
+      (id, data) => normalizeTaxonomyRecord(data, { id, taxonomyType: "category" }),
+    );
+  } catch (error) {
+    logServerError("list_categories_failed", error);
+    return [];
+  }
 }
 
 export async function getCategoryBySlug(slug: string): Promise<TaxonomyRecord | null> {

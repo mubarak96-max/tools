@@ -5,6 +5,7 @@ import type { CustomPage, RecordStatus } from "@/types/database";
 import { listCategories } from "@/lib/db/taxonomies";
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
 import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { logServerError } from "@/lib/monitoring/logger";
 import { enforcePageTaxonomy } from "@/lib/taxonomy/registry";
 import { normalizePageRecord, preparePageWrite } from "@/lib/validation/page";
 
@@ -25,10 +26,17 @@ export async function listPages(options?: {
     return [];
   }
 
-  const pages = await mapQuerySnapshot(
-    db.collection(COLLECTIONS.pages).orderBy("createdAt", "desc"),
-    (id, data) => normalizePageRecord(data, { id }),
-  );
+  let pages: CustomPage[];
+
+  try {
+    pages = await mapQuerySnapshot(
+      db.collection(COLLECTIONS.pages).orderBy("createdAt", "desc"),
+      (id, data) => normalizePageRecord(data, { id }),
+    );
+  } catch (error) {
+    logServerError("list_pages_failed", error);
+    return [];
+  }
 
   if (!options?.status?.length) {
     return pages;
@@ -43,7 +51,15 @@ export async function getPageBySlug(slug: string, options?: { includeDrafts?: bo
     return null;
   }
 
-  const doc = await db.collection(COLLECTIONS.pages).doc(slug).get();
+  let doc;
+
+  try {
+    doc = await db.collection(COLLECTIONS.pages).doc(slug).get();
+  } catch (error) {
+    logServerError("get_page_by_slug_failed", error, { slug });
+    return null;
+  }
+
   if (!doc.exists) {
     return null;
   }
