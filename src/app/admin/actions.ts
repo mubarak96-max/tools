@@ -1,6 +1,6 @@
 'use server';
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
 import {
@@ -24,6 +24,7 @@ import {
   listTools,
   updateToolRecord,
 } from "@/lib/db/tools";
+import { CACHE_TAGS } from "@/lib/db/shared";
 import { nowIso } from "@/lib/dates";
 import {
   generatePageEditorialPreview,
@@ -43,6 +44,12 @@ function revalidateSharedPublicPaths() {
   revalidatePath("/tools");
   revalidatePath("/sitemap.xml");
   revalidatePath("/admin/review");
+}
+
+function revalidateSharedDataTags() {
+  revalidateTag(CACHE_TAGS.tools, "max");
+  revalidateTag(CACHE_TAGS.pages, "max");
+  revalidateTag(CACHE_TAGS.categories, "max");
 }
 
 function revalidateToolPaths(slug: string) {
@@ -160,6 +167,7 @@ export async function createTool(data: Partial<Tool>) {
 
   const slug = await createToolRecord(nextData, "draft");
 
+  revalidateSharedDataTags();
   revalidatePath("/admin/tools");
   revalidateSharedPublicPaths();
   redirect(`/admin/tools/${slug}/edit`);
@@ -179,6 +187,7 @@ export async function updateTool(slug: string, data: Partial<Tool>) {
 
   await updateToolRecord(slug, nextData);
 
+  revalidateSharedDataTags();
   revalidateToolPaths(slug);
   redirect("/admin/tools");
 }
@@ -186,6 +195,7 @@ export async function updateTool(slug: string, data: Partial<Tool>) {
 export async function deleteTool(slug: string) {
   await deleteToolRecord(slug);
 
+  revalidateSharedDataTags();
   revalidatePath("/admin/tools");
   revalidatePath("/admin/review");
   revalidatePath(`/tools/${slug}`);
@@ -255,6 +265,7 @@ export async function createPage(data: Partial<CustomPage>) {
 
   const slug = await createPageRecord(data, "draft");
 
+  revalidateSharedDataTags();
   revalidatePagePaths(slug);
   redirect(`/admin/pages/${slug}/edit`);
 }
@@ -266,6 +277,7 @@ export async function updatePage(slug: string, data: Partial<CustomPage>) {
 
   await updatePageRecord(slug, data);
 
+  revalidateSharedDataTags();
   revalidatePagePaths(slug);
   redirect("/admin/pages");
 }
@@ -273,6 +285,7 @@ export async function updatePage(slug: string, data: Partial<CustomPage>) {
 export async function deletePage(slug: string) {
   await deletePageRecord(slug);
 
+  revalidateSharedDataTags();
   revalidatePath("/admin/pages");
   revalidatePath("/admin/review");
   revalidatePath(`/p/${slug}`);
@@ -354,6 +367,7 @@ export async function saveGeneratedToolDraft(draft: Partial<Tool>) {
     draft.status ?? "review",
   );
 
+  revalidateSharedDataTags();
   revalidateToolPaths(slug);
   redirect(`/admin/tools/${slug}/edit`);
 }
@@ -408,6 +422,7 @@ export async function saveGeneratedPageDraft(draft: Partial<CustomPage>) {
     draft.status || "review",
   );
 
+  revalidateSharedDataTags();
   revalidatePagePaths(slug);
   redirect(`/admin/pages/${slug}/edit`);
 }
@@ -429,6 +444,7 @@ export async function approveToolForPublish(slug: string) {
     factsLastVerifiedAt: nowIso(),
   });
 
+  revalidateSharedDataTags();
   revalidateToolPaths(slug);
 }
 
@@ -444,6 +460,7 @@ export async function returnToolToDraft(slug: string) {
     status: "draft",
   });
 
+  revalidateSharedDataTags();
   revalidateToolPaths(slug);
 }
 
@@ -462,6 +479,7 @@ export async function regenerateToolEditorial(slug: string) {
     sourceConfidence: preview.confidence,
   });
 
+  revalidateSharedDataTags();
   revalidateToolPaths(slug);
 }
 
@@ -479,6 +497,7 @@ export async function approvePageForPublish(slug: string) {
     status: "published",
   });
 
+  revalidateSharedDataTags();
   revalidatePagePaths(slug);
 }
 
@@ -494,6 +513,7 @@ export async function returnPageToDraft(slug: string) {
     status: "draft",
   });
 
+  revalidateSharedDataTags();
   revalidatePagePaths(slug);
 }
 
@@ -528,22 +548,26 @@ export async function regeneratePageEditorial(slug: string) {
     qualityScore: preview.qualityScore,
   });
 
+  revalidateSharedDataTags();
   revalidatePagePaths(slug);
 }
 
 export async function createCategory(data: Partial<ToolCategory>) {
   await createCategoryRecord(data);
+  revalidateSharedDataTags();
   revalidatePath("/admin/categories");
   redirect("/admin/categories");
 }
 
 export async function updateCategory(slug: string, data: Partial<ToolCategory>) {
   await updateCategoryRecord(slug, data);
+  revalidateSharedDataTags();
   revalidatePath("/admin/categories");
   redirect("/admin/categories");
 }
 
 export async function deleteCategory(slug: string) {
   await deleteCategoryRecord(slug);
+  revalidateSharedDataTags();
   revalidatePath("/admin/categories");
 }

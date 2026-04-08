@@ -4,9 +4,9 @@ import { comparisonSlug } from "@/lib/slug";
 import { compactText } from "@/lib/text";
 import type { CustomPage, Tool } from "@/types/database";
 
-export const SITE_NAME = "findbesttool";
+export const SITE_NAME = "FindBest Tools";
 export const SITE_DESCRIPTION =
-  "Discover the best software tools with structured reviews, comparisons, and decision-ready editorial guidance.";
+  "Use practical browser-based utility tools for text cleanup, OCR, finance calculations, and lightweight AI workflows.";
 
 export function getBaseUrl() {
   return new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://findbest.tools");

@@ -1,10 +1,11 @@
 import "server-only";
 
 import type { RecordStatus, Tool } from "@/types/database";
+import { unstable_cache } from "next/cache";
 
 import { listCategories } from "@/lib/db/taxonomies";
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
-import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { CACHE_TAGS, COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
 import { logServerError } from "@/lib/monitoring/logger";
 import { scoreAlternative } from "@/lib/ranking/alternatives";
 import { enforceToolTaxonomy } from "@/lib/taxonomy/registry";
@@ -19,7 +20,7 @@ async function listApprovedCategoryNames() {
   return approved.length > 0 ? approved : categories.map((category) => category.name);
 }
 
-async function listAllTools(): Promise<Tool[]> {
+async function listAllToolsFromDb(): Promise<Tool[]> {
   const db = getAdminDb();
   if (!db) {
     return [];
@@ -36,14 +37,49 @@ async function listAllTools(): Promise<Tool[]> {
   }
 }
 
+async function listPublishedToolsFromDb(): Promise<Tool[]> {
+  const db = getAdminDb();
+  if (!db) {
+    return [];
+  }
+
+  try {
+    return await mapQuerySnapshot(
+      db.collection(COLLECTIONS.tools).where("status", "==", "published").orderBy("name"),
+      (id, data) => normalizeToolRecord(data, { id }),
+    );
+  } catch (error) {
+    logServerError("list_published_tools_failed", error);
+    return [];
+  }
+}
+
+const listAllToolsCached = unstable_cache(listAllToolsFromDb, ["tools-all"], {
+  tags: [CACHE_TAGS.tools],
+  revalidate: 3600,
+});
+
+const listPublishedToolsCached = unstable_cache(listPublishedToolsFromDb, ["tools-published"], {
+  tags: [CACHE_TAGS.tools],
+  revalidate: 3600,
+});
+
 export async function listTools(options?: {
   status?: RecordStatus[];
   limit?: number;
 }): Promise<Tool[]> {
-  const tools = await listAllTools();
-  const filtered = options?.status?.length
-    ? tools.filter((tool) => options.status?.includes(tool.status))
-    : tools;
+  const requestedStatuses = options?.status ?? [];
+
+  let filtered: Tool[];
+
+  if (requestedStatuses.length === 1 && requestedStatuses[0] === "published") {
+    filtered = await listPublishedToolsCached();
+  } else {
+    const tools = await listAllToolsCached();
+    filtered = requestedStatuses.length
+      ? tools.filter((tool) => requestedStatuses.includes(tool.status))
+      : tools;
+  }
 
   return typeof options?.limit === "number" ? filtered.slice(0, options.limit) : filtered;
 }

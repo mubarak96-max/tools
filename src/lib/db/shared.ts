@@ -12,6 +12,12 @@ export const COLLECTIONS = {
   comparisons: "comparisons",
 } as const;
 
+export const CACHE_TAGS = {
+  tools: "tools",
+  pages: "pages",
+  categories: "categories",
+} as const;
+
 export async function mapQuerySnapshot<T>(
   query: Query<DocumentData>,
   mapper: (id: string, data: Record<string, unknown>) => T,

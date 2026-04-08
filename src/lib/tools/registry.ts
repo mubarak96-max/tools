@@ -155,6 +155,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     category: "Text",
     icon: "CLOUD",
   },
+  {
+    name: "Remove Duplicate Lines",
+    href: "/text/remove-duplicate-lines",
+    description: "Remove repeated lines from multiline text while keeping the first occurrence of each line.",
+    category: "Text",
+    icon: "LINES",
+  },
 ];
 
 export function getRelatedFreeTools(currentHref: string, limit = 3) {

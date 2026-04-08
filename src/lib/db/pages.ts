@@ -1,10 +1,11 @@
 import "server-only";
 
 import type { CustomPage, RecordStatus } from "@/types/database";
+import { unstable_cache } from "next/cache";
 
 import { listCategories } from "@/lib/db/taxonomies";
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
-import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { CACHE_TAGS, COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
 import { logServerError } from "@/lib/monitoring/logger";
 import { enforcePageTaxonomy } from "@/lib/taxonomy/registry";
 import { normalizePageRecord, preparePageWrite } from "@/lib/validation/page";
@@ -18,9 +19,7 @@ async function listApprovedCategoryNames() {
   return approved.length > 0 ? approved : categories.map((category) => category.name);
 }
 
-export async function listPages(options?: {
-  status?: RecordStatus[];
-}): Promise<CustomPage[]> {
+async function listPagesFromDb(): Promise<CustomPage[]> {
   const db = getAdminDb();
   if (!db) {
     return [];
@@ -38,11 +37,50 @@ export async function listPages(options?: {
     return [];
   }
 
-  if (!options?.status?.length) {
+  return pages;
+}
+
+async function listPublishedPagesFromDb(): Promise<CustomPage[]> {
+  const db = getAdminDb();
+  if (!db) {
+    return [];
+  }
+
+  try {
+    return await mapQuerySnapshot(
+      db.collection(COLLECTIONS.pages).where("status", "==", "published").orderBy("createdAt", "desc"),
+      (id, data) => normalizePageRecord(data, { id }),
+    );
+  } catch (error) {
+    logServerError("list_published_pages_failed", error);
+    return [];
+  }
+}
+
+const listPagesCached = unstable_cache(listPagesFromDb, ["pages-all"], {
+  tags: [CACHE_TAGS.pages],
+  revalidate: 3600,
+});
+
+const listPublishedPagesCached = unstable_cache(listPublishedPagesFromDb, ["pages-published"], {
+  tags: [CACHE_TAGS.pages],
+  revalidate: 3600,
+});
+
+export async function listPages(options?: {
+  status?: RecordStatus[];
+}): Promise<CustomPage[]> {
+  const requestedStatuses = options?.status ?? [];
+  const pages =
+    requestedStatuses.length === 1 && requestedStatuses[0] === "published"
+      ? await listPublishedPagesCached()
+      : await listPagesCached();
+
+  if (!requestedStatuses.length) {
     return pages;
   }
 
-  return pages.filter((page) => options.status?.includes(page.status));
+  return pages.filter((page) => requestedStatuses.includes(page.status));
 }
 
 export async function getPageBySlug(slug: string, options?: { includeDrafts?: boolean }) {

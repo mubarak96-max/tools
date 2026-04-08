@@ -177,11 +177,7 @@ export default function WordCloudGenerator() {
             </div>
           </div>
 
-          <div className="rounded-[1rem] border border-primary/15 bg-primary-soft p-4">
-            <p className="text-sm leading-6 text-primary-soft-foreground">
-              This version uses a practical HTML/CSS layout rather than a heavy canvas engine, so it stays fast while still surfacing the dominant terms clearly.
-            </p>
-          </div>
+
         </aside>
       </div>
     </section>

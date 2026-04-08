@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, Search } from 'lucide-react';
+import { Menu } from 'lucide-react';
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.svg"
-              alt="findbesttool"
+              alt="FindBest Tools"
               width={182}
               height={42}
               priority
@@ -18,11 +18,9 @@ export default function Header() {
             />
           </Link>
         </div>
-        
+
         <div className="hidden md:flex items-center space-x-8">
-          <Link href="/tools" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
-            All Tools
-          </Link>
+
           <Link href="/ai" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             AI
           </Link>
@@ -32,9 +30,7 @@ export default function Header() {
           <Link href="/text" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
             Text
           </Link>
-          <Link href="/tools?q=compare" className="text-sm font-medium text-slate-700 transition-colors hover:text-primary">
-            Compare
-          </Link>
+
         </div>
 
         <div className="flex items-center gap-3">
@@ -79,13 +75,7 @@ export default function Header() {
             </div>
           </details>
 
-          <Link
-            href="/tools"
-            className="hidden items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-slate-700 md:flex"
-          >
-            <Search className="h-4 w-4" />
-            Search the directory
-          </Link>
+
         </div>
       </div>
     </header>

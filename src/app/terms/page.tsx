@@ -21,27 +21,33 @@ export default function TermsPage() {
           functionality.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Disclaimer of Warranty</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Ads, analytics, and consent</h2>
         <p>
-          The tools and generators on FindBest Tools are provided &quot;as is&quot; without any warranties,
-          express or implied. While we strive for 100% accuracy in our calculators and converters, we
-          cannot guarantee the results and are not liable for any errors or financial losses resulting
-          from the use of our tools.
+          We may use advertising and analytics to support the site. Where consent is required, we only
+          load those Google services after you accept them. Your use of the site also remains subject to
+          the terms and privacy policies of relevant third-party providers.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Intellectual Property</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Disclaimer of Warranty</h2>
+        <p>
+          The tools and generators on FindBest Tools are provided &quot;as is&quot; without warranties of any
+          kind. We aim for accuracy and uptime, but we cannot guarantee uninterrupted service or that
+          every output will be error-free for every use case.
+        </p>
+
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Intellectual Property</h2>
         <p>
           The design, code, and original content of FindBest Tools are the property of the site owners.
           You may not scrape, mirror, or redistribute our tools without prior written consent.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Third-Party Links</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">6. Third-Party Links</h2>
         <p>
           Our site may contain links to third-party websites. We have no control over and assume no
           responsibility for the content or practices of any third-party sites.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">6. Limitations of Liability</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">7. Limitations of Liability</h2>
         <p>
           In no event shall FindBest Tools be liable for any damages arising out of the use or inability
           to use the tools on this website.

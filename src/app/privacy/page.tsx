@@ -10,41 +10,67 @@ export default function PrivacyPage() {
 
         <p className="text-lg text-foreground">
           At <strong className="text-primary">FindBest Tools</strong> (findbest.tools), the privacy of
-          our visitors is a top priority. This policy outlines the types of information collected and
-          how it is used.
+          our visitors is a top priority. This policy explains what information may be processed when you
+          use the site, which third-party services we rely on, and how consent affects Google ads and
+          analytics.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Data Usage</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. How the tools handle your input</h2>
         <p>
-          Most of our tools process data locally in your browser. We do not store or collect the data
-          you input into these tools unless explicitly stated.
+          Most text and calculator tools process data locally in your browser. We do not intentionally
+          store the text, images, or numbers you enter into those tools unless a page explicitly says it
+          sends data to a third-party service.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Log Files</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Analytics and advertising</h2>
         <p>
-          Like most standard website servers, we use log files. This includes internet protocol (IP)
-          addresses, browser type, Internet Service Provider (ISP), date/time stamps, and
-          referring/exit pages. This data is used solely to analyze trends and administer the site.
+          We use Google services to understand site usage and to fund the site through advertising. Those
+          services may set or read cookies, process IP address information, and collect browser or device
+          data needed for measurement, fraud prevention, and ad delivery.
+        </p>
+        <p>
+          Google AdSense and Google Analytics may load when you visit the site. Those providers may
+          process data according to their own terms, policies, and regional consent requirements.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Cookies and Google AdSense</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Cookies and related technologies</h2>
         <p>
-          Google, as a third-party vendor, uses cookies to serve ads on this site.
+          Google and other service providers may use cookies, local storage, or similar technologies to
+          measure traffic, limit abuse, personalize experiences where permitted, and serve ads.
         </p>
         <p>
-          Google&apos;s use of the DART cookie enables it to serve ads to our users based on their visit
-          to this site and other sites on the Internet.
-        </p>
-        <p>
-          Users may opt out of the use of the DART cookie by visiting the Google Ad and Content Network
-          privacy policy.
+          Depending on your region, you may also see additional controls or notices provided by Google or
+          other vendors.
         </p>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Third-Party Privacy</h2>
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Server logs and operational data</h2>
         <p>
-          Our Privacy Policy does not apply to other advertisers or websites. We advise you to consult
-          the respective Privacy Policies of these third-party ad servers for more detailed information
-          on their practices.
+          Like most websites, our hosting and application stack may process operational data such as IP
+          address, browser type, referring page, timestamps, and error logs. We use that information to
+          secure the site, debug issues, and keep the service running.
+        </p>
+
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Third-party services</h2>
+        <p>
+          Some tools may rely on third-party providers for specific functionality, such as OCR or AI text
+          processing. Where that happens, the page or workflow should make it clear that external
+          processing is involved. Those providers may process submitted data according to their own terms
+          and privacy notices.
+        </p>
+
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">6. Your options</h2>
+        <p>
+          You can stop using the site at any time, decline Google services through the consent banner,
+          or contact us if you have questions about data handling.
+        </p>
+
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">7. Contact</h2>
+        <p>
+          If you have privacy questions, contact us at{" "}
+          <a className="text-primary hover:underline" href="mailto:findbesttools@gmail.com">
+            findbesttools@gmail.com
+          </a>
+          .
         </p>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="max-w-xl space-y-3">
             <Image
               src="/images/logo.svg"
-              alt="findbesttool"
+              alt="FindBest Tools"
               width={182}
               height={42}
               className="h-9 w-auto sm:h-10"
@@ -27,7 +27,7 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-border/60 pt-5">
           <p className="text-xs leading-5 text-muted-foreground">
-            &copy; {new Date().getFullYear()} findbesttool. Structured discovery, editorial review, and Firebase-backed publishing.
+            &copy; {new Date().getFullYear()} FindBest Tools. Browser-based utility tools for text, finance, OCR, and AI workflows.
           </p>
         </div>
       </div>

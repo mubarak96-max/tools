@@ -1,13 +1,14 @@
 import "server-only";
 
 import type { TaxonomyRecord } from "@/types/database";
+import { unstable_cache } from "next/cache";
 
 import { getAdminDb, requireAdminDb } from "@/lib/firebase/admin";
-import { COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
+import { CACHE_TAGS, COLLECTIONS, mapQuerySnapshot, withTimestamps } from "@/lib/db/shared";
 import { logServerError } from "@/lib/monitoring/logger";
 import { normalizeTaxonomyRecord, prepareTaxonomyWrite } from "@/lib/validation/taxonomy";
 
-export async function listCategories(): Promise<TaxonomyRecord[]> {
+async function listCategoriesFromDb(): Promise<TaxonomyRecord[]> {
   const db = getAdminDb();
   if (!db) {
     return [];
@@ -22,6 +23,15 @@ export async function listCategories(): Promise<TaxonomyRecord[]> {
     logServerError("list_categories_failed", error);
     return [];
   }
+}
+
+const listCategoriesCached = unstable_cache(listCategoriesFromDb, ["categories-all"], {
+  tags: [CACHE_TAGS.categories],
+  revalidate: 3600,
+});
+
+export async function listCategories(): Promise<TaxonomyRecord[]> {
+  return listCategoriesCached();
 }
 
 export async function getCategoryBySlug(slug: string): Promise<TaxonomyRecord | null> {
