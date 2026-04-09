@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import ProfitMarginCalculator from "@/app/finance/profit-margin-calculator/components/ProfitMarginCalculator";
 import JsonLd from "@/components/seo/JsonLd";
+import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -130,6 +131,10 @@ export default function ProfitMarginCalculatorPage() {
           </p>
           {tool ? <p className="mt-4 text-sm leading-6 text-muted-foreground">{tool.description}</p> : null}
         </div>
+      
+        <div className="mt-6 max-w-2xl">
+          <PrivacyNote />
+        </div>
       </section>
 
       <ProfitMarginCalculator />
@@ -170,38 +175,7 @@ export default function ProfitMarginCalculatorPage() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <Link
-            href="/finance"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Browse finance tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the hub for pricing, salary, tax, and finance tools.
-            </p>
-          </Link>
-          <Link
-            href="/finance/vat-calculator"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">VAT Calculator</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Pair margin calculations with VAT-inclusive and VAT-exclusive pricing checks.
-            </p>
-          </Link>
-          {relatedTools[0] ? (
-            <Link
-              href={relatedTools[0].href}
-              className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-            >
-              <h3 className="text-base font-semibold text-foreground">{relatedTools[0].name}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{relatedTools[0].description}</p>
-            </Link>
-          ) : null}
-        </div>
-      </section>
+      <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath={PAGE_PATH} />
     </div>
   );
 }

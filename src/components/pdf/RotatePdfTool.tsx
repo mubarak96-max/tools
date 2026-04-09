@@ -62,16 +62,21 @@ export default function RotatePdfTool() {
   return (
     <div className="space-y-6">
       <PdfCard>
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Upload a PDF to rotate pages</h2>
+        <div className="mb-6 text-center">
+          
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Upload a PDF to rotate pages</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Rotate every page or only a page selection, then download the corrected document.
             </p>
-          </div>
-          <div className="flex gap-3">
-            <PdfFilePicker label="PDF file" onFiles={handleFiles} />
-            {file ? (
+          
+        </div>
+
+        <div className="mx-auto w-full max-w-4xl">
+          <PdfFilePicker label="PDF file" onFiles={handleFiles} />
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 w-full">
+          {file ? (
               <button
                 type="button"
                 onClick={() => void handleRotate()}
@@ -81,7 +86,6 @@ export default function RotatePdfTool() {
                 {loading ? "Rotating..." : "Rotate PDF"}
               </button>
             ) : null}
-          </div>
         </div>
         {error ? <p className="mt-4 text-sm text-danger">{error}</p> : null}
       </PdfCard>

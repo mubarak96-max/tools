@@ -80,16 +80,21 @@ export default function ImageWatermarkTool() {
   return (
     <div className="space-y-6">
       <ImageCard>
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Upload an image to watermark</h2>
+        <div className="mb-6 text-center">
+          
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Upload an image to watermark</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Add a text watermark, adjust position and opacity, preview the result, and download the updated image.
             </p>
-          </div>
-          <div className="flex gap-3">
-            <FilePicker label="Image file" onFile={handleFile} />
-            {result ? (
+          
+        </div>
+
+        <div className="mx-auto w-full max-w-4xl">
+          <FilePicker label="Image file" onFile={handleFile} />
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 w-full">
+          {result ? (
               <button
                 type="button"
                 onClick={() => downloadDataUrl(result, `${filename}-watermarked.${inferImageExtension(result)}`)}
@@ -98,7 +103,6 @@ export default function ImageWatermarkTool() {
                 Download image
               </button>
             ) : null}
-          </div>
         </div>
         {error ? <p className="mt-4 text-sm text-danger">{error}</p> : null}
       </ImageCard>

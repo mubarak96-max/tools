@@ -5,6 +5,7 @@ import CharacterCounter from "@/app/text/character-counter/components/CharacterC
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
@@ -133,6 +134,10 @@ export default function CharacterCounterPage() {
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
           ) : null}
         </div>
+      
+        <div className="mt-6 max-w-2xl">
+          <PrivacyNote />
+        </div>
       </section>
 
       <CharacterCounter />
@@ -179,37 +184,31 @@ export default function CharacterCounterPage() {
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <Link
-            href="/text"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Browse text tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the text hub and move across focused language and analysis utilities.
-            </p>
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related text tools</h2>
+          <Link href="/text" className="text-sm font-medium text-primary hover:underline">
+            All text tools →
           </Link>
-          <Link
-            href="/tools"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Explore software tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Go back to the main software directory for structured comparisons and product reviews.
-            </p>
-          </Link>
-          {relatedTools[0] ? (
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {relatedTools.map((tool) => (
             <Link
-              href={relatedTools[0].href}
-              className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
+              key={tool.href}
+              href={tool.href}
+              className="group rounded-[1.25rem] border border-border bg-background p-4 transition-all hover:border-primary/20 hover:bg-primary-soft"
             >
-              <h3 className="text-base font-semibold text-foreground">{relatedTools[0].name}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{relatedTools[0].description}</p>
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{tool.name}</h3>
+                {tool.icon && (
+                  <span className="shrink-0 rounded-md border border-border bg-muted px-1.5 py-0.5 text-[10px] font-bold text-muted-foreground">{tool.icon}</span>
+                )}
+              </div>
+              <p className="text-xs leading-5 text-muted-foreground line-clamp-2">{tool.description}</p>
             </Link>
-          ) : null}
+          ))}
         </div>
       </section>
+
     </div>
   );
 }

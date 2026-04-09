@@ -5,6 +5,7 @@ import StrikethroughText from "@/app/text/strikethrough-text/components/Striketh
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
@@ -133,6 +134,10 @@ export default function StrikethroughTextPage() {
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
           ) : null}
         </div>
+      
+        <div className="mt-6 max-w-2xl">
+          <PrivacyNote />
+        </div>
       </section>
 
       <StrikethroughText />
@@ -178,38 +183,7 @@ export default function StrikethroughTextPage() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <Link
-            href="/text"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Browse text tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the text hub and move across focused language and analysis utilities.
-            </p>
-          </Link>
-          <Link
-            href="/tools"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Explore software tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Go back to the main software directory for structured comparisons and product reviews.
-            </p>
-          </Link>
-          {relatedTools[0] ? (
-            <Link
-              href={relatedTools[0].href}
-              className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-            >
-              <h3 className="text-base font-semibold text-foreground">{relatedTools[0].name}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{relatedTools[0].description}</p>
-            </Link>
-          ) : null}
-        </div>
-      </section>
+      <RelatedToolsSection category="Text" categoryHref="/text" currentPath={PAGE_PATH} />
     </div>
   );
 }

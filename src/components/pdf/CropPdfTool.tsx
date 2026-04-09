@@ -68,16 +68,21 @@ export default function CropPdfTool() {
   return (
     <div className="space-y-6">
       <PdfCard>
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Trim extra page edges from the PDF</h2>
+        <div className="mb-6 text-center">
+          
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Trim extra page edges from the PDF</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Remove unwanted margins by setting crop values in PDF points.
             </p>
-          </div>
-          <div className="flex gap-3">
-            <PdfFilePicker label="PDF file" onFiles={handleFiles} />
-            {file ? (
+          
+        </div>
+
+        <div className="mx-auto w-full max-w-4xl">
+          <PdfFilePicker label="PDF file" onFiles={handleFiles} />
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 w-full">
+          {file ? (
               <button
                 type="button"
                 onClick={() => void handleCrop()}
@@ -87,7 +92,6 @@ export default function CropPdfTool() {
                 {loading ? "Cropping..." : "Crop PDF"}
               </button>
             ) : null}
-          </div>
         </div>
         {error ? <p className="mt-4 text-sm text-danger">{error}</p> : null}
       </PdfCard>

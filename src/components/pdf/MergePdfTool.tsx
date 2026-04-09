@@ -67,16 +67,21 @@ export default function MergePdfTool() {
   return (
     <div className="space-y-6">
       <PdfCard>
-        <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">Upload PDFs to merge</h2>
+        <div className="mb-6 text-center">
+          
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Upload PDFs to merge</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
               Add the files in the order you want them to appear, then export one combined PDF.
             </p>
-          </div>
-          <div className="flex gap-3">
-            <PdfFilePicker label="PDF files" multiple onFiles={handleFiles} />
-            {files.length ? (
+          
+        </div>
+
+        <div className="mx-auto w-full max-w-4xl">
+          <PdfFilePicker label="PDF files" multiple onFiles={handleFiles} />
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 w-full">
+          {files.length ? (
               <button
                 type="button"
                 onClick={() => void handleMerge()}
@@ -86,7 +91,6 @@ export default function MergePdfTool() {
                 {loading ? "Merging..." : "Merge PDFs"}
               </button>
             ) : null}
-          </div>
         </div>
         {error ? <p className="mt-4 text-sm text-danger">{error}</p> : null}
       </PdfCard>

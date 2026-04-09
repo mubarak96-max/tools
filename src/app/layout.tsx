@@ -38,7 +38,7 @@ export default function RootLayout({
       >
         <div className="site-backdrop pointer-events-none fixed inset-0 z-[-1]" />
         <Header />
-        <main className="flex-grow pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <main className="flex-grow pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
           {children}
         </main>
         <Footer />
