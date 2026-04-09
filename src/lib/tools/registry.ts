@@ -147,8 +147,8 @@ export const FREE_TOOLS: FreeToolMeta[] = [
   },
   {
     name: "Image to Text OCR",
-    href: "/text/image-to-text",
-    description: "Extract text from an image online with OCR, progress feedback, and copy-ready output.",
+    href: "/text/convert-image-to-text",
+    description: "Convert image to text online with OCR, progress feedback, and copy-ready output.",
     category: "Text",
     icon: "OCR",
   },
@@ -172,6 +172,15 @@ export const FREE_TOOLS: FreeToolMeta[] = [
   ...EXACT_TOOL_REGISTRY,
 ];
 
-export function getRelatedFreeTools(currentHref: string, limit = 3) {
-  return FREE_TOOLS.filter((tool) => tool.href !== currentHref).slice(0, limit);
+export function getRelatedFreeTools(currentHref: string, limit = 6) {
+  const current = FREE_TOOLS.find((t) => t.href === currentHref);
+  const sameCategory = FREE_TOOLS.filter(
+    (t) => t.href !== currentHref && t.category === current?.category,
+  );
+  if (sameCategory.length >= limit) return sameCategory.slice(0, limit);
+  // Top up with tools from other categories if same-category pool is small
+  const others = FREE_TOOLS.filter(
+    (t) => t.href !== currentHref && t.category !== current?.category,
+  );
+  return [...sameCategory, ...others].slice(0, limit);
 }

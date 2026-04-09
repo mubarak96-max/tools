@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { CONVERSION_ROUTE_REDIRECTS } from "./src/lib/tools/conversion-routes";
 
 const firebaseStorageBucket = (process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "").replace(
   /^gs:\/\//,
@@ -29,6 +30,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      ...CONVERSION_ROUTE_REDIRECTS,
       {
         source: "/free-tools",
         destination: "/finance",

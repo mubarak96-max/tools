@@ -1,4 +1,5 @@
 import type { FreeToolMeta } from "@/types/tools";
+import { buildConvertDescription, buildConvertName, withConvertSlug } from "@/lib/tools/conversion-routes";
 
 type BaseTailwindTool = Omit<FreeToolMeta, "href" | "category"> & {
   slug: string;
@@ -19,6 +20,15 @@ export type TailwindTool = BaseTailwindTool & {
 };
 
 const tool = (value: TailwindTool) => value;
+
+function convertTool(value: TailwindTool, from: string, to: string): TailwindTool {
+  return tool({
+    ...value,
+    slug: withConvertSlug(value.slug),
+    name: buildConvertName(from, to),
+    description: buildConvertDescription(from, to, value.description),
+  });
+}
 
 export const TAILWIND_TOOLS = [
   tool({
@@ -53,22 +63,22 @@ export const TAILWIND_TOOLS = [
     icon: "BTN",
     kind: "button",
   }),
-  tool({
+  convertTool({
     slug: "css-to-tailwind",
     name: "CSS to Tailwind Converter",
     description: "Paste common CSS declarations and get the closest Tailwind utility classes back.",
     category: "Tailwind",
     icon: "C2T",
     kind: "css-to-tailwind",
-  }),
-  tool({
+  }, "CSS", "Tailwind"),
+  convertTool({
     slug: "tailwind-to-css",
     name: "Tailwind to CSS Converter",
     description: "Convert common Tailwind classes into readable CSS declarations for debugging and handoff.",
     category: "Tailwind",
     icon: "T2C",
     kind: "tailwind-to-css",
-  }),
+  }, "Tailwind", "CSS"),
   tool({
     slug: "flexbox-generator",
     name: "Tailwind Flexbox Generator",

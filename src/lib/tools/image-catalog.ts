@@ -1,5 +1,6 @@
 import type { FreeToolMeta } from "@/types/tools";
 import { IMAGE_FORMAT_CONVERSIONS, IMAGE_FORMAT_LABELS, type ImageFormatConversionSpec, type ImageFormatConverterKind } from "@/lib/tools/image-format-conversion";
+import { buildConvertDescription, buildConvertName, withConvertSlug } from "@/lib/tools/conversion-routes";
 
 type BaseImageTool = Omit<FreeToolMeta, "href" | "category"> & {
   slug: string;
@@ -48,9 +49,9 @@ function createFormatTool(kind: ImageFormatConverterKind, conversion: ImageForma
   const targetLabel = IMAGE_FORMAT_LABELS[conversion.target];
 
   return {
-    slug: kind,
-    name: `${sourceLabel} to ${targetLabel} Converter`,
-    description: `Convert ${sourceLabel} files into ${targetLabel} format online and download the converted image directly in the browser.`,
+    slug: withConvertSlug(kind),
+    name: buildConvertName(sourceLabel, targetLabel),
+    description: buildConvertDescription(sourceLabel, targetLabel, `Download the converted ${targetLabel} image directly in the browser.`),
     category: "Image",
     icon: "CNV",
     kind,
@@ -68,9 +69,9 @@ export const IMAGE_TOOLS = [
     kind: "random-color-generator",
   }),
   tool({
-    slug: "image-to-base64",
-    name: "Image to Base64 Converter",
-    description: "Convert an uploaded image into a Base64 string or data URL directly in the browser.",
+    slug: withConvertSlug("image-to-base64"),
+    name: buildConvertName("Image", "Base64"),
+    description: buildConvertDescription("Image", "Base64", "Copy the output as a Base64 string or full data URL directly in the browser."),
     category: "Image",
     icon: "B64",
     kind: "image-to-base64",
@@ -180,9 +181,9 @@ export const IMAGE_TOOLS = [
     kind: "pixel-art-converter",
   }),
   tool({
-    slug: "image-to-ascii-converter",
-    name: "Image to ASCII Converter",
-    description: "Convert an uploaded image into ASCII art text directly in the browser and copy the result.",
+    slug: withConvertSlug("image-to-ascii-converter"),
+    name: buildConvertName("Image", "ASCII"),
+    description: buildConvertDescription("Image", "ASCII", "Generate ASCII art text directly in the browser and copy the result."),
     category: "Image",
     icon: "ASCII",
     kind: "image-to-ascii-converter",

@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-import { ImageCard, ImageField, ImageInput, ImageSelect, PreviewImage } from "@/components/image/shared";
+import { FilesPicker, ImageCard, ImageField, ImageInput, ImageSelect, PreviewImage } from "@/components/image/shared";
 import { canvasToDataUrl, downloadDataUrl, inferImageExtension, loadImageElement, readFileAsDataUrl } from "@/lib/tools/image-utils";
 
 type UploadedImage = {
@@ -13,7 +13,6 @@ type UploadedImage = {
 };
 
 export default function MergeImagesOnlineTool() {
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [result, setResult] = useState("");
   const [error, setError] = useState("");
@@ -107,22 +106,8 @@ export default function MergeImagesOnlineTool() {
               Combine several images into one horizontal or vertical file with gap and background controls.
             </p>
           </div>
-          <div className="flex gap-3">
-            <input
-              ref={inputRef}
-              type="file"
-              accept="image/*"
-              multiple
-              className="hidden"
-              onChange={(event) => void handleFiles(event.target.files)}
-            />
-            <button
-              type="button"
-              onClick={() => inputRef.current?.click()}
-              className="inline-flex rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
-            >
-              Choose images
-            </button>
+          <div className="flex flex-wrap gap-3">
+            <FilesPicker label="Source images" onFiles={(fileList) => void handleFiles(fileList)} />
             {result ? (
               <button
                 type="button"
@@ -162,9 +147,7 @@ export default function MergeImagesOnlineTool() {
               {images.map((image) => (
                 <article key={image.src} className="rounded-[1.25rem] border border-border bg-background p-4">
                   <PreviewImage src={image.src} alt={image.name} />
-                  <p className="mt-3 text-sm text-muted-foreground">
-                    {image.name} · {image.width} x {image.height}px
-                  </p>
+                  <p className="mt-3 text-sm text-muted-foreground">{image.name} - {image.width} x {image.height}px</p>
                 </article>
               ))}
             </div>

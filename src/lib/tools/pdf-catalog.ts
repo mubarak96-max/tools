@@ -1,4 +1,5 @@
 import type { FreeToolMeta } from "@/types/tools";
+import { buildConvertDescription, buildConvertName, withConvertSlug } from "@/lib/tools/conversion-routes";
 
 type BasePdfTool = Omit<FreeToolMeta, "href" | "category"> & {
   slug: string;
@@ -30,6 +31,15 @@ export type PdfTool = BasePdfTool & {
 };
 
 const tool = (value: PdfTool) => value;
+
+function convertTool(value: PdfTool, from: string, to: string): PdfTool {
+  return tool({
+    ...value,
+    slug: withConvertSlug(value.slug),
+    name: buildConvertName(from, to),
+    description: buildConvertDescription(from, to, value.description),
+  });
+}
 
 export const PDF_TOOLS = [
   tool({
@@ -88,14 +98,14 @@ export const PDF_TOOLS = [
     icon: "MARK",
     kind: "add-watermark",
   }),
-  tool({
+  convertTool({
     slug: "jpg-to-pdf",
     name: "JPG to PDF",
     description: "Turn one or more JPG or PNG images into a PDF directly in the browser.",
     category: "PDF",
     icon: "JPG",
     kind: "jpg-to-pdf",
-  }),
+  }, "JPG", "PDF"),
   tool({
     slug: "protect-pdf",
     name: "Protect PDF",
@@ -144,14 +154,14 @@ export const PDF_TOOLS = [
     icon: "CMP",
     kind: "compress-pdf",
   }),
-  tool({
+  convertTool({
     slug: "html-to-pdf",
     name: "HTML to PDF",
     description: "Convert HTML markup into a printable PDF from a focused browser-based editor.",
     category: "PDF",
     icon: "HTML",
     kind: "html-to-pdf",
-  }),
+  }, "HTML", "PDF"),
   tool({
     slug: "compare-pdf",
     name: "Compare PDF",
@@ -160,38 +170,38 @@ export const PDF_TOOLS = [
     icon: "DIFF",
     kind: "compare-pdf",
   }),
-  tool({
+  convertTool({
     slug: "word-to-pdf",
     name: "Word to PDF",
     description: "Convert a DOCX file into a clean text-first PDF directly in the browser.",
     category: "PDF",
     icon: "DOCX",
     kind: "word-to-pdf",
-  }),
-  tool({
+  }, "Word", "PDF"),
+  convertTool({
     slug: "powerpoint-to-pdf",
     name: "PowerPoint to PDF",
     description: "Turn a PPTX deck into a text-based PDF handout without desktop office software.",
     category: "PDF",
     icon: "PPTX",
     kind: "powerpoint-to-pdf",
-  }),
-  tool({
+  }, "PowerPoint", "PDF"),
+  convertTool({
     slug: "excel-to-pdf",
     name: "Excel to PDF",
     description: "Export workbook sheets into a readable PDF for quick review or sharing.",
     category: "PDF",
     icon: "XLSX",
     kind: "excel-to-pdf",
-  }),
-  tool({
+  }, "Excel", "PDF"),
+  convertTool({
     slug: "pdf-to-pdfa",
     name: "PDF to PDF/A",
     description: "Create a best-effort archival-style PDF copy for longer-term document storage.",
     category: "PDF",
     icon: "PDFA",
     kind: "pdf-to-pdfa",
-  }),
+  }, "PDF", "PDF/A"),
 ] as const;
 
 export const PDF_TOOL_MAP = Object.fromEntries(PDF_TOOLS.map((entry) => [entry.slug, entry])) as Record<string, PdfTool>;

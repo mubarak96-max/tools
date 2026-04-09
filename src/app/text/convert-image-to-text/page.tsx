@@ -2,19 +2,20 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import ImageToText from "@/app/text/image-to-text/components/ImageToText";
+import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
-import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/text/image-to-text";
+const PAGE_PATH = "/text/convert-image-to-text";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "How do I extract text from an image?",
+    question: "How do I convert an image to text?",
     answer:
       "Upload an image, run OCR, and the tool will scan the picture for readable text and return the extracted result in plain text form.",
   },
@@ -36,11 +37,11 @@ const faq = [
 ];
 
 export const metadata: Metadata = {
-  title: "Image to Text OCR Tool | Extract Text from an Image Online",
+  title: "Convert Image to Text | Free Online Convert Image to Text",
   description:
-    "Extract text from an image with a free OCR tool. Upload a picture, run OCR, and copy the detected text instantly online.",
+    "Convert image to text online with a free OCR tool. Upload a picture, run OCR, and copy the detected text instantly in the browser.",
   keywords: [
-    "extract text from an image",
+    "convert image to text",
     "ocr",
     "image to text",
     "ocr text extractor",
@@ -53,15 +54,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Image to Text OCR Tool",
+    title: "Convert Image to Text",
     description:
-      "Upload an image, run OCR, and extract text from an image instantly with one free text utility.",
+      "Convert image to text online with OCR and copy the extracted text instantly.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Image to Text OCR Tool",
+    title: "Convert Image to Text",
     description:
-      "Use OCR to extract text from an image and copy the result instantly.",
+      "Convert image to text online with OCR and copy the result instantly.",
   },
 };
 
@@ -69,7 +70,7 @@ function buildImageToTextJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Image to Text OCR Tool",
+    name: "Convert Image to Text",
     url: PAGE_URL,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
@@ -80,9 +81,9 @@ function buildImageToTextJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free OCR tool to extract text from an image online using client-side optical character recognition.",
+      "Free OCR tool to convert image to text online using client-side optical character recognition.",
     featureList: [
-      "Extract text from an image",
+      "Convert image to text",
       "OCR progress status",
       "Confidence score",
       "Copy extracted text",
@@ -91,14 +92,13 @@ function buildImageToTextJsonLd() {
   };
 }
 
-export default function ImageToTextPage() {
+export default function ConvertImageToTextPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Text", path: "/text" },
-    { name: "Image to Text", path: PAGE_PATH },
+    { name: "Convert Image to Text", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const relatedTools = getRelatedFreeTools(PAGE_PATH).filter((tool) => tool.category === "Text");
   const currentTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
@@ -114,7 +114,7 @@ export default function ImageToTextPage() {
             <li>/</li>
             <li><Link href="/text" className="hover:text-primary">Text</Link></li>
             <li>/</li>
-            <li className="text-foreground">Image to Text</li>
+            <li className="text-foreground">Convert Image to Text</li>
           </ol>
         </nav>
 
@@ -123,14 +123,18 @@ export default function ImageToTextPage() {
             OCR utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Extract text from an image with OCR
+            Convert Image to Text
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Upload a picture and use OCR to extract text from an image directly in the browser. This tool is built for quick image-to-text conversion, copy-ready output, and simple document cleanup.
+            Convert image to text online with OCR directly in the browser. Upload a picture, extract the readable text, and copy the result into your next document or workflow.
           </p>
           {currentTool ? (
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
           ) : null}
+        </div>
+
+        <div className="mt-6 max-w-2xl">
+          <PrivacyNote />
         </div>
       </section>
 
@@ -138,18 +142,18 @@ export default function ImageToTextPage() {
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How OCR image-to-text extraction works</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How OCR image-to-text conversion works</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
             OCR, or optical character recognition, scans the visible characters inside an image and turns them into editable text. This is useful when you need to capture text from screenshots, scanned notes, receipts, posters, or document photos without retyping everything manually.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This tool runs OCR directly in the browser, so you can extract text from an image online and immediately copy the result into a document, note, or workflow.
+            This tool runs OCR directly in the browser, so you can convert image to text online and immediately copy the result into a document, note, or workflow.
           </p>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Best use cases</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Extracting text from screenshots and cropped document images</li>
-            <li>Turning posters, signs, or product shots into editable copy</li>
+            <li>Converting screenshots and cropped document images into editable text</li>
+            <li>Turning posters, signs, or product shots into copy-ready text</li>
             <li>Capturing text from receipts, forms, and printed notes</li>
             <li>Using OCR to avoid manually retyping image-based text</li>
           </ul>
@@ -176,38 +180,7 @@ export default function ImageToTextPage() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related tools</h2>
-        <div className="mt-5 grid gap-4 md:grid-cols-3">
-          <Link
-            href="/text"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Browse text tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Return to the text hub and move across focused language and analysis utilities.
-            </p>
-          </Link>
-          <Link
-            href="/tools"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Explore software tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Go back to the main software directory for structured comparisons and product reviews.
-            </p>
-          </Link>
-          {relatedTools[0] ? (
-            <Link
-              href={relatedTools[0].href}
-              className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-            >
-              <h3 className="text-base font-semibold text-foreground">{relatedTools[0].name}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{relatedTools[0].description}</p>
-            </Link>
-          ) : null}
-        </div>
-      </section>
+      <RelatedToolsSection category="Text" categoryHref="/text" currentPath={PAGE_PATH} />
     </div>
   );
 }

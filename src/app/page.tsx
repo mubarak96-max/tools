@@ -9,14 +9,14 @@ export const revalidate = 1800;
 export const metadata = buildMetadata({
   title: "Utility Tools for Text, Image, Finance, Tailwind, and AI Workflows",
   description:
-    "Browse practical utility tools for text cleanup, browser-based image editing, Tailwind CSS generation, finance calculations, OCR, and lightweight AI workflows.",
+    "Browser-based utility tools for text cleanup, image editing, Tailwind CSS generation, finance calculations, OCR, and AI workflows. No sign-up, no uploads.",
   path: "/",
 });
 
 const MOST_USED_TOOL_HREFS = [
-  "/text/image-to-text",
+  "/text/convert-image-to-text",
   "/pdf/merge-pdf",
-  "/image/image-to-base64",
+  "/image/convert-image-to-base64",
   "/text/ascii-art-generator",
   "/text/character-counter",
   "/text/case-converter",
@@ -37,70 +37,97 @@ const CATEGORY_ROUTES: Record<string, string> = {
   AI: "/ai",
 };
 
-function SectionHeader({
-  title,
-  href,
-  ctaLabel,
-}: {
-  title: string;
-  href?: string;
-  ctaLabel?: string;
-}) {
-  return (
-    <div className="mb-6 flex items-center justify-between gap-4">
-      <h2 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h2>
-      {href && ctaLabel ? (
-        <Link
-          href={href}
-          className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
-        >
-          {ctaLabel}
-        </Link>
-      ) : null}
-    </div>
-  );
-}
+const TRUST_ITEMS = [
+  { icon: "⚡", label: "Instant results" },
+  { icon: "🔒", label: "Files stay on your device" },
+  { icon: "🚫", label: "No sign-up required" },
+  { icon: "🆓", label: "Free forever" },
+  { icon: "🌐", label: "Works in any browser" },
+];
 
 function ToolCard({
   name,
   href,
   description,
-  category,
   icon,
 }: {
   name: string;
   href: string;
   description: string;
-  category: string;
   icon?: string;
 }) {
   return (
     <Link
       href={href}
-      className="glass-card rounded-[1.5rem] border border-border/80 p-6 transition-colors hover:border-primary/20"
+      className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25 hover:shadow-[0_4px_20px_-8px_rgba(79,70,229,0.18)]"
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <div className="inline-flex rounded-full border border-primary/10 bg-primary-soft px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-            {category}
-          </div>
-          <h3 className="mt-4 text-xl font-semibold tracking-tight text-foreground">{name}</h3>
-        </div>
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
+          {name}
+        </h3>
         {icon ? (
-          <span className="rounded-[0.9rem] border border-border bg-background px-3 py-2 text-xs font-semibold text-muted-foreground">
+          <span className="shrink-0 rounded-lg border border-border bg-muted px-2 py-1 text-[10px] font-bold text-muted-foreground">
             {icon}
           </span>
         ) : null}
       </div>
-      <p className="mt-4 text-sm leading-6 text-muted-foreground">{description}</p>
+      <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{description}</p>
+      <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Open tool →
+      </span>
     </Link>
   );
 }
 
-export default function Home() {
-  const mostUsedTools = MOST_USED_TOOL_HREFS.map((href) => FREE_TOOLS.find((tool) => tool.href === href)).filter(
-    (tool): tool is FreeToolMeta => Boolean(tool),
+function CategorySection({
+  category,
+  href,
+  tools,
+}: {
+  category: string;
+  href: string;
+  tools: FreeToolMeta[];
+}) {
+  const visible = tools.slice(0, 8);
+  const hasMore = tools.length > 8;
+
+  return (
+    <section>
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <Link href={href} className="group flex items-center gap-2">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-primary transition-colors">
+            {category} Tools
+          </h2>
+          <span className="text-xs text-muted-foreground">({tools.length})</span>
+        </Link>
+        {hasMore && (
+          <Link
+            href={href}
+            className="rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:text-primary"
+          >
+            Browse all →
+          </Link>
+        )}
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {visible.map((tool) => (
+          <ToolCard
+            key={tool.href}
+            name={tool.name}
+            href={tool.href}
+            description={tool.description}
+            icon={tool.icon}
+          />
+        ))}
+      </div>
+    </section>
   );
+}
+
+export default function Home() {
+  const mostUsedTools = MOST_USED_TOOL_HREFS.map((href) =>
+    FREE_TOOLS.find((tool) => tool.href === href)
+  ).filter((tool): tool is FreeToolMeta => Boolean(tool));
 
   const groupedTools = FREE_TOOLS.reduce<Record<string, typeof FREE_TOOLS>>((groups, tool) => {
     groups[tool.category] = [...(groups[tool.category] || []), tool];
@@ -114,50 +141,75 @@ export default function Home() {
   })).filter((entry) => entry.tools.length > 0);
 
   return (
-    <div className="space-y-12 pb-16">
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
-        <SectionHeader title="Most Used" />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div className="space-y-14 pb-16">
+
+      {/* ── Hero ── */}
+      <section className="rounded-[2rem] border border-border/60 bg-card px-8 py-12 sm:px-12 sm:py-16 text-center">
+        <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] mb-5">
+          Browser-based · Free · No sign-up
+        </p>
+        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          Find the right tool —{" "}
+          <span className="text-gradient-primary">instantly.</span>
+        </h1>
+        <p className="mt-5 max-w-2xl mx-auto text-base leading-7 text-muted-foreground sm:text-lg">
+          Practical utilities for text, images, PDFs, finance calculations, and AI workflows.
+          Everything runs in your browser — your files never leave your device.
+        </p>
+
+        {/* Category pill shortcuts */}
+        <div className="mt-8 flex flex-wrap justify-center gap-2">
+          {CATEGORY_ORDER.map((cat) => (
+            <Link
+              key={cat}
+              href={CATEGORY_ROUTES[cat]}
+              className="rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:text-primary hover:bg-primary-soft"
+            >
+              {cat}
+            </Link>
+          ))}
+
+        </div>
+      </section>
+
+      {/* ── Trust bar ── */}
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-2.5">
+        {TRUST_ITEMS.map((item) => (
+          <div key={item.label} className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>{item.icon}</span>
+            <span>{item.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Most Used ── */}
+      <section>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-semibold tracking-tight text-foreground">Most Used</h2>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {mostUsedTools.map((tool) => (
             <ToolCard
               key={tool.href}
               name={tool.name}
               href={tool.href}
               description={tool.description}
-              category={tool.category}
               icon={tool.icon}
             />
           ))}
         </div>
       </section>
 
-      {orderedCategories.map((entry) => {
-        const visibleTools = entry.tools.slice(0, 4);
-        const hasMore = entry.tools.length > 4;
+      {/* ── Categories ── */}
+      {orderedCategories.map((entry) => (
+        <CategorySection
+          key={entry.category}
+          category={entry.category}
+          href={entry.href}
+          tools={entry.tools}
+        />
+      ))}
 
-        return (
-          <section key={entry.category} className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
-            <SectionHeader
-              title={`${entry.category} Tools`}
-              href={hasMore ? entry.href : undefined}
-              ctaLabel={hasMore ? "Browse More" : undefined}
-            />
-
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {visibleTools.map((tool) => (
-                <ToolCard
-                  key={tool.href}
-                  name={tool.name}
-                  href={tool.href}
-                  description={tool.description}
-                  category={tool.category}
-                  icon={tool.icon}
-                />
-              ))}
-            </div>
-          </section>
-        );
-      })}
     </div>
   );
 }

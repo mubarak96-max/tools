@@ -8,6 +8,7 @@ import type { TimeMode } from "@/lib/tools/time-converter";
 import type { UnitMode } from "@/lib/tools/unit-converter";
 import type { CodeAction, CodeLanguage } from "@/lib/tools/code-formatters";
 import type { RandomMode } from "@/lib/tools/random-generators";
+import { buildConvertDescription, buildConvertName, withConvertSlug } from "@/lib/tools/conversion-routes";
 import type { FreeToolMeta } from "@/types/tools";
 
 type BaseTool = Omit<FreeToolMeta, "href"> & { slug: string };
@@ -59,7 +60,115 @@ export type ExactUtilityTool =
   | (BaseTool & { family: "random"; mode: RandomMode });
 
 const text = (tool: ExactTextTool): ExactTextTool => tool;
-const converter = (tool: ExactConverterTool): ExactConverterTool => tool;
+
+function conversionText(tool: ExactTextTool, from: string, to: string): ExactTextTool {
+  return text({
+    ...tool,
+    slug: withConvertSlug(tool.slug),
+    name: buildConvertName(from, to),
+    description: buildConvertDescription(from, to, tool.description),
+  });
+}
+
+function getEncodingLabels(mode: EncodingMode) {
+  const labels: Record<EncodingMode, { from: string; to: string }> = {
+    "url-encode": { from: "Text", to: "URL Encoding" },
+    "url-decode": { from: "URL Encoding", to: "Text" },
+    "html-encode": { from: "Text", to: "HTML Entities" },
+    "html-decode": { from: "HTML Entities", to: "Text" },
+    "base64-encode": { from: "Text", to: "Base64" },
+    "base64-decode": { from: "Base64", to: "Text" },
+    rot13: { from: "Text", to: "ROT13 Text" },
+    rot47: { from: "Text", to: "ROT47 Text" },
+    "text-to-binary": { from: "Text", to: "Binary" },
+    "binary-to-text": { from: "Binary", to: "Text" },
+    "text-to-hex": { from: "Text", to: "Hex" },
+    "hex-to-text": { from: "Hex", to: "Text" },
+    "text-to-octal": { from: "Text", to: "Octal" },
+    "octal-to-text": { from: "Octal", to: "Text" },
+    "text-to-decimal": { from: "Text", to: "Decimal" },
+    "decimal-to-text": { from: "Decimal", to: "Text" },
+    "punycode-encode": { from: "Text", to: "Punycode" },
+    "punycode-decode": { from: "Punycode", to: "Text" },
+    "idn-encode": { from: "Unicode Domain", to: "ASCII Domain" },
+    "idn-decode": { from: "ASCII Domain", to: "Unicode Domain" },
+  };
+
+  return labels[mode];
+}
+
+function getTimeLabels(mode: TimeMode) {
+  const labels: Record<TimeMode, { from: string; to: string }> = {
+    "unix-to-utc": { from: "UNIX Time", to: "UTC Time" },
+    "utc-to-unix": { from: "UTC Time", to: "UNIX Time" },
+    "seconds-to-hms": { from: "Seconds", to: "H:M:S" },
+    "hms-to-seconds": { from: "H:M:S", to: "Seconds" },
+    "seconds-to-human": { from: "Seconds", to: "Human Readable Time" },
+  };
+
+  return labels[mode];
+}
+
+function getUnitLabels(mode: UnitMode) {
+  const labels: Record<UnitMode, { from: string; to: string }> = {
+    "miles-to-km": { from: "Miles", to: "Kilometers" },
+    "km-to-miles": { from: "Kilometers", to: "Miles" },
+    "c-to-f": { from: "Celsius", to: "Fahrenheit" },
+    "f-to-c": { from: "Fahrenheit", to: "Celsius" },
+    "deg-to-rad": { from: "Degrees", to: "Radians" },
+    "rad-to-deg": { from: "Radians", to: "Degrees" },
+    "lb-to-kg": { from: "Pounds", to: "Kilograms" },
+    "kg-to-lb": { from: "Kilograms", to: "Pounds" },
+    "hex-to-rgb": { from: "Hex", to: "RGB" },
+    "rgb-to-hex": { from: "RGB", to: "Hex" },
+    "cmyk-to-rgb": { from: "CMYK", to: "RGB" },
+    "rgb-to-cmyk": { from: "RGB", to: "CMYK" },
+  };
+
+  return labels[mode];
+}
+
+function formatDataLabel(format: DataFormat) {
+  const labels: Record<DataFormat, string> = {
+    json: "JSON",
+    csv: "CSV",
+    yaml: "YAML",
+    xml: "XML",
+    html: "HTML",
+    markdown: "Markdown",
+    text: "Text",
+  };
+
+  return labels[format];
+}
+
+function getConverterLabels(tool: ExactConverterTool) {
+  switch (tool.family) {
+    case "encoding":
+      return getEncodingLabels(tool.mode);
+    case "data":
+      return {
+        from: formatDataLabel(tool.from),
+        to: formatDataLabel(tool.to),
+      };
+    case "time":
+      return getTimeLabels(tool.mode);
+    case "unit":
+      return getUnitLabels(tool.mode);
+  }
+}
+
+const converter = (tool: ExactConverterTool): ExactConverterTool => {
+  const labels = getConverterLabels(tool);
+
+  return {
+    ...tool,
+    slug: withConvertSlug(tool.slug),
+    name: buildConvertName(labels.from, labels.to),
+    description: buildConvertDescription(labels.from, labels.to, tool.description),
+  };
+};
+
 const utility = (tool: ExactUtilityTool): ExactUtilityTool => tool;
 
 export const EXACT_TEXT_TOOLS = [
@@ -71,10 +180,10 @@ export const EXACT_TEXT_TOOLS = [
   text({ slug: "character-accent-remover", name: "Character Accent Remover", description: "Strip accents and diacritics from letters while keeping the base characters.", category: "Text", icon: "ACC", family: "cleaner", preset: { removeAccents: true }, lockedKeys: ["removeAccents"], hiddenKeys: ["whitespaceMode", "backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation"] }),
   text({ slug: "backslash-remover", name: "Backslash Remover", description: "Remove backslashes from text, escaped strings, and copied snippets.", category: "Text", icon: "BSRM", family: "cleaner", preset: { backslashMode: "remove" as BackslashMode }, lockedKeys: ["backslashMode"], hiddenKeys: ["whitespaceMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }),
   text({ slug: "backslash-adder", name: "Backslash Adder", description: "Add backslashes before quotes and existing slashes for quick escaping.", category: "Text", icon: "BSAD", family: "cleaner", preset: { backslashMode: "add" as BackslashMode }, lockedKeys: ["backslashMode"], hiddenKeys: ["whitespaceMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }),
-  text({ slug: "spaces-to-tabs", name: "Spaces to Tabs Converter", description: "Convert repeated spaces into tab characters for quick text cleanup.", category: "Text", icon: "S2T", family: "cleaner", preset: { whitespaceMode: "spaces-to-tabs" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }),
-  text({ slug: "tabs-to-spaces", name: "Tabs to Spaces Converter", description: "Replace tab characters with spaces in copied code and plain text.", category: "Text", icon: "T2S", family: "cleaner", preset: { whitespaceMode: "tabs-to-spaces" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }),
-  text({ slug: "spaces-to-newlines", name: "Spaces to Newlines Converter", description: "Turn space-separated text into newline-separated text in one pass.", category: "Text", icon: "S2N", family: "cleaner", preset: { whitespaceMode: "spaces-to-newlines" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }),
-  text({ slug: "newlines-to-spaces", name: "Newlines to Spaces Converter", description: "Flatten multiline text into one space-separated line.", category: "Text", icon: "N2S", family: "cleaner", preset: { whitespaceMode: "newlines-to-spaces" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }),
+  conversionText({ slug: "spaces-to-tabs", name: "Spaces to Tabs Converter", description: "Convert repeated spaces into tab characters for quick text cleanup.", category: "Text", icon: "S2T", family: "cleaner", preset: { whitespaceMode: "spaces-to-tabs" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }, "Spaces", "Tabs"),
+  conversionText({ slug: "tabs-to-spaces", name: "Tabs to Spaces Converter", description: "Replace tab characters with spaces in copied code and plain text.", category: "Text", icon: "T2S", family: "cleaner", preset: { whitespaceMode: "tabs-to-spaces" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }, "Tabs", "Spaces"),
+  conversionText({ slug: "spaces-to-newlines", name: "Spaces to Newlines Converter", description: "Turn space-separated text into newline-separated text in one pass.", category: "Text", icon: "S2N", family: "cleaner", preset: { whitespaceMode: "spaces-to-newlines" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }, "Spaces", "Newlines"),
+  conversionText({ slug: "newlines-to-spaces", name: "Newlines to Spaces Converter", description: "Flatten multiline text into one space-separated line.", category: "Text", icon: "N2S", family: "cleaner", preset: { whitespaceMode: "newlines-to-spaces" as WhitespaceMode }, lockedKeys: ["whitespaceMode"], hiddenKeys: ["backslashMode", "trimLines", "removeEmptyLines", "collapseSpaces", "removeAllWhitespace", "removePunctuation", "removeAccents"] }, "Newlines", "Spaces"),
   text({ slug: "text-line-reverser", name: "Text Line Reverser", description: "Reverse the order of lines in pasted text while keeping line content intact.", category: "Text", icon: "REVL", family: "line", preset: { reverseOrder: true }, focus: "none" }),
   text({ slug: "add-line-numbers", name: "Add Line Numbers", description: "Number every line in pasted text for quick review, quoting, and reference.", category: "Text", icon: "NUM", family: "line", preset: { addLineNumbers: true }, focus: "none" }),
   text({ slug: "add-line-prefixes", name: "Add Line Prefixes", description: "Add the same prefix to every line in a multiline text block.", category: "Text", icon: "PFX", family: "line", preset: {}, focus: "prefix" }),
