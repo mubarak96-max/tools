@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
 import { FREE_TOOLS } from "@/lib/tools/registry";
@@ -22,7 +22,7 @@ export default async function SitemapPage() {
 
   return (
     <div className="space-y-8">
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+      <section className="space-y-4 py-2 sm:py-4">
         <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
           HTML sitemap
         </p>
@@ -95,3 +95,4 @@ export default async function SitemapPage() {
     </div>
   );
 }
+

@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Metadata } from "next";
 
 import CompoundInterestCalculator from "@/app/finance/compound-interest-calculator/components/CompoundInterestCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
@@ -32,7 +32,7 @@ const faq = [
   {
     question: "What does inflation-adjusted value mean?",
     answer:
-      "It is the estimated future balance expressed in today’s purchasing power. It helps show the real value of your money after inflation.",
+      "It is the estimated future balance expressed in todayâ€™s purchasing power. It helps show the real value of your money after inflation.",
   },
 ];
 
@@ -99,7 +99,6 @@ export default function CompoundInterestCalculatorPage() {
     { name: "Compound Interest Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const relatedTools = getRelatedFreeTools(PAGE_PATH);
   const tool = FREE_TOOLS.find((item) => item.href === PAGE_PATH);
 
   return (
@@ -108,7 +107,7 @@ export default function CompoundInterestCalculatorPage() {
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+      <section className="space-y-4 py-2 sm:py-4">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
@@ -179,3 +178,5 @@ export default function CompoundInterestCalculatorPage() {
     </div>
   );
 }
+
+

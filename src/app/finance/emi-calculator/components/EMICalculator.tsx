@@ -43,7 +43,7 @@ export default function EMICalculator() {
 
   return (
     <div className="space-y-6">
-      <section className="tool-frame p-6 sm:p-8">
+      <section className="tool-frame p-4 sm:p-6">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_20rem]">
           <div className="space-y-5">
             <div className="grid gap-5 md:grid-cols-2">
@@ -184,7 +184,7 @@ export default function EMICalculator() {
         </div>
       </section>
 
-      <section className="tool-frame p-6 sm:p-8">
+      <section className="tool-frame p-4 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
@@ -256,4 +256,5 @@ export default function EMICalculator() {
     </div>
   );
 }
+
 

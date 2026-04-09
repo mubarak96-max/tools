@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
 import EMICalculator from "@/app/finance/emi-calculator/components/EMICalculator";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
@@ -105,7 +105,6 @@ function buildEmiApplicationJsonLd() {
 }
 
 export default function EMICalculatorPage() {
-  const relatedTools = getRelatedFreeTools(PAGE_PATH);
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Finance", path: "/finance" },
@@ -120,7 +119,7 @@ export default function EMICalculatorPage() {
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+      <section className="space-y-4 py-2 sm:py-4">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li>
@@ -183,7 +182,7 @@ export default function EMICalculatorPage() {
             The standard EMI formula is:
           </p>
           <pre className="mt-4 overflow-x-auto rounded-[1rem] border border-border bg-background p-4 text-sm text-foreground">
-            <code>EMI = P × r × (1 + r)^n / ((1 + r)^n - 1)</code>
+            <code>EMI = P Ã— r Ã— (1 + r)^n / ((1 + r)^n - 1)</code>
           </pre>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
             <li>
@@ -239,3 +238,5 @@ export default function EMICalculatorPage() {
     </div>
   );
 }
+
+

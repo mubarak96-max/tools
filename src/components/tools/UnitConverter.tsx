@@ -12,7 +12,7 @@ export default function UnitConverter() {
   const result = useMemo(() => convertUnit(text, mode), [mode, text]);
 
   return (
-    <section className="tool-frame p-6 sm:p-8">
+    <section className="tool-frame p-4 sm:p-6">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_18rem]">
         <div className="space-y-5">
           <textarea
@@ -47,4 +47,5 @@ export default function UnitConverter() {
     </section>
   );
 }
+
 

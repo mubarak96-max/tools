@@ -185,7 +185,7 @@ export default function SalaryCalculator() {
 
   return (
     <div className="space-y-6">
-      <section className="tool-frame p-6 sm:p-8">
+      <section className="tool-frame p-4 sm:p-6">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_22rem]">
           <div className="space-y-5">
             <div className="grid gap-5 md:grid-cols-2">
@@ -241,4 +241,5 @@ export default function SalaryCalculator() {
     </div>
   );
 }
+
 

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Metadata } from "next";
 
 import AIHumanizer from "@/app/ai/ai-humanizer/components/AIHumanizer";
@@ -114,7 +114,7 @@ export default function AIHumanizerPage() {
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+      <section className="space-y-4 py-2 sm:py-4">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
@@ -247,3 +247,4 @@ export default function AIHumanizerPage() {
     </div>
   );
 }
+

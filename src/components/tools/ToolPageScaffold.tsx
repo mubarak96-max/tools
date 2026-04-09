@@ -80,9 +80,9 @@ export default function ToolPageScaffold({
   const currentTool = FREE_TOOLS.find((tool) => tool.href === path);
 
   return (
-    <div className="space-y-10">
-      <section className="space-y-6">
-        <nav aria-label="Breadcrumb" className="mb-6">
+    <div className="space-y-8 sm:space-y-10">
+      <section className="space-y-3 sm:space-y-5">
+        <nav aria-label="Breadcrumb" className="hidden sm:block sm:mb-4">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
             <li>/</li>
@@ -96,15 +96,15 @@ export default function ToolPageScaffold({
           <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
             {category} utility
           </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">{title}</h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">{description}</p>
+          <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:mt-4 sm:text-4xl lg:text-5xl">{title}</h1>
+          <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground sm:mt-4 sm:text-base sm:leading-7">{description}</p>
           {currentTool && currentTool.description !== description ? (
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
+            <p className="mt-2 hidden text-sm leading-6 text-muted-foreground sm:block">{currentTool.description}</p>
           ) : null}
         </div>
 
         {showPrivacyNote && (
-          <div className="mt-6 max-w-2xl">
+          <div className="mt-3 max-w-2xl sm:mt-5">
             <PrivacyNote />
           </div>
         )}

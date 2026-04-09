@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Metadata } from "next";
 
 import AsciiArtGenerator from "@/app/text/ascii-art-generator/components/AsciiArtGenerator";
@@ -6,7 +6,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
 
@@ -99,7 +99,6 @@ export default function AsciiArtGeneratorPage() {
     { name: "ASCII Art Generator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const relatedTools = getRelatedFreeTools(PAGE_PATH).filter((tool) => tool.category === "Text");
   const currentTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
@@ -108,7 +107,7 @@ export default function AsciiArtGeneratorPage() {
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+      <section className="space-y-4 py-2 sm:py-4">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
@@ -179,3 +178,5 @@ export default function AsciiArtGeneratorPage() {
     </div>
   );
 }
+
+

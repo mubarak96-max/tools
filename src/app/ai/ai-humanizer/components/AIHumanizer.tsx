@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -143,7 +143,7 @@ export default function AIHumanizer() {
   }
 
   return (
-    <section className="tool-frame p-6 sm:p-8">
+    <section className="tool-frame p-4 sm:p-6">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)]">
         <div className="space-y-5">
           <label className="block space-y-2">
@@ -248,18 +248,10 @@ export default function AIHumanizer() {
             </button>
           </div>
 
-          <div className="rounded-[1rem] border border-border bg-card p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Guardrails</p>
-            <ul className="mt-3 space-y-2 text-sm leading-6 text-muted-foreground">
-              <li>300-character input cap per request</li>
-              <li>Meaning and facts should stay intact</li>
-              <li>API key stays server-side only</li>
-              <li>Basic rate limiting protects the endpoint</li>
-            </ul>
-          </div>
         </aside>
       </div>
     </section>
   );
 }
+
 

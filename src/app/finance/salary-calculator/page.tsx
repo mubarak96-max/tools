@@ -1,10 +1,10 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { Metadata } from "next";
 
 import SalaryCalculator from "@/app/finance/salary-calculator/components/SalaryCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
+import { FREE_TOOLS } from "@/lib/tools/registry";
 import { COUNTRIES } from "@/lib/tools/salary";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -104,7 +104,6 @@ function buildSalaryApplicationJsonLd() {
 }
 
 export default function SalaryCalculatorPage() {
-  const relatedTools = getRelatedFreeTools(PAGE_PATH);
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Finance", path: "/finance" },
@@ -119,7 +118,7 @@ export default function SalaryCalculatorPage() {
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+      <section className="space-y-4 py-2 sm:py-4">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
@@ -218,3 +217,5 @@ export default function SalaryCalculatorPage() {
     </div>
   );
 }
+
+
