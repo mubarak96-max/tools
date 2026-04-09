@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   other: {
     "google-adsense-account": ADSENSE_CLIENT_ID,
+    "yandex-verification": "fefe84d52df8498c",
   },
   icons: {
     icon: "/images/favicon.svg",
