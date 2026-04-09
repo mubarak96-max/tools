@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -143,7 +143,7 @@ export default function AIHumanizer() {
   }
 
   return (
-    <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+    <section className="tool-frame p-6 sm:p-8">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(20rem,24rem)]">
         <div className="space-y-5">
           <label className="block space-y-2">
@@ -262,3 +262,4 @@ export default function AIHumanizer() {
     </section>
   );
 }
+

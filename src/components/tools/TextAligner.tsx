@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 
@@ -14,7 +14,7 @@ export default function TextAligner() {
   const result = useMemo(() => alignText(text, mode, width, padCharacter || " "), [text, mode, width, padCharacter]);
 
   return (
-    <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+    <section className="tool-frame p-6 sm:p-8">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
         <div className="space-y-5">
           <textarea
@@ -73,3 +73,4 @@ export default function TextAligner() {
     </section>
   );
 }
+

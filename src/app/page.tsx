@@ -59,7 +59,7 @@ function ToolCard({
   return (
     <Link
       href={href}
-      className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25 hover:shadow-[0_4px_20px_-8px_rgba(79,70,229,0.18)]"
+      className="group flex flex-col gap-3 border-t border-border/60 py-5 transition-colors hover:text-primary"
     >
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
@@ -144,7 +144,7 @@ export default function Home() {
     <div className="space-y-14 pb-16">
 
       {/* ── Hero ── */}
-      <section className="rounded-[2rem] border border-border/60 bg-card px-8 py-12 sm:px-12 sm:py-16 text-center">
+      <section className="py-8 text-center">
         <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] mb-5">
           Browser-based · Free · No sign-up
         </p>

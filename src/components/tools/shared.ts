@@ -10,4 +10,4 @@ export const selectClass =
 export const actionClass =
   "rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary";
 
-export const panelClass = "rounded-[1.5rem] border border-border bg-background p-5";
+export const panelClass = "xl:border-l xl:border-border/60 xl:pl-6";

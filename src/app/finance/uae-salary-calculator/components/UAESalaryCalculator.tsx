@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 
@@ -58,7 +58,7 @@ export default function UAESalaryCalculator() {
 
   return (
     <div className="space-y-6">
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+      <section className="tool-frame p-6 sm:p-8">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_20rem]">
           <div className="grid gap-5 md:grid-cols-2">
             <label className="space-y-2">
@@ -139,3 +139,4 @@ export default function UAESalaryCalculator() {
     </div>
   );
 }
+

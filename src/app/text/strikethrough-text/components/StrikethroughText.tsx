@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 
@@ -11,11 +11,11 @@ const actionClass =
   "rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary";
 
 const styles: Array<{ value: TextStyleMode; label: string; sample: string }> = [
-  { value: "strike", label: "Strike-through", sample: "s̶t̶r̶i̶k̶e̶" },
-  { value: "double-underline", label: "Double underline", sample: "d͇o͇u͇b͇l͇e͇" },
-  { value: "underline", label: "Underline", sample: "U͟n͟d͟e͟r͟l͟i͟n͟e͟" },
-  { value: "dotted", label: "Dotted line", sample: "d̤o̤t̤t̤e̤d̤" },
-  { value: "wave", label: "Wave line", sample: "w̰a̰v̰ḛ" },
+  { value: "strike", label: "Strike-through", sample: "sÌ¶tÌ¶rÌ¶iÌ¶kÌ¶eÌ¶" },
+  { value: "double-underline", label: "Double underline", sample: "dÍ‡oÍ‡uÍ‡bÍ‡lÍ‡eÍ‡" },
+  { value: "underline", label: "Underline", sample: "UÍŸnÍŸdÍŸeÍŸrÍŸlÍŸiÍŸnÍŸeÍŸ" },
+  { value: "dotted", label: "Dotted line", sample: "dÌ¤oÌ¤tÌ¤tÌ¤eÌ¤dÌ¤" },
+  { value: "wave", label: "Wave line", sample: "wÌ°aÌ°vÌ°eÌ°" },
 ];
 
 function lineCount(text: string) {
@@ -50,7 +50,7 @@ export default function StrikethroughText() {
   }
 
   return (
-    <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+    <section className="tool-frame p-6 sm:p-8">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
         <div className="space-y-5">
           <div className="grid gap-4 lg:grid-cols-2">
@@ -148,3 +148,4 @@ export default function StrikethroughText() {
     </section>
   );
 }
+

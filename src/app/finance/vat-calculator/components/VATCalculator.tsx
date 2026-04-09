@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 
@@ -52,7 +52,7 @@ export default function VATCalculator() {
 
   return (
     <div className="space-y-6">
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+      <section className="tool-frame p-6 sm:p-8">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="space-y-5">
             <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_10rem]">
@@ -204,7 +204,7 @@ export default function VATCalculator() {
 
             <div className="mt-6 rounded-[1rem] border border-primary/15 bg-primary-soft p-4">
               <p className="text-sm leading-6 text-primary-soft-foreground">
-                Removing VAT uses the correct VAT fraction method: gross × rate / (100 + rate).
+                Removing VAT uses the correct VAT fraction method: gross Ã— rate / (100 + rate).
               </p>
             </div>
           </aside>
@@ -213,3 +213,4 @@ export default function VATCalculator() {
     </div>
   );
 }
+

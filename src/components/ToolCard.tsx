@@ -12,7 +12,7 @@ interface ToolCardProps {
 
 export default function ToolCard({ tool }: ToolCardProps) {
   return (
-    <article className="glass-card group flex h-full flex-col rounded-[1.75rem] border border-border/80 p-6">
+    <article className="group flex h-full flex-col border-t border-border/60 py-6">
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -53,7 +53,7 @@ export default function ToolCard({ tool }: ToolCardProps) {
       </p>
 
       {tool.aiInsights?.whyThisToolFits && (
-        <div className="mb-6 rounded-2xl border border-success/20 bg-success-soft p-4">
+        <div className="mb-6 border-l-2 border-success/30 pl-4">
           <div className="flex items-start gap-2">
             <Zap className="mt-0.5 h-4 w-4 flex-shrink-0 text-success" />
             <p className="line-clamp-2 text-sm italic leading-6 text-success-soft-foreground">{tool.aiInsights.whyThisToolFits}</p>

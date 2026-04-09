@@ -18,7 +18,7 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
   return (
     <Link
       href={tool.href}
-      className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25 hover:shadow-[0_4px_20px_-8px_rgba(79,70,229,0.18)]"
+      className="group flex flex-col gap-3 border-t border-border/60 py-5 transition-colors hover:text-primary"
     >
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
@@ -48,13 +48,10 @@ export default function CategoryHub({
   description: string;
 }) {
   const tools = FREE_TOOLS.filter((tool) => tool.category === category);
-  const categoryHref = CATEGORY_ROUTE_MAP[category];
 
   return (
     <div className="space-y-10 pb-4">
-      {/* Page header */}
-      <section className="rounded-[2rem] border border-border/60 bg-card px-8 py-10 sm:px-10 sm:py-12">
-        {/* Breadcrumb */}
+      <section className="space-y-6">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
@@ -73,17 +70,9 @@ export default function CategoryHub({
           {description}
         </p>
 
-        {/* Trust note */}
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-success/25 bg-success-soft px-4 py-3 max-w-xl">
-          <span className="mt-0.5 text-base leading-none">🔒</span>
-          <p className="text-sm leading-6 text-success-soft-foreground">
-            <strong className="font-semibold">Private by design.</strong>{" "}
-            All processing runs in your browser — files never leave your device.
-          </p>
-        </div>
+
       </section>
 
-      {/* Tool grid */}
       <section>
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-foreground">
@@ -98,8 +87,7 @@ export default function CategoryHub({
         </div>
       </section>
 
-      {/* Cross-category discovery */}
-      <section className="rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8">
+      <section className="space-y-4 border-t border-border/60 pt-8">
         <h2 className="text-lg font-semibold text-foreground mb-4">Explore other tool categories</h2>
         <div className="flex flex-wrap gap-2">
           {(Object.entries(CATEGORY_ROUTE_MAP) as [FreeToolMeta["category"], string][])

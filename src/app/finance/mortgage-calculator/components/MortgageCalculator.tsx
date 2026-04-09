@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -55,7 +55,7 @@ export default function MortgageCalculator() {
 
   return (
     <div className="space-y-6">
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+      <section className="tool-frame p-6 sm:p-8">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_20rem]">
           <div className="space-y-5">
             <div className="grid gap-5 md:grid-cols-2">
@@ -268,7 +268,7 @@ export default function MortgageCalculator() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+      <section className="tool-frame p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">
@@ -338,3 +338,4 @@ export default function MortgageCalculator() {
     </div>
   );
 }
+

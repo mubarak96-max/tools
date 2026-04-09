@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 
@@ -60,7 +60,7 @@ export default function CompoundInterestCalculator() {
 
   return (
     <div className="space-y-6">
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+      <section className="tool-frame p-6 sm:p-8">
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
           <div className="grid gap-5 md:grid-cols-2">
             <label className="space-y-2">
@@ -143,7 +143,7 @@ export default function CompoundInterestCalculator() {
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+      <section className="tool-frame p-6 sm:p-8">
         <div className="flex items-center justify-between gap-4">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">Growth table</h2>
@@ -175,7 +175,7 @@ export default function CompoundInterestCalculator() {
                   <td className="border-b border-border/80 px-4 py-3 text-sm text-foreground">{formatCurrency(row.totalContributions, currency)}</td>
                   <td className="border-b border-border/80 px-4 py-3 text-sm text-foreground">{formatCurrency(row.totalInterest, currency)}</td>
                   <td className="border-b border-border/80 px-4 py-3 text-sm text-foreground">
-                    {row.realBalance !== undefined ? formatCurrency(row.realBalance, currency) : "—"}
+                    {row.realBalance !== undefined ? formatCurrency(row.realBalance, currency) : "â€”"}
                   </td>
                 </tr>
               ))}
@@ -186,3 +186,4 @@ export default function CompoundInterestCalculator() {
     </div>
   );
 }
+

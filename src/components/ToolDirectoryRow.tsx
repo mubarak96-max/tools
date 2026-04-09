@@ -27,7 +27,7 @@ export default function ToolDirectoryRow({ tool }: { tool: Tool }) {
   ].join(' · ');
 
   return (
-    <article className="glass-card rounded-[1.5rem] border border-border/80 p-6">
+    <article className="border-t border-border/60 py-6">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
         <div className="flex flex-1 gap-4">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.1rem] border border-primary/15 bg-primary-soft text-lg font-semibold text-primary">
@@ -70,7 +70,7 @@ export default function ToolDirectoryRow({ tool }: { tool: Tool }) {
             </p>
 
             {tool.aiInsights?.whyThisToolFits ? (
-              <div className="rounded-[1rem] border border-success/20 bg-success-soft px-4 py-3">
+              <div className="border-l-2 border-success/30 pl-4">
                 <div className="flex items-start gap-2">
                   <Zap className="mt-0.5 h-4 w-4 shrink-0 text-success" />
                   <p className="text-sm leading-6 text-success-soft-foreground">
@@ -116,8 +116,8 @@ export default function ToolDirectoryRow({ tool }: { tool: Tool }) {
           </div>
         </div>
 
-        <aside className="grid shrink-0 gap-3 rounded-[1.25rem] border border-border/80 bg-background/70 p-4 sm:grid-cols-3 lg:w-52 lg:grid-cols-1">
-          <div className="rounded-[1rem] border border-success/20 bg-success-soft px-4 py-3 text-center">
+        <aside className="grid shrink-0 gap-4 border-t border-border/60 pt-4 sm:grid-cols-3 lg:w-52 lg:grid-cols-1 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
+          <div className="text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-success-soft-foreground">
               Confidence
             </p>
@@ -125,7 +125,7 @@ export default function ToolDirectoryRow({ tool }: { tool: Tool }) {
             <p className="text-xs text-success-soft-foreground">out of 100</p>
           </div>
 
-          <div className="rounded-[1rem] border border-border/80 bg-card px-4 py-3">
+          <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
               Best for
             </p>
@@ -134,7 +134,7 @@ export default function ToolDirectoryRow({ tool }: { tool: Tool }) {
             </p>
           </div>
 
-          <div className="rounded-[1rem] border border-border/80 bg-card px-4 py-3">
+          <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
               Team fit
             </p>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export function TailwindCard({ children }: { children: React.ReactNode }) {
-  return <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">{children}</section>;
+  return <section className="tool-frame space-y-6 p-6 sm:p-8">{children}</section>;
 }
 
 export function TailwindField({ label, children }: { label: string; children: React.ReactNode }) {

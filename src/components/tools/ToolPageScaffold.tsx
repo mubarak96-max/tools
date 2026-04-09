@@ -6,15 +6,7 @@ import { FREE_TOOLS } from "@/lib/tools/registry";
 
 // Privacy trust note shown on every tool page
 export function PrivacyNote() {
-  return (
-    <div className="flex items-start gap-3 rounded-2xl border border-success/25 bg-success-soft px-4 py-3">
-      <span className="mt-0.5 text-base leading-none">🔒</span>
-      <p className="text-sm leading-6 text-success-soft-foreground">
-        <strong className="font-semibold">Private by design.</strong>{" "}
-        All processing runs in your browser — files and text never leave your device, and nothing is stored on our servers.
-      </p>
-    </div>
-  );
+  return null;
 }
 
 // Shared related-tools grid used at the bottom of every tool page
@@ -30,7 +22,7 @@ export function RelatedToolsSection({
   const related = getRelatedFreeTools(currentPath, 6);
 
   return (
-    <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+    <section className="space-y-5 border-t border-border/60 pt-8">
       <div className="flex items-center justify-between mb-5">
         <h2 className="text-xl font-semibold tracking-tight text-foreground">
           More {category.toLowerCase()} tools
@@ -40,11 +32,11 @@ export function RelatedToolsSection({
         </Link>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {related.map((tool) => (
+        {related.map((tool, index) => (
           <Link
             key={tool.href}
             href={tool.href}
-            className="group flex flex-col gap-2 rounded-[1.25rem] border border-border bg-background p-4 transition-all hover:border-primary/20 hover:bg-primary-soft"
+            className={`group flex flex-col gap-2 py-4 transition-colors hover:text-primary ${index === 0 ? "" : "border-t border-border/50"}`}
           >
             <div className="flex items-center justify-between gap-2">
               <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
@@ -88,9 +80,8 @@ export default function ToolPageScaffold({
   const currentTool = FREE_TOOLS.find((tool) => tool.href === path);
 
   return (
-    <div className="space-y-8">
-      {/* Header card */}
-      <section className="glass-card rounded-[2rem] border border-border/80 p-8 sm:p-10">
+    <div className="space-y-10">
+      <section className="space-y-6">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
             <li><Link href="/" className="hover:text-primary">Home</Link></li>
@@ -112,7 +103,6 @@ export default function ToolPageScaffold({
           ) : null}
         </div>
 
-        {/* Privacy note inline in header */}
         {showPrivacyNote && (
           <div className="mt-6 max-w-2xl">
             <PrivacyNote />
@@ -123,17 +113,17 @@ export default function ToolPageScaffold({
       {children}
 
       {learn ? (
-        <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+        <section className="space-y-4 border-t border-border/60 pt-8">
           {learn}
         </section>
       ) : null}
 
       {faqs?.length ? (
-        <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+        <section className="space-y-6 border-t border-border/60 pt-8">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
           <div className="mt-6 space-y-4">
-            {faqs.map((item) => (
-              <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
+            {faqs.map((item, index) => (
+              <article key={item.question} className={`py-4 ${index === 0 ? "" : "border-t border-border/50"}`}>
                 <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
               </article>
