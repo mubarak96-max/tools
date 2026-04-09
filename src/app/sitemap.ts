@@ -4,7 +4,7 @@ import { listPages } from "@/lib/db/pages";
 import { listTools } from "@/lib/db/tools";
 import { listCategoryAudienceHubSlugs, listCategoryHubSlugs } from "@/lib/discovery/hubs";
 import { slugify } from "@/lib/slug";
-import { FREE_TOOLS } from "@/lib/tools/registry";
+import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://findbest.tools';
 
@@ -56,14 +56,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const utilityCategoryRoutes = [...new Set(FREE_TOOLS.map((tool) => tool.category.toLowerCase()))];
+  const utilityCategoryRoutes = [...new Set(FREE_TOOLS.map((tool) => FREE_TOOL_CATEGORY_ROUTES[tool.category]))];
 
-  utilityCategoryRoutes.forEach((category) => {
+  utilityCategoryRoutes.forEach((route) => {
     sitemapEntries.push({
-      url: `${BASE_URL}/${category}`,
+      url: `${BASE_URL}${route}`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: category === 'finance' || category === 'ai' ? 0.8 : 0.6,
+      priority: route === '/finance' || route === '/ai' || route === '/real-estate' ? 0.8 : 0.6,
     });
   });
 

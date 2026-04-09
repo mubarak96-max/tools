@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
+import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
 import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 1800;
@@ -24,18 +24,7 @@ const MOST_USED_TOOL_HREFS = [
   "/finance/salary-calculator",
 ];
 
-const CATEGORY_ORDER = ["Text", "Image", "PDF", "Finance", "Tailwind", "Converter", "Utility", "AI"] as const;
-
-const CATEGORY_ROUTES: Record<string, string> = {
-  Text: "/text",
-  Image: "/image",
-  PDF: "/pdf",
-  Finance: "/finance",
-  Tailwind: "/tailwind",
-  Converter: "/converter",
-  Utility: "/utility",
-  AI: "/ai",
-};
+const CATEGORY_ORDER = ["Text", "Image", "PDF", "Finance", "Real Estate", "Tailwind", "Converter", "Utility", "AI"] as const;
 
 const TRUST_ITEMS = [
   { icon: "⚡", label: "Instant results" },
@@ -58,7 +47,7 @@ function ToolCard({
 }) {
   return (
     <Link
-      href={href}
+    href={href}
       className="group flex flex-col gap-3 border-t border-border/60 py-5 transition-colors hover:text-primary"
     >
       <div className="flex items-center justify-between gap-3">
@@ -136,7 +125,7 @@ export default function Home() {
 
   const orderedCategories = CATEGORY_ORDER.map((category) => ({
     category,
-    href: CATEGORY_ROUTES[category],
+    href: FREE_TOOL_CATEGORY_ROUTES[category],
     tools: groupedTools[category] ?? [],
   })).filter((entry) => entry.tools.length > 0);
 
@@ -160,7 +149,7 @@ export default function Home() {
           {CATEGORY_ORDER.map((cat) => (
             <Link
               key={cat}
-              href={CATEGORY_ROUTES[cat]}
+              href={FREE_TOOL_CATEGORY_ROUTES[cat]}
               className="rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:text-primary hover:bg-primary-soft"
             >
               {cat}

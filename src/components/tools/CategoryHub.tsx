@@ -1,18 +1,7 @@
 import Link from "next/link";
 
-import { FREE_TOOLS } from "@/lib/tools/registry";
+import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
 import type { FreeToolMeta } from "@/types/tools";
-
-const CATEGORY_ROUTE_MAP: Record<FreeToolMeta["category"], string> = {
-  Text: "/text",
-  Image: "/image",
-  PDF: "/pdf",
-  Finance: "/finance",
-  Tailwind: "/tailwind",
-  Converter: "/converter",
-  Utility: "/utility",
-  AI: "/ai",
-};
 
 function ToolCard({ tool }: { tool: FreeToolMeta }) {
   return (
@@ -90,7 +79,7 @@ export default function CategoryHub({
       <section className="space-y-4 border-t border-border/60 pt-8">
         <h2 className="text-lg font-semibold text-foreground mb-4">Explore other tool categories</h2>
         <div className="flex flex-wrap gap-2">
-          {(Object.entries(CATEGORY_ROUTE_MAP) as [FreeToolMeta["category"], string][])
+          {(Object.entries(FREE_TOOL_CATEGORY_ROUTES) as [FreeToolMeta["category"], string][])
             .filter(([cat]) => cat !== category)
             .map(([cat, href]) => (
               <Link

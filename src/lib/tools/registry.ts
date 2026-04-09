@@ -4,6 +4,18 @@ import { IMAGE_TOOL_REGISTRY } from "@/lib/tools/image-catalog";
 import { PDF_TOOL_REGISTRY } from "@/lib/tools/pdf-catalog";
 import { TAILWIND_TOOL_REGISTRY } from "@/lib/tools/tailwind-catalog";
 
+export const FREE_TOOL_CATEGORY_ROUTES: Record<FreeToolMeta["category"], string> = {
+  AI: "/ai",
+  Converter: "/converter",
+  Finance: "/finance",
+  Image: "/image",
+  PDF: "/pdf",
+  "Real Estate": "/real-estate",
+  Tailwind: "/tailwind",
+  Text: "/text",
+  Utility: "/utility",
+};
+
 export const FREE_TOOLS: FreeToolMeta[] = [
   {
     name: "AI Humanizer",
@@ -29,9 +41,16 @@ export const FREE_TOOLS: FreeToolMeta[] = [
   {
     name: "UAE Gratuity Calculator",
     href: "/finance/uae-gratuity-calculator",
-    description: "Estimate UAE end-of-service gratuity from monthly basic salary, service dates, unpaid leave, and work pattern.",
+    description: "Estimate UAE end-of-service gratuity from monthly basic salary, contract dates, and unpaid leave.",
     category: "Finance",
     icon: "EOS",
+  },
+  {
+    name: "UAE Visa Cost Calculator",
+    href: "/finance/uae-visa-cost-calculator",
+    description: "Estimate total UAE visa fees including government charges, medical, Emirates ID, and typing centre costs.",
+    category: "Finance",
+    icon: "VISA",
   },
   {
     name: "Mortgage Calculator",
@@ -81,6 +100,104 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     description: "Project future value, contributions, and compound growth with optional inflation adjustment.",
     category: "Finance",
     icon: "CAGR",
+  },
+  {
+    name: "Rental Yield Calculator",
+    href: "/real-estate/rental-yield-calculator",
+    description: "Calculate gross yield, net yield, and net operating income from property price, rent, and annual costs.",
+    category: "Real Estate",
+    icon: "YLD",
+  },
+  {
+    name: "Cap Rate Calculator",
+    href: "/real-estate/cap-rate-calculator",
+    description: "Calculate cap rate and NOI from property value, rent, and annual operating expenses.",
+    category: "Real Estate",
+    icon: "CAP",
+  },
+  {
+    name: "Rent Affordability Calculator",
+    href: "/real-estate/rent-affordability-calculator",
+    description: "Estimate a monthly rent budget from income, debts, utilities, and target housing ratio.",
+    category: "Real Estate",
+    icon: "RENT",
+  },
+  {
+    name: "Closing Costs Calculator",
+    href: "/real-estate/closing-costs-calculator",
+    description: "Estimate closing costs and total cash needed from purchase price, down payment, and fees.",
+    category: "Real Estate",
+    icon: "CLS",
+  },
+  {
+    name: "Price per Square Foot Calculator",
+    href: "/real-estate/price-per-square-foot-calculator",
+    description: "Calculate price per square foot or square metre from total price and property area.",
+    category: "Real Estate",
+    icon: "PSF",
+  },
+  {
+    name: "Rent vs Buy Calculator",
+    href: "/real-estate/rent-vs-buy-calculator",
+    description: "Compare renting and buying costs across the years you expect to stay in the property.",
+    category: "Real Estate",
+    icon: "BUY",
+  },
+  {
+    name: "Down Payment Calculator",
+    href: "/real-estate/down-payment-calculator",
+    description: "Work out the down payment amount, loan amount, and loan-to-value ratio from a home price and deposit percentage.",
+    category: "Real Estate",
+    icon: "DWN",
+  },
+  {
+    name: "Mortgage Refinance Calculator",
+    href: "/real-estate/mortgage-refinance-calculator",
+    description: "Compare current and refinanced mortgage payments, break-even timing, and total remaining cost.",
+    category: "Real Estate",
+    icon: "REFI",
+  },
+  {
+    name: "Rental Cash Flow Calculator",
+    href: "/real-estate/rental-cash-flow-calculator",
+    description: "Estimate monthly and annual rental cash flow after vacancy, mortgage costs, and operating expenses.",
+    category: "Real Estate",
+    icon: "FLOW",
+  },
+  {
+    name: "Home Buying Budget Calculator",
+    href: "/real-estate/home-buying-budget-calculator",
+    description: "Estimate a realistic home budget from income, debt, down payment, ownership costs, and mortgage assumptions.",
+    category: "Real Estate",
+    icon: "BUD",
+  },
+  {
+    name: "Lease Escalation Calculator",
+    href: "/real-estate/lease-escalation-calculator",
+    description: "Project rent increases across a lease term from the starting rent, annual escalation rate, and number of years.",
+    category: "Real Estate",
+    icon: "ESC",
+  },
+  {
+    name: "Security Deposit Calculator",
+    href: "/real-estate/security-deposit-calculator",
+    description: "Estimate deposit amount and move-in cash from monthly rent, advance rent, and admin fees.",
+    category: "Real Estate",
+    icon: "DEP",
+  },
+  {
+    name: "Property Management Fee Calculator",
+    href: "/real-estate/property-management-fee-calculator",
+    description: "Estimate management fees, leasing fees, and owner net income from a rental property's annual rent.",
+    category: "Real Estate",
+    icon: "PMF",
+  },
+  {
+    name: "Stamp Duty Calculator",
+    href: "/real-estate/stamp-duty-calculator",
+    description: "Estimate stamp duty, legal costs, and registration fees from a property purchase price and duty rate.",
+    category: "Real Estate",
+    icon: "DUTY",
   },
   {
     name: "Word Frequency Counter",

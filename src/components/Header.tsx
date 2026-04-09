@@ -41,6 +41,7 @@ const NAV_GROUPS = [
     tools: [
       { name: 'Salary Calculator', href: '/finance/salary-calculator' },
       { name: 'UAE Salary', href: '/finance/uae-salary-calculator' },
+      { name: 'UAE Visa Costs', href: '/finance/uae-visa-cost-calculator' },
       { name: 'Mortgage Calculator', href: '/finance/mortgage-calculator' },
       { name: 'EMI Calculator', href: '/finance/emi-calculator' },
       { name: 'VAT Calculator', href: '/finance/vat-calculator' },

@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS } from "@/lib/tools/registry";
 import type { FreeToolMeta } from "@/types/tools";
 
@@ -61,13 +60,7 @@ export default function FinancePage() {
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Salary, loan, pricing, tax, and repayment tools. Everything runs in your browser — no sign-up, no data sent anywhere.
         </p>
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-success/25 bg-success-soft px-4 py-3 max-w-xl">
-          <span className="mt-0.5 text-base leading-none">🔒</span>
-          <p className="text-sm leading-6 text-success-soft-foreground">
-            <strong className="font-semibold">Private by design.</strong>{" "}
-            All calculations run in your browser — nothing is stored or sent to our servers.
-          </p>
-        </div>
+
       </section>
 
       {/* Tool grid */}
@@ -93,6 +86,7 @@ export default function FinancePage() {
             { label: "Text Tools", href: "/text" },
             { label: "Image Tools", href: "/image" },
             { label: "PDF Tools", href: "/pdf" },
+            { label: "Real Estate Tools", href: "/real-estate" },
             { label: "AI Tools", href: "/ai" },
             { label: "Converter Tools", href: "/converter" },
             { label: "Tailwind Tools", href: "/tailwind" },

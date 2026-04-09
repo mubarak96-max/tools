@@ -1,7 +1,7 @@
 ﻿import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
+import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
 
 export const revalidate = 14400;
 
@@ -57,8 +57,10 @@ export default async function SitemapPage() {
                         ? "Text cleanup, transformation, and analysis tools."
                         : category === "Image"
                           ? "Image editing, conversion, and quick browser-based visual utilities."
-                          : category === "PDF"
+                      : category === "PDF"
                             ? "PDF utilities for merging, splitting, extracting, and cleaning up document pages."
+                          : category === "Real Estate"
+                            ? "Property calculators for affordability, yield, cap rate, buying costs, and rent-versus-buy decisions."
                           : category === "Tailwind"
                             ? "Tailwind CSS generators, palettes, layout builders, and class converters."
                           : category === "Converter"
@@ -69,7 +71,7 @@ export default async function SitemapPage() {
                   </p>
                 </div>
                 <Link
-                  href={`/${category.toLowerCase()}`}
+                  href={FREE_TOOL_CATEGORY_ROUTES[category as keyof typeof FREE_TOOL_CATEGORY_ROUTES]}
                   className="rounded-full border border-border bg-card px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
                 >
                   View {category}
