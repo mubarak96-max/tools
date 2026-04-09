@@ -145,9 +145,7 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section className="py-8 text-center">
-        <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] mb-5">
-          Browser-based · Free · No sign-up
-        </p>
+
         <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
           Find the right tool —{" "}
           <span className="text-gradient-primary">instantly.</span>
