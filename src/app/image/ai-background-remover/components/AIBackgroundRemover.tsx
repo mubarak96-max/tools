@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import imglyRemoveBackground from "@imgly/background-removal";
+import { removeBackground } from "@imgly/background-removal";
 import { FilePicker } from "@/components/image/shared";
 
 export default function AIBackgroundRemover() {
@@ -22,8 +22,8 @@ export default function AIBackgroundRemover() {
       setOriginalUrl(objectUrl);
 
       // Perform background removal setup
-      const blob = await imglyRemoveBackground(file, {
-        progress: (key, current, total) => {
+      const blob = await (removeBackground as any)(file, {
+        progress: (key: string, current: number, total: number) => {
           if (key.includes("fetch")) {
              setProgress(`Downloading AI Model: ${Math.round((current / total) * 100)}%`);
           } else if (key.includes("compute")) {
@@ -110,7 +110,7 @@ export default function AIBackgroundRemover() {
               {resultUrl && !isProcessing && (
                 <>
                   {/* Checkerboard background wrapper to show transparency */}
-                  <div className="relative aspect-square sm:aspect-video w-full overflow-hidden rounded-[1rem] border border-border shadow-sm bg-[url('data:image/svg+xml;utf8,<svg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"10\" height=\"10\" fill=\"%23e2e8f0\"/><rect x=\"10\" y=\"10\" width=\"10\" height=\"10\" fill=\"%23e2e8f0\"/><rect x=\"10\" width=\"10\" height=\"10\" fill=\"%23f8fafc\"/><rect y=\"10\" width=\"10\" height=\"10\" fill=\"%23f8fafc\"/></svg>')] bg-repeat">
+                  <div className="relative aspect-square sm:aspect-video w-full overflow-hidden rounded-[1rem] border border-border shadow-sm bg-[url('data:image/svg+xml;utf8,<svg width=%2220%22 height=%2220%22 xmlns=%22http://www.w3.org/2000/svg%22><rect width=%2210%22 height=%2210%22 fill=%22%23e2e8f0%22/><rect x=%2210%22 y=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23e2e8f0%22/><rect x=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23f8fafc%22/><rect y=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23f8fafc%22/></svg>')] bg-repeat">
                     <Image
                       src={resultUrl}
                       alt="Background Removed Result"

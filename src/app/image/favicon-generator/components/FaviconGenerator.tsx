@@ -105,7 +105,7 @@ export default function FaviconGenerator() {
             {sourceUrl && (
               <div className="rounded-[1.5rem] border border-border bg-slate-50 p-4">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Original Image</p>
-                <div className="relative aspect-square w-full overflow-hidden rounded-[1rem] bg-white border border-border shadow-inner flex items-center justify-center p-8 bg-[url('data:image/svg+xml;utf8,<svg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"10\" height=\"10\" fill=\"%23e2e8f0\"/><rect x=\"10\" y=\"10\" width=\"10\" height=\"10\" fill=\"%23e2e8f0\"/><rect x=\"10\" width=\"10\" height=\"10\" fill=\"%23f8fafc\"/><rect y=\"10\" width=\"10\" height=\"10\" fill=\"%23f8fafc\"/></svg>')] bg-repeat">
+                <div className="relative aspect-square w-full overflow-hidden rounded-[1rem] bg-white border border-border shadow-inner flex items-center justify-center p-8 bg-[url('data:image/svg+xml;utf8,<svg width=%2220%22 height=%2220%22 xmlns=%22http://www.w3.org/2000/svg%22><rect width=%2210%22 height=%2210%22 fill=%22%23e2e8f0%22/><rect x=%2210%22 y=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23e2e8f0%22/><rect x=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23f8fafc%22/><rect y=%2210%22 width=%2210%22 height=%2210%22 fill=%22%23f8fafc%22/></svg>')] bg-repeat">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     ref={imgRef}

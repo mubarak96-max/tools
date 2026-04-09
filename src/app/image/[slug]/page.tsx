@@ -42,16 +42,18 @@ export default async function ImageToolPage(props: { params: Promise<{ slug: str
       title={tool.name}
       description={tool.description}
       learn={
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{copy.heading}</h2>
-          {copy.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="mt-3 text-base leading-7 text-muted-foreground">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        copy ? (
+          <div className="prose prose-slate max-w-none">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">{copy.heading}</h2>
+            {copy.paragraphs.map((paragraph) => (
+              <p key={paragraph} className="mt-3 text-base leading-7 text-muted-foreground">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        ) : undefined
       }
-      faqs={copy.faqs}
+      faqs={copy?.faqs || []}
     >
       <ImageToolRunner tool={tool} />
     </ToolPageScaffold>

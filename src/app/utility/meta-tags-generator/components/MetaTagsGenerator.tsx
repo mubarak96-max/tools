@@ -177,7 +177,7 @@ ${imageUrl ? `<meta property="twitter:image" content="${imageUrl}" />` : ""}`;
                   {generateCode()}
                 </pre>
                 <div className="absolute top-4 right-4">
-                  <CopyButton text={generateCode()} />
+                  <CopyButton value={generateCode()} />
                 </div>
               </div>
               <p className="text-xs text-muted-foreground">
