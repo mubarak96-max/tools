@@ -27,6 +27,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     icon: "AED",
   },
   {
+    name: "UAE Gratuity Calculator",
+    href: "/finance/uae-gratuity-calculator",
+    description: "Estimate UAE end-of-service gratuity from monthly basic salary, service dates, unpaid leave, and work pattern.",
+    category: "Finance",
+    icon: "EOS",
+  },
+  {
     name: "Mortgage Calculator",
     href: "/finance/mortgage-calculator",
     description: "Calculate monthly home loan payments with down payment, property tax, and insurance.",
