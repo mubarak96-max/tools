@@ -12,6 +12,7 @@ import {
 } from "@/lib/validation/shared";
 
 const recordStatusSchema = z.enum(recordStatusValues);
+const sourceMethodSchema = z.enum(["manual", "ai-assisted", "reviewed", "imported"]);
 const pageTypeSchema = z.enum([
   "curated-list",
   "comparison",
@@ -26,6 +27,30 @@ const faqSchema = z.object({
   question: z.string().trim().min(3).max(160),
   answer: z.string().trim().min(3).max(500),
 });
+
+function normalizeMetaDescription(value: string | undefined, title: string) {
+  const normalized = stringOrUndefined(value);
+
+  if (!normalized || normalized.length < 30) {
+    return `Discover curated software recommendations for ${title.toLowerCase()}.`;
+  }
+
+  return normalized;
+}
+
+function normalizeFaqList(value: unknown) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.reduce<Array<{ question: string; answer: string }>>((items, entry) => {
+    const parsed = faqSchema.safeParse(entry);
+    if (parsed.success) {
+      items.push(parsed.data);
+    }
+    return items;
+  }, []);
+}
 
 export const pageSchema = z.object({
   id: z.string().trim().optional(),
@@ -85,9 +110,7 @@ export function normalizePageRecord(
     id: options?.id,
     slug,
     title,
-    metaDescription:
-      stringOrUndefined(raw.metaDescription) ??
-      `Discover curated software recommendations for ${title.toLowerCase()}.`,
+    metaDescription: normalizeMetaDescription(stringOrUndefined(raw.metaDescription), title),
     pageType,
     category: stringOrUndefined(raw.category),
     audience: stringOrUndefined(raw.audience),
@@ -95,12 +118,13 @@ export function normalizePageRecord(
     toolSlugs: stringArray(raw.toolSlugs),
     intro: editorialVerdict,
     bodySections: stringArray(raw.bodySections),
-    faq: Array.isArray(raw.faq) ? raw.faq : [],
+    faq: normalizeFaqList(raw.faq),
     editorialVerdict,
     status,
     qualityScore: numberOrUndefined(raw.qualityScore),
-    sourceMethod:
-      stringOrUndefined(raw.sourceMethod) as CustomPage["sourceMethod"] | undefined,
+    sourceMethod: sourceMethodSchema.safeParse(raw.sourceMethod).success
+      ? (raw.sourceMethod as CustomPage["sourceMethod"])
+      : undefined,
     createdAt: isoDateOrUndefined(raw.createdAt),
     updatedAt: isoDateOrUndefined(raw.updatedAt),
     templateType: templateTypeFromPageType(pageType),

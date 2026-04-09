@@ -12,16 +12,10 @@ export default function NotFound() {
         </h1>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           The link may be outdated, the page may have moved, or the URL may be incorrect.
-          You can return to the directory or go back to the homepage.
+          You can head back to the homepage from here.
         </p>
 
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Link
-            href="/tools"
-            className="inline-flex min-w-[12rem] items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_16px_30px_-20px_rgba(79,70,229,0.65)] transition-colors hover:bg-primary-hover"
-          >
-            Browse all tools
-          </Link>
+        <div className="mt-8 flex items-center justify-center">
           <Link
             href="/"
             className="inline-flex min-w-[12rem] items-center justify-center rounded-full border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:border-primary/25 hover:text-primary"

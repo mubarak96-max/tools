@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, FolderSearch2, Layers3, Scale, Users } from "lucide-react";
+import { FolderSearch2, Layers3, Scale, Users } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import JsonLd from "@/components/seo/JsonLd";
@@ -82,15 +82,6 @@ export default async function UseCasePage({
               <p className="max-w-3xl text-lg leading-8 text-muted-foreground">
                 {hub.description}
               </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-3 text-sm font-semibold text-foreground"
-              >
-                Browse all tools
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
 

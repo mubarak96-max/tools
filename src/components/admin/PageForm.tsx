@@ -15,6 +15,18 @@ function getErrorMessage(error: unknown, fallback: string) {
   return error instanceof Error ? error.message : fallback;
 }
 
+function getTemplateToolRequirement(templateType: CustomPage['templateType'], count: number) {
+  if (templateType === 'comparison' && count !== 2) {
+    return 'Comparison pages require exactly 2 selected tools.';
+  }
+
+  if (templateType === 'alternatives' && count < 2) {
+    return 'Alternatives pages require at least 2 selected tools.';
+  }
+
+  return '';
+}
+
 export default function PageForm({ initialData, availableTools, isEdit }: PageFormProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -23,14 +35,23 @@ export default function PageForm({ initialData, availableTools, isEdit }: PageFo
     slug: '',
     title: '',
     metaDescription: '',
+    pageType: 'curated-list',
     templateType: 'curated-list',
     status: 'draft',
     toolSlugs: []
   });
 
+  const selectedToolCount = formData.toolSlugs?.length || 0;
+  const toolRequirementError = getTemplateToolRequirement(
+    (formData.templateType || 'curated-list') as CustomPage['templateType'],
+    selectedToolCount,
+  );
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => name === 'templateType'
+      ? { ...prev, templateType: value as CustomPage['templateType'], pageType: value as CustomPage['pageType'] }
+      : { ...prev, [name]: value });
   };
 
   const handleToolToggle = (toolSlug: string) => {
@@ -51,6 +72,12 @@ export default function PageForm({ initialData, availableTools, isEdit }: PageFo
     
     if (!formData.slug) {
       setError('Slug is required');
+      setLoading(false);
+      return;
+    }
+
+    if (toolRequirementError) {
+      setError(toolRequirementError);
       setLoading(false);
       return;
     }
@@ -123,6 +150,18 @@ export default function PageForm({ initialData, availableTools, isEdit }: PageFo
         <div className="glass-card p-6 rounded-2xl space-y-4 max-h-[500px] flex flex-col">
           <h2 className="text-xl font-bold mb-2">Select Tools</h2>
           <p className="text-sm text-muted-foreground mb-4">Pick exactly which tools should appear on this custom page.</p>
+          <div className="mb-4 flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-background/40 px-4 py-3">
+            <p className="text-sm text-muted-foreground">
+              Selected: <span className="font-semibold text-foreground">{selectedToolCount}</span>
+            </p>
+            <p className={`text-xs font-medium ${toolRequirementError ? 'text-red-500' : 'text-muted-foreground'}`}>
+              {toolRequirementError || ((formData.templateType || 'curated-list') === 'comparison'
+                ? 'Comparison needs exactly 2 tools'
+                : (formData.templateType || 'curated-list') === 'alternatives'
+                  ? 'Alternatives needs 1 target plus replacements'
+                  : 'Curated lists can include multiple tools')}
+            </p>
+          </div>
           
           <div className="flex-1 overflow-y-auto space-y-2 pr-2">
             {availableTools.map(tool => {

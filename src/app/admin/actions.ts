@@ -153,6 +153,34 @@ async function assertPagePublishableTaxonomy(draft: Partial<CustomPage>) {
   }
 }
 
+function normalizePageDraftInput(data: Partial<CustomPage>): Partial<CustomPage> {
+  const templateType =
+    data.templateType ??
+    (data.pageType === "comparison"
+      ? "comparison"
+      : data.pageType === "alternatives"
+        ? "alternatives"
+        : "curated-list");
+
+  return {
+    ...data,
+    templateType,
+    pageType: templateType,
+  };
+}
+
+function assertPageTemplateShape(draft: Partial<CustomPage>) {
+  const toolCount = draft.toolSlugs?.filter(Boolean).length ?? 0;
+
+  if (draft.templateType === "comparison" && toolCount !== 2) {
+    throw new Error("Comparison pages require exactly 2 selected tools.");
+  }
+
+  if (draft.templateType === "alternatives" && toolCount < 2) {
+    throw new Error("Alternatives pages require at least 2 selected tools.");
+  }
+}
+
 export async function createTool(data: Partial<Tool>) {
   await ensureCategoryRecords([data.category || "", ...(data.categories || [])]);
   const assessment = await assessToolDraft(data);
@@ -259,11 +287,14 @@ export async function autoCreateTool(toolName: string, config: { categories: str
 }
 
 export async function createPage(data: Partial<CustomPage>) {
-  if (data.status === "published") {
-    await assertPagePublishableTaxonomy(data);
+  const nextData = normalizePageDraftInput(data);
+  assertPageTemplateShape(nextData);
+
+  if (nextData.status === "published") {
+    await assertPagePublishableTaxonomy(nextData);
   }
 
-  const slug = await createPageRecord(data, "draft");
+  const slug = await createPageRecord(nextData, "draft");
 
   revalidateSharedDataTags();
   revalidatePagePaths(slug);
@@ -271,11 +302,14 @@ export async function createPage(data: Partial<CustomPage>) {
 }
 
 export async function updatePage(slug: string, data: Partial<CustomPage>) {
-  if (data.status === "published") {
-    await assertPagePublishableTaxonomy(data);
+  const nextData = normalizePageDraftInput(data);
+  assertPageTemplateShape(nextData);
+
+  if (nextData.status === "published") {
+    await assertPagePublishableTaxonomy(nextData);
   }
 
-  await updatePageRecord(slug, data);
+  await updatePageRecord(slug, nextData);
 
   revalidateSharedDataTags();
   revalidatePagePaths(slug);
@@ -406,20 +440,23 @@ export async function previewGeneratedPageEditorial(input: {
 }
 
 export async function saveGeneratedPageDraft(draft: Partial<CustomPage>) {
-  if (draft.status === "published") {
-    await assertPagePublishableTaxonomy(draft);
+  const nextDraft = normalizePageDraftInput(draft);
+  assertPageTemplateShape(nextDraft);
+
+  if (nextDraft.status === "published") {
+    await assertPagePublishableTaxonomy(nextDraft);
   }
 
   const slug = await createPageRecord(
     {
-      ...draft,
-      slug: draft.slug || slugify(draft.title || "generated-page"),
-      pageType: draft.pageType || draft.templateType || "curated-list",
-      templateType: draft.templateType || "curated-list",
-      sourceMethod: draft.sourceMethod || "ai-assisted",
-      status: draft.status || "review",
+      ...nextDraft,
+      slug: nextDraft.slug || slugify(nextDraft.title || "generated-page"),
+      pageType: nextDraft.pageType || nextDraft.templateType || "curated-list",
+      templateType: nextDraft.templateType || "curated-list",
+      sourceMethod: nextDraft.sourceMethod || "ai-assisted",
+      status: nextDraft.status || "review",
     },
-    draft.status || "review",
+    nextDraft.status || "review",
   );
 
   revalidateSharedDataTags();

@@ -46,7 +46,27 @@ export type ExactTextTool =
     })
   | (BaseTool & {
       family: "stats";
-      focus: "overview" | "phrases" | "longest" | "shortest";
+      focus: "overview" | "phrases" | "longest" | "shortest" | "readability" | "characters";
+    })
+  | (BaseTool & {
+      family: "transform";
+      mode: "slug" | "list";
+    })
+  | (BaseTool & {
+      family: "generator";
+      mode: "lorem";
+    })
+  | (BaseTool & {
+      family: "compare";
+      mode: "diff";
+    })
+  | (BaseTool & {
+      family: "unicode";
+      mode: "fancy-font" | "upside-down" | "tiny-text" | "invisible" | "zalgo";
+    })
+  | (BaseTool & {
+      family: "reference";
+      mode: "character-table";
     });
 
 export type ExactConverterTool =
@@ -209,6 +229,18 @@ export const EXACT_TEXT_TOOLS = [
   text({ slug: "phrase-frequency-calculator", name: "Phrase Frequency Calculator", description: "Find repeated phrases and surface the most frequent phrase combinations in text.", category: "Text", icon: "PHRASE", family: "stats", focus: "phrases" }),
   text({ slug: "find-longest-text-line", name: "Find Longest Text Line", description: "Find the longest non-empty line in pasted multiline text.", category: "Text", icon: "LONG", family: "stats", focus: "longest" }),
   text({ slug: "find-shortest-text-line", name: "Find Shortest Text Line", description: "Find the shortest non-empty line in pasted multiline text.", category: "Text", icon: "SHORT", family: "stats", focus: "shortest" }),
+  text({ slug: "text-to-slug-converter", name: "Text to Slug Converter", description: "Convert titles, phrases, and headings into clean URL-friendly slugs.", category: "Text", icon: "SLUG", family: "transform", mode: "slug" }),
+  text({ slug: "text-to-list-list-to-text", name: "Text to List / List to Text", description: "Convert comma-separated text into vertical lists and join line-based lists back into one string.", category: "Text", icon: "LIST", family: "transform", mode: "list" }),
+  text({ slug: "readability-flesch-kincaid-calculator", name: "Readability / Flesch-Kincaid Calculator", description: "Score pasted text for reading ease, grade level, and sentence complexity.", category: "Text", icon: "READ", family: "stats", focus: "readability" }),
+  text({ slug: "character-frequency-map", name: "Character Frequency Map", description: "Count repeated characters, whitespace, and symbols inside any pasted text block.", category: "Text", icon: "CHAR", family: "stats", focus: "characters" }),
+  text({ slug: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", description: "Generate placeholder paragraphs, sentences, or words for mockups and drafts.", category: "Text", icon: "LOREM", family: "generator", mode: "lorem" }),
+  text({ slug: "text-difference-checker", name: "Text Difference Checker", description: "Compare two text blocks and highlight added, removed, and changed lines.", category: "Text", icon: "DIFF", family: "compare", mode: "diff" }),
+  text({ slug: "fancy-font-generator", name: "Fancy Font Generator", description: "Convert plain text into stylized Unicode font variants such as bold, script, monospace, and double-struck.", category: "Text", icon: "FONT", family: "unicode", mode: "fancy-font" }),
+  text({ slug: "upside-down-text-generator", name: "Upside Down Text Generator", description: "Flip text upside down with mirrored Unicode characters for playful captions and posts.", category: "Text", icon: "FLIP", family: "unicode", mode: "upside-down" }),
+  text({ slug: "tiny-text-generator", name: "Tiny Text Generator", description: "Convert normal text into tiny superscript-style Unicode characters.", category: "Text", icon: "TINY", family: "unicode", mode: "tiny-text" }),
+  text({ slug: "invisible-character-generator", name: "Invisible Character / Empty Text", description: "Generate zero-width and empty-looking Unicode characters you can copy into forms, bios, and messages.", category: "Text", icon: "VOID", family: "unicode", mode: "invisible" }),
+  text({ slug: "zalgo-glitch-text-generator", name: "Zalgo / Glitch Text Generator", description: "Apply stacked combining marks to create chaotic glitch-style Unicode text.", category: "Text", icon: "ZALG", family: "unicode", mode: "zalgo" }),
+  text({ slug: "unicode-ascii-table-search", name: "Unicode/ASCII Table Search", description: "Search ASCII codes and common Unicode characters by name, code point, or character.", category: "Text", icon: "U+00", family: "reference", mode: "character-table" }),
 ] as const;
 
 export const EXACT_CONVERTER_TOOLS = [

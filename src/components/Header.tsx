@@ -162,14 +162,8 @@ export default function Header() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 border-t border-border/60 pt-4 flex items-center justify-between">
+                <div className="mt-5 border-t border-border/60 pt-4">
                   <p className="text-xs text-muted-foreground">Browser-based · No uploads · Free forever</p>
-                  <Link
-                    href="/tools"
-                    className="text-sm font-semibold text-primary hover:underline"
-                  >
-                    Browse reviewed tools directory →
-                  </Link>
                 </div>
               </div>
             )}
@@ -231,10 +225,7 @@ export default function Header() {
                 )}
               </div>
             ))}
-            <div className="border-t border-border/60 pt-4 space-y-2">
-              <Link href="/tools" className="block text-sm font-semibold text-primary">
-                Browse reviewed tools directory →
-              </Link>
+            <div className="border-t border-border/60 pt-4">
               <p className="text-xs text-muted-foreground">Browser-based · No uploads · Free forever</p>
             </div>
           </div>
@@ -243,3 +234,4 @@ export default function Header() {
     </header>
   );
 }
+

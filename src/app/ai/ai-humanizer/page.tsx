@@ -224,15 +224,6 @@ export default function AIHumanizerPage() {
               Return to the AI hub for writing-focused tools and future prompt-driven utilities.
             </p>
           </Link>
-          <Link
-            href="/tools"
-            className="rounded-[1.25rem] border border-border bg-background p-5 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-          >
-            <h3 className="text-base font-semibold text-foreground">Explore software tools</h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Jump back into the broader directory for comparisons, alternatives, and structured reviews.
-            </p>
-          </Link>
           {relatedTools[0] ? (
             <Link
               href={relatedTools[0].href}

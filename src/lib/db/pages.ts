@@ -102,7 +102,15 @@ export async function getPageBySlug(slug: string, options?: { includeDrafts?: bo
     return null;
   }
 
-  const page = normalizePageRecord(doc.data(), { id: doc.id });
+  let page;
+
+  try {
+    page = normalizePageRecord(doc.data(), { id: doc.id });
+  } catch (error) {
+    logServerError("normalize_page_by_slug_failed", error, { slug, id: doc.id });
+    return null;
+  }
+
   if (!options?.includeDrafts && page.status !== "published") {
     return null;
   }
@@ -126,7 +134,7 @@ export async function createPageRecord(
     throw new Error("A page with this slug already exists.");
   }
 
-  await docRef.set(withTimestamps(enforced));
+  await docRef.set(withTimestamps(prepared));
 
   return prepared.slug;
 }

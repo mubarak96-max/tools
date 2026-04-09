@@ -231,10 +231,6 @@ export default async function ToolPage({
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
-            <Link href="/tools" className="hover:text-primary">
-              Tools
-            </Link>
-            <ChevronRight className="h-3.5 w-3.5" />
             <Link href={`/best/${slugify(tool.category)}`} className="hover:text-primary">
               {tool.category}
             </Link>
