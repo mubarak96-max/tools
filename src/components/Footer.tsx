@@ -49,7 +49,7 @@ const FOOTER_COLUMNS = [
       { name: 'Tailwind Tools', href: '/tailwind' },
       { name: 'Converter Tools', href: '/converter' },
       { name: 'Utility Tools', href: '/utility' },
-      { name: 'All Reviewed Tools', href: '/tools' },
+
     ],
   },
   {
@@ -85,13 +85,7 @@ export default function Footer() {
             <p className="mt-4 text-sm leading-6 text-muted-foreground max-w-xs">
               Browser-based utility tools. No sign-up, no uploads — your files stay on your device.
             </p>
-            <div className="mt-4 flex flex-wrap gap-2 text-xs text-muted-foreground">
-              <span>⚡ Fast</span>
-              <span>·</span>
-              <span>🔒 Private</span>
-              <span>·</span>
-              <span>🆓 Free</span>
-            </div>
+
           </div>
 
           {/* Link columns */}

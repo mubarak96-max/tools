@@ -8,6 +8,7 @@ type BaseImageTool = Omit<FreeToolMeta, "href" | "category"> & {
 };
 
 type BaseImageKind =
+    | "ai-background-remover"
     | "random-color-generator"
     | "image-to-base64"
     | "image-colors-inverter"
@@ -60,6 +61,14 @@ function createFormatTool(kind: ImageFormatConverterKind, conversion: ImageForma
 }
 
 export const IMAGE_TOOLS = [
+  tool({
+    slug: "ai-background-remover",
+    name: "AI Background Remover",
+    description: "Remove the background from any photo instantly using local WebAssembly AI.",
+    category: "Image",
+    icon: "AI",
+    kind: "ai-background-remover",
+  }),
   tool({
     slug: "random-color-generator",
     name: "Random Color Generator",
