@@ -1,30 +1,155 @@
 "use client";
 
-import React, { useState } from "react";
-import { CalculatorLayout } from "@/components/CalculatorLayout";
-import { NumberInput } from "@/components/NumberInput";
+import React, { useState, useMemo } from "react";
+import { type RoofingInputs, type UnitSystem, calculateRoofing } from "@/lib/tools/roofing-material";
 
 export function RoofingMaterialCalculator() {
-  const [result, setResult] = useState<number | null>(null);
+  const [inputs, setInputs] = useState<RoofingInputs>({
+    system: "imperial",
+    baseLength: 40,
+    baseWidth: 25,
+    pitchRise: 4,
+    overhang: 1.5,
+  });
+
+  const updateInput = (key: keyof RoofingInputs, value: any) => {
+    setInputs((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const result = useMemo(() => calculateRoofing(inputs), [inputs]);
+  const toggleSystem = (sys: UnitSystem) => updateInput("system", sys);
 
   return (
-    <CalculatorLayout
-      title="Roofing Material Calculator"
-      description="Calculate squares of shingles and bundles needed for your roof based on base area and pitch."
-    >
-      <div className="space-y-6">
-        <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-          <h3 className="text-xl font-medium text-white mb-4">Input</h3>
-          {/* Add form here */}
-          <div className="text-gray-400 text-sm">Form goes here</div>
-        </div>
-        {result !== null && (
-          <div className="bg-emerald-500/10 p-6 rounded-2xl border border-emerald-500/20">
-            <h3 className="text-xl font-medium text-white mb-2">Results</h3>
-            <p className="text-3xl font-light text-emerald-400">{result}</p>
+    <div className="space-y-6">
+      <section className="tool-frame p-4 sm:p-6">
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1.05fr)_20rem]">
+          <div className="space-y-6">
+            
+            <div className="inline-flex rounded-[1rem] border border-border bg-card p-1">
+              <button
+                type="button"
+                onClick={() => toggleSystem("imperial")}
+                className={`rounded-[0.75rem] px-5 py-2 text-sm font-semibold transition-colors ${
+                  inputs.system === "imperial"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                Imperial (ft)
+              </button>
+              <button
+                type="button"
+                onClick={() => toggleSystem("metric")}
+                className={`rounded-[0.75rem] px-5 py-2 text-sm font-semibold transition-colors ${
+                  inputs.system === "metric"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                Metric (m)
+              </button>
+            </div>
+
+            <div className="grid gap-5 md:grid-cols-2">
+              <label className="space-y-2">
+                <span className="text-sm font-medium text-muted-foreground">House Base Length</span>
+                <div className="flex relative">
+                  <input
+                    type="number"
+                    min="0"
+                    value={inputs.baseLength === 0 ? "" : inputs.baseLength}
+                    onChange={(e) => updateInput("baseLength", Number(e.target.value))}
+                    className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary pr-8"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                    {inputs.system === "imperial" ? "ft" : "m"}
+                  </span>
+                </div>
+              </label>
+
+              <label className="space-y-2">
+                <span className="text-sm font-medium text-muted-foreground">House Base Width</span>
+                <div className="flex relative">
+                  <input
+                    type="number"
+                    min="0"
+                    value={inputs.baseWidth === 0 ? "" : inputs.baseWidth}
+                    onChange={(e) => updateInput("baseWidth", Number(e.target.value))}
+                    className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary pr-8"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                    {inputs.system === "imperial" ? "ft" : "m"}
+                  </span>
+                </div>
+              </label>
+
+              <label className="space-y-2">
+                <span className="text-sm font-medium text-muted-foreground">Roof Overhang (Eaves)</span>
+                <div className="flex relative">
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.5"
+                    value={inputs.overhang === 0 ? "" : inputs.overhang}
+                    onChange={(e) => updateInput("overhang", Number(e.target.value))}
+                    className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary pr-8"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+                    {inputs.system === "imperial" ? "ft" : "m"}
+                  </span>
+                </div>
+              </label>
+
+              <label className="space-y-2">
+                <span className="text-sm font-medium text-muted-foreground">Roof Pitch (X / 12)</span>
+                <div className="flex relative">
+                  <input
+                    type="number"
+                    min="1"
+                    max="24"
+                    value={inputs.pitchRise === 0 ? "" : inputs.pitchRise}
+                    onChange={(e) => updateInput("pitchRise", Number(e.target.value))}
+                    className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary pr-12"
+                  />
+                  <span className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-muted-foreground flex items-center">
+                    / 12
+                  </span>
+                </div>
+              </label>
+            </div>
           </div>
-        )}
-      </div>
-    </CalculatorLayout>
+
+          <aside className="rounded-[1.5rem] border border-border bg-background p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Material Needed
+            </p>
+            <div className="mt-4 flex flex-col gap-1">
+              <span className="text-4xl font-semibold tracking-tight text-foreground">{result.bundles} <span className="text-xl tracking-normal text-muted-foreground">bundles</span></span>
+            </div>
+
+            <div className="mt-6 space-y-4 border-t border-border pt-5">
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Roof Squares</span>
+                <span className="font-semibold text-primary">
+                  {result.squares} sqs
+                </span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Actual Roof Area</span>
+                <span className="font-medium text-foreground">
+                  {result.roofArea.toFixed(1)} {inputs.system === "imperial" ? "sq ft" : "sq m"}
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-[1rem] border border-primary/15 bg-primary-soft p-4">
+              <p className="text-xs leading-5 text-primary-soft-foreground">
+                Estimates include a standard 10% waste margin for cutting ridges, valleys, and starter strips.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </div>
   );
 }
