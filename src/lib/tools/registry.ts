@@ -137,6 +137,27 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     icon: "PCT",
   },
   {
+    name: "Click-Through Rate Calculator",
+    href: "/finance/click-through-rate-calculator",
+    description: "Calculate CTR from clicks and impressions, and estimate the clicks needed to hit a target click-through rate.",
+    category: "Finance",
+    icon: "CTR",
+  },
+  {
+    name: "CPC / CPM Calculator",
+    href: "/finance/cpc-cpm-calculator",
+    description: "Calculate cost per click, cost per 1,000 impressions, and the spend needed to reach target traffic or reach goals.",
+    category: "Finance",
+    icon: "CPC",
+  },
+  {
+    name: "ROI Calculator",
+    href: "/finance/roi-calculator",
+    description: "Calculate return on investment, net profit, cost basis, and annualized return from money in and money out.",
+    category: "Finance",
+    icon: "ROI",
+  },
+  {
     name: "Salary to Hourly Calculator",
     href: "/finance/salary-to-hourly-calculator",
     description: "Convert your annual salary to an hourly wage, daily rate, and monthly pay breakdown.",
@@ -191,6 +212,20 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     description: "Calculate Body Mass Index (BMI) and find your ideal weight range using metric or imperial units.",
     category: "Utility",
     icon: "BMI",
+  },
+  {
+    name: "Age Calculator",
+    href: "/utility/age-calculator",
+    description: "Calculate exact age in years, months, days, weeks, and total days from a birth date to any target date.",
+    category: "Utility",
+    icon: "AGE",
+  },
+  {
+    name: "Tip Calculator",
+    href: "/utility/tip-calculator",
+    description: "Calculate gratuity, full bill total, and the per-person share from a bill amount and tip percentage.",
+    category: "Utility",
+    icon: "TIP",
   },
   {
     name: "UTM Link Builder",
