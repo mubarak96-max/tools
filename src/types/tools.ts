@@ -125,6 +125,6 @@ export interface FreeToolMeta {
   name: string;
   href: string;
   description: string;
-  category: "Finance" | "Converter" | "Utility" | "Text" | "AI" | "Tailwind" | "Image" | "PDF" | "Real Estate" | "Construction";
+  category: "Finance" | "Converter" | "Utility" | "Text" | "AI" | "Tailwind" | "Image" | "PDF" | "Real Estate" | "Construction" | "Health";
   icon?: string;
 }
