@@ -60,6 +60,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     icon: "MTG",
   },
   {
+    name: "DTI Calculator",
+    href: "/finance/dti-calculator",
+    description: "Calculate debt-to-income ratio from gross monthly income and recurring monthly debt payments using the CFPB definition.",
+    category: "Finance",
+    icon: "DTI",
+  },
+  {
     name: "EMI Calculator",
     href: "/finance/emi-calculator",
     description: "Calculate monthly loan instalments for home, car, and personal loans.",
@@ -72,6 +79,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     description: "Calculate monthly payments for new and used car loans with down payment and trade-in value.",
     category: "Finance",
     icon: "AUTO",
+  },
+  {
+    name: "Credit Card Payoff Calculator",
+    href: "/finance/credit-card-payoff-calculator",
+    description: "Estimate payoff time, total interest, and the payment needed to clear a credit card balance in 36 months.",
+    category: "Finance",
+    icon: "CARD",
   },
   {
     name: "Discount Calculator",
@@ -88,6 +102,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     icon: "VAT",
   },
   {
+    name: "GST Calculator",
+    href: "/finance/gst-calculator",
+    description: "Calculate Singapore GST using the current 9% standard rate and the official IRAS distinction between standard-rated, zero-rated, and exempt supplies.",
+    category: "Finance",
+    icon: "GST",
+  },
+  {
     name: "Profit Margin Calculator",
     href: "/finance/profit-margin-calculator",
     description: "Calculate margin, markup, gross profit, and selling price from cost in one pricing calculator.",
@@ -100,6 +121,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     description: "Project future value, contributions, and compound growth with optional inflation adjustment.",
     category: "Finance",
     icon: "CAGR",
+  },
+  {
+    name: "Savings Goal Calculator",
+    href: "/finance/savings-goal-calculator",
+    description: "Calculate the monthly contribution needed to reach a savings target from your current balance, time horizon, and return assumption.",
+    category: "Finance",
+    icon: "SAVE",
   },
   {
     name: "Percentage Calculator",
