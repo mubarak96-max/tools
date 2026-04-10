@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { AgeGradingCalculator } from "./components/AgeGradingCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Race Age Grading Calculator | Free Health & Fitness Tools",

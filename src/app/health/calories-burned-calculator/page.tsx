@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { CaloriesBurnedCalculator } from "./components/CaloriesBurnedCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Calories Burned Calculator | Free Health & Fitness Tools",

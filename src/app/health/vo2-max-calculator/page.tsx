@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { Vo2MaxCalculator } from "./components/Vo2MaxCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "VO2 Max Estimator | Free Health & Fitness Tools",

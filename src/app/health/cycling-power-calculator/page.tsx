@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { CyclingPowerCalculator } from "./components/CyclingPowerCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Cycling Power to Weight Ratio | Free Health & Fitness Tools",

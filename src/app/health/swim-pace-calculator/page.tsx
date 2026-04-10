@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { SwimPaceCalculator } from "./components/SwimPaceCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Swim Pace Calculator | Free Health & Fitness Tools",

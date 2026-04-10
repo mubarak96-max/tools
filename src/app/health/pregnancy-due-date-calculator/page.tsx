@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PregnancyDueDateCalculator } from "./components/PregnancyDueDateCalculator";
-import { HealthToolPage } from "../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Pregnancy Due Date Calculator | Free Health Tools",

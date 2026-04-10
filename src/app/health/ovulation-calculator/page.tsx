@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { OvulationCalculator } from "./components/OvulationCalculator";
-import { HealthToolPage } from "../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Ovulation & Fertility Calculator | Free Health Tools",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SleepCalculator } from "./components/SleepCalculator";
-import { HealthToolPage } from "../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Sleep Cycle Calculator | Wake Up Refreshed",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { IntermittentFastingCalculator } from "./components/IntermittentFastingCalculator";
-import { HealthToolPage } from "../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Intermittent Fasting Schedule Generator | Free Health Tools",

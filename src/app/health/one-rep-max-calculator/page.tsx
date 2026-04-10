@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { OneRepMaxCalculator } from "./components/OneRepMaxCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "One Rep Max Calculator | Free Fitness Tools",

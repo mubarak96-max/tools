@@ -20,6 +20,13 @@ export const FREE_TOOL_CATEGORY_ROUTES: Record<FreeToolMeta["category"], string>
 
 export const FREE_TOOLS: FreeToolMeta[] = [
   {
+    name: "Expected Goals (xG) Calculator",
+    href: "/utility/xg-expected-goals-calculator",
+    description: "Calculate Expected Goals (xG) for football shots with interactive pitch visualization and accurate statistical modeling.",
+    category: "Utility",
+    icon: "XG",
+  },
+  {
     name: "AI Humanizer",
     href: "/ai/ai-humanizer",
     description: "Rewrite AI-generated text to sound natural and human, with a short queue flow and no sign-up.",
@@ -298,6 +305,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     description: "Calculate gratuity, full bill total, and the per-person share from a bill amount and tip percentage.",
     category: "Utility",
     icon: "TIP",
+  },
+  {
+    name: "Free CV Resume Builder",
+    href: "/utility/free-cv-resume-builder",
+    description: "Build a resume online for free with editable sections, multiple templates, browser autosave, and print-to-PDF export.",
+    category: "Utility",
+    icon: "CV",
   },
   {
     name: "Robots.txt Generator",

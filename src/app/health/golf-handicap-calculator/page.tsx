@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { GolfHandicapCalculator } from "./components/GolfHandicapCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Handicap Calculator (Golf) | Free Health & Fitness Tools",

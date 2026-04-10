@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { MarathonPredictorCalculator } from "./components/MarathonPredictorCalculator";
-import { HealthToolPage } from "../../components/HealthToolPage";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 
 export const metadata: Metadata = {
   title: "Marathon Finish Time Predictor | Free Health & Fitness Tools",
