@@ -35,6 +35,28 @@ function calculateMonthlyLoanPayment(principal: number, annualRate: number, term
   );
 }
 
+function applyProgressiveBrackets(
+  amount: number,
+  brackets: Array<{ upTo: number; rate: number }>,
+) {
+  let remaining = Math.max(0, amount);
+  let previousLimit = 0;
+  let tax = 0;
+
+  for (const bracket of brackets) {
+    if (remaining <= 0) {
+      break;
+    }
+
+    const taxableAtThisRate = Math.min(remaining, bracket.upTo - previousLimit);
+    tax += taxableAtThisRate * (bracket.rate / 100);
+    remaining -= taxableAtThisRate;
+    previousLimit = bracket.upTo;
+  }
+
+  return tax;
+}
+
 export function calculateCapRate(input: {
   propertyValue: number;
   annualRent: number;
@@ -315,6 +337,322 @@ export function calculateStampDuty(input: {
     dutyAmount,
     totalTransactionFees,
     totalCashNeeded: purchasePrice + totalTransactionFees,
+  };
+}
+
+export function calculateUkSdlt(input: {
+  purchasePrice: number;
+  buyerType: "standard" | "first-time";
+  additionalProperty: boolean;
+  nonUkResident: boolean;
+}) {
+  const purchasePrice = Math.max(0, input.purchasePrice);
+  const surcharge = (input.additionalProperty ? 5 : 0) + (input.nonUkResident ? 2 : 0);
+  const useFirstTimeRelief = input.buyerType === "first-time" && purchasePrice <= 500_000;
+
+  const brackets = useFirstTimeRelief
+    ? [
+        { upTo: 300_000, rate: 0 + surcharge },
+        { upTo: 500_000, rate: 5 + surcharge },
+        { upTo: Number.POSITIVE_INFINITY, rate: 5 + surcharge },
+      ]
+    : [
+        { upTo: 125_000, rate: 0 + surcharge },
+        { upTo: 250_000, rate: 2 + surcharge },
+        { upTo: 925_000, rate: 5 + surcharge },
+        { upTo: 1_500_000, rate: 10 + surcharge },
+        { upTo: Number.POSITIVE_INFINITY, rate: 12 + surcharge },
+      ];
+
+  const sdlt = applyProgressiveBrackets(purchasePrice, brackets);
+
+  return {
+    sdlt,
+    effectiveRate: purchasePrice > 0 ? (sdlt / purchasePrice) * 100 : 0,
+    surchargeRate: surcharge,
+    usesFirstTimeRelief: useFirstTimeRelief,
+  };
+}
+
+export function calculateSingaporePropertyStampDuty(input: {
+  purchasePrice: number;
+  buyerProfile: "sc-first" | "sc-second" | "sc-third-plus" | "spr-first" | "spr-second" | "spr-third-plus" | "foreigner" | "entity";
+  ssdRegime: "2025-plus" | "2017-2025";
+  yearsHeld: number;
+}) {
+  const purchasePrice = Math.max(0, input.purchasePrice);
+
+  const bsd = applyProgressiveBrackets(purchasePrice, [
+    { upTo: 180_000, rate: 1 },
+    { upTo: 360_000, rate: 2 },
+    { upTo: 1_000_000, rate: 3 },
+    { upTo: 1_500_000, rate: 4 },
+    { upTo: 3_000_000, rate: 5 },
+    { upTo: Number.POSITIVE_INFINITY, rate: 6 },
+  ]);
+
+  const absdRates: Record<typeof input.buyerProfile, number> = {
+    "sc-first": 0,
+    "sc-second": 20,
+    "sc-third-plus": 30,
+    "spr-first": 5,
+    "spr-second": 30,
+    "spr-third-plus": 35,
+    foreigner: 60,
+    entity: 65,
+  };
+
+  const absdRate = absdRates[input.buyerProfile];
+  const absd = purchasePrice * (absdRate / 100);
+
+  const yearsHeld = Math.max(0, input.yearsHeld);
+  let ssdRate = 0;
+
+  if (input.ssdRegime === "2025-plus") {
+    if (yearsHeld <= 1) ssdRate = 16;
+    else if (yearsHeld <= 2) ssdRate = 12;
+    else if (yearsHeld <= 3) ssdRate = 8;
+    else if (yearsHeld <= 4) ssdRate = 4;
+  } else {
+    if (yearsHeld <= 1) ssdRate = 12;
+    else if (yearsHeld <= 2) ssdRate = 8;
+    else if (yearsHeld <= 3) ssdRate = 4;
+  }
+
+  const ssd = purchasePrice * (ssdRate / 100);
+
+  return {
+    bsd: Math.floor(bsd),
+    absd: Math.floor(absd),
+    absdRate,
+    ssd: Math.floor(ssd),
+    ssdRate,
+    totalBuyerStampDuty: Math.floor(bsd + absd),
+  };
+}
+
+export function calculateSingaporeBuyerStampDuty(input: {
+  purchasePrice: number;
+  buyerProfile: "sc-first" | "sc-second" | "sc-third-plus" | "spr-first" | "spr-second" | "spr-third-plus" | "foreigner" | "entity";
+}) {
+  const result = calculateSingaporePropertyStampDuty({
+    purchasePrice: input.purchasePrice,
+    buyerProfile: input.buyerProfile,
+    ssdRegime: "2025-plus",
+    yearsHeld: 5,
+  });
+
+  return {
+    bsd: result.bsd,
+    absd: result.absd,
+    absdRate: result.absdRate,
+    totalBuyerStampDuty: result.totalBuyerStampDuty,
+  };
+}
+
+export function calculateSingaporeSellerStampDuty(input: {
+  salePrice: number;
+  acquisitionDate: string;
+  disposalDate: string;
+}) {
+  const salePrice = Math.max(0, input.salePrice);
+  const acquisitionDate = new Date(input.acquisitionDate);
+  const disposalDate = new Date(input.disposalDate);
+
+  if (Number.isNaN(acquisitionDate.getTime()) || Number.isNaN(disposalDate.getTime()) || disposalDate <= acquisitionDate) {
+    return {
+      holdingPeriodYears: 0,
+      ssdRate: 0,
+      ssd: 0,
+      regime: "2025-plus" as const,
+    };
+  }
+
+  const holdingPeriodYears =
+    (disposalDate.getTime() - acquisitionDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+  const cutover = new Date("2025-07-04T00:00:00");
+  const regime = acquisitionDate >= cutover ? "2025-plus" : "2017-2025";
+
+  let ssdRate = 0;
+  if (regime === "2025-plus") {
+    if (holdingPeriodYears <= 1) ssdRate = 16;
+    else if (holdingPeriodYears <= 2) ssdRate = 12;
+    else if (holdingPeriodYears <= 3) ssdRate = 8;
+    else if (holdingPeriodYears <= 4) ssdRate = 4;
+  } else {
+    if (holdingPeriodYears <= 1) ssdRate = 12;
+    else if (holdingPeriodYears <= 2) ssdRate = 8;
+    else if (holdingPeriodYears <= 3) ssdRate = 4;
+  }
+
+  const ssd = Math.floor(salePrice * (ssdRate / 100));
+
+  return {
+    holdingPeriodYears,
+    ssdRate,
+    ssd,
+    regime,
+  };
+}
+
+export function calculateNycTransferTax(input: {
+  transferPrice: number;
+  propertyType: "residential-1-3-family" | "other";
+}) {
+  const transferPrice = Math.max(0, input.transferPrice);
+  const isSmallTransfer = transferPrice <= 500_000;
+
+  const rate =
+    input.propertyType === "residential-1-3-family"
+      ? isSmallTransfer
+        ? 1
+        : 1.425
+      : isSmallTransfer
+        ? 1.425
+        : 2.625;
+
+  const rtt = transferPrice * (rate / 100);
+
+  return {
+    rate,
+    rtt,
+  };
+}
+
+export function calculateDubaiTransferFee(input: {
+  salePrice: number;
+}) {
+  const salePrice = Math.max(0, input.salePrice);
+  const dldTransferFee = salePrice * 0.04;
+  const trusteeFee = salePrice < 500_000 ? 2_100 : 4_200;
+  const titleDeedFee = 250;
+  const knowledgeFee = 10;
+  const innovationFee = 10;
+  const totalFees = dldTransferFee + trusteeFee + titleDeedFee + knowledgeFee + innovationFee;
+
+  return {
+    dldTransferFee,
+    trusteeFee,
+    titleDeedFee,
+    knowledgeFee,
+    innovationFee,
+    totalFees,
+  };
+}
+
+export function calculateScotlandLbtt(input: {
+  purchasePrice: number;
+  firstTimeBuyer: boolean;
+  additionalDwelling: boolean;
+}) {
+  const purchasePrice = Math.max(0, input.purchasePrice);
+
+  const mainBrackets = input.firstTimeBuyer
+    ? [
+        { upTo: 175_000, rate: 0 },
+        { upTo: 250_000, rate: 2 },
+        { upTo: 325_000, rate: 5 },
+        { upTo: 750_000, rate: 10 },
+        { upTo: Number.POSITIVE_INFINITY, rate: 12 },
+      ]
+    : [
+        { upTo: 145_000, rate: 0 },
+        { upTo: 250_000, rate: 2 },
+        { upTo: 325_000, rate: 5 },
+        { upTo: 750_000, rate: 10 },
+        { upTo: Number.POSITIVE_INFINITY, rate: 12 },
+      ];
+
+  const lbtt = applyProgressiveBrackets(purchasePrice, mainBrackets);
+  const ads = input.additionalDwelling ? purchasePrice * 0.08 : 0;
+
+  return {
+    lbtt,
+    ads,
+    totalTax: lbtt + ads,
+    firstTimeNilRateBand: input.firstTimeBuyer ? 175_000 : 145_000,
+  };
+}
+
+export function calculateWalesLtt(input: {
+  purchasePrice: number;
+  higherRates: boolean;
+}) {
+  const purchasePrice = Math.max(0, input.purchasePrice);
+
+  const brackets = input.higherRates
+    ? [
+        { upTo: 180_000, rate: 5 },
+        { upTo: 250_000, rate: 8.5 },
+        { upTo: 400_000, rate: 10 },
+        { upTo: 750_000, rate: 12.5 },
+        { upTo: 1_500_000, rate: 15 },
+        { upTo: Number.POSITIVE_INFINITY, rate: 17 },
+      ]
+    : [
+        { upTo: 225_000, rate: 0 },
+        { upTo: 400_000, rate: 6 },
+        { upTo: 750_000, rate: 7.5 },
+        { upTo: 1_500_000, rate: 10 },
+        { upTo: Number.POSITIVE_INFINITY, rate: 12 },
+      ];
+
+  const ltt = applyProgressiveBrackets(purchasePrice, brackets);
+
+  return {
+    ltt,
+    effectiveRate: purchasePrice > 0 ? (ltt / purchasePrice) * 100 : 0,
+  };
+}
+
+export function calculateHongKongAvd(input: {
+  propertyValue: number;
+}) {
+  const propertyValue = Math.max(0, input.propertyValue);
+
+  if (propertyValue <= 4_000_000) return { avd: 100, regime: "current-scale-2" as const };
+  if (propertyValue <= 4_323_780) return { avd: 100 + 0.2 * (propertyValue - 4_000_000), regime: "current-scale-2" as const };
+  if (propertyValue <= 4_500_000) return { avd: propertyValue * 0.015, regime: "current-scale-2" as const };
+  if (propertyValue <= 4_935_480) return { avd: 67_500 + 0.1 * (propertyValue - 4_500_000), regime: "current-scale-2" as const };
+  if (propertyValue <= 6_000_000) return { avd: propertyValue * 0.0225, regime: "current-scale-2" as const };
+  if (propertyValue <= 6_642_860) return { avd: 135_000 + 0.1 * (propertyValue - 6_000_000), regime: "current-scale-2" as const };
+  if (propertyValue <= 9_000_000) return { avd: propertyValue * 0.03, regime: "current-scale-2" as const };
+  if (propertyValue <= 10_080_000) return { avd: 270_000 + 0.1 * (propertyValue - 9_000_000), regime: "current-scale-2" as const };
+  if (propertyValue <= 20_000_000) return { avd: propertyValue * 0.0375, regime: "current-scale-2" as const };
+  if (propertyValue <= 21_739_120) return { avd: 750_000 + 0.1 * (propertyValue - 20_000_000), regime: "current-scale-2" as const };
+  return { avd: propertyValue * 0.0425, regime: "current-scale-2" as const };
+}
+
+export function calculateDubaiMortgageRegistration(input: {
+  mortgageValue: number;
+}) {
+  const mortgageValue = Math.max(0, input.mortgageValue);
+  const mortgageFee = mortgageValue * 0.0025;
+  const titleDeedFee = 250;
+  const knowledgeFee = 10;
+  const innovationFee = 10;
+  const totalFees = mortgageFee + titleDeedFee + knowledgeFee + innovationFee;
+
+  return {
+    mortgageFee,
+    titleDeedFee,
+    knowledgeFee,
+    innovationFee,
+    totalFees,
+  };
+}
+
+export function calculateDubaiServiceCharge(input: {
+  titleDeedAreaSqFt: number;
+  approvedRatePerSqFt: number;
+}) {
+  const titleDeedAreaSqFt = Math.max(0, input.titleDeedAreaSqFt);
+  const approvedRatePerSqFt = Math.max(0, input.approvedRatePerSqFt);
+  const annualServiceCharge = titleDeedAreaSqFt * approvedRatePerSqFt;
+
+  return {
+    annualServiceCharge,
+    monthlyEquivalent: annualServiceCharge / 12,
   };
 }
 

@@ -47,7 +47,7 @@ function ToolCard({
 }) {
   return (
     <Link
-    href={href}
+      href={href}
       className="group flex flex-col gap-3 border-t border-border/60 py-5 transition-colors hover:text-primary"
     >
       <div className="flex items-center justify-between gap-3">
@@ -159,15 +159,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Trust bar ── */}
-      <div className="flex flex-wrap justify-center gap-x-8 gap-y-2.5">
-        {TRUST_ITEMS.map((item) => (
-          <div key={item.label} className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>{item.icon}</span>
-            <span>{item.label}</span>
-          </div>
-        ))}
-      </div>
+
+
 
       {/* ── Most Used ── */}
       <section>
