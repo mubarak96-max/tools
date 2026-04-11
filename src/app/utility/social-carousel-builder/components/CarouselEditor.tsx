@@ -493,41 +493,60 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
 
     return (
         <div className="space-y-6 p-6">
-            <div className="rounded-lg border border-gray-200 bg-white p-4">
-                <PlatformCompatibilityWarning
-                    template={template}
-                    platform={platform}
-                    format={format}
-                />
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center gap-2">
-                    {(['edit', 'preview'] as const).map((tab) => (
-                        <button
-                            key={tab}
-                            type="button"
-                            onClick={() => setActiveTab(tab)}
-                            className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                                activeTab === tab
-                                    ? 'bg-blue-600 text-white'
-                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
-                        >
-                            {tab === 'edit' ? 'Edit' : 'Preview'}
-                        </button>
-                    ))}
+            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+                    <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
+                            Carousel Workspace
+                        </p>
+                        <h2 className="mt-1 text-2xl font-semibold text-slate-900">
+                            Cleaner editing flow
+                        </h2>
+                        <p className="mt-1 text-sm text-slate-600">
+                            Slides on the left, canvas in the center, one focused settings panel on the right.
+                        </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                        {(['edit', 'preview'] as const).map((tab) => (
+                            <button
+                                key={tab}
+                                type="button"
+                                onClick={() => setActiveTab(tab)}
+                                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                                    activeTab === tab
+                                        ? 'bg-slate-900 text-white'
+                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                }`}
+                            >
+                                {tab === 'edit' ? 'Canvas edit' : 'Read-only preview'}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-sm text-gray-600">
-                        Slide {currentSlide + 1} of {slides.length}
-                    </span>
+                <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">{template.name}</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">{platform.name}</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">{format.name}</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">Slide {currentSlide + 1} of {slides.length}</span>
+                    {selectedCanvasElementIds.length ? (
+                        <span className="rounded-full bg-sky-100 px-3 py-1 font-medium text-sky-800">
+                            {selectedCanvasElementIds.length} selected
+                        </span>
+                    ) : null}
+                    {overflowingTextElements.length ? (
+                        <span className="rounded-full bg-rose-100 px-3 py-1 font-medium text-rose-700">
+                            {overflowingTextElements.length} warning{overflowingTextElements.length !== 1 ? 's' : ''}
+                        </span>
+                    ) : null}
+                </div>
+
+                <div className="mt-4 flex flex-wrap gap-2">
                     <button
                         type="button"
                         onClick={onUndo}
                         disabled={!canUndo}
-                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         Undo
                     </button>
@@ -535,123 +554,101 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                         type="button"
                         onClick={onRedo}
                         disabled={!canRedo}
-                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
                         Redo
                     </button>
                     <button
                         type="button"
-                        onClick={() => setIsPreviewOpen(true)}
-                        className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
-                    >
-                        Open slideshow preview
-                    </button>
-                    <button
-                        type="button"
                         onClick={onSlideAdd}
                         disabled={slides.length >= 10}
-                        className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                        Add Slide
+                        Add slide
                     </button>
                     <button
                         type="button"
                         onClick={handleDeleteCurrentSlide}
                         disabled={slides.length <= 1}
-                        className="rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-700 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                        Delete Slide
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setIsHelpOpen(true)}
-                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                    >
-                        Help
+                        Delete slide
                     </button>
                     <button
                         type="button"
                         onClick={onManualSave}
-                        className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
                     >
-                        Save project
+                        Save
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setIsPreviewOpen(true)}
+                        className="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+                    >
+                        Preview
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setIsHelpOpen(true)}
+                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                    >
+                        Help
                     </button>
                 </div>
             </div>
 
-            <div className="rounded-lg border border-gray-200 bg-white p-4">
-                <div className="mb-3 flex items-center justify-between gap-4">
-                    <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500">
-                        Slide navigation
-                    </h3>
-                    <p className="text-xs text-gray-500">
-                        Select a slide, then move it left or right to reorder the carousel.
+            <div className="grid grid-cols-1 gap-6 xl:grid-cols-[15rem_minmax(0,1fr)_20rem]">
+                <aside className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                        Slides
                     </p>
-                </div>
-                <div className="flex gap-3 overflow-x-auto pb-2">
-                    {slides.map((item, index) => (
-                        <div
-                            key={item.id}
-                            draggable
-                            onDragStart={() => setDraggedSlideIndex(index)}
-                            onDragEnd={() => setDraggedSlideIndex(null)}
-                            onDragOver={(event) => event.preventDefault()}
-                            onDrop={() => {
-                                if (draggedSlideIndex === null || draggedSlideIndex === index) {
+                    <h3 className="mt-1 text-lg font-semibold text-slate-900">
+                        Sequence
+                    </h3>
+                    <div className="mt-4 space-y-3">
+                        {slides.map((item, index) => (
+                            <div
+                                key={item.id}
+                                draggable
+                                onDragStart={() => setDraggedSlideIndex(index)}
+                                onDragEnd={() => setDraggedSlideIndex(null)}
+                                onDragOver={(event) => event.preventDefault()}
+                                onDrop={() => {
+                                    if (draggedSlideIndex === null || draggedSlideIndex === index) {
+                                        setDraggedSlideIndex(null);
+                                        return;
+                                    }
+                                    onSlideReorder(draggedSlideIndex, index);
                                     setDraggedSlideIndex(null);
-                                    return;
-                                }
-                                onSlideReorder(draggedSlideIndex, index);
-                                setDraggedSlideIndex(null);
-                            }}
-                            className={`min-w-[128px] rounded-xl border p-3 transition ${
-                                draggedSlideIndex === index
-                                    ? 'border-blue-300 bg-blue-50'
-                                    : 'border-gray-200 bg-gray-50'
-                            }`}
-                        >
-                            <button
-                                type="button"
-                                onClick={() => onCurrentSlideChange(index)}
-                                className={`w-full rounded-lg border p-2 text-left ${
+                                }}
+                                className={`rounded-2xl border p-3 transition ${
                                     index === currentSlide
-                                        ? 'border-blue-500 bg-blue-50 text-blue-700'
-                                        : 'border-gray-200 bg-white text-gray-700 hover:border-gray-300'
+                                        ? 'border-slate-900 bg-slate-50'
+                                        : draggedSlideIndex === index
+                                            ? 'border-sky-300 bg-sky-50'
+                                            : 'border-slate-200 bg-white'
                                 }`}
                             >
-                                <SlideThumbnail
-                                    slide={item}
-                                    format={format}
-                                    alt={`Slide ${index + 1} thumbnail`}
-                                    className="aspect-[4/5] w-full rounded-md border border-gray-200 object-cover"
-                                />
-                                <span className="mt-2 block text-sm font-semibold">Slide {index + 1}</span>
-                            </button>
-                            <div className="mt-2 flex items-center justify-between gap-2">
                                 <button
                                     type="button"
-                                    onClick={() => onSlideReorder(index, Math.max(0, index - 1))}
-                                    disabled={index === 0}
-                                    className="rounded-md border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white disabled:cursor-not-allowed disabled:opacity-40"
+                                    onClick={() => onCurrentSlideChange(index)}
+                                    className="w-full text-left"
                                 >
-                                    Left
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => onSlideReorder(index, Math.min(slides.length - 1, index + 1))}
-                                    disabled={index === slides.length - 1}
-                                    className="rounded-md border border-gray-300 px-2 py-1 text-xs font-medium text-gray-700 hover:bg-white disabled:cursor-not-allowed disabled:opacity-40"
-                                >
-                                    Right
+                                    <SlideThumbnail
+                                        slide={item}
+                                        format={format}
+                                        alt={`Slide ${index + 1} thumbnail`}
+                                        className="aspect-[4/5] w-full rounded-xl border border-slate-200 object-cover"
+                                    />
+                                    <span className="mt-2 block text-sm font-semibold text-slate-900">Slide {index + 1}</span>
                                 </button>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+                        ))}
+                    </div>
+                </aside>
 
-            <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
-                <div className="rounded-lg border border-gray-200 bg-white p-4">
+                <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
                     {activeTab === 'preview' ? (
                         <div className="mb-4 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
                             <p className="font-medium">Preview mode is read-only.</p>
@@ -703,10 +700,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                             </label>
 
 
-                            <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
-                                <p className="font-medium text-gray-900">Export status</p>
-                                <p className="mt-1">{exportStatus}</p>
-                            </div>
+
                         </div>
                     </div>
 
