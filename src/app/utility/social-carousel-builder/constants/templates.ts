@@ -1,602 +1,589 @@
 import { Template, TemplateElement } from '../types';
 
-// Basic template configurations - 8 distinct templates
+const EDITABLE_CONSTRAINTS = {
+    allowResize: true,
+    allowMove: true,
+};
+
+const LOCKED_CONSTRAINTS = {
+    allowResize: false,
+    allowMove: false,
+};
+
+const createText = (
+    id: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    content: string,
+    style: TemplateElement['style'],
+    constraints: TemplateElement['constraints'] = EDITABLE_CONSTRAINTS
+): TemplateElement => ({
+    id,
+    type: 'text',
+    position: { x, y, z: style.opacity === 0 ? 0 : 2 },
+    dimensions: { width, height },
+    style,
+    content,
+    constraints: { ...constraints },
+});
+
+const createShape = (
+    id: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    style: TemplateElement['style'],
+    constraints: TemplateElement['constraints'] = EDITABLE_CONSTRAINTS,
+    z: number = 1
+): TemplateElement => ({
+    id,
+    type: 'shape',
+    position: { x, y, z },
+    dimensions: { width, height },
+    style,
+    content: '',
+    constraints: { ...constraints },
+});
+
+const createImage = (
+    id: string,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    src: string,
+    alt: string,
+    style: TemplateElement['style'] = {},
+    constraints: TemplateElement['constraints'] = EDITABLE_CONSTRAINTS,
+    fit: 'cover' | 'contain' | 'fill' = 'cover',
+    z: number = 1
+): TemplateElement => ({
+    id,
+    type: 'image',
+    position: { x, y, z },
+    dimensions: { width, height },
+    style,
+    content: {
+        src,
+        alt,
+        fit,
+    },
+    constraints: { ...constraints },
+});
+
+// Core template configurations for the Social Carousel Builder
 export const DEFAULT_TEMPLATES: Template[] = [
     {
-        id: 'minimal-text',
-        name: 'Minimal Text',
-        category: 'Text-focused',
-        thumbnail: '/templates/minimal-text.png',
+        id: 'minimal-thought',
+        name: 'Minimal Thought',
+        category: 'Thought Leadership',
+        thumbnail: '/templates/minimal-thought.png',
         defaultDimensions: { width: 1080, height: 1080 },
         elements: [
-            {
-                id: 'title',
-                type: 'text',
-                position: { x: 100, y: 200, z: 1 },
-                dimensions: { width: 880, height: 120 },
-                style: {
-                    fontSize: 48,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#1a1a1a',
-                    textAlign: 'center'
-                },
-                content: 'Your Title Here',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'subtitle',
-                type: 'text',
-                position: { x: 100, y: 350, z: 1 },
-                dimensions: { width: 880, height: 80 },
-                style: {
-                    fontSize: 24,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#666666',
-                    textAlign: 'center'
-                },
-                content: 'Your subtitle or description',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#f8fafc' }, LOCKED_CONSTRAINTS, 0),
+            createText('slide-label', 110, 92, 260, 36, 'INSIGHT SLIDE', {
+                fontSize: 18,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#2563eb',
+                textAlign: 'left',
+            }),
+            createText('title', 110, 190, 860, 200, 'One clear idea can outperform ten noisy points.', {
+                fontSize: 56,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#0f172a',
+                textAlign: 'left',
+            }),
+            createText('body', 110, 448, 820, 220, 'Use this template for hooks, strong opinions, and educational one-liners that need breathing room.', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#475569',
+                textAlign: 'left',
+            }),
+            createShape('footer-line', 110, 910, 860, 4, { backgroundColor: '#cbd5e1' }, LOCKED_CONSTRAINTS),
+            createText('footer', 110, 936, 860, 42, 'yourbrand.com  |  @yourhandle', {
+                fontSize: 18,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#64748b',
+                textAlign: 'left',
+            }),
+        ],
     },
     {
-        id: 'image-overlay',
-        name: 'Image Overlay',
-        category: 'Image-focused',
-        thumbnail: '/templates/image-overlay.png',
+        id: 'bold-quote-stack',
+        name: 'Bold Quote Stack',
+        category: 'Quotes',
+        thumbnail: '/templates/bold-quote-stack.png',
         defaultDimensions: { width: 1080, height: 1080 },
         elements: [
-            {
-                id: 'background',
-                type: 'image',
-                position: { x: 0, y: 0, z: 0 },
-                dimensions: { width: 1080, height: 1080 },
-                style: {
-                    opacity: 0.8
-                },
-                content: {
-                    src: '/placeholder-image.jpg',
-                    alt: 'Background image',
-                    fit: 'cover'
-                },
-                constraints: {
-                    allowResize: false,
-                    allowMove: false
-                }
-            },
-            {
-                id: 'overlay-text',
-                type: 'text',
-                position: { x: 100, y: 800, z: 2 },
-                dimensions: { width: 880, height: 100 },
-                style: {
-                    fontSize: 36,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#ffffff',
-                    textAlign: 'left',
-                    backgroundColor: 'rgba(0,0,0,0.5)',
-                    borderRadius: 8
-                },
-                content: 'Overlay Text',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#0f172a' }, LOCKED_CONSTRAINTS, 0),
+            createText('quote-mark', 86, 86, 120, 120, '"', {
+                fontSize: 120,
+                fontFamily: 'Georgia',
+                fontWeight: 'bold',
+                color: '#38bdf8',
+                textAlign: 'left',
+                opacity: 0.45,
+            }, LOCKED_CONSTRAINTS),
+            createText('quote', 130, 220, 820, 320, 'Clarity is not decoration. It is part of the message.', {
+                fontSize: 54,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#f8fafc',
+                textAlign: 'center',
+            }),
+            createShape('author-chip', 355, 648, 370, 76, {
+                backgroundColor: '#111827',
+                borderRadius: 38,
+            }),
+            createText('author', 375, 668, 330, 36, 'AUTHOR NAME', {
+                fontSize: 22,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#bae6fd',
+                textAlign: 'center',
+            }),
+            createText('context', 170, 790, 740, 140, 'Ideal for leadership quotes, lessons learned, and memorable statements that need a dramatic visual frame.', {
+                fontSize: 22,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#cbd5e1',
+                textAlign: 'center',
+            }),
+        ],
     },
     {
-        id: 'split-layout',
-        name: 'Split Layout',
-        category: 'Mixed',
-        thumbnail: '/templates/split-layout.png',
-        defaultDimensions: { width: 1080, height: 1080 },
-        elements: [
-            {
-                id: 'left-image',
-                type: 'image',
-                position: { x: 0, y: 0, z: 0 },
-                dimensions: { width: 540, height: 1080 },
-                style: {},
-                content: {
-                    src: '/placeholder-image.jpg',
-                    alt: 'Left side image',
-                    fit: 'cover'
-                },
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'right-content',
-                type: 'shape',
-                position: { x: 540, y: 0, z: 0 },
-                dimensions: { width: 540, height: 1080 },
-                style: {
-                    backgroundColor: '#f8f9fa'
-                },
-                content: '',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'right-title',
-                type: 'text',
-                position: { x: 580, y: 400, z: 1 },
-                dimensions: { width: 460, height: 120 },
-                style: {
-                    fontSize: 32,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#1a1a1a',
-                    textAlign: 'left'
-                },
-                content: 'Split Layout Title',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'right-text',
-                type: 'text',
-                position: { x: 580, y: 550, z: 1 },
-                dimensions: { width: 460, height: 200 },
-                style: {
-                    fontSize: 18,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#666666',
-                    textAlign: 'left'
-                },
-                content: 'Add your description or key points here.',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
-    },
-    {
-        id: 'quote-card',
-        name: 'Quote Card',
-        category: 'Text-focused',
-        thumbnail: '/templates/quote-card.png',
-        defaultDimensions: { width: 1080, height: 1080 },
-        elements: [
-            {
-                id: 'background',
-                type: 'shape',
-                position: { x: 0, y: 0, z: 0 },
-                dimensions: { width: 1080, height: 1080 },
-                style: {
-                    backgroundColor: '#667eea'
-                },
-                content: '',
-                constraints: {
-                    allowResize: false,
-                    allowMove: false
-                }
-            },
-            {
-                id: 'quote-mark',
-                type: 'text',
-                position: { x: 100, y: 200, z: 1 },
-                dimensions: { width: 100, height: 100 },
-                style: {
-                    fontSize: 72,
-                    fontFamily: 'Georgia',
-                    fontWeight: 'bold',
-                    color: '#ffffff',
-                    textAlign: 'left',
-                    opacity: 0.3
-                },
-                content: '"',
-                constraints: {
-                    allowResize: false,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'quote-text',
-                type: 'text',
-                position: { x: 100, y: 350, z: 1 },
-                dimensions: { width: 880, height: 300 },
-                style: {
-                    fontSize: 28,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#ffffff',
-                    textAlign: 'center'
-                },
-                content: 'Your inspiring quote goes here',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'author',
-                type: 'text',
-                position: { x: 100, y: 750, z: 1 },
-                dimensions: { width: 880, height: 60 },
-                style: {
-                    fontSize: 20,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#ffffff',
-                    textAlign: 'center',
-                    opacity: 0.8
-                },
-                content: '— Author Name',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
-    },
-    {
-        id: 'stats-showcase',
-        name: 'Stats Showcase',
-        category: 'Data',
-        thumbnail: '/templates/stats-showcase.png',
-        defaultDimensions: { width: 1080, height: 1080 },
-        elements: [
-            {
-                id: 'header',
-                type: 'text',
-                position: { x: 100, y: 100, z: 1 },
-                dimensions: { width: 880, height: 80 },
-                style: {
-                    fontSize: 32,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#1a1a1a',
-                    textAlign: 'center'
-                },
-                content: 'Key Statistics',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'stat1-number',
-                type: 'text',
-                position: { x: 100, y: 300, z: 1 },
-                dimensions: { width: 350, height: 120 },
-                style: {
-                    fontSize: 64,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#667eea',
-                    textAlign: 'center'
-                },
-                content: '85%',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'stat1-label',
-                type: 'text',
-                position: { x: 100, y: 420, z: 1 },
-                dimensions: { width: 350, height: 60 },
-                style: {
-                    fontSize: 18,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#666666',
-                    textAlign: 'center'
-                },
-                content: 'Success Rate',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'stat2-number',
-                type: 'text',
-                position: { x: 630, y: 300, z: 1 },
-                dimensions: { width: 350, height: 120 },
-                style: {
-                    fontSize: 64,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#f093fb',
-                    textAlign: 'center'
-                },
-                content: '2.5K',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'stat2-label',
-                type: 'text',
-                position: { x: 630, y: 420, z: 1 },
-                dimensions: { width: 350, height: 60 },
-                style: {
-                    fontSize: 18,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#666666',
-                    textAlign: 'center'
-                },
-                content: 'Happy Customers',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
-    },
-    {
-        id: 'step-by-step',
-        name: 'Step by Step',
+        id: 'checklist-cards',
+        name: 'Checklist Cards',
         category: 'Educational',
-        thumbnail: '/templates/step-by-step.png',
+        thumbnail: '/templates/checklist-cards.png',
         defaultDimensions: { width: 1080, height: 1080 },
         elements: [
-            {
-                id: 'step-number',
-                type: 'shape',
-                position: { x: 100, y: 100, z: 1 },
-                dimensions: { width: 80, height: 80 },
-                style: {
-                    backgroundColor: '#667eea',
-                    borderRadius: 40
-                },
-                content: '',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'step-number-text',
-                type: 'text',
-                position: { x: 120, y: 120, z: 2 },
-                dimensions: { width: 40, height: 40 },
-                style: {
-                    fontSize: 24,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#ffffff',
-                    textAlign: 'center'
-                },
-                content: '1',
-                constraints: {
-                    allowResize: false,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'step-title',
-                type: 'text',
-                position: { x: 220, y: 100, z: 1 },
-                dimensions: { width: 760, height: 80 },
-                style: {
-                    fontSize: 32,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#1a1a1a',
-                    textAlign: 'left'
-                },
-                content: 'Step Title',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'step-description',
-                type: 'text',
-                position: { x: 100, y: 250, z: 1 },
-                dimensions: { width: 880, height: 400 },
-                style: {
-                    fontSize: 20,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#666666',
-                    textAlign: 'left'
-                },
-                content: 'Detailed description of this step goes here. Explain what the user needs to do.',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#ffffff' }, LOCKED_CONSTRAINTS, 0),
+            createText('title', 100, 88, 880, 110, 'Checklist for a carousel that people actually save', {
+                fontSize: 40,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#0f172a',
+                textAlign: 'left',
+            }),
+            createShape('item-1-icon', 100, 248, 56, 56, { backgroundColor: '#16a34a', borderRadius: 28 }),
+            createText('item-1-check', 100, 258, 56, 36, '✓', {
+                fontSize: 26,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }, LOCKED_CONSTRAINTS),
+            createText('item-1', 188, 242, 760, 80, 'Start with a hook that makes one clear promise.', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createShape('item-2-icon', 100, 382, 56, 56, { backgroundColor: '#16a34a', borderRadius: 28 }),
+            createText('item-2-check', 100, 392, 56, 36, '✓', {
+                fontSize: 26,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }, LOCKED_CONSTRAINTS),
+            createText('item-2', 188, 376, 760, 80, 'Break the idea into short, scannable steps.', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createShape('item-3-icon', 100, 516, 56, 56, { backgroundColor: '#16a34a', borderRadius: 28 }),
+            createText('item-3-check', 100, 526, 56, 36, '✓', {
+                fontSize: 26,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }, LOCKED_CONSTRAINTS),
+            createText('item-3', 188, 510, 760, 80, 'End with a takeaway or call to action worth keeping.', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createShape('footer-panel', 100, 774, 880, 176, { backgroundColor: '#f0fdf4', borderRadius: 28 }),
+            createText('footer-note', 138, 820, 804, 92, 'This layout works well for checklists, action steps, and operational playbooks.', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#166534',
+                textAlign: 'left',
+            }),
+        ],
     },
     {
-        id: 'before-after',
-        name: 'Before & After',
+        id: 'problem-to-solution',
+        name: 'Problem to Solution',
+        category: 'Marketing',
+        thumbnail: '/templates/problem-to-solution.png',
+        defaultDimensions: { width: 1080, height: 1080 },
+        elements: [
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#eff6ff' }, LOCKED_CONSTRAINTS, 0),
+            createShape('problem-card', 86, 120, 392, 780, { backgroundColor: '#dbeafe', borderRadius: 40 }),
+            createText('problem-label', 124, 166, 300, 40, 'THE PROBLEM', {
+                fontSize: 18,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#1d4ed8',
+                textAlign: 'left',
+            }),
+            createText('problem-title', 124, 240, 300, 210, 'Most carousels try to say too much at once.', {
+                fontSize: 42,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#0f172a',
+                textAlign: 'left',
+            }),
+            createText('problem-body', 124, 500, 300, 240, 'Crowded slides lower retention, weaken your hook, and make the CTA easy to ignore.', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#334155',
+                textAlign: 'left',
+            }),
+            createShape('solution-card', 530, 120, 464, 780, { backgroundColor: '#0f172a', borderRadius: 40 }),
+            createText('solution-label', 580, 166, 320, 40, 'THE SOLUTION', {
+                fontSize: 18,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#38bdf8',
+                textAlign: 'left',
+            }),
+            createText('solution-title', 580, 240, 360, 210, 'One idea per slide. One action per carousel.', {
+                fontSize: 42,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#f8fafc',
+                textAlign: 'left',
+            }),
+            createText('solution-body', 580, 500, 360, 240, 'Use this template when you want to frame the pain point, explain the fix, and move into a clear outcome.', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#cbd5e1',
+                textAlign: 'left',
+            }),
+        ],
+    },
+    {
+        id: 'stat-spotlight',
+        name: 'Stat Spotlight',
+        category: 'Data',
+        thumbnail: '/templates/stat-spotlight.png',
+        defaultDimensions: { width: 1080, height: 1080 },
+        elements: [
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#111827' }, LOCKED_CONSTRAINTS, 0),
+            createText('eyebrow', 110, 100, 860, 36, 'DATA HIGHLIGHT', {
+                fontSize: 18,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#60a5fa',
+                textAlign: 'center',
+            }),
+            createText('metric', 180, 208, 720, 220, '72%', {
+                fontSize: 160,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }),
+            createText('label', 210, 424, 660, 70, 'of readers decide in the first two slides whether to keep swiping', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#dbeafe',
+                textAlign: 'center',
+            }),
+            createShape('insight-card', 120, 600, 840, 240, { backgroundColor: '#1f2937', borderRadius: 32 }),
+            createText('insight-title', 160, 644, 760, 44, 'What this means', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#f8fafc',
+                textAlign: 'left',
+            }),
+            createText('insight-body', 160, 714, 760, 96, 'Lead with the strongest fact, claim, or curiosity gap. This format is built for metrics, benchmarks, and case-study proof points.', {
+                fontSize: 22,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#d1d5db',
+                textAlign: 'left',
+            }),
+        ],
+    },
+    {
+        id: 'split-visual-story',
+        name: 'Split Visual Story',
+        category: 'Visual Story',
+        thumbnail: '/templates/split-visual-story.png',
+        defaultDimensions: { width: 1080, height: 1080 },
+        elements: [
+            createImage('hero-image', 0, 0, 520, 1080, '/placeholder-image.jpg', 'Story image', {}, EDITABLE_CONSTRAINTS, 'cover', 0),
+            createShape('content-panel', 520, 0, 560, 1080, { backgroundColor: '#f8fafc' }, LOCKED_CONSTRAINTS, 1),
+            createText('eyebrow', 590, 108, 320, 36, 'VISUAL STORY', {
+                fontSize: 18,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#9333ea',
+                textAlign: 'left',
+            }),
+            createText('title', 590, 188, 390, 170, 'Show the scene. Then explain the shift.', {
+                fontSize: 48,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createText('body', 590, 420, 390, 240, 'Use this for tutorials, product reveals, transformations, or any post where the image should do half of the storytelling work.', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#475569',
+                textAlign: 'left',
+            }),
+            createText('footer', 590, 902, 390, 56, 'Slide 02  |  Keep swiping', {
+                fontSize: 20,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#7c3aed',
+                textAlign: 'left',
+            }),
+        ],
+    },
+    {
+        id: 'timeline-flow',
+        name: 'Timeline Flow',
+        category: 'Process',
+        thumbnail: '/templates/timeline-flow.png',
+        defaultDimensions: { width: 1080, height: 1080 },
+        elements: [
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#ffffff' }, LOCKED_CONSTRAINTS, 0),
+            createText('title', 100, 92, 880, 90, 'Timeline of a successful launch', {
+                fontSize: 40,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#0f172a',
+                textAlign: 'left',
+            }),
+            createShape('timeline-line', 186, 240, 6, 620, { backgroundColor: '#cbd5e1', borderRadius: 3 }, LOCKED_CONSTRAINTS),
+            createShape('node-1', 154, 256, 70, 70, { backgroundColor: '#0f172a', borderRadius: 35 }),
+            createText('node-1-text', 154, 274, 70, 28, '1', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }, LOCKED_CONSTRAINTS),
+            createText('milestone-1', 278, 248, 650, 100, 'Research the angle and define the hook.', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createShape('node-2', 154, 470, 70, 70, { backgroundColor: '#0f172a', borderRadius: 35 }),
+            createText('node-2-text', 154, 488, 70, 28, '2', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }, LOCKED_CONSTRAINTS),
+            createText('milestone-2', 278, 462, 650, 100, 'Break the story into small, high-retention steps.', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createShape('node-3', 154, 684, 70, 70, { backgroundColor: '#0f172a', borderRadius: 35 }),
+            createText('node-3-text', 154, 702, 70, 28, '3', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }, LOCKED_CONSTRAINTS),
+            createText('milestone-3', 278, 676, 650, 100, 'Close with the outcome, proof, or next action.', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+        ],
+    },
+    {
+        id: 'before-and-after',
+        name: 'Before and After',
         category: 'Comparison',
-        thumbnail: '/templates/before-after.png',
+        thumbnail: '/templates/before-and-after.png',
         defaultDimensions: { width: 1080, height: 1080 },
         elements: [
-            {
-                id: 'divider',
-                type: 'shape',
-                position: { x: 535, y: 0, z: 1 },
-                dimensions: { width: 10, height: 1080 },
-                style: {
-                    backgroundColor: '#e5e7eb'
-                },
-                content: '',
-                constraints: {
-                    allowResize: false,
-                    allowMove: false
-                }
-            },
-            {
-                id: 'before-label',
-                type: 'text',
-                position: { x: 50, y: 50, z: 2 },
-                dimensions: { width: 435, height: 60 },
-                style: {
-                    fontSize: 24,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#ef4444',
-                    textAlign: 'center'
-                },
-                content: 'BEFORE',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'after-label',
-                type: 'text',
-                position: { x: 595, y: 50, z: 2 },
-                dimensions: { width: 435, height: 60 },
-                style: {
-                    fontSize: 24,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#10b981',
-                    textAlign: 'center'
-                },
-                content: 'AFTER',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'before-content',
-                type: 'text',
-                position: { x: 50, y: 200, z: 1 },
-                dimensions: { width: 435, height: 600 },
-                style: {
-                    fontSize: 18,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#374151',
-                    textAlign: 'center'
-                },
-                content: 'Before state or condition',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'after-content',
-                type: 'text',
-                position: { x: 595, y: 200, z: 1 },
-                dimensions: { width: 435, height: 600 },
-                style: {
-                    fontSize: 18,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#374151',
-                    textAlign: 'center'
-                },
-                content: 'After state or condition',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#f8fafc' }, LOCKED_CONSTRAINTS, 0),
+            createText('heading', 100, 76, 880, 90, 'Before and after the strategy changed', {
+                fontSize: 38,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#0f172a',
+                textAlign: 'center',
+            }),
+            createShape('before-card', 70, 220, 430, 700, { backgroundColor: '#fee2e2', borderRadius: 32 }),
+            createShape('after-card', 580, 220, 430, 700, { backgroundColor: '#dcfce7', borderRadius: 32 }),
+            createText('before-label', 120, 274, 330, 42, 'BEFORE', {
+                fontSize: 26,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#b91c1c',
+                textAlign: 'center',
+            }),
+            createText('after-label', 630, 274, 330, 42, 'AFTER', {
+                fontSize: 26,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#15803d',
+                textAlign: 'center',
+            }),
+            createText('before-copy', 120, 360, 330, 380, 'Inconsistent message. Weak hook. No clear CTA. Low retention.', {
+                fontSize: 30,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#7f1d1d',
+                textAlign: 'center',
+            }),
+            createText('after-copy', 630, 360, 330, 380, 'Clear promise. Stronger pacing. Focused slides. Higher engagement.', {
+                fontSize: 30,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#14532d',
+                textAlign: 'center',
+            }),
+        ],
     },
     {
-        id: 'product-feature',
-        name: 'Product Feature',
-        category: 'Product',
-        thumbnail: '/templates/product-feature.png',
+        id: 'framework-breakdown',
+        name: 'Framework Breakdown',
+        category: 'Frameworks',
+        thumbnail: '/templates/framework-breakdown.png',
         defaultDimensions: { width: 1080, height: 1080 },
         elements: [
-            {
-                id: 'product-image',
-                type: 'image',
-                position: { x: 100, y: 100, z: 1 },
-                dimensions: { width: 880, height: 400 },
-                style: {
-                    borderRadius: 12
-                },
-                content: {
-                    src: '/placeholder-product.jpg',
-                    alt: 'Product image',
-                    fit: 'cover'
-                },
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'feature-title',
-                type: 'text',
-                position: { x: 100, y: 550, z: 1 },
-                dimensions: { width: 880, height: 100 },
-                style: {
-                    fontSize: 36,
-                    fontFamily: 'Inter',
-                    fontWeight: 'bold',
-                    color: '#1a1a1a',
-                    textAlign: 'center'
-                },
-                content: 'Amazing Feature',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            },
-            {
-                id: 'feature-description',
-                type: 'text',
-                position: { x: 100, y: 680, z: 1 },
-                dimensions: { width: 880, height: 200 },
-                style: {
-                    fontSize: 20,
-                    fontFamily: 'Inter',
-                    fontWeight: 'normal',
-                    color: '#666666',
-                    textAlign: 'center'
-                },
-                content: 'Describe the key benefit or feature that makes your product special.',
-                constraints: {
-                    allowResize: true,
-                    allowMove: true
-                }
-            }
-        ]
-    }
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#faf5ff' }, LOCKED_CONSTRAINTS, 0),
+            createText('title', 120, 88, 840, 84, 'The three-part content framework', {
+                fontSize: 40,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#3b0764',
+                textAlign: 'center',
+            }),
+            createShape('core-circle', 350, 350, 380, 380, { backgroundColor: '#6d28d9', borderRadius: 190 }),
+            createText('core-text', 420, 468, 240, 140, 'HOOK\nVALUE\nCTA', {
+                fontSize: 46,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }),
+            createShape('pillar-1', 128, 444, 160, 160, { backgroundColor: '#ddd6fe', borderRadius: 80 }),
+            createText('pillar-1-text', 146, 486, 124, 80, 'Hook', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#5b21b6',
+                textAlign: 'center',
+            }),
+            createShape('pillar-2', 792, 444, 160, 160, { backgroundColor: '#ddd6fe', borderRadius: 80 }),
+            createText('pillar-2-text', 810, 486, 124, 80, 'Value', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#5b21b6',
+                textAlign: 'center',
+            }),
+            createShape('pillar-3', 462, 780, 160, 160, { backgroundColor: '#ddd6fe', borderRadius: 80 }),
+            createText('pillar-3-text', 480, 822, 124, 80, 'CTA', {
+                fontSize: 28,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#5b21b6',
+                textAlign: 'center',
+            }),
+        ],
+    },
+    {
+        id: 'personal-brand-story',
+        name: 'Personal Brand Story',
+        category: 'Personal Brand',
+        thumbnail: '/templates/personal-brand-story.png',
+        defaultDimensions: { width: 1080, height: 1080 },
+        elements: [
+            createShape('background', 0, 0, 1080, 1080, { backgroundColor: '#fff7ed' }, LOCKED_CONSTRAINTS, 0),
+            createImage('profile-photo', 110, 124, 210, 210, '/placeholder-image.jpg', 'Profile photo', { borderRadius: 105 }),
+            createText('name', 360, 152, 520, 60, 'Your Name', {
+                fontSize: 36,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#9a3412',
+                textAlign: 'left',
+            }),
+            createText('role', 360, 224, 520, 46, 'Founder | Consultant | Creator', {
+                fontSize: 22,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#c2410c',
+                textAlign: 'left',
+            }),
+            createText('headline', 110, 404, 860, 140, 'I stopped chasing perfect design and started building clearer stories.', {
+                fontSize: 48,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#111827',
+                textAlign: 'left',
+            }),
+            createText('story', 110, 600, 860, 220, 'This template is for founder stories, creator lessons, and personal journeys. Lead with the challenge, explain the shift, and end with the invitation.', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'normal',
+                color: '#7c2d12',
+                textAlign: 'left',
+            }),
+            createShape('cta-bar', 110, 894, 860, 90, { backgroundColor: '#fb923c', borderRadius: 22 }),
+            createText('cta', 150, 920, 780, 38, 'Follow for more breakdowns  |  yoursite.com', {
+                fontSize: 24,
+                fontFamily: 'Inter',
+                fontWeight: 'bold',
+                color: '#ffffff',
+                textAlign: 'center',
+            }),
+        ],
+    },
 ];
 
-// Helper function to get template by ID
 export const getTemplateById = (id: string): Template | undefined => {
-    return DEFAULT_TEMPLATES.find(template => template.id === id);
+    return DEFAULT_TEMPLATES.find((template) => template.id === id);
 };
 
-// Helper function to get templates by category
 export const getTemplatesByCategory = (category: string): Template[] => {
-    return DEFAULT_TEMPLATES.filter(template => template.category === category);
+    return DEFAULT_TEMPLATES.filter((template) => template.category === category);
 };
 
-// Helper function to get all categories
 export const getTemplateCategories = (): string[] => {
-    const categories = DEFAULT_TEMPLATES.map(template => template.category);
+    const categories = DEFAULT_TEMPLATES.map((template) => template.category);
     return [...new Set(categories)];
 };

@@ -14,7 +14,7 @@ export default function FreeSocialSeamlessCarouselBuilderPage() {
                     </h1>
                     <p className="mx-auto max-w-2xl text-lg text-gray-600">
                         Create seamless multi-slide carousel designs for Instagram, LinkedIn, and TikTok.
-                        Start with a template, customize each slide, and export the full carousel for free.
+                        Start with one of 10 template families, customize each slide, and export the full carousel for free.
                     </p>
                 </div>
 

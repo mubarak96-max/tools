@@ -47,6 +47,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
     isExporting,
 }) => {
     const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
+    const [activeInspectorTab, setActiveInspectorTab] = useState<'design' | 'images' | 'selection' | 'export'>('design');
     const [imageNotice, setImageNotice] = useState('');
     const [textNotice, setTextNotice] = useState('');
     const [isPreviewOpen, setIsPreviewOpen] = useState(false);
@@ -484,6 +485,12 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
         setActiveCropElementId(null);
     }, [currentSlide]);
 
+    useEffect(() => {
+        if (selectedCanvasElement) {
+            setActiveInspectorTab('selection');
+        }
+    }, [selectedCanvasElement]);
+
     return (
         <div className="space-y-6 p-6">
             <div className="rounded-lg border border-gray-200 bg-white p-4">
@@ -694,20 +701,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                                     className="h-10 w-full cursor-pointer rounded border border-gray-300"
                                 />
                             </label>
-                            <div className="rounded-lg bg-gray-50 p-3 text-sm text-gray-600">
-                                <p className="font-medium text-gray-900">Editing tips</p>
-                                <ul className="mt-2 space-y-1">
-                                    <li>Click an element to select it.</li>
-                                    <li>Shift-click to select multiple elements together.</li>
-                                    <li>Drag selected elements to reposition them.</li>
-                                    <li>Use resize handles to change size.</li>
-                                    <li>Rotate and lock the active element from the selected element panel.</li>
-                                    <li>Double-click text to edit its content.</li>
-                                    <li>Use arrow keys for fine movement.</li>
-                                    <li>Elements snap to the grid, canvas center, and nearby element edges.</li>
-                                    <li>Use Ctrl/Cmd+Z and Ctrl/Cmd+Y for undo and redo.</li>
-                                </ul>
-                            </div>
+
                             <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
                                 <p className="font-medium text-gray-900">Save status</p>
                                 <p className="mt-1">{saveStatus}</p>
