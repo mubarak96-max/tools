@@ -1,9 +1,17 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { CarouselProject, Platform, PlatformFormat, Slide, Template } from '../types';
+import { CarouselProject, Platform, PlatformFormat, SeamlessStripConfig, Slide, Template } from '../types';
 import { getAllPlatforms } from '../constants/platforms';
-import { createSlideFromTemplate, generateId, reorderSlides } from '../utils';
+import {
+    applySeamlessStripToSlides,
+    createSlideFromTemplate,
+    fileToDataURL,
+    generateId,
+    isValidFileSize,
+    isValidImageType,
+    reorderSlides,
+} from '../utils';
 import { exportSlideFile, exportSlidesZip } from '../utils/export';
 import { adaptTemplateForPlatform } from '../utils/platformUtils';
 import {
@@ -56,6 +64,8 @@ export const CarouselBuilderApp: React.FC = () => {
     const [lastExportAction, setLastExportAction] = useState<'current' | 'all' | null>(null);
     const [savedProjectQuery, setSavedProjectQuery] = useState('');
     const [savedProjectSort, setSavedProjectSort] = useState<'recent' | 'name-asc' | 'name-desc'>('recent');
+    const [seamlessStrip, setSeamlessStrip] = useState<SeamlessStripConfig | null>(null);
+    const [isApplyingSeamlessStrip, setIsApplyingSeamlessStrip] = useState(false);
     const isApplyingHistoryRef = useRef(false);
 
     const filteredSavedProjects = useMemo(() => {
@@ -90,6 +100,7 @@ export const CarouselBuilderApp: React.FC = () => {
         template,
         platform,
         format,
+        seamlessStrip,
         createdAt: project?.createdAt || new Date(),
         updatedAt: new Date(),
     });
@@ -108,6 +119,29 @@ export const CarouselBuilderApp: React.FC = () => {
         });
     }, [createHistorySnapshot]);
 
+    const hydrateSlidesWithSeamlessStrip = useCallback(
+        async (
+            nextSlides: Slide[],
+            nextFormat: PlatformFormat = selectedFormat,
+            nextStrip: SeamlessStripConfig | null = seamlessStrip
+        ) => {
+            if (!nextStrip) {
+                return nextSlides.map((slide) => ({
+                    ...slide,
+                    backgroundImage: undefined,
+                }));
+            }
+
+            setIsApplyingSeamlessStrip(true);
+            try {
+                return await applySeamlessStripToSlides(nextSlides, nextFormat, nextStrip);
+            } finally {
+                setIsApplyingSeamlessStrip(false);
+            }
+        },
+        [selectedFormat, seamlessStrip]
+    );
+
     useEffect(() => {
         setSavedProjects(loadSavedProjects());
         setRecoveryProject(loadRecoveryProject());
@@ -116,8 +150,12 @@ export const CarouselBuilderApp: React.FC = () => {
     const handleTemplateSelect = (template: Template) => {
         const adaptedTemplate = adaptTemplateForPlatform(template, selectedFormat.dimensions);
         const initialSlide = createSlideFromTemplate(adaptedTemplate);
-        const nextProject = buildProject(adaptedTemplate, [initialSlide], selectedPlatform, selectedFormat);
+        const nextProject = {
+            ...buildProject(adaptedTemplate, [initialSlide], selectedPlatform, selectedFormat),
+            seamlessStrip: null,
+        };
         selectTemplate(adaptedTemplate);
+        setSeamlessStrip(null);
         setSlides([initialSlide]);
         setCurrentSlideIndex(0);
         setProject(nextProject);
@@ -126,7 +164,7 @@ export const CarouselBuilderApp: React.FC = () => {
         setSaveStatus('Project created. Save it manually or wait for autosave.');
     };
 
-    const handlePlatformChange = (platform: Platform, format: PlatformFormat) => {
+    const handlePlatformChange = async (platform: Platform, format: PlatformFormat) => {
         setSelectedPlatform(platform);
         setSelectedFormat(format);
 
@@ -155,23 +193,24 @@ export const CarouselBuilderApp: React.FC = () => {
                 }),
             }))
             : [createSlideFromTemplate(adaptedTemplate)];
+        const hydratedSlides = await hydrateSlidesWithSeamlessStrip(nextSlides, format);
         const nextProject = project
             ? {
                 ...project,
                 template: adaptedTemplate,
                 platform,
                 format,
-                slides: nextSlides,
+                slides: hydratedSlides,
                 updatedAt: new Date(),
             }
-            : buildProject(adaptedTemplate, nextSlides, platform, format);
+            : buildProject(adaptedTemplate, hydratedSlides, platform, format);
 
         selectTemplate(adaptedTemplate);
-        setSlides(nextSlides);
-        setCurrentSlideIndex((current) => Math.min(current, nextSlides.length - 1));
+        setSlides(hydratedSlides);
+        setCurrentSlideIndex((current) => Math.min(current, hydratedSlides.length - 1));
         setProject(nextProject);
         setRecoveryProject(nextProject);
-        seedHistory(nextSlides, Math.min(currentSlideIndex, nextSlides.length - 1));
+        seedHistory(hydratedSlides, Math.min(currentSlideIndex, hydratedSlides.length - 1));
         setSaveStatus('Platform updated. Save to keep this version.');
     };
 
@@ -183,23 +222,22 @@ export const CarouselBuilderApp: React.FC = () => {
         });
     };
 
-    const handleSlideAdd = () => {
+    const handleSlideAdd = async () => {
         if (!selectedTemplate || slides.length >= 10) {
             return;
         }
         const nextSlide = createSlideFromTemplate(selectedTemplate);
-        setSlides((currentSlides) => {
-            const nextSlides = [...currentSlides, nextSlide];
-            return nextSlides;
-        });
-        setCurrentSlideIndex(slides.length);
+        const nextSlides = [...slides, nextSlide];
+        setSlides(await hydrateSlidesWithSeamlessStrip(nextSlides));
+        setCurrentSlideIndex(nextSlides.length - 1);
     };
 
-    const handleSlideDelete = (slideIndex: number) => {
+    const handleSlideDelete = async (slideIndex: number) => {
         if (slides.length <= 1) {
             return;
         }
-        setSlides((currentSlides) => currentSlides.filter((_, index) => index !== slideIndex));
+        const nextSlides = slides.filter((_, index) => index !== slideIndex);
+        setSlides(await hydrateSlidesWithSeamlessStrip(nextSlides));
         setCurrentSlideIndex((current) => {
             if (current > slideIndex) {
                 return current - 1;
@@ -208,11 +246,11 @@ export const CarouselBuilderApp: React.FC = () => {
         });
     };
 
-    const handleSlideReorder = (fromIndex: number, toIndex: number) => {
+    const handleSlideReorder = async (fromIndex: number, toIndex: number) => {
         if (fromIndex === toIndex) {
             return;
         }
-        setSlides((currentSlides) => reorderSlides(currentSlides, fromIndex, toIndex));
+        setSlides(await hydrateSlidesWithSeamlessStrip(reorderSlides(slides, fromIndex, toIndex)));
         setCurrentSlideIndex((current) => {
             if (current === fromIndex) {
                 return toIndex;
@@ -229,6 +267,7 @@ export const CarouselBuilderApp: React.FC = () => {
 
     const handleTemplateChange = () => {
         clearSelection();
+        setSeamlessStrip(null);
         setSlides([]);
         setProject(null);
         setCurrentSlideIndex(0);
@@ -253,6 +292,7 @@ export const CarouselBuilderApp: React.FC = () => {
         selectTemplate(savedProject.template);
         setSelectedPlatform(savedProject.platform);
         setSelectedFormat(savedProject.format);
+        setSeamlessStrip(savedProject.seamlessStrip ?? null);
         setSlides(savedProject.slides);
         setCurrentSlideIndex(0);
         setProject({
@@ -337,6 +377,62 @@ export const CarouselBuilderApp: React.FC = () => {
                 : current
         ));
     };
+
+    const handleSeamlessStripUpload = useCallback(async (file: File | null) => {
+        if (!file) {
+            return;
+        }
+
+        if (!isValidImageType(file)) {
+            setSaveStatus('Upload a JPG, PNG, GIF, or WebP image for the seamless strip.');
+            return;
+        }
+
+        if (!isValidFileSize(file, 12)) {
+            setSaveStatus('Seamless strip images must be 12MB or smaller.');
+            return;
+        }
+
+        try {
+            const src = await fileToDataURL(file);
+            const nextStrip: SeamlessStripConfig = {
+                src,
+                alt: file.name,
+                zoom: 1,
+                offsetX: 0,
+                offsetY: 0,
+            };
+            const nextSlides = await hydrateSlidesWithSeamlessStrip(slides, selectedFormat, nextStrip);
+            setSeamlessStrip(nextStrip);
+            setSlides(nextSlides);
+            setSaveStatus('Applied a seamless background strip across the carousel.');
+        } catch (error) {
+            setSaveStatus(error instanceof Error ? error.message : 'Unable to apply the seamless strip image.');
+        }
+    }, [hydrateSlidesWithSeamlessStrip, selectedFormat, slides]);
+
+    const handleSeamlessStripChange = useCallback(async (updates: Partial<SeamlessStripConfig>) => {
+        if (!seamlessStrip) {
+            return;
+        }
+
+        const nextStrip = {
+            ...seamlessStrip,
+            ...updates,
+        };
+        const nextSlides = await hydrateSlidesWithSeamlessStrip(slides, selectedFormat, nextStrip);
+        setSeamlessStrip(nextStrip);
+        setSlides(nextSlides);
+    }, [hydrateSlidesWithSeamlessStrip, seamlessStrip, selectedFormat, slides]);
+
+    const handleSeamlessStripClear = useCallback(() => {
+        setSeamlessStrip(null);
+        setSlides((currentSlides) => currentSlides.map((slide) => ({
+            ...slide,
+            backgroundImage: undefined,
+        })));
+        setSaveStatus('Removed the seamless background strip.');
+    }, []);
 
     const handleResumeRecovery = () => {
         if (!recoveryProject) {
@@ -478,11 +574,12 @@ export const CarouselBuilderApp: React.FC = () => {
                 template: selectedTemplate,
                 platform: selectedPlatform,
                 format: selectedFormat,
+                seamlessStrip,
                 updatedAt: new Date(),
             }
             : buildProject(selectedTemplate, slides, selectedPlatform, selectedFormat);
         setProject(nextProject);
-    }, [selectedFormat, selectedPlatform, selectedTemplate, slides]);
+    }, [selectedFormat, selectedPlatform, selectedTemplate, seamlessStrip, slides]);
 
     useEffect(() => {
         if (!selectedTemplate || !slides.length) {
@@ -528,6 +625,7 @@ export const CarouselBuilderApp: React.FC = () => {
                 template: selectedTemplate || project.template,
                 platform: selectedPlatform,
                 format: selectedFormat,
+                seamlessStrip,
                 updatedAt: new Date(),
             };
 
@@ -539,7 +637,7 @@ export const CarouselBuilderApp: React.FC = () => {
         }, 800);
 
         return () => window.clearTimeout(timeout);
-    }, [project, selectedFormat, selectedPlatform, selectedTemplate, slides]);
+    }, [project, selectedFormat, selectedPlatform, selectedTemplate, seamlessStrip, slides]);
 
     useEffect(() => {
         if (!project) {
@@ -554,6 +652,7 @@ export const CarouselBuilderApp: React.FC = () => {
                     template: selectedTemplate || project.template,
                     platform: selectedPlatform,
                     format: selectedFormat,
+                    seamlessStrip,
                     updatedAt: new Date(),
                 });
                 setSavedProjects(nextSaved);
@@ -564,7 +663,7 @@ export const CarouselBuilderApp: React.FC = () => {
         }, 30000);
 
         return () => window.clearInterval(interval);
-    }, [project, selectedFormat, selectedPlatform, selectedTemplate, slides]);
+    }, [project, selectedFormat, selectedPlatform, selectedTemplate, seamlessStrip, slides]);
 
     if (templatesLoading) {
         return (
@@ -588,162 +687,146 @@ export const CarouselBuilderApp: React.FC = () => {
 
     if (!selectedTemplate) {
         return (
-            <div className="space-y-8">
-                {recoveryProject ? (
-                    <div className="rounded-3xl border border-cyan-200 bg-[linear-gradient(135deg,_#ecfeff,_#f8fafc)] p-6 shadow-sm">
-                        <div className="flex flex-wrap items-center justify-between gap-4">
-                            <div>
-                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-700">
-                                    Session recovery
-                                </p>
-                                <h2 className="mt-1 text-2xl font-semibold text-slate-900">
-                                    Resume your latest carousel draft
-                                </h2>
-                                <p className="mt-2 max-w-2xl text-sm text-slate-600">
-                                    {recoveryProject.name} was last updated on {new Date(recoveryProject.updatedAt).toLocaleString()}.
-                                    Open it to continue editing or clear the recovery snapshot from this browser.
-                                </p>
-                            </div>
-                            <div className="flex flex-wrap gap-3">
-                                <button
-                                    type="button"
-                                    onClick={handleResumeRecovery}
-                                    className="rounded-full bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-800"
-                                >
-                                    Resume draft
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={handleDismissRecovery}
-                                    className="rounded-full border border-slate-300 px-5 py-3 text-sm font-medium text-slate-700 hover:bg-white"
-                                >
-                                    Clear recovery
-                                </button>
-                            </div>
-                        </div>
+            <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_23rem]">
+                <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-5">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                            Start
+                        </p>
+                        <h2 className="mt-1 text-2xl font-semibold text-slate-900">Choose a template</h2>
+
                     </div>
-                ) : null}
-                <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <h2 className="mb-6 text-2xl font-semibold text-gray-900">Choose a Template</h2>
                     <TemplateSelector
                         templates={templates}
                         onTemplateSelect={handleTemplateSelect}
                         selectedTemplate={selectedTemplate}
                     />
                 </div>
-                <div className="rounded-lg bg-white p-6 shadow-sm">
-                    <div className="mb-4 flex items-center justify-between gap-4">
-                        <h3 className="text-xl font-semibold text-gray-900">Saved projects</h3>
-                        <span className="text-sm text-gray-500">
-                            {filteredSavedProjects.length} of {savedProjects.length} project{savedProjects.length !== 1 ? 's' : ''}
-                        </span>
-                    </div>
-                    <div className="mb-4 flex flex-col gap-3 md:flex-row">
-                        <label className="flex-1">
-                            <span className="sr-only">Search saved projects</span>
-                            <input
-                                type="search"
-                                value={savedProjectQuery}
-                                onChange={(event) => setSavedProjectQuery(event.target.value)}
-                                placeholder="Search saved projects"
-                                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
-                            />
-                        </label>
-                        <label className="md:w-56">
-                            <span className="sr-only">Sort saved projects</span>
-                            <select
-                                value={savedProjectSort}
-                                onChange={(event) => setSavedProjectSort(event.target.value as 'recent' | 'name-asc' | 'name-desc')}
-                                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700"
-                            >
-                                <option value="recent">Recently updated</option>
-                                <option value="name-asc">Name A to Z</option>
-                                <option value="name-desc">Name Z to A</option>
-                            </select>
-                        </label>
-                    </div>
-                    {savedProjects.length === 0 ? (
-                        <p className="text-sm text-gray-600">No saved carousel projects yet.</p>
-                    ) : filteredSavedProjects.length === 0 ? (
-                        <p className="text-sm text-gray-600">No saved projects match your search.</p>
-                    ) : (
-                        <div className="grid gap-3 md:grid-cols-2">
-                            {filteredSavedProjects.map((savedProject) => (
-                                <div key={savedProject.id} className="rounded-lg border border-gray-200 p-4">
-                                    {savedProject.slides[0] ? (
-                                        <SlideThumbnail
-                                            slide={savedProject.slides[0]}
-                                            format={savedProject.format}
-                                            alt={`${savedProject.name} preview`}
-                                            className="mb-4 aspect-[4/5] w-full rounded-lg border border-gray-200 object-cover"
-                                        />
-                                    ) : null}
-                                    <p className="font-semibold text-gray-900">{savedProject.name}</p>
-                                    <p className="mt-1 text-sm text-gray-600">
-                                        {savedProject.platform.name} | {savedProject.format.name} | {savedProject.slides.length} slide{savedProject.slides.length !== 1 ? 's' : ''}
-                                    </p>
-                                    <p className="mt-1 text-xs text-gray-500">
-                                        Updated {new Date(savedProject.updatedAt).toLocaleString()}
-                                    </p>
-                                    <div className="mt-4 flex gap-2">
-                                        <button
-                                            type="button"
-                                            onClick={() => handleLoadProject(savedProject)}
-                                            className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-                                        >
-                                            Load
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => handleDuplicateProject(savedProject)}
-                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                                        >
-                                            Duplicate
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => handleRenameSavedProject(savedProject)}
-                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                                        >
-                                            Rename
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => handleDeleteProject(savedProject.id)}
-                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                                        >
-                                            Delete
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
+
+                <aside className="space-y-4">
+                    <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
+                        <div className="mb-4 flex items-center justify-between gap-4">
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                                    Local projects
+                                </p>
+                                <h3 className="mt-1 text-xl font-semibold text-slate-900">Saved drafts</h3>
+                            </div>
+                            <span className="text-sm text-slate-500">
+                                {filteredSavedProjects.length} of {savedProjects.length}
+                            </span>
                         </div>
-                    )}
-                </div>
+                        <div className="mb-4 space-y-3">
+                            <label className="block">
+                                <span className="sr-only">Search saved projects</span>
+                                <input
+                                    type="search"
+                                    value={savedProjectQuery}
+                                    onChange={(event) => setSavedProjectQuery(event.target.value)}
+                                    placeholder="Search saved projects"
+                                    className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700"
+                                />
+                            </label>
+                            <label className="block">
+                                <span className="sr-only">Sort saved projects</span>
+                                <select
+                                    value={savedProjectSort}
+                                    onChange={(event) => setSavedProjectSort(event.target.value as 'recent' | 'name-asc' | 'name-desc')}
+                                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700"
+                                >
+                                    <option value="recent">Recently updated</option>
+                                    <option value="name-asc">Name A to Z</option>
+                                    <option value="name-desc">Name Z to A</option>
+                                </select>
+                            </label>
+                        </div>
+                        {savedProjects.length === 0 ? (
+                            <p className="text-sm text-slate-600">No saved carousel projects yet.</p>
+                        ) : filteredSavedProjects.length === 0 ? (
+                            <p className="text-sm text-slate-600">No saved projects match your search.</p>
+                        ) : (
+                            <div className="space-y-3">
+                                {filteredSavedProjects.map((savedProject) => (
+                                    <div key={savedProject.id} className="rounded-2xl border border-slate-200 p-4">
+                                        <div className="flex gap-3">
+                                            {savedProject.slides[0] ? (
+                                                <SlideThumbnail
+                                                    slide={savedProject.slides[0]}
+                                                    format={savedProject.format}
+                                                    alt={`${savedProject.name} preview`}
+                                                    className="aspect-[4/5] w-20 shrink-0 rounded-xl border border-slate-200 object-cover"
+                                                />
+                                            ) : null}
+                                            <div className="min-w-0 flex-1">
+                                                <p className="truncate font-semibold text-slate-900">{savedProject.name}</p>
+                                                <p className="mt-1 text-sm text-slate-600">
+                                                    {savedProject.platform.name} | {savedProject.format.name} | {savedProject.slides.length} slide{savedProject.slides.length !== 1 ? 's' : ''}
+                                                </p>
+                                                <p className="mt-1 text-xs text-slate-500">
+                                                    Updated {new Date(savedProject.updatedAt).toLocaleString()}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="mt-4 flex flex-wrap gap-2">
+                                            <button
+                                                type="button"
+                                                onClick={() => handleLoadProject(savedProject)}
+                                                className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                                            >
+                                                Load
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleDuplicateProject(savedProject)}
+                                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                            >
+                                                Duplicate
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleRenameSavedProject(savedProject)}
+                                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                            >
+                                                Rename
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleDeleteProject(savedProject.id)}
+                                                className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </aside>
             </div>
         );
     }
 
     return (
         <div className="space-y-6">
-            <div className="rounded-lg bg-white p-6 shadow-sm">
+            <div className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm">
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
                     <div>
-                        <h2 className="text-xl font-semibold text-gray-900">Platform and format</h2>
+                        <h2 className="text-xl font-semibold text-slate-900">Project</h2>
                         <label className="mt-2 block">
-                            <span className="mb-1 block text-sm font-medium text-gray-700">Project name</span>
+                            <span className="mb-1 block text-sm font-medium text-slate-700">Project name</span>
                             <input
                                 type="text"
                                 value={project?.name || `${selectedTemplate.name} Carousel`}
                                 onChange={(event) => handleProjectNameChange(event.target.value)}
-                                className="w-full max-w-md rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
+                                className="w-full max-w-md rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-700"
                             />
                         </label>
                     </div>
                     <button
                         type="button"
                         onClick={handleTemplateChange}
-                        className="font-medium text-blue-600 hover:text-blue-800"
+                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
                     >
                         Change template
                     </button>
@@ -755,13 +838,15 @@ export const CarouselBuilderApp: React.FC = () => {
                 />
             </div>
 
-            <div className="rounded-lg bg-white shadow-sm">
+            <div className="rounded-[28px] border border-slate-200 bg-white shadow-sm">
                 <CarouselEditor
                     slides={slides}
                     currentSlide={currentSlideIndex}
                     template={selectedTemplate}
                     platform={selectedPlatform}
                     format={selectedFormat}
+                    seamlessStrip={seamlessStrip}
+                    isApplyingSeamlessStrip={isApplyingSeamlessStrip}
                     onSlideUpdate={handleSlideUpdate}
                     onCurrentSlideChange={setCurrentSlideIndex}
                     onSlideAdd={handleSlideAdd}
@@ -773,6 +858,9 @@ export const CarouselBuilderApp: React.FC = () => {
                     onRetryExport={handleRetryExport}
                     onExportTypeChange={setExportType}
                     onExportQualityChange={setExportQuality}
+                    onSeamlessStripUpload={handleSeamlessStripUpload}
+                    onSeamlessStripChange={handleSeamlessStripChange}
+                    onSeamlessStripClear={handleSeamlessStripClear}
                     onUndo={handleUndo}
                     onRedo={handleRedo}
                     canUndo={historyState.index > 0}

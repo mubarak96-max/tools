@@ -4,7 +4,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { CarouselEditorProps } from '../types';
 import { getWrappedTextLayout } from '../utils/canvasUtils';
 import { fileToDataURL, generateId, isValidFileSize, isValidImageType } from '../utils';
-import { PlatformCompatibilityWarning } from './PlatformCompatibilityWarning';
 import { PreviewModal } from './PreviewModal';
 import { SlideCanvas } from './SlideCanvas';
 import { SlideThumbnail } from './SlideThumbnail';
@@ -24,6 +23,8 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
     template,
     platform,
     format,
+    seamlessStrip,
+    isApplyingSeamlessStrip,
     onSlideUpdate,
     onCurrentSlideChange,
     onSlideAdd,
@@ -35,6 +36,9 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
     onRetryExport,
     onExportTypeChange,
     onExportQualityChange,
+    onSeamlessStripUpload,
+    onSeamlessStripChange,
+    onSeamlessStripClear,
     onUndo,
     onRedo,
     canUndo,
@@ -46,7 +50,6 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
     exportStatus,
     isExporting,
 }) => {
-    const [activeTab, setActiveTab] = useState<'edit' | 'preview'>('edit');
     const [activeInspectorTab, setActiveInspectorTab] = useState<'design' | 'images' | 'selection' | 'export'>('design');
     const [imageNotice, setImageNotice] = useState('');
     const [textNotice, setTextNotice] = useState('');
@@ -55,17 +58,8 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
     const [draggedSlideIndex, setDraggedSlideIndex] = useState<number | null>(null);
     const [selectedCanvasElementIds, setSelectedCanvasElementIds] = useState<string[]>([]);
     const [activeCropElementId, setActiveCropElementId] = useState<string | null>(null);
+    const [canvasActionTarget, setCanvasActionTarget] = useState<'background' | 'image' | null>(null);
     const slide = slides[currentSlide];
-
-    const elementCounts = useMemo(() => {
-        return slide.elements.reduce(
-            (counts, element) => {
-                counts[element.type] += 1;
-                return counts;
-            },
-            { text: 0, image: 0, shape: 0 }
-        );
-    }, [slide.elements]);
 
     const updateBackgroundColor = (value: string) => {
         onSlideUpdate(currentSlide, {
@@ -421,6 +415,15 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
 
     const handleSelectionChange = (elementIds: string[]) => {
         setSelectedCanvasElementIds(elementIds);
+        const nextSelectedId = elementIds[elementIds.length - 1] ?? null;
+        const nextSelectedElement = slide.elements.find((element) => element.id === nextSelectedId) ?? null;
+
+        if (!nextSelectedElement) {
+            setCanvasActionTarget('background');
+            return;
+        }
+
+        setCanvasActionTarget(nextSelectedElement.type === 'image' ? 'image' : null);
     };
 
     useEffect(() => {
@@ -460,7 +463,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                 }
             }
 
-            if (activeTab !== 'edit' || !selectedCanvasElement || isInteractiveTarget(event.target)) {
+            if (!selectedCanvasElement || isInteractiveTarget(event.target)) {
                 return;
             }
 
@@ -478,11 +481,12 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [activeCropElementId, activeTab, deleteSelectedElement, duplicateSelectedElement, isHelpOpen, selectedCanvasElement]);
+    }, [activeCropElementId, deleteSelectedElement, duplicateSelectedElement, isHelpOpen, selectedCanvasElement]);
 
     useEffect(() => {
         setSelectedCanvasElementIds([]);
         setActiveCropElementId(null);
+        setCanvasActionTarget(null);
     }, [currentSlide]);
 
     useEffect(() => {
@@ -492,46 +496,40 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
     }, [selectedCanvasElement]);
 
     return (
-        <div className="space-y-6 p-6">
+        <div className="space-y-4 p-4 lg:p-5">
             <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
                 <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sky-700">
-                            Carousel Workspace
-                        </p>
-                        <h2 className="mt-1 text-2xl font-semibold text-slate-900">
-                            Cleaner editing flow
-                        </h2>
-                        <p className="mt-1 text-sm text-slate-600">
-                            Slides on the left, canvas in the center, one focused settings panel on the right.
-                        </p>
+                        <h2 className="text-lg font-semibold text-slate-900">Editor</h2>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                        {(['edit', 'preview'] as const).map((tab) => (
-                            <button
-                                key={tab}
-                                type="button"
-                                onClick={() => setActiveTab(tab)}
-                                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                                    activeTab === tab
-                                        ? 'bg-slate-900 text-white'
-                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-                                }`}
-                            >
-                                {tab === 'edit' ? 'Canvas edit' : 'Read-only preview'}
-                            </button>
-                        ))}
+                        <button
+                            type="button"
+                            onClick={onManualSave}
+                            className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                        >
+                            Save
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setIsPreviewOpen(true)}
+                            className="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+                        >
+                            Preview
+                        </button>
                     </div>
                 </div>
 
                 <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
-                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">{template.name}</span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">{platform.name}</span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">{format.name}</span>
                     <span className="rounded-full bg-slate-100 px-3 py-1 font-medium text-slate-700">Slide {currentSlide + 1} of {slides.length}</span>
-                    {selectedCanvasElementIds.length ? (
-                        <span className="rounded-full bg-sky-100 px-3 py-1 font-medium text-sky-800">
-                            {selectedCanvasElementIds.length} selected
+                    <span className={`rounded-full px-3 py-1 font-medium ${
+                        seamlessStrip ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-700'
+                    }`}>
+                        {seamlessStrip ? 'Seamless strip on' : 'Standard background'}
+                    </span>
+                    {isApplyingSeamlessStrip ? (
+                        <span className="rounded-full bg-amber-100 px-3 py-1 font-medium text-amber-800">
+                            Updating strip
                         </span>
                     ) : null}
                     {overflowingTextElements.length ? (
@@ -539,62 +537,6 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                             {overflowingTextElements.length} warning{overflowingTextElements.length !== 1 ? 's' : ''}
                         </span>
                     ) : null}
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                    <button
-                        type="button"
-                        onClick={onUndo}
-                        disabled={!canUndo}
-                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                        Undo
-                    </button>
-                    <button
-                        type="button"
-                        onClick={onRedo}
-                        disabled={!canRedo}
-                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                        Redo
-                    </button>
-                    <button
-                        type="button"
-                        onClick={onSlideAdd}
-                        disabled={slides.length >= 10}
-                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                        Add slide
-                    </button>
-                    <button
-                        type="button"
-                        onClick={handleDeleteCurrentSlide}
-                        disabled={slides.length <= 1}
-                        className="rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-700 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                        Delete slide
-                    </button>
-                    <button
-                        type="button"
-                        onClick={onManualSave}
-                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                    >
-                        Save
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setIsPreviewOpen(true)}
-                        className="rounded-full bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
-                    >
-                        Preview
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setIsHelpOpen(true)}
-                        className="rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
-                    >
-                        Help
-                    </button>
                 </div>
             </div>
 
@@ -646,22 +588,62 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                             </div>
                         ))}
                     </div>
+                    <div className="mt-4 space-y-2">
+                        <button
+                            type="button"
+                            onClick={onSlideAdd}
+                            disabled={slides.length >= 10}
+                            className="w-full rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                            Add slide
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleDeleteCurrentSlide}
+                            disabled={slides.length <= 1}
+                            className="w-full rounded-full border border-rose-200 px-4 py-2 text-sm font-medium text-rose-700 hover:bg-rose-50 disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                            Delete current slide
+                        </button>
+                    </div>
                 </aside>
 
-                <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
-                    {activeTab === 'preview' ? (
-                        <div className="mb-4 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
-                            <p className="font-medium">Preview mode is read-only.</p>
-                            <p className="mt-1">
-                                Inspect this slide on-canvas or open the slideshow preview to review the full carousel sequence.
-                            </p>
+                <div className="relative rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                    {canvasActionTarget ? (
+                        <div className="absolute right-6 top-6 z-10 flex flex-wrap gap-2">
+                            {canvasActionTarget === 'background' ? (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={() => setActiveInspectorTab('design')}
+                                        className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50"
+                                    >
+                                        Background
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setActiveInspectorTab('design')}
+                                        className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50"
+                                    >
+                                        Seamless
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    type="button"
+                                    onClick={() => setActiveInspectorTab('images')}
+                                    className="rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50"
+                                >
+                                    Edit image
+                                </button>
+                            )}
                         </div>
                     ) : null}
                     <SlideCanvas
                         slide={slide}
                         template={template}
                         dimensions={format.dimensions}
-                        isEditable={activeTab === 'edit'}
+                        isEditable
                         onSelectionChange={handleSelectionChange}
                         cropTargetElementId={activeCropElementId}
                         onImageCropChange={updateImageCrop}
@@ -687,7 +669,10 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
 
                 <aside className="space-y-4">
                     <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
-                        <div className="flex flex-wrap gap-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                            Inspector
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-2">
                             {[
                                 { id: 'design', label: 'Design' },
                                 { id: 'images', label: 'Images' },
@@ -713,13 +698,8 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                     {activeInspectorTab === 'design' ? (
                         <div className="space-y-4">
                             <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
-                                <h3 className="font-semibold text-slate-900">Slide design</h3>
+                                <h3 className="font-semibold text-slate-900">Background</h3>
                                 <div className="mt-4 space-y-4">
-                                    <PlatformCompatibilityWarning
-                                        template={template}
-                                        platform={platform}
-                                        format={format}
-                                    />
                                     <label className="block">
                                         <span className="mb-1 block text-sm font-medium text-slate-700">Background color</span>
                                         <input
@@ -729,307 +709,404 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                                             className="h-10 w-full cursor-pointer rounded border border-slate-300"
                                         />
                                     </label>
-                                </div>
-                            </div>
-
-
-
-                    <div className="rounded-lg border border-gray-200 bg-white p-4">
-                        <h3 className="font-semibold text-gray-900">Slide summary</h3>
-                        <div className="mt-3 space-y-2 text-sm text-gray-600">
-                            <p><span className="font-medium text-gray-900">Template:</span> {template.name}</p>
-                            <p><span className="font-medium text-gray-900">Platform:</span> {platform.name}</p>
-                            <p><span className="font-medium text-gray-900">Format:</span> {format.name}</p>
-                            <p><span className="font-medium text-gray-900">Dimensions:</span> {format.dimensions.width} x {format.dimensions.height}</p>
-                        </div>
-                        <div className="mt-4 grid grid-cols-3 gap-2">
-                            <div className="rounded-lg bg-blue-50 p-3 text-center">
-                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue-600">Text</p>
-                                <p className="mt-1 text-xl font-semibold text-blue-900">{elementCounts.text}</p>
-                            </div>
-                            <div className="rounded-lg bg-emerald-50 p-3 text-center">
-                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-600">Images</p>
-                                <p className="mt-1 text-xl font-semibold text-emerald-900">{elementCounts.image}</p>
-                            </div>
-                            <div className="rounded-lg bg-violet-50 p-3 text-center">
-                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-violet-600">Shapes</p>
-                                <p className="mt-1 text-xl font-semibold text-violet-900">{elementCounts.shape}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    ) : null}
-
-                    {activeInspectorTab === 'images' && imageElements.length ? (
-                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                            <h3 className="font-semibold text-gray-900">Image elements</h3>
-                            {imageNotice ? <p className="mt-2 text-sm text-gray-600">{imageNotice}</p> : null}
-                            <div className="mt-4 space-y-4">
-                                {imageElements.map((element) => (
-                                    <div key={element.id} className="rounded-lg border border-gray-200 bg-gray-50 p-3">
-                                        <p className="text-sm font-medium text-gray-900">{element.id}</p>
-                                        <div
-                                            onDragOver={(event) => event.preventDefault()}
-                                            onDrop={(event) => {
-                                                event.preventDefault();
-                                                const file = event.dataTransfer.files?.[0] || null;
-                                                void updateImageElement(element.id, file);
-                                            }}
-                                            className="mt-3 rounded-lg border border-dashed border-gray-300 bg-white px-3 py-4 text-center text-sm text-gray-500"
-                                        >
-                                            Drop an image here or use the file picker below.
+                                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                                        <div className="flex items-start justify-between gap-3">
+                                            <div>
+                                                <p className="text-sm font-semibold text-slate-900">Seamless strip</p>
+                                            </div>
+                                            {seamlessStrip ? (
+                                                <button
+                                                    type="button"
+                                                    onClick={onSeamlessStripClear}
+                                                    className="rounded-full border border-slate-300 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-white"
+                                                >
+                                                    Clear
+                                                </button>
+                                            ) : null}
                                         </div>
-                                        <label className="mt-3 block">
-                                            <span className="mb-1 block text-sm font-medium text-gray-700">Replace image</span>
+                                        <label className="mt-4 block">
+                                            <span className="mb-1 block text-sm font-medium text-slate-700">Strip image</span>
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                className="block w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700"
+                                                className="block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700"
                                                 onChange={(event) => {
                                                     const file = event.target.files?.[0] || null;
-                                                    void updateImageElement(element.id, file);
+                                                    void onSeamlessStripUpload(file);
                                                     event.target.value = '';
                                                 }}
                                             />
                                         </label>
-                                        <label className="mt-3 block">
-                                            <span className="mb-1 block text-sm font-medium text-gray-700">Fit mode</span>
-                                            <select
-                                                value={typeof element.content !== 'string' ? element.content.fit : 'cover'}
-                                                onChange={(event) => updateImageFit(element.id, event.target.value as 'cover' | 'contain' | 'fill')}
-                                                className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700"
-                                            >
-                                                <option value="cover">Cover</option>
-                                                <option value="contain">Contain</option>
-                                                <option value="fill">Fill</option>
-                                            </select>
-                                        </label>
-                                        <label className="mt-3 block">
-                                            <span className="mb-1 block text-sm font-medium text-gray-700">
-                                                Zoom ({typeof element.content !== 'string' ? (element.content.crop?.zoom ?? 1).toFixed(2) : '1.00'}x)
-                                            </span>
-                                            <input
-                                                type="range"
-                                                min="1"
-                                                max="3"
-                                                step="0.05"
-                                                value={typeof element.content !== 'string' ? element.content.crop?.zoom ?? 1 : 1}
-                                                onChange={(event) => updateImageCrop(element.id, { zoom: Number(event.target.value) })}
-                                                className="w-full"
-                                            />
-                                        </label>
-                                        <label className="mt-3 block">
-                                            <span className="mb-1 block text-sm font-medium text-gray-700">
-                                                Horizontal position ({typeof element.content !== 'string' ? Math.round(element.content.crop?.x ?? 0) : 0})
-                                            </span>
-                                            <input
-                                                type="range"
-                                                min="-100"
-                                                max="100"
-                                                step="1"
-                                                value={typeof element.content !== 'string' ? element.content.crop?.x ?? 0 : 0}
-                                                onChange={(event) => updateImageCrop(element.id, { x: Number(event.target.value) })}
-                                                className="w-full"
-                                            />
-                                        </label>
-                                        <label className="mt-3 block">
-                                            <span className="mb-1 block text-sm font-medium text-gray-700">
-                                                Vertical position ({typeof element.content !== 'string' ? Math.round(element.content.crop?.y ?? 0) : 0})
-                                            </span>
-                                            <input
-                                                type="range"
-                                                min="-100"
-                                                max="100"
-                                                step="1"
-                                                value={typeof element.content !== 'string' ? element.content.crop?.y ?? 0 : 0}
-                                                onChange={(event) => updateImageCrop(element.id, { y: Number(event.target.value) })}
-                                                className="w-full"
-                                            />
-                                        </label>
-                                        <button
-                                            type="button"
-                                            onClick={() => updateImageCrop(element.id, { x: 0, y: 0, zoom: 1 })}
-                                            className="mt-3 rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-white"
-                                        >
-                                            Reset crop
-                                        </button>
-                                        <button
-                                            type="button"
-                                            onClick={() => setActiveCropElementId((current) => current === element.id ? null : element.id)}
-                                            className={`mt-3 rounded-lg px-3 py-2 text-sm font-medium ${
-                                                activeCropElementId === element.id
-                                                    ? 'bg-amber-500 text-white hover:bg-amber-600'
-                                                    : 'border border-gray-300 text-gray-700 hover:bg-white'
-                                            }`}
-                                        >
-                                            {activeCropElementId === element.id ? 'Stop canvas crop' : 'Adjust crop on canvas'}
-                                        </button>
+                                        {seamlessStrip ? (
+                                            <div className="mt-4 space-y-4">
+                                                <p className="text-sm text-slate-600">{seamlessStrip.alt}</p>
+                                                <label className="block">
+                                                    <span className="mb-1 block text-sm font-medium text-slate-700">
+                                                        Zoom ({seamlessStrip.zoom.toFixed(2)}x)
+                                                    </span>
+                                                    <input
+                                                        type="range"
+                                                        min="1"
+                                                        max="2.5"
+                                                        step="0.01"
+                                                        value={seamlessStrip.zoom}
+                                                        onChange={(event) => void onSeamlessStripChange({ zoom: Number(event.target.value) })}
+                                                        className="w-full"
+                                                    />
+                                                </label>
+                                                <label className="block">
+                                                    <span className="mb-1 block text-sm font-medium text-slate-700">
+                                                        Horizontal shift ({Math.round(seamlessStrip.offsetX)}px)
+                                                    </span>
+                                                    <input
+                                                        type="range"
+                                                        min={-format.dimensions.width * slides.length}
+                                                        max={format.dimensions.width * slides.length}
+                                                        step="1"
+                                                        value={seamlessStrip.offsetX}
+                                                        onChange={(event) => void onSeamlessStripChange({ offsetX: Number(event.target.value) })}
+                                                        className="w-full"
+                                                    />
+                                                </label>
+                                                <label className="block">
+                                                    <span className="mb-1 block text-sm font-medium text-slate-700">
+                                                        Vertical shift ({Math.round(seamlessStrip.offsetY)}px)
+                                                    </span>
+                                                    <input
+                                                        type="range"
+                                                        min={-format.dimensions.height}
+                                                        max={format.dimensions.height}
+                                                        step="1"
+                                                        value={seamlessStrip.offsetY}
+                                                        onChange={(event) => void onSeamlessStripChange({ offsetY: Number(event.target.value) })}
+                                                        className="w-full"
+                                                    />
+                                                </label>
+                                            </div>
+                                        ) : (
+                                            <p className="mt-3 text-sm text-slate-500">No strip uploaded.</p>
+                                        )}
                                     </div>
-                                ))}
+                                </div>
                             </div>
+
+                            {overflowingTextElements.length ? (
+                                <div className="rounded-[28px] border border-amber-200 bg-amber-50 p-4 shadow-sm">
+                                    <h3 className="font-semibold text-amber-950">Text warnings</h3>
+                                    <div className="mt-3 space-y-3">
+                                        {overflowingTextElements.map((element) => (
+                                            <div key={element.id} className="rounded-2xl border border-amber-200 bg-white/70 p-3">
+                                                <p className="text-sm font-medium text-amber-950">{element.id}</p>
+                                                <p className="mt-1 text-sm text-amber-900">
+                                                    Hidden text detected. Approximate overflow: {element.hiddenHeight}px.
+                                                </p>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => autoFitTextElement(element.id)}
+                                                    className="mt-3 rounded-full border border-amber-300 px-3 py-2 text-sm font-medium text-amber-900 hover:bg-amber-100"
+                                                >
+                                                    Auto-fit text
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {textNotice ? <p className="mt-3 text-sm text-amber-900">{textNotice}</p> : null}
+                                </div>
+                            ) : textNotice ? (
+                                <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                                    <p className="text-sm text-slate-600">{textNotice}</p>
+                                </div>
+                            ) : null}
                         </div>
                     ) : null}
 
-                    {activeInspectorTab === 'selection' && selectedCanvasElement ? (
-                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                            <h3 className="font-semibold text-gray-900">Selected element</h3>
-                            <div className="mt-3 space-y-2 text-sm text-gray-600">
-                                <p><span className="font-medium text-gray-900">Selected count:</span> {selectedCanvasElementIds.length}</p>
-                                <p><span className="font-medium text-gray-900">ID:</span> {selectedCanvasElement.id}</p>
-                                <p><span className="font-medium text-gray-900">Type:</span> {selectedCanvasElement.type}</p>
-                                <p><span className="font-medium text-gray-900">Layer:</span> {selectedCanvasElement.position.z}</p>
-                                <p><span className="font-medium text-gray-900">Rotation:</span> {Math.round(selectedCanvasElement.style.rotation ?? 0)}&deg;</p>
-                                <p><span className="font-medium text-gray-900">Locked:</span> {isSelectedElementLocked ? 'Yes' : 'No'}</p>
+                    {activeInspectorTab === 'images' ? (
+                        imageElements.length ? (
+                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                                <h3 className="font-semibold text-slate-900">Image elements</h3>
+                                {imageNotice ? <p className="mt-3 text-sm text-slate-600">{imageNotice}</p> : null}
+                                <div className="mt-4 space-y-4">
+                                    {imageElements.map((element) => (
+                                        <div key={element.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-3">
+                                            <p className="text-sm font-medium text-slate-900">{element.id}</p>
+                                            <div
+                                                onDragOver={(event) => event.preventDefault()}
+                                                onDrop={(event) => {
+                                                    event.preventDefault();
+                                                    const file = event.dataTransfer.files?.[0] || null;
+                                                    void updateImageElement(element.id, file);
+                                                }}
+                                                className="mt-3 rounded-xl border border-dashed border-slate-300 bg-white px-3 py-4 text-center text-sm text-slate-500"
+                                            >
+                                                Drop an image here or use the file picker below.
+                                            </div>
+                                            <label className="mt-3 block">
+                                                <span className="mb-1 block text-sm font-medium text-slate-700">Replace image</span>
+                                                <input
+                                                    type="file"
+                                                    accept="image/*"
+                                                    className="block w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700"
+                                                    onChange={(event) => {
+                                                        const file = event.target.files?.[0] || null;
+                                                        void updateImageElement(element.id, file);
+                                                        event.target.value = '';
+                                                    }}
+                                                />
+                                            </label>
+                                            <label className="mt-3 block">
+                                                <span className="mb-1 block text-sm font-medium text-slate-700">Fit mode</span>
+                                                <select
+                                                    value={typeof element.content !== 'string' ? element.content.fit : 'cover'}
+                                                    onChange={(event) => updateImageFit(element.id, event.target.value as 'cover' | 'contain' | 'fill')}
+                                                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700"
+                                                >
+                                                    <option value="cover">Cover</option>
+                                                    <option value="contain">Contain</option>
+                                                    <option value="fill">Fill</option>
+                                                </select>
+                                            </label>
+                                            <label className="mt-3 block">
+                                                <span className="mb-1 block text-sm font-medium text-slate-700">
+                                                    Zoom ({typeof element.content !== 'string' ? (element.content.crop?.zoom ?? 1).toFixed(2) : '1.00'}x)
+                                                </span>
+                                                <input
+                                                    type="range"
+                                                    min="1"
+                                                    max="3"
+                                                    step="0.05"
+                                                    value={typeof element.content !== 'string' ? element.content.crop?.zoom ?? 1 : 1}
+                                                    onChange={(event) => updateImageCrop(element.id, { zoom: Number(event.target.value) })}
+                                                    className="w-full"
+                                                />
+                                            </label>
+                                            <label className="mt-3 block">
+                                                <span className="mb-1 block text-sm font-medium text-slate-700">
+                                                    Horizontal position ({typeof element.content !== 'string' ? Math.round(element.content.crop?.x ?? 0) : 0})
+                                                </span>
+                                                <input
+                                                    type="range"
+                                                    min="-100"
+                                                    max="100"
+                                                    step="1"
+                                                    value={typeof element.content !== 'string' ? element.content.crop?.x ?? 0 : 0}
+                                                    onChange={(event) => updateImageCrop(element.id, { x: Number(event.target.value) })}
+                                                    className="w-full"
+                                                />
+                                            </label>
+                                            <label className="mt-3 block">
+                                                <span className="mb-1 block text-sm font-medium text-slate-700">
+                                                    Vertical position ({typeof element.content !== 'string' ? Math.round(element.content.crop?.y ?? 0) : 0})
+                                                </span>
+                                                <input
+                                                    type="range"
+                                                    min="-100"
+                                                    max="100"
+                                                    step="1"
+                                                    value={typeof element.content !== 'string' ? element.content.crop?.y ?? 0 : 0}
+                                                    onChange={(event) => updateImageCrop(element.id, { y: Number(event.target.value) })}
+                                                    className="w-full"
+                                                />
+                                            </label>
+                                            <div className="mt-3 flex flex-wrap gap-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => updateImageCrop(element.id, { x: 0, y: 0, zoom: 1 })}
+                                                    className="rounded-full border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-white"
+                                                >
+                                                    Reset crop
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setActiveCropElementId((current) => current === element.id ? null : element.id)}
+                                                    className={`rounded-full px-3 py-2 text-sm font-medium ${
+                                                        activeCropElementId === element.id
+                                                            ? 'bg-amber-500 text-white hover:bg-amber-600'
+                                                            : 'border border-slate-300 text-slate-700 hover:bg-white'
+                                                    }`}
+                                                >
+                                                    {activeCropElementId === element.id ? 'Stop canvas crop' : 'Adjust crop on canvas'}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="mt-4 grid grid-cols-2 gap-2">
-                                <button
-                                    type="button"
-                                    onClick={duplicateSelectedElement}
-                                    className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
-                                >
-                                    {selectedCanvasElementIds.length > 1 ? 'Duplicate selected' : 'Duplicate'}
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={deleteSelectedElement}
-                                    className="rounded-lg bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700"
-                                >
-                                    {selectedCanvasElementIds.length > 1 ? 'Delete selected' : 'Delete'}
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => moveSelectedElementLayer('backward')}
-                                    disabled={selectedCanvasElementIds.length > 1 || selectedCanvasElementIndex <= 0}
-                                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                >
-                                    Send backward
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() => moveSelectedElementLayer('forward')}
-                                    disabled={selectedCanvasElementIds.length > 1 || selectedCanvasElementIndex === -1 || selectedCanvasElementIndex >= orderedElements.length - 1}
-                                    className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                >
-                                    Bring forward
-                                </button>
+                        ) : (
+                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                                <h3 className="font-semibold text-slate-900">Image elements</h3>
+                                <p className="mt-2 text-sm text-slate-600">
+                                    This slide does not have editable image elements.
+                                </p>
                             </div>
-                            <div className="mt-4 space-y-3">
-                                <label className="block">
-                                    <span className="mb-1 block text-sm font-medium text-gray-700">
-                                        Rotation ({Math.round(selectedCanvasElement.style.rotation ?? 0)}&deg;)
-                                    </span>
-                                    <input
-                                        type="range"
-                                        min="-180"
-                                        max="180"
-                                        step="1"
-                                        value={selectedCanvasElement.style.rotation ?? 0}
-                                        onChange={(event) => updateSelectedElementRotation(Number(event.target.value))}
-                                        className="w-full"
-                                    />
-                                </label>
-                                <div className="grid grid-cols-3 gap-2">
+                        )
+                    ) : null}
+
+                    {activeInspectorTab === 'selection' ? (
+                        selectedCanvasElement ? (
+                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                                <h3 className="font-semibold text-slate-900">Selected element</h3>
+                                <div className="mt-3 space-y-2 text-sm text-slate-600">
+                                    <p><span className="font-medium text-slate-900">ID:</span> {selectedCanvasElement.id}</p>
+                                    <p><span className="font-medium text-slate-900">Type:</span> {selectedCanvasElement.type}</p>
+                                    <p><span className="font-medium text-slate-900">Layer:</span> {selectedCanvasElement.position.z}</p>
+                                    <p><span className="font-medium text-slate-900">Rotation:</span> {Math.round(selectedCanvasElement.style.rotation ?? 0)}&deg;</p>
+                                    <p><span className="font-medium text-slate-900">Locked:</span> {isSelectedElementLocked ? 'Yes' : 'No'}</p>
+                                </div>
+                                <div className="mt-4 grid grid-cols-2 gap-2">
                                     <button
                                         type="button"
-                                        onClick={() => updateSelectedElementRotation((selectedCanvasElement.style.rotation ?? 0) - 15)}
-                                        className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                        onClick={duplicateSelectedElement}
+                                        className="rounded-xl bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
                                     >
-                                        -15&deg;
+                                        {selectedCanvasElementIds.length > 1 ? 'Duplicate selected' : 'Duplicate'}
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={() => updateSelectedElementRotation(0)}
-                                        className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                        onClick={deleteSelectedElement}
+                                        className="rounded-xl bg-red-600 px-3 py-2 text-sm font-medium text-white hover:bg-red-700"
                                     >
-                                        Reset
+                                        {selectedCanvasElementIds.length > 1 ? 'Delete selected' : 'Delete'}
                                     </button>
                                     <button
                                         type="button"
-                                        onClick={() => updateSelectedElementRotation((selectedCanvasElement.style.rotation ?? 0) + 15)}
-                                        className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                        onClick={() => moveSelectedElementLayer('backward')}
+                                        disabled={selectedCanvasElementIds.length > 1 || selectedCanvasElementIndex <= 0}
+                                        className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
                                     >
-                                        +15&deg;
+                                        Send backward
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => moveSelectedElementLayer('forward')}
+                                        disabled={selectedCanvasElementIds.length > 1 || selectedCanvasElementIndex === -1 || selectedCanvasElementIndex >= orderedElements.length - 1}
+                                        className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                    >
+                                        Bring forward
                                     </button>
                                 </div>
-                                <button
-                                    type="button"
-                                    onClick={toggleSelectedElementLock}
-                                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                                >
-                                    {isSelectedElementLocked ? 'Unlock element' : 'Lock element'}
-                                </button>
+                                <div className="mt-4 space-y-3">
+                                    <label className="block">
+                                        <span className="mb-1 block text-sm font-medium text-slate-700">
+                                            Rotation ({Math.round(selectedCanvasElement.style.rotation ?? 0)}&deg;)
+                                        </span>
+                                        <input
+                                            type="range"
+                                            min="-180"
+                                            max="180"
+                                            step="1"
+                                            value={selectedCanvasElement.style.rotation ?? 0}
+                                            onChange={(event) => updateSelectedElementRotation(Number(event.target.value))}
+                                            className="w-full"
+                                        />
+                                    </label>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={() => updateSelectedElementRotation((selectedCanvasElement.style.rotation ?? 0) - 15)}
+                                            className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                                        >
+                                            -15&deg;
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => updateSelectedElementRotation(0)}
+                                            className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                                        >
+                                            Reset
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => updateSelectedElementRotation((selectedCanvasElement.style.rotation ?? 0) + 15)}
+                                            className="rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                                        >
+                                            +15&deg;
+                                        </button>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={toggleSelectedElementLock}
+                                        className="w-full rounded-xl border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+                                    >
+                                        {isSelectedElementLocked ? 'Unlock element' : 'Lock element'}
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        ) : (
+                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                                <h3 className="font-semibold text-slate-900">Selection</h3>
+                                <p className="mt-2 text-sm text-slate-600">Click an element.</p>
+                            </div>
+                        )
                     ) : null}
 
                     {activeInspectorTab === 'export' ? (
-                    <div className="rounded-lg border border-gray-200 bg-white p-4">
-                        <h3 className="font-semibold text-gray-900">Export actions</h3>
-                        <div className="mt-3 space-y-3">
-                            <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
-                                <p className="font-medium text-gray-900">Save status</p>
-                                <p className="mt-1">{saveStatus}</p>
-                            </div>
-                            <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
-                                <p className="font-medium text-gray-900">Export status</p>
-                                <p className="mt-1">{exportStatus}</p>
-                            </div>
-                            <label className="block">
-                                <span className="mb-1 block text-sm font-medium text-gray-700">File format</span>
-                                <select
-                                    value={exportType}
-                                    onChange={(event) => onExportTypeChange(event.target.value as 'png' | 'jpg')}
-                                    className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700"
-                                >
-                                    <option value="png">PNG (sharper text)</option>
-                                    <option value="jpg">JPG (smaller files)</option>
-                                </select>
-                            </label>
-                            {exportType === 'jpg' ? (
+                        <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                            <h3 className="font-semibold text-slate-900">Export actions</h3>
+                            <div className="mt-3 space-y-3">
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
+                                    <p className="font-medium text-slate-900">Save status</p>
+                                    <p className="mt-1">{saveStatus}</p>
+                                </div>
+                                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
+                                    <p className="font-medium text-slate-900">Export status</p>
+                                    <p className="mt-1">{exportStatus}</p>
+                                </div>
                                 <label className="block">
-                                    <span className="mb-1 block text-sm font-medium text-gray-700">
-                                        JPG quality ({Math.round(exportQuality * 100)}%)
-                                    </span>
-                                    <input
-                                        type="range"
-                                        min="0.4"
-                                        max="1"
-                                        step="0.01"
-                                        value={exportQuality}
-                                        onChange={(event) => onExportQualityChange(Number(event.target.value))}
-                                        className="w-full"
-                                    />
+                                    <span className="mb-1 block text-sm font-medium text-slate-700">File format</span>
+                                    <select
+                                        value={exportType}
+                                        onChange={(event) => onExportTypeChange(event.target.value as 'png' | 'jpg')}
+                                        className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-700"
+                                    >
+                                        <option value="png">PNG (sharper text)</option>
+                                        <option value="jpg">JPG (smaller files)</option>
+                                    </select>
                                 </label>
-                            ) : null}
-                            <p className="rounded-lg bg-gray-50 p-3 text-xs text-gray-600">
-                                PNG is better for crisp text and design review. JPG exports use the selected quality level for smaller files.
-                            </p>
-                            <button
-                                type="button"
-                                onClick={onExportCurrent}
-                                disabled={isExporting}
-                                className="w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                                Export current slide
-                            </button>
-                            <button
-                                type="button"
-                                onClick={onExportAll}
-                                disabled={isExporting}
-                                className="w-full rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                                Export all slides as ZIP
-                            </button>
-                            <button
-                                type="button"
-                                onClick={onRetryExport}
-                                disabled={isExporting || !canRetryExport}
-                                className="w-full rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                                Retry last export
-                            </button>
+                                {exportType === 'jpg' ? (
+                                    <label className="block">
+                                        <span className="mb-1 block text-sm font-medium text-slate-700">
+                                            JPG quality ({Math.round(exportQuality * 100)}%)
+                                        </span>
+                                        <input
+                                            type="range"
+                                            min="0.4"
+                                            max="1"
+                                            step="0.01"
+                                            value={exportQuality}
+                                            onChange={(event) => onExportQualityChange(Number(event.target.value))}
+                                            className="w-full"
+                                        />
+                                    </label>
+                                ) : null}
+                                <p className="rounded-2xl bg-slate-50 p-3 text-xs text-slate-600">
+                                    PNG keeps text sharper. JPG reduces file size using the selected quality value.
+                                </p>
+                                <button
+                                    type="button"
+                                    onClick={onExportCurrent}
+                                    disabled={isExporting}
+                                    className="w-full rounded-xl bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                                >
+                                    Export current slide
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={onExportAll}
+                                    disabled={isExporting}
+                                    className="w-full rounded-xl bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+                                >
+                                    Export all slides as ZIP
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={onRetryExport}
+                                    disabled={isExporting || !canRetryExport}
+                                    className="w-full rounded-xl border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                                >
+                                    Retry last export
+                                </button>
+                            </div>
                         </div>
-                    </div>
                     ) : null}
                 </aside>
             </div>

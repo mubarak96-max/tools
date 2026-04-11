@@ -142,6 +142,21 @@ export const SlideCanvas: React.FC<SlideCanvasProps> = ({
         context.fillStyle = slide.backgroundColor || '#ffffff';
         context.fillRect(0, 0, dimensions.width, dimensions.height);
 
+        if (slide.backgroundImage) {
+            const cachedBackground = imageCacheRef.current.get(slide.backgroundImage);
+            if (cachedBackground && cachedBackground.complete) {
+                context.drawImage(cachedBackground, 0, 0, dimensions.width, dimensions.height);
+            } else {
+                const background = new Image();
+                background.onload = () => {
+                    imageCacheRef.current.set(slide.backgroundImage!, background);
+                    renderCanvas();
+                };
+                background.src = slide.backgroundImage;
+                imageCacheRef.current.set(slide.backgroundImage, background);
+            }
+        }
+
         const elements = [...slide.elements].sort((left, right) => left.position.z - right.position.z);
 
         elements.forEach((element) => {

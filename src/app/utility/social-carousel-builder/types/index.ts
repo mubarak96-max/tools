@@ -61,6 +61,14 @@ export interface Slide {
     backgroundColor?: string;
 }
 
+export interface SeamlessStripConfig {
+    src: string;
+    alt: string;
+    zoom: number;
+    offsetX: number;
+    offsetY: number;
+}
+
 export interface Template {
     id: string;
     name: string;
@@ -97,6 +105,7 @@ export interface CarouselProject {
     template: Template;
     platform: Platform;
     format: PlatformFormat;
+    seamlessStrip?: SeamlessStripConfig | null;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -120,6 +129,8 @@ export interface CarouselEditorProps {
     template: Template;
     platform: Platform;
     format: PlatformFormat;
+    seamlessStrip?: SeamlessStripConfig | null;
+    isApplyingSeamlessStrip?: boolean;
     onSlideUpdate: (slideIndex: number, slide: Slide) => void;
     onCurrentSlideChange: (slideIndex: number) => void;
     onSlideAdd: () => void;
@@ -131,6 +142,9 @@ export interface CarouselEditorProps {
     onRetryExport: () => void;
     onExportTypeChange: (type: 'png' | 'jpg') => void;
     onExportQualityChange: (quality: number) => void;
+    onSeamlessStripUpload: (file: File | null) => Promise<void>;
+    onSeamlessStripChange: (updates: Partial<SeamlessStripConfig>) => Promise<void>;
+    onSeamlessStripClear: () => void;
     onUndo: () => void;
     onRedo: () => void;
     canUndo: boolean;

@@ -1,4 +1,4 @@
-import { Dimensions, Platform, PlatformFormat, Slide, Template, TemplateElement } from '../types';
+import { Dimensions, Platform, PlatformFormat, SeamlessStripConfig, Slide, Template, TemplateElement } from '../types';
 
 // Utility functions for the Social Carousel Builder
 
@@ -192,4 +192,61 @@ export const isPointInBounds = (
  */
 export const clamp = (value: number, min: number, max: number): number => {
     return Math.min(Math.max(value, min), max);
+};
+
+const loadImageElement = (src: string): Promise<HTMLImageElement> => {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = () => reject(new Error('Unable to load the seamless strip image.'));
+        image.src = src;
+    });
+};
+
+export const applySeamlessStripToSlides = async (
+    slides: Slide[],
+    format: PlatformFormat,
+    seamlessStrip: SeamlessStripConfig | null | undefined
+): Promise<Slide[]> => {
+    if (!seamlessStrip?.src) {
+        return slides.map((slide) => ({
+            ...slide,
+            backgroundImage: undefined,
+        }));
+    }
+
+    const image = await loadImageElement(seamlessStrip.src);
+    const totalWidth = format.dimensions.width * Math.max(slides.length, 1);
+    const totalHeight = format.dimensions.height;
+    const baseScale = Math.max(totalWidth / image.width, totalHeight / image.height);
+    const renderWidth = image.width * baseScale * seamlessStrip.zoom;
+    const renderHeight = image.height * baseScale * seamlessStrip.zoom;
+    const originX = (totalWidth - renderWidth) / 2 + seamlessStrip.offsetX;
+    const originY = (totalHeight - renderHeight) / 2 + seamlessStrip.offsetY;
+
+    return slides.map((slide, slideIndex) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = format.dimensions.width;
+        canvas.height = format.dimensions.height;
+        const context = canvas.getContext('2d');
+
+        if (!context) {
+            return slide;
+        }
+
+        context.fillStyle = slide.backgroundColor || '#ffffff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(
+            image,
+            originX - slideIndex * format.dimensions.width,
+            originY,
+            renderWidth,
+            renderHeight
+        );
+
+        return {
+            ...slide,
+            backgroundImage: canvas.toDataURL('image/png'),
+        };
+    });
 };

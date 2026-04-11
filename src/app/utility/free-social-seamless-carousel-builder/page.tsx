@@ -6,18 +6,13 @@ import { CarouselBuilderApp } from '../social-carousel-builder/components/Carous
 
 export default function FreeSocialSeamlessCarouselBuilderPage() {
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="container mx-auto px-4 py-8">
-                <div className="mb-8 text-center">
-                    <h1 className="mb-4 text-4xl font-bold text-gray-900">
+        <div className="min-h-screen bg-slate-100">
+            <div className="mx-auto flex max-w-[1600px] flex-col gap-4 px-4 py-4 lg:px-6">
+                <header className="rounded-[28px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
+                    <h1 className="text-2xl font-semibold text-slate-900">
                         Free Social Seamless Carousel Builder
                     </h1>
-                    <p className="mx-auto max-w-2xl text-lg text-gray-600">
-                        Create seamless multi-slide carousel designs for Instagram, LinkedIn, and TikTok.
-                        Start with one of 10 template families, customize each slide, and export the full carousel for free.
-                    </p>
-                </div>
-
+                </header>
                 <BuilderErrorBoundary>
                     <CarouselBuilderApp />
                 </BuilderErrorBoundary>

@@ -29,6 +29,15 @@ export async function renderSlideToCanvas(slide: Slide, format: PlatformFormat):
     ctx.fillStyle = slide.backgroundColor || '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    if (slide.backgroundImage) {
+        try {
+            const background = await loadImage(slide.backgroundImage);
+            ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+        } catch {
+            // Keep the solid background color when the stored background image fails to load.
+        }
+    }
+
     const elements = [...slide.elements].sort((left, right) => left.position.z - right.position.z);
 
     for (const element of elements) {
