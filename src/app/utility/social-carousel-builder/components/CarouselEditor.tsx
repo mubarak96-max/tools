@@ -702,10 +702,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                                 />
                             </label>
 
-                            <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
-                                <p className="font-medium text-gray-900">Save status</p>
-                                <p className="mt-1">{saveStatus}</p>
-                            </div>
+
                             <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
                                 <p className="font-medium text-gray-900">Export status</p>
                                 <p className="mt-1">{exportStatus}</p>
