@@ -686,52 +686,81 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                 </div>
 
                 <aside className="space-y-4">
-                    <div className="rounded-lg border border-gray-200 bg-white p-4">
-                        <h3 className="font-semibold text-gray-900">Slide properties</h3>
-                        <div className="mt-4 space-y-4">
-                            <label className="block">
-                                <span className="mb-1 block text-sm font-medium text-gray-700">Background color</span>
-                                <input
-                                    type="color"
-                                    value={slide.backgroundColor || '#ffffff'}
-                                    onChange={(event) => updateBackgroundColor(event.target.value)}
-                                    className="h-10 w-full cursor-pointer rounded border border-gray-300"
-                                />
-                            </label>
-
-
-
+                    <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                        <div className="flex flex-wrap gap-2">
+                            {[
+                                { id: 'design', label: 'Design' },
+                                { id: 'images', label: 'Images' },
+                                { id: 'selection', label: 'Selection' },
+                                { id: 'export', label: 'Export' },
+                            ].map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    type="button"
+                                    onClick={() => setActiveInspectorTab(tab.id as 'design' | 'images' | 'selection' | 'export')}
+                                    className={`rounded-full px-3 py-2 text-sm font-medium transition-colors ${
+                                        activeInspectorTab === tab.id
+                                            ? 'bg-slate-900 text-white'
+                                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    }`}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
-                    {overflowingTextElements.length ? (
-                        <div className="rounded-lg border border-rose-200 bg-rose-50 p-4">
-                            <h3 className="font-semibold text-rose-900">Text overflow warnings</h3>
-                            <p className="mt-2 text-sm text-rose-800">
-                                These text boxes currently exceed their available space. Use auto-fit or edit the copy.
-                            </p>
-                            {textNotice ? <p className="mt-2 text-sm text-rose-700">{textNotice}</p> : null}
-                            <div className="mt-4 space-y-3">
-                                {overflowingTextElements.map((item) => (
-                                    <div key={item.id} className="rounded-lg border border-rose-200 bg-white p-3">
-                                        <p className="text-sm font-medium text-gray-900">{item.id}</p>
-                                        <p className="mt-1 text-xs text-gray-600">
-                                            Current font size: {item.fontSize}px | Hidden content height: about {item.hiddenHeight}px
-                                        </p>
-                                        <button
-                                            type="button"
-                                            onClick={() => autoFitTextElement(item.id)}
-                                            className="mt-3 rounded-lg bg-rose-600 px-3 py-2 text-sm font-medium text-white hover:bg-rose-700"
-                                        >
-                                            Auto-fit text
-                                        </button>
-                                    </div>
-                                ))}
+                    {activeInspectorTab === 'design' ? (
+                        <div className="space-y-4">
+                            <div className="rounded-[28px] border border-slate-200 bg-white p-4 shadow-sm">
+                                <h3 className="font-semibold text-slate-900">Slide design</h3>
+                                <div className="mt-4 space-y-4">
+                                    <PlatformCompatibilityWarning
+                                        template={template}
+                                        platform={platform}
+                                        format={format}
+                                    />
+                                    <label className="block">
+                                        <span className="mb-1 block text-sm font-medium text-slate-700">Background color</span>
+                                        <input
+                                            type="color"
+                                            value={slide.backgroundColor || '#ffffff'}
+                                            onChange={(event) => updateBackgroundColor(event.target.value)}
+                                            className="h-10 w-full cursor-pointer rounded border border-slate-300"
+                                        />
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                    <div className="rounded-lg border border-gray-200 bg-white p-4">
+                        <h3 className="font-semibold text-gray-900">Slide summary</h3>
+                        <div className="mt-3 space-y-2 text-sm text-gray-600">
+                            <p><span className="font-medium text-gray-900">Template:</span> {template.name}</p>
+                            <p><span className="font-medium text-gray-900">Platform:</span> {platform.name}</p>
+                            <p><span className="font-medium text-gray-900">Format:</span> {format.name}</p>
+                            <p><span className="font-medium text-gray-900">Dimensions:</span> {format.dimensions.width} x {format.dimensions.height}</p>
+                        </div>
+                        <div className="mt-4 grid grid-cols-3 gap-2">
+                            <div className="rounded-lg bg-blue-50 p-3 text-center">
+                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue-600">Text</p>
+                                <p className="mt-1 text-xl font-semibold text-blue-900">{elementCounts.text}</p>
+                            </div>
+                            <div className="rounded-lg bg-emerald-50 p-3 text-center">
+                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-600">Images</p>
+                                <p className="mt-1 text-xl font-semibold text-emerald-900">{elementCounts.image}</p>
+                            </div>
+                            <div className="rounded-lg bg-violet-50 p-3 text-center">
+                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-violet-600">Shapes</p>
+                                <p className="mt-1 text-xl font-semibold text-violet-900">{elementCounts.shape}</p>
                             </div>
                         </div>
+                    </div>
+                </div>
                     ) : null}
 
-                    {imageElements.length ? (
+                    {activeInspectorTab === 'images' && imageElements.length ? (
                         <div className="rounded-lg border border-gray-200 bg-white p-4">
                             <h3 className="font-semibold text-gray-900">Image elements</h3>
                             {imageNotice ? <p className="mt-2 text-sm text-gray-600">{imageNotice}</p> : null}
@@ -841,7 +870,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                         </div>
                     ) : null}
 
-                    {selectedCanvasElement ? (
+                    {activeInspectorTab === 'selection' && selectedCanvasElement ? (
                         <div className="rounded-lg border border-gray-200 bg-white p-4">
                             <h3 className="font-semibold text-gray-900">Selected element</h3>
                             <div className="mt-3 space-y-2 text-sm text-gray-600">
@@ -933,33 +962,18 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                         </div>
                     ) : null}
 
-                    <div className="rounded-lg border border-gray-200 bg-white p-4">
-                        <h3 className="font-semibold text-gray-900">Slide summary</h3>
-                        <div className="mt-3 space-y-2 text-sm text-gray-600">
-                            <p><span className="font-medium text-gray-900">Template:</span> {template.name}</p>
-                            <p><span className="font-medium text-gray-900">Platform:</span> {platform.name}</p>
-                            <p><span className="font-medium text-gray-900">Format:</span> {format.name}</p>
-                            <p><span className="font-medium text-gray-900">Dimensions:</span> {format.dimensions.width} x {format.dimensions.height}</p>
-                        </div>
-                        <div className="mt-4 grid grid-cols-3 gap-2">
-                            <div className="rounded-lg bg-blue-50 p-3 text-center">
-                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-blue-600">Text</p>
-                                <p className="mt-1 text-xl font-semibold text-blue-900">{elementCounts.text}</p>
-                            </div>
-                            <div className="rounded-lg bg-emerald-50 p-3 text-center">
-                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-emerald-600">Images</p>
-                                <p className="mt-1 text-xl font-semibold text-emerald-900">{elementCounts.image}</p>
-                            </div>
-                            <div className="rounded-lg bg-violet-50 p-3 text-center">
-                                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-violet-600">Shapes</p>
-                                <p className="mt-1 text-xl font-semibold text-violet-900">{elementCounts.shape}</p>
-                            </div>
-                        </div>
-                    </div>
-
+                    {activeInspectorTab === 'export' ? (
                     <div className="rounded-lg border border-gray-200 bg-white p-4">
                         <h3 className="font-semibold text-gray-900">Export actions</h3>
                         <div className="mt-3 space-y-3">
+                            <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
+                                <p className="font-medium text-gray-900">Save status</p>
+                                <p className="mt-1">{saveStatus}</p>
+                            </div>
+                            <div className="rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-600">
+                                <p className="font-medium text-gray-900">Export status</p>
+                                <p className="mt-1">{exportStatus}</p>
+                            </div>
                             <label className="block">
                                 <span className="mb-1 block text-sm font-medium text-gray-700">File format</span>
                                 <select
@@ -1016,6 +1030,7 @@ export const CarouselEditor: React.FC<CarouselEditorProps> = ({
                             </button>
                         </div>
                     </div>
+                    ) : null}
                 </aside>
             </div>
 
