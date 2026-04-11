@@ -25,9 +25,9 @@ export default function AIBackgroundRemover() {
       const blob = await (removeBackground as any)(file, {
         progress: (key: string, current: number, total: number) => {
           if (key.includes("fetch")) {
-             setProgress(`Downloading AI Model: ${Math.round((current / total) * 100)}%`);
+            setProgress(`Processing Image: ${Math.round((current / total) * 100)}%`);
           } else if (key.includes("compute")) {
-             setProgress("Computing mask and removing background...");
+            setProgress("Computing mask and removing background...");
           }
         }
       });
@@ -55,7 +55,7 @@ export default function AIBackgroundRemover() {
     <div className="space-y-6">
       <section className="tool-frame p-4 sm:p-6">
         <div className="grid gap-8 xl:grid-cols-2">
-          
+
           {/* Left Column: Upload */}
           <div className="space-y-6">
             <h2 className="text-xl font-semibold tracking-tight text-foreground">1. Upload Image</h2>
@@ -83,9 +83,9 @@ export default function AIBackgroundRemover() {
           {/* Right Column: Processing / Result */}
           <div className="space-y-6">
             <h2 className="text-xl font-semibold tracking-tight text-foreground">2. Transparent Result</h2>
-            
+
             <div className="flex h-full min-h-[300px] flex-col rounded-[1.5rem] border border-border bg-card p-5 xl:sticky xl:top-6">
-              
+
               {!originalUrl && !isProcessing && (
                 <div className="flex flex-1 items-center justify-center rounded-[1rem] border border-dashed border-border bg-background p-6 text-center">
                   <p className="text-sm font-medium text-muted-foreground">
@@ -101,8 +101,8 @@ export default function AIBackgroundRemover() {
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
                   <div className="space-y-1">
-                     <p className="text-sm font-semibold tracking-tight text-primary">AI is processing...</p>
-                     <p className="text-xs font-medium text-primary/70">{progress}</p>
+                    <p className="text-sm font-semibold tracking-tight text-primary">Processing...</p>
+                    <p className="text-xs font-medium text-primary/70">{progress}</p>
                   </div>
                 </div>
               )}
