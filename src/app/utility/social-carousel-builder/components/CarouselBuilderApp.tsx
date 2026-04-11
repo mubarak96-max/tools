@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CarouselProject, Platform, PlatformFormat, Slide, Template } from '../types';
 import { getAllPlatforms } from '../constants/platforms';
 import { createSlideFromTemplate, generateId, reorderSlides } from '../utils';
@@ -18,6 +18,7 @@ import { useTemplates } from '../hooks/useTemplates';
 import { TemplateSelector } from './TemplateSelector';
 import { PlatformSelector } from './PlatformSelector';
 import { CarouselEditor } from './CarouselEditor';
+import { SlideThumbnail } from './SlideThumbnail';
 
 interface HistorySnapshot {
     slides: Slide[];
@@ -49,7 +50,38 @@ export const CarouselBuilderApp: React.FC = () => {
     const [saveStatus, setSaveStatus] = useState('No saved project yet in this browser.');
     const [exportStatus, setExportStatus] = useState('Ready to export the current slide or a ZIP of all slides.');
     const [isExporting, setIsExporting] = useState(false);
+    const [exportType, setExportType] = useState<'png' | 'jpg'>('png');
+    const [exportQuality, setExportQuality] = useState(0.92);
+    const [canRetryExport, setCanRetryExport] = useState(false);
+    const [lastExportAction, setLastExportAction] = useState<'current' | 'all' | null>(null);
+    const [savedProjectQuery, setSavedProjectQuery] = useState('');
+    const [savedProjectSort, setSavedProjectSort] = useState<'recent' | 'name-asc' | 'name-desc'>('recent');
     const isApplyingHistoryRef = useRef(false);
+
+    const filteredSavedProjects = useMemo(() => {
+        const normalizedQuery = savedProjectQuery.trim().toLowerCase();
+        const nextProjects = normalizedQuery
+            ? savedProjects.filter((savedProject) => {
+                const searchableText = [
+                    savedProject.name,
+                    savedProject.platform.name,
+                    savedProject.format.name,
+                ].join(' ').toLowerCase();
+
+                return searchableText.includes(normalizedQuery);
+            })
+            : [...savedProjects];
+
+        switch (savedProjectSort) {
+            case 'name-asc':
+                return nextProjects.sort((left, right) => left.name.localeCompare(right.name));
+            case 'name-desc':
+                return nextProjects.sort((left, right) => right.name.localeCompare(left.name));
+            case 'recent':
+            default:
+                return nextProjects.sort((left, right) => right.updatedAt.getTime() - left.updatedAt.getTime());
+        }
+    }, [savedProjectQuery, savedProjectSort, savedProjects]);
 
     const buildProject = (template: Template, currentSlides: Slide[], platform: Platform, format: PlatformFormat): CarouselProject => ({
         id: project?.id || generateId(),
@@ -243,6 +275,69 @@ export const CarouselBuilderApp: React.FC = () => {
         setSaveStatus('Deleted saved project from this browser.');
     };
 
+    const handleDuplicateProject = (savedProject: CarouselProject) => {
+        const duplicatedProject: CarouselProject = {
+            ...savedProject,
+            id: generateId(),
+            name: `${savedProject.name} Copy`,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            slides: structuredClone(savedProject.slides),
+        };
+
+        try {
+            const nextSaved = saveProjectToStorage(duplicatedProject);
+            setSavedProjects(nextSaved);
+            setSaveStatus(`Duplicated project "${savedProject.name}".`);
+        } catch (error) {
+            setSaveStatus(error instanceof Error ? error.message : 'Unable to duplicate this project locally.');
+        }
+    };
+
+    const handleRenameSavedProject = (savedProject: CarouselProject) => {
+        const nextName = window.prompt('Rename saved project', savedProject.name);
+        if (!nextName) {
+            return;
+        }
+
+        const trimmedName = nextName.trim();
+        if (!trimmedName) {
+            return;
+        }
+
+        try {
+            const nextSaved = saveProjectToStorage({
+                ...savedProject,
+                name: trimmedName,
+                updatedAt: new Date(),
+            });
+            setSavedProjects(nextSaved);
+            if (project?.id === savedProject.id) {
+                setProject({
+                    ...savedProject,
+                    name: trimmedName,
+                    updatedAt: new Date(),
+                });
+            }
+            setSaveStatus(`Renamed project to "${trimmedName}".`);
+        } catch (error) {
+            setSaveStatus(error instanceof Error ? error.message : 'Unable to rename this project locally.');
+        }
+    };
+
+    const handleProjectNameChange = (name: string) => {
+        const trimmedName = name.trimStart();
+        setProject((current) => (
+            current
+                ? {
+                    ...current,
+                    name: trimmedName || current.name,
+                    updatedAt: new Date(),
+                }
+                : current
+        ));
+    };
+
     const handleResumeRecovery = () => {
         if (!recoveryProject) {
             return;
@@ -297,50 +392,80 @@ export const CarouselBuilderApp: React.FC = () => {
         setSaveStatus('Restored the next carousel change.');
     }, [historyState]);
 
-    const handleExportCurrent = async () => {
+    const handleExportCurrent = useCallback(async () => {
         if (!slides[currentSlideIndex]) {
             return;
         }
         setIsExporting(true);
-        setExportStatus('Exporting current slide...');
+        setCanRetryExport(false);
+        setLastExportAction('current');
+        setExportStatus(`Exporting current slide as ${exportType.toUpperCase()}...`);
         try {
             await exportSlideFile(
                 slides[currentSlideIndex],
                 selectedPlatform,
                 selectedFormat,
-                'png',
+                exportType,
                 project?.name?.replace(/\s+/g, '-').toLowerCase() || 'carousel',
-                currentSlideIndex
+                currentSlideIndex,
+                exportQuality
             );
-            setExportStatus(`Exported slide ${currentSlideIndex + 1}.`);
+            setExportStatus(`Exported slide ${currentSlideIndex + 1} as ${exportType.toUpperCase()}.`);
         } catch (error) {
-            setExportStatus(error instanceof Error ? error.message : 'Unable to export the current slide.');
+            setCanRetryExport(true);
+            setExportStatus(
+                error instanceof Error
+                    ? `${error.message} You can retry the export or switch format.`
+                    : 'Unable to export the current slide. You can retry the export or switch format.'
+            );
         } finally {
             setIsExporting(false);
         }
-    };
+    }, [currentSlideIndex, exportQuality, exportType, project?.name, selectedFormat, selectedPlatform, slides]);
 
-    const handleExportAll = async () => {
+    const handleExportAll = useCallback(async () => {
         if (!slides.length) {
             return;
         }
         setIsExporting(true);
-        setExportStatus('Exporting all slides as ZIP...');
+        setCanRetryExport(false);
+        setLastExportAction('all');
+        setExportStatus(`Exporting all slides as a ${exportType.toUpperCase()} ZIP...`);
         try {
             await exportSlidesZip(
                 slides,
                 selectedPlatform,
                 selectedFormat,
-                'png',
-                project?.name?.replace(/\s+/g, '-').toLowerCase() || 'carousel'
+                exportType,
+                project?.name?.replace(/\s+/g, '-').toLowerCase() || 'carousel',
+                (current, total) => {
+                    setExportStatus(`Preparing ${exportType.toUpperCase()} ZIP export: slide ${current} of ${total}.`);
+                },
+                exportQuality
             );
-            setExportStatus('ZIP export completed.');
+            setExportStatus(`${exportType.toUpperCase()} ZIP export completed.`);
         } catch (error) {
-            setExportStatus(error instanceof Error ? error.message : 'Unable to export the ZIP file.');
+            setCanRetryExport(true);
+            setExportStatus(
+                error instanceof Error
+                    ? `${error.message} You can retry the export or switch format.`
+                    : 'Unable to export the ZIP file. You can retry the export or switch format.'
+            );
         } finally {
             setIsExporting(false);
         }
-    };
+    }, [exportQuality, exportType, project?.name, selectedFormat, selectedPlatform, slides]);
+
+    const handleRetryExport = useCallback(() => {
+        if (lastExportAction === 'current') {
+            void handleExportCurrent();
+            return;
+        }
+
+        if (lastExportAction === 'all') {
+            void handleExportAll();
+        }
+    }, [handleExportAll, handleExportCurrent, lastExportAction]);
 
     useEffect(() => {
         if (!selectedTemplate || !slides.length) {
@@ -509,14 +634,50 @@ export const CarouselBuilderApp: React.FC = () => {
                 <div className="rounded-lg bg-white p-6 shadow-sm">
                     <div className="mb-4 flex items-center justify-between gap-4">
                         <h3 className="text-xl font-semibold text-gray-900">Saved projects</h3>
-
+                        <span className="text-sm text-gray-500">
+                            {filteredSavedProjects.length} of {savedProjects.length} project{savedProjects.length !== 1 ? 's' : ''}
+                        </span>
+                    </div>
+                    <div className="mb-4 flex flex-col gap-3 md:flex-row">
+                        <label className="flex-1">
+                            <span className="sr-only">Search saved projects</span>
+                            <input
+                                type="search"
+                                value={savedProjectQuery}
+                                onChange={(event) => setSavedProjectQuery(event.target.value)}
+                                placeholder="Search saved projects"
+                                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
+                            />
+                        </label>
+                        <label className="md:w-56">
+                            <span className="sr-only">Sort saved projects</span>
+                            <select
+                                value={savedProjectSort}
+                                onChange={(event) => setSavedProjectSort(event.target.value as 'recent' | 'name-asc' | 'name-desc')}
+                                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700"
+                            >
+                                <option value="recent">Recently updated</option>
+                                <option value="name-asc">Name A to Z</option>
+                                <option value="name-desc">Name Z to A</option>
+                            </select>
+                        </label>
                     </div>
                     {savedProjects.length === 0 ? (
                         <p className="text-sm text-gray-600">No saved carousel projects yet.</p>
+                    ) : filteredSavedProjects.length === 0 ? (
+                        <p className="text-sm text-gray-600">No saved projects match your search.</p>
                     ) : (
                         <div className="grid gap-3 md:grid-cols-2">
-                            {savedProjects.map((savedProject) => (
+                            {filteredSavedProjects.map((savedProject) => (
                                 <div key={savedProject.id} className="rounded-lg border border-gray-200 p-4">
+                                    {savedProject.slides[0] ? (
+                                        <SlideThumbnail
+                                            slide={savedProject.slides[0]}
+                                            format={savedProject.format}
+                                            alt={`${savedProject.name} preview`}
+                                            className="mb-4 aspect-[4/5] w-full rounded-lg border border-gray-200 object-cover"
+                                        />
+                                    ) : null}
                                     <p className="font-semibold text-gray-900">{savedProject.name}</p>
                                     <p className="mt-1 text-sm text-gray-600">
                                         {savedProject.platform.name} | {savedProject.format.name} | {savedProject.slides.length} slide{savedProject.slides.length !== 1 ? 's' : ''}
@@ -531,6 +692,20 @@ export const CarouselBuilderApp: React.FC = () => {
                                             className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
                                         >
                                             Load
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleDuplicateProject(savedProject)}
+                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                        >
+                                            Duplicate
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => handleRenameSavedProject(savedProject)}
+                                            className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                                        >
+                                            Rename
                                         </button>
                                         <button
                                             type="button"
@@ -555,9 +730,15 @@ export const CarouselBuilderApp: React.FC = () => {
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
                     <div>
                         <h2 className="text-xl font-semibold text-gray-900">Platform and format</h2>
-                        <p className="mt-1 text-sm text-gray-600">
-                            Current project: {project?.name || `${selectedTemplate.name} Carousel`}
-                        </p>
+                        <label className="mt-2 block">
+                            <span className="mb-1 block text-sm font-medium text-gray-700">Project name</span>
+                            <input
+                                type="text"
+                                value={project?.name || `${selectedTemplate.name} Carousel`}
+                                onChange={(event) => handleProjectNameChange(event.target.value)}
+                                className="w-full max-w-md rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-700"
+                            />
+                        </label>
                     </div>
                     <button
                         type="button"
@@ -589,10 +770,16 @@ export const CarouselBuilderApp: React.FC = () => {
                     onManualSave={handleManualSave}
                     onExportCurrent={handleExportCurrent}
                     onExportAll={handleExportAll}
+                    onRetryExport={handleRetryExport}
+                    onExportTypeChange={setExportType}
+                    onExportQualityChange={setExportQuality}
                     onUndo={handleUndo}
                     onRedo={handleRedo}
                     canUndo={historyState.index > 0}
                     canRedo={historyState.index >= 0 && historyState.index < historyState.snapshots.length - 1}
+                    canRetryExport={canRetryExport}
+                    exportType={exportType}
+                    exportQuality={exportQuality}
                     saveStatus={saveStatus}
                     exportStatus={exportStatus}
                     isExporting={isExporting}

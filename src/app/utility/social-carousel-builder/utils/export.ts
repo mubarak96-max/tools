@@ -1,61 +1,10 @@
 import { Platform, PlatformFormat, Slide, TemplateElement } from '../types';
+import { drawFittedImage, drawRoundedRect, renderTextWithWordWrap, withElementRotation } from './canvasUtils';
 
 function isImageContent(
     content: TemplateElement['content']
 ): content is { src: string; alt: string; fit: 'cover' | 'contain' | 'fill' } {
     return typeof content === 'object' && content !== null && 'src' in content;
-}
-
-function drawRoundedRect(
-    ctx: CanvasRenderingContext2D,
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    radius: number
-) {
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
-    ctx.closePath();
-}
-
-function renderWrappedText(
-    ctx: CanvasRenderingContext2D,
-    text: string,
-    x: number,
-    y: number,
-    maxWidth: number,
-    lineHeight: number
-) {
-    const words = text.split(' ');
-    const lines: string[] = [];
-    let currentLine = '';
-
-    words.forEach((word) => {
-        const candidate = currentLine ? `${currentLine} ${word}` : word;
-        if (ctx.measureText(candidate).width > maxWidth && currentLine) {
-            lines.push(currentLine);
-            currentLine = word;
-        } else {
-            currentLine = candidate;
-        }
-    });
-
-    if (currentLine) {
-        lines.push(currentLine);
-    }
-
-    lines.forEach((line, index) => {
-        ctx.fillText(line, x, y + lineHeight * index);
-    });
 }
 
 function loadImage(src: string): Promise<HTMLImageElement> {
@@ -87,32 +36,61 @@ export async function renderSlideToCanvas(slide: Slide, format: PlatformFormat):
         ctx.globalAlpha = element.style.opacity ?? 1;
 
         if (element.type === 'shape') {
-            ctx.fillStyle = element.style.backgroundColor || '#e5e7eb';
-            if (element.style.borderRadius) {
-                drawRoundedRect(ctx, element.position.x, element.position.y, element.dimensions.width, element.dimensions.height, element.style.borderRadius);
-                ctx.fill();
-            } else {
-                ctx.fillRect(element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
-            }
+            withElementRotation(ctx, element, () => {
+                ctx.fillStyle = element.style.backgroundColor || '#e5e7eb';
+                if (element.style.borderRadius) {
+                    drawRoundedRect(
+                        ctx,
+                        element.position.x,
+                        element.position.y,
+                        element.dimensions.width,
+                        element.dimensions.height,
+                        element.style.borderRadius
+                    );
+                    ctx.fill();
+                } else {
+                    ctx.fillRect(element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
+                }
+            });
             ctx.restore();
             continue;
         }
 
         if (element.type === 'image') {
-            ctx.fillStyle = '#f3f4f6';
-            ctx.fillRect(element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
+            let loadedImage: HTMLImageElement | null = null;
             if (isImageContent(element.content) && element.content.src) {
                 try {
-                    const image = await loadImage(element.content.src);
-                    ctx.drawImage(image, element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
+                    loadedImage = await loadImage(element.content.src);
                 } catch {
-                    ctx.fillStyle = '#9ca3af';
-                    ctx.font = `${Math.min(element.dimensions.width, element.dimensions.height) * 0.18}px Arial`;
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillText('Image', element.position.x + element.dimensions.width / 2, element.position.y + element.dimensions.height / 2);
+                    loadedImage = null;
                 }
             }
+
+            withElementRotation(ctx, element, () => {
+                ctx.fillStyle = '#f3f4f6';
+                ctx.fillRect(element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
+                if (isImageContent(element.content) && element.content.src && loadedImage) {
+                    drawFittedImage(
+                        ctx,
+                        loadedImage,
+                        {
+                            x: element.position.x,
+                            y: element.position.y,
+                            width: element.dimensions.width,
+                            height: element.dimensions.height,
+                        },
+                        element.content,
+                        element.style.borderRadius
+                    );
+                    return;
+                }
+
+                ctx.fillStyle = '#9ca3af';
+                ctx.font = `${Math.min(element.dimensions.width, element.dimensions.height) * 0.18}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('Image', element.position.x + element.dimensions.width / 2, element.position.y + element.dimensions.height / 2);
+            });
             ctx.restore();
             continue;
         }
@@ -122,49 +100,69 @@ export async function renderSlideToCanvas(slide: Slide, format: PlatformFormat):
             continue;
         }
 
-        if (element.style.backgroundColor) {
-            ctx.fillStyle = element.style.backgroundColor;
-            if (element.style.borderRadius) {
-                drawRoundedRect(ctx, element.position.x, element.position.y, element.dimensions.width, element.dimensions.height, element.style.borderRadius);
-                ctx.fill();
-            } else {
-                ctx.fillRect(element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
+        const textContent = element.content;
+
+        withElementRotation(ctx, element, () => {
+            if (element.style.backgroundColor) {
+                ctx.fillStyle = element.style.backgroundColor;
+                if (element.style.borderRadius) {
+                    drawRoundedRect(
+                        ctx,
+                        element.position.x,
+                        element.position.y,
+                        element.dimensions.width,
+                        element.dimensions.height,
+                        element.style.borderRadius
+                    );
+                    ctx.fill();
+                } else {
+                    ctx.fillRect(element.position.x, element.position.y, element.dimensions.width, element.dimensions.height);
+                }
             }
-        }
 
-        const fontSize = element.style.fontSize || 28;
-        const fontFamily = element.style.fontFamily || 'Inter, sans-serif';
-        const fontWeight = element.style.fontWeight || 'normal';
-        const textAlign = element.style.textAlign || 'left';
+            const fontSize = element.style.fontSize || 28;
+            const fontFamily = element.style.fontFamily || 'Inter, sans-serif';
+            const fontWeight = element.style.fontWeight || 'normal';
+            const textAlign = element.style.textAlign || 'left';
 
-        ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
-        ctx.fillStyle = element.style.color || '#111827';
-        ctx.textAlign = textAlign;
-        ctx.textBaseline = 'top';
+            ctx.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+            ctx.fillStyle = element.style.color || '#111827';
+            ctx.textAlign = textAlign;
+            ctx.textBaseline = 'top';
 
-        const padding = 12;
-        const textX =
-            textAlign === 'center'
-                ? element.position.x + element.dimensions.width / 2
-                : textAlign === 'right'
-                    ? element.position.x + element.dimensions.width - padding
-                    : element.position.x + padding;
+            const padding = 12;
+            const textX =
+                textAlign === 'center'
+                    ? element.position.x + element.dimensions.width / 2
+                    : textAlign === 'right'
+                        ? element.position.x + element.dimensions.width - padding
+                        : element.position.x + padding;
 
-        renderWrappedText(
-            ctx,
-            element.content,
-            textX,
-            element.position.y + padding,
-            Math.max(20, element.dimensions.width - padding * 2),
-            fontSize * 1.2
-        );
+            renderTextWithWordWrap(
+                ctx,
+                textContent,
+                textX,
+                element.position.y + padding,
+                Math.max(20, element.dimensions.width - padding * 2),
+                fontSize * 1.2
+            );
+        });
         ctx.restore();
     }
 
     return canvas;
 }
 
-async function canvasToBlob(canvas: HTMLCanvasElement, type: 'png' | 'jpg') {
+const sanitizeFileName = (value: string) =>
+    value
+        .toLowerCase()
+        .replace(/[^a-z0-9-_]+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '') || 'carousel';
+
+const clampQuality = (quality: number) => Math.min(1, Math.max(0.4, quality));
+
+async function canvasToBlob(canvas: HTMLCanvasElement, type: 'png' | 'jpg', quality: number) {
     return new Promise<Blob>((resolve, reject) => {
         canvas.toBlob(
             (blob) => {
@@ -175,7 +173,7 @@ async function canvasToBlob(canvas: HTMLCanvasElement, type: 'png' | 'jpg') {
                 resolve(blob);
             },
             type === 'png' ? 'image/png' : 'image/jpeg',
-            type === 'png' ? 1 : 0.92
+            type === 'png' ? 1 : clampQuality(quality)
         );
     });
 }
@@ -195,12 +193,13 @@ export async function exportSlideFile(
     format: PlatformFormat,
     type: 'png' | 'jpg',
     fileNamePrefix: string,
-    slideIndex: number
+    slideIndex: number,
+    quality: number = 0.92
 ) {
     const canvas = await renderSlideToCanvas(slide, format);
-    const blob = await canvasToBlob(canvas, type);
+    const blob = await canvasToBlob(canvas, type, quality);
     const extension = type === 'png' ? 'png' : 'jpg';
-    const fileName = `${fileNamePrefix}_${platform.id}_${format.id}_slide_${String(slideIndex + 1).padStart(2, '0')}.${extension}`;
+    const fileName = `${sanitizeFileName(fileNamePrefix)}_${platform.id}_${format.id}_slide_${String(slideIndex + 1).padStart(2, '0')}.${extension}`;
     triggerBlobDownload(blob, fileName);
 }
 
@@ -209,19 +208,22 @@ export async function exportSlidesZip(
     platform: Platform,
     format: PlatformFormat,
     type: 'png' | 'jpg',
-    fileNamePrefix: string
+    fileNamePrefix: string,
+    onProgress?: (current: number, total: number) => void,
+    quality: number = 0.92
 ) {
     const JSZip = (await import('jszip')).default;
     const zip = new JSZip();
     const extension = type === 'png' ? 'png' : 'jpg';
-
+    const sanitizedPrefix = sanitizeFileName(fileNamePrefix);
     for (let index = 0; index < slides.length; index += 1) {
         const canvas = await renderSlideToCanvas(slides[index], format);
-        const blob = await canvasToBlob(canvas, type);
-        const fileName = `${fileNamePrefix}_${platform.id}_${format.id}_slide_${String(index + 1).padStart(2, '0')}.${extension}`;
+        const blob = await canvasToBlob(canvas, type, quality);
+        const fileName = `${sanitizedPrefix}_${platform.id}_${format.id}_slide_${String(index + 1).padStart(2, '0')}.${extension}`;
         zip.file(fileName, blob);
+        onProgress?.(index + 1, slides.length);
     }
 
     const zipBlob = await zip.generateAsync({ type: 'blob' });
-    triggerBlobDownload(zipBlob, `${fileNamePrefix}_${platform.id}_${format.id}_carousel.zip`);
+    triggerBlobDownload(zipBlob, `${sanitizedPrefix}_${platform.id}_${format.id}_carousel.zip`);
 }

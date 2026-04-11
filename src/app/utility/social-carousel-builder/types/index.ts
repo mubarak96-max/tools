@@ -20,12 +20,18 @@ export interface ElementStyle {
     borderRadius?: number;
     opacity?: number;
     textAlign?: 'left' | 'center' | 'right';
+    rotation?: number;
 }
 
 export interface ImageContent {
     src: string;
     alt: string;
     fit: 'cover' | 'contain' | 'fill';
+    crop?: {
+        x: number;
+        y: number;
+        zoom: number;
+    };
 }
 
 export interface ElementConstraints {
@@ -122,10 +128,16 @@ export interface CarouselEditorProps {
     onManualSave: () => void;
     onExportCurrent: () => void;
     onExportAll: () => void;
+    onRetryExport: () => void;
+    onExportTypeChange: (type: 'png' | 'jpg') => void;
+    onExportQualityChange: (quality: number) => void;
     onUndo: () => void;
     onRedo: () => void;
     canUndo: boolean;
     canRedo: boolean;
+    canRetryExport: boolean;
+    exportType: 'png' | 'jpg';
+    exportQuality: number;
     saveStatus: string;
     exportStatus: string;
     isExporting: boolean;
@@ -137,6 +149,9 @@ export interface SlideCanvasProps {
     dimensions: Dimensions;
     isEditable: boolean;
     onElementUpdate: (elementId: string, updates: Partial<TemplateElement>) => void;
+    onSelectionChange?: (elementIds: string[]) => void;
+    cropTargetElementId?: string | null;
+    onImageCropChange?: (elementId: string, updates: { x?: number; y?: number }) => void;
 }
 
 export interface PreviewModalProps {

@@ -1,4 +1,4 @@
-import { TemplateElement, Dimensions, Position } from '../types';
+import { TemplateElement, Dimensions, Position, ImageContent } from '../types';
 
 /**
  * Canvas rendering utilities for the slide editor
@@ -9,6 +9,44 @@ export interface CanvasRenderOptions {
     showSelection?: boolean;
     selectedElementId?: string;
 }
+
+export const getElementRotation = (element: TemplateElement) => element.style.rotation ?? 0;
+
+export const withElementRotation = (
+    ctx: CanvasRenderingContext2D,
+    element: TemplateElement,
+    render: () => void
+) => {
+    const rotation = getElementRotation(element);
+    if (!rotation) {
+        render();
+        return;
+    }
+
+    const centerX = element.position.x + element.dimensions.width / 2;
+    const centerY = element.position.y + element.dimensions.height / 2;
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.rotate((rotation * Math.PI) / 180);
+    ctx.translate(-centerX, -centerY);
+    render();
+    ctx.restore();
+};
+
+export const rotatePointAroundCenter = (
+    point: { x: number; y: number },
+    center: { x: number; y: number },
+    rotationDegrees: number
+) => {
+    const radians = (rotationDegrees * Math.PI) / 180;
+    const translatedX = point.x - center.x;
+    const translatedY = point.y - center.y;
+
+    return {
+        x: translatedX * Math.cos(radians) - translatedY * Math.sin(radians) + center.x,
+        y: translatedX * Math.sin(radians) + translatedY * Math.cos(radians) + center.y,
+    };
+};
 
 /**
  * Split text into wrapped lines for the current canvas font settings
@@ -162,6 +200,22 @@ export const isPointInElement = (
     point: Position,
     element: TemplateElement
 ): boolean => {
+    const rotation = getElementRotation(element);
+    if (rotation) {
+        const center = {
+            x: element.position.x + element.dimensions.width / 2,
+            y: element.position.y + element.dimensions.height / 2,
+        };
+        const unrotatedPoint = rotatePointAroundCenter(point, center, -rotation);
+
+        return (
+            unrotatedPoint.x >= element.position.x &&
+            unrotatedPoint.x <= element.position.x + element.dimensions.width &&
+            unrotatedPoint.y >= element.position.y &&
+            unrotatedPoint.y <= element.position.y + element.dimensions.height
+        );
+    }
+
     return (
         point.x >= element.position.x &&
         point.x <= element.position.x + element.dimensions.width &&
@@ -282,8 +336,13 @@ export const canvasToScreen = (
  */
 export const getSelectionHandles = (element: TemplateElement, handleSize: number = 8) => {
     const { position, dimensions } = element;
+    const rotation = getElementRotation(element);
+    const center = {
+        x: position.x + dimensions.width / 2,
+        y: position.y + dimensions.height / 2,
+    };
 
-    return [
+    const handles = [
         {
             id: 'top-left',
             x: position.x - handleSize / 2,
@@ -334,6 +393,24 @@ export const getSelectionHandles = (element: TemplateElement, handleSize: number
             cursor: 'w-resize'
         }
     ];
+
+    if (!rotation) {
+        return handles;
+    }
+
+    return handles.map((handle) => {
+        const rotated = rotatePointAroundCenter(
+            { x: handle.x + handleSize / 2, y: handle.y + handleSize / 2 },
+            center,
+            rotation
+        );
+
+        return {
+            ...handle,
+            x: rotated.x - handleSize / 2,
+            y: rotated.y - handleSize / 2,
+        };
+    });
 };
 
 /**
@@ -346,13 +423,33 @@ export const renderSelectionIndicator = (
 ) => {
     const { color = '#3b82f6', handleSize = 8 } = options;
     const { position, dimensions } = element;
+    const rotation = getElementRotation(element);
+    const center = {
+        x: position.x + dimensions.width / 2,
+        y: position.y + dimensions.height / 2,
+    };
 
-    // Selection outline
+    ctx.save();
     ctx.strokeStyle = color;
     ctx.lineWidth = 2;
     ctx.setLineDash([5, 5]);
-    ctx.strokeRect(position.x - 2, position.y - 2, dimensions.width + 4, dimensions.height + 4);
+    if (rotation) {
+        const corners = [
+            rotatePointAroundCenter({ x: position.x - 2, y: position.y - 2 }, center, rotation),
+            rotatePointAroundCenter({ x: position.x + dimensions.width + 2, y: position.y - 2 }, center, rotation),
+            rotatePointAroundCenter({ x: position.x + dimensions.width + 2, y: position.y + dimensions.height + 2 }, center, rotation),
+            rotatePointAroundCenter({ x: position.x - 2, y: position.y + dimensions.height + 2 }, center, rotation),
+        ];
+        ctx.beginPath();
+        ctx.moveTo(corners[0].x, corners[0].y);
+        corners.slice(1).forEach((corner) => ctx.lineTo(corner.x, corner.y));
+        ctx.closePath();
+        ctx.stroke();
+    } else {
+        ctx.strokeRect(position.x - 2, position.y - 2, dimensions.width + 4, dimensions.height + 4);
+    }
     ctx.setLineDash([]);
+    ctx.restore();
 
     // Selection handles
     const handles = getSelectionHandles(element, handleSize);
@@ -399,4 +496,65 @@ export const createHighResCanvas = (
     ctx.scale(pixelRatio, pixelRatio);
 
     return canvas;
+};
+
+export const drawFittedImage = (
+    ctx: CanvasRenderingContext2D,
+    image: CanvasImageSource,
+    bounds: { x: number; y: number; width: number; height: number },
+    content: ImageContent,
+    borderRadius?: number
+) => {
+    const imageWidth =
+        image instanceof HTMLImageElement
+            ? image.naturalWidth || image.width
+            : image instanceof HTMLCanvasElement
+                ? image.width
+                : bounds.width;
+    const imageHeight =
+        image instanceof HTMLImageElement
+            ? image.naturalHeight || image.height
+            : image instanceof HTMLCanvasElement
+                ? image.height
+                : bounds.height;
+
+    const crop = {
+        x: content.crop?.x ?? 0,
+        y: content.crop?.y ?? 0,
+        zoom: content.crop?.zoom ?? 1,
+    };
+
+    let drawWidth = bounds.width;
+    let drawHeight = bounds.height;
+
+    if (content.fit === 'cover') {
+        const baseScale = Math.max(bounds.width / imageWidth, bounds.height / imageHeight);
+        drawWidth = imageWidth * baseScale * crop.zoom;
+        drawHeight = imageHeight * baseScale * crop.zoom;
+    } else if (content.fit === 'contain') {
+        const baseScale = Math.min(bounds.width / imageWidth, bounds.height / imageHeight);
+        drawWidth = imageWidth * baseScale * crop.zoom;
+        drawHeight = imageHeight * baseScale * crop.zoom;
+    } else {
+        drawWidth = bounds.width * crop.zoom;
+        drawHeight = bounds.height * crop.zoom;
+    }
+
+    const overflowX = Math.max(0, drawWidth - bounds.width);
+    const overflowY = Math.max(0, drawHeight - bounds.height);
+    const drawX = bounds.x - overflowX / 2 + (crop.x / 100) * (overflowX / 2);
+    const drawY = bounds.y - overflowY / 2 + (crop.y / 100) * (overflowY / 2);
+
+    ctx.save();
+    if (borderRadius && borderRadius > 0) {
+        drawRoundedRect(ctx, bounds.x, bounds.y, bounds.width, bounds.height, borderRadius);
+        ctx.clip();
+    } else {
+        ctx.beginPath();
+        ctx.rect(bounds.x, bounds.y, bounds.width, bounds.height);
+        ctx.clip();
+    }
+
+    ctx.drawImage(image, drawX, drawY, drawWidth, drawHeight);
+    ctx.restore();
 };

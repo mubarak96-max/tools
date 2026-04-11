@@ -104,7 +104,12 @@ export const PreviewModal: React.FC<PreviewModalProps> = ({
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4">
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Carousel slideshow preview"
+        >
             <div className="relative flex max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-[2rem] bg-slate-900 shadow-2xl">
                 <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 px-6 py-5 text-white">
                     <div>

@@ -6,7 +6,7 @@ import {
     getElementAtPosition,
     constrainElementToBounds,
     screenToCanvas,
-    getSelectionHandles
+    getSelectionHandles,
 } from '../utils/canvasUtils';
 
 interface UseCanvasInteractionProps {
@@ -17,63 +17,164 @@ interface UseCanvasInteractionProps {
     onElementUpdate: (elementId: string, updates: Partial<TemplateElement>) => void;
 }
 
+type AlignmentGuide = { orientation: 'horizontal' | 'vertical'; position: number };
+type ElementStateMap = Record<string, TemplateElement>;
+
 interface InteractionState {
+    selectedElementIds: string[];
     selectedElementId: string | null;
     isDragging: boolean;
     isResizing: boolean;
     dragOffset: Position;
     resizeHandle: string | null;
     initialElementState: TemplateElement | null;
+    initialSelectedStates: ElementStateMap;
+    alignmentGuides: AlignmentGuide[];
 }
+
+const GRID_SIZE = 10;
+const SNAP_THRESHOLD = 4;
+
+const snapToGrid = (value: number) => {
+    const snapped = Math.round(value / GRID_SIZE) * GRID_SIZE;
+    return Math.abs(snapped - value) <= SNAP_THRESHOLD ? snapped : value;
+};
+
+const findElementSnap = (
+    axisStart: number,
+    axisSize: number,
+    others: TemplateElement[],
+    axis: 'x' | 'y'
+): { delta: number; guide: number } | null => {
+    const candidatePoints = [
+        axisStart,
+        axisStart + axisSize / 2,
+        axisStart + axisSize,
+    ];
+
+    let bestMatch: { delta: number; guide: number } | null = null;
+
+    others.forEach((element) => {
+        const otherStart = axis === 'x' ? element.position.x : element.position.y;
+        const otherSize = axis === 'x' ? element.dimensions.width : element.dimensions.height;
+        const otherPoints = [
+            otherStart,
+            otherStart + otherSize / 2,
+            otherStart + otherSize,
+        ];
+
+        candidatePoints.forEach((candidatePoint) => {
+            otherPoints.forEach((otherPoint) => {
+                const delta = otherPoint - candidatePoint;
+                if (Math.abs(delta) > SNAP_THRESHOLD * 2) {
+                    return;
+                }
+
+                if (!bestMatch || Math.abs(delta) < Math.abs(bestMatch.delta)) {
+                    bestMatch = {
+                        delta,
+                        guide: otherPoint,
+                    };
+                }
+            });
+        });
+    });
+
+    return bestMatch;
+};
+
+const canMoveElement = (element: TemplateElement) => element.constraints.allowMove !== false;
+const canResizeElement = (element: TemplateElement) => element.constraints.allowResize !== false;
 
 export const useCanvasInteraction = ({
     elements,
     canvasDimensions,
     scale,
     isEditable,
-    onElementUpdate
+    onElementUpdate,
 }: UseCanvasInteractionProps) => {
     const [state, setState] = useState<InteractionState>({
+        selectedElementIds: [],
         selectedElementId: null,
         isDragging: false,
         isResizing: false,
         dragOffset: { x: 0, y: 0, z: 0 },
         resizeHandle: null,
-        initialElementState: null
+        initialElementState: null,
+        initialSelectedStates: {},
+        alignmentGuides: [],
     });
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    // Get canvas rect for coordinate conversion
     const getCanvasRect = useCallback((): DOMRect | null => {
         return canvasRef.current?.getBoundingClientRect() || null;
     }, []);
 
-    // Convert mouse event to canvas coordinates
     const getCanvasPosition = useCallback((event: MouseEvent | React.MouseEvent): Position | null => {
         const rect = getCanvasRect();
-        if (!rect) return null;
+        if (!rect) {
+            return null;
+        }
 
         return screenToCanvas(
             { x: event.clientX, y: event.clientY, z: 0 },
             rect,
             scale
         );
-    }, [scale, getCanvasRect]);
+    }, [getCanvasRect, scale]);
 
-    // Select element
-    const selectElement = useCallback((elementId: string | null) => {
-        setState(prev => ({
-            ...prev,
-            selectedElementId: elementId,
-            isDragging: false,
-            isResizing: false,
-            resizeHandle: null,
-            initialElementState: null
-        }));
+    const selectElement = useCallback((elementId: string | null, additive: boolean = false) => {
+        setState((prev) => {
+            if (!elementId) {
+                return {
+                    ...prev,
+                    selectedElementIds: [],
+                    selectedElementId: null,
+                    isDragging: false,
+                    isResizing: false,
+                    resizeHandle: null,
+                    initialElementState: null,
+                    initialSelectedStates: {},
+                    alignmentGuides: [],
+                };
+            }
+
+            if (!additive) {
+                return {
+                    ...prev,
+                    selectedElementIds: [elementId],
+                    selectedElementId: elementId,
+                    isDragging: false,
+                    isResizing: false,
+                    resizeHandle: null,
+                    initialElementState: null,
+                    initialSelectedStates: {},
+                    alignmentGuides: [],
+                };
+            }
+
+            const alreadySelected = prev.selectedElementIds.includes(elementId);
+            const nextSelected = alreadySelected
+                ? prev.selectedElementIds.filter((id) => id !== elementId)
+                : [...prev.selectedElementIds, elementId];
+
+            return {
+                ...prev,
+                selectedElementIds: nextSelected,
+                selectedElementId: alreadySelected
+                    ? nextSelected[nextSelected.length - 1] ?? null
+                    : elementId,
+                isDragging: false,
+                isResizing: false,
+                resizeHandle: null,
+                initialElementState: null,
+                initialSelectedStates: {},
+                alignmentGuides: [],
+            };
+        });
     }, []);
 
-    // Check if position is on a resize handle
     const getResizeHandle = useCallback((position: Position, element: TemplateElement): string | null => {
         const handles = getSelectionHandles(element, 8);
 
@@ -91,67 +192,135 @@ export const useCanvasInteraction = ({
         return null;
     }, []);
 
-    // Handle mouse down
     const handleMouseDown = useCallback((event: React.MouseEvent<HTMLCanvasElement>) => {
-        if (!isEditable) return;
+        if (!isEditable) {
+            return;
+        }
 
         const position = getCanvasPosition(event);
-        if (!position) return;
+        if (!position) {
+            return;
+        }
 
         const clickedElement = getElementAtPosition(elements, position);
+        const isAdditiveSelection = event.shiftKey;
 
-        if (clickedElement) {
-            // Check if clicking on a resize handle
-            if (state.selectedElementId === clickedElement.id) {
-                const resizeHandle = getResizeHandle(position, clickedElement);
-                if (resizeHandle) {
-                    setState(prev => ({
-                        ...prev,
-                        isResizing: true,
-                        resizeHandle,
-                        initialElementState: { ...clickedElement }
-                    }));
-                    return;
-                }
+        if (!clickedElement) {
+            selectElement(null);
+            return;
+        }
+
+        if (isAdditiveSelection) {
+            selectElement(clickedElement.id, true);
+            return;
+        }
+
+        const activeSelection = state.selectedElementIds.includes(clickedElement.id)
+            ? state.selectedElementIds
+            : [clickedElement.id];
+        const initialSelectedStates = Object.fromEntries(
+            activeSelection
+                .map((id) => elements.find((element) => element.id === id))
+                .filter((element): element is TemplateElement => Boolean(element))
+                .map((element) => [element.id, { ...element }])
+        );
+
+        if (
+            activeSelection.length === 1 &&
+            state.selectedElementId === clickedElement.id &&
+            canResizeElement(clickedElement)
+        ) {
+            const resizeHandle = getResizeHandle(position, clickedElement);
+            if (resizeHandle) {
+                setState((prev) => ({
+                    ...prev,
+                    selectedElementIds: [clickedElement.id],
+                    selectedElementId: clickedElement.id,
+                    isResizing: true,
+                    resizeHandle,
+                    initialElementState: { ...clickedElement },
+                    initialSelectedStates,
+                }));
+                return;
             }
+        }
 
-            // Start dragging
-            selectElement(clickedElement.id);
-            setState(prev => ({
+        if (activeSelection.length > 1 || canMoveElement(clickedElement)) {
+            setState((prev) => ({
                 ...prev,
+                selectedElementIds: activeSelection,
+                selectedElementId: clickedElement.id,
                 isDragging: true,
                 dragOffset: {
                     x: position.x - clickedElement.position.x,
                     y: position.y - clickedElement.position.y,
-                    z: 0
+                    z: 0,
                 },
-                initialElementState: { ...clickedElement }
+                initialElementState: { ...clickedElement },
+                initialSelectedStates,
+                alignmentGuides: [],
+                isResizing: false,
+                resizeHandle: null,
             }));
-        } else {
-            // Clicked on empty space
-            selectElement(null);
+            return;
         }
-    }, [isEditable, getCanvasPosition, elements, state.selectedElementId, getResizeHandle, selectElement]);
 
-    // Handle mouse move
+        setState((prev) => ({
+            ...prev,
+            selectedElementIds: [clickedElement.id],
+            selectedElementId: clickedElement.id,
+            alignmentGuides: [],
+        }));
+    }, [elements, getCanvasPosition, getResizeHandle, isEditable, selectElement, state.selectedElementId, state.selectedElementIds]);
+
+    const moveElements = useCallback((elementIds: string[], deltaX: number, deltaY: number, sourceStates?: ElementStateMap) => {
+        elementIds.forEach((elementId) => {
+            const element = sourceStates?.[elementId] ?? elements.find((candidate) => candidate.id === elementId);
+            if (!element || !canMoveElement(element)) {
+                return;
+            }
+
+            const newPosition = constrainElementToBounds(
+                {
+                    ...element,
+                    position: {
+                        x: element.position.x + deltaX,
+                        y: element.position.y + deltaY,
+                        z: element.position.z,
+                    },
+                },
+                canvasDimensions
+            );
+
+            onElementUpdate(elementId, { position: newPosition });
+        });
+    }, [canvasDimensions, elements, onElementUpdate]);
+
     const handleMouseMove = useCallback((event: React.MouseEvent<HTMLCanvasElement>) => {
-        if (!isEditable) return;
+        if (!isEditable) {
+            return;
+        }
 
         const position = getCanvasPosition(event);
-        if (!position) return;
+        if (!position) {
+            return;
+        }
 
-        // Update cursor based on hover state
         const canvas = canvasRef.current;
         if (canvas) {
             if (state.selectedElementId) {
-                const selectedElement = elements.find(el => el.id === state.selectedElementId);
-                if (selectedElement) {
-                    const resizeHandle = getResizeHandle(position, selectedElement);
+                const selectedElement = elements.find((element) => element.id === state.selectedElementId);
+                if (selectedElement && state.selectedElementIds.length === 1) {
+                    const resizeHandle = canResizeElement(selectedElement)
+                        ? getResizeHandle(position, selectedElement)
+                        : null;
                     if (resizeHandle) {
-                        const handle = getSelectionHandles(selectedElement, 8).find(h => h.id === resizeHandle);
+                        const handle = getSelectionHandles(selectedElement, 8).find((candidate) => candidate.id === resizeHandle);
                         canvas.style.cursor = handle?.cursor || 'default';
-                    } else {
+                    } else if (canMoveElement(selectedElement)) {
                         canvas.style.cursor = state.isDragging ? 'grabbing' : 'grab';
+                    } else {
+                        canvas.style.cursor = 'default';
                     }
                 }
             } else {
@@ -160,24 +329,68 @@ export const useCanvasInteraction = ({
             }
         }
 
-        // Handle dragging
         if (state.isDragging && state.selectedElementId && state.initialElementState) {
-            const newPosition = constrainElementToBounds(
-                {
-                    ...state.initialElementState,
-                    position: {
-                        x: position.x - state.dragOffset.x,
-                        y: position.y - state.dragOffset.y,
-                        z: state.initialElementState.position.z
-                    }
+            const tentativeX = snapToGrid(position.x - state.dragOffset.x);
+            const tentativeY = snapToGrid(position.y - state.dragOffset.y);
+            const primaryInitialState = state.initialSelectedStates[state.selectedElementId] ?? state.initialElementState;
+            const tentativePrimary = {
+                ...primaryInitialState,
+                position: {
+                    x: tentativeX,
+                    y: tentativeY,
+                    z: primaryInitialState.position.z,
                 },
-                canvasDimensions
-            );
+            };
+            const newPrimaryPosition = constrainElementToBounds(tentativePrimary, canvasDimensions);
+            const guides: AlignmentGuide[] = [];
+            const elementCenterX = newPrimaryPosition.x + primaryInitialState.dimensions.width / 2;
+            const elementCenterY = newPrimaryPosition.y + primaryInitialState.dimensions.height / 2;
+            const canvasCenterX = canvasDimensions.width / 2;
+            const canvasCenterY = canvasDimensions.height / 2;
+            const otherElements = elements.filter((element) => !state.selectedElementIds.includes(element.id));
 
-            onElementUpdate(state.selectedElementId, { position: newPosition });
+            if (Math.abs(elementCenterX - canvasCenterX) <= SNAP_THRESHOLD * 2) {
+                newPrimaryPosition.x = canvasCenterX - primaryInitialState.dimensions.width / 2;
+                guides.push({ orientation: 'vertical', position: canvasCenterX });
+            }
+
+            if (Math.abs(elementCenterY - canvasCenterY) <= SNAP_THRESHOLD * 2) {
+                newPrimaryPosition.y = canvasCenterY - primaryInitialState.dimensions.height / 2;
+                guides.push({ orientation: 'horizontal', position: canvasCenterY });
+            }
+
+            const horizontalSnap = findElementSnap(
+                newPrimaryPosition.x,
+                primaryInitialState.dimensions.width,
+                otherElements,
+                'x'
+            );
+            if (horizontalSnap) {
+                newPrimaryPosition.x += horizontalSnap.delta;
+                guides.push({ orientation: 'vertical', position: horizontalSnap.guide });
+            }
+
+            const verticalSnap = findElementSnap(
+                newPrimaryPosition.y,
+                primaryInitialState.dimensions.height,
+                otherElements,
+                'y'
+            );
+            if (verticalSnap) {
+                newPrimaryPosition.y += verticalSnap.delta;
+                guides.push({ orientation: 'horizontal', position: verticalSnap.guide });
+            }
+
+            const deltaX = newPrimaryPosition.x - primaryInitialState.position.x;
+            const deltaY = newPrimaryPosition.y - primaryInitialState.position.y;
+            moveElements(state.selectedElementIds, deltaX, deltaY, state.initialSelectedStates);
+
+            setState((prev) => ({
+                ...prev,
+                alignmentGuides: guides,
+            }));
         }
 
-        // Handle resizing
         if (state.isResizing && state.selectedElementId && state.initialElementState && state.resizeHandle) {
             const element = state.initialElementState;
             const newDimensions = { ...element.dimensions };
@@ -223,7 +436,6 @@ export const useCanvasInteraction = ({
                     break;
             }
 
-            // Ensure element stays within bounds
             if (newPosition.x + newDimensions.width > canvasDimensions.width) {
                 newDimensions.width = canvasDimensions.width - newPosition.x;
             }
@@ -239,52 +451,79 @@ export const useCanvasInteraction = ({
                 newPosition.y = 0;
             }
 
+            newDimensions.width = Math.max(20, snapToGrid(newDimensions.width));
+            newDimensions.height = Math.max(20, snapToGrid(newDimensions.height));
+
+            const guides: AlignmentGuide[] = [];
+            const resizedCenterX = newPosition.x + newDimensions.width / 2;
+            const resizedCenterY = newPosition.y + newDimensions.height / 2;
+            const canvasCenterX = canvasDimensions.width / 2;
+            const canvasCenterY = canvasDimensions.height / 2;
+
+            if (Math.abs(resizedCenterX - canvasCenterX) <= SNAP_THRESHOLD * 2) {
+                guides.push({ orientation: 'vertical', position: canvasCenterX });
+            }
+
+            if (Math.abs(resizedCenterY - canvasCenterY) <= SNAP_THRESHOLD * 2) {
+                guides.push({ orientation: 'horizontal', position: canvasCenterY });
+            }
+
+            setState((prev) => ({
+                ...prev,
+                alignmentGuides: guides,
+            }));
+
             onElementUpdate(state.selectedElementId, {
                 position: newPosition,
-                dimensions: newDimensions
+                dimensions: newDimensions,
             });
         }
     }, [
-        isEditable,
-        getCanvasPosition,
-        state,
-        elements,
-        getResizeHandle,
         canvasDimensions,
-        onElementUpdate
+        elements,
+        getCanvasPosition,
+        getResizeHandle,
+        isEditable,
+        moveElements,
+        onElementUpdate,
+        state,
     ]);
 
-    // Handle mouse up
     const handleMouseUp = useCallback(() => {
-        setState(prev => ({
+        setState((prev) => ({
             ...prev,
             isDragging: false,
             isResizing: false,
             resizeHandle: null,
-            initialElementState: null
+            initialElementState: null,
+            initialSelectedStates: {},
+            alignmentGuides: [],
         }));
 
-        // Reset cursor
         if (canvasRef.current) {
             canvasRef.current.style.cursor = 'default';
         }
     }, []);
 
-    // Handle mouse leave
     const handleMouseLeave = useCallback(() => {
         handleMouseUp();
     }, [handleMouseUp]);
 
-    // Keyboard shortcuts
+    const moveSelectedElement = useCallback((deltaX: number, deltaY: number) => {
+        if (!state.selectedElementIds.length) {
+            return;
+        }
+
+        moveElements(state.selectedElementIds, deltaX, deltaY);
+    }, [moveElements, state.selectedElementIds]);
+
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (!isEditable || !state.selectedElementId) return;
+            if (!isEditable || !state.selectedElementIds.length) {
+                return;
+            }
 
             switch (event.key) {
-                case 'Delete':
-                case 'Backspace':
-                    // Handle element deletion (would need to be implemented in parent)
-                    break;
                 case 'Escape':
                     selectElement(null);
                     break;
@@ -309,39 +548,19 @@ export const useCanvasInteraction = ({
 
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [isEditable, state.selectedElementId, selectElement]);
-
-    // Move selected element
-    const moveSelectedElement = useCallback((deltaX: number, deltaY: number) => {
-        if (!state.selectedElementId) return;
-
-        const element = elements.find(el => el.id === state.selectedElementId);
-        if (!element) return;
-
-        const newPosition = constrainElementToBounds(
-            {
-                ...element,
-                position: {
-                    x: element.position.x + deltaX,
-                    y: element.position.y + deltaY,
-                    z: element.position.z
-                }
-            },
-            canvasDimensions
-        );
-
-        onElementUpdate(state.selectedElementId, { position: newPosition });
-    }, [state.selectedElementId, elements, canvasDimensions, onElementUpdate]);
+    }, [isEditable, moveSelectedElement, selectElement, state.selectedElementIds.length]);
 
     return {
         canvasRef,
         selectedElementId: state.selectedElementId,
+        selectedElementIds: state.selectedElementIds,
         isDragging: state.isDragging,
         isResizing: state.isResizing,
+        alignmentGuides: state.alignmentGuides,
         selectElement,
         handleMouseDown,
         handleMouseMove,
         handleMouseUp,
-        handleMouseLeave
+        handleMouseLeave,
     };
 };
