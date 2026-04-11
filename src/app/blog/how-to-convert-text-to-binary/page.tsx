@@ -115,11 +115,13 @@ export default function BinaryBlogPage() {
     ]
   };
 
+  const faqJsonLd = buildFaqJsonLd(faq);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       <JsonLd data={serializeJsonLd(howTo)} />
-      <JsonLd data={serializeJsonLd(buildFaqJsonLd(faq))} />
+      {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
         <nav aria-label="Breadcrumb" className="mb-6">

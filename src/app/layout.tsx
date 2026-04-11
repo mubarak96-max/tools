@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Source_Serif_4 } from "next/font/google";
+import {
+  DM_Sans,
+  DM_Serif_Display,
+  Source_Serif_4,
+  Space_Grotesk,
+  Space_Mono,
+  Syne,
+} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +16,10 @@ import { ADSENSE_CLIENT_ID } from "@/lib/consent";
 
 const sansFont = Space_Grotesk({ subsets: ["latin"], variable: "--font-sans" });
 const serifFont = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif" });
+const syneFont = Syne({ subsets: ["latin"], weight: ["400", "700", "800"], variable: "--font-syne" });
+const dmSansFont = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-dm-sans" });
+const dmSerifFont = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable: "--font-dm-serif" });
+const spaceMonoFont = Space_Mono({ subsets: ["latin"], weight: ["400", "700"], variable: "--font-space-mono" });
 
 export const metadata: Metadata = {
   metadataBase: getBaseUrl(),
@@ -48,7 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${sansFont.variable} ${serifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
+        className={`${sansFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} ${spaceMonoFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
         <div className="site-backdrop pointer-events-none fixed inset-0 z-[-1]" />
         <Header />

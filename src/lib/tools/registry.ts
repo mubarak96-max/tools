@@ -27,6 +27,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     icon: "XG",
   },
   {
+    name: "Free Social Media Carousel Builder",
+    href: "/utility/free-social-media-carousel-builder",
+    description: "Create six-slide social media carousels with AI drafting, editable templates, mobile controls, and PNG export.",
+    category: "Utility",
+    icon: "SLDS",
+  },
+  {
     name: "AI Humanizer",
     href: "/ai/ai-humanizer",
     description: "Rewrite AI-generated text to sound natural and human, with a short queue flow and no sign-up.",

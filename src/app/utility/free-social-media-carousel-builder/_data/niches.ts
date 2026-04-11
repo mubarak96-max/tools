@@ -1,0 +1,206 @@
+import type { NicheConfig } from '../_types';
+
+export const NICHE_CONFIGS: Record<string, NicheConfig> = {
+    'instagram-carousel-maker': {
+        slug: 'instagram-carousel-maker',
+        title: 'Instagram Carousel Maker — Create Viral Posts in 30 Seconds',
+        description: 'Free Instagram carousel maker. Create engaging multi-slide posts that get more likes, comments, and followers. No design skills needed.',
+        keywords: ['instagram carousel maker', 'instagram post creator', 'social media carousel', 'instagram content creator', 'carousel generator free'],
+        templates: ['social_quote', 'social_tip', 'ba_comparison', 'per_story'],
+        defaultTopic: 'Instagram growth tips',
+        seoContent: {
+            h1: 'Free Instagram Carousel Maker',
+            intro: 'Create scroll-stopping Instagram carousels that get more engagement. Generate professional multi-slide posts in under 30 seconds.',
+            benefits: ['Increase engagement by 300%', 'Save 2 hours per post', 'No design skills required', 'Viral-tested templates', 'Export ready-to-post images'],
+            examples: ['Growth tips carousel', 'Product showcase slides', 'Behind-the-scenes story', 'Tutorial step-by-step', 'Before/after transformation'],
+            faqs: [
+                { question: 'How do I make an Instagram carousel?', answer: 'Simply enter your topic, click generate, and get 5–7 professionally designed slides ready to post.' },
+                { question: 'What size should Instagram carousels be?', answer: 'Our tool automatically creates carousels in the optimal 1080×1350 size for maximum engagement.' },
+                { question: 'Is this tool free?', answer: 'Yes, fully free. You can create and export unlimited carousels at no cost.' },
+            ],
+        },
+    },
+    'linkedin-carousel-generator': {
+        slug: 'linkedin-carousel-generator',
+        title: 'LinkedIn Carousel Generator — Professional Posts That Get Noticed',
+        description: 'Create professional LinkedIn carousels for business growth. Stand out with engaging multi-slide posts that build authority and generate leads.',
+        keywords: ['linkedin carousel generator', 'professional linkedin posts', 'business carousel maker', 'linkedin content creator', 'thought leadership carousel'],
+        templates: ['biz_pitch', 'list_step', 'per_story', 'edu_howto'],
+        defaultTopic: 'Business leadership insights',
+        seoContent: {
+            h1: 'LinkedIn Carousel Generator',
+            intro: 'Stand out on LinkedIn with professional carousel posts that build thought leadership and grow your network.',
+            benefits: ['Build thought leadership', 'Increase profile views by 400%', 'Generate quality leads', 'Professional templates', 'Business-focused content'],
+            examples: ['Industry insights carousel', 'Career advice slides', 'Business strategy tips', 'Leadership lessons', 'Professional growth guide'],
+            faqs: [
+                { question: 'How do LinkedIn carousels work?', answer: 'LinkedIn carousels are multi-slide posts users swipe through, perfect for sharing detailed insights and building engagement.' },
+                { question: 'What makes a good LinkedIn carousel?', answer: 'Professional design, valuable business insights, clear structure, and a strong call-to-action that encourages networking.' },
+            ],
+        },
+    },
+    'real-estate-carousel-templates': {
+        slug: 'real-estate-carousel-templates',
+        title: 'Real Estate Carousel Templates — Showcase Properties Like a Pro',
+        description: 'Professional real estate carousel templates. Create stunning property showcases, market updates, and buyer guides that convert leads.',
+        keywords: ['real estate carousel templates', 'property showcase slides', 'real estate marketing', 'property listing carousel', 'realtor social media'],
+        templates: ['mkt_launch', 'ba_comparison', 'list_step', 'social_tip'],
+        defaultTopic: 'Property showcase and market insights',
+        seoContent: {
+            h1: 'Real Estate Carousel Templates',
+            intro: 'Create professional property showcases and market insights that attract buyers and sellers. Perfect for realtors and agencies.',
+            benefits: ['Showcase properties professionally', 'Generate more leads', 'Build real estate authority', 'Save hours on content creation', 'Mobile-optimized designs'],
+            examples: ['Property listing showcase', 'Market update slides', 'Home buying guide', 'Neighborhood highlights', 'Investment property analysis'],
+            faqs: [
+                { question: 'How can carousels help real estate marketing?', answer: 'Carousels let you showcase multiple property features, market data, and buying tips in one engaging post that gets more views than single images.' },
+                { question: 'What should I include in a property carousel?', answer: 'Include key features, neighborhood info, pricing context, and a clear call-to-action for interested buyers.' },
+            ],
+        },
+    },
+    'fitness-carousel-maker': {
+        slug: 'fitness-carousel-maker',
+        title: 'Fitness Carousel Maker — Create Workout & Health Content That Converts',
+        description: 'Free fitness carousel maker for trainers, gyms, and health coaches. Create workout guides, nutrition tips, and transformation stories that grow your audience.',
+        keywords: ['fitness carousel maker', 'workout carousel template', 'health and fitness social media', 'personal trainer content', 'gym instagram carousel'],
+        templates: ['ba_transformation', 'list_step', 'edu_howto', 'per_lifestyle'],
+        defaultTopic: 'Workout tips for beginners',
+        seoContent: {
+            h1: 'Fitness Carousel Maker',
+            intro: 'Create workout guides, nutrition tips, and transformation stories that build your fitness brand and grow your audience.',
+            benefits: ['Grow fitness following faster', 'Share workouts visually', 'Inspire transformations', 'Build trainer credibility', 'No graphic design needed'],
+            examples: ['Full-body workout plan', 'Nutrition tips carousel', 'Before/after transformation', 'Exercise technique guide', 'Meal prep tutorial'],
+            faqs: [
+                { question: 'What fitness content works best as carousels?', answer: 'Step-by-step workout guides, before/after transformations, and numbered tip lists perform best as carousels because each slide builds on the last.' },
+                { question: 'How often should fitness coaches post carousels?', answer: 'Aim for 3–5 carousels per week. Consistency matters more than frequency — pick a pace you can sustain.' },
+            ],
+        },
+    },
+    'business-carousel-templates': {
+        slug: 'business-carousel-templates',
+        title: 'Business Carousel Templates — Grow Your Brand on Social Media',
+        description: 'Professional business carousel templates for entrepreneurs and companies. Create pitch decks, company updates, and thought leadership posts that get engagement.',
+        keywords: ['business carousel templates', 'entrepreneur social media', 'startup carousel maker', 'company update template', 'business post creator'],
+        templates: ['biz_pitch', 'biz_update', 'mkt_launch', 'stat_data'],
+        defaultTopic: 'Business growth strategies',
+        seoContent: {
+            h1: 'Business Carousel Templates',
+            intro: 'Professional carousel templates for entrepreneurs, startups, and businesses that want to stand out on LinkedIn and Instagram.',
+            benefits: ['Look like a Fortune 500', 'Share metrics that matter', 'Build investor confidence', 'Attract top talent', 'Generate B2B leads'],
+            examples: ['Company milestone update', 'Product launch announcement', 'Revenue growth story', 'Team culture showcase', 'Industry insight report'],
+            faqs: [
+                { question: 'Should businesses use carousels on Instagram or LinkedIn?', answer: 'Both. Instagram carousels drive consumer engagement and brand awareness. LinkedIn carousels build B2B authority and generate professional leads.' },
+                { question: 'What business metrics should I share in carousels?', answer: 'Growth percentages, user counts, revenue milestones, and customer satisfaction scores perform well. Always pair numbers with context.' },
+            ],
+        },
+    },
+    'marketing-carousel-creator': {
+        slug: 'marketing-carousel-creator',
+        title: 'Marketing Carousel Creator — Drive Sales With Engaging Slides',
+        description: 'Create high-converting marketing carousels for product launches, promotions, and sales. Free tool with viral templates used by top marketers.',
+        keywords: ['marketing carousel creator', 'product launch carousel', 'promotional social media', 'sales carousel template', 'marketing content creator'],
+        templates: ['mkt_launch', 'mkt_promo', 'mkt_sale', 'ba_comparison'],
+        defaultTopic: 'Product launch announcement',
+        seoContent: {
+            h1: 'Marketing Carousel Creator',
+            intro: 'Create carousels that drive action. From product launches to flash sales, our templates are built to convert browsers into buyers.',
+            benefits: ['Higher click-through rates', 'Drive product launches', 'Create urgency', 'Showcase social proof', 'Convert followers to customers'],
+            examples: ['New product announcement', 'Limited time offer', 'Feature comparison slides', 'Customer testimonial carousel', 'Black Friday campaign'],
+            faqs: [
+                { question: 'Do carousels really drive more sales?', answer: 'Yes — carousel posts get 3x more engagement than single-image posts. More engagement means more visibility and more conversions.' },
+                { question: 'What is the best call-to-action for a marketing carousel?', answer: 'Keep it specific: "DM us LAUNCH for 20% off" outperforms generic CTAs. Make the action frictionless and time-bound.' },
+            ],
+        },
+    },
+    'personal-brand-carousel-maker': {
+        slug: 'personal-brand-carousel-maker',
+        title: 'Personal Brand Carousel Maker — Build Your Audience Faster',
+        description: 'Create personal brand carousels that attract followers, build trust, and establish you as an expert. Free templates for creators and entrepreneurs.',
+        keywords: ['personal brand carousel maker', 'creator carousel template', 'influencer content creator', 'personal branding social media', 'thought leader carousel'],
+        templates: ['per_story', 'per_testimonial', 'social_quote', 'edu_howto'],
+        defaultTopic: 'My journey and lessons learned',
+        seoContent: {
+            h1: 'Personal Brand Carousel Maker',
+            intro: 'Turn your story and expertise into scroll-stopping carousels that attract your ideal audience and build a loyal following.',
+            benefits: ['Share your story powerfully', 'Build genuine trust', 'Attract dream clients', 'Grow faster organically', 'Become a recognized expert'],
+            examples: ['My entrepreneurship story', 'Lessons I learned the hard way', 'How I went from X to Y', 'My daily routine', 'Mistakes I made so you don\'t have to'],
+            faqs: [
+                { question: 'What personal brand content works as carousels?', answer: 'Origin stories, lessons learned, transformations, behind-the-scenes processes, and strong opinions with supporting evidence all perform extremely well.' },
+                { question: 'How personal should personal brand carousels be?', answer: 'The more specific and vulnerable the details, the better. Vague stories get ignored; specific stories get shared.' },
+            ],
+        },
+    },
+    'education-carousel-templates': {
+        slug: 'education-carousel-templates',
+        title: 'Education Carousel Templates — Teach Concepts That Stick',
+        description: 'Create educational carousels that simplify complex topics. Perfect for teachers, trainers, coaches, and content creators in the education space.',
+        keywords: ['education carousel templates', 'teaching social media content', 'educational post creator', 'knowledge sharing carousel', 'how-to carousel maker'],
+        templates: ['edu_howto', 'edu_tutorial', 'edu_fact', 'list_step'],
+        defaultTopic: 'How to learn faster',
+        seoContent: {
+            h1: 'Education Carousel Templates',
+            intro: 'Transform complex ideas into simple, shareable carousels. Perfect for educators, coaches, and anyone who loves teaching through social media.',
+            benefits: ['Simplify complex topics', 'Increase knowledge retention', 'Build teaching authority', 'Get shared more often', 'Grow student community'],
+            examples: ['Step-by-step tutorial', 'Common mistakes to avoid', 'Quick tips and tricks', 'Surprising fact revealed', 'Beginner\'s guide to X'],
+            faqs: [
+                { question: 'What educational topics perform best as carousels?', answer: 'Step-by-step guides, myth-busting facts, beginner\'s guides to complex topics, and "X things I wish I knew" formats consistently go viral.' },
+                { question: 'How many slides should an educational carousel have?', answer: 'Aim for 5–7 slides. Slide 1 is the hook, slides 2–5 deliver the value, and the final slide has a clear takeaway or next step.' },
+            ],
+        },
+    },
+    'ecommerce-carousel-generator': {
+        slug: 'ecommerce-carousel-generator',
+        title: 'E-commerce Carousel Generator — Showcase Products That Sell',
+        description: 'Create product showcase carousels that drive online sales. Free e-commerce carousel templates for Shopify, Instagram, and all social platforms.',
+        keywords: ['ecommerce carousel generator', 'product showcase carousel', 'shopify social media', 'instagram shopping post', 'product launch carousel'],
+        templates: ['mkt_launch', 'mkt_promo', 'ba_comparison', 'per_testimonial'],
+        defaultTopic: 'Product features and benefits',
+        seoContent: {
+            h1: 'E-commerce Carousel Generator',
+            intro: 'Create product carousels that stop the scroll and drive clicks. Perfect for Shopify stores, DTC brands, and e-commerce entrepreneurs.',
+            benefits: ['Showcase products visually', 'Drive product page traffic', 'Increase average order value', 'Build product trust', 'Turn followers into buyers'],
+            examples: ['New product launch', 'Product feature showcase', 'Size/variant comparison', 'Customer reviews carousel', 'Unboxing experience slides'],
+            faqs: [
+                { question: 'How can carousels increase e-commerce sales?', answer: 'Carousels let you tell the full product story: the problem it solves, key features, social proof, and a direct purchase CTA. Each slide moves the buyer closer to converting.' },
+                { question: 'Should I show product prices in carousels?', answer: 'Yes for promotions and sales. For regular product posts, focus on value and benefits first, then mention price as a final slide or in the caption.' },
+            ],
+        },
+    },
+    'nonprofit-carousel-maker': {
+        slug: 'nonprofit-carousel-maker',
+        title: 'Nonprofit Carousel Maker — Share Your Mission and Drive Donations',
+        description: 'Create compelling nonprofit carousels that tell your story, share impact, and inspire donations. Free templates for charities and social causes.',
+        keywords: ['nonprofit carousel maker', 'charity social media template', 'fundraising carousel', 'social cause content', 'impact story carousel'],
+        templates: ['per_story', 'stat_infographic', 'ba_transformation', 'social_announcement'],
+        defaultTopic: 'Our impact story',
+        seoContent: {
+            h1: 'Nonprofit Carousel Maker',
+            intro: 'Tell your mission\'s story with carousels that move people to action. Perfect for nonprofits, charities, and social impact organizations.',
+            benefits: ['Share impact visually', 'Inspire more donations', 'Tell beneficiary stories', 'Build donor community', 'Increase volunteer sign-ups'],
+            examples: ['Impact report highlights', 'Beneficiary story carousel', 'Fundraising campaign launch', 'Volunteer spotlight slides', 'Annual milestones achieved'],
+            faqs: [
+                { question: 'What nonprofit content works best as carousels?', answer: 'Impact statistics with human stories, before/after transformations from your work, and urgent fundraising campaigns with clear goals perform best.' },
+                { question: 'How can nonprofits grow their social media with carousels?', answer: 'Focus on specific stories over general statistics. "Maria now attends school" is more powerful than "1,000 children helped." Specificity creates emotional connection.' },
+            ],
+        },
+    },
+};
+
+// Fallback config for unknown slugs
+export const DEFAULT_NICHE_CONFIG: NicheConfig = {
+    slug: 'free-social-media-carousel-builder',
+    title: 'Free Social Media Carousel Builder — Create in 30 Seconds',
+    description: 'Free carousel builder for Instagram, LinkedIn, and all social media. 24 templates, AI-assisted generation, PNG export. No sign-up required.',
+    keywords: ['carousel builder', 'social media carousel', 'free carousel maker', 'instagram carousel', 'linkedin carousel'],
+    templates: ['biz_pitch', 'social_quote', 'edu_howto', 'mkt_launch'],
+    defaultTopic: 'Tips for your audience',
+    seoContent: {
+        h1: 'Free Social Media Carousel Builder',
+        intro: 'Create professional social media carousels in under 30 seconds. 24 templates, AI-assisted generation, one-click PNG export.',
+        benefits: ['24 professional templates', 'AI generates content for you', 'Export as PNG instantly', 'No sign-up or credit card', 'Works on mobile and desktop'],
+        examples: ['Business pitch deck', 'Instagram quote card', 'Step-by-step tutorial', 'Product launch announcement', 'Before/after comparison'],
+        faqs: [
+            { question: 'Is this carousel builder really free?', answer: 'Yes, 100% free. Create, edit, and export unlimited carousels with no account required.' },
+            { question: 'What social media platforms can I use these for?', answer: 'All major platforms: Instagram, LinkedIn, Facebook, Twitter/X, Pinterest, and TikTok. Export at 1080×1350 (portrait) which works everywhere.' },
+            { question: 'Do I need design skills?', answer: 'No. Pick a template, enter your topic, and click Generate. The AI writes your content and the template handles the design.' },
+        ],
+    },
+};
