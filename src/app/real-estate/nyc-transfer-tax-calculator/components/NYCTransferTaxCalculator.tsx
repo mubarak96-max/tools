@@ -66,12 +66,7 @@ export default function NYCTransferTaxCalculator() {
         />
       </section>
 
-      <NoteCard title="Why NYC transfer tax needs its own page">
-        <p>
-          New York City transfer tax is not the same as a generic US real-estate fee. The rate changes based on the
-          transfer-price threshold and the kind of property being transferred.
-        </p>
-      </NoteCard>
+
     </div>
   );
 }
