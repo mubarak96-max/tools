@@ -43,21 +43,26 @@ export default function NYCTransferTaxCalculator() {
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <ResultCard
-          label="RPTT rate"
+          label="NYC RPTT Rate"
           value={formatPercent(result.rate)}
-          helper="Current NYC Real Property Transfer Tax rate based on the transfer type entered."
+          helper="Current NYC Real Property Transfer Tax rate based on the transfer type."
         />
         <ResultCard
-          label="Estimated NYC transfer tax"
+          label="Estimated NYC RPTT"
           value={formatMoney(result.rtt, USD_MARKET)}
-          helper="Estimated Real Property Transfer Tax for the transfer price entered."
+          helper="Estimated NYC Real Property Transfer Tax for this transaction."
         />
         <ResultCard
-          label="Transfer price"
-          value={formatMoney(Number(transferPrice) || 0, USD_MARKET)}
-          helper="Shown again so the tax amount can be read against the transaction value."
+          label="Estimated Mansion Tax"
+          value={formatMoney(result.mansionTax, USD_MARKET)}
+          helper="NYS Mansion Tax applies to residential purchases of $1M or more."
+        />
+        <ResultCard
+          label="Total Estimated Tax"
+          value={formatMoney(result.totalEstimatedTax, USD_MARKET)}
+          helper="Combined estimate of NYC RPTT and NYS Mansion Tax (if applicable)."
         />
       </section>
 

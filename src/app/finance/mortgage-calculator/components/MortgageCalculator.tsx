@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
@@ -26,7 +26,7 @@ export default function MortgageCalculator() {
   const [tenure, setTenure] = useState<number>(currency.defaultTenure);
   const [propertyTax, setPropertyTax] = useState<number>(currency.defaultPropertyTax);
   const [insurance, setInsurance] = useState<number>(currency.defaultInsurance);
-  const [showAmortization, setShowAmortization] = useState(false);
+  const [showAmortization, setShowAmortization] = useState(true);
 
   const principal = Math.max(0, homePrice - downPayment);
   const result = useMemo(

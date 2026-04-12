@@ -513,9 +513,24 @@ export function calculateNycTransferTax(input: {
 
   const rtt = transferPrice * (rate / 100);
 
+  // NYS Mansion Tax (Residential $1M+)
+  let mansionTax = 0;
+  if (input.propertyType === "residential-1-3-family" && transferPrice >= 1_000_000) {
+    if (transferPrice < 2_000_000) mansionTax = transferPrice * 0.01;
+    else if (transferPrice < 3_000_000) mansionTax = transferPrice * 0.0125;
+    else if (transferPrice < 5_000_000) mansionTax = transferPrice * 0.015;
+    else if (transferPrice < 10_000_000) mansionTax = transferPrice * 0.0225;
+    else if (transferPrice < 15_000_000) mansionTax = transferPrice * 0.0325;
+    else if (transferPrice < 20_000_000) mansionTax = transferPrice * 0.035;
+    else if (transferPrice < 25_000_000) mansionTax = transferPrice * 0.0375;
+    else mansionTax = transferPrice * 0.039;
+  }
+
   return {
     rate,
     rtt,
+    mansionTax,
+    totalEstimatedTax: rtt + mansionTax,
   };
 }
 
