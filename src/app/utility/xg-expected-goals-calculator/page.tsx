@@ -198,21 +198,12 @@ export default function ExpectedGoalsCalculatorPage() {
             xG Calculator — Expected Goals for Football & Soccer
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Use this free <strong>expected goals calculator</strong> and <strong>xG calculator for football</strong> (and{" "}
-            <strong>expected goals soccer</strong> fans) to estimate scoring probability from any spot on the pitch. If you
-            are searching for <strong>what is xG in football</strong> or <strong>xG meaning football</strong>, the sections
-            below explain the idea; the interactive tool shows how distance, angle, shot type, assist, and pressure move the
-            number in practice.
-          </p>
-          <p className="mt-4 text-base leading-7 text-muted-foreground">
-            <strong>How is xG calculated</strong> in real models? Providers train on huge shot databases so each attempt gets
-            a probability between 0 and 1. This page uses a transparent, educational model—ideal for comparing scenarios and
-            learning <strong>xG football explained</strong>-style intuition, not for replacing proprietary league data.
+            Place the shot on the interactive pitch below to instantly calculate the expected goals (xG) value based on distance, angle, and situation.
           </p>
           {currentTool ? <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p> : null}
         </div>
 
-        <div className="mt-4 max-w-2xl">
+        <div className="mt-6 max-w-2xl">
           <PrivacyNote />
         </div>
       </section>
@@ -220,6 +211,19 @@ export default function ExpectedGoalsCalculatorPage() {
       <div className="mt-2">
         <ShotCalculator />
       </div>
+
+      <section className="space-y-4 max-w-4xl">
+        <p className="text-base leading-7 text-muted-foreground">
+          If you are searching for <strong>what is xG in football</strong> or <strong>xG meaning football</strong>, the sections
+          below explain the idea; the interactive tool shows how distance, angle, shot type, assist, and pressure move the
+          number in practice.
+        </p>
+        <p className="text-base leading-7 text-muted-foreground">
+          <strong>How is xG calculated</strong> in real models? Providers train on huge shot databases so each attempt gets
+          a probability between 0 and 1. This page uses a transparent, educational model—ideal for comparing scenarios and
+          learning <strong>xG football explained</strong>-style intuition, not for replacing proprietary league data.
+        </p>
+      </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">

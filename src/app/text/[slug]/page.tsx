@@ -1,20 +1,42 @@
 import { notFound } from "next/navigation";
 
+import WordCounterIntentPage from "@/app/text/_components/WordCounterIntentPage";
 import ExactTextToolRunner from "@/components/tools/ExactTextTool";
 import ToolPageScaffold from "@/components/tools/ToolPageScaffold";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { getAllWordCounterLandingSlugs, getWordCounterLanding } from "@/lib/word-counter-landings/registry";
 import { EXACT_TEXT_TOOLS, EXACT_TEXT_TOOL_MAP } from "@/lib/tools/exact-catalog";
 import { buildTextToolCopy } from "@/lib/tools/exact-copy";
 
+export const revalidate = 43200;
+
 export function generateStaticParams() {
-  return EXACT_TEXT_TOOLS.map((tool) => ({ slug: tool.slug }));
+  const exactSlugs = new Set(EXACT_TEXT_TOOLS.map((tool) => tool.slug));
+  const exact = EXACT_TEXT_TOOLS.map((tool) => ({ slug: tool.slug }));
+  const landings = getAllWordCounterLandingSlugs()
+    .filter((slug) => !exactSlugs.has(slug))
+    .map((slug) => ({ slug }));
+  return [...exact, ...landings];
 }
 
 export async function generateMetadata(props: PageProps<"/text/[slug]">) {
   const { slug } = await props.params;
+
+  const landing = getWordCounterLanding(slug);
+  if (landing) {
+    return {
+      ...buildMetadata({
+        title: landing.metaTitle,
+        description: landing.description,
+        path: `/text/${slug}`,
+      }),
+      keywords: landing.keywords,
+    };
+  }
+
   const tool = EXACT_TEXT_TOOL_MAP[slug];
   if (!tool) {
-    return {};
+    notFound();
   }
 
   return buildMetadata({
@@ -26,8 +48,13 @@ export async function generateMetadata(props: PageProps<"/text/[slug]">) {
 
 export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
   const { slug } = await props.params;
-  const tool = EXACT_TEXT_TOOL_MAP[slug];
 
+  const landing = getWordCounterLanding(slug);
+  if (landing) {
+    return <WordCounterIntentPage landing={landing} />;
+  }
+
+  const tool = EXACT_TEXT_TOOL_MAP[slug];
   if (!tool) {
     notFound();
   }

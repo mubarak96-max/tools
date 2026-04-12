@@ -2,7 +2,9 @@
 
 @theme {
   --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
   --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 
   --color-border: #E2E8F0;
   --color-border-soft: #CBD5E1;
@@ -71,10 +73,11 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
+    font-family: var(--font-display), var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     letter-spacing: -0.03em;
   }
   ::selection {

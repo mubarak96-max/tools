@@ -10,7 +10,37 @@ const textareaClass =
 const actionClass =
   "rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary";
 
-export default function CharacterCounter() {
+export type CharacterCounterMetric =
+  | "characters"
+  | "charactersNoSpaces"
+  | "words"
+  | "sentences"
+  | "paragraphs"
+  | "reading";
+
+export type CharacterCounterProps = {
+  placeholder?: string;
+  guideTitle?: string;
+  guideBody?: string;
+  emphasizeMetric?: CharacterCounterMetric;
+  targetWordCount?: number;
+};
+
+const DEFAULT_PROPS: Required<
+  Pick<CharacterCounterProps, "placeholder" | "guideTitle" | "guideBody">
+> = {
+  placeholder: "Type a draft, bio, social caption, paragraph, or headline to count characters instantly.",
+  guideTitle: "How to use the count",
+  guideBody:
+    "Use total characters when you are checking headline, caption, or form-field limits. Use the no-spaces count for stricter platform rules and use the word or reading-time totals to estimate draft length.",
+};
+
+export default function CharacterCounter(props: CharacterCounterProps = {}) {
+  const { emphasizeMetric, targetWordCount, ...rest } = props;
+  const placeholder = rest.placeholder ?? DEFAULT_PROPS.placeholder;
+  const guideTitle = rest.guideTitle ?? DEFAULT_PROPS.guideTitle;
+  const guideBody = rest.guideBody ?? DEFAULT_PROPS.guideBody;
+
   const [text, setText] = useState("");
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
 
@@ -29,6 +59,11 @@ export default function CharacterCounter() {
     [counts],
   );
 
+  const progressPercent =
+    targetWordCount && targetWordCount > 0
+      ? Math.min(100, Math.round((counts.words / targetWordCount) * 100))
+      : 0;
+
   async function handleCopySummary() {
     try {
       await navigator.clipboard.writeText(summaryText);
@@ -45,6 +80,30 @@ export default function CharacterCounter() {
     setCopyState("idle");
   }
 
+  const metricTiles = useMemo(() => {
+    const tiles: { key: CharacterCounterMetric; label: string; value: string | number }[] = [
+      { key: "characters", label: "Characters", value: counts.characters },
+      { key: "charactersNoSpaces", label: "Without spaces", value: counts.charactersNoSpaces },
+      { key: "words", label: "Words", value: counts.words },
+      { key: "sentences", label: "Sentences", value: counts.sentences },
+      { key: "paragraphs", label: "Paragraphs", value: counts.paragraphs },
+      { key: "reading", label: "Reading time", value: counts.readingLabel },
+    ];
+
+    if (!emphasizeMetric) {
+      return tiles;
+    }
+
+    const primary = tiles.find((t) => t.key === emphasizeMetric);
+    const restTiles = tiles.filter((t) => t.key !== emphasizeMetric);
+    return primary ? [primary, ...restTiles] : tiles;
+  }, [counts, emphasizeMetric]);
+
+  const [firstTile, ...otherTiles] = metricTiles;
+  const secondTile = otherTiles[0];
+  const pairA = otherTiles.slice(1, 3);
+  const pairB = otherTiles.slice(3);
+
   return (
     <section className="tool-frame p-4 sm:p-6">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_22rem]">
@@ -54,7 +113,7 @@ export default function CharacterCounter() {
             <textarea
               value={text}
               onChange={(event) => setText(event.target.value)}
-              placeholder="Type a draft, bio, social caption, paragraph, or headline to count characters instantly."
+              placeholder={placeholder}
               className={textareaClass}
             />
           </label>
@@ -69,54 +128,85 @@ export default function CharacterCounter() {
           </div>
 
           <div className="rounded-[1.5rem] border border-border bg-background p-5">
-            <h2 className="text-lg font-semibold text-foreground">How to use the count</h2>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Use total characters when you are checking headline, caption, or form-field limits. Use the no-spaces count for stricter platform rules and use the word or reading-time totals to estimate draft length.
-            </p>
+            <h2 className="text-lg font-semibold text-foreground">{guideTitle}</h2>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">{guideBody}</p>
           </div>
         </div>
 
         <aside className="space-y-4 rounded-[1.5rem] border border-border bg-background p-5">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Live stats
-            </p>
-            <h2 className="mt-2 text-lg font-semibold text-foreground">Character overview</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Live stats</p>
+            <h2 className="mt-2 text-lg font-semibold text-foreground">Text overview</h2>
           </div>
 
+          {targetWordCount != null && targetWordCount > 0 ? (
+            <div className="rounded-[1rem] border border-border bg-card p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Target words</p>
+              <p className="mt-2 text-sm font-medium text-foreground">
+                {counts.words} / {targetWordCount} words
+              </p>
+              <div className="mt-3 h-2 overflow-hidden rounded-full bg-muted">
+                <div
+                  className="h-2 rounded-full bg-primary transition-[width] duration-300"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+            </div>
+          ) : null}
+
           <div className="grid gap-3">
-            <div className="rounded-[1rem] border border-border bg-card p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Characters</p>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{counts.characters}</p>
-            </div>
+            {firstTile ? (
+              <div
+                className={`rounded-[1rem] border bg-card p-4 ${
+                  emphasizeMetric === firstTile.key ? "border-primary/40 ring-1 ring-primary/15" : "border-border"
+                }`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  {firstTile.label}
+                </p>
+                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{firstTile.value}</p>
+              </div>
+            ) : null}
 
-            <div className="rounded-[1rem] border border-border bg-card p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Without spaces</p>
-              <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{counts.charactersNoSpaces}</p>
+            {secondTile ? (
+              <div
+                className={`rounded-[1rem] border bg-card p-4 ${
+                  emphasizeMetric === secondTile.key ? "border-primary/40 ring-1 ring-primary/15" : "border-border"
+                }`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  {secondTile.label}
+                </p>
+                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{secondTile.value}</p>
+              </div>
+            ) : null}
+
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+              {pairA.map((tile) => (
+                <div
+                  key={tile.key}
+                  className={`rounded-[1rem] border bg-card p-4 ${
+                    emphasizeMetric === tile.key ? "border-primary/40 ring-1 ring-primary/15" : "border-border"
+                  }`}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{tile.label}</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{tile.value}</p>
+                </div>
+              ))}
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-              <div className="rounded-[1rem] border border-border bg-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Words</p>
-                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{counts.words}</p>
-              </div>
-
-              <div className="rounded-[1rem] border border-border bg-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Sentences</p>
-                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{counts.sentences}</p>
-              </div>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-              <div className="rounded-[1rem] border border-border bg-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Paragraphs</p>
-                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{counts.paragraphs}</p>
-              </div>
-
-              <div className="rounded-[1rem] border border-border bg-card p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Reading time</p>
-                <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{counts.readingLabel}</p>
-              </div>
+              {pairB.map((tile) => (
+                <div
+                  key={tile.key}
+                  className={`rounded-[1rem] border bg-card p-4 ${
+                    emphasizeMetric === tile.key ? "border-primary/40 ring-1 ring-primary/15" : "border-border"
+                  }`}
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">{tile.label}</p>
+                  <p className="mt-2 text-3xl font-semibold tracking-tight text-foreground">{tile.value}</p>
+                </div>
+              ))}
             </div>
           </div>
         </aside>
@@ -124,5 +214,3 @@ export default function CharacterCounter() {
     </section>
   );
 }
-
-

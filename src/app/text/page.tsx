@@ -2,8 +2,13 @@ import Link from "next/link";
 
 import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS } from "@/lib/tools/registry";
+import {
+  WORD_COUNTER_HUB_PATH,
+  WORD_COUNTER_LANDINGS_ANCHOR_ID,
+  getWordCounterLandingNavHighlights,
+  getWordCounterLandingNavItems,
+} from "@/lib/word-counter-landings/registry";
 import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 43200;
@@ -39,7 +44,12 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
   );
 }
 
+const highlightSet = new Set(getWordCounterLandingNavHighlights().map((item) => item.slug));
+
 export default function TextPage() {
+  const navHighlights = getWordCounterLandingNavHighlights();
+  const navRest = getWordCounterLandingNavItems().filter((item) => !highlightSet.has(item.slug));
+
   return (
     <div className="space-y-10 pb-4">
       {/* Header */}
@@ -60,13 +70,63 @@ export default function TextPage() {
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Focused utilities for analyzing copy, converting case, counting characters, and transforming text — all browser-based with no sign-up needed.
         </p>
-        <div className="mt-6 flex items-start gap-3 rounded-2xl border border-success/25 bg-success-soft px-4 py-3 max-w-xl">
-          <span className="mt-0.5 text-base leading-none">🔒</span>
-          <p className="text-sm leading-6 text-success-soft-foreground">
-            <strong className="font-semibold">Private by design.</strong>{" "}
-            All text processing runs in your browser — nothing is stored or sent to our servers.
-          </p>
+        <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">
+          Need word limits, reading time, or audience-specific guides? Jump to{" "}
+          <Link href={`#${WORD_COUNTER_LANDINGS_ANCHOR_ID}`} className="font-medium text-primary hover:underline">
+            word and character entry points
+          </Link>{" "}
+          below, or open the neutral{" "}
+          <Link href={WORD_COUNTER_HUB_PATH} className="font-medium text-primary hover:underline">
+            character counter
+          </Link>
+          .
+        </p>
+      </section>
+
+      <section
+        id={WORD_COUNTER_LANDINGS_ANCHOR_ID}
+        className="scroll-mt-8 rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8"
+      >
+        <h2 className="text-xl font-semibold tracking-tight text-foreground">Word, character, and reading-time entry points</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+          These pages share the same live counter with different titles, FAQs, and examples so you can land on the intent that matches your search—essays, SEO, limits, or “how many words is…”.
+        </p>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">
+          <Link href={WORD_COUNTER_HUB_PATH} className="font-medium text-primary hover:underline">
+            Character counter hub
+          </Link>{" "}
+          keeps neutral copy; the links here add context for specific workflows.
+        </p>
+
+        <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">Popular</h3>
+        <div className="mt-3 flex flex-wrap gap-2">
+          {navHighlights.map((item) => (
+            <Link
+              key={item.slug}
+              href={item.href}
+              className="rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary/25 hover:bg-primary-soft hover:text-primary"
+            >
+              {item.title}
+            </Link>
+          ))}
         </div>
+
+        <details className="mt-8 rounded-[1.25rem] border border-border bg-background p-4 sm:p-5">
+          <summary className="cursor-pointer text-sm font-semibold text-foreground">
+            Show all entry points ({navRest.length} more)
+          </summary>
+          <div className="mt-4 flex max-h-[min(24rem,55vh)] flex-wrap gap-2 overflow-y-auto pr-1">
+            {navRest.map((item) => (
+              <Link
+                key={item.slug}
+                href={item.href}
+                className="rounded-full border border-border/80 bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
+              >
+                {item.title}
+              </Link>
+            ))}
+          </div>
+        </details>
       </section>
 
       {/* Tool grid */}

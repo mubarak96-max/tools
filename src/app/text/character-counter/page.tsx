@@ -8,6 +8,10 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { PrivacyNote } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS, getRelatedFreeTools } from "@/lib/tools/registry";
+import {
+  WORD_COUNTER_LANDINGS_ANCHOR_ID,
+  getWordCounterLandingNavHighlights,
+} from "@/lib/word-counter-landings/registry";
 
 export const revalidate = 43200;
 
@@ -95,6 +99,7 @@ function buildCharacterCounterJsonLd() {
 }
 
 export default function CharacterCounterPage() {
+  const wordCounterNav = getWordCounterLandingNavHighlights();
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Text", path: "/text" },
@@ -170,6 +175,29 @@ export default function CharacterCounterPage() {
             <li>Checking draft structure before editing or summarizing</li>
           </ul>
         </div>
+      </section>
+
+      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">More ways to use this counter</h2>
+        <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+          The same metrics power intent-specific pages—essay limits, SEO snippets, reading time, and more. Open any link for tailored guidance, or browse the full list from the text tools index.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {wordCounterNav.map((item) => (
+            <Link
+              key={item.slug}
+              href={item.href}
+              className="rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary/25 hover:bg-primary-soft hover:text-primary"
+            >
+              {item.title}
+            </Link>
+          ))}
+        </div>
+        <p className="mt-5 text-sm text-muted-foreground">
+          <Link href={`/text#${WORD_COUNTER_LANDINGS_ANCHOR_ID}`} className="font-medium text-primary hover:underline">
+            All word counter entry points on the Text tools page →
+          </Link>
+        </p>
       </section>
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
