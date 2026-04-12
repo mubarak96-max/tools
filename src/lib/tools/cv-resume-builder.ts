@@ -2,6 +2,35 @@ export const CV_RESUME_BUILDER_STORAGE_KEY = "findmytool.free-cv-resume-builder.
 
 export type ResumeTemplate = "classic" | "split" | "compact";
 
+export type FontFamily = "inter" | "georgia" | "mono";
+
+export type SectionKey =
+  | "summary"
+  | "workExperience"
+  | "education"
+  | "skills"
+  | "languages"
+  | "projects"
+  | "certifications"
+  | "customSections";
+
+export const DEFAULT_SECTION_ORDER: SectionKey[] = [
+  "summary",
+  "workExperience",
+  "education",
+  "skills",
+  "languages",
+  "projects",
+  "certifications",
+  "customSections",
+];
+
+export const CV_RESUME_FONT_OPTIONS: Array<{ value: FontFamily; label: string; fontFamily: string }> = [
+  { value: "inter", label: "Inter", fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif" },
+  { value: "georgia", label: "Georgia", fontFamily: "Georgia, ui-serif, serif" },
+  { value: "mono", label: "Mono", fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" },
+];
+
 export interface ResumePersonalDetails {
   fullName: string;
   role: string;
@@ -10,6 +39,8 @@ export interface ResumePersonalDetails {
   location: string;
   website: string;
   linkedIn: string;
+  github: string;
+  twitter: string;
   photoDataUrl: string;
 }
 
@@ -31,6 +62,7 @@ export interface ResumeEducation {
   location: string;
   startDate: string;
   endDate: string;
+  isCurrent: boolean;
   notesText: string;
 }
 
@@ -44,6 +76,8 @@ export interface ResumeProject {
   id: string;
   name: string;
   link: string;
+  startDate: string;
+  endDate: string;
   summary: string;
 }
 
@@ -63,6 +97,7 @@ export interface ResumeCustomSection {
 export interface ResumeBuilderSettings {
   template: ResumeTemplate;
   accentColor: string;
+  fontFamily: FontFamily;
   fontScale: number;
   showPhoto: boolean;
   showSummary: boolean;
@@ -71,6 +106,7 @@ export interface ResumeBuilderSettings {
   showProjects: boolean;
   showCertifications: boolean;
   showCustomSections: boolean;
+  sectionOrder: SectionKey[];
 }
 
 export interface ResumeDocument {
@@ -115,6 +151,7 @@ export function createEmptyEducation(): ResumeEducation {
     location: "",
     startDate: "",
     endDate: "",
+    isCurrent: false,
     notesText: "",
   };
 }
@@ -132,6 +169,8 @@ export function createEmptyProject(): ResumeProject {
     id: createResumeId("proj"),
     name: "",
     link: "",
+    startDate: "",
+    endDate: "",
     summary: "",
   };
 }
@@ -163,6 +202,8 @@ export function createEmptyResumeDocument(): ResumeDocument {
       location: "",
       website: "",
       linkedIn: "",
+      github: "",
+      twitter: "",
       photoDataUrl: "",
     },
     summary: "",
@@ -176,6 +217,7 @@ export function createEmptyResumeDocument(): ResumeDocument {
     settings: {
       template: "classic",
       accentColor: "#2563EB",
+      fontFamily: "inter",
       fontScale: 100,
       showPhoto: true,
       showSummary: true,
@@ -184,6 +226,7 @@ export function createEmptyResumeDocument(): ResumeDocument {
       showProjects: true,
       showCertifications: true,
       showCustomSections: true,
+      sectionOrder: [...DEFAULT_SECTION_ORDER],
     },
     updatedAt: new Date().toISOString(),
   };
@@ -199,6 +242,8 @@ export function createSampleResumeDocument(): ResumeDocument {
       location: "Austin, Texas",
       website: "averymorgan.design",
       linkedIn: "linkedin.com/in/averymorgan",
+      github: "github.com/averymorgan",
+      twitter: "@averymorgan",
       photoDataUrl: "",
     },
     summary:
@@ -235,6 +280,7 @@ export function createSampleResumeDocument(): ResumeDocument {
         location: "Seattle, WA",
         startDate: "2013-09",
         endDate: "2017-06",
+        isCurrent: false,
         notesText: "Graduated with honors. Focus on human-centered design and digital product systems.",
       },
     ],
@@ -265,6 +311,8 @@ export function createSampleResumeDocument(): ResumeDocument {
         id: createResumeId("proj"),
         name: "Design System Rollout",
         link: "https://portfolio.example.com/design-system",
+        startDate: "2021-03",
+        endDate: "2022-01",
         summary:
           "Planned and launched a multi-team component system that standardized UI patterns across three core products.",
       },
@@ -288,6 +336,7 @@ export function createSampleResumeDocument(): ResumeDocument {
     settings: {
       template: "classic",
       accentColor: "#2563EB",
+      fontFamily: "inter",
       fontScale: 100,
       showPhoto: true,
       showSummary: true,
@@ -296,6 +345,7 @@ export function createSampleResumeDocument(): ResumeDocument {
       showProjects: true,
       showCertifications: true,
       showCustomSections: true,
+      sectionOrder: [...DEFAULT_SECTION_ORDER],
     },
     updatedAt: new Date().toISOString(),
   };
@@ -349,22 +399,22 @@ export const CV_RESUME_TEMPLATE_OPTIONS: Array<{
   label: string;
   description: string;
 }> = [
-  {
-    value: "classic",
-    label: "Classic",
-    description: "Single-column layout focused on ATS readability.",
-  },
-  {
-    value: "split",
-    label: "Split",
-    description: "Sidebar layout with contact details, skills, and languages separated.",
-  },
-  {
-    value: "compact",
-    label: "Compact",
-    description: "Dense modern layout that fits more content on one page.",
-  },
-];
+    {
+      value: "classic",
+      label: "Classic",
+      description: "Single-column layout focused on ATS readability.",
+    },
+    {
+      value: "split",
+      label: "Split",
+      description: "Sidebar layout with contact details, skills, and languages separated.",
+    },
+    {
+      value: "compact",
+      label: "Compact",
+      description: "Dense modern layout that fits more content on one page.",
+    },
+  ];
 
 export const CV_RESUME_ACCENT_COLORS = [
   "#2563EB",
@@ -374,3 +424,11 @@ export const CV_RESUME_ACCENT_COLORS = [
   "#BE123C",
   "#1F2937",
 ];
+
+export function computeSummaryHint(summary: string): string {
+  const chars = summary.length;
+  const sentences = summary.trim().length === 0
+    ? 0
+    : summary.trim().split(/[.!?]+(?:\s|$)/).filter((s) => s.trim().length > 0).length;
+  return `${sentences} sentence${sentences === 1 ? "" : "s"} / ${chars} chars — recruiters prefer 3–5 sentences`;
+}

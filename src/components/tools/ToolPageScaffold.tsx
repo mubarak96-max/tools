@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { getRelatedFreeTools } from "@/lib/tools/registry";
 import { FREE_TOOLS } from "@/lib/tools/registry";
 
@@ -42,11 +43,9 @@ export function RelatedToolsSection({
               <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
                 {tool.name}
               </h3>
-              {tool.icon && (
-                <span className="shrink-0 rounded-md border border-border bg-muted px-1.5 py-0.5 text-[10px] font-bold text-muted-foreground">
-                  {tool.icon}
-                </span>
-              )}
+              <div className="shrink-0 rounded-md border border-border bg-muted p-1.5">
+                <FreeToolIcon tool={tool} size={16} />
+              </div>
             </div>
             <p className="text-xs leading-5 text-muted-foreground line-clamp-2">{tool.description}</p>
           </Link>

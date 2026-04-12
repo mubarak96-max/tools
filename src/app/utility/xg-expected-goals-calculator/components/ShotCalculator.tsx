@@ -73,17 +73,6 @@ export default function ShotCalculator() {
 
     return (
         <div className="space-y-8">
-            {/* Header */}
-            <div className="text-center">
-                <h1 className="text-3xl font-bold text-foreground mb-2">
-                    Expected Goals (xG) Calculator
-                </h1>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Calculate the probability of scoring from any position on the pitch.
-                    Click on the pitch to place a shot, then adjust the parameters to see how different factors affect xG.
-                </p>
-            </div>
-
             {/* Controls */}
             <div className="flex flex-wrap gap-2 justify-center">
                 <button

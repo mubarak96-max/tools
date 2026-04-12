@@ -11,7 +11,7 @@ export const revalidate = 1800;
 export const metadata: Metadata = buildMetadata({
   title: 'All AI Tools & Software Directory (2026)',
   description:
-    'Browse our complete directory of top-rated AI tools and software platforms, thoroughly analyzed by AI.',
+    'Browse our complete directory of top-rated AI tools and software platforms.',
   path: '/tools',
 });
 

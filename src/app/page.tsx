@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
 import type { FreeToolMeta } from "@/types/tools";
@@ -14,13 +15,13 @@ export const metadata = buildMetadata({
 });
 
 const MOST_USED_TOOL_HREFS = [
+  "/utility/xg-expected-goals-calculator",
   "/text/convert-image-to-text",
   "/pdf/merge-pdf",
   "/image/convert-image-to-base64",
   "/text/ascii-art-generator",
   "/text/character-counter",
   "/text/case-converter",
-  "/image/flip-image-online",
   "/finance/salary-calculator",
 ];
 
@@ -34,33 +35,21 @@ const TRUST_ITEMS = [
   { icon: "🌐", label: "Works in any browser" },
 ];
 
-function ToolCard({
-  name,
-  href,
-  description,
-  icon,
-}: {
-  name: string;
-  href: string;
-  description: string;
-  icon?: string;
-}) {
+function ToolCard({ tool }: { tool: FreeToolMeta }) {
   return (
     <Link
-      href={href}
+      href={tool.href}
       className="group flex flex-col gap-3 border-t border-border/60 py-5 transition-colors hover:text-primary"
     >
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
-          {name}
+          {tool.name}
         </h3>
-        {icon ? (
-          <span className="shrink-0 rounded-lg border border-border bg-muted px-2 py-1 text-[10px] font-bold text-muted-foreground">
-            {icon}
-          </span>
-        ) : null}
+        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
+          <FreeToolIcon tool={tool} size={18} />
+        </div>
       </div>
-      <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{description}</p>
+      <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
         Open tool →
       </span>
@@ -100,13 +89,7 @@ function CategorySection({
       </div>
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {visible.map((tool) => (
-          <ToolCard
-            key={tool.href}
-            name={tool.name}
-            href={tool.href}
-            description={tool.description}
-            icon={tool.icon}
-          />
+          <ToolCard key={tool.href} tool={tool} />
         ))}
       </div>
     </section>
@@ -169,13 +152,7 @@ export default function Home() {
         </div>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {mostUsedTools.map((tool) => (
-            <ToolCard
-              key={tool.href}
-              name={tool.name}
-              href={tool.href}
-              description={tool.description}
-              icon={tool.icon}
-            />
+            <ToolCard key={tool.href} tool={tool} />
           ))}
         </div>
       </section>

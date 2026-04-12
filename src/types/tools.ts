@@ -126,5 +126,8 @@ export interface FreeToolMeta {
   href: string;
   description: string;
   category: "Finance" | "Converter" | "Utility" | "Text" | "AI" | "Tailwind" | "Image" | "PDF" | "Real Estate" | "Construction" | "Health";
+  /** Short label for compact badges (legacy); prefer Iconify via `iconify` or automatic resolver */
   icon?: string;
+  /** Optional Iconify id (e.g. lucide:wallet) — overrides slug/title rules when set */
+  iconify?: string;
 }

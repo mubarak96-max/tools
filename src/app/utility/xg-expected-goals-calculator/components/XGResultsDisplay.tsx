@@ -150,7 +150,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                     <p>• xG values range from 0.01 (1%) to 0.99 (99%)</p>
                     <p>• An xG of 0.1 means this shot scores 1 in 10 times on average</p>
                     <p>• Professional players typically convert 10-15% of their total xG</p>
-                    <p>• Penalties have an xG of ~0.85 (85% conversion rate)</p>
+                    <p>• Penalties are often modeled around ~0.76–0.79 xG depending on the provider</p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { FREE_TOOLS } from "@/lib/tools/registry";
@@ -26,11 +27,9 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
         <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
           {tool.name}
         </h2>
-        {tool.icon ? (
-          <span className="shrink-0 rounded-lg border border-border bg-muted px-2 py-1 text-[10px] font-bold text-muted-foreground">
-            {tool.icon}
-          </span>
-        ) : null}
+        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
+          <FreeToolIcon tool={tool} size={18} />
+        </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">

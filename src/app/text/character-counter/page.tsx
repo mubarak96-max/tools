@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 
 import CharacterCounter from "@/app/text/character-counter/components/CharacterCounter";
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -187,7 +188,7 @@ export default function CharacterCounterPage() {
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related text tools</h2>
           <Link href="/text" className="text-sm font-medium text-primary hover:underline">
-            All text tools â†’
+            All text tools →
           </Link>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -199,9 +200,9 @@ export default function CharacterCounterPage() {
             >
               <div className="flex items-center justify-between gap-2 mb-2">
                 <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{tool.name}</h3>
-                {tool.icon && (
-                  <span className="shrink-0 rounded-md border border-border bg-muted px-1.5 py-0.5 text-[10px] font-bold text-muted-foreground">{tool.icon}</span>
-                )}
+                <div className="shrink-0 rounded-md border border-border bg-muted p-1.5">
+                  <FreeToolIcon tool={tool} size={16} />
+                </div>
               </div>
               <p className="text-xs leading-5 text-muted-foreground line-clamp-2">{tool.description}</p>
             </Link>

@@ -6,6 +6,9 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
+import { FreeToolIcon } from '@/components/tools/FreeToolIcon';
+import { FREE_TOOLS } from '@/lib/tools/registry';
+
 const NAV_GROUPS = [
   {
     label: 'Text',
@@ -93,6 +96,9 @@ export default function Header() {
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
+  // Helper to get full tool data for icons
+  const getToolMeta = (href: string) => FREE_TOOLS.find(t => t.href === href);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/80 bg-card/92 backdrop-blur-xl">
       <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
@@ -136,16 +142,24 @@ export default function Header() {
                       </Link>
                       {group.tools.length > 0 ? (
                         <ul className="space-y-1.5">
-                          {group.tools.map((tool) => (
-                            <li key={tool.href}>
-                              <Link
-                                href={tool.href}
-                                className="block text-[13px] text-slate-600 hover:text-primary transition-colors leading-snug"
-                              >
-                                {tool.name}
-                              </Link>
-                            </li>
-                          ))}
+                          {group.tools.map((tool) => {
+                            const meta = getToolMeta(tool.href);
+                            return (
+                              <li key={tool.href}>
+                                <Link
+                                  href={tool.href}
+                                  className="flex items-center gap-2 text-[13px] text-slate-600 hover:text-primary transition-colors leading-snug"
+                                >
+                                  {meta && (
+                                    <span className="shrink-0 opacity-70">
+                                      <FreeToolIcon tool={meta} size={14} />
+                                    </span>
+                                  )}
+                                  {tool.name}
+                                </Link>
+                              </li>
+                            );
+                          })}
                           <li>
                             <Link
                               href={group.href}
@@ -212,23 +226,29 @@ export default function Header() {
                 </Link>
                 {group.tools.length > 0 && (
                   <ul className="flex flex-wrap gap-x-4 gap-y-1.5">
-                    {group.tools.map((tool) => (
-                      <li key={tool.href}>
-                        <Link
-                          href={tool.href}
-                          className="text-[13px] text-slate-600 hover:text-primary transition-colors"
-                        >
-                          {tool.name}
-                        </Link>
-                      </li>
-                    ))}
+                    {group.tools.map((tool) => {
+                      const meta = getToolMeta(tool.href);
+                      return (
+                        <li key={tool.href}>
+                          <Link
+                            href={tool.href}
+                            className="flex items-center gap-1.5 text-[13px] text-slate-600 hover:text-primary transition-colors"
+                          >
+                            {meta && (
+                              <span className="shrink-0 opacity-70">
+                                <FreeToolIcon tool={meta} size={13} />
+                              </span>
+                            )}
+                            {tool.name}
+                          </Link>
+                        </li>
+                      );
+                    })}
                   </ul>
                 )}
               </div>
             ))}
-            <div className="border-t border-border/60 pt-4">
-              <p className="text-xs text-muted-foreground">Browser-based · No uploads · Free forever</p>
-            </div>
+
           </div>
         </div>
       )}

@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { FREE_TOOLS } from "@/lib/tools/registry";
 
@@ -59,9 +60,9 @@ export default function AIPage() {
                     {tool.name}
                   </h2>
                 </div>
-                <span className="rounded-[0.9rem] border border-border bg-background px-3 py-2 text-xs font-semibold text-muted-foreground">
-                  {tool.icon}
-                </span>
+                <div className="rounded-[0.9rem] border border-border bg-background p-2.5">
+                  <FreeToolIcon tool={tool} size={20} />
+                </div>
               </div>
               <p className="mt-4 text-sm leading-6 text-muted-foreground">{tool.description}</p>
             </Link>

@@ -1,5 +1,5 @@
-﻿import Link from "next/link";
-
+import Link from "next/link";
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
 
@@ -83,10 +83,15 @@ export default async function SitemapPage() {
                   <Link
                     key={tool.href}
                     href={tool.href}
-                    className="rounded-[1rem] border border-border bg-card px-4 py-4 text-sm transition-colors hover:border-primary/20 hover:bg-primary-soft"
+                    className="flex flex-col rounded-[1rem] border border-border bg-card px-4 py-4 text-sm transition-colors hover:border-primary/20 hover:bg-primary-soft"
                   >
-                    <div className="font-semibold text-foreground">{tool.name}</div>
-                    <div className="mt-2 leading-6 text-muted-foreground">{tool.description}</div>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="font-semibold text-foreground">{tool.name}</div>
+                      <div className="shrink-0 rounded-lg border border-border bg-muted p-1.5">
+                        <FreeToolIcon tool={tool} size={16} />
+                      </div>
+                    </div>
+                    <div className="mt-2 leading-6 text-muted-foreground line-clamp-2">{tool.description}</div>
                   </Link>
                 ))}
               </div>

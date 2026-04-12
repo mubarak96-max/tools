@@ -22,7 +22,8 @@ export const FREE_TOOLS: FreeToolMeta[] = [
   {
     name: "Expected Goals (xG) Calculator",
     href: "/utility/xg-expected-goals-calculator",
-    description: "Calculate Expected Goals (xG) for football shots with interactive pitch visualization and accurate statistical modeling.",
+    description:
+      "Free xG calculator for football and soccer: interactive pitch, heatmap, and shot parameters for expected goals modelling.",
     category: "Utility",
     icon: "XG",
   },
