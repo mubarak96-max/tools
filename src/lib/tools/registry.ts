@@ -784,6 +784,13 @@ export const FREE_TOOLS: FreeToolMeta[] = [
     icon: "H-BP",
   },
   {
+    name: "Glucose Converter",
+    href: "/health/glucose-converter",
+    description: "Convert blood glucose and blood sugar readings between mg/dL and mmol/L with quick target references.",
+    category: "Health",
+    icon: "H-GLU",
+  },
+  {
     name: "Coffee Caffeine Intake Tracker",
     href: "/health/caffeine-calculator",
     description: "Track your total caffeine consumption from coffee, tea, and sodas.",

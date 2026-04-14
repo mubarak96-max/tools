@@ -26,7 +26,7 @@ const MOST_USED_TOOL_HREFS = [
   "/finance/salary-calculator",
 ];
 
-const CATEGORY_ORDER = ["Text", "Image", "PDF", "Finance", "Real Estate", "Tailwind", "Converter", "Utility", "AI"] as const;
+const CATEGORY_ORDER = ["Text", "Image", "PDF", "Finance", "Real Estate", "Health", "Tailwind", "Converter", "Utility", "AI"] as const;
 
 const TRUST_ITEMS = [
   { icon: "⚡", label: "Instant results" },

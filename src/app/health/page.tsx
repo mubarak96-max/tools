@@ -1,0 +1,102 @@
+import Link from "next/link";
+
+import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
+import { buildMetadata } from "@/lib/seo/metadata";
+import { FREE_TOOLS } from "@/lib/tools/registry";
+import type { FreeToolMeta } from "@/types/tools";
+
+export const revalidate = 43200;
+
+export const metadata = buildMetadata({
+  title: "Health Tools for BMI, Glucose, Blood Pressure, Fitness, and Tracking",
+  description:
+    "Use browser-based health tools for blood glucose conversion, BMI, blood pressure, calorie needs, hydration, fitness pacing, and more.",
+  path: "/health",
+});
+
+const HEALTH_TOOLS = FREE_TOOLS.filter((tool) => tool.category === "Health" || tool.href === "/utility/bmi-calculator");
+
+function ToolCard({ tool }: { tool: FreeToolMeta }) {
+  return (
+    <Link
+      href={tool.href}
+      className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25 hover:shadow-[0_4px_20px_-8px_rgba(79,70,229,0.18)]"
+    >
+      <div className="flex items-center justify-between gap-3">
+        <h2 className="text-base font-semibold text-foreground transition-colors group-hover:text-primary leading-snug">
+          {tool.name}
+        </h2>
+        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
+          <FreeToolIcon tool={tool} size={18} />
+        </div>
+      </div>
+      <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
+      <span className="mt-auto text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+        Open tool {"->"}
+      </span>
+    </Link>
+  );
+}
+
+export default function HealthPage() {
+  return (
+    <div className="space-y-10 pb-4">
+      <section className="rounded-[2rem] border border-border/60 bg-card px-8 py-10 sm:px-10 sm:py-12">
+        <nav aria-label="Breadcrumb" className="mb-6">
+          <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+            <li><Link href="/" className="hover:text-primary">Home</Link></li>
+            <li>/</li>
+            <li className="font-medium text-foreground">Health Tools</li>
+          </ol>
+        </nav>
+        <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+          Health · {HEALTH_TOOLS.length} tools
+        </p>
+        <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+          Health tools built for quick checks, clear interpretation, and safer context.
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
+          Blood glucose, blood pressure, BMI, calorie, hydration, fitness, and tracking tools that run in your browser.
+        </p>
+        <p className="mt-4 max-w-2xl rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-950">
+          These tools are for education, planning, and self-tracking. They do not replace diagnosis, treatment, or individualized medical advice.
+        </p>
+      </section>
+
+      <section>
+        <div className="mb-5 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-foreground">
+            All Health Tools
+            <span className="ml-2 text-sm font-normal text-muted-foreground">({HEALTH_TOOLS.length})</span>
+          </h2>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {HEALTH_TOOLS.map((tool) => (
+            <ToolCard key={tool.href} tool={tool} />
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8">
+        <h2 className="mb-4 text-lg font-semibold text-foreground">Explore other categories</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { label: "Finance Tools", href: "/finance" },
+            { label: "Utility Tools", href: "/utility" },
+            { label: "Real Estate Tools", href: "/real-estate" },
+            { label: "Text Tools", href: "/text" },
+            { label: "Image Tools", href: "/image" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -6,7 +6,6 @@ import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
 
@@ -14,20 +13,20 @@ const PAGE_PATH = "/finance/car-loan-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Free Car Loan Calculator – Monthly Auto Loan Payment Estimator",
+  title: "Car Loan Calculator | Monthly Payment, Interest, and Affordability",
   description:
-    "Calculate your monthly car loan payment instantly. Enter vehicle price, down payment, trade-in value, and interest rate. Works for new and used cars in USD, AED, GBP, EUR, and INR.",
+    "Estimate your car loan EMI or monthly payment, total interest, total repayment, and what car you can afford. Includes down payment, trade-in, and term comparison support.",
   keywords: [
     "car loan calculator",
     "auto loan calculator",
     "car payment calculator",
+    "car EMI calculator",
+    "car affordability calculator",
     "monthly car payment calculator",
     "used car loan calculator",
     "car loan calculator with trade in",
-    "car financing calculator",
-    "how much will my car payment be",
-    "car loan interest calculator",
-    "car EMI calculator",
+    "Dubai car loan calculator",
+    "UAE car EMI calculator",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -35,52 +34,47 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free Car Loan Calculator – Monthly Auto Loan Payment Estimator",
+    title: "Car Loan Calculator",
     description:
-      "Estimate monthly auto loan payments with down payment and trade-in support across major currencies.",
+      "Estimate monthly car payments, total loan cost, and what car budget fits your monthly plan.",
   },
 };
 
 const faq = [
   {
-    question: "How do I calculate car loan interest manually?",
+    question: "What is a car loan EMI?",
     answer:
-      "To calculate car loan interest manually, divide your annual interest rate by 12 to get your monthly rate. Multiply this by your remaining loan balance to see your interest cost for that month. However, because car loans are amortized, the ratio of interest to principal changes every month.",
+      "EMI means Equated Monthly Instalment. It is the fixed monthly payment used to repay a car loan over time. Each EMI usually includes both principal repayment and interest.",
   },
   {
-    question: "What is APR on a car loan?",
+    question: "How is car loan EMI calculated?",
     answer:
-      "Annual Percentage Rate (APR) includes the interest rate plus any lender fees or closing costs associated with the loan. While the interest rate sets your monthly interest cost, the APR reflects the true total cost of borrowing.",
+      "Car loan EMI depends on the amount financed, annual interest rate, and loan tenure in months. The standard amortization formula uses the principal, monthly interest rate, and number of payments to produce a fixed monthly payment.",
   },
   {
-    question: "What credit score do I need for a car loan?",
+    question: "What affects my monthly car payment the most?",
     answer:
-      "Generally, a score of 660 or higher is needed for standard rates. Scores above 720 typically qualify for the best 'prime' rates, while those below 600 may face higher interest 'subprime' loans or require a larger down payment.",
+      "The biggest drivers are loan amount, down payment, trade-in value, annual interest rate, and tenure. A bigger down payment reduces the loan immediately, while a longer tenure lowers EMI but usually increases total interest paid.",
   },
   {
-    question: "Can I get a car loan with no down payment?",
+    question: "What is a good down payment for a car loan?",
     answer:
-      "Yes, 'zero-down' financing is possible for buyers with excellent credit. However, this often leads to higher monthly payments and increases the risk of being 'upside-down' (owing more than the car is worth) as the vehicle depreciates.",
+      "A larger down payment generally improves the loan by reducing both monthly payment and interest cost. Many buyers aim to put meaningful cash down rather than financing the entire purchase price, especially because cars depreciate quickly.",
   },
   {
     question: "How much car can I afford?",
     answer:
-      "A common rule of thumb is the 20/4/10 rule: put down 20%, finance for no more than 4 years, and ensure total monthly vehicle costs (including insurance) don't exceed 10% of your gross monthly income.",
+      "A common planning guide is keeping the monthly car payment within roughly 20% of gross monthly income, with 25% acting as a stretched upper band for many budgets. This is not a lender rule or guarantee; it is a budgeting checkpoint.",
   },
   {
-    question: "Is it better to finance through a dealer or a bank?",
+    question: "Can I calculate a car budget from my target EMI?",
     answer:
-      "Banks and credit unions often offer lower base rates for pre-approval. Dealers, however, may offer promotional 0% or low-interest financing subsidized by the manufacturer for specific new models.",
+      "Yes. Reverse mode lets you start with the monthly payment you want to stay within, then estimate the maximum loan amount and total car budget after adding down payment and trade-in value.",
   },
   {
-    question: "How does a car loan calculator work?",
+    question: "Are these results exact lender quotes?",
     answer:
-      "It subtracts down payment and trade-in value from the vehicle price, then calculates monthly repayment from the financed amount, interest rate, and loan term using a standard amortization formula.",
-  },
-  {
-    question: "What happens if I miss a car loan payment?",
-    answer:
-      "Missing a payment typically results in a late fee and can damage your credit score after 30 days. Continued non-payment may lead to vehicle repossession, as the car serves as collateral for the loan.",
+      "No. This calculator is for planning only. Actual financing depends on lender fees, approval criteria, credit profile, car age, dealer promotions, insurance, and local market conditions.",
   },
 ];
 
@@ -88,22 +82,23 @@ function buildCarLoanApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Car Loan Calculator",
-    "applicationCategory": "FinanceApplication",
-    "operatingSystem": "Web",
-    "offers": {
+    name: "Car Loan Calculator",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    offers: {
       "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
+      price: "0",
+      priceCurrency: "USD",
     },
-    "description":
-      "Free car loan calculator with down payment and trade-in support for new and used cars. Estimate monthly auto loan payments instantly.",
-    "featureList": [
-      "New and used car loan calculation",
+    description:
+      "Free car loan calculator for monthly payment, total interest, affordability planning, reverse EMI budgeting, and term comparison.",
+    featureList: [
+      "Monthly car loan payment calculation",
+      "Total interest and total repayment breakdown",
       "Down payment and trade-in support",
-      "Multi-currency support (USD, AED, GBP, EUR, INR)",
-      "Total loan cost breakdown",
-      "Monthly principal and interest estimation",
+      "Reverse mode to estimate affordable car budget from target EMI",
+      "Loan term comparison",
+      "Multi-currency support including AED",
     ],
   };
 }
@@ -115,7 +110,6 @@ export default function CarLoanCalculatorPage() {
     { name: "Car Loan Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const carTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
     <div className="space-y-8">
@@ -144,14 +138,15 @@ export default function CarLoanCalculatorPage() {
 
         <div className="max-w-3xl">
           <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            Finance calculator
+            Car finance planning
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             Car Loan Calculator
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            This free **auto loan calculator** lets you estimate monthly payments for new and used vehicles with down payment and trade-in value built in.
-            See how financing changes your real total car cost and explore different loan tenures before you sign a contract.
+            Estimate your monthly car payment, total interest, and total repayment before you sign a finance contract.
+            Use down payment, trade-in, and loan term inputs to test realistic scenarios or switch to reverse mode to
+            ask the more useful question: what car can I actually afford?
           </p>
         </div>
 
@@ -164,66 +159,48 @@ export default function CarLoanCalculatorPage() {
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How a car loan works</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is a car loan EMI?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            A car loan is a legally binding installment agreement used to purchase a vehicle.
-            The **financed amount** is calculated as the vehicle sticker price minus your cash down payment and any credit given for a trade-in vehicle.
-            This principal balance is then repaid over a set number of months, with interest added based on the Annual Percentage Rate (APR).
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The secret to low monthly payments often lies in the balance between the interest rate and the loan term. While a longer term (like 72 or 84 months) makes the car seem more affordable today, it significantly increases the total interest you will pay over the life of the loan.
+            A car loan EMI is the fixed monthly payment used to repay an auto loan over time. Each payment usually
+            includes both principal and interest, which is why the same loan can feel affordable month to month while
+            still becoming expensive in total.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Car loan amortization explained</h2>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How car loan EMI is calculated</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Most car loans use simple interest amortization. This means that in the early months of your loan, a larger portion of your monthly payment goes toward interest. As you pay down the principal balance, the interest charge decreases, and more of your money goes toward ownership.
+            The standard EMI calculation uses:
           </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            By using an **amortization schedule**, you can see exactly how your debt decreases over time. If you decide to make extra payments toward the principal, you can "shorten" the amortization curve, saving hundreds or even thousands in interest charges.
-          </p>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Choosing the right loan tenure</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Shorter tenures (36-48 months) increase the monthly payment but reduce total interest. Longer tenures (72-84 months) lower the monthly bill while increasing the final amount paid.
-            This comparison table shows the dramatic difference interest makes on a standard loan:
-          </p>
-
-          <table className="mt-6 w-full border-collapse overflow-hidden rounded-[1rem] border border-border text-sm">
-            <caption className="mb-3 text-left text-sm text-muted-foreground">
-              Example impact of tenure on a $25,000 loan at 7% APR
-            </caption>
-            <thead className="bg-muted">
-              <tr>
-                <th className="border border-border px-3 py-2 text-left">Tenure</th>
-                <th className="border border-border px-3 py-2 text-left">Monthly Payment</th>
-                <th className="border border-border px-3 py-2 text-left">Total Interest</th>
-                <th className="border border-border px-3 py-2 text-left">Total Cost</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td className="border border-border px-3 py-2">36 months</td><td className="border border-border px-3 py-2">$772</td><td className="border border-border px-3 py-2">$2,791</td><td className="border border-border px-3 py-2">$27,791</td></tr>
-              <tr><td className="border border-border px-3 py-2">48 months</td><td className="border border-border px-3 py-2">$598</td><td className="border border-border px-3 py-2">$3,706</td><td className="border border-border px-3 py-2">$28,706</td></tr>
-              <tr><td className="border border-border px-3 py-2">60 months</td><td className="border border-border px-3 py-2">$495</td><td className="border border-border px-3 py-2">$4,752</td><td className="border border-border px-3 py-2">$29,752</td></tr>
-              <tr><td className="border border-border px-3 py-2">72 months</td><td className="border border-border px-3 py-2">$427</td><td className="border border-border px-3 py-2">$5,731</td><td className="border border-border px-3 py-2">$30,731</td></tr>
-              <tr><td className="border border-border px-3 py-2">84 months</td><td className="border border-border px-3 py-2">$378</td><td className="border border-border px-3 py-2">$6,762</td><td className="border border-border px-3 py-2">$31,762</td></tr>
-            </tbody>
-          </table>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Tips to get a better car loan rate</h2>
-          <ul className="mt-4 space-y-4 text-base leading-7 text-muted-foreground">
-            <li>
-              <strong>Boost Your Credit Score:</strong> Lenders tier their interest rates based on score bands. A score jump from 650 to 700 can often save you 2-3% on your interest rate, which translates to thousands of dollars over a 5-year loan.
-            </li>
-            <li>
-              <strong>Get Pre-Approved:</strong> Visit your local bank or credit union before going to the dealership. Having a pre-approved offer gives you significant leverage during negotiations and prevents the dealer from padding the interest rate.
-            </li>
-            <li>
-              <strong>Maximize Your Down Payment:</strong> Aim for at least 20% down on new cars and 10% on used ones. This reduces the lender's risk and prevents you from having "negative equity" (owing more than the car is worth) the moment you drive off the lot.
-            </li>
-            <li>
-              <strong>Keep the Term Reasonable:</strong> Avoid 84-month (7-year) loans if possible. While the payments are low, the vehicle's value will likely drop faster than the loan balance, making it very difficult to sell or trade the car later.
-            </li>
+          <div className="mt-4 rounded-[1.25rem] border border-border bg-background p-4 font-mono text-sm text-foreground">
+            EMI = P x R x (1 + R)^N / [(1 + R)^N - 1]
+          </div>
+          <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
+            <li><strong className="text-foreground">P:</strong> loan amount after down payment and trade-in value</li>
+            <li><strong className="text-foreground">R:</strong> monthly interest rate</li>
+            <li><strong className="text-foreground">N:</strong> total number of monthly payments</li>
           </ul>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">What affects your car loan EMI?</h2>
+          <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
+            <li><strong className="text-foreground">Loan amount:</strong> a larger loan raises the monthly payment.</li>
+            <li><strong className="text-foreground">Down payment:</strong> more cash upfront lowers the loan and reduces interest.</li>
+            <li><strong className="text-foreground">Interest rate:</strong> even a small rate difference can materially change total cost.</li>
+            <li><strong className="text-foreground">Tenure:</strong> longer loans lower EMI but usually increase total interest paid.</li>
+            <li><strong className="text-foreground">Trade-in value:</strong> credit from an existing vehicle reduces the financed amount.</li>
+          </ul>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Why affordability matters more than EMI alone</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            A lower EMI is not automatically a better loan. Stretching the term can reduce the monthly bill while
+            increasing the total amount paid. That is why this tool pairs EMI with total interest, total repayment, and
+            an optional income-based affordability check. It is meant for financial planning, not just calculation.
+          </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Important disclaimer</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            Results are estimates only. Actual car financing depends on lender fees, approval criteria, vehicle age,
+            credit profile, local regulations, dealer campaigns, insurance, and other charges. Use this calculator to
+            compare options and prepare questions before speaking with a bank, lender, or dealer.
+          </p>
         </div>
       </section>
 
@@ -243,5 +220,3 @@ export default function CarLoanCalculatorPage() {
     </div>
   );
 }
-
-

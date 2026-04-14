@@ -460,6 +460,35 @@ export function buildTextToolCopy(tool: ExactTextTool): ToolCopy {
 export function buildConverterToolCopy(tool: ExactConverterTool): ToolCopy {
   switch (tool.family) {
     case "encoding":
+      if (tool.mode === "base64-encode" || tool.mode === "base64-decode") {
+        return {
+          heading: "What Base64 encoding is used for",
+          paragraphs: [
+            "Base64 converts bytes into ASCII text so data can travel more safely through systems that expect text rather than raw binary. It is commonly used in APIs, email payloads, JSON transports, debugging workflows, and data URLs for small inline assets.",
+            "This page is designed as a practical Base64 utility, not just a one-way encoder. You can switch between encode and decode modes, work with plain text or files, generate data URLs, inspect size overhead, and check whether the decoded output is usable text or a previewable asset.",
+            "Base64 is not encryption. It does not protect secrets; it only changes representation. It is also larger than the original data, so it should be used intentionally rather than as a default transport format for large files.",
+          ],
+          faqs: [
+            {
+              question: "What is Base64 used for?",
+              answer: "Base64 is used when binary data needs to be represented as text, such as in JSON payloads, email attachments, browser data URLs, and debugging or transport workflows where raw bytes are inconvenient.",
+            },
+            {
+              question: "Why is Base64 larger than the original data?",
+              answer: "Base64 maps binary data into a limited text character set, which increases the output size by roughly one-third in many cases. That overhead is the tradeoff for text-safe transport.",
+            },
+            {
+              question: "Is Base64 encryption?",
+              answer: "No. Base64 is encoding, not encryption. Anyone can decode it back to the original content without a secret key.",
+            },
+            {
+              question: "When should I avoid Base64?",
+              answer: "Avoid using Base64 for large files or performance-sensitive pages when a normal file URL or binary transport would work better. The encoded string is bigger and can make HTML, CSS, or payloads heavier.",
+            },
+          ],
+        };
+      }
+
       return {
         heading: `About ${tool.name.toLowerCase()}`,
         paragraphs: [
