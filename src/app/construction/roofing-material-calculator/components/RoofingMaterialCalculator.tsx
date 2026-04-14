@@ -3,6 +3,8 @@
 import React, { useState, useMemo } from "react";
 import { type RoofingInputs, type UnitSystem, calculateRoofing } from "@/lib/tools/roofing-material";
 
+type ShingleProfile = "architectural" | "three-tab" | "wood-shake";
+
 export function RoofingMaterialCalculator() {
   const [inputs, setInputs] = useState<RoofingInputs>({
     system: "imperial",
@@ -10,7 +12,11 @@ export function RoofingMaterialCalculator() {
     baseWidth: 25,
     pitchRise: 4,
     overhang: 1.5,
+    wastePercent: 10,
+    bundlesPerSquare: 3,
   });
+  const [profile, setProfile] = useState<ShingleProfile>("architectural");
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
 
   const updateInput = (key: keyof RoofingInputs, value: any) => {
     setInputs((prev) => ({ ...prev, [key]: value }));
@@ -18,6 +24,39 @@ export function RoofingMaterialCalculator() {
 
   const result = useMemo(() => calculateRoofing(inputs), [inputs]);
   const toggleSystem = (sys: UnitSystem) => updateInput("system", sys);
+  const lengthUnit = inputs.system === "imperial" ? "ft" : "m";
+  const areaUnit = inputs.system === "imperial" ? "sq ft" : "sq m";
+
+  function handleProfileChange(next: ShingleProfile) {
+    setProfile(next);
+    const bundlesPerSquare = next === "wood-shake" ? 4 : 3;
+    updateInput("bundlesPerSquare", bundlesPerSquare);
+  }
+
+  const summaryText = useMemo(() => {
+    return [
+      `Roof area (with waste): ${result.roofAreaWithWaste.toFixed(1)} ${areaUnit}`,
+      `Roof squares: ${result.squares}`,
+      `Bundles needed: ${result.bundles}`,
+      `Underlayment rolls: ${result.underlaymentRolls}`,
+      `Drip edge: ${result.dripEdgeLength} ${lengthUnit}`,
+      `Starter strip: ${result.starterStripLength.toFixed(0)} ${lengthUnit}`,
+      `Ridge cap: ${result.ridgeCapLength.toFixed(0)} ${lengthUnit}`,
+      `Fastener boxes: ${result.fastenerBoxes}`,
+      `Waste factor: ${inputs.wastePercent}%`,
+    ].join("\n");
+  }, [areaUnit, inputs.wastePercent, lengthUnit, result]);
+
+  async function handleCopyEstimate() {
+    try {
+      await navigator.clipboard.writeText(summaryText);
+      setCopyState("copied");
+      window.setTimeout(() => setCopyState("idle"), 1500);
+    } catch {
+      setCopyState("error");
+      window.setTimeout(() => setCopyState("idle"), 1500);
+    }
+  }
 
   return (
     <div className="space-y-6">
@@ -116,6 +155,40 @@ export function RoofingMaterialCalculator() {
                   </span>
                 </div>
               </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <span className="text-sm font-medium text-muted-foreground">
+                  Waste Factor: {inputs.wastePercent}%
+                </span>
+                <input
+                  type="range"
+                  min="5"
+                  max="25"
+                  step="5"
+                  value={inputs.wastePercent}
+                  onChange={(e) => updateInput("wastePercent", Number(e.target.value))}
+                  className="mt-2 w-full accent-primary"
+                />
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <span>Simple 5%</span>
+                  <span>Standard 10%</span>
+                  <span>Complex 15%</span>
+                  <span>Pattern-heavy 20-25%</span>
+                </div>
+              </label>
+
+              <label className="space-y-2 md:col-span-2">
+                <span className="text-sm font-medium text-muted-foreground">Shingle Profile</span>
+                <select
+                  value={profile}
+                  onChange={(e) => handleProfileChange(e.target.value as ShingleProfile)}
+                  className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="architectural">Architectural / dimensional shingles (3 bundles per square)</option>
+                  <option value="three-tab">3-tab shingles (3 bundles per square)</option>
+                  <option value="wood-shake">Wood shakes (4 bundles per square)</option>
+                </select>
+              </label>
             </div>
           </div>
 
@@ -137,15 +210,55 @@ export function RoofingMaterialCalculator() {
               <div className="flex items-center justify-between gap-4 text-sm">
                 <span className="text-muted-foreground">Actual Roof Area</span>
                 <span className="font-medium text-foreground">
-                  {result.roofArea.toFixed(1)} {inputs.system === "imperial" ? "sq ft" : "sq m"}
+                  {result.roofArea.toFixed(1)} {areaUnit}
                 </span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Area with Waste</span>
+                <span className="font-medium text-foreground">{result.roofAreaWithWaste.toFixed(1)} {areaUnit}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Underlayment Rolls</span>
+                <span className="font-medium text-foreground">{result.underlaymentRolls}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Drip Edge</span>
+                <span className="font-medium text-foreground">{result.dripEdgeLength} {lengthUnit}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Starter Strip</span>
+                <span className="font-medium text-foreground">{result.starterStripLength.toFixed(0)} {lengthUnit}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Ridge Cap</span>
+                <span className="font-medium text-foreground">{result.ridgeCapLength.toFixed(0)} {lengthUnit}</span>
+              </div>
+              <div className="flex items-center justify-between gap-4 text-sm">
+                <span className="text-muted-foreground">Fastener Boxes</span>
+                <span className="font-medium text-foreground">{result.fastenerBoxes}</span>
               </div>
             </div>
 
             <div className="mt-6 rounded-[1rem] border border-primary/15 bg-primary-soft p-4">
               <p className="text-xs leading-5 text-primary-soft-foreground">
-                Estimates include a standard 10% waste margin for cutting ridges, valleys, and starter strips.
+                Estimates include your selected waste margin for ridges, valleys, rakes, starter strips, and installation cuts.
               </p>
+            </div>
+            <div className="mt-4 flex gap-2">
+              <button
+                type="button"
+                onClick={handleCopyEstimate}
+                className="rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
+              >
+                {copyState === "copied" ? "Copied" : copyState === "error" ? "Copy failed" : "Copy estimate"}
+              </button>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
+              >
+                Print
+              </button>
             </div>
           </aside>
         </div>
