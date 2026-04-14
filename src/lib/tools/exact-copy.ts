@@ -147,27 +147,41 @@ export function buildTextToolCopy(tool: ExactTextTool): ToolCopy {
     case "stats":
       if (tool.focus === "readability") {
         return {
-          heading: `About ${tool.name.toLowerCase()}`,
+          heading: `How the ${tool.name} Works`,
           paragraphs: [
-            `${tool.description} This is useful when you want to estimate how easy or difficult a draft is to read before publishing it, sharing it with a client, or feeding it into a workflow that needs simpler wording.`,
-            "Paste the text to see sentence length, syllable density, reading ease, and grade-level signals in one place. That makes it easier to spot when copy is too dense, too academic, or not aligned with the audience you want to reach.",
+            "The Flesch-Kincaid readability tests are the gold standard for assessing how easy or difficult a piece of writing is to understand. Originally developed for the US Navy in 1975 by J. Peter Kincaid, the formula evaluates two key metrics: average sentence length and average syllables per word. By combining these, it provides a Reading Ease score (0–100) and a Grade Level estimate.",
+            "Our tool analyzes your text in real-time, calculating four of the most trusted readability algorithms: Flesch-Kincaid, Gunning Fog, Coleman-Liau, and the Automated Readability Index (ARI). Beyond simple scores, it identifies specific sentences that are 'hard' or 'very hard' to read, allowing you to edit with precision for your target audience.",
+            "### Who is this tool for?",
+            "- **Content Writers & Editors**: Keep your writing accessible to a wider audience, reducing bounce rates on blog posts, landing pages, and newsletters.",
+            "- **SEO Professionals**: Ensure your content matches the reading level of the top-ranking pages in your niche to satisfy user intent and algorithm preferences.",
+            "- **Educators & Academics**: Verify that your lesson materials and test questions are reading-level appropriate for your specific grade cohort.",
+            "- **Technical Writers**: Simplify complex manuals, release notes, and documentation to maximize comprehension across all reading abilities.",
+            "### The Formulas",
+            "Understanding the math behind the scores helps in making better editing decisions. Here are the core equations used by this calculator:",
+            "**Flesch Reading Ease:** 206.835 − 1.015 × (words / sentences) − 84.6 × (syllables / words)",
+            "**FK Grade Level:** 0.39 × (words / sentences) + 11.8 × (syllables / words) − 15.59",
+            "Higher Reading Ease scores indicate text that is easier to read, while higher Grade Levels indicate more complex material suited for academic or professional audiences.",
           ],
           faqs: [
             {
-              question: "What does the readability score tell me?",
-              answer: "It gives you a quick estimate of how easy the text is to read based on sentence length and syllable density. It is a useful guide for editing, not an absolute quality judgment.",
+              question: "What is a good Flesch-Kincaid score for blog posts?",
+              answer: "For most online content, aim for a Reading Ease score between 60 and 70 (Standard) and a Grade Level of 8 or 9. This ensures your writing is accessible to the broadest possible audience without losing professional clarity.",
             },
             {
-              question: "What is the Flesch-Kincaid grade level?",
-              answer: "It estimates the reading grade needed to understand the text comfortably. Lower scores are generally easier for a broader audience to read quickly.",
+              question: "What is the difference between Reading Ease and Grade Level?",
+              answer: "Reading Ease is a scale from 0 to 100 where higher numbers mean easier reading. Grade Level (e.g., Grade 8) estimates the years of education required to understand the text. They use similar inputs but different weightings to provide two perspectives on complexity.",
             },
             {
-              question: "Is this useful for blog posts, landing pages, and product copy?",
-              answer: "Yes. It is useful for articles, emails, landing pages, support content, documentation, and any draft where readability affects comprehension or conversion.",
+              question: "How can I lower my Flesch-Kincaid grade level?",
+              answer: "The fastest way to lower your grade level is to split long sentences into two and swap multisyllabic words for simpler synonyms. Our sentence highligher will show you exactly which sentences are dragging your score down.",
             },
             {
-              question: "Should I rewrite text only to improve the score?",
-              answer: "No. Use the score as a signal, then balance it with accuracy, tone, and audience expectations. The best revision is usually clearer, not just shorter.",
+              question: "When should I use Gunning Fog or SMOG instead?",
+              answer: "Gunning Fog is excellent for business and technical writing, while SMOG (Simple Measure of Gobbledygook) is often preferred for healthcare and consumer education. We provide a consensus view so you can see if your text is consistently rated across all major algorithms.",
+            },
+            {
+              question: "Are there limitations to readability scores?",
+              answer: "Yes. Formulas cannot measure context, reader interest, or the 'quality' of your ideas. A high score doesn't mean the writing is good—it only means it is structurally simple. Use these scores as a guide, not a final verdict.",
             },
           ],
         };

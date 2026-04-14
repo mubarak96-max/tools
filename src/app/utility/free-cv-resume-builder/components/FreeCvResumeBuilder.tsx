@@ -788,74 +788,89 @@ export default function FreeCvResumeBuilder() {
 
               <div className="space-y-8 rounded-[2rem] border border-border/80 bg-card p-6 sm:p-8">
                 {editSection === "personal" && (
-                  <div className="animate-fade-in space-y-5">
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <InputField label="Full Name" value={resume.personalDetails.fullName} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, fullName: v } }))} />
-                      <InputField label="Professional Title" value={resume.personalDetails.role} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, role: v } }))} />
-                      <InputField label="Email Address" value={resume.personalDetails.email} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, email: v } }))} />
-                      <InputField label="Phone Number" value={resume.personalDetails.phone} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, phone: v } }))} />
-                      <InputField label="Location" value={resume.personalDetails.location} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, location: v } }))} />
-                      <InputField label="Website" value={resume.personalDetails.website} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, website: v } }))} />
-                      <InputField label="LinkedIn URL" value={resume.personalDetails.linkedIn} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, linkedIn: v } }))} />
-                      <InputField label="GitHub URL" value={resume.personalDetails.github} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, github: v } }))} />
+                  <CollapsibleSection title="Contact">
+                    <div className="animate-fade-in space-y-5">
+                      <div className="grid gap-5 sm:grid-cols-2">
+                        <InputField label="Full Name" value={resume.personalDetails.fullName} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, fullName: v } }))} />
+                        <InputField label="Professional Title" value={resume.personalDetails.role} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, role: v } }))} />
+                        <InputField label="Email Address" value={resume.personalDetails.email} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, email: v } }))} />
+                        <InputField label="Phone Number" value={resume.personalDetails.phone} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, phone: v } }))} />
+                        <InputField label="Location" value={resume.personalDetails.location} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, location: v } }))} />
+                        <InputField label="Website" value={resume.personalDetails.website} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, website: v } }))} />
+                        <InputField label="LinkedIn URL" value={resume.personalDetails.linkedIn} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, linkedIn: v } }))} />
+                        <InputField label="GitHub URL" value={resume.personalDetails.github} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, github: v } }))} />
+                        <InputField label="Twitter / X URL" value={resume.personalDetails.twitter} onChange={(v) => updateResume(r => ({ ...r, personalDetails: { ...r.personalDetails, twitter: v } }))} />
+                      </div>
                     </div>
-                  </div>
+                  </CollapsibleSection>
                 )}
 
                 {editSection === "summary" && (
-                  <div className="animate-fade-in space-y-4">
-                    <TextAreaField label="Professional Summary" value={resume.summary} onChange={(v) => updateResume(r => ({ ...r, summary: v }))} rows={6} />
-                    <p className="text-[11px] font-medium text-muted-foreground">{computeSummaryHint(resume.summary)}</p>
-                  </div>
+                  <CollapsibleSection title="Professional Summary">
+                    <div className="animate-fade-in space-y-4">
+                      <TextAreaField label="Professional Summary" value={resume.summary} onChange={(v) => updateResume(r => ({ ...r, summary: v }))} rows={6} />
+                      <p className="text-[11px] font-medium text-muted-foreground">{computeSummaryHint(resume.summary)}</p>
+                    </div>
+                  </CollapsibleSection>
                 )}
 
                 {editSection === "experience" && (
-                  <div className="animate-fade-in space-y-8">
-                    {resume.workExperience.map((item, idx) => (
-                      <div key={item.id} className="space-y-4 rounded-[1.5rem] border border-border/60 bg-background/50 p-6">
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <InputField label="Company" value={item.company} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].company = v; return { ...r, workExperience: next }; })} />
-                          <InputField label="Role" value={item.role} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].role = v; return { ...r, workExperience: next }; })} />
-                          <InputField label="Start Date (Optional)" value={item.startDate} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].startDate = v; return { ...r, workExperience: next }; })} placeholder="e.g. 2022-01" />
-                          <InputField label="End Date (Optional)" value={item.endDate} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].endDate = v; return { ...r, workExperience: next }; })} disabled={item.isCurrent} />
-                          <label className="flex items-center gap-2">
-                            <input type="checkbox" checked={item.isCurrent} onChange={(e) => updateResume(r => { const next = [...r.workExperience]; next[idx].isCurrent = e.target.checked; return { ...r, workExperience: next }; })} />
-                            <span className="text-sm">Still working here</span>
-                          </label>
+                  <CollapsibleSection title="Work Experience" badge={resume.workExperience.length}>
+                    <div className="animate-fade-in space-y-8">
+                      {resume.workExperience.map((item, idx) => (
+                        <div key={item.id} className="space-y-4 rounded-[1.5rem] border border-border/60 bg-background/50 p-6">
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            <InputField label="Company" value={item.company} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].company = v; return { ...r, workExperience: next }; })} />
+                            <InputField label="Role" value={item.role} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].role = v; return { ...r, workExperience: next }; })} />
+                            <InputField label="Start Date (Optional)" value={item.startDate} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].startDate = v; return { ...r, workExperience: next }; })} placeholder="e.g. 2022-01" />
+                            <InputField label="End Date (Optional)" value={item.endDate} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].endDate = v; return { ...r, workExperience: next }; })} disabled={item.isCurrent} />
+                            <label className="flex items-center gap-2">
+                              <input type="checkbox" checked={item.isCurrent} onChange={(e) => updateResume(r => { const next = [...r.workExperience]; next[idx].isCurrent = e.target.checked; return { ...r, workExperience: next }; })} />
+                              <span className="text-sm">Still working here</span>
+                            </label>
+                          </div>
+                          <TextAreaField label="Bullet Points (one per line)" value={item.bulletsText} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].bulletsText = v; return { ...r, workExperience: next }; })} />
+                          <EntryActions
+                            onRemove={() => updateResume(r => ({ ...r, workExperience: r.workExperience.filter(e => e.id !== item.id) }))}
+                            onMoveUp={idx > 0 ? () => updateResume(r => { const n = [...r.workExperience]; [n[idx], n[idx-1]] = [n[idx-1], n[idx]]; return { ...r, workExperience: n }; }) : undefined}
+                          />
                         </div>
-                        <TextAreaField label="Bullet Points (one per line)" value={item.bulletsText} onChange={(v) => updateResume(r => { const next = [...r.workExperience]; next[idx].bulletsText = v; return { ...r, workExperience: next }; })} />
-                        <EntryActions 
-                          onRemove={() => updateResume(r => ({ ...r, workExperience: r.workExperience.filter(e => e.id !== item.id) }))} 
-                          onMoveUp={idx > 0 ? () => updateResume(r => { const n = [...r.workExperience]; [n[idx], n[idx-1]] = [n[idx-1], n[idx]]; return { ...r, workExperience: n }; }) : undefined}
-                        />
-                      </div>
-                    ))}
-                    <button onClick={() => updateResume(r => ({ ...r, workExperience: [...r.workExperience, createEmptyExperience()] }))} className={buttonClass}>+ Add Experience</button>
-                  </div>
+                      ))}
+                      <button onClick={() => updateResume(r => ({ ...r, workExperience: [...r.workExperience, createEmptyExperience()] }))} className={buttonClass}>+ Add Experience</button>
+                    </div>
+                  </CollapsibleSection>
                 )}
 
                 {editSection === "education" && (
-                  <div className="animate-fade-in space-y-8">
-                    {resume.education.map((item, idx) => (
-                      <div key={item.id} className="space-y-4 rounded-[1.5rem] border border-border/60 bg-background/50 p-6">
-                        <div className="grid gap-4 sm:grid-cols-2">
-                          <InputField label="Institution" value={item.institution} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].institution = v; return { ...r, education: next }; })} />
-                          <InputField label="Degree / Qualification" value={item.qualification} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].qualification = v; return { ...r, education: next }; })} />
-                          <InputField label="Start Date" value={item.startDate} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].startDate = v; return { ...r, education: next }; })} />
-                          <InputField label="End Date" value={item.endDate} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].endDate = v; return { ...r, education: next }; })} />
+                  <CollapsibleSection title="Education" badge={resume.education.length}>
+                    <div className="animate-fade-in space-y-8">
+                      {resume.education.map((item, idx) => (
+                        <div key={item.id} className="space-y-4 rounded-[1.5rem] border border-border/60 bg-background/50 p-6">
+                          <div className="grid gap-4 sm:grid-cols-2">
+                            <InputField label="Institution" value={item.institution} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].institution = v; return { ...r, education: next }; })} />
+                            <InputField label="Degree / Qualification" value={item.qualification} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].qualification = v; return { ...r, education: next }; })} />
+                            <InputField label="Start Date" value={item.startDate} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].startDate = v; return { ...r, education: next }; })} />
+                            <InputField label="End Date" value={item.endDate} onChange={(v) => updateResume(r => { const next = [...r.education]; next[idx].endDate = v; return { ...r, education: next }; })} disabled={item.isCurrent} />
+                          </div>
+                          <label className="flex items-center gap-2">
+                            <input type="checkbox" checked={item.isCurrent} onChange={(e) => updateResume(r => { const next = [...r.education]; next[idx].isCurrent = e.target.checked; return { ...r, education: next }; })} />
+                            <span className="text-sm">Currently enrolled</span>
+                          </label>
+                          <EntryActions onRemove={() => updateResume(r => ({ ...r, education: r.education.filter(e => e.id !== item.id) }))} />
                         </div>
-                        <EntryActions onRemove={() => updateResume(r => ({ ...r, education: r.education.filter(e => e.id !== item.id) }))} />
-                      </div>
-                    ))}
-                    <button onClick={() => updateResume(r => ({ ...r, education: [...r.education, createEmptyEducation()] }))} className={buttonClass}>+ Add Education</button>
-                  </div>
+                      ))}
+                      <button onClick={() => updateResume(r => ({ ...r, education: [...r.education, createEmptyEducation()] }))} className={buttonClass}>+ Add Education</button>
+                    </div>
+                  </CollapsibleSection>
                 )}
 
                 {editSection === "skills" && (
-                  <div className="animate-fade-in space-y-4">
-                    <p className="text-sm text-muted-foreground">Type a skill and press Enter or comma to add.</p>
-                    <SkillsChipInput skills={resume.skills} onChange={(v) => updateResume(r => ({ ...r, skills: v }))} />
-                  </div>
+                  <CollapsibleSection title="Skills" badge={resume.skills.length}>
+                    <div className="animate-fade-in space-y-4">
+                      <p className="text-sm text-muted-foreground">Type a skill and press Enter or comma to add.</p>
+                      <SkillsChipInput skills={resume.skills} onChange={(v) => updateResume(r => ({ ...r, skills: v }))} />
+                    </div>
+                  </CollapsibleSection>
                 )}
 
                 {editSection === "more" && (

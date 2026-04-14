@@ -12,33 +12,10 @@ export const revalidate = 43200;
 const PAGE_PATH = "/utility/qr-code-scanner";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
-const faq = [
-  {
-    question: "Do I need to install an app to scan QR codes?",
-    answer:
-      "No! You can use this web-based scanner directly in your browser. Just grant camera permissions, point your phone or laptop camera at the QR code, and it will decode instantly.",
-  },
-  {
-    question: "Can I scan a barcode from an image on my phone?",
-    answer:
-      "Yes. If someone sent you a screenshot or image of a QR code, you can use the 'Upload Image' tab above to select the photo from your device. The scanner will read it from the file.",
-  },
-  {
-    question: "Is it safe to scan unknown QR codes?",
-    answer:
-      "Scanning a QR code simply reveals the text or website hidden inside the image pattern. However, you should always verify the URL before clicking 'Open Website' to ensure it does not go to a malicious or phishing site.",
-  },
-  {
-    question: "Are my camera feeds or images saved?",
-    answer:
-      "No. All camera processing and image decoding happens locally within your browser. 100% of the extraction is done client-side, meaning we never see or save your photos.",
-  },
-];
-
 export const metadata: Metadata = {
-  title: "QR Code Scanner Online | Free Camera & Image Reader",
+  title: "Free QR Code Scanner Online – Scan from Camera or Image (No App Needed)",
   description:
-    "Free online QR code scanner. Scan QR codes directly using your phone or webcam, or upload an image to decode web links and text instantly without an app.",
+    "Scan QR codes online for free using your camera or by uploading an image. Works on iPhone, Android, and desktop. No app, no sign-up, 100% private.",
   keywords: [
     "QR code scanner",
     "scan QR code online",
@@ -46,6 +23,9 @@ export const metadata: Metadata = {
     "read QR from image",
     "web QR scanner",
     "free QR scanner",
+    "scan qr code from screenshot",
+    "qr code scanner no app",
+    "scan qr code on laptop",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -53,17 +33,55 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "QR Code Scanner Online",
+    title: "Free QR Code Scanner Online – No App Needed",
     description:
-      "Use your camera or upload an image to decode QR Codes completely free in your browser.",
+      "Scan QR codes from your camera or an image file instantly and privately in your browser.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "QR Code Scanner Online",
+    title: "Free QR Code Scanner Online",
     description:
       "Scan QR codes directly from your browser without installing a specialized app.",
   },
 };
+
+const faq = [
+  {
+    question: "Do I need to install an app to scan QR codes?",
+    answer:
+      "No! You can use this web-based scanner directly in your browser. Just grant camera permissions, point your phone or laptop camera at the QR code, and it will decode instantly. This is the best way to scan a QR code without an app.",
+  },
+  {
+    question: "How do I scan a QR code on my iPhone or Android without an app?",
+    answer:
+      "Simply open this page in Safari (iPhone) or Chrome (Android). Tap 'Scan with Camera', allow camera access when prompted, and point your lens at the code. Most modern smartphones have built-in readers, but this tool provides a secure alternative that works in any mobile browser.",
+  },
+  {
+    question: "Can I scan a QR code from an image or screenshot?",
+    answer:
+      "Yes. If you have a QR code in a screenshot or saved photo, select the 'Upload Image' tab above. Choose your file, and the scanner will decode the string from the picture locally on your device.",
+  },
+  {
+    question: "What types of QR codes can this scanner read?",
+    answer:
+      "This scanner supports all standard QR code content, including website URLs, Wi-Fi network credentials (SSID and Password), contact cards (vCard / MeCard), plain text, email addresses, SMS messages, and phone numbers.",
+  },
+  {
+    question: "Why isn't my QR code scanning?",
+    answer:
+      "Common issues include poor lighting, camera focus, or low resolution. To troubleshoot, ensure the QR code is well-lit, not obscured by glare, and held steady. If you are scanning from an image, make sure the QR code is clearly visible and not cut off.",
+  },
+  {
+    question: "Can I scan a QR code from a PDF file?",
+    answer:
+      "To scan from a PDF, take a screenshot of the QR code within the document and upload that image to our 'Upload Image' tab. Our tool currently decodes image formats (PNG, JPG, WebP) directly.",
+  },
+  {
+    question: "Is it safe to scan unknown QR codes?",
+    answer:
+      "Scanning reveals the hidden content. You should always verify the URL before clicking 'Open Website'. Our scanner is 100% private and does all decoding client-side, so your camera feed never leaves your device.",
+  },
+];
 
 function buildApplicationJsonLd() {
   return {
@@ -80,10 +98,11 @@ function buildApplicationJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "A fast client-side QR code decoder. Scans via connected webcam/mobile camera or decodes dragged-and-dropped image files.",
+      "A fast client-side QR code decoder. Scans via connected webcam/mobile camera or decodes dragged-and-dropped image files. Free, no app needed, and works on all devices.",
     featureList: [
       "Live Camera Video feed decoding",
-      "Upload image file decoding",
+      "Upload image file (PNG, JPG, WebP) decoding",
+      "Decode QR codes from screenshots",
       "Instant copy to clipboard",
       "100% private client-side processing",
     ],
@@ -120,10 +139,10 @@ export default function QRCodeScannerPage() {
             Web Utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            QR Code Scanner
+            Free Online QR Code Scanner
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Use your phone or webcam to scan QR codes instantly—no app installation required. You can also upload a photo or screenshot of a QR code to decode the link.
+            Use your phone or webcam to scan QR codes instantly—no app installation required. You can also upload a photo or screenshot of a QR code to decode URLs, text, and Wi-Fi credentials. Need to create one? Use our <Link href="/utility/qr-code-generator" className="text-primary hover:underline font-medium">QR Code Generator</Link>.
           </p>
         </div>
       </section>
@@ -134,11 +153,24 @@ export default function QRCodeScannerPage() {
         <div className="prose prose-slate max-w-none">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">How does the web scanner work?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Many people believe they need to download a sketchy third-party app to scan QR codes on their phone, which often leads to annoying ads and privacy issues.
+            Many people believe they need to download a sketchy third-party app to scan QR codes on their phone, which often leads to annoying ads and privacy issues. This tool provides a **safe QR code scanner online** that works directly in Safari, Chrome, and Firefox.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
             Modern web browsers now allow websites to securely request access to your device camera. Once you grant permission, this web page streams the video feed locally. The Javascript engine in your browser constantly analyses the frames looking for the three distinct squares of a QR Code. Once found, it instantly extracts the embedded string and stops the camera. Because <strong>the video feed is processed completely inside your device</strong>, the camera stream is never uploaded or sent over the internet.
           </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">What types of information can a QR Code contain?</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            QR codes (Quick Response codes) are incredibly versatile data containers. While most common for sharing website URLs, they can also encode:
+          </p>
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-7 text-muted-foreground">
+            <li><strong>Wi-Fi Credentials:</strong> Instantly join a network without typing a password.</li>
+            <li><strong>vCard / Contact Info:</strong> Add a new contact to your phone in one scan.</li>
+            <li><strong>Plain Text:</strong> Share notes, codes, or instructions.</li>
+            <li><strong>App Store Links:</strong> Direct users to specific apps on iOS or Android.</li>
+            <li><strong>Email & SMS:</strong> Pre-fill a message to a specific recipient.</li>
+            <li><strong>Payment Links:</strong> Direct access to PayPal, Venmo, or crypto addresses.</li>
+          </ul>
         </div>
       </section>
 

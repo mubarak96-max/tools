@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
+import { ToolSearch } from "@/components/home/ToolSearch";
 import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 1800;
@@ -126,6 +127,8 @@ export default function Home() {
           Practical utilities for text, images, PDFs, finance calculations, and AI workflows.
           Everything runs in your browser — your files never leave your device.
         </p>
+
+        <ToolSearch />
 
         {/* Category pill shortcuts */}
         <div className="mt-8 flex flex-wrap justify-center gap-2">

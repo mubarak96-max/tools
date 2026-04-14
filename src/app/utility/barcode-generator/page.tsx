@@ -12,40 +12,21 @@ export const revalidate = 43200;
 const PAGE_PATH = "/utility/barcode-generator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
-const faq = [
-  {
-    question: "What is the best barcode format to use?",
-    answer:
-      "CODE128 is generally the most robust and universal 1D barcode format because it supports all ASCII characters (both letters and numbers) and is highly compact. If you are selling a product in a retail store, you likely need a UPC or EAN-13 barcode.",
-  },
-  {
-    question: "Do I need to pay for a barcode?",
-    answer:
-      "Generating the barcode image here is completely free. However, if you are selling a commercial product in standard retail stores (like Walmart or Target), you must purchase a certified UPC or EAN number from GS1. You can then use this tool to turn that number into a scannable graphic.",
-  },
-  {
-    question: "Why isn't my barcode generating?",
-    answer:
-      "Certain barcode formats have strict requirements. For example, a UPC barcode must be exactly 11 or 12 numbers long. An EAN-13 barcode must be exactly 12 or 13 numbers. If you type letters into a number-only format, the image will fail to render.",
-  },
-  {
-    question: "Can I customize the barcode colors?",
-    answer:
-      "Yes! But please be careful. Standard barcode scanners rely on contrast. The optimal design is always black bars on a pure white background. Using dark backgrounds or light bars may cause laser scanners to fail to read the code.",
-  },
-];
-
 export const metadata: Metadata = {
-  title: "Barcode Generator | Free UPC, EAN & CODE128 Maker",
+  title: "Free Barcode Generator – Create UPC, EAN-13 & CODE128 Barcodes Online",
   description:
-    "Free online barcode generator. Create CODE128, UPC, and EAN barcodes instantly. Download high-resolution PNG images for retail, inventory, and shipping.",
+    "Generate free barcodes online instantly. Supports CODE128, UPC, EAN-13, EAN-8, ITF-14 and more. Customize colors and size, then download as a high-resolution PNG.",
   keywords: [
-    "barcode generator",
-    "free barcode maker",
-    "create barcode online",
-    "UPC generator",
-    "EAN generator",
-    "CODE128 barcode",
+    "barcode generator free",
+    "barcode maker online",
+    "free upc barcode generator",
+    "ean-13 barcode generator",
+    "code 128 barcode generator",
+    "barcode generator for products",
+    "barcode generator download",
+    "barcode creator online free",
+    "free barcode generator for inventory",
+    "amazon barcode generator",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -53,17 +34,70 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free Barcode Generator",
+    title: "Free Barcode Generator – Unlimited Barcodes, No Sign-up",
     description:
-      "Instantly create CODE128, UPC, and EAN barcodes. Download high-quality PNGs for free.",
+      "Generate retail and inventory barcodes instantly in your browser. Download high-quality PNGs ready for printing.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Barcode Generator",
+    title: "Free Barcode Generator Online",
     description:
-      "Generate retail and inventory barcodes instantly in your browser.",
+      "Generate retail and inventory barcodes instantly in your browser with zero limits.",
   },
 };
+
+const faq = [
+  {
+    question: "Do I need to pay for a barcode?",
+    answer:
+      "Generating the barcode image here is completely free. However, if you are selling a commercial product in major retail stores (like Amazon, Walmart, or Target), you must purchase a certified UPC or EAN company prefix from GS1. You can then use this tool to turn your assigned numbers into scannable graphics.",
+  },
+  {
+    question: "How do I get a UPC barcode for my product?",
+    answer:
+      "To get a legitimate UPC barcode for retail sale, you should register with GS1 (Global Standards 1). They will provide you with a unique Company Prefix and the specific numbers for your products. Once you have your numbers, you can use our generator to create the scannable barcode images for your labels.",
+  },
+  {
+    question: "How do I make a barcode for Amazon FBA?",
+    answer:
+      "Amazon usually requires an EAN or UPC code to list a product. Additionally, for FBA shipments, they often require an FNSKU barcode. You can generate these using the CODE128 format in our tool. Simply enter your FNSKU string, choose CODE128, and download the high-resolution PNG for your product labels.",
+  },
+  {
+    question: "What is the best barcode format for general use?",
+    answer:
+      "CODE128 is the industry standard for general purposes like shipping, inventory, and asset tracking. It is compact and supports both letters and numbers, making it the most versatile 1D barcode format available today.",
+  },
+  {
+    question: "What size should a barcode be for printing?",
+    answer:
+      "For standard retail (UPC/EAN), the nominal size is roughly 1.469 inches wide by 1.02 inches high. You can scale this down to 80% if space is tight, but going smaller than that may cause checkout scanners to fail.",
+  },
+  {
+    question: "What is the difference between UPC-A and UPC-E?",
+    answer:
+      "UPC-A is the standard 12-digit barcode used on most products. UPC-E is a 'zero-suppressed' version that condenses the same information into a smaller 6-digit format, specifically designed for small items like chewing gum or cosmetic pencils.",
+  },
+  {
+    question: "Can I use these barcodes for my Excel or Google Sheets inventory?",
+    answer:
+      "Yes. Many small businesses use our generator to create barcodes for their internal inventory systems. You can print the barcodes, stick them on your shelves or items, and use a standard USB or Bluetooth scanner to input the data directly into your spreadsheet.",
+  },
+  {
+    question: "What resolution should I download the barcode image at?",
+    answer:
+      "Our tool generates high-resolution PNGs at 300 DPI, which is the gold standard for professional printing. This ensures that the edges of the bars are sharp and crisp, preventing 'bleeding' during the printing process which can make the code unreadable.",
+  },
+  {
+    question: "Can I customize the barcode colors?",
+    answer:
+      "Yes, but we strongly recommend sticking to dark bars (black or dark blue) on a light background (white or yellow). Barcode scanners work by measuring the reflection of light off the spaces; if the contrast is too low, the scanner won't be able to distinguish the bars.",
+  },
+  {
+    question: "Why isn't my barcode generating?",
+    answer:
+      "Most failures happen because of invalid input data for a specific format. For example, UPC barcodes require exactly 11 or 12 digits, and EAN-13 requires 12 or 13 digits. If you enter letters or the wrong number of characters, the generator will not render the image.",
+  },
+];
 
 function buildApplicationJsonLd() {
   return {
@@ -120,10 +154,10 @@ export default function BarcodeGeneratorPage() {
             Web Utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Barcode Generator
+            Free Online Barcode Generator
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Instantly create retail and inventory barcodes. Support for universal formats including CODE128, UPC, EAN, and ITF14. Download the result as a high-resolution PNG.
+            Generate a free barcode online in seconds. Enter any number or text, choose a format—including CODE128, UPC, EAN-13, and ITF-14—then download a high-resolution PNG ready for labels, products, or inventory sheets. No account or sign-up needed.
           </p>
         </div>
       </section>
@@ -132,23 +166,59 @@ export default function BarcodeGeneratorPage() {
 
       <section className="space-y-4 border-t border-border/60 pt-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Common Barcode Types Explained</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Common Barcode Standards Explained</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            If you aren't sure which format you need, here is a quick breakdown of the most common standard templates available in our tool:
+            Our tool supports all 8 major 1D barcode formats used in retail and industry globally. Here is a breakdown of when and where to use each:
           </p>
-          <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
-            <li>
-              <strong className="text-foreground">CODE 128:</strong> The go-to choice for inventory, shipping, and internal tracking. It supports all alphanumeric characters and symbols, making it incredibly versatile.
-            </li>
-            <li>
-              <strong className="text-foreground">UPC:</strong> Universal Product Code. This is the classic 12-digit barcode used almost exclusively for retail products sold in North America.
-            </li>
-            <li>
-              <strong className="text-foreground">EAN-13:</strong> The European Article Number. This is the international equivalent to UPC and is used on commercial products globally.
-            </li>
-            <li>
-              <strong className="text-foreground">ITF-14:</strong> A 14-digit code used primarily for shipping boxes and warehouse pallets. It is specifically designed to be easily read even when printed on rough corrugated cardboard.
-            </li>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+            <div className="space-y-4">
+              <article>
+                <h4 className="font-bold text-foreground">CODE 128</h4>
+                <p className="text-sm text-muted-foreground">The most versatile standard. Used for shipping, logistics, and internal inventory. It supports all ASCII characters including letters and symbols.</p>
+              </article>
+              <article>
+                <h4 className="font-bold text-foreground">UPC-A</h4>
+                <p className="text-sm text-muted-foreground">The classic 12-digit barcode used for retail products in North America. Essential for selling on Amazon or in physical stores.</p>
+              </article>
+              <article>
+                <h4 className="font-bold text-foreground">EAN-13</h4>
+                <p className="text-sm text-muted-foreground">The international version of UPC. Used globally for commercial product identification at checkout.</p>
+              </article>
+              <article>
+                <h4 className="font-bold text-foreground">ITF-14</h4>
+                <p className="text-sm text-muted-foreground">A 14-digit code designed for corrugated cardboard. Ideal for bulk shipping boxes and warehouse pallets.</p>
+              </article>
+            </div>
+            <div className="space-y-4">
+              <article>
+                <h4 className="font-bold text-foreground">CODE 39</h4>
+                <p className="text-sm text-muted-foreground">Common in automotive, electronics, and defense industries. It is highly readable even on small industrial parts.</p>
+              </article>
+              <article>
+                <h4 className="font-bold text-foreground">EAN-8</h4>
+                <p className="text-sm text-muted-foreground">A shortened version of EAN-13 for small packaging (like candy or pencils) where a full EAN-13 won't fit.</p>
+              </article>
+              <article>
+                <h4 className="font-bold text-foreground">MSI</h4>
+                <p className="text-sm text-muted-foreground">Primarily used in retail inventory and warehouse shelf labeling to track stock levels quickly.</p>
+              </article>
+              <article>
+                <h4 className="font-bold text-foreground">Codabar</h4>
+                <p className="text-sm text-muted-foreground">A legacy format still used in blood banks, libraries, and older FedEx airbills for sequential tracking.</p>
+              </article>
+            </div>
+          </div>
+
+          <h2 className="mt-12 text-2xl font-semibold tracking-tight text-foreground">Who uses our Barcode Maker?</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            From small business owners to enterprise warehouse managers, this tool serves a wide range of professional needs:
+          </p>
+          <ul className="mt-4 list-disc space-y-2 pl-6 text-base leading-7 text-muted-foreground">
+            <li><strong>Retail & E-commerce:</strong> Create labels for Amazon FBA, Etsy shops, and brick-and-mortar storefronts.</li>
+            <li><strong>Inventory Management:</strong> Generate codes for warehouse stock control and spreadsheet tracking in Excel or Google Sheets.</li>
+            <li><strong>Event Management:</strong> Design custom badges and tickets with scannable entry data.</li>
+            <li><strong>Asset Tracking:</strong> Securely label IT equipment, laptops, and office supplies with unique internal identifiers.</li>
+            <li><strong>Shipping & Logistics:</strong> Print high-resolution labels for pallet tracking and internal product routing.</li>
           </ul>
         </div>
       </section>

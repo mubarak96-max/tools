@@ -80,6 +80,59 @@ export default function ToolPageScaffold({
 
   return (
     <div className="space-y-8 sm:space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://findbest.tools/" },
+              { "@type": "ListItem", position: 2, name: category, item: `https://findbest.tools${categoryHref}` },
+              { "@type": "ListItem", position: 3, name: title, item: `https://findbest.tools${path}` },
+            ],
+          }),
+        }}
+      />
+      {faqs?.length ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: faq.answer,
+                },
+              })),
+            }),
+          }}
+        />
+      ) : null}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: title,
+            description: description,
+            applicationCategory: "UtilityApplication",
+            operatingSystem: "Any",
+            url: `https://findbest.tools${path}`,
+            offers: {
+              "@type": "Offer",
+              price: "0",
+              priceCurrency: "USD",
+            },
+          }),
+        }}
+      />
+
       <section className="space-y-3 sm:space-y-5">
         <nav aria-label="Breadcrumb" className="hidden sm:block sm:mb-4">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import ReadabilityCalculator from "@/app/text/_components/ReadabilityCalculator";
 import WordCounterIntentPage from "@/app/text/_components/WordCounterIntentPage";
 import ExactTextToolRunner from "@/components/tools/ExactTextTool";
 import ToolPageScaffold from "@/components/tools/ToolPageScaffold";
@@ -39,8 +40,16 @@ export async function generateMetadata(props: PageProps<"/text/[slug]">) {
     notFound();
   }
 
+  if (slug === "readability-flesch-kincaid-calculator") {
+    return buildMetadata({
+      title: "Flesch-Kincaid Readability Calculator — Free & Instant",
+      description: "Analyze your writing with our Flesch-Kincaid calculator. Get instant reading ease scores, grade levels, and sentence-level highlights to improve your content.",
+      path: `/text/${slug}`,
+    });
+  }
+
   return buildMetadata({
-    title: `${tool.name} | Free Online ${tool.name}`,
+    title: `Free ${tool.name} Online – Quick Text Processing`,
     description: tool.description,
     path: `/text/${slug}`,
   });
@@ -80,7 +89,11 @@ export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
       }
       faqs={copy.faqs}
     >
-      <ExactTextToolRunner tool={tool} />
+      {slug === "readability-flesch-kincaid-calculator" ? (
+        <ReadabilityCalculator />
+      ) : (
+        <ExactTextToolRunner tool={tool} />
+      )}
     </ToolPageScaffold>
   );
 }

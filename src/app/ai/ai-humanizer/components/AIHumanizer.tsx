@@ -162,7 +162,7 @@ export default function AIHumanizer() {
               value={inputText}
               onChange={(event) => setInputText(event.target.value)}
               maxLength={MAX_INPUT_LENGTH}
-              placeholder="Paste AI-generated text here. Keep it under 300 characters for the fastest rewrite."
+              placeholder="Paste AI-generated text here. Keep it under 1,000 characters for the best result."
               rows={7}
               disabled={isProcessing}
               className={textareaClass}

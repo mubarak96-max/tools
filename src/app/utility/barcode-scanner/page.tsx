@@ -12,45 +12,20 @@ export const revalidate = 43200;
 const PAGE_PATH = "/utility/barcode-scanner";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
-const faq = [
-  {
-    question: "Do I need to install an app to scan barcodes?",
-    answer:
-      "No! You can use this web-based scanner directly in your browser. Just grant camera permissions, point your phone or laptop camera at the barcode, and it will decode instantly.",
-  },
-  {
-    question: "What types of barcodes does this support?",
-    answer:
-      "This scanner leverages advanced web decoding to read all standard 1D barcodes including UPC, EAN-8, EAN-13, CODE-39, and CODE-128 found on almost all retail products worldwide.",
-  },
-  {
-    question: "Can I scan a barcode from an image on my phone?",
-    answer:
-      "Yes. If you took a photo of a product barcode, you can use the 'Upload Photo' tab above to select the photo from your device. The scanner will process the image and extract the numerical code.",
-  },
-  {
-    question: "What do I do with the scanned barcode numbers?",
-    answer:
-      "Once decoded, you can copy the number to your clipboard for inventory management, or use the 'Search Product on Google' button to try and identify the product associated with that UPC code.",
-  },
-  {
-    question: "Are my camera feeds or images saved?",
-    answer:
-      "No. All camera processing and image decoding happens locally within your browser. 100% of the extraction is done client-side, meaning we never see or save your photos.",
-  },
-];
-
 export const metadata: Metadata = {
-  title: "Barcode Scanner Online | UPC & EAN Camera Reader",
+  title: "Free Barcode Scanner Online – Scan UPC & EAN Codes (No App Needed)",
   description:
-    "Free online barcode scanner. Scan UPC and EAN retail barcodes directly using your phone camera, or upload an image to decode the product numerical value.",
+    "Scan barcodes online free using your camera or by uploading a photo. Reads UPC, EAN-13, EAN-8, CODE-128 and more. Works on iPhone, Android, and laptop — no app needed.",
   keywords: [
-    "barcode scanner",
-    "scan barcode online",
+    "barcode scanner online free",
+    "barcode scanner no app",
+    "scan barcode from image",
+    "upc barcode scanner online",
+    "barcode reader from photo",
+    "scan barcode on laptop",
+    "ean barcode scanner online",
     "UPC scanner",
     "EAN reader",
-    "web barcode scanner",
-    "free barcode scanner app",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -58,17 +33,65 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Barcode Scanner Online",
+    title: "Free Barcode Scanner Online – No App Needed",
     description:
       "Use your camera or upload an image to decode product barcodes instantly in your browser.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Barcode Scanner Online",
+    title: "Free Barcode Scanner Online",
     description:
       "Scan retail barcodes directly from your browser without installing a specialized app.",
   },
 };
+
+const faq = [
+  {
+    question: "Do I need to install an app to scan barcodes?",
+    answer:
+      "No! You can use this web-based scanner directly in your browser. Just grant camera permissions, point your phone or laptop camera at the barcode, and it will decode instantly. This is the fastest way to scan a barcode without an app.",
+  },
+  {
+    question: "How do I scan a barcode on my iPhone without an app?",
+    answer:
+      "Open this page in Safari on your iPhone. Tap 'Scan with Camera', allow camera access, and point your lens at the barcode. Our tool scans UPC and EAN codes instantly directly in the browser.",
+  },
+  {
+    question: "How do I scan a barcode from an image or screenshot?",
+    answer:
+      "If you have a barcode in a photo or screenshot, select the 'Upload Photo' tab. Choose your file, and our tool will process the image locally and extract the barcode numbers.",
+  },
+  {
+    question: "What types of barcodes does this support?",
+    answer:
+      "This scanner supports all major retail and industrial 1D formats, including UPC-A, UPC-E, EAN-8, EAN-13, CODE-39, CODE-128, and ITF.",
+  },
+  {
+    question: "What is the difference between UPC and EAN barcodes?",
+    answer:
+      "UPC (Universal Product Code) is the standard for retail in North America (12 digits), while EAN (European Article Number) is the standard used globally (13 digits). Both store product information, and our scanner reads both types.",
+  },
+  {
+    question: "How do I scan a barcode on my laptop or PC?",
+    answer:
+      "Simply point your computer's webcam at the barcode while the camera feed is active. Ensure there is adequate lighting so the scanner can clearly see the vertical lines of the code.",
+  },
+  {
+    question: "Why isn't my barcode scanning?",
+    answer:
+      "Common causes include poor lighting, reflections on glossy surfaces, or the barcode being too small in the frame. Try moving the camera closer or farther away to help it focus, and avoid glaring overhead lights.",
+  },
+  {
+    question: "Can I scan a barcode from a PDF?",
+    answer:
+      "Yes. Take a screenshot of the barcode within the PDF and upload that image to our tool using the 'Upload Photo' tab to decode it.",
+  },
+  {
+    question: "Is it safe to scan barcodes online?",
+    answer:
+      "Yes. All processing happens 100% locally in your browser. Your camera feed and images are never sent to a server, ensuring total privacy.",
+  },
+];
 
 function buildApplicationJsonLd() {
   return {
@@ -85,12 +108,12 @@ function buildApplicationJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "A fast client-side 1D barcode decoder. Scans UPC and EAN codes via connected webcam or decodes uploaded image files.",
+      "Free browser-based utility to scan retail barcodes. Use your camera or upload images to decode UPC and EAN product codes instantly.",
     featureList: [
       "Live Camera Video feed decoding",
-      "Upload image file decoding",
-      "Supports UPC and EAN commercial formats",
-      "One click Google Product search",
+      "Upload image file (PNG, JPG, WebP) decoding",
+      "Supports UPC, EAN, CODE-128, and more",
+      "No app download required",
       "100% private client-side processing",
     ],
   };
@@ -126,10 +149,10 @@ export default function BarcodeScannerPage() {
             Web Utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Barcode Scanner
+            Free Online Barcode Scanner
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Use your phone or webcam to scan retail product barcodes instantly—no app installation required. You can also upload a photo of a barcode to extract the numerical value.
+            This free online barcode scanner lets you read UPC, EAN, and CODE-128 barcodes directly in your browser — no app download required. Use your phone camera, webcam, or upload a photo of a barcode to instantly extract the product code. Need to scan 2D codes? Try our <Link href="/utility/qr-code-scanner" className="text-primary hover:underline font-medium">QR Code Scanner</Link>.
           </p>
         </div>
       </section>
@@ -140,11 +163,33 @@ export default function BarcodeScannerPage() {
         <div className="prose prose-slate max-w-none">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">How does the web scanner work?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Modern web browsers now allow websites to securely request access to your device camera. Once you grant permission, this web page streams the video feed locally. The Javascript engine in your browser constantly analyses the frames waiting for the signature vertical lines of a 1D barcode.
+            Many users are frustrated by having to download ad-heavy apps to scan simple barcodes. This tool provides a **barcode scanner no app** experience that works directly in Safari, Chrome, and desktop browsers.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Once found, it instantly extracts the numerical string and stops the camera. Because <strong>the video feed is processed completely inside your device</strong>, the camera stream is never uploaded or sent over the internet.
+            Once you grant camera permissions, the page streams your video feed locally. The Javascript engine in your browser constantly analyses the frames waiting for the signature vertical lines of a 1D barcode. Once found, it instantly extracts the numerical string and stops the camera. Because <strong>the video feed is processed completely inside your device</strong>, the camera stream is never uploaded or sent over the internet.
           </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Supported Barcode Formats</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            Our online scanner is designed to read the most common global standards found on retail products, books, and logistics labels:
+          </p>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="bg-muted/30 p-5 rounded-2xl border border-border/50">
+              <h4 className="font-bold text-foreground mb-2">Retail Formats</h4>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>• <strong>UPC-A / UPC-E:</strong> 12-digit North American standard.</li>
+                <li>• <strong>EAN-8 / EAN-13:</strong> 8 or 13-digit global retail standard.</li>
+              </ul>
+            </div>
+            <div className="bg-muted/30 p-5 rounded-2xl border border-border/50">
+              <h4 className="font-bold text-foreground mb-2">Industrial & Logistics</h4>
+              <ul className="text-sm text-muted-foreground space-y-1">
+                <li>• <strong>CODE-128:</strong> High-density shipping label standard.</li>
+                <li>• <strong>CODE-39:</strong> General purpose industrial data code.</li>
+                <li>• <strong>ITF:</strong> Shipping and warehouse numbering.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 

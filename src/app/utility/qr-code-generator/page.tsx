@@ -12,33 +12,10 @@ export const revalidate = 43200;
 const PAGE_PATH = "/utility/qr-code-generator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
-const faq = [
-  {
-    question: "Is this QR code generator completely free?",
-    answer:
-      "Yes, completely free. We do not place logos inside the QR code, there are no scan limits, and you don't even need to sign up to download.",
-  },
-  {
-    question: "Do these QR codes ever expire?",
-    answer:
-      "No. These are 'Static' QR codes. The data (like your website URL or text) is embedded directly into the image itself. As long as your website doesn't go offline, the QR code will work forever.",
-  },
-  {
-    question: "What does 'Error Correction' mean?",
-    answer:
-      "Error correction allows a QR code to remain scannable even if part of it is damaged, dirty, or covered up. A 'High' error correction level means up to 30% of the QR code can be destroyed and it will still scan perfectly.",
-  },
-  {
-    question: "Can I use these QR codes for commercial print?",
-    answer:
-      "Yes. The downloaded PNGs are generated at high resolution locally in your browser. They are perfect for flyers, business cards, restaurant menus, and product packaging.",
-  },
-];
-
 export const metadata: Metadata = {
-  title: "QR Code Generator | Free Online Maker (No Expiry)",
+  title: "Free QR Code Generator Online – No Expiry, No Scan Limits",
   description:
-    "Free online QR code generator. Create custom QR codes for URLs, text, and contact info instantly. Change colors and download high-resolution PNGs without sign up.",
+    "Create high-quality static QR codes for free. No expiration, no scan limits, and no sign-up required. Customize colors and download PNGs instantly.",
   keywords: [
     "QR code generator",
     "free QR code maker",
@@ -46,6 +23,9 @@ export const metadata: Metadata = {
     "QR code without expiry",
     "custom QR code generator",
     "QR code for website",
+    "generate qr code for wifi",
+    "qr code for business cards",
+    "high quality qr code png",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -53,17 +33,55 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free QR Code Generator",
+    title: "Free QR Code Generator – Unlimited Scans, No Expiry",
     description:
-      "Create custom QR codes that never expire. Instantly download high-quality PNGs with custom colors.",
+      "Generate custom QR codes that never expire. Instantly download high-quality PNGs with zero limits.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free QR Code Generator",
+    title: "Free QR Code Generator Online",
     description:
       "Generate custom QR codes instantly in your browser with zero scan limits or expiry dates.",
   },
 };
+
+const faq = [
+  {
+    question: "Is this QR code generator completely free?",
+    answer:
+      "Yes, it is 100% free with no hidden costs. We do not place logos inside the QR codes, there are no scan limits, and you don't even need to sign up to download your image.",
+  },
+  {
+    question: "Do these QR codes ever expire?",
+    answer:
+      "No. These are 'Static' QR codes, meaning the data (like your website URL) is embedded directly into the pattern. As long as your destination website is active, the QR code will work forever without any expiration date.",
+  },
+  {
+    question: "Can I use these QR codes for commercial projects?",
+    answer:
+      "Absolutely! The QR codes you generate here are yours to use for any commercial or personal project, including flyers, business cards, restaurant menus, product packaging, and TV advertisements.",
+  },
+  {
+    question: "What is QR Code Error Correction?",
+    answer:
+      "Error correction allows a QR code to remain scannable even if part of it is damaged or obscured. Level 'L' allows for 7% damage, while Level 'H' allows up to 30%. High error correction is recommended for codes that will be printed on physical surfaces.",
+  },
+  {
+    question: "How do I create a QR code for a Wi-Fi network?",
+    answer:
+      "To create a Wi-Fi QR code, choose the Wi-Fi option (if available) or format your text as: WIFI:S:MyNetworkName;T:WPA;P:MyPassword;; then generate the code. Scanning it will allow users to join automatically.",
+  },
+  {
+    question: "Can I change the colors of my QR code?",
+    answer:
+      "Yes, our generator allows you to customize both the foreground (dots) and background colors. Ensure you maintain high contrast between the dots and the background for the best scanning results.",
+  },
+  {
+    question: "How do I test if my QR code works?",
+    answer:
+      "You can verify your generated code using our built-in <a href='/utility/qr-code-scanner' class='text-primary hover:underline'>Online QR Code Scanner</a>. Simply upload your downloaded PNG to ensure it decodes correctly.",
+  },
+];
 
 function buildApplicationJsonLd() {
   return {
@@ -124,7 +142,7 @@ export default function QRCodeGeneratorPage() {
             Free QR Code Generator
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Create completely free static QR codes that never expire. Customize the colors, adjust error correction, and instantly download a high-resolution PNG image.
+            Create high-quality static QR codes that never expire. Customize colors, adjust error correction, and download a high-resolution PNG instantly. No sign-up, no logos, and no limits. Already have a code? Use our <Link href="/utility/qr-code-scanner" className="text-primary hover:underline font-medium">Online QR Code Scanner</Link>.
           </p>
         </div>
       </section>
@@ -135,10 +153,10 @@ export default function QRCodeGeneratorPage() {
         <div className="prose prose-slate max-w-none">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Why use our QR Code maker?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Many websites try to trick you into creating "Dynamic" QR codes, only to charge you a massive monthly subscription fee just to keep your code scannable.
+            Many websites try to trick you into creating "Dynamic" QR codes, only to charge you a massive monthly subscription fee just to keep your code scannable. Our generator is different.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Our tool generates completely <strong>Static QR Codes</strong>. The text or URL you enter is directly hardcoded into the graphic pattern itself. The processing happens instantly right inside your internet browser, ensuring maximum privacy and guaranteeing that the barcode will work forever without relying on our servers.
+            Our tool generates completely <strong>Static QR Codes</strong>. The text or URL you enter is directly hardcoded into the graphic pattern itself. The processing happens instantly right inside your internet browser, ensuring maximum privacy and guaranteeing that the barcode will work forever without relying on our servers. This makes it perfect for print media where longevity is critical.
           </p>
         </div>
       </section>
