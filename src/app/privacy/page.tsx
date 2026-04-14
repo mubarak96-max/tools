@@ -67,8 +67,8 @@ export default function PrivacyPage() {
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">7. Contact</h2>
         <p>
           If you have privacy questions, contact us at{" "}
-          <a className="text-primary hover:underline" href="mailto:findbesttools@gmail.com">
-            findbesttools@gmail.com
+          <a className="text-primary hover:underline" href="mailto:mubarakmmm5@gmail.com">
+            mubarakmmm5@gmail.com
           </a>
           .
         </p>

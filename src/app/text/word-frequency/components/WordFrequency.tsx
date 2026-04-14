@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   countWordFrequencyAdvanced,
@@ -109,6 +109,20 @@ export default function WordFrequency() {
   const [sortMode, setSortMode] = useState<SortMode>("frequency");
   const [activeGroup, setActiveGroup] = useState<ResultGroup>("top");
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
+
+  useEffect(() => {
+    const sharedText = sessionStorage.getItem("shared_tool_text");
+    if (sharedText) {
+      setText(sharedText);
+      sessionStorage.removeItem("shared_tool_text");
+    }
+  }, []);
+
+  const handleNextStep = () => {
+    if (text) {
+      sessionStorage.setItem("shared_tool_text", text);
+    }
+  };
 
   const options = useMemo(() => ({ ignoreStopWords, minLength }), [ignoreStopWords, minLength]);
   const stats = useMemo(() => getWordFrequencyStats(text, options), [options, text]);
@@ -291,11 +305,10 @@ export default function WordFrequency() {
                   key={key}
                   type="button"
                   onClick={() => setActiveGroup(key as ResultGroup)}
-                  className={`rounded-[0.9rem] border px-3 py-2 text-left text-xs font-semibold uppercase tracking-[0.14em] ${
-                    activeGroup === key
+                  className={`rounded-[0.9rem] border px-3 py-2 text-left text-xs font-semibold uppercase tracking-[0.14em] ${activeGroup === key
                       ? "border-primary/30 bg-primary-soft text-primary-soft-foreground"
                       : "border-border bg-card text-muted-foreground hover:border-primary/20"
-                  }`}
+                    }`}
                 >
                   {label}
                   <span className="mt-1 block text-[11px] normal-case tracking-normal">{count} words</span>
@@ -429,21 +442,19 @@ export default function WordFrequency() {
           <div className="rounded-[1rem] border border-border bg-card p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Next steps</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Link href="/text/readability-flesch-kincaid-calculator" className={linkActionClass}>
+              <Link href="/text/readability-flesch-kincaid-calculator" onClick={handleNextStep} className={linkActionClass}>
                 Check readability
               </Link>
-              <Link href="/text/phrase-frequency-calculator" className={linkActionClass}>
+              <Link href="/text/phrase-frequency-calculator" onClick={handleNextStep} className={linkActionClass}>
                 Phrase frequency
               </Link>
-              <Link href="/text/case-converter" className={linkActionClass}>
+              <Link href="/text/case-converter" onClick={handleNextStep} className={linkActionClass}>
                 Convert case
               </Link>
             </div>
           </div>
 
-          <div className="rounded-[1rem] border border-success/20 bg-success-soft p-4 text-sm leading-6 text-success-soft-foreground">
-            Text is analyzed locally in your browser. Frequency shows repetition, not meaning or quality, so review context before editing.
-          </div>
+
         </aside>
       </div>
     </section>

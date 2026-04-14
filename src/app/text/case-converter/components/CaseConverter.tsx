@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { convertCase, type CaseMode } from "@/lib/tools/case-converter";
 
@@ -62,6 +62,20 @@ export default function CaseConverter() {
   const [lineByLine, setLineByLine] = useState(false);
   const [findText, setFindText] = useState("");
   const [replaceText, setReplaceText] = useState("");
+
+  useEffect(() => {
+    const sharedText = sessionStorage.getItem("shared_tool_text");
+    if (sharedText) {
+      setText(sharedText);
+      sessionStorage.removeItem("shared_tool_text");
+    }
+  }, []);
+
+  const handleNextStep = () => {
+    if (text) {
+      sessionStorage.setItem("shared_tool_text", text);
+    }
+  };
 
   const preparedText = useMemo(() => applyFindReplace(text, findText, replaceText), [findText, replaceText, text]);
   const converted = useMemo(
@@ -193,11 +207,10 @@ export default function CaseConverter() {
                         key={item.value}
                         type="button"
                         onClick={() => setMode(item.value)}
-                        className={`rounded-[1rem] border px-4 py-4 text-left transition-colors ${
-                          mode === item.value
+                        className={`rounded-[1rem] border px-4 py-4 text-left transition-colors ${mode === item.value
                             ? "border-primary bg-primary-soft text-primary"
                             : "border-border bg-card text-foreground hover:border-primary/20"
-                        }`}
+                          }`}
                       >
                         <div className="text-sm font-semibold">{item.label}</div>
                         <div className="mt-2 text-xs text-muted-foreground">{item.sample}</div>
@@ -263,15 +276,13 @@ export default function CaseConverter() {
           <div className="rounded-[1rem] border border-border bg-card p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Next steps</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Link href="/text/character-counter" className={linkActionClass}>Count characters</Link>
-              <Link href="/text/word-frequency" className={linkActionClass}>Analyze words</Link>
-              <Link href="/text/readability-flesch-kincaid-calculator" className={linkActionClass}>Check readability</Link>
+              <Link href="/text/character-counter" onClick={handleNextStep} className={linkActionClass}>Count characters</Link>
+              <Link href="/text/word-frequency" onClick={handleNextStep} className={linkActionClass}>Analyze words</Link>
+              <Link href="/text/readability-flesch-kincaid-calculator" onClick={handleNextStep} className={linkActionClass}>Check readability</Link>
             </div>
           </div>
 
-          <div className="rounded-[1rem] border border-success/20 bg-success-soft p-4 text-sm leading-6 text-success-soft-foreground">
-            Text is converted locally in your browser. It is not uploaded or stored by this tool.
-          </div>
+
         </aside>
       </div>
     </section>

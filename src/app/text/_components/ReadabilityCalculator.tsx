@@ -12,6 +12,14 @@ export default function ReadabilityCalculator() {
 
   const hasContent = text.trim().length > 0;
 
+  useEffect(() => {
+    const sharedText = sessionStorage.getItem("shared_tool_text");
+    if (sharedText) {
+      setText(sharedText);
+      sessionStorage.removeItem("shared_tool_text");
+    }
+  }, []);
+
   const difficultyColors = {
     easy: "bg-emerald-100/50 text-emerald-900 decoration-emerald-300",
     average: "bg-transparent",
@@ -28,15 +36,7 @@ export default function ReadabilityCalculator() {
 
   return (
     <div className="space-y-8">
-      {/* Privacy Badge */}
-      <div className="flex items-center justify-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary border border-primary/10">
-          <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-          </svg>
-          Your text never leaves your browser. Calculations are 100% client-side.
-        </div>
-      </div>
+
 
       <section className="tool-frame p-4 sm:p-6 bg-white/50 backdrop-blur-sm border-border/40 shadow-sm rounded-2xl">
         <div className="grid gap-6 lg:grid-cols-[1fr_22rem]">
@@ -44,7 +44,7 @@ export default function ReadabilityCalculator() {
             <div className="flex items-center justify-between">
               <label className="text-sm font-semibold text-foreground tracking-tight">Enter your text below</label>
               <div className="flex gap-2">
-                <button 
+                <button
                   onClick={() => setShowHighlight(!showHighlight)}
                   className={`text-[11px] font-bold uppercase tracking-wider px-2 py-1 rounded transition-colors ${showHighlight ? 'bg-primary text-white' : 'bg-muted text-muted-foreground'}`}
                 >
@@ -71,27 +71,27 @@ export default function ReadabilityCalculator() {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <button 
-                onClick={() => navigator.clipboard.writeText(text)} 
+              <button
+                onClick={() => navigator.clipboard.writeText(text)}
                 className={actionClass}
                 disabled={!hasContent}
               >
                 Copy Text
               </button>
-              <button 
-                onClick={() => setText("")} 
+              <button
+                onClick={() => setText("")}
                 className={actionClass}
                 disabled={!hasContent}
               >
                 Clear
               </button>
-              <label 
+              <label
                 className={`${actionClass} cursor-pointer flex items-center justify-center`}
               >
-                <input 
-                  type="file" 
-                  accept=".txt" 
-                  className="hidden" 
+                <input
+                  type="file"
+                  accept=".txt"
+                  className="hidden"
                   onChange={(e) => {
                     const file = e.target.files?.[0];
                     if (!file) return;
@@ -122,8 +122,8 @@ export default function ReadabilityCalculator() {
                 </div>
                 <div className="prose prose-slate max-w-none text-base leading-[1.8] text-foreground/90 p-4 rounded-xl bg-slate-50/50 border border-slate-100">
                   {result.sentences.map((s, idx) => (
-                    <span 
-                      key={idx} 
+                    <span
+                      key={idx}
                       className={`inline px-0.5 rounded transition-all cursor-help ${difficultyColors[s.difficulty]}`}
                       title={`${s.words} words, Grade ${s.gradeLevel.toFixed(1)}`}
                     >
@@ -138,8 +138,8 @@ export default function ReadabilityCalculator() {
           <aside className="space-y-6">
             {/* Primary Gauges */}
             <div className={`grid grid-cols-1 gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 shadow-inner ${!hasContent && 'opacity-30 grayscale'}`}>
-              <ReadabilityGauge 
-                score={result.fleschReadingEase} 
+              <ReadabilityGauge
+                score={result.fleschReadingEase}
                 label={result.fleschReadingEaseLabel}
                 className="scale-90"
               />
@@ -207,7 +207,7 @@ export default function ReadabilityCalculator() {
                         <span className="text-[10px] text-slate-400">Grade {b.grade}</span>
                       </div>
                       <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
-                        <div 
+                        <div
                           className={`h-full rounded-full transition-all duration-1000 ${isClose ? 'bg-primary shadow-[0_0_8px_rgba(var(--primary-rgb),0.5)]' : 'bg-slate-300'}`}
                           style={{ width: `${(b.grade / 20) * 100}%` }}
                         />

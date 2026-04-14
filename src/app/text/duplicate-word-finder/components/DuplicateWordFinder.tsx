@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { findDuplicateWords } from "@/lib/tools/duplicate-word-finder";
 
@@ -13,6 +13,14 @@ const buttonClass =
 export default function DuplicateWordFinder() {
   const [text, setText] = useState("");
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
+
+  useEffect(() => {
+    const sharedText = sessionStorage.getItem("shared_tool_text");
+    if (sharedText) {
+      setText(sharedText);
+      sessionStorage.removeItem("shared_tool_text");
+    }
+  }, []);
 
   const result = useMemo(() => findDuplicateWords(text), [text]);
   const topItems = result.items.slice(0, 100);

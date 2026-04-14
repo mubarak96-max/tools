@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import type { ExactTextTool } from "@/lib/tools/exact-catalog";
 import { alignText } from "@/lib/tools/text-aligner";
@@ -85,6 +85,14 @@ export default function ExactTextToolRunner({ tool }: { tool: ExactTextTool }) {
   const [zalgoPosition, setZalgoPosition] = useState<ZalgoPosition>("all");
   const [tableQuery, setTableQuery] = useState("");
   const [tableScope, setTableScope] = useState<CharacterTableScope>("all");
+
+  useEffect(() => {
+    const sharedText = sessionStorage.getItem("shared_tool_text");
+    if (sharedText) {
+      setText(sharedText);
+      sessionStorage.removeItem("shared_tool_text");
+    }
+  }, []);
 
   const cleanerResult = useMemo(
     () =>

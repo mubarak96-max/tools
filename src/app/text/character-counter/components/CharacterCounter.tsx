@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { calculateCharacterCounts } from "@/lib/tools/character-counter";
 
@@ -228,6 +228,20 @@ export default function CharacterCounter(props: CharacterCounterProps = {}) {
   const [text, setText] = useState("");
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
   const [pasteState, setPasteState] = useState<"idle" | "error">("idle");
+
+  useEffect(() => {
+    const sharedText = sessionStorage.getItem("shared_tool_text");
+    if (sharedText) {
+      setText(sharedText);
+      sessionStorage.removeItem("shared_tool_text");
+    }
+  }, []);
+
+  const handleNextStep = () => {
+    if (text) {
+      sessionStorage.setItem("shared_tool_text", text);
+    }
+  };
   const [presetKey, setPresetKey] = useState(targetCharacterCount ? "custom" : "meta-description");
   const [customLimit, setCustomLimit] = useState(targetCharacterCount ?? 160);
 
@@ -371,13 +385,13 @@ export default function CharacterCounter(props: CharacterCounterProps = {}) {
             <h2 className="text-lg font-semibold text-foreground">{guideTitle}</h2>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">{guideBody}</p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Link href="/text/readability-flesch-kincaid-calculator" className={linkActionClass}>
+              <Link href="/text/readability-flesch-kincaid-calculator" onClick={handleNextStep} className={linkActionClass}>
                 Check readability
               </Link>
-              <Link href="/text/word-frequency" className={linkActionClass}>
+              <Link href="/text/word-frequency" onClick={handleNextStep} className={linkActionClass}>
                 Check word frequency
               </Link>
-              <Link href="/text/duplicate-word-finder" className={linkActionClass}>
+              <Link href="/text/duplicate-word-finder" onClick={handleNextStep} className={linkActionClass}>
                 Find duplicates
               </Link>
             </div>

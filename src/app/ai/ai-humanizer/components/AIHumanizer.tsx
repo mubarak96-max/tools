@@ -207,7 +207,7 @@ export default function AIHumanizer() {
                 />
               </div>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                The queue is intentional. It slows abuse, keeps costs predictable, and makes the output feel like a real rewrite pass.
+                Handling requests in queue
               </p>
             </div>
           )}

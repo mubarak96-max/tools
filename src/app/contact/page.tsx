@@ -17,8 +17,8 @@ export default function ContactPage() {
         <div className="space-y-3 rounded-2xl border border-border bg-background p-6">
           <p>
             <span className="font-semibold text-foreground">Email:</span>{" "}
-            <a className="text-primary hover:underline" href="mailto:findbesttools@gmail.com">
-              findbesttools@gmail.com
+            <a className="text-primary hover:underline" href="mailto:mubarakmmm5@gmail.com">
+              mubarakmmm5@gmail.com
             </a>
           </p>
           <p>
