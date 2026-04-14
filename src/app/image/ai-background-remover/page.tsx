@@ -14,36 +14,52 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "Is this tool fully free to use?",
+    question: "How do I remove the background from an image?",
     answer:
-      "Yes, absolutely. Most background removers charge tokens or monthly fees to use their APIs. Our tool uses cutting edge WebAssembly to run the AI model directly inside your browser. Because it uses your device's power, there are zero server costs for us, making it 100% free for you.",
+      "Upload or drag in a PNG, JPG, or WEBP image, wait for the AI model to detect the subject, then download the result as a transparent PNG or a JPG with a replacement background.",
   },
   {
     question: "Is my private image uploaded to a server?",
     answer:
-      "No. This is one of the safest background removers on the internet. Because the AI model runs locally on your device via WebAssembly, your image never leaves your browser and is never uploaded or saved to any external servers.",
+      "No. The background removal model runs locally in your browser with WebAssembly. Your image is processed on your device and is not uploaded, stored, or shared by this tool.",
   },
   {
-    question: "Why does it take a few seconds on the first try?",
+    question: "Is AI background removal accurate?",
     answer:
-      "The first time you use the tool, your browser needs to download the AI WebAssembly model file. Once downloaded, it is cached in your browser so subsequent image edits will be almost instantaneous.",
+      "It is usually accurate when the subject is clear and separated from the background. Hair, fur, shadows, transparent objects, and busy backgrounds can still need manual review.",
   },
   {
-    question: "What types of images work best?",
+    question: "What image formats are supported?",
     answer:
-      "The AI is specifically trained to recognize foreground subjects. It works best on portraits of people, pets, cars, and distinct products. Complex intersecting backgrounds may take slightly longer or leave small artifacts.",
+      "You can upload PNG, JPG, and WEBP images. You can export a transparent PNG or a JPG with a white or custom color background.",
+  },
+  {
+    question: "Can I replace the background after removing it?",
+    answer:
+      "Yes. After removal, choose transparent, white, or a custom color background. You can also add a soft shadow before exporting the final asset.",
+  },
+  {
+    question: "Why does the first run take longer?",
+    answer:
+      "The browser needs to load the AI model the first time. Once cached, later edits on the same device are usually faster.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Free AI Background Remover | 100% Private & Local",
+  title: "AI Background Remover | Remove Background from Image Free",
   description:
-    "Remove backgrounds from photos instantly and 100% free. Uses local in-browser AI meaning your photos are never uploaded to a server. Download transparent PNGs.",
+    "Remove background from images online with a free AI background remover. Make transparent PNGs, replace backgrounds, batch process images, and export PNG or JPG.",
   keywords: [
     "AI background remover",
     "free background remover",
+    "remove background from image",
+    "background remover online",
+    "remove bg free",
     "remove photo background",
+    "make background transparent",
     "transparent PNG maker",
+    "PNG background remover",
+    "JPG background remover",
     "cut out background",
     "local AI background removal",
   ],
@@ -53,15 +69,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free AI Background Remover",
+    title: "AI Background Remover Online",
     description:
-      "Remove image backgrounds instantly in your browser with zero server uploads.",
+      "Remove, replace, and export image backgrounds with local browser AI, before-after preview, and PNG/JPG output.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free AI Background Remover",
+    title: "AI Background Remover",
     description:
-      "Remove backgrounds instantly with local WebAssembly AI. 100% free and private.",
+      "Make transparent PNGs, replace backgrounds, and prepare images for e-commerce, social posts, and ads.",
   },
 };
 
@@ -80,11 +96,15 @@ function buildApplicationJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free browser-based AI tool that perfectly cuts out the foreground subject of an image and removes the background without server-side processing.",
+      "Free browser-based AI background remover that detects subjects, removes backgrounds, supports before-after preview, background replacement, batch processing, and PNG or JPG export.",
     featureList: [
       "100% client-side privacy",
       "WebAssembly accelerated AI",
-      "One click instant removal",
+      "Before and after comparison",
+      "Batch image processing",
+      "Background replacement",
+      "PNG and JPG export",
+      "Edge refinement preview",
       "Transparent PNG download",
     ],
   };
@@ -123,7 +143,7 @@ export default function AIBackgroundRemoverPage() {
             AI Background Remover
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Instantly erase the background of any photo leaving a perfect transparent cutout. <strong>100% free and private</strong> — processing happens entirely within your own internet browser using WebAssembly.
+            Remove, replace, and prepare images for real use. Create transparent PNGs, add white or branded backgrounds, batch process product photos, and export ready-to-use assets with local browser AI.
           </p>
         </div>
       </section>
@@ -132,12 +152,49 @@ export default function AIBackgroundRemoverPage() {
 
       <section className="space-y-4 border-t border-border/60 pt-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How this tool protects your privacy</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is an AI background remover?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Almost all other "AI Photo Tools" on the internet operate by forcing you to upload your personal photos to a remote cloud server. This means they are sending your private media to a third-party, consuming expensive server costs, and in many cases saving your photo to train future models.
+            An AI background remover is an image editing tool that uses computer vision and machine learning to detect the main subject in a photo and separate it from the background. Instead of tracing around a person, product, pet, car, or object by hand, the model analyzes pixels, predicts the foreground mask, and creates a cutout automatically. The result can be exported as a transparent PNG or placed onto a new white, colored, or branded background for product listings, profile images, thumbnails, ads, and social graphics.
           </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How AI background removal works</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-3">
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">1. Detect the subject</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                The model looks for the primary object, person, product, pet, or foreground shape.
+              </p>
+            </article>
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">2. Segment the image</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                It builds a pixel-level mask that separates foreground from background.
+              </p>
+            </article>
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">3. Export the asset</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                You review the before-after result, choose a background, and download PNG or JPG.
+              </p>
+            </article>
+          </div>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Common use cases</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>E-commerce sellers can create clean product photos with white or transparent backgrounds.</li>
+            <li>Creators can prepare thumbnails, profile images, stickers, and social graphics faster.</li>
+            <li>Marketers can cut out people or products for ads, landing pages, and campaign visuals.</li>
+            <li>Teams can remove backgrounds, then continue with the <Link href="/image/image-compressor" className="text-primary hover:underline">image compressor</Link>, <Link href="/image/image-cropper-resizer" className="text-primary hover:underline">cropper and resizer</Link>, or image format converter.</li>
+          </ul>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">PNG background remover, JPG background remover, and transparent background maker</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            We do things differently. This tool downloads a small, compressed WebAssembly AI model directly into your browser's local memory exactly one time. When you select a photo, your computer or phone's own processor analyses the image and cuts out the background. <strong>Your photo never leaves your physical device.</strong>
+            Use PNG export when you need a transparent background for design tools, overlays, mockups, and layered assets. Use JPG export when you want a smaller file with a white or colored background. JPG images do not support transparency, so the exporter fills the background before download. For the cleanest result, upload a high-resolution image with a clear subject and visible edge separation.
+          </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Privacy and limitations</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            This tool downloads a WebAssembly AI model into your browser and processes images on your device. Your images are not uploaded or stored by this tool. AI background removal is powerful, but it is not perfect: hair, fur, glass, smoke, shadows, similar foreground and background colors, or cluttered scenes can create artifacts. Review the result before using it in production.
           </p>
         </div>
       </section>

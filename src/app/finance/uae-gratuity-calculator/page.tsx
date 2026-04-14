@@ -30,6 +30,16 @@ const faq = [
       "Under the standard private-sector rule, there is no gratuity entitlement before one full year of continuous service is completed.",
   },
   {
+    question: "What happens if I resign?",
+    answer:
+      "The calculator collects resignation or termination for context and applies the standard current private-sector estimate. Legacy contracts, disputes, or special employer arrangements can change the final settlement.",
+  },
+  {
+    question: "Is this legal advice?",
+    answer:
+      "No. This is an estimate based on common UAE private-sector gratuity rules. Confirm the final amount with your employer, HR team, MOHRE/free-zone guidance, or qualified legal advice.",
+  },
+  {
     question: "How does unpaid leave affect UAE gratuity?",
     answer:
       "Unpaid leave days are excluded from the eligible service period before gratuity is calculated, so they reduce the final result.",
@@ -136,6 +146,7 @@ export default function UAEGratuityCalculatorPage() {
             UAE Gratuity Calculator
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
+            Gratuity is the lump-sum end-of-service money many UAE employees receive when leaving a job.
             Estimate UAE private-sector end-of-service gratuity from monthly basic salary, service dates,
             unpaid leave, and work pattern. This page is built for the traditional gratuity formula rather
             than the newer voluntary savings-scheme model.
@@ -159,6 +170,13 @@ export default function UAEGratuityCalculatorPage() {
             then 21 days of basic salary for each year of the first five years, followed by 30 days of basic salary
             for each year after that.
           </p>
+
+          <div className="mt-5 rounded-[1.25rem] border border-warning/20 bg-warning-soft p-5">
+            <h3 className="text-lg font-semibold text-warning-soft-foreground">Important disclaimer</h3>
+            <p className="mt-2 text-sm leading-6 text-warning-soft-foreground">
+              This calculator provides an estimate, not legal advice. Final settlement can vary by contract wording, employer policy, free-zone rules, court interpretation, pension status, savings-scheme participation, and documented unpaid leave.
+            </p>
+          </div>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
             Unpaid leave days are excluded from the eligible service period, and the final gratuity amount is capped
             at two years of wage. That means the key inputs are not just salary and dates, but also the parts of the
@@ -188,6 +206,13 @@ export default function UAEGratuityCalculatorPage() {
             traditional gratuity model. This calculator is meant for the classic gratuity structure. If the employer
             has already moved to the savings scheme, the final payout may follow that plan rather than the estimate shown here.
           </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Example UAE gratuity scenarios</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>AED 5,000 basic salary for 3 years: daily salary is AED 166.67, gratuity days are 63, estimated gratuity is about AED 10,500.</li>
+            <li>AED 10,000 basic salary for 6 years: first 5 years use 21 days per year, the extra year uses 30 days, estimated gratuity is about AED 45,000 before any cap or adjustments.</li>
+            <li>If service is under 1 completed year, the calculator shows not eligible under the standard traditional formula.</li>
+          </ul>
         </div>
       </section>
 

@@ -17,7 +17,12 @@ const faq = [
   {
     question: "When would I use a case converter?",
     answer:
-      "It rewrites the same text into a different letter case style, such as uppercase, lowercase, title case, sentence case, camelCase, snake_case, or kebab-case.",
+      "Use it when text needs to move between writing, SEO, and developer formats such as uppercase, sentence case, SEO title case, camelCase, snake_case, kebab-case, or CONSTANT_CASE.",
+  },
+  {
+    question: "What is camelCase?",
+    answer:
+      "camelCase joins words without spaces and capitalizes each word after the first, like productImageUrl. It is common for JavaScript variables and object keys.",
   },
   {
     question: "What is the difference between title case and sentence case?",
@@ -30,6 +35,11 @@ const faq = [
       "Snake case is common in file names, database fields, and variables, while kebab case is common in URLs, CSS naming patterns, and slugs.",
   },
   {
+    question: "Which case should I use for URLs?",
+    answer:
+      "Use kebab-case for most URL slugs, such as case-converter-tool. Hyphenated lowercase URLs are readable and widely used for SEO-friendly paths.",
+  },
+  {
     question: "Can I copy the converted result directly?",
     answer:
       "Yes. The tool includes a copy action so you can move the converted output straight into your next workflow.",
@@ -37,9 +47,9 @@ const faq = [
 ];
 
 export const metadata: Metadata = {
-  title: "Case Converter | Free Uppercase, Lowercase, Title Case Tool",
+  title: "Case Converter for Writing, SEO, and Developer Formats",
   description:
-    "Convert text into uppercase, lowercase, title case, sentence case, camelCase, PascalCase, kebab-case, and snake_case with one free tool.",
+    "Convert text into uppercase, lowercase, smart title case, sentence case, camelCase, PascalCase, kebab-case, snake_case, CONSTANT_CASE, and more.",
   keywords: [
     "case converter",
     "uppercase converter",
@@ -49,6 +59,9 @@ export const metadata: Metadata = {
     "camel case converter",
     "snake case converter",
     "kebab case converter",
+    "pascal case converter",
+    "constant case converter",
+    "seo title case converter",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -56,9 +69,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Case Converter for Fast Text Cleanup",
+    title: "Case Converter for Writing, SEO, and Code",
     description:
-      "Convert text across uppercase, lowercase, title, sentence, camel, pascal, kebab, and snake case instantly.",
+      "Convert, format, and optimize text for headings, URLs, variables, filenames, and developer naming conventions.",
   },
   twitter: {
     card: "summary_large_image",
@@ -83,7 +96,7 @@ function buildCaseConverterJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free case converter for uppercase, lowercase, title case, sentence case, camelCase, PascalCase, kebab-case, and snake_case text conversion.",
+      "Free case converter for writing, SEO, and developer formats including smart title case, camelCase, PascalCase, kebab-case, snake_case, CONSTANT_CASE, dot.case, path/case, alternating case, and inverse case.",
     featureList: [
       "Uppercase conversion",
       "Lowercase conversion",
@@ -93,6 +106,10 @@ function buildCaseConverterJsonLd() {
       "PascalCase conversion",
       "kebab-case conversion",
       "snake_case conversion",
+      "CONSTANT_CASE conversion",
+      "Find and replace before conversion",
+      "Line-by-line conversion",
+      "Copy per format",
     ],
   };
 }
@@ -131,7 +148,7 @@ export default function CaseConverterPage() {
             Case Converter
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Convert text between writing styles and naming conventions in one pass. Useful for headlines, content cleanup, file naming, slugs, variables, and structured copy workflows.
+            Convert text into the exact format you need for writing, SEO, or code. Use smart title case for headings, kebab-case for URLs, snake_case for databases, and camelCase or PascalCase for development.
           </p>
           {currentTool ? (
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
@@ -147,22 +164,27 @@ export default function CaseConverterPage() {
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Why a case converter is useful</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Types of text case explained</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Text often needs to move between contexts: a headline becomes a slug, a sentence becomes a variable, or a rough draft needs cleaner capitalization. A case converter removes that repetitive cleanup work.
+            Text case is more than capitalization. Writers use title case and sentence case for readable headings and body copy. SEO teams use kebab-case for slugs and clean URLs. Developers use camelCase, PascalCase, snake_case, CONSTANT_CASE, dot.case, and path/case to match language, API, database, and file naming conventions. A strong case converter helps text move between those contexts without repetitive manual edits.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
             This tool supports both writing-oriented formats like title case and sentence case, and developer- or structure-oriented formats like camelCase, PascalCase, kebab-case, and snake_case.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">When to use each format</h2>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Case formats in programming</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Uppercase:</strong> labels, emphasis, and short UI strings.</li>
-            <li><strong className="text-foreground">Lowercase:</strong> normalized plain text.</li>
-            <li><strong className="text-foreground">Title or sentence case:</strong> editorial and marketing copy.</li>
-            <li><strong className="text-foreground">camelCase and PascalCase:</strong> variables, identifiers, and component names.</li>
-            <li><strong className="text-foreground">kebab-case and snake_case:</strong> URLs, file names, slugs, and machine-readable labels.</li>
+            <li><strong className="text-foreground">camelCase:</strong> JavaScript variables, JSON keys, and frontend identifiers.</li>
+            <li><strong className="text-foreground">PascalCase:</strong> React components, classes, and exported type names.</li>
+            <li><strong className="text-foreground">snake_case:</strong> Python variables, database columns, and analytics fields.</li>
+            <li><strong className="text-foreground">kebab-case:</strong> URL slugs, CSS-friendly labels, and route paths.</li>
+            <li><strong className="text-foreground">CONSTANT_CASE:</strong> environment variables, constants, and config keys.</li>
           </ul>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Case conversion for SEO</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            Case formatting matters for titles, metadata, and URLs. Use SEO Title Case for page titles and headlines where readability matters. Use kebab-case for slugs because lowercase hyphenated URLs are easy to scan, paste, and share. If you are preparing copy for publishing, continue into the <Link href="/text/character-counter" className="text-primary hover:underline">character counter</Link> or <Link href="/text/readability-flesch-kincaid-calculator" className="text-primary hover:underline">readability calculator</Link> after conversion.
+          </p>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Common use cases</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">

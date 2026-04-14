@@ -5,7 +5,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
   calculateUAEGratuity,
+  calculateUAEGratuityFromYears,
   formatServiceYears,
+  type UAEGratuityContractType,
+  type UAEGratuityLeavingReason,
   type UAEGratuityWorkerType,
 } from "@/lib/tools/uae-gratuity";
 
@@ -184,21 +187,38 @@ function DateInputField({
 
 export default function UAEGratuityCalculator() {
   const [basicSalary, setBasicSalary] = useState("");
+  const [inputMode, setInputMode] = useState<"dates" | "quick">("dates");
   const [startDate, setStartDate] = useState("2021-01-01");
   const [endDate, setEndDate] = useState(todayIsoDate());
+  const [serviceYears, setServiceYears] = useState("3");
   const [unpaidLeaveDays, setUnpaidLeaveDays] = useState("0");
   const [workerType, setWorkerType] = useState<UAEGratuityWorkerType>("expatriate");
+  const [leavingReason, setLeavingReason] = useState<UAEGratuityLeavingReason>("resignation");
+  const [contractType, setContractType] = useState<UAEGratuityContractType>("current-fixed-term");
+  const [workPatternRatio, setWorkPatternRatio] = useState("100");
 
   const result = useMemo(() => {
     try {
+      const shared = {
+        basicSalary: Number(basicSalary) || 0,
+        workerType,
+        leavingReason,
+        contractType,
+        workPatternRatio: (Number(workPatternRatio) || 100) / 100,
+      };
+
       return {
-        data: calculateUAEGratuity({
-          basicSalary: Number(basicSalary) || 0,
-          startDate,
-          endDate,
-          unpaidLeaveDays: Number(unpaidLeaveDays) || 0,
-          workerType,
-        }),
+        data: inputMode === "quick"
+          ? calculateUAEGratuityFromYears({
+              ...shared,
+              serviceYears: Number(serviceYears) || 0,
+            })
+          : calculateUAEGratuity({
+              ...shared,
+              startDate,
+              endDate,
+              unpaidLeaveDays: Number(unpaidLeaveDays) || 0,
+            }),
         error: "",
       };
     } catch (error) {
@@ -207,11 +227,28 @@ export default function UAEGratuityCalculator() {
         error: error instanceof Error ? error.message : "Unable to calculate gratuity with the current inputs.",
       };
     }
-  }, [basicSalary, startDate, endDate, unpaidLeaveDays, workerType]);
+  }, [basicSalary, contractType, endDate, inputMode, leavingReason, serviceYears, startDate, unpaidLeaveDays, workerType, workPatternRatio]);
 
   return (
     <div className="space-y-8">
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+        <div className="mb-5 flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => setInputMode("dates")}
+            className={`rounded-full border px-4 py-2 text-sm font-semibold ${inputMode === "dates" ? "border-primary bg-primary-soft text-primary" : "border-border bg-background text-foreground"}`}
+          >
+            Date-based estimate
+          </button>
+          <button
+            type="button"
+            onClick={() => setInputMode("quick")}
+            className={`rounded-full border px-4 py-2 text-sm font-semibold ${inputMode === "quick" ? "border-primary bg-primary-soft text-primary" : "border-border bg-background text-foreground"}`}
+          >
+            Quick years estimate
+          </button>
+        </div>
+
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Monthly basic salary (AED)</span>
@@ -225,20 +262,36 @@ export default function UAEGratuityCalculator() {
             />
           </label>
 
-          <DateInputField label="Start of contract" value={startDate} onChange={setStartDate} />
+          {inputMode === "dates" ? (
+            <>
+              <DateInputField label="Start of contract" value={startDate} onChange={setStartDate} />
 
-          <DateInputField label="End of contract" value={endDate} onChange={setEndDate} />
+              <DateInputField label="End of contract" value={endDate} onChange={setEndDate} />
 
-          <label className="space-y-2">
-            <span className="text-sm font-medium text-foreground">Unpaid leave days</span>
-            <input
-              type="number"
-              min={0}
-              value={unpaidLeaveDays}
-              onChange={(event) => setUnpaidLeaveDays(event.target.value)}
-              className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary"
-            />
-          </label>
+              <label className="space-y-2">
+                <span className="text-sm font-medium text-foreground">Unpaid leave days</span>
+                <input
+                  type="number"
+                  min={0}
+                  value={unpaidLeaveDays}
+                  onChange={(event) => setUnpaidLeaveDays(event.target.value)}
+                  className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary"
+                />
+              </label>
+            </>
+          ) : (
+            <label className="space-y-2">
+              <span className="text-sm font-medium text-foreground">Completed service years</span>
+              <input
+                type="number"
+                min={0}
+                step="0.1"
+                value={serviceYears}
+                onChange={(event) => setServiceYears(event.target.value)}
+                className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary"
+              />
+            </label>
+          )}
 
           <label className="space-y-2">
             <span className="text-sm font-medium text-foreground">Worker type</span>
@@ -251,11 +304,47 @@ export default function UAEGratuityCalculator() {
               <option value="uae-national">UAE national</option>
             </select>
           </label>
+
+          <label className="space-y-2">
+            <span className="text-sm font-medium text-foreground">Leaving reason</span>
+            <select
+              value={leavingReason}
+              onChange={(event) => setLeavingReason(event.target.value as UAEGratuityLeavingReason)}
+              className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary"
+            >
+              <option value="resignation">Resignation</option>
+              <option value="termination">Termination</option>
+            </select>
+          </label>
+
+          <label className="space-y-2">
+            <span className="text-sm font-medium text-foreground">Contract context</span>
+            <select
+              value={contractType}
+              onChange={(event) => setContractType(event.target.value as UAEGratuityContractType)}
+              className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary"
+            >
+              <option value="current-fixed-term">Current fixed-term contract</option>
+              <option value="legacy-unlimited">Legacy unlimited contract</option>
+              <option value="not-sure">Not sure</option>
+            </select>
+          </label>
+
+          <label className="space-y-2">
+            <span className="text-sm font-medium text-foreground">Work pattern (%)</span>
+            <input
+              type="number"
+              min={1}
+              max={100}
+              value={workPatternRatio}
+              onChange={(event) => setWorkPatternRatio(event.target.value)}
+              className="w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary"
+            />
+          </label>
         </div>
 
         <div className="mt-5 rounded-2xl border border-border bg-background px-4 py-4 text-sm leading-6 text-muted-foreground">
-          This calculator is for the traditional private-sector gratuity formula. It does not estimate payouts under the
-          voluntary UAE savings scheme, and UAE nationals usually follow pension rules instead of the standard expatriate gratuity model.
+          This is an estimate based on the traditional UAE private-sector gratuity formula and common UAE Labour Law No. 33 of 2021 rules. Actual final settlement can vary by contract, employer policy, free-zone rules, court interpretation, or savings-scheme participation.
         </div>
       </section>
 
@@ -271,6 +360,9 @@ export default function UAEGratuityCalculator() {
             <article className="glass-card rounded-[1.5rem] border border-border/80 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Estimated gratuity</p>
               <p className="mt-3 text-3xl font-semibold tracking-tight text-foreground">{currency(result.data.cappedGratuity)}</p>
+              {result.data.capApplied ? (
+                <p className="mt-2 text-sm font-medium text-warning-soft-foreground">Maximum cap applied</p>
+              ) : null}
             </article>
             <article className="glass-card rounded-[1.5rem] border border-border/80 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Eligible service</p>
@@ -298,6 +390,10 @@ export default function UAEGratuityCalculator() {
                   <h2 className="text-xl font-semibold text-foreground">Calculation breakdown</h2>
                   <dl className="mt-4 space-y-3 text-sm leading-6">
                     <div className="flex items-center justify-between gap-4">
+                      <dt className="text-muted-foreground">Daily salary formula</dt>
+                      <dd className="font-medium text-foreground">Basic / 30</dd>
+                    </div>
+                    <div className="flex items-center justify-between gap-4">
                       <dt className="text-muted-foreground">Raw service days</dt>
                       <dd className="font-medium text-foreground">{result.data.rawServiceDays}</dd>
                     </div>
@@ -321,6 +417,10 @@ export default function UAEGratuityCalculator() {
                       <dt className="text-muted-foreground">Legal cap</dt>
                       <dd className="font-medium text-foreground">{currency(result.data.maxCap)}</dd>
                     </div>
+                    <div className="flex items-center justify-between gap-4">
+                      <dt className="text-muted-foreground">Leaving reason shown</dt>
+                      <dd className="font-medium capitalize text-foreground">{result.data.leavingReason}</dd>
+                    </div>
                   </dl>
                 </div>
 
@@ -328,8 +428,10 @@ export default function UAEGratuityCalculator() {
                   <h2 className="text-xl font-semibold text-foreground">Notes for using the result</h2>
                   <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
                     <li>This estimate uses monthly basic salary only, not housing, transport, or other allowances.</li>
+                    <li>For eligible expatriate employees, the standard estimate uses 21 days per year for the first five years and 30 days per year after that.</li>
                     <li>Unpaid leave is excluded from the service period before gratuity is calculated.</li>
                     <li>The result is capped at the value of two years of wage, in line with the standard private-sector rule.</li>
+                    <li>Resignation and termination are collected for context. For legacy contracts or disputes, get qualified UAE legal or HR advice before relying on the estimate.</li>
                     <li>If the employer uses the voluntary savings scheme instead of traditional gratuity, this estimate will not match that plan.</li>
                   </ul>
                 </div>

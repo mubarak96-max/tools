@@ -15,38 +15,54 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "How do I convert an image to text?",
+    question: "How do I extract text from an image?",
     answer:
-      "Upload an image, run OCR, and the tool will scan the picture for readable text and return the extracted result in plain text form.",
+      "Upload or drag in a JPG, PNG, WEBP, or BMP image, choose the OCR language, and run extraction. The tool scans the image for readable characters and returns editable text you can copy or download.",
   },
   {
-    question: "What does OCR mean?",
+    question: "What is OCR?",
     answer:
-      "OCR stands for optical character recognition. It is the process of detecting printed characters inside an image and converting them into editable text.",
+      "OCR stands for optical character recognition. It uses pattern recognition and machine-learning models to detect letters, words, and lines inside an image and convert them into machine-readable text.",
   },
   {
-    question: "What images work best for OCR?",
+    question: "Can OCR read handwriting?",
     answer:
-      "High-contrast images with clear printed text work best. Blurry photos, handwriting, shadows, and dense backgrounds reduce recognition accuracy.",
+      "It can sometimes read clear handwriting, but printed text is usually more accurate. Handwriting varies by person, so names, numbers, and punctuation should always be reviewed manually.",
   },
   {
-    question: "Can I copy the extracted text directly?",
+    question: "Why is OCR inaccurate sometimes?",
     answer:
-      "Yes. After OCR finishes, you can copy the extracted text with one click and paste it into another app or document.",
+      "OCR accuracy depends on image resolution, lighting, contrast, rotation, font clarity, background noise, and language selection. A sharper, straighter image usually produces cleaner text.",
+  },
+  {
+    question: "What image formats are supported?",
+    answer:
+      "The tool accepts common image formats including JPG, PNG, WEBP, and BMP. For best results, use a clear image where the text is not blurred, warped, or hidden by glare.",
+  },
+  {
+    question: "Can I use the extracted text in other tools?",
+    answer:
+      "Yes. After extraction, copy the text, download it as a TXT file, clean spacing, or continue with related text tools such as the word counter, character counter, and readability calculator.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Convert Image to Text | Free Online Convert Image to Text",
+  title: "Image to Text OCR Converter | Extract Text from Image Online",
   description:
-    "Convert image to text online with a free OCR tool. Upload a picture, run OCR, and copy the detected text instantly in the browser.",
+    "Extract text from images with a free OCR converter. Convert JPG, PNG, WEBP, and BMP images into editable text, clean the output, and copy or download it.",
   keywords: [
     "convert image to text",
+    "ocr converter",
     "ocr",
     "image to text",
+    "image to text ocr",
     "ocr text extractor",
     "extract text from image online",
     "photo to text converter",
+    "convert image to editable text",
+    "copy text from image",
+    "jpg to text",
+    "png to text",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -54,15 +70,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Convert Image to Text",
+    title: "Image to Text OCR Converter",
     description:
-      "Convert image to text online with OCR and copy the extracted text instantly.",
+      "Extract text from images online with OCR, clean the output, and continue into writing and analysis workflows.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Convert Image to Text",
+    title: "Image to Text OCR Converter",
     description:
-      "Convert image to text online with OCR and copy the result instantly.",
+      "Convert images into editable text with OCR, confidence feedback, cleanup actions, and TXT download.",
   },
 };
 
@@ -81,12 +97,17 @@ function buildImageToTextJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free OCR tool to convert image to text online using client-side optical character recognition.",
+      "Free OCR converter that extracts editable text from images, supports multiple image uploads, shows confidence feedback, and provides cleanup and copy actions.",
     featureList: [
-      "Convert image to text",
-      "OCR progress status",
+      "Extract text from image with OCR",
+      "JPG, PNG, WEBP, and BMP support",
+      "OCR progress status and staged feedback",
       "Confidence score",
+      "Language selection",
+      "Batch image upload",
+      "Rotate and contrast preprocessing",
       "Copy extracted text",
+      "Download TXT output",
       "Image preview",
     ],
   };
@@ -123,10 +144,10 @@ export default function ConvertImageToTextPage() {
             OCR utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Convert Image to Text
+            Image to Text OCR Converter
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Convert image to text online with OCR directly in the browser. Upload a picture, extract the readable text, and copy the result into your next document or workflow.
+            Extract, clean, and use text from images instantly. Upload screenshots, notes, receipts, or document photos, run OCR, then copy, download, or continue the text into editing and analysis tools.
           </p>
           {currentTool ? (
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
@@ -142,29 +163,56 @@ export default function ConvertImageToTextPage() {
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How OCR image-to-text conversion works</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is OCR image to text?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            OCR, or optical character recognition, scans the visible characters inside an image and turns them into editable text. This is useful when you need to capture text from screenshots, scanned notes, receipts, posters, or document photos without retyping everything manually.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This tool runs OCR directly in the browser, so you can convert image to text online and immediately copy the result into a document, note, or workflow.
+            OCR means optical character recognition. It is the technology that converts text locked inside an image into editable, searchable, machine-readable text. An OCR converter looks for character shapes, word spacing, and line structure in screenshots, scanned notes, receipts, labels, or document photos. Instead of retyping a page by hand, you can extract text from an image, clean the spacing, and use it in a document, spreadsheet, CMS, research note, or content workflow. OCR works best when the image is sharp, straight, high contrast, and written in the selected language.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Best use cases</h2>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How image to text works</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">1. Preprocess the image</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Rotation and contrast adjustments help the OCR engine see characters more clearly before recognition starts.
+              </p>
+            </article>
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">2. Detect text regions</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                The OCR model searches the image for text blocks, lines, words, and character-like shapes.
+              </p>
+            </article>
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">3. Recognize characters</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Pattern recognition and language data convert visual marks into letters, numbers, and punctuation.
+              </p>
+            </article>
+            <article className="rounded-[1.25rem] border border-border bg-background p-5">
+              <h3 className="text-lg font-semibold text-foreground">4. Clean the output</h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                You can preserve line layout, clean paragraphs, fix spacing, copy text, or download the extracted result.
+              </p>
+            </article>
+          </div>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Common OCR use cases</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Converting screenshots and cropped document images into editable text</li>
-            <li>Turning posters, signs, or product shots into copy-ready text</li>
-            <li>Capturing text from receipts, forms, and printed notes</li>
-            <li>Using OCR to avoid manually retyping image-based text</li>
+            <li>Students can digitize lecture notes, whiteboard photos, and book snippets for revision.</li>
+            <li>Business users can copy text from invoices, receipts, forms, labels, and scanned paperwork.</li>
+            <li>Social media teams can extract captions, comments, and screenshot text for editing.</li>
+            <li>SEO and content teams can recover image-based copy, then send it to the <Link href="/text/word-frequency" className="text-primary hover:underline">word frequency counter</Link> or <Link href="/text/readability-flesch-kincaid-calculator" className="text-primary hover:underline">readability calculator</Link>.</li>
           </ul>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Tips for better OCR accuracy</h2>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Use clear, high-resolution images with strong contrast.</li>
-            <li>Prefer printed text over handwriting for best results.</li>
-            <li>Crop the image closely around the text when possible.</li>
-            <li>Avoid shadows, glare, and heavy background texture.</li>
-          </ul>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">JPG to text and PNG to text</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            The converter supports common screenshot and camera formats, including JPG, PNG, WEBP, and BMP. Use JPG to text conversion for photos, receipts, labels, and camera captures. Use PNG to text conversion for screenshots, UI captures, social posts, and clean digital images. For the best OCR result, upload the sharpest version available and rotate the image so text lines are horizontal.
+          </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Limitations and trust notes</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            OCR is useful, but it is not a guarantee of perfect transcription. Results may vary depending on image quality, lighting, handwriting, fonts, alignment, compression, and the selected language model. Treat confidence as a review signal, not a final proofread. Images are processed for extraction in the browser workflow and are not stored by this tool.
+          </p>
         </div>
       </section>
 

@@ -10,6 +10,8 @@ export interface OcrExtractionResult {
   lines: number;
 }
 
+export type OcrLanguage = "eng" | "ara" | "fra" | "spa" | "deu";
+
 function normalizeExtractedText(text: string) {
   return text
     .replace(/\r\n/g, "\n")
@@ -28,11 +30,12 @@ function countLines(text: string) {
 
 export async function extractTextFromImage(
   image: File | Blob,
+  language: OcrLanguage = "eng",
   onProgress?: (progress: OcrProgress) => void,
 ): Promise<OcrExtractionResult> {
   const { createWorker, OEM } = await import("tesseract.js");
 
-  const worker = await createWorker("eng", OEM.DEFAULT, {
+  const worker = await createWorker(language, OEM.DEFAULT, {
     logger: (message) => {
       onProgress?.({
         status: message.status,

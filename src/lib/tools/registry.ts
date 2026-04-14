@@ -576,7 +576,7 @@ export const FREE_TOOLS: FreeToolMeta[] = [
   {
     name: "Character Counter",
     href: "/text/character-counter",
-    description: "Count characters, no-space characters, words, sentences, paragraphs, and reading time instantly.",
+    description: "Count characters and optimize text for SEO titles, meta descriptions, social posts, ads, and custom limits.",
     category: "Text",
     icon: "CHAR",
   },
@@ -639,7 +639,7 @@ export const FREE_TOOLS: FreeToolMeta[] = [
   {
     name: "Image to Text OCR",
     href: "/text/convert-image-to-text",
-    description: "Convert image to text online with OCR, progress feedback, and copy-ready output.",
+    description: "Extract, clean, copy, and download editable text from JPG, PNG, WEBP, and BMP images with OCR.",
     category: "Text",
     icon: "OCR",
   },

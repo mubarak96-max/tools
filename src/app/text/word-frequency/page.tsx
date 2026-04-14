@@ -15,9 +15,9 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What can a word frequency counter tell me about my text?",
+    question: "What is word frequency?",
     answer:
-      "It shows which words appear most often, how heavily certain terms dominate the draft, and whether your wording feels repetitive or overly concentrated around a few phrases.",
+      "Word frequency is the number of times each word appears in a text. A word frequency counter ranks those words so you can spot repetition, dominant terms, and topic signals.",
   },
   {
     question: "How is keyword density shown here?",
@@ -25,21 +25,26 @@ const faq = [
       "Each ranked word includes a percentage so you can see how much of the analyzed text that term represents. That is useful for SEO review, editing, and checking whether a phrase appears too often.",
   },
   {
-    question: "Can I use this for SEO without treating it like a strict SEO score?",
+    question: "What is a good keyword frequency?",
     answer:
-      "Yes. It works well as a quick keyword review tool, but it is best used as a writing aid rather than a rigid target. Repetition data is most useful when you combine it with human editing judgment.",
+      "There is no universal ideal count. Use frequency and density as review signals: your main terms should be visible, but repeated wording should still read naturally.",
   },
   {
-    question: "Can I use this tool for SEO and content analysis?",
+    question: "What is keyword stuffing?",
     answer:
-      "Yes. It is useful for keyword frequency review, editorial cleanup, research notes, transcripts, and any draft where you want a faster read on repeated wording.",
+      "Keyword stuffing is the unnatural overuse of a term to manipulate search relevance. High word frequency alone does not mean better SEO; context and readability matter.",
+  },
+  {
+    question: "How many times should a keyword appear?",
+    answer:
+      "Use the count, density percentage, and overuse warnings together. If a word dominates the text, rewrite nearby repeats, use natural variants, and check readability before publishing.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Word Frequency Counter | Free Online Text Analyzer",
+  title: "Word Frequency Counter | Keyword Frequency and Repetition Tool",
   description:
-    "Analyze text instantly with a free word frequency counter. Count repeated words, review keyword density, and surface the most-used terms in one clean tool.",
+    "Analyze word frequency, keyword density, repeated words, dominant topics, rare words, and vocabulary diversity with a free text analysis tool.",
   keywords: [
     "word frequency counter",
     "keyword frequency checker",
@@ -47,6 +52,8 @@ export const metadata: Metadata = {
     "most used words tool",
     "word repetition checker",
     "keyword density tool",
+    "word usage analyzer",
+    "most used words in text",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -54,9 +61,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Word Frequency Counter for Fast Text Analysis",
+    title: "Word Frequency Counter and Keyword Repetition Tool",
     description:
-      "Paste text, count repeated words, review density, and surface the most frequent terms instantly.",
+      "Find repeated words, density percentages, dominant terms, rare words, and practical editing signals.",
   },
   twitter: {
     card: "summary_large_image",
@@ -81,10 +88,14 @@ function buildWordFrequencyApplicationJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free word frequency counter that analyzes text instantly, ranks repeated words, highlights keyword density, and surfaces the most-used terms.",
+      "Free word frequency counter that analyzes text instantly, ranks repeated words, highlights keyword density, groups frequent and rare words, and surfaces editing recommendations.",
     featureList: [
       "Real-time word frequency analysis",
       "Keyword density percentages",
+      "Stop-word filtering",
+      "Overuse warnings",
+      "Grouped frequent and rare words",
+      "Word cloud and bar visualization",
       "Most frequent word summary",
       "Unique word count",
       "Copy and CSV export",
@@ -126,7 +137,7 @@ export default function WordFrequencyCounterPage() {
             Word Frequency Counter
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Paste any block of text and instantly see which words appear most often, how many unique terms you use, and whether repeated phrases are dominating the draft.
+            Find what you repeat, what matters, and how to improve your content. Paste text to see word counts, keyword density, dominant terms, rare words, visual charts, and overuse warnings.
           </p>
           {currentTool ? (
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
@@ -142,20 +153,25 @@ export default function WordFrequencyCounterPage() {
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What a word frequency counter helps you spot</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is a word frequency counter?</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Repeated words can reveal a lot about a draft. In SEO copy, they show keyword emphasis. In essays, they expose repetition and weak variation. In research or interviews, they help surface the dominant language inside a source document.
+            A word frequency counter counts how many times each word appears in a piece of text, then ranks the words by usage. It helps you see which terms dominate a draft, which words repeat too often, and whether the vocabulary is varied enough for the purpose. Writers use it to tighten repetitive language, SEO teams use it to review keyword focus, and researchers use it to surface common terms in notes, transcripts, interviews, and source material.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This tool normalizes words, ranks them from highest frequency to lowest, and shows density percentages so you can see which terms are carrying too much of the page or draft.
+            This tool goes beyond a flat count by showing density percentages, stop-word filtering, grouped results, overuse warnings, dominant topic terms, rare words, and a simple visual layer for fast scanning.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How the analysis works</h2>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How word frequency helps SEO</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            Word frequency helps SEO by showing whether important terms are present without forcing unnatural repetition. Use the dominant terms to confirm topic focus, density percentages to spot possible keyword stuffing, and rare-word groups to find thin or one-off language. Frequency is not a ranking score, but it is a useful content audit signal before checking readability, search intent, and coverage.
+          </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How to use word frequency results</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Text is normalized so capitalized and lowercase versions of the same word count together.</li>
-            <li>Punctuation is stripped before counting, which keeps the ranking clean.</li>
-            <li>Each word receives a count and a density percentage so you can judge frequency more realistically.</li>
-            <li>You can copy the ranked list or export it as CSV for a quick handoff into a sheet or report.</li>
+            <li>Review overused words first, especially if density is high and the wording feels repetitive.</li>
+            <li>Check the top 3 dominant terms to confirm the page or draft matches the intended topic.</li>
+            <li>Use stop-word filtering when reviewing SEO keywords, themes, and content focus.</li>
+            <li>Export CSV when you need to compare drafts, share a content audit, or save keyword usage data.</li>
           </ul>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Common use cases</h2>

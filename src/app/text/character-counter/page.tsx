@@ -20,31 +20,41 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does a character counter count?",
+    question: "What is a character counter?",
     answer:
-      "It counts every character in your text, including letters, numbers, spaces, punctuation, and line breaks. This version also shows a second total without spaces.",
+      "A character counter measures text length, including letters, numbers, spaces, punctuation, and line breaks. This tool also counts words, sentences, paragraphs, reading time, and characters without spaces.",
   },
   {
-    question: "Why is character count without spaces useful?",
+    question: "What is the ideal meta description length?",
     answer:
-      "Some platforms, forms, and submission systems care about raw text length without spaces. That makes the no-spaces number useful for stricter field limits.",
+      "A practical meta description range is about 120 to 160 characters. It is not a strict ranking rule, but staying in that range helps reduce search-result truncation and keeps the snippet useful.",
   },
   {
-    question: "Does this tool also count words and sentences?",
+    question: "How many characters should an SEO title have?",
     answer:
-      "Yes. It gives you total words, sentences, paragraphs, and estimated reading time alongside the character count.",
+      "A common target for Google title tags is up to about 60 characters. Put the most important words first because search results may truncate longer titles.",
   },
   {
-    question: "Can I use this for social captions and meta descriptions?",
+    question: "How many characters are allowed in a tweet or X post?",
     answer:
-      "Yes. A character counter is useful for headlines, ad copy, social posts, meta descriptions, and any form where text length matters.",
+      "Standard X posts support up to 280 characters. The counter includes an X / Twitter preset so you can see progress and overflow while writing.",
+  },
+  {
+    question: "Why do characters without spaces matter?",
+    answer:
+      "Some forms, contests, databases, and technical systems count raw characters differently. The no-spaces count gives you a stricter view when whitespace is excluded.",
+  },
+  {
+    question: "Can this help improve writing, not just count it?",
+    answer:
+      "Yes. Use the platform presets, overflow preview, progress bar, repeated-word insight, and sentence-length warnings to trim text before publishing.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Character Counter | Free Online Character and Word Count Tool",
+  title: "Character Counter for SEO, Social Posts, and Writing Limits",
   description:
-    "Count characters, characters without spaces, words, sentences, paragraphs, and reading time in one free online character counter.",
+    "Count characters and optimize text for SEO titles, meta descriptions, Twitter/X posts, captions, ads, and custom writing limits with live overflow feedback.",
   keywords: [
     "character counter",
     "word counter",
@@ -52,6 +62,11 @@ export const metadata: Metadata = {
     "characters without spaces",
     "text length checker",
     "reading time calculator",
+    "meta description length checker",
+    "title tag length checker",
+    "twitter character counter",
+    "social media character counter",
+    "character counter for SEO",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -59,15 +74,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Character Counter for Fast Text Length Checks",
+    title: "Character Counter and Content Length Optimizer",
     description:
-      "Check characters, words, sentences, paragraphs, and reading time instantly in one text utility.",
+      "Write to the right length for SEO snippets, social posts, ads, bios, and custom limits with live progress and overflow feedback.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Character Counter",
     description:
-      "Count characters, words, and reading time instantly with a clean text-length checker.",
+      "Count characters, words, and reading time while checking SEO and social media limits.",
   },
 };
 
@@ -86,7 +101,7 @@ function buildCharacterCounterJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free online character counter with word count, sentence count, paragraph count, no-space total, and reading-time estimates.",
+      "Free online character counter and text length optimizer with platform presets, overflow preview, writing signals, repeated-word insight, and reading-time estimates.",
     featureList: [
       "Character count",
       "Characters without spaces",
@@ -94,6 +109,11 @@ function buildCharacterCounterJsonLd() {
       "Sentence count",
       "Paragraph count",
       "Reading time estimate",
+      "SEO title length preset",
+      "Meta description length preset",
+      "Twitter/X character limit preset",
+      "Overflow preview",
+      "Repeated-word insight",
     ],
   };
 }
@@ -131,10 +151,10 @@ export default function CharacterCounterPage() {
             Text utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Character Counter
+            Character Counter and Text Length Optimizer
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Check text length instantly for headlines, captions, bios, form fields, and SEO copy. One paste shows character totals, no-space counts, words, sentences, paragraphs, and reading time.
+            Write the perfect length for SEO, social media, ads, bios, and forms. Count characters instantly, choose a platform target, see overflow, and trim text before it gets truncated.
           </p>
           {currentTool ? (
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
@@ -152,11 +172,33 @@ export default function CharacterCounterPage() {
         <div className="prose prose-slate max-w-none">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">Why a character counter matters</h2>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Text length limits show up everywhere: social posts, profile bios, ad headlines, metadata fields, product descriptions, and application forms. A fast character counter lets you check those limits without manually trimming text or guessing where you stand.
+            Character count matters because the same sentence can perform differently depending on where it appears. Search snippets can truncate, social posts can hit hard limits, ad headlines need to stay concise, and form fields may reject text that runs long. A passive counter tells you the number. A useful character counter also tells you whether that number fits the job.
           </p>
           <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This version goes beyond a single number. It also shows words, sentences, paragraphs, and an estimated reading time, which makes it useful for both short-form and long-form writing workflows.
+            This tool is built for marketers, writers, SEO professionals, students, and anyone working inside text limits. Use it to check a Google title, meta description, X post, LinkedIn update, Instagram caption, ad line, product description, or custom field. The progress bar, overflow preview, repeated-word insight, and sentence-length signals help you edit faster instead of guessing what to cut.
           </p>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Character limits for popular platforms</h2>
+          <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-border bg-background">
+            <div className="grid grid-cols-[minmax(0,1fr)_8rem_minmax(0,1.3fr)] border-b border-border bg-muted/50 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              <span>Use case</span>
+              <span>Target</span>
+              <span>Best practice</span>
+            </div>
+            {[
+              ["Google title tag", "~60 characters", "Front-load the primary keyword and brand only when it helps clarity."],
+              ["Meta description", "120-160 characters", "Summarize the page benefit and avoid filler that may truncate."],
+              ["X / Twitter post", "280 characters", "Keep the hook early and remove repeated setup words."],
+              ["Instagram caption", "2,200 characters", "Lead with the key idea because only the opening is immediately visible."],
+              ["LinkedIn post", "3,000 characters", "Use short paragraphs and make the first two lines strong."],
+            ].map(([useCase, target, bestPractice]) => (
+              <div key={useCase} className="grid grid-cols-[minmax(0,1fr)_8rem_minmax(0,1.3fr)] border-b border-border px-4 py-3 text-sm last:border-b-0">
+                <span className="font-medium text-foreground">{useCase}</span>
+                <span className="text-muted-foreground">{target}</span>
+                <span className="text-muted-foreground">{bestPractice}</span>
+              </div>
+            ))}
+          </div>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">What each metric tells you</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
@@ -169,10 +211,19 @@ export default function CharacterCounterPage() {
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Common use cases</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Checking social captions, bios, titles, and meta descriptions before publishing</li>
-            <li>Reviewing landing-page and ad-copy length</li>
-            <li>Estimating reading time for blog intros and content sections</li>
-            <li>Checking draft structure before editing or summarizing</li>
+            <li>SEO teams can check title tags, meta descriptions, and landing-page snippets before publishing.</li>
+            <li>Marketers can trim ad copy, email subject lines, social hooks, and campaign captions.</li>
+            <li>Writers can spot long sentences, repeated words, and drafts that need tighter phrasing.</li>
+            <li>Students and applicants can stay within essay, abstract, bio, and form-field limits.</li>
+            <li>Editors can move from this counter into the <Link href="/text/readability-flesch-kincaid-calculator" className="text-primary hover:underline">readability calculator</Link> or <Link href="/text/word-frequency" className="text-primary hover:underline">word frequency counter</Link> for deeper review.</li>
+          </ul>
+
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Best practices for writing within limits</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>Front-load important words because titles, snippets, and captions often show the beginning first.</li>
+            <li>Cut repeated setup phrases before removing useful information.</li>
+            <li>Use shorter sentences when the average sentence length starts to feel heavy.</li>
+            <li>Check both total characters and characters without spaces when a platform is strict.</li>
           </ul>
         </div>
       </section>
@@ -241,5 +292,4 @@ export default function CharacterCounterPage() {
     </div>
   );
 }
-
 
