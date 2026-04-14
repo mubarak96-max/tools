@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -11,7 +11,9 @@
     "regenerate:editorial": "tsx scripts/regenerate-editorial.ts",
     "sync:taxonomies": "tsx scripts/sync-taxonomies.ts",
     "backfill:pages": "tsx scripts/backfill-pages.ts",
-    "generate:insights": "tsx scripts/generate-all-insights.ts"
+    "generate:insights": "tsx scripts/generate-all-insights.ts",
+    "audit:tools": "tsx scripts/audit-tools.ts",
+    "audit:fix": "tsx scripts/audit-tools.ts --fix"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

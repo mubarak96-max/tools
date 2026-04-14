@@ -43,9 +43,11 @@ export const metadata: Metadata = {
   }),
   keywords: [
     "singapore sellers stamp duty calculator",
-    "singapore ssd calculator",
-    "singapore seller duty calculator",
-    "singapore property ssd calculator",
+    "singapore SSD calculator",
+    "singapore property seller duty",
+    "SSD holding period calculator",
+    "singapore residential stamp duty",
+    "singapore property tax calculator",
   ],
 };
 
@@ -94,16 +96,38 @@ export default function SingaporeSellersStampDutyCalculatorPage() {
         faqs={faq}
         learn={
           <div className="prose prose-slate max-w-none">
-            <h2>Why Singapore seller duty needs its own calculator</h2>
+            <h2>Understanding Singapore Seller&apos;s Stamp Duty</h2>
             <p>
-              Seller duty in Singapore is not just a simple resale tax. The applicable rate depends on how long the
-              property was held and which published regime applies based on the acquisition date, so a dedicated page is
-              much more reliable than a flat-rate shortcut.
+              Singapore&apos;s Seller&apos;s Stamp Duty (SSD) is a tax imposed on residential property sellers who dispose of their property within a specified holding period. It was introduced in 2010 as a cooling measure to discourage short-term speculative buying and has been revised several times since.
             </p>
-            <h2>How this page is best used</h2>
             <p>
-              It is most useful when you are testing exit timing, comparing disposal scenarios, or sanity-checking the
-              effect of the post-4 July 2025 rules before a property is sold.
+              The SSD rate is tiered based on the holding period — the shorter the hold, the higher the rate. Properties held for longer periods attract lower rates, and properties held beyond the maximum holding period are exempt entirely. The applicable regime depends on when the property was acquired, not when it is sold.
+            </p>
+
+            <h2>The two SSD regimes</h2>
+            <p>
+              Properties acquired between 11 March 2017 and 3 July 2025 fall under one regime, while properties acquired on or after 4 July 2025 fall under a revised regime. This calculator distinguishes between both based on your acquisition date, ensuring the correct rates are applied.
+            </p>
+            <p>
+              Under the 2017–2025 regime, SSD applies to properties sold within 3 years of acquisition. Under the post-July 2025 regime, the holding period and rate structure may differ. Always verify the current rates with IRAS (Inland Revenue Authority of Singapore) or your conveyancing solicitor before completing a transaction.
+            </p>
+
+            <h2>How SSD is calculated</h2>
+            <p>
+              SSD is calculated on the higher of the sale price or the market value of the property at the time of disposal. The applicable rate is determined by the holding period — the time between the acquisition date and the disposal date. The calculator uses both dates to determine the exact holding period and applies the correct rate from the applicable regime.
+            </p>
+            <p>
+              SSD is payable within 14 days of the date of execution of the sale and purchase agreement (or transfer document if there is no agreement). Late payment attracts penalties. SSD is a seller&apos;s liability and cannot be passed to the buyer.
+            </p>
+
+            <h2>When SSD does not apply</h2>
+            <p>
+              SSD does not apply to industrial and commercial properties, HDB flats (which have their own Minimum Occupation Period rules), properties acquired through inheritance, and properties disposed of after the maximum holding period. Certain other exemptions may apply — consult IRAS guidelines for the full list.
+            </p>
+
+            <h2>Using this calculator for exit planning</h2>
+            <p>
+              This tool is most useful when evaluating the financial impact of different disposal timelines. By adjusting the disposal date, you can see how waiting an additional month or year affects your SSD liability. This is particularly valuable when the holding period is close to a rate threshold — a small delay in disposal can sometimes save a significant amount in duty.
             </p>
           </div>
         }

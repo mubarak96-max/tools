@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import ShotCalculator from "./components/ShotCalculator";
+import XGExplainer from "./components/XGExplainer";
 import JsonLd from "@/components/seo/JsonLd";
 import { RelatedToolsSection, PrivacyNote } from "@/components/tools/ToolPageScaffold";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -58,6 +59,11 @@ const faq = [
     question: "What does xG mean in football and soccer?",
     answer:
       "Football and soccer are the same sport; xG means expected goals in both. It is a probability (0 to 1) for a shot becoming a goal based on factors like distance, angle, body part, and how the chance was created.",
+  },
+  {
+    question: "What is a good team xG in one match?",
+    answer:
+      "There is no single perfect number, but many teams finish a normal match somewhere around 1.0 to 2.5 xG. Totals below that often suggest a low-chance game, while higher totals usually reflect a more open match with better scoring opportunities.",
   },
   {
     question: "Is this expected goals calculator free?",
@@ -200,7 +206,13 @@ export default function ExpectedGoalsCalculatorPage() {
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
             Place the shot on the interactive pitch below to instantly calculate the expected goals (xG) value based on distance, angle, and situation.
           </p>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            xG = the probability a shot becomes a goal. Example: 0.30 xG means about a 30% chance of scoring from a similar chance.
+          </p>
           {currentTool ? <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p> : null}
+          <p className="mt-4 rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-950">
+            This calculator uses an educational xG model for learning and scenario comparison. Values can differ from professional data providers.
+          </p>
         </div>
 
         <div className="mt-6 max-w-2xl">
@@ -211,6 +223,10 @@ export default function ExpectedGoalsCalculatorPage() {
       <div className="mt-2">
         <ShotCalculator />
       </div>
+
+      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+        <XGExplainer />
+      </section>
 
       <section className="space-y-4 max-w-4xl">
         <p className="text-base leading-7 text-muted-foreground">

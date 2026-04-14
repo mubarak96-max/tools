@@ -43,9 +43,11 @@ export const metadata: Metadata = {
   }),
   keywords: [
     "rent vs buy calculator",
-    "should i rent or buy calculator",
+    "should I rent or buy calculator",
     "buying vs renting calculator",
-    "rent versus buy calculator",
+    "rent versus buy comparison",
+    "is it better to rent or buy",
+    "rent or buy decision calculator",
   ],
 };
 
@@ -94,20 +96,36 @@ export default function RentVsBuyCalculatorPage() {
         faqs={faq}
         learn={
           <div className="prose prose-slate max-w-none">
-            <h2>The rent-vs-buy question is really a time-horizon question</h2>
+            <h2>The rent-vs-buy decision is primarily a time-horizon question</h2>
             <p>
-              The biggest driver is often not the property itself. It is how long you expect to stay. The shorter the
-              stay, the harder it usually is for buying costs to justify themselves.
+              The single most important variable in the rent-vs-buy decision is how long you plan to stay. Buying a home involves significant upfront costs — down payment, closing costs, legal fees, and moving expenses — that typically total 3–6% of the purchase price. These costs need to be amortised over the years you own the property. The shorter the stay, the harder it is for buying to make financial sense.
             </p>
-            <h2>Why this calculator keeps the model simple</h2>
             <p>
-              Many people want a quick answer before they build a full spreadsheet. This page focuses on the main cash
-              outflows so you can see the cost gap fast, then decide whether a deeper model is worth your time.
+              A common rule of thumb is the &quot;5-year rule&quot; — if you plan to stay fewer than 5 years, renting is often cheaper when all costs are considered. Beyond 5 years, buying typically becomes more advantageous, though this varies significantly by local market conditions, interest rates, and property appreciation.
             </p>
-            <h2>Use the result as a first screen, not a final life decision</h2>
+
+            <h2>What this calculator measures</h2>
             <p>
-              Lifestyle, flexibility, family plans, job stability, and local housing risk all matter alongside the
-              numbers. This calculator is here to clarify the financial side, not replace the rest of the decision.
+              This calculator focuses on the direct cash costs of each option over your expected stay. For buying, it totals the down payment, monthly mortgage payments, and monthly ownership costs (property taxes, insurance, maintenance). For renting, it totals the monthly rent payments over the same period.
+            </p>
+            <p>
+              This is a simplified model. It does not account for home price appreciation, rent increases over time, the investment return you could earn on the down payment if you rented instead, mortgage interest tax deductions, or the equity you build through mortgage payments. A full financial model would include all of these factors, but this calculator gives you a clear first-pass comparison of the direct costs.
+            </p>
+
+            <h2>Hidden costs of homeownership</h2>
+            <p>
+              Many first-time buyers underestimate the ongoing costs of owning a home beyond the mortgage payment. A realistic budget should include:
+            </p>
+            <p>
+              Property taxes typically range from 0.5–2.5% of the home&apos;s value annually depending on location. Homeowner&apos;s insurance averages 0.5–1% of the home&apos;s value per year. Maintenance and repairs average 1–2% of the home&apos;s value annually — older homes and larger properties tend toward the higher end. HOA fees, if applicable, can add $200–$600 per month. These costs can easily add $500–$1,500 per month to the true cost of ownership beyond the mortgage.
+            </p>
+
+            <h2>When renting makes more financial sense</h2>
+            <p>
+              Renting is not always the financially inferior choice. In high-cost markets where price-to-rent ratios are very high, renting and investing the difference can outperform buying over medium-term horizons. Renting also provides flexibility — the ability to move for career opportunities, family changes, or lifestyle preferences without the transaction costs of selling a home.
+            </p>
+            <p>
+              The financial comparison also depends heavily on what you do with the down payment if you rent. If you invest it in a diversified portfolio earning 7–8% annually, the opportunity cost of tying up capital in a home becomes significant. This calculator does not model this scenario, but it is worth considering in your overall decision.
             </p>
           </div>
         }

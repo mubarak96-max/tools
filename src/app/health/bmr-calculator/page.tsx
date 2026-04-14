@@ -1,119 +1,173 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { BmrCalculator } from "./components/BmrCalculator";
+import { HealthToolPage } from "@/app/health/components/HealthToolPage";
+import JsonLd from "@/components/seo/JsonLd";
+import { absoluteUrl } from "@/lib/seo/metadata";
+import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
+
+export const revalidate = 43200;
+
+const PAGE_PATH = "/health/bmr-calculator";
+const PAGE_URL = absoluteUrl(PAGE_PATH);
+
+const faq = [
+  {
+    question: "What is a good BMR?",
+    answer:
+      "For women, an average BMR is 1,400–1,600 kcal/day. For men, it is typically 1,600–1,800 kcal/day. Your individual BMR depends on age, weight, height, and muscle mass. Higher values indicate a faster resting metabolism.",
+  },
+  {
+    question: "Does BMR change with age?",
+    answer:
+      "Yes. BMR typically decreases by about 2–8% per decade after age 30. This is primarily because muscle mass declines with age (sarcopenia), and muscle tissue burns significantly more calories at rest than fat tissue. Regular resistance training can slow this decline.",
+  },
+  {
+    question: "What is the difference between BMR and TDEE?",
+    answer:
+      "BMR is the calories your body burns at complete rest — just to keep you alive. TDEE (Total Daily Energy Expenditure) is your BMR multiplied by an activity factor, representing total calories burned including all movement and exercise. TDEE is always higher than BMR.",
+  },
+  {
+    question: "Which BMR formula is most accurate?",
+    answer:
+      "The Mifflin-St Jeor equation (1990) is considered the most accurate for modern populations. It outperforms the older Harris-Benedict formula (1919), particularly for people with higher body weight. The Katch-McArdle formula is more accurate if you know your lean body mass.",
+  },
+  {
+    question: "How do I use BMR to lose weight?",
+    answer:
+      "Multiply your BMR by your activity factor to get your TDEE. Then eat 300–500 calories below your TDEE to create a deficit. A 500-calorie daily deficit produces approximately 0.5 kg of fat loss per week. Never eat below your BMR for extended periods as this causes muscle loss and metabolic adaptation.",
+  },
+];
 
 export const metadata: Metadata = {
-  title: "BMR Calculator – Free Basal Metabolic Rate Calculator (2026)",
-  description: "Calculate your Basal Metabolic Rate (BMR) instantly. Free online tool using the Mifflin-St Jeor formula. Find out how many calories your body burns at rest.",
+  title: "BMR Calculator | Basal Metabolic Rate — Mifflin-St Jeor Formula",
+  description:
+    "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor formula. Find out how many calories your body burns at rest and use it to set your calorie targets.",
+  keywords: [
+    "BMR calculator",
+    "basal metabolic rate calculator",
+    "Mifflin St Jeor calculator",
+    "resting metabolic rate",
+    "calories burned at rest",
+    "BMR formula calculator",
+  ],
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    type: "website",
+    url: PAGE_URL,
+    title: "BMR Calculator — Basal Metabolic Rate",
+    description: "Calculate how many calories your body burns at rest using the Mifflin-St Jeor formula.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BMR Calculator",
+    description: "Find your Basal Metabolic Rate and use it to set accurate calorie targets for weight loss or gain.",
+  },
 };
 
-export default function Page() {
-  const faqSchema = {
+function buildJsonLd() {
+  return {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is a good BMR?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "For women, an average BMR is 1,400–1,600 kcal/day. For men, it's typically 1,600–1,800 kcal/day. Your individual BMR depends on age, weight, height, and metabolism. Higher values indicate a faster metabolism."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does BMR change with age?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, BMR typically decreases by about 2-8% per decade after age 30. This is because we naturally lose muscle mass as we age, and muscle tissue burns more calories at rest than fat tissue. Regular exercise can help maintain muscle and keep BMR higher."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is a normal BMR for a woman?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A normal BMR for an adult woman ranges from 1,400–1,600 kcal/day, depending on age, weight, height, and fitness level. Women typically have a lower BMR than men due to generally having more body fat and less muscle mass."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do I use BMR to lose weight?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "To lose weight, consume fewer calories than your Total Daily Energy Expenditure (TDEE), which is your BMR multiplied by your activity level. For example, if your BMR is 1,500 and activity multiplier is 1.5, your TDEE is 2,250. A 500-calorie deficit would mean consuming 1,750 calories daily for 1 pound of weight loss per week."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between BMR and TDEE?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "BMR (Basal Metabolic Rate) is calories burned at rest in a neutral environment. TDEE (Total Daily Energy Expenditure) is your BMR multiplied by your activity level, representing total calories burned daily including exercise and daily activities. TDEE is always higher than BMR."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which BMR formula is most accurate?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The Mifflin-St Jeor equation is considered the most accurate for modern populations. It was developed in 1990 and is more accurate than the older Harris-Benedict formula from 1919, especially for people with higher body weight."
-        }
-      }
-    ]
+    "@type": "WebApplication",
+    name: "BMR Calculator",
+    url: PAGE_URL,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    description: "Free BMR calculator using the Mifflin-St Jeor formula for men and women.",
+    featureList: ["Mifflin-St Jeor formula", "Male and female calculations", "TDEE activity multipliers"],
   };
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to calculate your BMR",
-    "description": "Calculate your Basal Metabolic Rate (BMR) instantly using this browser-based tool.",
-    "step": [
-      {
-        "@type": "HowToStep",
-        "name": "Select your gender",
-        "text": "Choose either Male or Female to help the Mifflin-St Jeor formula accurately estimate your metabolic rate."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Enter your weight and height",
-        "text": "Input your current body weight in kilograms and your height in centimeters."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Specify your age",
-        "text": "Enter your numeric age as BMR naturally varies with age due to muscle mass changes."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "Review your results",
-        "text": "See your instant BMR calculation and how it translates to your Total Daily Energy Expenditure (TDEE) based on your activity level."
-      }
-    ]
-  };
+}
+
+export default function BmrCalculatorPage() {
+  const breadcrumbs = buildBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Health", path: "/health" },
+    { name: "BMR Calculator", path: PAGE_PATH },
+  ]);
+  const faqJsonLd = buildFaqJsonLd(faq);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
-      <div className="space-y-6">
-        <div className="max-w-3xl">
-          <p className="success-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            Health & Fitness Analytics
-          </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Free BMR Calculator – Find Your Basal Metabolic Rate
-          </h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Calculate your Basal Metabolic Rate (BMR) instantly using the Mifflin-St Jeor formula. Everything runs in your browser — discover how many calories your body burns at rest.
-          </p>
-        </div>
+      <JsonLd data={serializeJsonLd(buildJsonLd())} />
+      <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
+      <HealthToolPage
+        title="BMR Calculator"
+        description="Calculate your Basal Metabolic Rate — the number of calories your body burns at complete rest — using the Mifflin-St Jeor formula. Use it as the foundation for setting accurate calorie targets."
+        category="Health"
+        path={PAGE_PATH}
+        infoSection={
+          <>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is Basal Metabolic Rate?</h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              Basal Metabolic Rate (BMR) is the number of calories your body requires to maintain basic physiological functions while at complete rest — breathing, circulation, cell production, protein synthesis, ion transport, and temperature regulation. It represents the minimum energy needed to keep you alive if you did nothing but lie still all day.
+            </p>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              BMR accounts for approximately 60–70% of total daily energy expenditure in sedentary individuals. It is the largest single component of your caloric needs, which is why understanding it is fundamental to any nutrition or weight management strategy.
+            </p>
+
+            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">The Mifflin-St Jeor formula</h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              This calculator uses the Mifflin-St Jeor equation, published in 1990 and validated as the most accurate predictive formula for modern populations. It was developed by MD Mifflin and ST St Jeor using data from 498 subjects and outperforms the older Harris-Benedict equation (1919) by approximately 5% in accuracy.
+            </p>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              <strong>Men:</strong> BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age in years) + 5<br />
+              <strong>Women:</strong> BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age in years) − 161
+            </p>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              The formula accounts for the fact that women have a lower BMR than men of the same weight and height, primarily due to differences in muscle mass and body composition. The −161 constant for women reflects this systematic difference.
+            </p>
+
+            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">What affects your BMR</h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              Several factors influence your resting metabolic rate beyond the variables in the formula:
+            </p>
+            <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
+              <li><strong className="text-foreground">Muscle mass:</strong> Muscle tissue burns approximately 13 kcal per kg per day at rest, compared to roughly 4.5 kcal per kg for fat tissue. More muscle means a higher BMR — this is the primary reason resistance training supports long-term weight management.</li>
+              <li><strong className="text-foreground">Age:</strong> BMR declines approximately 2–3% per decade after age 20, largely due to progressive muscle loss (sarcopenia). A 60-year-old has roughly 10–15% lower BMR than they did at 20, all else being equal.</li>
+              <li><strong className="text-foreground">Thyroid function:</strong> The thyroid gland regulates metabolic rate through hormones T3 and T4. Hypothyroidism (underactive thyroid) can reduce BMR by 30–40%; hyperthyroidism can increase it by a similar amount.</li>
+              <li><strong className="text-foreground">Body temperature:</strong> Fever increases BMR by approximately 7% for each degree Celsius rise in body temperature. Cold environments also slightly increase BMR as the body generates heat.</li>
+              <li><strong className="text-foreground">Genetics:</strong> Twin studies suggest that 40–70% of variation in BMR between individuals is genetically determined, independent of body composition.</li>
+            </ul>
+
+            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">From BMR to TDEE: activity multipliers</h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              Your BMR is multiplied by an activity factor to estimate your Total Daily Energy Expenditure (TDEE) — the actual number of calories you burn each day:
+            </p>
+            <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+              <li><strong className="text-foreground">Sedentary (×1.2):</strong> Desk job, little or no exercise.</li>
+              <li><strong className="text-foreground">Lightly active (×1.375):</strong> Light exercise 1–3 days per week.</li>
+              <li><strong className="text-foreground">Moderately active (×1.55):</strong> Moderate exercise 3–5 days per week.</li>
+              <li><strong className="text-foreground">Very active (×1.725):</strong> Hard exercise 6–7 days per week.</li>
+              <li><strong className="text-foreground">Extra active (×1.9):</strong> Very hard exercise or physical job, twice-daily training.</li>
+            </ul>
+            <p className="mt-4 text-base leading-7 text-muted-foreground">
+              Most people overestimate their activity level. If you exercise 3–4 times per week but have a desk job, lightly active (×1.375) is usually more accurate than moderately active.
+            </p>
+
+            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Metabolic adaptation during dieting</h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              One of the most important — and frustrating — aspects of weight loss is metabolic adaptation. When you eat in a caloric deficit, your body responds by lowering BMR beyond what is explained by weight loss alone. This adaptive thermogenesis can reduce BMR by an additional 10–15% below predicted values.
+            </p>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              This is why weight loss slows over time even when maintaining the same caloric deficit. Strategies to minimise metabolic adaptation include: avoiding very large deficits (stay above 500 kcal/day below TDEE), maintaining high protein intake, continuing resistance training, and incorporating diet breaks (periods at maintenance calories) every 8–12 weeks.
+            </p>
+
+            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
+            <div className="mt-6 space-y-4">
+              {faq.map((item) => (
+                <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
+                  <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+                </article>
+              ))}
+            </div>
+          </>
+        }
+      >
         <BmrCalculator />
-      </div>
+      </HealthToolPage>
     </>
   );
 }

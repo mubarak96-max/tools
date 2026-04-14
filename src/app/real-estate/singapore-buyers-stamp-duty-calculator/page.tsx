@@ -43,9 +43,11 @@ export const metadata: Metadata = {
   }),
   keywords: [
     "singapore buyers stamp duty calculator",
-    "singapore bsd calculator",
-    "singapore absd calculator",
-    "singapore buyer duty calculator",
+    "singapore BSD calculator",
+    "singapore ABSD calculator",
+    "singapore property buyer duty",
+    "additional buyers stamp duty calculator",
+    "singapore residential property tax",
   ],
 };
 
@@ -94,16 +96,33 @@ export default function SingaporeBuyersStampDutyCalculatorPage() {
         faqs={faq}
         learn={
           <div className="prose prose-slate max-w-none">
-            <h2>Why Singapore buyer duty works best as its own page</h2>
+            <h2>Understanding Singapore Buyer&apos;s Stamp Duty (BSD)</h2>
             <p>
-              Buyer duty in Singapore is not one number. The BSD scale is progressive, while ABSD changes by residency
-              profile and by residential property count. That is exactly the kind of structure that deserves a dedicated
-              page instead of a flat percentage shortcut.
+              Buyer&apos;s Stamp Duty is a tax payable on the purchase of property in Singapore. It applies to all property purchases — residential, commercial, and industrial — and is calculated on the higher of the purchase price or the market value of the property. BSD is a progressive tax, meaning higher-value properties attract higher rates on the portion above each threshold.
             </p>
-            <h2>What this tool helps you compare</h2>
             <p>
-              It is useful when you want to compare how the same purchase price lands for a citizen, a permanent resident,
-              a foreign buyer, or an entity. That makes the page practical for early acquisition planning and scenario work.
+              For residential properties, the BSD rates are: 1% on the first S$180,000, 2% on the next S$180,000, 3% on the next S$640,000, 4% on the next S$500,000, 5% on the next S$1,500,000, and 6% on the remainder above S$3,000,000. These rates were revised in February 2023 to add the higher tiers for luxury properties.
+            </p>
+
+            <h2>Additional Buyer&apos;s Stamp Duty (ABSD)</h2>
+            <p>
+              ABSD is an additional tax layered on top of BSD for residential property purchases. It was introduced in 2011 as a cooling measure and has been revised multiple times. The ABSD rate depends on the buyer&apos;s residency status and the number of residential properties they already own.
+            </p>
+            <p>
+              Singapore Citizens purchasing their first residential property pay 0% ABSD. Their second property attracts 20% ABSD, and subsequent properties attract 30%. Singapore Permanent Residents pay 5% on their first property and 30% on subsequent properties. Foreigners pay 60% ABSD on any residential property purchase. Entities (companies and trusts) pay 65% ABSD.
+            </p>
+
+            <h2>Why the buyer profile matters so much</h2>
+            <p>
+              The ABSD rate can change the total stamp duty dramatically. A Singapore Citizen buying a S$2 million property as their first home pays BSD only (approximately S$54,600). The same buyer purchasing a second property pays BSD plus 20% ABSD (S$400,000 additional), bringing total duty to over S$454,000. A foreign buyer pays BSD plus 60% ABSD — over S$1.2 million in total duty on the same property.
+            </p>
+            <p>
+              This is why selecting the correct buyer profile in this calculator is critical. The difference between profiles can be hundreds of thousands of dollars, making it essential to understand your ABSD position before committing to a purchase.
+            </p>
+
+            <h2>BSD and ABSD payment timeline</h2>
+            <p>
+              BSD must be paid within 14 days of signing the Sale and Purchase Agreement (or within 30 days if the document is signed overseas). ABSD must be paid within the same timeframe. Both are typically handled by your conveyancing solicitor as part of the transaction process. Late payment attracts penalties of up to 4 times the unpaid duty.
             </p>
           </div>
         }

@@ -111,3 +111,21 @@ The Football Lineup Builder is a fully client-side interactive tool at `/sport/f
 2. THE Store SHALL ensure that for any stored PlayerData, the jersey value is either an empty string or a string representation of an integer in [1, 99]
 3. THE ExportUtil validateJersey function SHALL be idempotent: applying it twice to any input SHALL produce the same result as applying it once
 4. WHEN slot screen coordinates are computed, THE PitchCanvas SHALL produce a screenX equal to (slot.x / 100) × pitchWidth and a screenY equal to (slot.y / 100) × pitchHeight for any valid slot and positive pitch dimensions
+
+
+
+so far it good but it has a lot of things we need to add
+
+first of all, on mobile, it takes a lot of space, make it like it attached picture on mobile
+
+second, even though players have predetermined positions, make it such that the user can change their positon by dragging
+
+third, give an option for a header which can be toggled on or off, this includes team name, a subtitle, logo which is a picture which can be uploaded
+
+fourth, give options for different field style options, ie, horizontal, vertical, checkered, diagonal, rings or none
+
+fifth, on the player, add options for cards which can yellow, red, or double yellow. Add goal count and this can be represented by ball icons, add option for upload player image. when player image is provided replace the number with it
+
+sixth, also add an option of representing players with jerseys which can be customized with primary color, second color and text color. these jerseys can have different styles, ie, plain but with 2 colors one being for shoulder part, can be verticle stripes or horizontal stripes, on the jerseys, you can show the player positon or given number. 
+
+seventh, for each player, there is an option of sub, the sub name displays below the player 

@@ -542,11 +542,6 @@ export default function ImageToText() {
             </p>
           </div>
 
-          <div className="rounded-[1rem] border border-primary/15 bg-primary-soft p-4">
-            <p className="text-sm leading-6 text-primary-soft-foreground">
-              Images are processed in your browser for OCR and are not stored by this tool. Results still depend on image quality, lighting, alignment, and font clarity.
-            </p>
-          </div>
         </aside>
       </div>
     </section>

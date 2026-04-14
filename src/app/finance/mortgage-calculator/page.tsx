@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import MortgageCalculator from "@/app/finance/mortgage-calculator/components/MortgageCalculator";
 import JsonLd from "@/components/seo/JsonLd";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
@@ -15,59 +14,57 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
+    question: "How is a mortgage payment calculated?",
+    answer:
+      "The core monthly mortgage payment uses the standard amortization formula based on loan amount, interest rate, and loan term. A realistic housing budget then adds property tax, home insurance, HOA or service charges, and maintenance costs.",
+  },
+  {
     question: "What is PITI in a mortgage?",
-    answer: "PITI stands for Principal, Interest, Taxes, and Insurance. It represents the comprehensive monthly housing payment that lenders use to evaluate your affordability.",
-  },
-  {
-    question: "What credit score do I need for a mortgage?",
-    answer: "Most lenders require a minimum score of 620 for conventional loans, though FHA loans can accept scores as low as 500-580. Generally, a score of 740+ will unlock the lowest interest rates.",
-  },
-  {
-    question: "What is PMI and when do I need it?",
-    answer: "Private Mortgage Insurance (PMI) is usually required if your down payment is less than 20%. It protects the lender in case of default and typically costs between 0.5% and 1.5% of the loan amount annually.",
-  },
-  {
-    question: "What's the difference between a fixed and adjustable rate mortgage?",
-    answer: "A fixed-rate mortgage has an interest rate that never changes. An Adjustable-Rate Mortgage (ARM) starts with a lower 'teaser' rate for a few years, after which it adjusts periodically based on market indexes.",
+    answer:
+      "PITI stands for Principal, Interest, Taxes, and Insurance. It represents the more complete monthly housing payment lenders use when they assess affordability.",
   },
   {
     question: "How much house can I afford?",
-    answer: "Lenders often use the '28/36 rule': your mortgage payment shouldn't exceed 28% of your gross monthly income, and total debt payments shouldn't exceed 36%. Use our DTI calculator to check your specific ratio.",
+    answer:
+      "A common rule of thumb is that housing should stay around 25% to 30% of gross monthly income, and total debt should stay within a manageable debt-to-income ratio. The exact number depends on your income stability, other debts, emergency savings, and ongoing ownership costs.",
   },
   {
-    question: "What is the difference between pre-qualification and pre-approval?",
-    answer: "Pre-qualification is an informal estimate of what you might borrow. Pre-approval is a formal commitment from a lender after a credit check and income verification, making you a much stronger buyer.",
+    question: "Why is the total interest so high on long mortgages?",
+    answer:
+      "Longer mortgage terms lower the monthly payment, but they keep the loan outstanding for more years. That means more months of interest accrual, which can make the total interest dramatically higher than a shorter term.",
   },
   {
-    question: "Is it better to pay mortgage points or accept a higher rate?",
-    answer: "Points represent interest paid upfront to lower your monthly rate. It's generally worth it if you plan to stay in the home longer than the 'break-even' period, which is typically 5 to 7 years.",
+    question: "What costs are not included in a basic mortgage payment?",
+    answer:
+      "Buyers often miss HOA or service charges, maintenance, repairs, utilities, moving costs, and local buying fees. The calculator includes an ownership-cost layer so you can budget beyond principal and interest.",
   },
   {
-    question: "How does mortgage refinancing work?",
-    answer: "Refinancing involves taking out a new loan to pay off your current one, usually to secure a lower interest rate or change the loan term. Keep in mind that refinancing usually incurs closing costs of 2-5% of the loan amount.",
-  },
-  {
-    question: "What costs are not included in a mortgage payment?",
-    answer: "Homeowners often overlook maintenance, HOA fees, utilities, and potential special assessments. While PITI covers the loan and taxes, the total cost of ownership is often 20-30% higher.",
+    question: "What upfront costs should Dubai buyers budget for?",
+    answer:
+      "Dubai buyers usually need more than the down payment. Common upfront items include the 4% Dubai Land Department transfer fee, mortgage registration fees, registration trustee or service partner fees, and often broker commission. Bank valuation and processing charges can add more.",
   },
   {
     question: "Does this mortgage calculator work for different countries?",
-    answer: "Yes. It includes market-specific defaults for USD, EUR, GBP, AED, and INR so you can start with more realistic examples for your region.",
+    answer:
+      "Yes. It includes market-specific defaults for USD, EUR, GBP, AED, and INR so you can start with more realistic examples for your region. Always confirm the final rate, fees, taxes, and insurance with your lender.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Free Mortgage Calculator — PITI & Amortization",
-  description: "Calculate monthly mortgage payments with PITI (Principal, Interest, Taxes, Insurance) and a full amortization schedule. Supports USD, EUR, GBP, AED, and INR.",
+  title: "Mortgage Calculator | PITI, Affordability, and Amortization",
+  description:
+    "Calculate mortgage payments, PITI, total interest, affordability, and amortization. Includes monthly ownership cost and Dubai mortgage buying cost context for AED buyers.",
   keywords: [
     "mortgage calculator",
     "home loan calculator",
     "monthly mortgage payment calculator",
     "mortgage calculator UAE",
+    "home loan calculator Dubai",
     "PITI calculator",
     "amortization schedule calculator",
-    "fixed vs adjustable rate mortgage",
+    "mortgage affordability calculator",
     "how much house can i afford",
+    "Dubai mortgage calculator",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -75,20 +72,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free Mortgage Calculator with PITI & Amortization",
-    description: "Instantly estimate mortgage payments, taxes, and insurance across major currencies.",
+    title: "Mortgage Calculator with PITI and Affordability",
+    description:
+      "Estimate mortgage payments, total ownership cost, affordability, and Dubai-specific buying costs across major currencies.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Mortgage PITI Calculator",
-    description: "Comprehensive home loan tool with full amortization and currency support.",
+    description:
+      "Comprehensive home loan tool with affordability guidance, amortization, and currency support.",
   },
 };
 
 function buildMortgageApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Mortgage Calculator",
     url: PAGE_URL,
     applicationCategory: "FinanceApplication",
@@ -99,7 +98,16 @@ function buildMortgageApplicationJsonLd() {
       price: "0",
       priceCurrency: "USD",
     },
-    description: "Professional mortgage calculator with PITI estimates and full amortization schedule.",
+    description:
+      "Mortgage calculator with principal and interest, PITI, affordability guidance, amortization, and Dubai buyer cost context.",
+    featureList: [
+      "Monthly mortgage payment and PITI estimate",
+      "True monthly ownership cost including HOA and maintenance",
+      "Affordability guidance using income and monthly debts",
+      "Full amortization schedule",
+      "Dubai upfront buying cost estimate for AED users",
+      "Multi-currency mortgage defaults",
+    ],
   };
 }
 
@@ -129,13 +137,27 @@ export default function MortgageCalculatorPage() {
         </nav>
 
         <div className="max-w-3xl">
-          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">Finance calculator</p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">Mortgage Calculator</h1>
+          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+            Home buying decision tool
+          </p>
+          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            Mortgage Calculator
+          </h1>
           <p className="mt-5 text-base leading-7 text-muted-foreground sm:text-lg">
-            Plan your home purchase with confidence. Calculate monthly mortgage payments including principal, interest, property taxes, and insurance (PITI) for any loan amount.
+            Calculate monthly mortgage payments, PITI, total interest, and amortization, then check whether the home
+            still looks affordable once taxes, insurance, HOA or service charges, maintenance, and Dubai buying costs
+            are added back in.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            Mortgage = loan math plus ownership math. A cheap-looking payment can still be expensive once the full
+            cost of owning the property is included.
+          </p>
+          <p className="mt-4 rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-950">
+            Results are estimates only. Rates, taxes, insurance, service charges, lender fees, and local property
+            registration costs vary by lender, location, borrower profile, and property type.
           </p>
         </div>
-      
+
         <div className="mt-6 max-w-2xl">
           <PrivacyNote />
         </div>
@@ -146,51 +168,81 @@ export default function MortgageCalculatorPage() {
       <div className="grid gap-12 lg:grid-cols-[1fr_350px]">
         <div className="space-y-12">
           <section className="space-y-6">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">How much house can I afford?</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">How mortgage payments are calculated</h2>
             <div className="prose prose-slate max-w-none text-muted-foreground leading-7">
               <p>
-                A standard rule for affordability is the <strong>28/36 rule</strong>. This suggests that your monthly mortgage payment (including taxes and insurance) should not exceed 28% of your gross monthly income, and your total debt payments (including the mortgage) should stay below 36%.
+                The core monthly mortgage payment is calculated from three inputs: the <strong>loan amount</strong>,
+                <strong> interest rate</strong>, and <strong>loan term</strong>. That gives you the principal-and-interest
+                payment. A more realistic ownership number then adds property tax and insurance, commonly called PITI.
               </p>
+              <div className="rounded-[1.25rem] border border-border bg-background p-4 font-mono text-sm text-foreground">
+                M = P * r(1+r)^n / ((1+r)^n - 1)
+              </div>
               <p>
-                To get a more precise estimate, you should first calculate your <Link href="/finance/salary-calculator" className="text-primary font-medium hover:underline">net take-home pay</Link> and then use a <Link href="/finance/dti-calculator" className="text-primary font-medium hover:underline">DTI calculator</Link> to see how much room you have for a new loan.
+                In plain language: <strong>P</strong> is the loan amount, <strong>r</strong> is the monthly interest rate,
+                and <strong>n</strong> is the number of monthly payments. In the real world, ownership costs often go beyond
+                PITI, especially when HOA or service charges and maintenance are material.
               </p>
             </div>
           </section>
 
           <section className="space-y-6">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Impact of Loan Terms</h2>
-            <p className="text-muted-foreground">A 15-year mortgage usually has a lower interest rate than a 30-year one, but higher monthly payments. Here is how different terms affect a $320,000 loan at a 6.5% interest rate:</p>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">How much house can I afford?</h2>
+            <div className="prose prose-slate max-w-none text-muted-foreground leading-7">
+              <p>
+                A common affordability rule is that housing should stay around <strong>25% to 30%</strong> of gross monthly
+                income, while total debt should remain inside a manageable debt-to-income range. That is why the calculator
+                now includes income, other debts, and an affordability signal instead of stopping at the monthly payment.
+              </p>
+              <p>
+                The Consumer Financial Protection Bureau makes the same practical point: lenders may tell you what you
+                qualify for, but only you can decide what fits your budget comfortably once repairs, reserves, and total
+                ownership costs are considered. Pair this with a{" "}
+                <Link href="/finance/dti-calculator" className="text-primary font-medium hover:underline">DTI calculator</Link>{" "}
+                and your{" "}
+                <Link href="/finance/salary-calculator" className="text-primary font-medium hover:underline">income</Link>{" "}
+                to stress-test the purchase properly.
+              </p>
+            </div>
+          </section>
+
+          <section className="space-y-6">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Impact of loan terms</h2>
+            <p className="text-muted-foreground">
+              Shorter mortgages usually have higher monthly payments and lower total interest. Longer mortgages usually
+              feel easier month to month, but can dramatically increase the amount of interest paid over time.
+            </p>
             <div className="overflow-x-auto rounded-2xl border border-border">
               <table className="w-full text-left text-sm">
-                <thead className="bg-muted/50 text-foreground uppercase font-bold text-[11px] tracking-wider">
+                <thead className="bg-muted/50 text-[11px] font-bold uppercase tracking-wider text-foreground">
                   <tr>
-                    <th className="px-6 py-4">Loan Term</th>
-                    <th className="px-6 py-4">Monthly Payment</th>
-                    <th className="px-6 py-4">Total Interest</th>
-                    <th className="px-6 py-4">Total Paid</th>
+                    <th className="px-6 py-4">Loan term</th>
+                    <th className="px-6 py-4">Monthly payment</th>
+                    <th className="px-6 py-4">Total interest</th>
+                    <th className="px-6 py-4">Total paid</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border text-muted-foreground">
                   <tr>
-                    <td className="px-6 py-4 font-semibold text-foreground">10 Years</td>
+                    <td className="px-6 py-4 font-semibold text-foreground">10 years</td>
                     <td className="px-6 py-4">$3,620</td>
                     <td className="px-6 py-4">$114,400</td>
                     <td className="px-6 py-4">$434,400</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 font-semibold text-foreground">15 Years</td>
+                    <td className="px-6 py-4 font-semibold text-foreground">15 years</td>
                     <td className="px-6 py-4">$2,790</td>
                     <td className="px-6 py-4">$182,200</td>
                     <td className="px-6 py-4">$502,200</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 font-semibold text-foreground">20 Years</td>
+                    <td className="px-6 py-4 font-semibold text-foreground">20 years</td>
                     <td className="px-6 py-4">$2,390</td>
                     <td className="px-6 py-4">$253,600</td>
                     <td className="px-6 py-4">$573,600</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 font-semibold text-foreground">30 Years</td>
+                    <td className="px-6 py-4 font-semibold text-foreground">30 years</td>
                     <td className="px-6 py-4">$2,023</td>
                     <td className="px-6 py-4">$408,100</td>
                     <td className="px-6 py-4">$728,100</td>
@@ -201,31 +253,71 @@ export default function MortgageCalculatorPage() {
           </section>
 
           <section className="space-y-6">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Understanding Fixed vs. Adjustable Rates</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">What affects your mortgage payment most?</h2>
             <div className="prose prose-slate max-w-none text-muted-foreground leading-7">
               <p>
-                A <strong>Fixed-Rate Mortgage</strong> gives you the peace of mind that your interest rate and monthly payment will never change over the life of the loan. This is ideal if you plan to stay in your home long-term and rates are currently low.
+                Four variables usually matter most: <strong>home price</strong>, <strong>down payment</strong>,
+                <strong> interest rate</strong>, and <strong>loan term</strong>. A larger down payment lowers the loan
+                amount, reduces total interest, and can improve lender comfort. A lower rate has a similar effect and
+                often changes affordability more than buyers expect.
               </p>
               <p>
-                An <strong>Adjustable-Rate Mortgage (ARM)</strong> typically offers a lower initial "teaser" interest rate for the first 5 or 10 years. After that, the rate can adjust based on market conditions. ARMs can be a smart choice if you plan to sell or refinance before the rate adjustment period begins.
+                What buyers often miss is that a home is not only a mortgage. Taxes, insurance, HOA or service charges,
+                repairs, and maintenance all compete with the same monthly budget.
               </p>
             </div>
           </section>
 
           <section className="space-y-6">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">What is Private Mortgage Insurance (PMI)?</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Fixed vs adjustable rates</h2>
             <div className="prose prose-slate max-w-none text-muted-foreground leading-7">
               <p>
-                PMI is a type of insurance that lenders require from borrowers who put down less than 20% of the home's purchase price. It doesn't protect you—it protects the lender if you stop making payments. 
+                A <strong>fixed-rate mortgage</strong> keeps the same interest rate and base payment for the entire term.
+                That makes long-term planning easier. An <strong>adjustable-rate mortgage</strong> often starts with a lower
+                introductory rate, then resets later based on market conditions.
               </p>
               <p>
-                Once your home equity reaches 20% (either through payments or home value appreciation), you can usually request to have PMI removed, which can save you hundreds of dollars per month.
+                Fixed rates are easier to model in a planning calculator. Adjustable-rate loans can still be useful, but
+                they require scenario testing because the future payment path is less certain.
+              </p>
+            </div>
+          </section>
+
+          <section className="space-y-6">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">What is private mortgage insurance (PMI)?</h2>
+            <div className="prose prose-slate max-w-none text-muted-foreground leading-7">
+              <p>
+                PMI is insurance that lenders often require when the borrower puts down less than 20% of the purchase price.
+                It protects the lender, not the borrower. If your equity later rises enough, you may be able to remove it and
+                lower the monthly payment.
+              </p>
+              <p>
+                Some markets and lenders handle this differently, so always confirm whether mortgage insurance, life insurance,
+                or credit-life protection is mandatory in your exact loan product.
+              </p>
+            </div>
+          </section>
+
+          <section className="space-y-6">
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Dubai mortgage and buying costs</h2>
+            <div className="prose prose-slate max-w-none text-muted-foreground leading-7">
+              <p>
+                For Dubai buyers, the monthly mortgage is only one part of the equation. The{" "}
+                <a href="https://dubailand.gov.ae/en/eservices/sell-property-overview/sell-property/" className="text-primary font-medium hover:underline" rel="noreferrer" target="_blank">
+                  Dubai Land Department
+                </a>{" "}
+                publishes a <strong>4% transfer fee</strong> on the property price, and mortgage registration is charged at{" "}
+                <strong>0.25% of the mortgage amount</strong>. Registration trustee or service partner fees also apply.
+              </p>
+              <p>
+                In practice, many buyers also pay broker commission, valuation fees, and bank processing charges. That is why
+                the calculator now shows a Dubai-oriented upfront-cost estimate when you switch to AED.
               </p>
             </div>
           </section>
 
           <section className="space-y-10">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground text-center">Frequently asked questions</h2>
+            <h2 className="text-center text-3xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
             <div className="grid gap-4">
               {faq.map((item) => (
                 <article key={item.question} className="rounded-2xl border border-border bg-card p-6">
@@ -239,33 +331,37 @@ export default function MortgageCalculatorPage() {
 
         <aside className="space-y-8">
           <div className="rounded-2xl border border-border bg-primary/5 p-6 space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-primary">UAE Mortgages</h3>
-            <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
-              <p>If you are buying property in Dubai or Abu Dhabi, keep these regional rules in mind:</p>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-primary">Mortgage planning</h3>
+            <div className="space-y-4 text-sm leading-relaxed text-slate-600">
+              <p>Use the calculator in this order for a better decision:</p>
               <ul className="space-y-3 list-disc pl-4">
-                <li>LTV is capped at <strong>80% for expats</strong> (85% for nationals) on first properties.</li>
-                <li>Maximum loan term is <strong>25 years</strong>.</li>
-                <li>Banks often require a minimum salary of <strong>AED 10,000 to 15,000</strong>.</li>
-                <li>Life insurance linked to the mortgage is mandatory in most cases.</li>
+                <li>Check the monthly principal-and-interest payment.</li>
+                <li>Add taxes, insurance, HOA or service charges, and maintenance.</li>
+                <li>Compare the total against your gross monthly income and other debts.</li>
+                <li>Review total interest and the amortization schedule before you commit.</li>
               </ul>
-              <p className="text-[11px] italic">Switch to the AED currency option in our calculator for Dubai-relevant defaults.</p>
             </div>
           </div>
 
           <div className="rounded-2xl border border-border bg-card p-6">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-foreground mb-4">Related Calculators</h3>
+            <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Related calculators</h3>
             <div className="grid gap-2">
-                 {[
-                    { name: "DTI Ratio Calculator", href: "/finance/dti-calculator" },
-                    { name: "Salary Calculator", href: "/finance/salary-calculator" },
-                    { name: "Rent affordability", href: "/real-estate/rent-affordability-calculator" },
-                    { name: "Closing Costs", href: "/real-estate/closing-costs-calculator" },
-                 ].map(tool => (
-                    <Link key={tool.href} href={tool.href} className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-xs font-medium text-muted-foreground hover:border-primary/30 hover:text-primary transition-all">
-                        {tool.name}
-                        <span>→</span>
-                    </Link>
-                 ))}
+              {[
+                { name: "DTI Ratio Calculator", href: "/finance/dti-calculator" },
+                { name: "Salary Calculator", href: "/finance/salary-calculator" },
+                { name: "Rent Affordability", href: "/real-estate/rent-affordability-calculator" },
+                { name: "Closing Costs", href: "/real-estate/closing-costs-calculator" },
+                { name: "Home Buying Budget", href: "/real-estate/home-buying-budget-calculator" },
+              ].map((tool) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  className="flex items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-xs font-medium text-muted-foreground transition-all hover:border-primary/30 hover:text-primary"
+                >
+                  {tool.name}
+                  <span>{"->"}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </aside>
@@ -275,5 +371,3 @@ export default function MortgageCalculatorPage() {
     </div>
   );
 }
-
-
