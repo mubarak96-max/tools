@@ -14,17 +14,26 @@ export function buildPdfToolCopy(tool: PdfTool) {
         paragraphs: [
           "Merging PDFs is useful when separate invoices, reports, signed pages, or handouts need to become one file before you send or archive them. It is one of the fastest ways to clean up a document workflow without reopening the original files.",
           "This page keeps that task focused: upload the PDFs in the right order, merge them in the browser, and download one combined document immediately.",
+          "PDF merging is one of the most common document tasks in business workflows. You might receive a signed contract as one PDF, an appendix as another, and supporting documents as a third — but the recipient needs everything in a single file. Or you might have monthly reports that need to be combined into a quarterly archive. In each case, merging is faster and more reliable than copy-pasting content between documents.",
+          "The order of files matters. The merged PDF will contain pages in exactly the order you upload the files. If you need a specific sequence — for example, cover page first, then main document, then appendices — arrange the files in that order before merging. Most browsers allow you to select multiple files at once, but the order may vary by operating system.",
+          "All processing happens in your browser. Your PDF files are never uploaded to a server, which makes this tool safe for confidential documents, legal files, financial records, and any content you would not want to transmit over the internet.",
         ],
         faqs: [
           {
             question: "Does the merge keep the original page order?",
-            answer:
-              "Yes. The merged result follows the file order you upload here, so it is worth checking that order before you export the final PDF.",
+            answer: "Yes. The merged result follows the file order you upload here, so it is worth checking that order before you export the final PDF. Pages within each file also maintain their original order.",
           },
           {
             question: "Can I merge PDFs without installing desktop software?",
-            answer:
-              "Yes. This page is designed for quick browser-based merging, which is useful when you only need a simple combined file and do not want to open a heavier PDF app.",
+            answer: "Yes. This page is designed for quick browser-based merging, which is useful when you only need a simple combined file and do not want to open a heavier PDF app.",
+          },
+          {
+            question: "Is there a limit to how many PDFs I can merge?",
+            answer: "There is no hard limit on the number of files, but very large merges (many large files) may be slower depending on your device's memory and processing speed. For most practical use cases — combining 2 to 20 documents — the merge completes quickly.",
+          },
+          {
+            question: "Will the merged PDF preserve bookmarks and hyperlinks?",
+            answer: "Internal bookmarks and hyperlinks within each original PDF are generally preserved in the merged output. Cross-document links (links from one PDF to another) will not work after merging since the files are now combined.",
           },
           reviewFaq,
         ],

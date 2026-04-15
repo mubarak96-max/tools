@@ -5,9 +5,9 @@ import WordCounterIntentPage from "@/app/text/_components/WordCounterIntentPage"
 import ExactTextToolRunner from "@/components/tools/ExactTextTool";
 import ToolPageScaffold from "@/components/tools/ToolPageScaffold";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { getAllWordCounterLandingSlugs, getWordCounterLanding } from "@/lib/word-counter-landings/registry";
 import { EXACT_TEXT_TOOLS, EXACT_TEXT_TOOL_MAP } from "@/lib/tools/exact-catalog";
-import { buildTextToolCopy } from "@/lib/tools/exact-copy";
+import { getExactTextSeoContent } from "@/lib/tools/exact-text-seo";
+import { getAllWordCounterLandingSlugs, getWordCounterLanding } from "@/lib/word-counter-landings/registry";
 
 export const revalidate = 43200;
 
@@ -40,19 +40,16 @@ export async function generateMetadata(props: PageProps<"/text/[slug]">) {
     notFound();
   }
 
-  if (slug === "readability-flesch-kincaid-calculator") {
-    return buildMetadata({
-      title: "Flesch-Kincaid Readability Calculator — Free & Instant",
-      description: "Analyze your writing with our Flesch-Kincaid calculator. Get instant reading ease scores, grade levels, and sentence-level highlights to improve your content.",
-      path: `/text/${slug}`,
-    });
-  }
+  const seo = getExactTextSeoContent(tool);
 
-  return buildMetadata({
-    title: `Free ${tool.name} Online – Quick Text Processing`,
-    description: tool.description,
-    path: `/text/${slug}`,
-  });
+  return {
+    ...buildMetadata({
+      title: seo.metaTitle,
+      description: seo.metaDescription,
+      path: `/text/${slug}`,
+    }),
+    keywords: seo.keywords,
+  };
 }
 
 export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
@@ -68,7 +65,7 @@ export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
     notFound();
   }
 
-  const copy = buildTextToolCopy(tool);
+  const seo = getExactTextSeoContent(tool);
 
   return (
     <ToolPageScaffold
@@ -76,18 +73,28 @@ export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
       category="Text"
       categoryHref="/text"
       title={tool.name}
-      description={tool.description}
+      description={seo.metaDescription}
       learn={
         <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{copy.heading}</h2>
-          {copy.paragraphs.map((paragraph) => (
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">{seo.learnTitle}</h2>
+          {seo.introParagraphs.map((paragraph) => (
             <p key={paragraph} className="mt-3 text-base leading-7 text-muted-foreground">
               {paragraph}
             </p>
           ))}
+          {seo.sections.map((section) => (
+            <div key={section.heading}>
+              <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph} className="mt-3 text-base leading-7 text-muted-foreground">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          ))}
         </div>
       }
-      faqs={copy.faqs}
+      faqs={seo.faqs}
     >
       {slug === "readability-flesch-kincaid-calculator" ? (
         <ReadabilityCalculator />

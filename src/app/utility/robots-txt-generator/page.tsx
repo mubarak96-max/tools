@@ -14,82 +14,89 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What does robots.txt do?",
+    question: "What is robots.txt used for?",
     answer:
-      "A robots.txt file gives crawling instructions to web robots (like Googlebot) at the domain root. It dictates which paths are allowed or disallowed for crawling and specifies where the site's XML sitemap is located.",
+      "A robots.txt file gives crawl instructions to bots at the domain root. It is commonly used to block low-value areas such as admin, account, checkout, search, or duplicate parameter paths and to point crawlers to the site's XML sitemap.",
   },
   {
-    question: "Does robots.txt block pages from the web?",
+    question: "Does robots.txt stop pages from appearing in Google?",
     answer:
-      "No. It is a crawler directive, not an access-control mechanism. It politely asks legitimate bots not to crawl specific pages. However, malicious bots might ignore it, and if a disallowed page is linked from elsewhere, it can still be indexed. Sensitive content should be protected with a password or strict authentication.",
+      "Not reliably. Robots.txt controls crawling, not guaranteed indexing. A blocked URL can still appear in search if search engines discover it elsewhere. Use a crawlable page with a noindex directive when the goal is removal from search results.",
   },
   {
-    question: "Where should robots.txt live?",
+    question: "Where should robots.txt be placed?",
     answer:
-      "Your robots.txt file MUST be served from the top-level directory (the root) of your domain, for example: https://example.com/robots.txt. Subdirectories like https://example.com/blog/robots.txt will be ignored by crawlers.",
+      "It should live at the root of the domain, for example https://example.com/robots.txt. Putting the file in a subfolder does not work the same way.",
   },
   {
-    question: "Do I need a robots.txt file for my website?",
+    question: "Should I block CSS and JavaScript in robots.txt?",
     answer:
-      "While not strictly mandatory, it is highly recommended. Without it, search engines will attempt to crawl every page they find. A robots.txt file helps optimize your \"crawl budget\" by steering bots away from admin panels, internal search results, and duplicate content.",
+      "Usually no. Blocking important CSS or JavaScript resources can interfere with rendering, technical SEO checks, and how search engines evaluate your pages.",
   },
   {
-    question: "What is the difference between robots.txt and meta noindex?",
+    question: "What are the most important robots.txt rules?",
     answer:
-      "Robots.txt stops crawlers from browsing a page entirely, meaning it won't be crawled but might still be indexed if linked elsewhere. A 'noindex' meta tag allows the crawler to read the page but explicitly tells search engines not to show it in search results. Never use both on the same page, or the search engine won't see the noindex tag!",
+      "The core directives are User-agent, Disallow, Allow, and Sitemap. Some websites also use Crawl-delay for non-Google crawlers, but support varies by search engine.",
   },
   {
-    question: "Can I include multiple sitemaps in one robots.txt file?",
+    question: "Can I block AI crawlers with robots.txt?",
     answer:
-      "Yes! You can list as many Sitemap directives as you need. This is especially common for large websites spanning millions of pages or e-commerce sites that segregate sitemaps by category, blog, or product type.",
+      "Yes. You can add user-agent specific blocks for bots such as GPTBot, CCBot, Google-Extended, anthropic-ai, or ClaudeBot. Whether every bot respects the file depends on the bot operator.",
   },
-  {
-    question: "What does Crawl-Delay mean?",
-    answer:
-      "Crawl-Delay tells bots how many seconds they should wait between consecutive requests to your server. This avoids server overloads. Note that Googlebot ignores Crawl-Delay (they prefer you adjust crawl limits in Google Search Console), but Bing, Yandex, and Baidu still respect it.",
-  },
-  {
-    question: "Should I block CSS and JavaScript files in robots.txt?",
-    answer:
-      "No, you should explicitly avoid blocking CSS and JavaScript files. Modern search engines like Google render your web pages almost exactly like a visual browser. If they cannot access the CSS or JS files, they cannot “see” the page properly, which can severely harm your SEO rankings as they will consider the page poorly designed or mobile-unfriendly.",
-  },
-  {
-    question: "Why is a page blocked in robots.txt still showing up in Google Search?",
-    answer:
-      "This happens because robots.txt prevents crawling, but not indexing. If another website links to your URL, Google learns that the page exists and may index it based purely on the anchor text of the incoming link, without ever crawling the page contents. To remove it from search, you must allow crawling, and add a 'noindex' meta tag.",
-  }
 ];
 
 export const metadata: Metadata = {
-  title: "Robots.txt Generator | Build Allow, Disallow, and Sitemap Rules",
+  title: "Robots.txt Generator | Create, Explain, and Test Crawl Rules",
   description:
-    "Generate a clean robots.txt file with user-agent, allow, disallow, crawl-delay, and sitemap fields to control search engine crawling efficiently.",
-  keywords: ["robots txt generator", "robots.txt creator", "seo robots file generator", "allow disallow generator", "crawl delay"],
+    "Generate a robots.txt file with presets, validation warnings, rule explanations, AI bot blocks, and URL testing. Build safer crawl rules for SEO and technical site management.",
+  keywords: [
+    "robots.txt generator",
+    "create robots.txt file",
+    "robots.txt example",
+    "robots.txt for wordpress",
+    "robots.txt SEO",
+    "technical seo tool",
+    "block ai bots robots.txt",
+    "robots.txt tester",
+    "allow disallow generator",
+    "sitemap robots.txt",
+  ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Robots.txt Generator | SEO Rule Builder",
-    description: "Build a customized robots.txt file with crawler rules, user-agent directives, and sitemap references.",
+    title: "Robots.txt Generator",
+    description:
+      "Generate, understand, and test robots.txt rules with presets, explanations, and validation warnings.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Robots.txt Generator",
-    description: "Create a clean, functional robots.txt file for your site in seconds.",
+    description:
+      "Create a safer robots.txt file with technical SEO guidance and line-by-line explanations.",
   },
 };
 
 function buildApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "Robots.txt Generator",
     url: PAGE_URL,
     applicationCategory: "UtilitiesApplication",
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description: "Free online robots.txt generator for crawler directives, User-Agents, and sitemap entries.",
+    description:
+      "Free robots.txt generator with presets, validation warnings, rule explanations, AI bot blocks, and a simple path tester.",
+    featureList: [
+      "Robots.txt presets for common site types",
+      "Allow, disallow, sitemap, and crawl-delay controls",
+      "Line-by-line explanations",
+      "Validation warnings for risky setups",
+      "AI bot block helper",
+      "Simple URL path tester",
+    ],
   };
 }
 
@@ -117,98 +124,74 @@ export default function RobotsTxtGeneratorPage() {
             <li className="text-foreground">Robots.txt Generator</li>
           </ol>
         </nav>
-        <div className="max-w-3xl">
-          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">SEO Utility</p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">Robots.txt Generator</h1>
+
+        <div className="max-w-4xl">
+          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+            Technical SEO tool
+          </p>
+          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            Robots.txt Generator
+          </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Build a comprehensive robots.txt file for crawlers with allow, disallow, crawl-delay, and sitemap directives in one structured place. Prevent search bots from overloading your server or indexing admin pages.
+            Generate a robots.txt file, understand what each rule does, and catch obvious crawl mistakes before they
+            affect your site. This page is built for developers, SEO specialists, and site owners who need clarity,
+            not just a code block.
+          </p>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            Important: robots.txt helps control crawling. It does not act as access control and it does not reliably
+            remove URLs from search results by itself.
           </p>
         </div>
       </section>
 
       <RobotsTxtGenerator />
 
-      <section className="space-y-8 border-t border-border/60 pt-8 mt-12">
-        <div className="grid gap-8 lg:grid-cols-2">
-          <div className="tool-frame p-6">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">What is the Robots Exclusion Protocol?</h2>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              The Robots Exclusion Protocol (REP) is a fundamental, web-wide standard that regulates how web crawlers and automated bots traverse the World Wide Web. Before an ethical bot—like Googlebot, Bingbot, or DuckDuckBot—examines a single page of your website, it performs one crucial action: it requests your `robots.txt` file. 
-            </p>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              Think of `robots.txt` as a digital “No Trespassing” or “Public Access” sign at the front door of your website. By establishing these ground rules, webmasters can protect server resources, keep sensitive staging environments hidden, and guide search engines directly toward the most valuable content on the site via explicitly declared Sitemaps.
-            </p>
-          </div>
-          
-          <div className="tool-frame p-6">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">Why Do You Need a Robots.txt File?</h2>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              <strong>Crawl Budget Optimization:</strong> Search engines do not have infinite processing power. For large websites, Google allocates a specific "crawl budget"—a calculated limit on how many server requests a bot makes to your website in a given timeframe. 
-            </p>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              If your site has thousands of autogenerated internal search results, paginated archives, or duplicate tracking URLs, Googlebot might waste its entire budget crawling useless pages while completely missing your brand-new, high-value articles. A well-constructed `robots.txt` file systematically disallows access to these low-value directories, forcing the crawlers to spend their budget exclusively on your most critical, revenue-generating pages.
-            </p>
-          </div>
-        </div>
+      <section className="space-y-4 border-t border-border/60 pt-8">
+        <div className="prose prose-slate max-w-none">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is robots.txt?</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            The robots.txt file is part of the robots exclusion protocol. It sits at the root of your domain and tells
+            compliant crawlers which parts of your website they should or should not crawl. Search engines typically
+            request this file before crawling the rest of the site.
+          </p>
 
-        <div className="tool-frame p-6 mt-8 border-primary/10 bg-primary/[0.02]">
-          <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">The Anatomy of a Perfect Robots.txt File</h2>
-          <div className="space-y-6">
-            
-            <div>
-              <h3 className="text-base font-semibold text-foreground">1. User-Agent</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                The `User-Agent` directive identifies the specific bot to which the following rules apply. Using the asterisk (`*`) is universally accepted as a wildcard that targets all web crawlers. If you need hyper-specific rules, you can create isolated blocks for different agents. For example, you could allow `Googlebot-Image` to crawl a photo directory while simultaneously locking out standard web crawlers.
-              </p>
-            </div>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How robots.txt works</h2>
+          <ol className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>A crawler visits your domain and looks for `/robots.txt`.</li>
+            <li>It reads the `User-agent` block that matches the bot.</li>
+            <li>It applies `Allow` and `Disallow` rules to decide which paths to crawl.</li>
+            <li>It may also use the `Sitemap` directive to find important URLs faster.</li>
+          </ol>
 
-            <div>
-              <h3 className="text-base font-semibold text-foreground">2. Allow and Disallow Rules</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                `Disallow` is the primary command used in robots.txt. It explicitly tells the specified user agent not to request a given URL path. The `Allow` directive is generally used to create deliberate exceptions within a blocked directory. A textbook example is blocking an entire `/admin/` folder, but utilizing an `Allow` directive to permit access to a publicly shareable file nested deep inside that folder.
-              </p>
-            </div>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">The most important directives</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li><strong className="text-foreground">User-agent:</strong> names the crawler a rule block applies to.</li>
+            <li><strong className="text-foreground">Disallow:</strong> blocks matching paths from being crawled.</li>
+            <li><strong className="text-foreground">Allow:</strong> opens specific paths even inside broader blocked areas.</li>
+            <li><strong className="text-foreground">Sitemap:</strong> points crawlers to your XML sitemap.</li>
+            <li><strong className="text-foreground">Crawl-delay:</strong> asks some crawlers to slow down, though support varies.</li>
+          </ul>
 
-            <div>
-              <h3 className="text-base font-semibold text-foreground">3. Crawl-Delay Directives</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                If your backend infrastructure is fragile or heavily trafficked, rapid-fire bot requests can cause debilitating server bottlenecks. The `Crawl-Delay` rule explicitly forces the bot to wait a designated number of seconds between server requests. While Google deprecates this specific rule in favor of their Search Console throttling tools, engines like Bing, Yandex, and Baidu largely still respect it.
-              </p>
-            </div>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Robots.txt best practices</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>Do not block the full site unless you are intentionally taking it out of crawl access.</li>
+            <li>Do not rely on robots.txt to protect private data. Use authentication instead.</li>
+            <li>Be careful about blocking CSS and JavaScript needed for rendering.</li>
+            <li>Keep the file readable so teams can understand what it is doing later.</li>
+            <li>Test important paths before uploading the file to production.</li>
+          </ul>
 
-            <div>
-              <h3 className="text-base font-semibold text-foreground">4. XML Sitemap Declaration</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                At the very end of your `robots.txt` document, you should formally declare the absolute URL of your XML sitemap (`Sitemap: https://yourdomain.com/sitemap.xml`). This allows automated agents exploring the web to immediately locate the structural mapping of your entire site without having to blindly crawl the site architecture to find links.
-              </p>
-            </div>
-
-          </div>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-2 mt-8">
-          <div className="tool-frame p-6">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">Common SEO Pitfalls to Avoid</h2>
-            <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground list-disc pl-4">
-              <li><strong>The Accidental Block out:</strong> Accidentally leaving `Disallow: /` in the file. This single slash blocks entire search engines from your website, effectively removing your business from search results entirely.</li>
-              <li><strong>Blocking CSS and JavaScript:</strong> Never block scripts or style folders. Google's modern rendering engine needs to visually process your website. Blocking these resources stops mobile usability assessment and craters rankings.</li>
-              <li><strong>Treating robots.txt as Security:</strong> Malicious scrapers, hackers, and aggressive scraping bots ignore robots.txt entirely. Never use it to hide sensitive data, banking portals, or private documents.</li>
-            </ul>
-          </div>
-          
-          <div className="tool-frame p-6">
-            <h2 className="text-xl font-bold tracking-tight text-foreground">How To Test Your Robots.txt File</h2>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              Generating your file is only the first step. After uploading the file to your root domain (e.g., `https://yourdomain.com/robots.txt`), you must validate it rigorously.
-            </p>
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              Always use the <strong>Google Search Console Robots.txt Tester</strong>. This native tool highlights syntax warnings, confirms whether specific critical URLs are successfully blocked, and alerts you if Googlebot is encountering unexpected rendering traps. Continual monitoring prevents devastating traffic losses.
-            </p>
-          </div>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Examples of common robots.txt use cases</h2>
+          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+            <li>Block admin, account, cart, and checkout areas from routine crawling.</li>
+            <li>Reduce crawl waste on internal search and filtered URLs.</li>
+            <li>Point bots to your XML sitemap after launching a new site section.</li>
+            <li>Add explicit user-agent blocks for AI crawlers when that matches your policy.</li>
+          </ul>
         </div>
       </section>
 
-      <section className="space-y-6 border-t border-border/60 pt-8 mt-12">
+      <section className="space-y-6 border-t border-border/60 pt-8">
         <h2 className="text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
         <div className="mt-6 space-y-4">
           {faq.map((item, index) => (

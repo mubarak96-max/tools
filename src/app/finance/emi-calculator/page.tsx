@@ -1,10 +1,9 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Metadata } from "next";
 
-import JsonLd from "@/components/seo/JsonLd";
 import EMICalculator from "@/app/finance/emi-calculator/components/EMICalculator";
+import JsonLd from "@/components/seo/JsonLd";
 import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
@@ -21,45 +20,50 @@ const faq = [
   {
     question: "What is EMI?",
     answer:
-      "EMI stands for Equated Monthly Instalment. It is the fixed monthly amount you pay to repay a loan, covering both principal and interest.",
+      "EMI stands for Equated Monthly Instalment. It is the fixed monthly loan payment that covers both principal and interest until the loan is fully repaid.",
   },
   {
     question: "How is EMI calculated?",
     answer:
-      "EMI is calculated using the standard loan formula based on principal, monthly interest rate, and tenure in months.",
+      "EMI is calculated from three core inputs: loan amount, monthly interest rate, and total number of months. This page uses the standard amortizing loan formula to estimate repayments.",
   },
   {
-    question: "Does this EMI calculator work for home, car, and personal loans?",
+    question: "What is a good EMI relative to income?",
     answer:
-      "Yes. The same repayment formula applies across those loan types. You only need to change the loan amount, rate, and tenure.",
-  },
-  {
-    question: "What is an amortization schedule?",
-    answer:
-      "An amortization schedule is a month-by-month breakdown showing how much of each EMI goes to interest, how much goes to principal, and the remaining balance.",
+      "A common planning guideline is to keep the loan payment near 20% to 25% of monthly income, with total monthly debt often staying below roughly 40%. Actual lender rules vary by country, lender, and credit profile.",
   },
   {
     question: "How can I reduce my EMI?",
     answer:
-      "You can reduce EMI by increasing tenure, lowering the interest rate, making a larger down payment, or prepaying part of the loan balance.",
+      "You can reduce EMI by lowering the loan amount, increasing the tenure, negotiating a lower interest rate, or making a larger down payment when the loan type allows it.",
+  },
+  {
+    question: "Why does a longer tenure lower EMI but increase total interest?",
+    answer:
+      "A longer term spreads the balance across more months, so each payment gets smaller. The tradeoff is that interest keeps accruing for longer, which usually increases the total repayment amount.",
+  },
+  {
+    question: "Can this EMI calculator tell me the exact offer from a bank?",
+    answer:
+      "No. This tool provides planning estimates only. Lenders may apply different rates, fees, insurance, processing charges, and eligibility rules when issuing a real loan offer.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "EMI Calculator | Free Loan Payment Calculator for USD, EUR, GBP, AED, INR",
+  title: "EMI Calculator | Loan EMI, Total Interest, Affordability, and Repayment",
   description:
-    "Calculate monthly loan EMI for home, car, and personal loans. Supports USD, EUR, GBP, AED, and INR with instant results and amortization schedule.",
+    "Use this free EMI calculator to estimate monthly loan payments, total interest, total repayment, affordability, and maximum loan size for home, car, and personal loans.",
   keywords: [
     "EMI calculator",
     "loan EMI calculator",
-    "monthly payment calculator",
+    "monthly loan payment calculator",
     "home loan EMI calculator",
     "car loan EMI calculator",
-    "personal loan calculator",
-    "EMI calculator India",
-    "loan calculator UAE",
-    "mortgage calculator",
-    "loan repayment calculator",
+    "personal loan EMI calculator",
+    "EMI calculator UAE",
+    "loan calculator Dubai",
+    "how EMI is calculated",
+    "what EMI can I afford",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -67,22 +71,22 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free EMI Calculator for Home, Car, and Personal Loans",
+    title: "EMI Calculator With Affordability and Total Interest",
     description:
-      "Estimate monthly EMI, total interest, and total repayment in USD, EUR, GBP, AED, and INR.",
+      "Calculate EMI, compare repayment burden, estimate total interest, and understand what loan size may fit your budget.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free EMI Calculator",
+    title: "EMI Calculator",
     description:
-      "Calculate monthly loan repayments with multi-currency support and a full amortization schedule.",
+      "Estimate monthly EMI, total repayment, affordability, and a rough maximum loan amount.",
   },
 };
 
 function buildEmiApplicationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "SoftwareApplication",
     name: "EMI Calculator",
     url: PAGE_URL,
     applicationCategory: "FinanceApplication",
@@ -94,12 +98,14 @@ function buildEmiApplicationJsonLd() {
       priceCurrency: "USD",
     },
     description:
-      "Free EMI calculator for home loans, car loans, and personal loans with support for USD, EUR, GBP, AED, and INR.",
+      "Free EMI calculator for home, car, and personal loans with affordability guidance, total interest, and amortization schedule.",
     featureList: [
       "Monthly EMI calculation",
-      "Multi-currency support",
+      "Total interest and repayment estimate",
+      "Affordability signal based on income and debts",
+      "Estimated maximum affordable loan",
       "Amortization schedule",
-      "Instant repayment estimates",
+      "Multi-currency support",
     ],
   };
 }
@@ -111,7 +117,6 @@ export default function EMICalculatorPage() {
     { name: "EMI Calculator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const emiTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
     <div className="space-y-8">
@@ -138,24 +143,24 @@ export default function EMICalculatorPage() {
           </ol>
         </nav>
 
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            Finance calculator
+            Loan planning tool
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             EMI Calculator
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Calculate monthly loan repayments instantly. Adjust loan amount, interest rate, tenure,
-            and currency to estimate your EMI, total interest payable, and complete repayment amount.
+            EMI is the fixed monthly payment used to repay a loan over time. This calculator goes
+            beyond the basic number by showing total interest, total repayment, affordability
+            signals, and a rough estimate of the loan size your budget can support.
           </p>
-          {emiTool ? (
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">
-              {emiTool.description}
-            </p>
-          ) : null}
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
+            Results are estimates only and do not include lender-specific fees, insurance,
+            processing charges, or approval criteria.
+          </p>
         </div>
-      
+
         <div className="mt-6 max-w-2xl">
           <PrivacyNote />
         </div>
@@ -164,59 +169,82 @@ export default function EMICalculatorPage() {
       <EMICalculator />
 
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is EMI?</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            EMI stands for Equated Monthly Instalment. It is the fixed monthly payment a borrower
-            makes to a lender until the loan is fully repaid. Each EMI includes one part that pays
-            down the principal and one part that covers interest.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            In the early stage of a loan, a larger share of the EMI goes toward interest. As the
-            outstanding balance decreases, more of each payment starts reducing the principal. That
-            shift is what you see in the amortization schedule below the calculator.
-          </p>
+        <div className="space-y-8">
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is EMI?</h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              EMI stands for Equated Monthly Instalment. It is the recurring monthly payment used to
+              repay a loan. Every EMI includes two parts: one reduces the principal balance and the
+              other covers interest charged by the lender.
+            </p>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              That means a low EMI does not always mean a cheap loan. A longer tenure usually lowers
+              the monthly payment but can push total interest much higher over the full repayment period.
+            </p>
+          </div>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">EMI formula</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The standard EMI formula is:
-          </p>
-          <pre className="mt-4 overflow-x-auto rounded-[1rem] border border-border bg-background p-4 text-sm text-foreground">
-            <code>EMI = P Ã— r Ã— (1 + r)^n / ((1 + r)^n - 1)</code>
-          </pre>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>
-              <strong className="text-foreground">P</strong>: principal loan amount
-            </li>
-            <li>
-              <strong className="text-foreground">r</strong>: monthly interest rate
-            </li>
-            <li>
-              <strong className="text-foreground">n</strong>: tenure in months
-            </li>
-          </ul>
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              How EMI is calculated
+            </h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              Standard EMI calculations use three variables only: loan amount, monthly interest rate,
+              and total number of monthly payments.
+            </p>
+            <pre className="mt-4 overflow-x-auto rounded-[1rem] border border-border bg-background p-4 text-sm text-foreground">
+              <code>EMI = P * r * (1 + r)^n / ((1 + r)^n - 1)</code>
+            </pre>
+            <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+              <li>
+                <strong className="text-foreground">P</strong>: loan amount
+              </li>
+              <li>
+                <strong className="text-foreground">r</strong>: monthly interest rate
+              </li>
+              <li>
+                <strong className="text-foreground">n</strong>: total number of months
+              </li>
+            </ul>
+          </div>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            How to use this EMI calculator
-          </h2>
-          <ol className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Select a currency relevant to your market.</li>
-            <li>Adjust the loan amount to match the expected borrowing size.</li>
-            <li>Set the annual interest rate offered by your lender.</li>
-            <li>Choose the loan tenure in months.</li>
-            <li>Review the monthly EMI, total interest, and total repayment instantly.</li>
-            <li>Open the amortization schedule to inspect the month-by-month breakdown.</li>
-          </ol>
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              What affects your EMI most?
+            </h2>
+            <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+              <li>Higher loan amounts increase EMI because you are financing more principal.</li>
+              <li>Higher interest rates increase both EMI and the total cost of borrowing.</li>
+              <li>Longer tenure lowers EMI but usually increases total interest paid.</li>
+              <li>Larger down payments reduce the financed balance and can improve affordability.</li>
+            </ul>
+          </div>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            How to reduce your EMI
-          </h2>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Increase loan tenure to spread the balance across more months.</li>
-            <li>Negotiate a lower interest rate before accepting the loan.</li>
-            <li>Make a larger down payment to reduce the financed amount.</li>
-            <li>Prepay part of the principal when your lender allows it.</li>
-          </ul>
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              EMI and affordability
+            </h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              The monthly EMI should be interpreted against income, not viewed in isolation. A common
+              planning rule is to keep the loan payment near 20% to 25% of monthly income, while total
+              monthly debt often stays below roughly 40%.
+            </p>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              That is why this page also estimates a rough maximum affordable loan based on your income,
+              other debts, chosen interest rate, and tenure. It is a planning shortcut, not underwriting.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              How to reduce EMI
+            </h2>
+            <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
+              <li>Borrow less by increasing the down payment or choosing a lower-cost asset.</li>
+              <li>Negotiate a lower interest rate before signing the loan agreement.</li>
+              <li>Stretch the tenure only if the interest tradeoff still makes financial sense.</li>
+              <li>Use prepayments carefully to reduce outstanding principal faster when allowed.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -238,5 +266,3 @@ export default function EMICalculatorPage() {
     </div>
   );
 }
-
-

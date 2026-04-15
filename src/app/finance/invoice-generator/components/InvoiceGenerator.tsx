@@ -2,8 +2,18 @@
 
 import { useMemo, useState } from "react";
 
-import { CURRENCIES } from "@/lib/tools/emi";
-import { calculateInvoice, type InvoiceLineItemInput } from "@/lib/tools/invoice";
+import {
+  calculateInvoice,
+  INVOICE_CURRENCIES,
+  type AddressBlock,
+  type DiscountMode,
+  type InvoiceLineItemInput,
+} from "@/lib/tools/invoice";
+import AddressBlockComponent from "./AddressBlock";
+import LineItemsTable from "./LineItemsTable";
+import TotalsForm from "./TotalsForm";
+import InvoicePreview from "./InvoicePreview";
+import { buildInvoiceHtml } from "./buildInvoiceHtml";
 
 const fieldClass =
   "w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary";
@@ -18,14 +28,6 @@ function optionalNum(value: string) {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-function formatCurrency(value: number) {
-  return new Intl.NumberFormat(CURRENCIES[0].locale, {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 2,
-  }).format(value);
-}
-
 function createItem(id: string, description: string, quantity: number, unitPrice: number): EditableInvoiceItem {
   return { id, description, quantity, unitPrice };
 }
@@ -33,14 +35,44 @@ function createItem(id: string, description: string, quantity: number, unitPrice
 export default function InvoiceGenerator() {
   const [invoiceNumber, setInvoiceNumber] = useState("INV-2026-001");
   const [issueDate, setIssueDate] = useState("2026-04-10");
-  const [sellerName, setSellerName] = useState("FindMyTool Studio");
-  const [clientName, setClientName] = useState("Client Name");
-  const [taxPercent, setTaxPercent] = useState<number | "">(5);
-  const [discountAmount, setDiscountAmount] = useState<number | "">(0);
+  const [dueDate, setDueDate] = useState("");
+  const [currencyCode, setCurrencyCode] = useState("USD");
+
+  const [sender, setSender] = useState<AddressBlock>({
+    name: "FindMyTool Studio",
+    company: "",
+    address: "",
+    cityStateZip: "",
+    email: "",
+    phone: "",
+  });
+
+  const [recipient, setRecipient] = useState<AddressBlock>({
+    name: "Client Name",
+    company: "",
+    address: "",
+    cityStateZip: "",
+    email: "",
+    phone: "",
+  });
+
   const [items, setItems] = useState<EditableInvoiceItem[]>([
     createItem("line-1", "Strategy workshop", 1, 650),
     createItem("line-2", "Landing page build", 1, 1200),
   ]);
+
+  const [discountMode, setDiscountMode] = useState<DiscountMode>("flat");
+  const [discountValue, setDiscountValue] = useState<number | "">(0);
+  const [taxPercent, setTaxPercent] = useState<number | "">(5);
+  const [shipping, setShipping] = useState<number | "">(0);
+  const [amountPaid, setAmountPaid] = useState<number | "">(0);
+  const [paymentTerms, setPaymentTerms] = useState("");
+  const [notes, setNotes] = useState("");
+
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [pdfError, setPdfError] = useState<string | null>(null);
+
+  const currency = INVOICE_CURRENCIES.find(c => c.code === currencyCode) || INVOICE_CURRENCIES[0];
 
   const result = useMemo(
     () =>
@@ -51,10 +83,28 @@ export default function InvoiceGenerator() {
           unitPrice,
         })),
         taxPercent: taxPercent === "" ? 0 : taxPercent,
-        discountAmount: discountAmount === "" ? 0 : discountAmount,
+        discountMode,
+        discountValue: discountValue === "" ? 0 : discountValue,
+        shipping: shipping === "" ? 0 : shipping,
+        amountPaid: amountPaid === "" ? 0 : amountPaid,
       }),
-    [discountAmount, items, taxPercent],
+    [items, taxPercent, discountMode, discountValue, shipping, amountPaid],
   );
+
+  const validationErrors = useMemo(() => {
+    const errors: { dueDate?: string; amountPaid?: string } = {};
+
+    if (dueDate && issueDate && dueDate < issueDate) {
+      errors.dueDate = "Due date must be on or after the issue date";
+    }
+
+    const amountPaidNum = amountPaid === "" ? 0 : amountPaid;
+    if (amountPaidNum > result.total) {
+      errors.amountPaid = "Amount paid cannot exceed the invoice total";
+    }
+
+    return errors;
+  }, [dueDate, issueDate, amountPaid, result.total]);
 
   function updateItem(id: string, field: keyof InvoiceLineItemInput, value: string) {
     setItems((currentItems) =>
@@ -79,7 +129,7 @@ export default function InvoiceGenerator() {
   function addItem() {
     setItems((currentItems) => [
       ...currentItems,
-      createItem(`line-${currentItems.length + 1}`, "", 1, 0),
+      createItem(`line-${Date.now()}`, "", 1, 0),
     ]);
   }
 
@@ -87,6 +137,59 @@ export default function InvoiceGenerator() {
     setItems((currentItems) =>
       currentItems.length > 1 ? currentItems.filter((item) => item.id !== id) : currentItems,
     );
+  }
+
+  async function handleDownloadPdf() {
+    setPdfLoading(true);
+    setPdfError(null);
+
+    try {
+      const state = {
+        invoiceNumber,
+        issueDate,
+        dueDate,
+        sender,
+        recipient,
+        items,
+        discountMode,
+        discountValue,
+        shipping,
+        amountPaid,
+        paymentTerms,
+        notes,
+      };
+
+      const html = buildInvoiceHtml(state, result, currency);
+
+      const response = await fetch("/api/html-to-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          html,
+          title: `Invoice ${invoiceNumber}`,
+          format: "A4",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("PDF generation failed");
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `invoice-${invoiceNumber.replace(/[^\w-]+/g, "-").toLowerCase()}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("PDF generation error:", error);
+      setPdfError("PDF generation failed. Please try again.");
+    } finally {
+      setPdfLoading(false);
+    }
   }
 
   return (
@@ -100,148 +203,79 @@ export default function InvoiceGenerator() {
                 <input value={invoiceNumber} onChange={(event) => setInvoiceNumber(event.target.value)} className={fieldClass} />
               </label>
               <label className="space-y-2">
+                <span className="text-sm font-medium text-muted-foreground">Currency</span>
+                <select value={currencyCode} onChange={(event) => setCurrencyCode(event.target.value)} className={fieldClass}>
+                  {INVOICE_CURRENCIES.map((curr) => (
+                    <option key={curr.code} value={curr.code}>
+                      {curr.code} - {curr.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="space-y-2">
                 <span className="text-sm font-medium text-muted-foreground">Issue date</span>
                 <input type="date" value={issueDate} onChange={(event) => setIssueDate(event.target.value)} className={fieldClass} />
               </label>
               <label className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">From</span>
-                <input value={sellerName} onChange={(event) => setSellerName(event.target.value)} className={fieldClass} />
-              </label>
-              <label className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">Bill to</span>
-                <input value={clientName} onChange={(event) => setClientName(event.target.value)} className={fieldClass} />
+                <span className="text-sm font-medium text-muted-foreground">Due date</span>
+                <input type="date" value={dueDate} onChange={(event) => setDueDate(event.target.value)} className={fieldClass} />
+                {validationErrors.dueDate && (
+                  <p className="text-sm text-destructive">{validationErrors.dueDate}</p>
+                )}
               </label>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex items-center justify-between gap-4">
-                <h2 className="text-lg font-semibold text-foreground">Line items</h2>
-                <button
-                  type="button"
-                  onClick={addItem}
-                  className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary"
-                >
-                  Add item
-                </button>
-              </div>
+            <AddressBlockComponent label="From" value={sender} onChange={setSender} />
+            <AddressBlockComponent label="Bill to" value={recipient} onChange={setRecipient} />
 
-              <div className="space-y-4">
-                {items.map((item, index) => (
-                  <div key={item.id} className="rounded-[1.25rem] border border-border/70 bg-background p-4">
-                    <div className="grid gap-4 md:grid-cols-[minmax(0,1.4fr)_9rem_10rem_auto]">
-                      <label className="space-y-2">
-                        <span className="text-sm font-medium text-muted-foreground">Description</span>
-                        <input
-                          value={item.description}
-                          onChange={(event) => updateItem(item.id, "description", event.target.value)}
-                          className={fieldClass}
-                        />
-                      </label>
-                      <label className="space-y-2">
-                        <span className="text-sm font-medium text-muted-foreground">Quantity</span>
-                        <input
-                          type="number"
-                          min={0}
-                          step="0.01"
-                          value={item.quantity}
-                          onChange={(event) => updateItem(item.id, "quantity", event.target.value)}
-                          className={fieldClass}
-                        />
-                      </label>
-                      <label className="space-y-2">
-                        <span className="text-sm font-medium text-muted-foreground">Unit price</span>
-                        <input
-                          type="number"
-                          min={0}
-                          step="0.01"
-                          value={item.unitPrice}
-                          onChange={(event) => updateItem(item.id, "unitPrice", event.target.value)}
-                          className={fieldClass}
-                        />
-                      </label>
-                      <div className="flex items-end gap-3">
-                        <div className="min-w-0 flex-1 rounded-[1rem] border border-border bg-muted/30 px-4 py-3 text-sm font-semibold text-foreground">
-                          {formatCurrency(result.items[index]?.lineTotal ?? 0)}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => removeItem(item.id)}
-                          className="rounded-full border border-border px-3 py-3 text-sm font-semibold text-foreground transition hover:border-destructive hover:text-destructive"
-                          aria-label={`Remove item ${index + 1}`}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <LineItemsTable
+              items={items}
+              resultItems={result.items}
+              currency={currency}
+              onUpdate={updateItem}
+              onAdd={addItem}
+              onRemove={removeItem}
+            />
 
-            <div className="grid gap-5 md:grid-cols-2">
-              <label className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">Discount amount</span>
-                <input
-                  type="number"
-                  min={0}
-                  step="0.01"
-                  value={discountAmount}
-                  onChange={(event) => setDiscountAmount(optionalNum(event.target.value))}
-                  className={fieldClass}
-                />
-              </label>
-              <label className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">Tax (%)</span>
-                <input
-                  type="number"
-                  min={0}
-                  step="0.01"
-                  value={taxPercent}
-                  onChange={(event) => setTaxPercent(optionalNum(event.target.value))}
-                  className={fieldClass}
-                />
-              </label>
-            </div>
+            <TotalsForm
+              discountMode={discountMode}
+              discountValue={discountValue}
+              taxPercent={taxPercent}
+              shipping={shipping}
+              amountPaid={amountPaid}
+              paymentTerms={paymentTerms}
+              notes={notes}
+              validationError={validationErrors.amountPaid}
+              onDiscountModeChange={setDiscountMode}
+              onDiscountValueChange={setDiscountValue}
+              onTaxPercentChange={setTaxPercent}
+              onShippingChange={setShipping}
+              onAmountPaidChange={setAmountPaid}
+              onPaymentTermsChange={setPaymentTerms}
+              onNotesChange={setNotes}
+            />
           </div>
 
-          <aside className="rounded-[1.5rem] border border-border bg-background p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Invoice summary
-            </p>
-            <div className="mt-4 space-y-1">
-              <p className="text-xl font-semibold tracking-tight text-foreground">{invoiceNumber}</p>
-              <p className="text-sm text-muted-foreground">{issueDate || "No issue date set"}</p>
-            </div>
-            <div className="mt-5 grid gap-4 text-sm">
-              <div>
-                <p className="font-semibold text-foreground">From</p>
-                <p className="mt-1 text-muted-foreground">{sellerName || "Your business name"}</p>
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">Bill to</p>
-                <p className="mt-1 text-muted-foreground">{clientName || "Client name"}</p>
-              </div>
-            </div>
-
-            <div className="mt-6 space-y-4 border-t border-border pt-5 text-sm">
-              <div className="flex items-center justify-between gap-4">
-                <span className="text-muted-foreground">Subtotal</span>
-                <span className="font-medium text-foreground">{formatCurrency(result.subtotal)}</span>
-              </div>
-              <div className="flex items-center justify-between gap-4">
-                <span className="text-muted-foreground">Discount</span>
-                <span className="font-medium text-foreground">-{formatCurrency(result.discountAmount)}</span>
-              </div>
-              <div className="flex items-center justify-between gap-4">
-                <span className="text-muted-foreground">Tax</span>
-                <span className="font-medium text-foreground">{formatCurrency(result.taxAmount)}</span>
-              </div>
-              <div className="flex items-center justify-between gap-4 border-t border-border pt-4">
-                <span className="text-base font-semibold text-foreground">Total</span>
-                <span className="text-xl font-semibold tracking-tight text-foreground">{formatCurrency(result.total)}</span>
-              </div>
-            </div>
-          </aside>
+          <InvoicePreview
+            state={{
+              invoiceNumber,
+              issueDate,
+              dueDate,
+              sender,
+              recipient,
+              discountValue,
+              shipping,
+              amountPaid,
+              paymentTerms,
+              notes,
+            }}
+            result={result}
+            currency={currency}
+            validationErrors={validationErrors}
+            onDownloadPdf={handleDownloadPdf}
+            pdfLoading={pdfLoading}
+            pdfError={pdfError}
+          />
         </div>
       </section>
     </div>
