@@ -67,6 +67,22 @@ function parseBinaryGroups(text: string) {
   return { groups, bytes, invalidGroups };
 }
 
+export function normalizeBinaryInput(text: string) {
+  const bits = text.replace(/[^01]/g, "");
+
+  if (!bits) {
+    return "";
+  }
+
+  const groups: string[] = [];
+
+  for (let index = 0; index < bits.length; index += 8) {
+    groups.push(bits.slice(index, index + 8));
+  }
+
+  return groups.join(" ").trim();
+}
+
 export function translateTextToBinary(
   text: string,
   encoding: BinaryEncoding,

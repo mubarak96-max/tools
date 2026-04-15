@@ -497,25 +497,36 @@ export function calculateSingaporeSellerStampDuty(input: {
 
 export function calculateNycTransferTax(input: {
   transferPrice: number;
-  propertyType: "residential-1-3-family" | "other";
+  propertyType: "residential-1-3-family" | "condo" | "co-op" | "other";
 }) {
   const transferPrice = Math.max(0, input.transferPrice);
   const isSmallTransfer = transferPrice <= 500_000;
 
-  const rate =
-    input.propertyType === "residential-1-3-family"
-      ? isSmallTransfer
-        ? 1
-        : 1.425
-      : isSmallTransfer
-        ? 1.425
-        : 2.625;
+  // NYC RPTT
+  // Residential (1-3 family, Condo, Co-op)
+  // Under $500k: 1.0%
+  // $500k+: 1.425%
+  // Other (Commercial):
+  // Under $500k: 1.425%
+  // $500k+: 2.625%
+  const isResidential = ["residential-1-3-family", "condo", "co-op"].includes(input.propertyType);
+  
+  const nycRate = isResidential
+    ? isSmallTransfer ? 1 : 1.425
+    : isSmallTransfer ? 1.425 : 2.625;
 
-  const rtt = transferPrice * (rate / 100);
+  const nycRptt = transferPrice * (nycRate / 100);
+
+  // NYS Transfer Tax
+  // Residential: 0.4% if < $3M, 0.65% if >= $3M
+  // Other: 0.4% if < $2M, 0.65% if >= $2M
+  const nysThreshold = isResidential ? 3_000_000 : 2_000_000;
+  const nysRate = transferPrice < nysThreshold ? 0.4 : 0.65;
+  const nysTransferTax = transferPrice * (nysRate / 100);
 
   // NYS Mansion Tax (Residential $1M+)
   let mansionTax = 0;
-  if (input.propertyType === "residential-1-3-family" && transferPrice >= 1_000_000) {
+  if (isResidential && transferPrice >= 1_000_000) {
     if (transferPrice < 2_000_000) mansionTax = transferPrice * 0.01;
     else if (transferPrice < 3_000_000) mansionTax = transferPrice * 0.0125;
     else if (transferPrice < 5_000_000) mansionTax = transferPrice * 0.015;
@@ -527,10 +538,12 @@ export function calculateNycTransferTax(input: {
   }
 
   return {
-    rate,
-    rtt,
+    nycRate,
+    nycRptt,
+    nysRate,
+    nysTransferTax,
     mansionTax,
-    totalEstimatedTax: rtt + mansionTax,
+    totalEstimatedTax: nycRptt + nysTransferTax + mansionTax,
   };
 }
 
