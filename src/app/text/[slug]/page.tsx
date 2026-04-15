@@ -41,6 +41,7 @@ export async function generateMetadata(props: PageProps<"/text/[slug]">) {
   }
 
   const seo = getExactTextSeoContent(tool);
+  const isCharacterTablePage = slug === "unicode-ascii-table-search";
 
   return {
     ...buildMetadata({
@@ -66,6 +67,7 @@ export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
   }
 
   const seo = getExactTextSeoContent(tool);
+  const isCharacterTablePage = slug === "unicode-ascii-table-search";
 
   return (
     <ToolPageScaffold
@@ -82,6 +84,33 @@ export default async function TextToolPage(props: PageProps<"/text/[slug]">) {
               {paragraph}
             </p>
           ))}
+          {isCharacterTablePage ? (
+            <div className="mt-8 overflow-hidden rounded-[1.25rem] border border-border bg-background">
+              <table className="w-full border-collapse text-left text-sm">
+                <thead className="bg-muted/30">
+                  <tr>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"></th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">ASCII</th>
+                    <th className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">Unicode</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { label: "Characters", ascii: "128", unicode: "149,000+" },
+                    { label: "Encoding size", ascii: "7-bit", unicode: "Variable (UTF-8, UTF-16, UTF-32)" },
+                    { label: "Scripts covered", ascii: "English letters, digits, punctuation, control characters", unicode: "Most world scripts, symbols, punctuation, emoji" },
+                    { label: "Typical use", ascii: "Legacy systems and strict plain-text validation", unicode: "Modern web, apps, documents, and global text" },
+                  ].map((row, index) => (
+                    <tr key={row.label} className={index === 0 ? "" : "border-t border-border/70"}>
+                      <td className="px-4 py-3 font-semibold text-foreground">{row.label}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{row.ascii}</td>
+                      <td className="px-4 py-3 text-muted-foreground">{row.unicode}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : null}
           {seo.sections.map((section) => (
             <div key={section.heading}>
               <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">{section.heading}</h2>

@@ -379,13 +379,22 @@ export default function ExactTextToolRunner({ tool }: { tool: ExactTextTool }) {
     return (
       <section className="tool-frame p-4 sm:p-6">
         <div className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground">
+              ASCII and Unicode Character Reference Table
+            </h2>
+            <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+              Search by symbol, character name, decimal value, hex value, or Unicode code point. Use the scope toggle when you want an ASCII table only or want to scan common Unicode characters instead.
+            </p>
+          </div>
+
           <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_14rem]">
             <label className="block space-y-2">
               <span className="text-sm font-medium text-muted-foreground">Search characters, names, or code points</span>
               <input
                 value={tableQuery}
                 onChange={(event) => setTableQuery(event.target.value)}
-                placeholder="Try space, U+200B, tab, arrow, 65, em dash"
+                placeholder="Try space, U+200B, 0x41, tab, arrow, 65, em dash"
                 className={inputClass}
               />
             </label>
@@ -415,13 +424,14 @@ export default function ExactTextToolRunner({ tool }: { tool: ExactTextTool }) {
           </div>
 
           <div className="overflow-x-auto border-t border-border/60 pt-4">
-            <table className="w-full min-w-[44rem] border-collapse text-left text-sm">
+            <table className="w-full min-w-[52rem] border-collapse text-left text-sm">
               <thead>
                 <tr className="border-b border-border/60 text-xs uppercase tracking-[0.14em] text-muted-foreground">
                   <th className="py-3 pr-4 font-semibold">Char</th>
                   <th className="py-3 pr-4 font-semibold">Name</th>
                   <th className="py-3 pr-4 font-semibold">Code point</th>
                   <th className="py-3 pr-4 font-semibold">Decimal</th>
+                  <th className="py-3 pr-4 font-semibold">Hex</th>
                   <th className="py-3 pr-4 font-semibold">Category</th>
                   <th className="py-3 font-semibold">Copy</th>
                 </tr>
@@ -435,6 +445,7 @@ export default function ExactTextToolRunner({ tool }: { tool: ExactTextTool }) {
                     <td className="py-3 pr-4 text-foreground">{entry.name}</td>
                     <td className="py-3 pr-4 font-mono text-muted-foreground">{entry.codepoint}</td>
                     <td className="py-3 pr-4 text-muted-foreground">{entry.decimal}</td>
+                    <td className="py-3 pr-4 font-mono text-muted-foreground">{entry.hex}</td>
                     <td className="py-3 pr-4 text-muted-foreground">{entry.category}</td>
                     <td className="py-3">
                       <button type="button" onClick={() => navigator.clipboard.writeText(entry.char)} className={actionClass}>

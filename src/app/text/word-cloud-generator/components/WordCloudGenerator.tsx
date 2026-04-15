@@ -21,12 +21,125 @@ const toneClasses = [
   "text-foreground",
 ];
 
+type PositionedWord = {
+  word: string;
+  count: number;
+  weight: number;
+  x: number;
+  y: number;
+  fontSize: number;
+  color: string;
+};
+
+const svgColors = ["#4F46E5", "#059669", "#D97706", "#DC2626", "#0F172A"];
+
+function escapeXml(text: string) {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function buildCloudLayout(items: Array<{ word: string; count: number; weight: number }>) {
+  const width = 1400;
+  const height = 900;
+  const paddingX = 48;
+  const paddingY = 68;
+  const lineGap = 18;
+  let cursorX = paddingX;
+  let baselineY = paddingY;
+  let lineHeight = 0;
+
+  const positioned: PositionedWord[] = [];
+  for (let index = 0; index < items.length; index += 1) {
+    const item = items[index];
+    const fontSize = Math.round(24 + item.weight * 54);
+    const estWidth = Math.max(28, Math.round(item.word.length * fontSize * 0.58));
+
+    if (cursorX + estWidth > width - paddingX) {
+      cursorX = paddingX;
+      baselineY += lineHeight + lineGap;
+      lineHeight = 0;
+    }
+
+    if (baselineY > height - paddingY) {
+      break;
+    }
+
+    positioned.push({
+      ...item,
+      x: cursorX,
+      y: baselineY,
+      fontSize,
+      color: svgColors[index % svgColors.length],
+    });
+    cursorX += estWidth + 26;
+    lineHeight = Math.max(lineHeight, fontSize);
+  }
+
+  return { positioned, width, height };
+}
+
+async function downloadCloudPng(items: Array<{ word: string; count: number; weight: number }>) {
+  if (!items.length) {
+    return false;
+  }
+
+  const { positioned, width, height } = buildCloudLayout(items);
+  if (!positioned.length) {
+    return false;
+  }
+
+  const labels = positioned
+    .map(
+      (item) =>
+        `<text x="${item.x}" y="${item.y}" font-family="Inter, system-ui, sans-serif" font-size="${item.fontSize}" font-weight="700" fill="${item.color}">${escapeXml(item.word)}</text>`,
+    )
+    .join("");
+  const subtitle = `<text x="48" y="40" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="600" fill="#334155">Word Cloud Generator</text>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect width="100%" height="100%" fill="#ffffff"/><rect x="16" y="16" width="${width - 32}" height="${height - 32}" rx="24" fill="#f8fafc" stroke="#e2e8f0"/>${subtitle}${labels}</svg>`;
+
+  const blob = new Blob([svg], { type: "image/svg+xml;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+
+  try {
+    const img = new Image();
+    img.decoding = "async";
+    img.src = url;
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error("Image export failed"));
+    });
+
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      return false;
+    }
+    ctx.drawImage(img, 0, 0);
+
+    const pngUrl = canvas.toDataURL("image/png");
+    const anchor = document.createElement("a");
+    anchor.href = pngUrl;
+    anchor.download = "word-cloud.png";
+    anchor.click();
+    return true;
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
 export default function WordCloudGenerator() {
   const [text, setText] = useState("");
   const [maxWords, setMaxWords] = useState(40);
   const [minLength, setMinLength] = useState(3);
   const [ignoreStopWords, setIgnoreStopWords] = useState(true);
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
+  const [downloadState, setDownloadState] = useState<"idle" | "done" | "error">("idle");
 
   const result = useMemo(
     () =>
@@ -57,6 +170,18 @@ export default function WordCloudGenerator() {
   function handleClear() {
     setText("");
     setCopyState("idle");
+    setDownloadState("idle");
+  }
+
+  async function handleDownload() {
+    try {
+      const ok = await downloadCloudPng(result.items);
+      setDownloadState(ok ? "done" : "error");
+      window.setTimeout(() => setDownloadState("idle"), 1800);
+    } catch {
+      setDownloadState("error");
+      window.setTimeout(() => setDownloadState("idle"), 1800);
+    }
   }
 
   return (
@@ -112,6 +237,13 @@ export default function WordCloudGenerator() {
           <div className="flex flex-wrap gap-2">
             <button type="button" onClick={handleCopy} className={buttonClass}>
               {copyState === "copied" ? "Copied" : copyState === "error" ? "Copy failed" : "Copy top words"}
+            </button>
+            <button type="button" onClick={handleDownload} className={buttonClass}>
+              {downloadState === "done"
+                ? "Downloaded"
+                : downloadState === "error"
+                  ? "Download failed"
+                  : "Download PNG"}
             </button>
             <button type="button" onClick={handleClear} className={buttonClass}>
               Clear text
