@@ -1,0 +1,182 @@
+[
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/budget-planner",
+    "pagePath": "src/app/finance/budget-planner/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/churn-rate-calculator",
+    "pagePath": "src/app/finance/churn-rate-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/click-through-rate-calculator",
+    "pagePath": "src/app/finance/click-through-rate-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/cpc-cpm-calculator",
+    "pagePath": "src/app/finance/cpc-cpm-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/customer-lifetime-value-calculator",
+    "pagePath": "src/app/finance/customer-lifetime-value-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/employee-cost-calculator",
+    "pagePath": "src/app/finance/employee-cost-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/foreign-exchange-fee-calculator",
+    "pagePath": "src/app/finance/foreign-exchange-fee-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/freelancer-rate-calculator",
+    "pagePath": "src/app/finance/freelancer-rate-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "finance/invoice-generator",
+    "pagePath": "src/app/finance/invoice-generator/page.tsx",
+    "detail": "Found 8 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/loan-payoff-calculator",
+    "pagePath": "src/app/finance/loan-payoff-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/net-worth-calculator",
+    "pagePath": "src/app/finance/net-worth-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/payroll-tax-calculator",
+    "pagePath": "src/app/finance/payroll-tax-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "finance/roi-calculator",
+    "pagePath": "src/app/finance/roi-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "text/binary-code-translator",
+    "pagePath": "src/app/text/binary-code-translator/page.tsx",
+    "detail": "Found 5 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "text/morse-code-translator",
+    "pagePath": "src/app/text/morse-code-translator/page.tsx",
+    "detail": "Found 4 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "text/word-cloud-generator",
+    "pagePath": "src/app/text/word-cloud-generator/page.tsx",
+    "detail": "Found 5 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/age-calculator",
+    "pagePath": "src/app/utility/age-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "utility/barcode-generator",
+    "pagePath": "src/app/utility/barcode-generator/page.tsx",
+    "detail": "Found 4 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "utility/barcode-scanner",
+    "pagePath": "src/app/utility/barcode-scanner/page.tsx",
+    "detail": "Found 6 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "utility/dns-checker",
+    "pagePath": "src/app/utility/dns-checker/page.tsx",
+    "detail": "Found 5 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/jwt-decoder",
+    "pagePath": "src/app/utility/jwt-decoder/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/logarithm-calculator",
+    "pagePath": "src/app/utility/logarithm-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/probability-calculator",
+    "pagePath": "src/app/utility/probability-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "utility/qr-code-generator",
+    "pagePath": "src/app/utility/qr-code-generator/page.tsx",
+    "detail": "Found 6 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "generic-phrase-density",
+    "toolKey": "utility/qr-code-scanner",
+    "pagePath": "src/app/utility/qr-code-scanner/page.tsx",
+    "detail": "Found 6 generic phrase hits (limit: 3)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/quadratic-equation-solver",
+    "pagePath": "src/app/utility/quadratic-equation-solver/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/scientific-calculator",
+    "pagePath": "src/app/utility/scientific-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/sitemap-generator",
+    "pagePath": "src/app/utility/sitemap-generator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/statistics-calculator",
+    "pagePath": "src/app/utility/statistics-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  },
+  {
+    "type": "thin-faq",
+    "toolKey": "utility/tip-calculator",
+    "pagePath": "src/app/utility/tip-calculator/page.tsx",
+    "detail": "FAQ items: 3 (minimum: 4)"
+  }
+]

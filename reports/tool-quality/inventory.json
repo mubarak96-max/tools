@@ -1,0 +1,4090 @@
+[
+  {
+    "kind": "builtin-page",
+    "key": "finance/budget-planner",
+    "category": "finance",
+    "route": "/finance/budget-planner",
+    "source": "src/app/finance/budget-planner/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/car-loan-calculator",
+    "category": "finance",
+    "route": "/finance/car-loan-calculator",
+    "source": "src/app/finance/car-loan-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/churn-rate-calculator",
+    "category": "finance",
+    "route": "/finance/churn-rate-calculator",
+    "source": "src/app/finance/churn-rate-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/click-through-rate-calculator",
+    "category": "finance",
+    "route": "/finance/click-through-rate-calculator",
+    "source": "src/app/finance/click-through-rate-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/compound-interest-calculator",
+    "category": "finance",
+    "route": "/finance/compound-interest-calculator",
+    "source": "src/app/finance/compound-interest-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/cpc-cpm-calculator",
+    "category": "finance",
+    "route": "/finance/cpc-cpm-calculator",
+    "source": "src/app/finance/cpc-cpm-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/credit-card-payoff-calculator",
+    "category": "finance",
+    "route": "/finance/credit-card-payoff-calculator",
+    "source": "src/app/finance/credit-card-payoff-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/customer-lifetime-value-calculator",
+    "category": "finance",
+    "route": "/finance/customer-lifetime-value-calculator",
+    "source": "src/app/finance/customer-lifetime-value-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/discount-calculator",
+    "category": "finance",
+    "route": "/finance/discount-calculator",
+    "source": "src/app/finance/discount-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/dti-calculator",
+    "category": "finance",
+    "route": "/finance/dti-calculator",
+    "source": "src/app/finance/dti-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/emi-calculator",
+    "category": "finance",
+    "route": "/finance/emi-calculator",
+    "source": "src/app/finance/emi-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/employee-cost-calculator",
+    "category": "finance",
+    "route": "/finance/employee-cost-calculator",
+    "source": "src/app/finance/employee-cost-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/foreign-exchange-fee-calculator",
+    "category": "finance",
+    "route": "/finance/foreign-exchange-fee-calculator",
+    "source": "src/app/finance/foreign-exchange-fee-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/freelancer-rate-calculator",
+    "category": "finance",
+    "route": "/finance/freelancer-rate-calculator",
+    "source": "src/app/finance/freelancer-rate-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/gst-calculator",
+    "category": "finance",
+    "route": "/finance/gst-calculator",
+    "source": "src/app/finance/gst-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/invoice-generator",
+    "category": "finance",
+    "route": "/finance/invoice-generator",
+    "source": "src/app/finance/invoice-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/loan-payoff-calculator",
+    "category": "finance",
+    "route": "/finance/loan-payoff-calculator",
+    "source": "src/app/finance/loan-payoff-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/london-business-startup-cost-calculator",
+    "category": "finance",
+    "route": "/finance/london-business-startup-cost-calculator",
+    "source": "src/app/finance/london-business-startup-cost-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/mortgage-calculator",
+    "category": "finance",
+    "route": "/finance/mortgage-calculator",
+    "source": "src/app/finance/mortgage-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/net-worth-calculator",
+    "category": "finance",
+    "route": "/finance/net-worth-calculator",
+    "source": "src/app/finance/net-worth-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/new-york-business-startup-cost-calculator",
+    "category": "finance",
+    "route": "/finance/new-york-business-startup-cost-calculator",
+    "source": "src/app/finance/new-york-business-startup-cost-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/payroll-tax-calculator",
+    "category": "finance",
+    "route": "/finance/payroll-tax-calculator",
+    "source": "src/app/finance/payroll-tax-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/percentage-calculator",
+    "category": "finance",
+    "route": "/finance/percentage-calculator",
+    "source": "src/app/finance/percentage-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/profit-margin-calculator",
+    "category": "finance",
+    "route": "/finance/profit-margin-calculator",
+    "source": "src/app/finance/profit-margin-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/roi-calculator",
+    "category": "finance",
+    "route": "/finance/roi-calculator",
+    "source": "src/app/finance/roi-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/salary-calculator",
+    "category": "finance",
+    "route": "/finance/salary-calculator",
+    "source": "src/app/finance/salary-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/salary-to-hourly-calculator",
+    "category": "finance",
+    "route": "/finance/salary-to-hourly-calculator",
+    "source": "src/app/finance/salary-to-hourly-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/savings-goal-calculator",
+    "category": "finance",
+    "route": "/finance/savings-goal-calculator",
+    "source": "src/app/finance/savings-goal-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/uae-gratuity-calculator",
+    "category": "finance",
+    "route": "/finance/uae-gratuity-calculator",
+    "source": "src/app/finance/uae-gratuity-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/uae-salary-calculator",
+    "category": "finance",
+    "route": "/finance/uae-salary-calculator",
+    "source": "src/app/finance/uae-salary-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/uae-visa-cost-calculator",
+    "category": "finance",
+    "route": "/finance/uae-visa-cost-calculator",
+    "source": "src/app/finance/uae-visa-cost-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "finance/vat-calculator",
+    "category": "finance",
+    "route": "/finance/vat-calculator",
+    "source": "src/app/finance/vat-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/age-grading-calculator",
+    "category": "health",
+    "route": "/health/age-grading-calculator",
+    "source": "src/app/health/age-grading-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/blood-pressure-calculator",
+    "category": "health",
+    "route": "/health/blood-pressure-calculator",
+    "source": "src/app/health/blood-pressure-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/bmr-calculator",
+    "category": "health",
+    "route": "/health/bmr-calculator",
+    "source": "src/app/health/bmr-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/body-fat-calculator",
+    "category": "health",
+    "route": "/health/body-fat-calculator",
+    "source": "src/app/health/body-fat-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/caffeine-calculator",
+    "category": "health",
+    "route": "/health/caffeine-calculator",
+    "source": "src/app/health/caffeine-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/calorie-calculator",
+    "category": "health",
+    "route": "/health/calorie-calculator",
+    "source": "src/app/health/calorie-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/calories-burned-calculator",
+    "category": "health",
+    "route": "/health/calories-burned-calculator",
+    "source": "src/app/health/calories-burned-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/cycling-power-calculator",
+    "category": "health",
+    "route": "/health/cycling-power-calculator",
+    "source": "src/app/health/cycling-power-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/glucose-converter",
+    "category": "health",
+    "route": "/health/glucose-converter",
+    "source": "src/app/health/glucose-converter/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/golf-handicap-calculator",
+    "category": "health",
+    "route": "/health/golf-handicap-calculator",
+    "source": "src/app/health/golf-handicap-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/ideal-weight-calculator",
+    "category": "health",
+    "route": "/health/ideal-weight-calculator",
+    "source": "src/app/health/ideal-weight-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/intermittent-fasting-calculator",
+    "category": "health",
+    "route": "/health/intermittent-fasting-calculator",
+    "source": "src/app/health/intermittent-fasting-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/macro-calculator",
+    "category": "health",
+    "route": "/health/macro-calculator",
+    "source": "src/app/health/macro-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/marathon-predictor-calculator",
+    "category": "health",
+    "route": "/health/marathon-predictor-calculator",
+    "source": "src/app/health/marathon-predictor-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/one-rep-max-calculator",
+    "category": "health",
+    "route": "/health/one-rep-max-calculator",
+    "source": "src/app/health/one-rep-max-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/ovulation-calculator",
+    "category": "health",
+    "route": "/health/ovulation-calculator",
+    "source": "src/app/health/ovulation-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/pregnancy-due-date-calculator",
+    "category": "health",
+    "route": "/health/pregnancy-due-date-calculator",
+    "source": "src/app/health/pregnancy-due-date-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/running-pace-calculator",
+    "category": "health",
+    "route": "/health/running-pace-calculator",
+    "source": "src/app/health/running-pace-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/sleep-calculator",
+    "category": "health",
+    "route": "/health/sleep-calculator",
+    "source": "src/app/health/sleep-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/swim-pace-calculator",
+    "category": "health",
+    "route": "/health/swim-pace-calculator",
+    "source": "src/app/health/swim-pace-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/vo2-max-calculator",
+    "category": "health",
+    "route": "/health/vo2-max-calculator",
+    "source": "src/app/health/vo2-max-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/waist-to-hip-calculator",
+    "category": "health",
+    "route": "/health/waist-to-hip-calculator",
+    "source": "src/app/health/waist-to-hip-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "health/water-intake-calculator",
+    "category": "health",
+    "route": "/health/water-intake-calculator",
+    "source": "src/app/health/water-intake-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/cap-rate-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/cap-rate-calculator",
+    "source": "src/app/real-estate/cap-rate-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/closing-costs-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/closing-costs-calculator",
+    "source": "src/app/real-estate/closing-costs-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/down-payment-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/down-payment-calculator",
+    "source": "src/app/real-estate/down-payment-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/dubai-mortgage-registration-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/dubai-mortgage-registration-calculator",
+    "source": "src/app/real-estate/dubai-mortgage-registration-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/dubai-property-transfer-fee-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/dubai-property-transfer-fee-calculator",
+    "source": "src/app/real-estate/dubai-property-transfer-fee-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/dubai-service-charge-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/dubai-service-charge-calculator",
+    "source": "src/app/real-estate/dubai-service-charge-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/home-buying-budget-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/home-buying-budget-calculator",
+    "source": "src/app/real-estate/home-buying-budget-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/hong-kong-stamp-duty-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/hong-kong-stamp-duty-calculator",
+    "source": "src/app/real-estate/hong-kong-stamp-duty-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/lease-escalation-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/lease-escalation-calculator",
+    "source": "src/app/real-estate/lease-escalation-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/mortgage-refinance-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/mortgage-refinance-calculator",
+    "source": "src/app/real-estate/mortgage-refinance-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/nyc-transfer-tax-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/nyc-transfer-tax-calculator",
+    "source": "src/app/real-estate/nyc-transfer-tax-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/price-per-square-foot-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/price-per-square-foot-calculator",
+    "source": "src/app/real-estate/price-per-square-foot-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/property-management-fee-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/property-management-fee-calculator",
+    "source": "src/app/real-estate/property-management-fee-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/rent-affordability-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/rent-affordability-calculator",
+    "source": "src/app/real-estate/rent-affordability-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/rent-vs-buy-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/rent-vs-buy-calculator",
+    "source": "src/app/real-estate/rent-vs-buy-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/rental-cash-flow-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/rental-cash-flow-calculator",
+    "source": "src/app/real-estate/rental-cash-flow-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/rental-yield-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/rental-yield-calculator",
+    "source": "src/app/real-estate/rental-yield-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/scotland-lbtt-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/scotland-lbtt-calculator",
+    "source": "src/app/real-estate/scotland-lbtt-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/security-deposit-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/security-deposit-calculator",
+    "source": "src/app/real-estate/security-deposit-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/singapore-buyers-stamp-duty-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/singapore-buyers-stamp-duty-calculator",
+    "source": "src/app/real-estate/singapore-buyers-stamp-duty-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/singapore-property-stamp-duty-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/singapore-property-stamp-duty-calculator",
+    "source": "src/app/real-estate/singapore-property-stamp-duty-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/singapore-sellers-stamp-duty-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/singapore-sellers-stamp-duty-calculator",
+    "source": "src/app/real-estate/singapore-sellers-stamp-duty-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/stamp-duty-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/stamp-duty-calculator",
+    "source": "src/app/real-estate/stamp-duty-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/uk-stamp-duty-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/uk-stamp-duty-calculator",
+    "source": "src/app/real-estate/uk-stamp-duty-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "real-estate/wales-ltt-calculator",
+    "category": "real-estate",
+    "route": "/real-estate/wales-ltt-calculator",
+    "source": "src/app/real-estate/wales-ltt-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/brick-block-quantity-calculator",
+    "category": "construction",
+    "route": "/construction/brick-block-quantity-calculator",
+    "source": "src/app/construction/brick-block-quantity-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/concrete-volume-calculator",
+    "category": "construction",
+    "route": "/construction/concrete-volume-calculator",
+    "source": "src/app/construction/concrete-volume-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/fence-material-calculator",
+    "category": "construction",
+    "route": "/construction/fence-material-calculator",
+    "source": "src/app/construction/fence-material-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/flooring-material-calculator",
+    "category": "construction",
+    "route": "/construction/flooring-material-calculator",
+    "source": "src/app/construction/flooring-material-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/gravel-mulch-volume-calculator",
+    "category": "construction",
+    "route": "/construction/gravel-mulch-volume-calculator",
+    "source": "src/app/construction/gravel-mulch-volume-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/paint-coverage-calculator",
+    "category": "construction",
+    "route": "/construction/paint-coverage-calculator",
+    "source": "src/app/construction/paint-coverage-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/roofing-material-calculator",
+    "category": "construction",
+    "route": "/construction/roofing-material-calculator",
+    "source": "src/app/construction/roofing-material-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/room-area-calculator",
+    "category": "construction",
+    "route": "/construction/room-area-calculator",
+    "source": "src/app/construction/room-area-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/staircase-calculator",
+    "category": "construction",
+    "route": "/construction/staircase-calculator",
+    "source": "src/app/construction/staircase-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "construction/wallpaper-calculator",
+    "category": "construction",
+    "route": "/construction/wallpaper-calculator",
+    "source": "src/app/construction/wallpaper-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/ascii-art-generator",
+    "category": "text",
+    "route": "/text/ascii-art-generator",
+    "source": "src/app/text/ascii-art-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/binary-code-translator",
+    "category": "text",
+    "route": "/text/binary-code-translator",
+    "source": "src/app/text/binary-code-translator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/case-converter",
+    "category": "text",
+    "route": "/text/case-converter",
+    "source": "src/app/text/case-converter/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/character-counter",
+    "category": "text",
+    "route": "/text/character-counter",
+    "source": "src/app/text/character-counter/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/duplicate-word-finder",
+    "category": "text",
+    "route": "/text/duplicate-word-finder",
+    "source": "src/app/text/duplicate-word-finder/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/em-dash-remover",
+    "category": "text",
+    "route": "/text/em-dash-remover",
+    "source": "src/app/text/em-dash-remover/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/morse-code-translator",
+    "category": "text",
+    "route": "/text/morse-code-translator",
+    "source": "src/app/text/morse-code-translator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/remove-duplicate-lines",
+    "category": "text",
+    "route": "/text/remove-duplicate-lines",
+    "source": "src/app/text/remove-duplicate-lines/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/reverse-text-generator",
+    "category": "text",
+    "route": "/text/reverse-text-generator",
+    "source": "src/app/text/reverse-text-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/strikethrough-text",
+    "category": "text",
+    "route": "/text/strikethrough-text",
+    "source": "src/app/text/strikethrough-text/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/voice-dictation",
+    "category": "text",
+    "route": "/text/voice-dictation",
+    "source": "src/app/text/voice-dictation/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/word-cloud-generator",
+    "category": "text",
+    "route": "/text/word-cloud-generator",
+    "source": "src/app/text/word-cloud-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "text/word-frequency",
+    "category": "text",
+    "route": "/text/word-frequency",
+    "source": "src/app/text/word-frequency/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/age-calculator",
+    "category": "utility",
+    "route": "/utility/age-calculator",
+    "source": "src/app/utility/age-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/barcode-generator",
+    "category": "utility",
+    "route": "/utility/barcode-generator",
+    "source": "src/app/utility/barcode-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/barcode-scanner",
+    "category": "utility",
+    "route": "/utility/barcode-scanner",
+    "source": "src/app/utility/barcode-scanner/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/bmi-calculator",
+    "category": "utility",
+    "route": "/utility/bmi-calculator",
+    "source": "src/app/utility/bmi-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/dns-checker",
+    "category": "utility",
+    "route": "/utility/dns-checker",
+    "source": "src/app/utility/dns-checker/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/free-cv-resume-builder",
+    "category": "utility",
+    "route": "/utility/free-cv-resume-builder",
+    "source": "src/app/utility/free-cv-resume-builder/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/jwt-decoder",
+    "category": "utility",
+    "route": "/utility/jwt-decoder",
+    "source": "src/app/utility/jwt-decoder/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/logarithm-calculator",
+    "category": "utility",
+    "route": "/utility/logarithm-calculator",
+    "source": "src/app/utility/logarithm-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/meta-tags-generator",
+    "category": "utility",
+    "route": "/utility/meta-tags-generator",
+    "source": "src/app/utility/meta-tags-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/pomodoro-timer",
+    "category": "utility",
+    "route": "/utility/pomodoro-timer",
+    "source": "src/app/utility/pomodoro-timer/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/probability-calculator",
+    "category": "utility",
+    "route": "/utility/probability-calculator",
+    "source": "src/app/utility/probability-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/qr-code-generator",
+    "category": "utility",
+    "route": "/utility/qr-code-generator",
+    "source": "src/app/utility/qr-code-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/qr-code-scanner",
+    "category": "utility",
+    "route": "/utility/qr-code-scanner",
+    "source": "src/app/utility/qr-code-scanner/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/quadratic-equation-solver",
+    "category": "utility",
+    "route": "/utility/quadratic-equation-solver",
+    "source": "src/app/utility/quadratic-equation-solver/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/robots-txt-generator",
+    "category": "utility",
+    "route": "/utility/robots-txt-generator",
+    "source": "src/app/utility/robots-txt-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/scientific-calculator",
+    "category": "utility",
+    "route": "/utility/scientific-calculator",
+    "source": "src/app/utility/scientific-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/sitemap-generator",
+    "category": "utility",
+    "route": "/utility/sitemap-generator",
+    "source": "src/app/utility/sitemap-generator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/statistics-calculator",
+    "category": "utility",
+    "route": "/utility/statistics-calculator",
+    "source": "src/app/utility/statistics-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/tip-calculator",
+    "category": "utility",
+    "route": "/utility/tip-calculator",
+    "source": "src/app/utility/tip-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/utm-link-builder",
+    "category": "utility",
+    "route": "/utility/utm-link-builder",
+    "source": "src/app/utility/utm-link-builder/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "utility/xg-expected-goals-calculator",
+    "category": "utility",
+    "route": "/utility/xg-expected-goals-calculator",
+    "source": "src/app/utility/xg-expected-goals-calculator/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "image/ai-background-remover",
+    "category": "image",
+    "route": "/image/ai-background-remover",
+    "source": "src/app/image/ai-background-remover/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "ai/ai-humanizer",
+    "category": "ai",
+    "route": "/ai/ai-humanizer",
+    "source": "src/app/ai/ai-humanizer/page.tsx"
+  },
+  {
+    "kind": "builtin-page",
+    "key": "sport/football-lineup-builder",
+    "category": "sport",
+    "route": "/sport/football-lineup-builder",
+    "source": "src/app/sport/football-lineup-builder/page.tsx"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/xg-expected-goals-calculator",
+    "category": "Utility",
+    "route": "/utility/xg-expected-goals-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/free-social-media-carousel-builder",
+    "category": "Utility",
+    "route": "/utility/free-social-media-carousel-builder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/ai/ai-humanizer",
+    "category": "AI",
+    "route": "/ai/ai-humanizer",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/salary-calculator",
+    "category": "Finance",
+    "route": "/finance/salary-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/uae-salary-calculator",
+    "category": "Finance",
+    "route": "/finance/uae-salary-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/uae-gratuity-calculator",
+    "category": "Finance",
+    "route": "/finance/uae-gratuity-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/uae-visa-cost-calculator",
+    "category": "Finance",
+    "route": "/finance/uae-visa-cost-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/mortgage-calculator",
+    "category": "Finance",
+    "route": "/finance/mortgage-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/dti-calculator",
+    "category": "Finance",
+    "route": "/finance/dti-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/emi-calculator",
+    "category": "Finance",
+    "route": "/finance/emi-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/car-loan-calculator",
+    "category": "Finance",
+    "route": "/finance/car-loan-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/credit-card-payoff-calculator",
+    "category": "Finance",
+    "route": "/finance/credit-card-payoff-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/discount-calculator",
+    "category": "Finance",
+    "route": "/finance/discount-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/vat-calculator",
+    "category": "Finance",
+    "route": "/finance/vat-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/gst-calculator",
+    "category": "Finance",
+    "route": "/finance/gst-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/profit-margin-calculator",
+    "category": "Finance",
+    "route": "/finance/profit-margin-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/compound-interest-calculator",
+    "category": "Finance",
+    "route": "/finance/compound-interest-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/savings-goal-calculator",
+    "category": "Finance",
+    "route": "/finance/savings-goal-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/percentage-calculator",
+    "category": "Finance",
+    "route": "/finance/percentage-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/click-through-rate-calculator",
+    "category": "Finance",
+    "route": "/finance/click-through-rate-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/cpc-cpm-calculator",
+    "category": "Finance",
+    "route": "/finance/cpc-cpm-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/roi-calculator",
+    "category": "Finance",
+    "route": "/finance/roi-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/foreign-exchange-fee-calculator",
+    "category": "Finance",
+    "route": "/finance/foreign-exchange-fee-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/loan-payoff-calculator",
+    "category": "Finance",
+    "route": "/finance/loan-payoff-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/net-worth-calculator",
+    "category": "Finance",
+    "route": "/finance/net-worth-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/budget-planner",
+    "category": "Finance",
+    "route": "/finance/budget-planner",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/freelancer-rate-calculator",
+    "category": "Finance",
+    "route": "/finance/freelancer-rate-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/payroll-tax-calculator",
+    "category": "Finance",
+    "route": "/finance/payroll-tax-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/employee-cost-calculator",
+    "category": "Finance",
+    "route": "/finance/employee-cost-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/churn-rate-calculator",
+    "category": "Finance",
+    "route": "/finance/churn-rate-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/customer-lifetime-value-calculator",
+    "category": "Finance",
+    "route": "/finance/customer-lifetime-value-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/invoice-generator",
+    "category": "Finance",
+    "route": "/finance/invoice-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/finance/salary-to-hourly-calculator",
+    "category": "Finance",
+    "route": "/finance/salary-to-hourly-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/rental-yield-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/rental-yield-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/cap-rate-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/cap-rate-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/rent-affordability-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/rent-affordability-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/closing-costs-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/closing-costs-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/price-per-square-foot-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/price-per-square-foot-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/rent-vs-buy-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/rent-vs-buy-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/bmi-calculator",
+    "category": "Utility",
+    "route": "/utility/bmi-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/age-calculator",
+    "category": "Utility",
+    "route": "/utility/age-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/tip-calculator",
+    "category": "Utility",
+    "route": "/utility/tip-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/free-cv-resume-builder",
+    "category": "Utility",
+    "route": "/utility/free-cv-resume-builder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/robots-txt-generator",
+    "category": "Utility",
+    "route": "/utility/robots-txt-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/sitemap-generator",
+    "category": "Utility",
+    "route": "/utility/sitemap-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/jwt-decoder",
+    "category": "Utility",
+    "route": "/utility/jwt-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/scientific-calculator",
+    "category": "Utility",
+    "route": "/utility/scientific-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/quadratic-equation-solver",
+    "category": "Utility",
+    "route": "/utility/quadratic-equation-solver",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/statistics-calculator",
+    "category": "Utility",
+    "route": "/utility/statistics-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/probability-calculator",
+    "category": "Utility",
+    "route": "/utility/probability-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/logarithm-calculator",
+    "category": "Utility",
+    "route": "/utility/logarithm-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/utm-link-builder",
+    "category": "Utility",
+    "route": "/utility/utm-link-builder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/qr-code-generator",
+    "category": "Utility",
+    "route": "/utility/qr-code-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/barcode-generator",
+    "category": "Utility",
+    "route": "/utility/barcode-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/qr-code-scanner",
+    "category": "Utility",
+    "route": "/utility/qr-code-scanner",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/barcode-scanner",
+    "category": "Utility",
+    "route": "/utility/barcode-scanner",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/pomodoro-timer",
+    "category": "Utility",
+    "route": "/utility/pomodoro-timer",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/voice-dictation",
+    "category": "Text",
+    "route": "/text/voice-dictation",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/meta-tags-generator",
+    "category": "Utility",
+    "route": "/utility/meta-tags-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/down-payment-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/down-payment-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/mortgage-refinance-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/mortgage-refinance-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/rental-cash-flow-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/rental-cash-flow-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/home-buying-budget-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/home-buying-budget-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/lease-escalation-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/lease-escalation-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/security-deposit-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/security-deposit-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/property-management-fee-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/property-management-fee-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/stamp-duty-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/stamp-duty-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/uk-stamp-duty-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/uk-stamp-duty-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/singapore-property-stamp-duty-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/singapore-property-stamp-duty-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/singapore-buyers-stamp-duty-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/singapore-buyers-stamp-duty-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/singapore-sellers-stamp-duty-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/singapore-sellers-stamp-duty-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/nyc-transfer-tax-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/nyc-transfer-tax-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/dubai-property-transfer-fee-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/dubai-property-transfer-fee-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/scotland-lbtt-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/scotland-lbtt-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/wales-ltt-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/wales-ltt-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/hong-kong-stamp-duty-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/hong-kong-stamp-duty-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/dubai-mortgage-registration-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/dubai-mortgage-registration-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/real-estate/dubai-service-charge-calculator",
+    "category": "Real Estate",
+    "route": "/real-estate/dubai-service-charge-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/word-frequency",
+    "category": "Text",
+    "route": "/text/word-frequency",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/character-counter",
+    "category": "Text",
+    "route": "/text/character-counter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/case-converter",
+    "category": "Text",
+    "route": "/text/case-converter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/duplicate-word-finder",
+    "category": "Text",
+    "route": "/text/duplicate-word-finder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/em-dash-remover",
+    "category": "Text",
+    "route": "/text/em-dash-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/strikethrough-text",
+    "category": "Text",
+    "route": "/text/strikethrough-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/reverse-text-generator",
+    "category": "Text",
+    "route": "/text/reverse-text-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/morse-code-translator",
+    "category": "Text",
+    "route": "/text/morse-code-translator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/binary-code-translator",
+    "category": "Text",
+    "route": "/text/binary-code-translator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/ascii-art-generator",
+    "category": "Text",
+    "route": "/text/ascii-art-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/convert-image-to-text",
+    "category": "Text",
+    "route": "/text/convert-image-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/word-cloud-generator",
+    "category": "Text",
+    "route": "/text/word-cloud-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/remove-duplicate-lines",
+    "category": "Text",
+    "route": "/text/remove-duplicate-lines",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/concrete-volume-calculator",
+    "category": "Construction",
+    "route": "/construction/concrete-volume-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/paint-coverage-calculator",
+    "category": "Construction",
+    "route": "/construction/paint-coverage-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/flooring-material-calculator",
+    "category": "Construction",
+    "route": "/construction/flooring-material-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/roofing-material-calculator",
+    "category": "Construction",
+    "route": "/construction/roofing-material-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/brick-block-quantity-calculator",
+    "category": "Construction",
+    "route": "/construction/brick-block-quantity-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/wallpaper-calculator",
+    "category": "Construction",
+    "route": "/construction/wallpaper-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/gravel-mulch-volume-calculator",
+    "category": "Construction",
+    "route": "/construction/gravel-mulch-volume-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/room-area-calculator",
+    "category": "Construction",
+    "route": "/construction/room-area-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/fence-material-calculator",
+    "category": "Construction",
+    "route": "/construction/fence-material-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/construction/staircase-calculator",
+    "category": "Construction",
+    "route": "/construction/staircase-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/bmr-calculator",
+    "category": "Health",
+    "route": "/health/bmr-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/calorie-calculator",
+    "category": "Health",
+    "route": "/health/calorie-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/macro-calculator",
+    "category": "Health",
+    "route": "/health/macro-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/ideal-weight-calculator",
+    "category": "Health",
+    "route": "/health/ideal-weight-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/body-fat-calculator",
+    "category": "Health",
+    "route": "/health/body-fat-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/waist-to-hip-calculator",
+    "category": "Health",
+    "route": "/health/waist-to-hip-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/water-intake-calculator",
+    "category": "Health",
+    "route": "/health/water-intake-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/blood-pressure-calculator",
+    "category": "Health",
+    "route": "/health/blood-pressure-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/glucose-converter",
+    "category": "Health",
+    "route": "/health/glucose-converter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/caffeine-calculator",
+    "category": "Health",
+    "route": "/health/caffeine-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/pregnancy-due-date-calculator",
+    "category": "Health",
+    "route": "/health/pregnancy-due-date-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/ovulation-calculator",
+    "category": "Health",
+    "route": "/health/ovulation-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/sleep-calculator",
+    "category": "Health",
+    "route": "/health/sleep-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/intermittent-fasting-calculator",
+    "category": "Health",
+    "route": "/health/intermittent-fasting-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/one-rep-max-calculator",
+    "category": "Health",
+    "route": "/health/one-rep-max-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/running-pace-calculator",
+    "category": "Health",
+    "route": "/health/running-pace-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/vo2-max-calculator",
+    "category": "Health",
+    "route": "/health/vo2-max-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/swim-pace-calculator",
+    "category": "Health",
+    "route": "/health/swim-pace-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/cycling-power-calculator",
+    "category": "Health",
+    "route": "/health/cycling-power-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/marathon-predictor-calculator",
+    "category": "Health",
+    "route": "/health/marathon-predictor-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/calories-burned-calculator",
+    "category": "Health",
+    "route": "/health/calories-burned-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/age-grading-calculator",
+    "category": "Health",
+    "route": "/health/age-grading-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/health/golf-handicap-calculator",
+    "category": "Health",
+    "route": "/health/golf-handicap-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/merge-pdf",
+    "category": "PDF",
+    "route": "/pdf/merge-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/split-pdf",
+    "category": "PDF",
+    "route": "/pdf/split-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/remove-pages",
+    "category": "PDF",
+    "route": "/pdf/remove-pages",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/extract-pages",
+    "category": "PDF",
+    "route": "/pdf/extract-pages",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/rotate-pdf",
+    "category": "PDF",
+    "route": "/pdf/rotate-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/add-page-numbers",
+    "category": "PDF",
+    "route": "/pdf/add-page-numbers",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/add-watermark",
+    "category": "PDF",
+    "route": "/pdf/add-watermark",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/convert-jpg-to-pdf",
+    "category": "PDF",
+    "route": "/pdf/convert-jpg-to-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/protect-pdf",
+    "category": "PDF",
+    "route": "/pdf/protect-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/unlock-pdf",
+    "category": "PDF",
+    "route": "/pdf/unlock-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/organize-pdf",
+    "category": "PDF",
+    "route": "/pdf/organize-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/crop-pdf",
+    "category": "PDF",
+    "route": "/pdf/crop-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/sign-pdf",
+    "category": "PDF",
+    "route": "/pdf/sign-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/compress-pdf",
+    "category": "PDF",
+    "route": "/pdf/compress-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/convert-html-to-pdf",
+    "category": "PDF",
+    "route": "/pdf/convert-html-to-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/compare-pdf",
+    "category": "PDF",
+    "route": "/pdf/compare-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/convert-word-to-pdf",
+    "category": "PDF",
+    "route": "/pdf/convert-word-to-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/convert-powerpoint-to-pdf",
+    "category": "PDF",
+    "route": "/pdf/convert-powerpoint-to-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/convert-excel-to-pdf",
+    "category": "PDF",
+    "route": "/pdf/convert-excel-to-pdf",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/pdf/convert-pdf-to-pdfa",
+    "category": "PDF",
+    "route": "/pdf/convert-pdf-to-pdfa",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/ai-background-remover",
+    "category": "Image",
+    "route": "/image/ai-background-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/random-color-generator",
+    "category": "Image",
+    "route": "/image/random-color-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-image-to-base64",
+    "category": "Image",
+    "route": "/image/convert-image-to-base64",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-colors-inverter",
+    "category": "Image",
+    "route": "/image/image-colors-inverter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/flip-image-online",
+    "category": "Image",
+    "route": "/image/flip-image-online",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-cropper-resizer",
+    "category": "Image",
+    "route": "/image/image-cropper-resizer",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-compressor",
+    "category": "Image",
+    "route": "/image/image-compressor",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-watermark",
+    "category": "Image",
+    "route": "/image/image-watermark",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-pixelator",
+    "category": "Image",
+    "route": "/image/image-pixelator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-blur-pixelate",
+    "category": "Image",
+    "route": "/image/image-blur-pixelate",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/paste-image-to-download",
+    "category": "Image",
+    "route": "/image/paste-image-to-download",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/trim-transparent-pixels",
+    "category": "Image",
+    "route": "/image/trim-transparent-pixels",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/add-borders-to-image",
+    "category": "Image",
+    "route": "/image/add-borders-to-image",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/split-images-online",
+    "category": "Image",
+    "route": "/image/split-images-online",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/merge-images-online",
+    "category": "Image",
+    "route": "/image/merge-images-online",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/pixel-art-converter",
+    "category": "Image",
+    "route": "/image/pixel-art-converter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-image-to-ascii-converter",
+    "category": "Image",
+    "route": "/image/convert-image-to-ascii-converter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/online-collage-maker",
+    "category": "Image",
+    "route": "/image/online-collage-maker",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/laser-eyes-meme-generator",
+    "category": "Image",
+    "route": "/image/laser-eyes-meme-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/image-exif-viewer-metadata-remover",
+    "category": "Image",
+    "route": "/image/image-exif-viewer-metadata-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/website-color-palette-extractor",
+    "category": "Image",
+    "route": "/image/website-color-palette-extractor",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/website-screenshot-tool",
+    "category": "Image",
+    "route": "/image/website-screenshot-tool",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-jpg-to-png",
+    "category": "Image",
+    "route": "/image/convert-jpg-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-png-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-png-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-jpg-to-webp",
+    "category": "Image",
+    "route": "/image/convert-jpg-to-webp",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-webp-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-webp-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-png-to-webp",
+    "category": "Image",
+    "route": "/image/convert-png-to-webp",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-webp-to-png",
+    "category": "Image",
+    "route": "/image/convert-webp-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-tiff-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-tiff-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-jpg-to-tiff",
+    "category": "Image",
+    "route": "/image/convert-jpg-to-tiff",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-gif-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-gif-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-gif-to-png",
+    "category": "Image",
+    "route": "/image/convert-gif-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-bmp-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-bmp-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-bmp-to-png",
+    "category": "Image",
+    "route": "/image/convert-bmp-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-bmp-to-webp",
+    "category": "Image",
+    "route": "/image/convert-bmp-to-webp",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-bmp-to-tiff",
+    "category": "Image",
+    "route": "/image/convert-bmp-to-tiff",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-heic-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-heic-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-heic-to-png",
+    "category": "Image",
+    "route": "/image/convert-heic-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-avif-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-avif-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-avif-to-png",
+    "category": "Image",
+    "route": "/image/convert-avif-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-psd-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-psd-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-psd-to-png",
+    "category": "Image",
+    "route": "/image/convert-psd-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-eps-to-png",
+    "category": "Image",
+    "route": "/image/convert-eps-to-png",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/image/convert-eps-to-jpg",
+    "category": "Image",
+    "route": "/image/convert-eps-to-jpg",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/colors",
+    "category": "Tailwind",
+    "route": "/tailwind/colors",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/gradient-generator",
+    "category": "Tailwind",
+    "route": "/tailwind/gradient-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/shadow-generator",
+    "category": "Tailwind",
+    "route": "/tailwind/shadow-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/button-generator",
+    "category": "Tailwind",
+    "route": "/tailwind/button-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/convert-css-to-tailwind",
+    "category": "Tailwind",
+    "route": "/tailwind/convert-css-to-tailwind",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/convert-tailwind-to-css",
+    "category": "Tailwind",
+    "route": "/tailwind/convert-tailwind-to-css",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/flexbox-generator",
+    "category": "Tailwind",
+    "route": "/tailwind/flexbox-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/grid-generator",
+    "category": "Tailwind",
+    "route": "/tailwind/grid-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/tailwind/card-generator",
+    "category": "Tailwind",
+    "route": "/tailwind/card-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/trim-text-lines",
+    "category": "Text",
+    "route": "/text/trim-text-lines",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/empty-line-remover",
+    "category": "Text",
+    "route": "/text/empty-line-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/extra-whitespaces-remover",
+    "category": "Text",
+    "route": "/text/extra-whitespaces-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/all-whitespaces-remover",
+    "category": "Text",
+    "route": "/text/all-whitespaces-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/punctuation-mark-remover",
+    "category": "Text",
+    "route": "/text/punctuation-mark-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/character-accent-remover",
+    "category": "Text",
+    "route": "/text/character-accent-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/backslash-remover",
+    "category": "Text",
+    "route": "/text/backslash-remover",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/backslash-adder",
+    "category": "Text",
+    "route": "/text/backslash-adder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/convert-spaces-to-tabs",
+    "category": "Text",
+    "route": "/text/convert-spaces-to-tabs",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/convert-tabs-to-spaces",
+    "category": "Text",
+    "route": "/text/convert-tabs-to-spaces",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/convert-spaces-to-newlines",
+    "category": "Text",
+    "route": "/text/convert-spaces-to-newlines",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/convert-newlines-to-spaces",
+    "category": "Text",
+    "route": "/text/convert-newlines-to-spaces",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-line-reverser",
+    "category": "Text",
+    "route": "/text/text-line-reverser",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/add-line-numbers",
+    "category": "Text",
+    "route": "/text/add-line-numbers",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/add-line-prefixes",
+    "category": "Text",
+    "route": "/text/add-line-prefixes",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/add-line-suffixes",
+    "category": "Text",
+    "route": "/text/add-line-suffixes",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/prefix-and-suffix-text-lines",
+    "category": "Text",
+    "route": "/text/prefix-and-suffix-text-lines",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-line-filter",
+    "category": "Text",
+    "route": "/text/text-line-filter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-line-joiner",
+    "category": "Text",
+    "route": "/text/text-line-joiner",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/truncate-text-lines",
+    "category": "Text",
+    "route": "/text/truncate-text-lines",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/alphabetic-text-sorter",
+    "category": "Text",
+    "route": "/text/alphabetic-text-sorter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/numeric-text-sorter",
+    "category": "Text",
+    "route": "/text/numeric-text-sorter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-by-length-sorter",
+    "category": "Text",
+    "route": "/text/text-by-length-sorter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/word-sorter",
+    "category": "Text",
+    "route": "/text/word-sorter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/center-text",
+    "category": "Text",
+    "route": "/text/center-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/left-pad-text",
+    "category": "Text",
+    "route": "/text/left-pad-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/right-pad-text",
+    "category": "Text",
+    "route": "/text/right-pad-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/justify-text",
+    "category": "Text",
+    "route": "/text/justify-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/email-extractor",
+    "category": "Text",
+    "route": "/text/email-extractor",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/url-extractor",
+    "category": "Text",
+    "route": "/text/url-extractor",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/number-extractor",
+    "category": "Text",
+    "route": "/text/number-extractor",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/regex-match-extractor",
+    "category": "Text",
+    "route": "/text/regex-match-extractor",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/regex-match-replacer",
+    "category": "Text",
+    "route": "/text/regex-match-replacer",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-statistics-tool",
+    "category": "Text",
+    "route": "/text/text-statistics-tool",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/phrase-frequency-calculator",
+    "category": "Text",
+    "route": "/text/phrase-frequency-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/find-longest-text-line",
+    "category": "Text",
+    "route": "/text/find-longest-text-line",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/find-shortest-text-line",
+    "category": "Text",
+    "route": "/text/find-shortest-text-line",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-to-slug-converter",
+    "category": "Text",
+    "route": "/text/text-to-slug-converter",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-to-list-list-to-text",
+    "category": "Text",
+    "route": "/text/text-to-list-list-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/readability-flesch-kincaid-calculator",
+    "category": "Text",
+    "route": "/text/readability-flesch-kincaid-calculator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/character-frequency-map",
+    "category": "Text",
+    "route": "/text/character-frequency-map",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/lorem-ipsum-generator",
+    "category": "Text",
+    "route": "/text/lorem-ipsum-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/text-difference-checker",
+    "category": "Text",
+    "route": "/text/text-difference-checker",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/fancy-font-generator",
+    "category": "Text",
+    "route": "/text/fancy-font-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/upside-down-text-generator",
+    "category": "Text",
+    "route": "/text/upside-down-text-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/tiny-text-generator",
+    "category": "Text",
+    "route": "/text/tiny-text-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/invisible-character-generator",
+    "category": "Text",
+    "route": "/text/invisible-character-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/zalgo-glitch-text-generator",
+    "category": "Text",
+    "route": "/text/zalgo-glitch-text-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/text/unicode-ascii-table-search",
+    "category": "Text",
+    "route": "/text/unicode-ascii-table-search",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-url-encoder",
+    "category": "Converter",
+    "route": "/converter/convert-url-encoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-url-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-url-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-html-encoder",
+    "category": "Converter",
+    "route": "/converter/convert-html-encoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-html-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-html-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-base64-encoder",
+    "category": "Converter",
+    "route": "/converter/convert-base64-encoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-base64-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-base64-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-rot13-encoder-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-rot13-encoder-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-rot47-encoder-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-rot47-encoder-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-text-to-binary",
+    "category": "Converter",
+    "route": "/converter/convert-text-to-binary",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-binary-to-text",
+    "category": "Converter",
+    "route": "/converter/convert-binary-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-text-to-hex",
+    "category": "Converter",
+    "route": "/converter/convert-text-to-hex",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-hex-to-text",
+    "category": "Converter",
+    "route": "/converter/convert-hex-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-text-to-octal",
+    "category": "Converter",
+    "route": "/converter/convert-text-to-octal",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-octal-to-text",
+    "category": "Converter",
+    "route": "/converter/convert-octal-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-text-to-decimal",
+    "category": "Converter",
+    "route": "/converter/convert-text-to-decimal",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-decimal-to-text",
+    "category": "Converter",
+    "route": "/converter/convert-decimal-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-punycode-encoder",
+    "category": "Converter",
+    "route": "/converter/convert-punycode-encoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-punycode-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-punycode-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-idn-encoder",
+    "category": "Converter",
+    "route": "/converter/convert-idn-encoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-idn-decoder",
+    "category": "Converter",
+    "route": "/converter/convert-idn-decoder",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-json-to-csv",
+    "category": "Converter",
+    "route": "/converter/convert-json-to-csv",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-csv-to-json",
+    "category": "Converter",
+    "route": "/converter/convert-csv-to-json",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-json-to-yaml",
+    "category": "Converter",
+    "route": "/converter/convert-json-to-yaml",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-yaml-to-json",
+    "category": "Converter",
+    "route": "/converter/convert-yaml-to-json",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-json-to-xml",
+    "category": "Converter",
+    "route": "/converter/convert-json-to-xml",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-xml-to-json",
+    "category": "Converter",
+    "route": "/converter/convert-xml-to-json",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-xml-to-csv",
+    "category": "Converter",
+    "route": "/converter/convert-xml-to-csv",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-csv-to-xml",
+    "category": "Converter",
+    "route": "/converter/convert-csv-to-xml",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-xml-to-yaml",
+    "category": "Converter",
+    "route": "/converter/convert-xml-to-yaml",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-yaml-to-xml",
+    "category": "Converter",
+    "route": "/converter/convert-yaml-to-xml",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-json-to-text",
+    "category": "Converter",
+    "route": "/converter/convert-json-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-xml-to-text",
+    "category": "Converter",
+    "route": "/converter/convert-xml-to-text",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-html-to-markdown",
+    "category": "Converter",
+    "route": "/converter/convert-html-to-markdown",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-markdown-to-html",
+    "category": "Converter",
+    "route": "/converter/convert-markdown-to-html",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-unix-time-to-utc-time",
+    "category": "Converter",
+    "route": "/converter/convert-unix-time-to-utc-time",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-utc-time-to-unix-time",
+    "category": "Converter",
+    "route": "/converter/convert-utc-time-to-unix-time",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-seconds-to-hms",
+    "category": "Converter",
+    "route": "/converter/convert-seconds-to-hms",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-hms-to-seconds",
+    "category": "Converter",
+    "route": "/converter/convert-hms-to-seconds",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-seconds-to-human-readable-time",
+    "category": "Converter",
+    "route": "/converter/convert-seconds-to-human-readable-time",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-miles-to-kilometers",
+    "category": "Converter",
+    "route": "/converter/convert-miles-to-kilometers",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-kilometers-to-miles",
+    "category": "Converter",
+    "route": "/converter/convert-kilometers-to-miles",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-celsius-to-fahrenheit",
+    "category": "Converter",
+    "route": "/converter/convert-celsius-to-fahrenheit",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-fahrenheit-to-celsius",
+    "category": "Converter",
+    "route": "/converter/convert-fahrenheit-to-celsius",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-degrees-to-radians",
+    "category": "Converter",
+    "route": "/converter/convert-degrees-to-radians",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-radians-to-degrees",
+    "category": "Converter",
+    "route": "/converter/convert-radians-to-degrees",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-pounds-to-kilograms",
+    "category": "Converter",
+    "route": "/converter/convert-pounds-to-kilograms",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-kilograms-to-pounds",
+    "category": "Converter",
+    "route": "/converter/convert-kilograms-to-pounds",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-hex-to-rgb",
+    "category": "Converter",
+    "route": "/converter/convert-hex-to-rgb",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-rgb-to-hex",
+    "category": "Converter",
+    "route": "/converter/convert-rgb-to-hex",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-cmyk-to-rgb",
+    "category": "Converter",
+    "route": "/converter/convert-cmyk-to-rgb",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/converter/convert-rgb-to-cmyk",
+    "category": "Converter",
+    "route": "/converter/convert-rgb-to-cmyk",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/json-prettifier",
+    "category": "Utility",
+    "route": "/utility/json-prettifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/json-minifier",
+    "category": "Utility",
+    "route": "/utility/json-minifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/json-validator",
+    "category": "Utility",
+    "route": "/utility/json-validator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/js-prettifier",
+    "category": "Utility",
+    "route": "/utility/js-prettifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/js-minifier",
+    "category": "Utility",
+    "route": "/utility/js-minifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/js-validator",
+    "category": "Utility",
+    "route": "/utility/js-validator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/html-prettifier",
+    "category": "Utility",
+    "route": "/utility/html-prettifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/html-minifier",
+    "category": "Utility",
+    "route": "/utility/html-minifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/css-prettify",
+    "category": "Utility",
+    "route": "/utility/css-prettify",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/css-minifier",
+    "category": "Utility",
+    "route": "/utility/css-minifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/xml-prettifier",
+    "category": "Utility",
+    "route": "/utility/xml-prettifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/xml-minifier",
+    "category": "Utility",
+    "route": "/utility/xml-minifier",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-password-generator",
+    "category": "Utility",
+    "route": "/utility/random-password-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-string-generator",
+    "category": "Utility",
+    "route": "/utility/random-string-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-number-generator",
+    "category": "Utility",
+    "route": "/utility/random-number-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-uuid-generator",
+    "category": "Utility",
+    "route": "/utility/random-uuid-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-date-generator",
+    "category": "Utility",
+    "route": "/utility/random-date-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-time-generator",
+    "category": "Utility",
+    "route": "/utility/random-time-generator",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "free-tool-registry",
+    "key": "/utility/random-element-picker",
+    "category": "Utility",
+    "route": "/utility/random-element-picker",
+    "source": "src/lib/tools/registry.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "trim-text-lines",
+    "category": "text",
+    "route": "/text/trim-text-lines",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "empty-line-remover",
+    "category": "text",
+    "route": "/text/empty-line-remover",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "extra-whitespaces-remover",
+    "category": "text",
+    "route": "/text/extra-whitespaces-remover",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "all-whitespaces-remover",
+    "category": "text",
+    "route": "/text/all-whitespaces-remover",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "punctuation-mark-remover",
+    "category": "text",
+    "route": "/text/punctuation-mark-remover",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "character-accent-remover",
+    "category": "text",
+    "route": "/text/character-accent-remover",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "backslash-remover",
+    "category": "text",
+    "route": "/text/backslash-remover",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "backslash-adder",
+    "category": "text",
+    "route": "/text/backslash-adder",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "convert-spaces-to-tabs",
+    "category": "text",
+    "route": "/text/convert-spaces-to-tabs",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "convert-tabs-to-spaces",
+    "category": "text",
+    "route": "/text/convert-tabs-to-spaces",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "convert-spaces-to-newlines",
+    "category": "text",
+    "route": "/text/convert-spaces-to-newlines",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "convert-newlines-to-spaces",
+    "category": "text",
+    "route": "/text/convert-newlines-to-spaces",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-line-reverser",
+    "category": "text",
+    "route": "/text/text-line-reverser",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "add-line-numbers",
+    "category": "text",
+    "route": "/text/add-line-numbers",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "add-line-prefixes",
+    "category": "text",
+    "route": "/text/add-line-prefixes",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "add-line-suffixes",
+    "category": "text",
+    "route": "/text/add-line-suffixes",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "prefix-and-suffix-text-lines",
+    "category": "text",
+    "route": "/text/prefix-and-suffix-text-lines",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-line-filter",
+    "category": "text",
+    "route": "/text/text-line-filter",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-line-joiner",
+    "category": "text",
+    "route": "/text/text-line-joiner",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "truncate-text-lines",
+    "category": "text",
+    "route": "/text/truncate-text-lines",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "alphabetic-text-sorter",
+    "category": "text",
+    "route": "/text/alphabetic-text-sorter",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "numeric-text-sorter",
+    "category": "text",
+    "route": "/text/numeric-text-sorter",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-by-length-sorter",
+    "category": "text",
+    "route": "/text/text-by-length-sorter",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "word-sorter",
+    "category": "text",
+    "route": "/text/word-sorter",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "center-text",
+    "category": "text",
+    "route": "/text/center-text",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "left-pad-text",
+    "category": "text",
+    "route": "/text/left-pad-text",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "right-pad-text",
+    "category": "text",
+    "route": "/text/right-pad-text",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "justify-text",
+    "category": "text",
+    "route": "/text/justify-text",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "email-extractor",
+    "category": "text",
+    "route": "/text/email-extractor",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "url-extractor",
+    "category": "text",
+    "route": "/text/url-extractor",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "number-extractor",
+    "category": "text",
+    "route": "/text/number-extractor",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "regex-match-extractor",
+    "category": "text",
+    "route": "/text/regex-match-extractor",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "regex-match-replacer",
+    "category": "text",
+    "route": "/text/regex-match-replacer",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-statistics-tool",
+    "category": "text",
+    "route": "/text/text-statistics-tool",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "phrase-frequency-calculator",
+    "category": "text",
+    "route": "/text/phrase-frequency-calculator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "find-longest-text-line",
+    "category": "text",
+    "route": "/text/find-longest-text-line",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "find-shortest-text-line",
+    "category": "text",
+    "route": "/text/find-shortest-text-line",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-to-slug-converter",
+    "category": "text",
+    "route": "/text/text-to-slug-converter",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-to-list-list-to-text",
+    "category": "text",
+    "route": "/text/text-to-list-list-to-text",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "readability-flesch-kincaid-calculator",
+    "category": "text",
+    "route": "/text/readability-flesch-kincaid-calculator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "character-frequency-map",
+    "category": "text",
+    "route": "/text/character-frequency-map",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "lorem-ipsum-generator",
+    "category": "text",
+    "route": "/text/lorem-ipsum-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "text-difference-checker",
+    "category": "text",
+    "route": "/text/text-difference-checker",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "fancy-font-generator",
+    "category": "text",
+    "route": "/text/fancy-font-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "upside-down-text-generator",
+    "category": "text",
+    "route": "/text/upside-down-text-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "tiny-text-generator",
+    "category": "text",
+    "route": "/text/tiny-text-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "invisible-character-generator",
+    "category": "text",
+    "route": "/text/invisible-character-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "zalgo-glitch-text-generator",
+    "category": "text",
+    "route": "/text/zalgo-glitch-text-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-text",
+    "key": "unicode-ascii-table-search",
+    "category": "text",
+    "route": "/text/unicode-ascii-table-search",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "json-prettifier",
+    "category": "utility",
+    "route": "/utility/json-prettifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "json-minifier",
+    "category": "utility",
+    "route": "/utility/json-minifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "json-validator",
+    "category": "utility",
+    "route": "/utility/json-validator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "js-prettifier",
+    "category": "utility",
+    "route": "/utility/js-prettifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "js-minifier",
+    "category": "utility",
+    "route": "/utility/js-minifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "js-validator",
+    "category": "utility",
+    "route": "/utility/js-validator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "html-prettifier",
+    "category": "utility",
+    "route": "/utility/html-prettifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "html-minifier",
+    "category": "utility",
+    "route": "/utility/html-minifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "css-prettify",
+    "category": "utility",
+    "route": "/utility/css-prettify",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "css-minifier",
+    "category": "utility",
+    "route": "/utility/css-minifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "xml-prettifier",
+    "category": "utility",
+    "route": "/utility/xml-prettifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "xml-minifier",
+    "category": "utility",
+    "route": "/utility/xml-minifier",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-password-generator",
+    "category": "utility",
+    "route": "/utility/random-password-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-string-generator",
+    "category": "utility",
+    "route": "/utility/random-string-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-number-generator",
+    "category": "utility",
+    "route": "/utility/random-number-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-uuid-generator",
+    "category": "utility",
+    "route": "/utility/random-uuid-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-date-generator",
+    "category": "utility",
+    "route": "/utility/random-date-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-time-generator",
+    "category": "utility",
+    "route": "/utility/random-time-generator",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "exact-utility",
+    "key": "random-element-picker",
+    "category": "utility",
+    "route": "/utility/random-element-picker",
+    "source": "src/lib/tools/exact-catalog.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-essay",
+    "category": "text",
+    "route": "/text/word-counter-for-essay",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-seo",
+    "category": "text",
+    "route": "/text/word-counter-for-seo",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-students",
+    "category": "text",
+    "route": "/text/word-counter-for-students",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-500-words",
+    "category": "text",
+    "route": "/text/word-counter-500-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-1000-words",
+    "category": "text",
+    "route": "/text/word-counter-1000-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "reading-time-calculator",
+    "category": "text",
+    "route": "/text/reading-time-calculator",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "how-many-words-is-500-characters",
+    "category": "text",
+    "route": "/text/how-many-words-is-500-characters",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-college-students",
+    "category": "text",
+    "route": "/text/word-counter-for-college-students",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-high-school-students",
+    "category": "text",
+    "route": "/text/word-counter-for-high-school-students",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-writers",
+    "category": "text",
+    "route": "/text/word-counter-for-writers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-bloggers",
+    "category": "text",
+    "route": "/text/word-counter-for-bloggers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-content-writers",
+    "category": "text",
+    "route": "/text/word-counter-for-content-writers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-copywriters",
+    "category": "text",
+    "route": "/text/word-counter-for-copywriters",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-freelancers",
+    "category": "text",
+    "route": "/text/word-counter-for-freelancers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-journalists",
+    "category": "text",
+    "route": "/text/word-counter-for-journalists",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-researchers",
+    "category": "text",
+    "route": "/text/word-counter-for-researchers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-academics",
+    "category": "text",
+    "route": "/text/word-counter-for-academics",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-authors",
+    "category": "text",
+    "route": "/text/word-counter-for-authors",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-social-media",
+    "category": "text",
+    "route": "/text/word-counter-for-social-media",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-instagram",
+    "category": "text",
+    "route": "/text/word-counter-for-instagram",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-twitter",
+    "category": "text",
+    "route": "/text/word-counter-for-twitter",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-youtube",
+    "category": "text",
+    "route": "/text/word-counter-for-youtube",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-email-writing",
+    "category": "text",
+    "route": "/text/word-counter-for-email-writing",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-business-writing",
+    "category": "text",
+    "route": "/text/word-counter-for-business-writing",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-marketing",
+    "category": "text",
+    "route": "/text/word-counter-for-marketing",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-research-paper",
+    "category": "text",
+    "route": "/text/word-counter-for-research-paper",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-college-essay",
+    "category": "text",
+    "route": "/text/word-counter-for-college-essay",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-blog-posts",
+    "category": "text",
+    "route": "/text/word-counter-for-blog-posts",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-scholarship-essay",
+    "category": "text",
+    "route": "/text/word-counter-for-scholarship-essay",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-dissertations",
+    "category": "text",
+    "route": "/text/word-counter-for-dissertations",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-grant-writing",
+    "category": "text",
+    "route": "/text/word-counter-for-grant-writing",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-legal-writing",
+    "category": "text",
+    "route": "/text/word-counter-for-legal-writing",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-teachers",
+    "category": "text",
+    "route": "/text/word-counter-for-teachers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-linkedin",
+    "category": "text",
+    "route": "/text/word-counter-for-linkedin",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-tiktok",
+    "category": "text",
+    "route": "/text/word-counter-for-tiktok",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-facebook",
+    "category": "text",
+    "route": "/text/word-counter-for-facebook",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-newsletters",
+    "category": "text",
+    "route": "/text/word-counter-for-newsletters",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-translators",
+    "category": "text",
+    "route": "/text/word-counter-for-translators",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-developers",
+    "category": "text",
+    "route": "/text/word-counter-for-developers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-scientific-writing",
+    "category": "text",
+    "route": "/text/word-counter-for-scientific-writing",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-admissions-essay",
+    "category": "text",
+    "route": "/text/word-counter-for-admissions-essay",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-thesis",
+    "category": "text",
+    "route": "/text/word-counter-for-thesis",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-poetry",
+    "category": "text",
+    "route": "/text/word-counter-for-poetry",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-script-writers",
+    "category": "text",
+    "route": "/text/word-counter-for-script-writers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-speech-writers",
+    "category": "text",
+    "route": "/text/word-counter-for-speech-writers",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-for-ecommerce",
+    "category": "text",
+    "route": "/text/word-counter-for-ecommerce",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-100-words",
+    "category": "text",
+    "route": "/text/word-counter-100-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-150-words",
+    "category": "text",
+    "route": "/text/word-counter-150-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-200-words",
+    "category": "text",
+    "route": "/text/word-counter-200-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-250-words",
+    "category": "text",
+    "route": "/text/word-counter-250-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-300-words",
+    "category": "text",
+    "route": "/text/word-counter-300-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-400-words",
+    "category": "text",
+    "route": "/text/word-counter-400-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-750-words",
+    "category": "text",
+    "route": "/text/word-counter-750-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-1500-words",
+    "category": "text",
+    "route": "/text/word-counter-1500-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-2000-words",
+    "category": "text",
+    "route": "/text/word-counter-2000-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-3000-words",
+    "category": "text",
+    "route": "/text/word-counter-3000-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-under-100-words",
+    "category": "text",
+    "route": "/text/word-counter-under-100-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-counter-under-300-words",
+    "category": "text",
+    "route": "/text/word-counter-under-300-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "sentence-counter",
+    "category": "text",
+    "route": "/text/sentence-counter",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "paragraph-counter",
+    "category": "text",
+    "route": "/text/paragraph-counter",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "characters-without-spaces",
+    "category": "text",
+    "route": "/text/characters-without-spaces",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "text-length-checker",
+    "category": "text",
+    "route": "/text/text-length-checker",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "word-count-checker",
+    "category": "text",
+    "route": "/text/word-count-checker",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "count-words-in-text",
+    "category": "text",
+    "route": "/text/count-words-in-text",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "check-word-count-for-essay",
+    "category": "text",
+    "route": "/text/check-word-count-for-essay",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "check-character-limit",
+    "category": "text",
+    "route": "/text/check-character-limit",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "calculate-reading-time",
+    "category": "text",
+    "route": "/text/calculate-reading-time",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "measure-text-length",
+    "category": "text",
+    "route": "/text/measure-text-length",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "how-many-words-is-a-page",
+    "category": "text",
+    "route": "/text/how-many-words-is-a-page",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "how-many-words-per-minute-reading",
+    "category": "text",
+    "route": "/text/how-many-words-per-minute-reading",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "reading-time-for-1000-words",
+    "category": "text",
+    "route": "/text/reading-time-for-1000-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "reading-time-for-2000-words",
+    "category": "text",
+    "route": "/text/reading-time-for-2000-words",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  },
+  {
+    "kind": "word-counter-landing",
+    "key": "how-many-words-is-1000-characters",
+    "category": "text",
+    "route": "/text/how-many-words-is-1000-characters",
+    "source": "src/lib/word-counter-landings/registry.ts"
+  }
+]

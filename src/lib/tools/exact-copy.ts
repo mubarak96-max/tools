@@ -803,42 +803,375 @@ export function buildTextToolCopy(tool: ExactTextTool): ToolCopy {
 export function buildConverterToolCopy(tool: ExactConverterTool): ToolCopy {
   switch (tool.family) {
     case "encoding":
-      if (tool.mode === "base64-encode" || tool.mode === "base64-decode") {
+      if (tool.slug === "convert-url-encoder-decoder") {
         return {
-          heading: "What Base64 encoding is used for",
+          heading: "How URL Encoding and Decoding works",
           paragraphs: [
-            "Base64 converts bytes into ASCII text so data can travel more safely through systems that expect text rather than raw binary. It is commonly used in APIs, email payloads, JSON transports, debugging workflows, and data URLs for small inline assets.",
-            "This page is designed as a practical Base64 utility, not just a one-way encoder. You can switch between encode and decode modes, work with plain text or files, generate data URLs, inspect size overhead, and check whether the decoded output is usable text or a previewable asset.",
-            "Base64 is not encryption. It does not protect secrets; it only changes representation. It is also larger than the original data — Base64-encoded content is approximately 33% larger than the original binary — so it should be used intentionally rather than as a default transport format for large files.",
-            "The most common use cases for Base64 encoding include: embedding small images directly in HTML or CSS as data URLs (avoiding an extra HTTP request), encoding binary data for inclusion in JSON payloads (since JSON does not support raw binary), encoding email attachments in MIME format, storing binary data in text-based configuration files, and passing binary data through systems that only support ASCII text.",
-            "When decoding Base64, the tool attempts to detect whether the decoded content is valid UTF-8 text or binary data. If the decoded content is text, it is displayed directly. If it appears to be binary (such as an image or PDF), the tool may offer a preview or download option depending on the detected MIME type.",
+            "URL encoding, also known as percent-encoding, is a mechanism for encoding information in a Uniform Resource Identifier (URI). Characters that are not allowed in a URL must be replaced by a `%` followed by their two-digit hexadecimal equivalent. For example, a space becomes `%20`.",
+            "This tool allows you to both encode plain text for safe use in URLs and decode percent-encoded strings back into readable text. It is a critical utility for web developers, SEO professionals, and anyone working with APIs and web addresses.",
+            "Beyond standard encoding, this tool supports options like encoding spaces as `+` instead of `%20`. This is commonly used in query strings for forms (application/x-www-form-urlencoded), following RFC 1738 conventions.",
+            "All processing happens entirely in your browser. Your data is never sent to a server, ensuring your privacy and security when handling sensitive URL parameters, API keys, or tracking tokens.",
+            "Our tool also provides real-time character counters and code snippets for common programming languages like JavaScript, Python, and PHP, making it a powerful developer reference.",
+          ],
+          faqs: [
+            { question: "When should I use URL encoding?", answer: "Use URL encoding whenever you need to include special characters in a URL's query string or path. This includes spaces, ampersands, equal signs, and non-ASCII characters that would otherwise break the URL structure or be misinterpreted by the server." },
+            { question: "What is the difference between %20 and + for spaces?", answer: "Both are used to represent spaces. `%20` is the standard percent-encoding used in almost all parts of a URI (RFC 3986). The `+` sign is specifically used in query strings and is the default for HTML form submissions (application/x-www-form-urlencoded)." },
+            { question: "Is URL encoding the same as Base64?", answer: "No. URL encoding is designed for safe character transmission in web addresses. Base64 is designed for representing binary data as ASCII text. They use completely different algorithms and serve different technical purposes." },
+            { question: "Why are some characters not encoded?", answer: "Certain characters are 'unreserved' and allowed in URLs without encoding. These typically include alphanumeric characters (A-Z, a-z, 0-9) and a few symbols like hyphens, dots, underscores, and tildes." },
+            { question: "Is my data safe with this online tool?", answer: "Yes. This tool runs entirely client-side using JavaScript in your browser. Your text never leaves your device, and nothing is uploaded to our servers, making it safe for private information." },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-html-entity-encoder-decoder") {
+        return {
+          heading: "Understanding HTML Entity Encoding and Decoding",
+          paragraphs: [
+            "HTML entity encoding is the process of replacing reserved characters in HTML with corresponding character entities. This is primarily done to prevent the browser from interpreting these characters as actual HTML markup. For example, the less-than sign `<` is encoded as `&lt;` so it can be displayed literally on a page without starting a new tag.",
+            "This tool provides a dual-purpose interface for both encoding (escaping) raw text and decoding (unescaping) existing HTML entities. It is an essential utility for web developers, technical writers, and security professionals who need to safely handle HTML fragments, documentation snippets, or user-provided content.",
+            "Beyond basic escaping, our encoder supports specialized entity types: **Named Entities** (like `&copy;`), **Decimal Entities** (like `&#169;`), and **Hexadecimal Entities** (like `&#xA9;`). This allows for maximum compatibility across different HTML standards and encoding requirements.",
+            "Security is a primary use case for HTML encoding. By escaping characters like `<`, `>`, `&`, and quotes, you can effectively mitigate **Cross-Site Scripting (XSS)** vulnerabilities in your web applications. Our tool processes all data locally on your device, ensuring that sensitive code snippets or private data never leave your browser.",
+            "Whether you are preparing a code block for a blog post, cleaning up scraped content, or debugging a complex email template, this platform offers the precision and real-time feedback needed for professional-grade HTML manipulation.",
           ],
           faqs: [
             {
-              question: "What is Base64 used for?",
-              answer: "Base64 is used when binary data needs to be represented as text, such as in JSON payloads, email attachments, browser data URLs, and debugging or transport workflows where raw bytes are inconvenient. It is the standard encoding for embedding images in CSS, sending binary data in REST APIs, and storing binary content in text-based formats.",
+              question: "What are HTML entities and why are they needed?",
+              answer: "HTML entities are strings that start with an ampersand (&) and end with a semicolon (;). They are used to represent characters that are either reserved in HTML (like `<` or `&`) or characters that cannot be easily typed on a keyboard (like the copyright symbol `©`).",
             },
             {
-              question: "Why is Base64 output larger than the original?",
-              answer: "Base64 encodes every 3 bytes of input as 4 ASCII characters, which means the output is approximately 33% larger than the input. This overhead is the trade-off for making binary data safe to transmit through text-only channels.",
+              question: "When should I use named entities vs. numeric entities?",
+              answer: "Named entities (e.g., `&lt;`) are more human-readable and easier to remember, making them ideal for manual coding. Numeric entities (decimal or hex) are more robust and supported across all platforms, even when a specific named entity might not be defined in the current HTML version.",
             },
             {
-              question: "What is the difference between standard Base64 and URL-safe Base64?",
-              answer: "Standard Base64 uses `+` and `/` characters, which have special meanings in URLs. URL-safe Base64 replaces these with `-` and `_` respectively, making the encoded string safe to include in URLs and filenames without percent-encoding.",
+              question: "Does this tool protect against XSS attacks?",
+              answer: "Yes, encoding user-provided content is one of the most effective ways to prevent XSS. By converting potentially malicious characters like `<script>` into `&lt;script&gt;`, you ensure the code is displayed as text rather than executed by the browser.",
             },
             {
-              question: "Is Base64 the same as encryption?",
-              answer: "No. Base64 is an encoding scheme, not encryption. Anyone who receives Base64-encoded data can decode it instantly without a key. It provides no security — it only changes the representation of the data. Never use Base64 to protect sensitive information.",
+              question: "What is the difference between HTML encoding and URL encoding?",
+              answer: "HTML encoding is for safe character display within HTML documents to prevent tag interpretation. URL encoding (percent-encoding) is for making data safe for use in web addresses (URIs). They use completely different replacement rules—for example, a space becomes `&nbsp;` in HTML (for non-breaking) but `%20` in a URL.",
             },
             {
-              question: "What is a data URL and when should I use one?",
-              answer: "A data URL is a Base64-encoded file embedded directly in an HTML or CSS attribute, formatted as `data:[MIME type];base64,[encoded data]`. It is useful for small images and icons where you want to avoid an extra HTTP request. For larger files, a regular URL is more efficient because browsers can cache it separately.",
+              question: "Is my data sent to your server during encoding?",
+              answer: "No. All encoding and decoding logic runs locally in your browser using JavaScript. Your input text is processed entirely on your machine, ensuring complete privacy for your code and data.",
             },
           ],
         };
       }
 
-      // Generic encoding tool copy
+      if (tool.slug === "convert-base64-encoder-decoder") {
+        return {
+          heading: "Mastering Base64 Encoding and Decoding",
+          paragraphs: [
+            "Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format. It is most commonly used when there is a need to encode binary data that needs to be stored and transferred over media that are designed to deal with text. This ensures that the data remains intact without modification during transport.",
+            "Our Base64 toolkit is designed for both casual users and developers. It supports encoding plain text and local files (images, documents, etc.) into standard Base64, URL-safe Base64, or Data URLs for direct embedding in HTML and CSS. Conversely, the decoder can handle raw Base64 strings or full Data URLs, restoring the original content instantly.",
+            "A key characteristic of Base64 is its **33% size overhead**. Because every 3 bytes of data are represented by 4 characters (6 bits per character), the resulting string is approximately one-third larger than the original binary input. This is a deliberate trade-off for making binary data safe for text-only channels like JSON, XML, or email payloads.",
+            "The decoder features **smart detection**, automatically identifying if the underlying data is a common internal format (like JSON) or a previewable asset (like a PNG or JPG image). This makes it an invaluable tool for debugging API responses and inspecting embedded assets without leaving the browser.",
+            "Security is handled entirely client-side. Whether you are encoding an API token or decoding a private JSON payload, no data is ever sent to our servers. All transformations occur within your browser's local sandbox, providing a fast, secure, and private environment for your development needs.",
+          ],
+          faqs: [
+            {
+              question: "What is Base64 used for in web development?",
+              answer: "Base64 is primarily used to transmit binary data over text-based protocols. For example, it allows you to embed small images directly in CSS or HTML as Data URLs, send binary attachments in JSON API payloads, and store basic authentication credentials in HTTP headers.",
+            },
+            {
+              question: "Why is the encoded output larger than the input?",
+              answer: "Base64 encoding uses 4 characters to represent every 3 bytes of data. This happens because Base64 uses a 64-character alphabet (6 bits per character), whereas raw binary uses 8 bits per byte. This results in a roughly 33% increase in character count compared to the original byte count.",
+            },
+            {
+              question: "What is URL-safe Base64?",
+              answer: "Standard Base64 uses `+` and `/` characters, which have special meanings in URLs. URL-safe Base64 replaces these with `-` and `_` respectively, making the encoded string safe to use as a filename or a URL query parameter without additional percent-encoding.",
+            },
+            {
+              question: "Is Base64 considered encryption?",
+              answer: "Absolutely not. Base64 is an encoding scheme, not encryption. It provides no security or confidentiality. Anyone can decode a Base64 string instantly without a key. Its purpose is data representation, not data protection.",
+            },
+            {
+              question: "What is a Data URL?",
+              answer: "A Data URL is a URI scheme that allows you to embed small files inline in documents. It follows the format `data:[mime type];base64,[data]`. It is commonly used for tiny icons, font snippets, or CSS background images to reduce the number of HTTP requests required to load a page.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-rot13-encoder-decoder") {
+        return {
+          heading: "Understanding ROT13: The Classic Substitution Cipher",
+          paragraphs: [
+            "ROT13 ('Rotate by 13 places') is a simple substitution cipher that replaces a letter with the 13th letter after it in the Latin alphabet. Because the modern English alphabet has 26 letters, ROT13 is its own inverse—performing the encoding twice on the same string will return the original text.",
+            "Historically, ROT13 originated from the Usenet community as a way to hide spoilers, punchlines to jokes, or offensive material from the casual reader's view. It is often described as the digital equivalent of printing an answer upside down in a newspaper puzzle.",
+            "A key feature of ROT13 is that it only affects alphabetic characters (A-Z and a-z). Numbers, punctuation, and whitespace remain completely unchanged. This makes it ideal for obfuscating text fragments within a larger document without breaking the formatting or readability of structural elements.",
+            "It is crucial to understand that **ROT13 provides no cryptographic security**. It is a form of obfuscation, not encryption. It should never be used to secure passwords, private data, or sensitive information, as it can be 'broken' instantly by anyone with basic knowledge of the scheme.",
+            "Our ROT13 tool offers a real-time, browser-based implementation. It allows you to toggle between encoding and decoding instantly, though the process is identical. Like all our tools, processing happens locally on your device, ensuring your text fragments are never transmitted to our server.",
+          ],
+          faqs: [
+            {
+              question: "How does the ROT13 cipher work?",
+              answer: "ROT13 works by shifting every letter 13 places forward in the alphabet. For example, 'A' becomes 'N', and 'B' becomes 'O'. Once it reaches 'Z', it wraps back around to 'A'.",
+            },
+            {
+              question: "Why is ROT13 called 'self-reciprocal'?",
+              answer: "Since the alphabet has 26 letters and 13 is exactly half of that, applying the shift twice (13 + 13 = 26) brings you back to the starting point. This means the same algorithm is used for both encoding and decoding.",
+            },
+            {
+              question: "Is ROT13 secure for hiding secrets?",
+              answer: "No. ROT13 is not intended for security. It is a light obfuscation method used to prevent accidental reading (like spoilers). It can be easily deciphered by anyone and offers zero protection against malicious actors.",
+            },
+            {
+              question: "Does ROT13 affect numbers or special characters?",
+              answer: "No. ROT13 only shifts the letters A through Z. Any numbers (0-9), punctuation marks, or symbols remain exactly as they were in the original input.",
+            },
+            {
+              question: "Where did ROT13 come from?",
+              answer: "ROT13 became popular in the early 1980s on Usenet, an early internet discussion system. It was adopted as a community standard for hiding content that users might not want to see immediately, such as movie spoilers.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-binary-encoder-decoder") {
+        return {
+          heading: "Understanding Binary: The Foundation of Computing",
+          paragraphs: [
+            "Binary is a base-2 numeral system that uses only two symbols: typically '0' (zero) and '1' (one). In computing, these two symbols represent the 'off' and 'on' states of a transistor. Every piece of digital data—from simple text to complex video—is ultimately stored and processed as a vast sequence of these binary digits, or bits.",
+            "This tool allows you to convert human-readable text into its binary representation and vice versa. It typically uses the ASCII or UTF-8 character encoding standards to map each character to a unique 8-bit sequence (a byte). For instance, the letter 'A' is represented in binary as `01000001`.",
+            "Encoding text to binary is essential for understanding how computers 'read' your data at the lowest level. It is widely used in computer science education, low-level systems programming, and debugging communication protocols where raw bitstreams need to be inspected.",
+            "One common pitfall when working with binary is the distinction between character encoding (like UTF-8) and the binary system itself. While binary is just a way to represent numbers, the encoding standard determines *which* number represents *which* character. Our tool defaults to the industry-standard UTF-8 mapping, ensuring compatibility across modern platforms.",
+            "Like all our converters, this binary encoder runs entirely in your browser. This means your text remains private and is never uploaded to any server. Whether you are learning about bits and bytes or debugging an embedded project, you can rely on this tool for fast, local, and secure conversions.",
+          ],
+          faqs: [
+            {
+              question: "How does text get converted to binary?",
+              answer: "The computer uses an encoding standard like ASCII or UTF-8. Each character (like 'A') is assigned a specific number (65). That number is then converted from our usual base-10 system into the base-2 binary system (01000001).",
+            },
+            {
+              question: "What is a bit and what is a byte?",
+              answer: "A 'bit' is the smallest unit of data in computing, representing a single 0 or 1. A 'byte' is a group of 8 bits. In the context of text conversion, one character usually corresponds to one or more bytes.",
+            },
+            {
+              question: "Why does my binary output have spaces?",
+              answer: "Spaces are typically added between bytes (every 8 bits) to make the binary string human-readable. Without spaces, a long string of 0s and 1s would be extremely difficult to analyze or debug.",
+            },
+            {
+              question: "Does binary encoding provide any security?",
+              answer: "No. Binary is a representation of data, not a form of encryption. Anyone can convert binary back to text instantly. It is used for computer compatibility, not for hiding secrets.",
+            },
+            {
+              question: "Can I convert non-English characters to binary?",
+              answer: "Yes. Our tool uses UTF-8 encoding, which supports all Unicode characters including emojis and international scripts. These characters may take up more than 8 bits (multiple bytes) in the binary output.",
+            },
+          ],
+        };
+      }
+      if (tool.slug === "convert-hex-encoder-decoder") {
+        return {
+          heading: "Hexadecimal Encoding: The Language of Systems",
+          paragraphs: [
+            "Hexadecimal (or 'Hex') is a base-16 positional numeral system. It uses sixteen distinct symbols: numbers `0-9` and letters `A-F`. Hex is widely used by programmers because it provides a human-friendly representation of original binary code.",
+            "In computing, one hexadecimal digit represents exactly four bits (half a byte). This means a full 8-bit byte can be represented by exactly two hex digits (ranging from `00` to `FF`), making it much easier to read and communicate than long strings of binary ones and zeroes.",
+            "Our Hex Encoder/Decoder is an essential utility for developers working in web design, cybersecurity, and data analysis. It allows you to convert plain text into Hex byte sequences and decode those sequences back into readable characters using standard UTF-8 mapping.",
+            "Common applications for Hex include defining colors in CSS (hex codes), representing memory addresses in debugging, inspecting data packets in network security, and encoding special characters that might otherwise cause issues in certain protocols.",
+            "Privacy is our priority. This tool performs all hexadecimal transformations entirely within your browser's local sandbox. Your data is processed instantly on your device and is never sent to a remote server, ensuring your sensitive development data stays private.",
+          ],
+          faqs: [
+            {
+              question: "What is Hexadecimal used for?",
+              answer: "Hex is used to simplify how humans read binary data. Because 2 hex characters represent 1 byte, it is the standard for showing memory addresses, color codes (like #FFFFFF), and file contents (hex dumps).",
+            },
+            {
+              question: "How do I read a Hex byte?",
+              answer: "Each pair of hex digits represents one 8-bit byte. For example, the Hex value '41' represents the number 65, which corresponds to the capital letter 'A' in the ASCII table.",
+            },
+            {
+              question: "Does Hex case-sensitivity matter?",
+              answer: "Generally, no. `A-F` and `a-f` refer to the same values (10-15). Our tool can decode both uppercase and lowercase hexadecimal strings reliably.",
+            },
+            {
+              question: "Why are there different prefixes (like 0x)?",
+              answer: "Prefixes like `0x` or `#` tell programming languages or styling systems that the number following them is in Base-16 rather than Base-10.",
+            },
+            {
+              question: "Is hexadecimal encryption?",
+              answer: "No. Hex is an encoding method, not encryption. It only changes how data is written, not who can read it. Anyone can decode hex instantly without a key.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-octal-encoder-decoder") {
+        return {
+          heading: "Exploring Octal: The Base-8 Numeral System",
+          paragraphs: [
+            "Octal is a base-8 numeral system that uses the digits `0` to `7`. Historically, octal was widely used in computing because it could easily represent groups of three bits (since 2³ = 8). While less common today than hexadecimal, it remains an important concept in computer science history and specific system permissions.",
+            "In modern systems, octal is most visibly used in Unix-like operating systems for file permissions (e.g., `chmod 755`). Each digit in the three-digit octal permission represents the read, write, and execute permissions for the owner, group, and others.",
+            "This tool allows you to convert plain text into its octal representation and decode octal strings back into readable text. It maps each character to its numerical code point and then expresses that number in base-8 notation.",
+            "While hexadecimal is more efficient for 8-bit bytes (which map to 2 hex digits), octal requires 3 digits to represent a single byte (up to `377` in octal). This inherent 'misalignment' with 8-bit architecture is part of why hex eventually became more popular for general debugging.",
+            "Security is handled entirely client-side. All octal conversions happen locally in your browser, meaning your data never leaves your device. This makes it a safe environment for exploring low-level data representations or debugging legacy system strings.",
+          ],
+          faqs: [
+            {
+              question: "What is the Octal system used for today?",
+              answer: "Octal is primarily used for setting file permissions in Unix/Linux systems (like 777 or 644) and is occasionally found in legacy mainframe systems or specialized digital displays.",
+            },
+            {
+              question: "How many bits does one octal digit represent?",
+              answer: "One octal digit represents exactly 3 bits. This was ideal for older computer architectures that used 12-bit, 24-bit, or 36-bit words (all multiples of 3).",
+            },
+            {
+              question: "Why did Hex replace Octal for most tasks?",
+              answer: "Most modern computers use 8-bit bytes. Since 8 bits map perfectly to 2 hex digits (4 bits each), Hex is a more natural fit for modern hardware than Octal (which splits bytes into 3-bit chunks).",
+            },
+            {
+              question: "How do you identify an octal number?",
+              answer: "In programming, octal numbers are often prefixed with a zero (e.g., `0755`) or a `q` or `o` suffix in older languages to distinguish them from decimal numbers.",
+            },
+            {
+              question: "Is Octal encoding secure?",
+              answer: "No. Like binary and hex, octal is just a different way of writing numbers. It provides no security and can be decoded by anyone instantly.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-decimal-encoder-decoder") {
+        return {
+          heading: "Decimal Character Encoding: User-Friendly Base-10",
+          paragraphs: [
+            "Decimal (base-10) is the standard system for representing numbers using ten digits: `0` through `9`. In the context of text encoding, decimal refers to the raw numerical code point assigned to each character in the ASCII or Unicode standards.",
+            "Every character you see on your screen has an underlying decimal identity. For example, the space character is `32`, while the uppercase letter 'A' is `65`. These decimal values are the primary way programming languages like JavaScript (via `charCodeAt`) interact with individual characters at a numerical level.",
+            "This tool provides a bridge between human-readable text and these raw decimal codes. It is particularly useful for web developers debugging HTML character entity issues or programmers who need to filter text based on specific character ranges.",
+            "Using decimal representation is often the easiest way for humans to verify character data, as we are naturally wired for base-10 counting. It avoids the complexity of letters in Hex or the long, repetitive sequences found in Binary representation.",
+            "Privacy and safety are guaranteed because all conversions are performed locally on your device. We never transmit your text to our servers, making this a secure choice for developers and students working with any type of character data.",
+          ],
+          faqs: [
+            {
+              question: "What are decimal character codes?",
+              answer: "They are the unique base-10 numbers assigned to every character in the Unicode standard. They are often called 'Code Points' or 'ASCII values' depending on the character set.",
+            },
+            {
+              question: "How do decimal codes relate to HTML entities?",
+              answer: "HTML entities like `&#65;` use the decimal code of a character to display it. This is useful for representing symbols that might otherwise break your HTML code.",
+            },
+            {
+              question: "What is the difference between ASCII and Unicode decimal?",
+              answer: "ASCII only covers the first 127 characters. Unicode is a massive superset that covers over 140,000 characters (including emojis). However, the first 127 decimal codes are identical in both systems.",
+            },
+            {
+              question: "Why would I use decimal instead of Hex?",
+              answer: "Decimal is often more intuitive for humans because it's the system we use every day. It's simpler for quick calculations or when you're manually comparing character values in a simple script.",
+            },
+            {
+              question: "Can I convert large numbers back to text?",
+              answer: "Yes, as long as the numbers correspond to valid Unicode code points, the decoder will reconstruct the original characters accurately.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-punycode-encoder-decoder") {
+        return {
+          heading: "Mastering Punycode: Unlocking Non-ASCII Domain Names",
+          paragraphs: [
+            "Punycode is a specialized encoding syntax used to convert Unicode characters (like emojis or non-Latin alphabets) into an ASCII-compatible string. It was developed to allow Internationalized Domain Names (IDNs) to function within the existing Domain Name System (DNS), which only supports a limited set of ASCII characters.",
+            "DNS is restricted to the letters A-Z, digits 0-9, and the hyphen. Without Punycode, a domain name like `bücher.example` or `☕.com` would be unroutable. Punycode translates these 'unsupported' characters into a string starting with the `xn--` prefix, which the DNS can understand.",
+            "Our Punycode toolkit is designed for web developers, domain registrars, and system administrators. It can convert internationalized text into its Punycode equivalent (and vice versa), helping you troubleshoot domain resolution issues or prepare domains for registration.",
+            "Technically, Punycode uses a 'bootstring' algorithm that separates the ASCII characters from the non-ASCII characters, encoding the latter as a sequence of integers at the end of the string. This ensures that the resulting domain name is compact and safe for the legacy internet infrastructure.",
+            "Privacy is a core feature of our platform. All Punycode encoding and decoding are performed locally in your browser. Your domain names and Unicode strings are never sent to our servers, providing a secure and private debugging environment.",
+          ],
+          faqs: [
+            {
+              question: "What is the purpose of Punycode?",
+              answer: "It allows the internet's naming system (DNS) to handle international characters, emojis, and symbols by converting them into a standard ASCII format that old servers can understand.",
+            },
+            {
+              question: "What does the xn-- prefix mean?",
+              answer: "The `xn--` prefix is an 'ACE' (ASCII Compatible Encoding) prefix. It tells browsers and web servers that the following string is a Punycode-encoded representation of international characters.",
+            },
+            {
+              question: "Do I need to use Punycode for my website?",
+              answer: "Only if your domain contains special characters (like ñ, ü, or characters from Arabic, Chinese, etc.). Most browsers handle the conversion automatically, but you often need the Punycode version for server config files.",
+            },
+            {
+              question: "Is Punycode a form of compression?",
+              answer: "Not traditionally. While it is efficient, its primary goal is character compatibility, ensuring that complex Unicode characters can be represented using a very small 36-character ASCII alphabet.",
+            },
+            {
+              question: "Can Punycode be used for security attacks?",
+              answer: "Yes, in a practice known as a 'Homograph Attack.' Attackers can use Punycode to create domains that look identical to a famous site (like replacing a Latin 'a' with a Cyrillic 'а'). Always check the actual Punycode to verify a site's identity.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-idn-encoder-decoder") {
+        return {
+          heading: "IDN Conversion: Bridging Global Languages and DNS",
+          paragraphs: [
+            "IDN (Internationalized Domain Name) conversion is the process of translating fully localized domain names into the machine-readable format required by the global internet infrastructure. It's the technology that allows the internet to be truly global, supporting scripts beyond the Latin alphabet.",
+            "While Punycode handles the character-level encoding, IDN conversion involves additional steps like normalization (ensuring `é` is represented consistently) and case folding. This ensures that different ways of typing the same name always resolve to the same IP address.",
+            "This tool allows you to convert between 'U-label' (the human-readable Unicode version) and 'A-label' (the ASCII Punycode version). For example, it can turn the Arabic domain `موقع.com` into its machine-safe equivalent and back.",
+            "For developers and SEO specialists, understanding IDN conversion is vital for international expansion. It affects how URLs are indexed by search engines, how email headers are processed, and how SSL certificates are issued for localized websites.",
+            "All processing is local. Our IDN converter runs entirely within your browser's sandbox environment. We don't log your queries or send your domain names to our server, making this the safest way to inspect and debug internationalized web addresses.",
+          ],
+          faqs: [
+            {
+              question: "What is the difference between Punycode and IDN?",
+              answer: "Punycode is the specific encoding algorithm. IDN is the broader standard (IDNA) that uses Punycode along with rules for character normalization to make international domains work globally.",
+            },
+            {
+              question: "Why do browsers sometimes show xn-- in the address bar?",
+              answer: "This is a security feature to prevent identity theft. If a domain uses characters from multiple different alphabets, the browser may show the 'A-label' (Punycode) to warn you that the site might be a decoy.",
+            },
+            {
+              question: "Does IDN affect my website's SEO?",
+              answer: "Yes. Search engines can index IDNs, but it's important to use the correct canonical tags and ensure your server handles both the Unicode and Punycode versions correctly to avoid duplicate content issues.",
+            },
+            {
+              question: "Can I use emojis in domain names?",
+              answer: "Yes. Emojis are Unicode characters and can be converted to Punycode just like letters. However, not all top-level domains (like .com or .org) allow emoji registrations.",
+            },
+            {
+              question: "Is IDN conversion safe to use online?",
+              answer: "Our tool is 100% private because it runs locally. Other online converters might log your domains; we ensure all processing stays on your device.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-rot47-encoder-decoder") {
+        return {
+          heading: "ROT47: The Expanded Substitution Cipher",
+          paragraphs: [
+            "ROT47 is a derivative of the ROT13 cipher that increases the number of characters it can obfuscate. While ROT13 only affects alphabetic letters (A-Z), ROT47 shifts all printable ASCII characters (except space), including numbers, symbols, and punctuation marks.",
+            "The shift is 47 positions, which is exactly half of the 94 printable characters available in the ASCII set (from `!` at position 33 to `~` at position 126). This makes ROT47, like its predecessor, self-reciprocal—applying the cipher twice returns the original text.",
+            "Since ROT47 includes numbers and symbols, it produces a much more scrambled and 'glitched' appearance than ROT13. It is commonly used for light obfuscation of email addresses, URLs, or segments of code where you want to prevent automated scraping or accidental reading by humans.",
+            "It is important to remember that **ROT47 is not encryption**. It provides zero cryptographic security. Its primary purpose is to make text unreadable at a glance, similar to flipping a book upside down. It should never be used for sensitive data, passwords, or private communications.",
+            "Our ROT47 tool runs entirely on your local machine. No text is ever transmitted to our servers, ensuring your obfuscated snippets remain private. It’s a fast, secure way to smudge text for forums, documentation, or simple development puzzles.",
+          ],
+          faqs: [
+            {
+              question: "How does ROT47 differ from ROT13?",
+              answer: "ROT13 only shifts the 26 letters of the alphabet. ROT47 shifts 94 characters, including numbers (0-9) and all common symbols (!, @, #, etc.), making it more comprehensive for obfuscating complex strings like URLs.",
+            },
+            {
+              question: "What is the shift value in ROT47?",
+              answer: "The shift value is 47 positions. Since the ASCII printable character range is 94 characters wide, shifting by 47 (half) makes the process self-reversible.",
+            },
+            {
+              question: "Does ROT47 affect spaces?",
+              answer: "No. According to the standard implementation, the space character (ASCII 32) is left unchanged. Only characters in the range 33 (!) to 126 (~) are rotated.",
+            },
+            {
+              question: "Is ROT47 secure for passwords?",
+              answer: "No. ROT47 is a simple substitution cipher. It is extremely easy to reverse and provides no real protection against anyone who wants to read the data.",
+            },
+            {
+              question: "Why is it called ROT47?",
+              answer: "The name stands for 'Rotate by 47'. It refers to the character shift applied to each printable symbol to reach its obfuscated counterpart.",
+            },
+          ],
+        };
+      }
+
       return {
         heading: `How the ${tool.name} works`,
         paragraphs: [
@@ -872,34 +1205,199 @@ export function buildConverterToolCopy(tool: ExactConverterTool): ToolCopy {
       };
 
     case "data":
+      if (tool.slug === "convert-json-converter") {
+        return {
+          heading: "JSON Converter: The Industry Standard for Data Interchange",
+          paragraphs: [
+            "JSON (JavaScript Object Notation) has become the de-facto standard for exchanging data on the modern web. Its popularity stems from its lightweight nature and the ease with which it can be read by both humans and machines. Whether you're working with REST APIs, configuration files, or NoSQL databases, JSON is likely the format you encounter most.",
+            "Our Universal JSON Converter is designed to solve the common challenge of moving data between different systems. It allows you to transform complex, nested JSON objects into structured formats like CSV for spreadsheets, YAML for configuration, or XML for legacy enterprise systems. It also includes a robust validator to ensure your source JSON is perfectly formed before conversion.",
+            "When converting JSON to tabular formats like CSV, our tool intelligently flattens nested objects. It uses a dot-notation naming convention (e.g., `user.address.city`) to preserve the hierarchy while ensuring the data fits into a standard rows-and-columns layout that tools like Excel can process.",
+            "Choosing the right destination format is key. CSV is best for data analysis and reporting; YAML is ideal for human-readable configuration files; and XML provides a strict, schema-compliant structure often required by older business applications. This tool gives you the flexibility to switch between all of them instantly.",
+            "Privacy is paramount for developer tools. This JSON converter operates entirely within your browser's local context. Your data—including sensitive API responses or configuration snippets—is never uploaded to any server. You get professional-grade conversion with the safety of absolute data sovereignty.",
+          ],
+          faqs: [
+            {
+              question: "What makes JSON different from other formats?",
+              answer: "JSON is specifically designed for data interchange. Unlike XML, it has a very low overhead and map directly to the data structures used in most programming languages (objects and arrays).",
+            },
+            {
+              question: "How does the tool handle nested JSON when converting to CSV?",
+              answer: "Since CSV is a flat format, the tool 'flattens' your data. Nested properties are joined with dots. For example, `{ 'a': { 'b': 1 } }` becomes a CSV column titled 'a.b' with the value 1.",
+            },
+            {
+              question: "Can this tool fix invalid JSON?",
+              answer: "While it can't automatically rewrite your code, the built-in validator will pinpoint exactly where the syntax error is (like a missing comma or bracket), making it much easier for you to fix manually.",
+            },
+            {
+              question: "Is there a limit to how much JSON I can convert?",
+              answer: "The limit is generally determined by your browser's memory. For most standard data files (up to several megabytes), the conversion will be near-instant.",
+            },
+            {
+              question: "Is my JSON data kept private?",
+              answer: "Yes. All processing is 100% local. We do not store, log, or transmit any of the data you paste into the converter.",
+            },
+          ],
+        };
+      }
+      if (tool.slug === "convert-csv-converter") {
+        return {
+          heading: "CSV Converter: Transforming Spreadsheets to Code",
+          paragraphs: [
+            "CSV (Comma-Separated Values) is the universal language of spreadsheets and databases. While it is incredibly efficient for storing large amounts of tabular data, it lacks the structural flexibility required by modern web applications and APIs that depend on JSON or XML.",
+            "Our professional CSV Converter bridges the gap between data analysis and software development. It allows you to transform flat CSV rows into rich JSON objects or hierarchical XML tags instantly. This is the perfect tool for developers importing legacy spreadsheet data into modern databases.",
+            "A common challenge with CSV is handling special characters and formatting. Our converter uses a robust parsing engine that respects double quotes and line breaks within cells, ensuring that your data remains intact and accurate during the transformation process.",
+            "Whether you're converting a financial report for a web dashboard or preparing a product catalog for an e-commerce platform, this tool provides the configuration you need. It handles headers automatically and produces clean, minified or indented output based on your requirements.",
+            "Security is built-in. Your CSV data never leaves your computer. By performing all parsing and stringify operations locally in the browser, we ensure that sensitive business data and personal spreadsheets stay private and protected.",
+          ],
+          faqs: [
+            {
+              question: "How does the tool identify the first row as headers?",
+              answer: "The converter automatically assumes the first row of your CSV contains header names (like 'Name', 'Email', etc.) and uses them as the keys in the resulting JSON or XML structure.",
+            },
+            {
+              question: "Can it handle large CSV files?",
+              answer: "Yes, it can handle files with thousands of rows. Since it runs in the browser, the speed depends on your device's memory and CPU, but it is typically much faster than server-side alternatives.",
+            },
+            {
+              question: "What if my CSV uses semicolons or tabs instead of commas?",
+              answer: "Our parser is designed to auto-detect delimiters. It effectively handles standard Comma-Separated, Semicolon-Separated, and Tab-Separated (TSV) formats.",
+            },
+            {
+              question: "Why should I convert CSV to JSON?",
+              answer: "JSON is the standard format for web development. Converting your CSV allows you to easily map your spreadsheet data to JavaScript objects for use in apps, websites, and APIs.",
+            },
+            {
+              question: "Is my data safe with this converter?",
+              answer: "Absolutely. Everything happens on your local machine. We do not transmit or store your CSV content on our servers.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-xml-converter") {
+        return {
+          heading: "XML Converter: Simplifying Structured Markup",
+          paragraphs: [
+            "XML (Extensible Markup Language) is a versatile format used throughout enterprise computing for everything from SOAP APIs to complex document storage. While powerful, its verbose syntax can be difficult to manage in modern web environments that prefer JSON or YAML.",
+            "Our XML Converter provides a streamlined way to extract data from markup into more flexible formats. It maps XML nodes and attributes into a clean hierarchical structure, making it easy to see the logical relationships in your data without the clutter of closing tags.",
+            "Transforming XML to JSON or CSV is often the first step in a data migration project. This tool handles common XML complexities, including attribute prefixes and text nodes, ensuring that the generated output reflects the semantic meaning of human-authored or system-generated XML.",
+            "Whether you're a system administrator debugging config files or a developer integrating with a legacy SOAP service, this tool saves time. It includes an integrated parser that validates your XML on-the-fly, helping you catch syntax errors before they break your workflow.",
+            "Your XML data remains private. We treat your markup as sensitive data, performing all transformations inside your browser's local sandbox. No data is sent to external servers, giving you a fast, reliable, and secure way to handle enterprise data.",
+          ],
+          faqs: [
+            {
+              question: "How are XML attributes handled during conversion?",
+              answer: "Attributes are typically converted into properties with a specific prefix (like '@_') in the resulting JSON, ensuring they are distinct from child element tags.",
+            },
+            {
+              question: "Does this tool support CDATA sections?",
+              answer: "Yes. The converter correctly identifies and extracts text from CDATA segments, treating them as string values in the output format.",
+            },
+            {
+              question: "Why convert XML to JSON?",
+              answer: "JSON is less verbose than XML and much easier to traverse in JavaScript and other modern programming languages, leading to smaller file sizes and easier coding.",
+            },
+            {
+              question: "Can I convert XML to a spreadsheet format like CSV?",
+              answer: "Yes. The tool will attempt to flatten the XML hierarchy into rows. This works best for XML files that represent lists of redundant objects with similar structures.",
+            },
+            {
+              question: "Is there an XML size limit?",
+              answer: "Only what your browser's memory can handle. Most XML files (up to several MB) will be converted almost instantly.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-yaml-converter") {
+        return {
+          heading: "YAML Converter: Human-Readable Configs Made Portable",
+          paragraphs: [
+            "YAML (YAML Ain't Markup Language) is the preferred format for configuration files, from Docker and Kubernetes to CI/CD pipelines. Its clean, indentation-based syntax makes it incredibly easy for humans to read and write, but most machine systems require JSON or XML for processing.",
+            "This Universal YAML Converter allows you to bridge the gap between human-centric configuration and machine-centric data formats. It accurately translates YAML's specific features—like block scalars, sequences, and mappings—into standard JSON or XML structures.",
+            "Indentation is the most common pitfall in YAML. This tool's integrated validator helps you identify whitespace errors and tab characters that often break YAML parsers. It provides immediate feedback, so you can fix your config files before deploying them to production.",
+            "Whether you're converting a `docker-compose.yml` to inspect its structure as JSON or transforming a static site configuration for an API call, this converter provides the precision you need. It handles complex data types including booleans, numbers, and null values with total accuracy.",
+            "Privacy and speed are our core focus. All YAML processing happens locally in your browser. We don't log your files or send your configurations to our servers, keeping your sensitive environment variables and server settings safe and private.",
+          ],
+          faqs: [
+            {
+              question: "Is YAML better than JSON?",
+              answer: "YAML is better for human readability and hand-writing configuration files. JSON is better for data interchange between computers because it is stricter and faster to parse.",
+            },
+            {
+              question: "Can this tool handle multi-document YAML files?",
+              answer: "It is optimized for single-document structures common in standard APIs and configs. If you have a multi-doc file (separated by `---`), we recommend converting one document at a time.",
+            },
+            {
+              question: "How do I fix 'mapping values are not allowed here' errors?",
+              answer: "This is usually caused by inconsistent spacing or using tabs instead of spaces. Use our tool to find the line number, and replace tabs with two-space increments.",
+            },
+            {
+              question: "Does YAML conversion preserve comments?",
+              answer: "No. When converting to JSON or XML, comments are stripped because those formats (specifically JSON) do not officially support comments.",
+            },
+            {
+              question: "Is my data private?",
+              answer: "Yes. The conversion is entirely client-side. No data is sent to our servers.",
+            },
+          ],
+        };
+      }
+
+      if (tool.slug === "convert-markdown-html-converter") {
+        return {
+          heading: "Markdown & HTML: The Perfect Content Bridge",
+          paragraphs: [
+            "Modern content creation often happens in two worlds: the clean, readable world of Markdown and the powerful, structured world of HTML. Markdown is for writing; HTML is for the web. Being able to switch between them effortlessly is essential for writers, developers, and SEO professionals.",
+            "Our Markdown & HTML Converter is a high-performance tool that turns clean Markdown syntax into valid, standards-compliant HTML markup instantly. It also works in reverse, allowing you to paste HTML code and get back a clean, readable Markdown file—perfect for migrating blog posts or cleaning up messy web content.",
+            "The converter supports GitHub Flavored Markdown (GFM), including features like tables, task lists, and strikethroughs. When converting from HTML, it uses a smart heuristic to remove unnecessary boilerplate tags while preserving important elements like headers, links, and bold text.",
+            "Whether you're a developer preparing documentation or a content manager cleaning up imported CMS data, this tool provides a fast, reliable solution. It saves you the trouble of manual reformatting and ensures that your output is always valid and consistent.",
+            "Privacy is a standard feature. All Markdown and HTML processing is done locally in your browser. Your text is never sent to a server, providing a secure space to draft, clean, and convert your professional content.",
+          ],
+          faqs: [
+            {
+              question: "Does this support GitHub Flavored Markdown?",
+              answer: "Yes. It supports tables, task lists, and auto-links, ensuring your content looks the same as it does on platforms like GitHub or GitLab.",
+            },
+            {
+              question: "How do I turn a website into Markdown?",
+              answer: "Simply copy the HTML source code of the section you want and paste it here. Our tool will strip away the tags and give you the Markdown equivalent.",
+            },
+            {
+              question: "Is there any data loss when converting to Markdown?",
+              answer: "Markdown is simpler than HTML, so complex CSS styles and scripts will be ignored. However, the core content and structure (headings, bold, lists, links) will be accurately preserved.",
+            },
+            {
+              question: "Why use Markdown instead of HTML?",
+              answer: "Markdown is much easier for humans to read and write. It's less cluttered than HTML and handles things like focus on content much better than a code-heavy editor.",
+            },
+            {
+              question: "Is my content private?",
+              answer: "100%. Everything happens on your device. We never see your text.",
+            },
+          ],
+        };
+      }
+
       return {
         heading: `How the ${tool.name} works`,
         paragraphs: [
           `${tool.description} Data format conversion is one of the most common tasks in software development, data analysis, and content operations — different tools, APIs, and systems use different formats, and converting between them is a constant need.`,
-          `This tool converts ${tool.from.toUpperCase()} to ${tool.to.toUpperCase()} directly in your browser. Paste your source data, review the converted output, and copy it for use in your next tool or workflow. No server is involved — the conversion happens entirely on your device.`,
-          `${tool.from.toUpperCase()} and ${tool.to.toUpperCase()} each have different strengths. ${tool.from.toUpperCase()} is widely used for ${tool.from === "json" ? "APIs and JavaScript applications" : tool.from === "csv" ? "spreadsheets and tabular data" : tool.from === "yaml" ? "configuration files and human-readable data" : tool.from === "xml" ? "enterprise systems and document markup" : tool.from === "html" ? "web content" : tool.from === "markdown" ? "documentation and content writing" : "data exchange"}. ${tool.to.toUpperCase()} is preferred for ${tool.to === "json" ? "APIs and JavaScript applications" : tool.to === "csv" ? "spreadsheets and tabular data" : tool.to === "yaml" ? "configuration files and human-readable data" : tool.to === "xml" ? "enterprise systems and document markup" : tool.to === "html" ? "web content" : tool.to === "markdown" ? "documentation and content writing" : "data exchange"}.`,
-          "Data format conversion can sometimes involve information loss or structural changes. Not all data structures map perfectly between formats — for example, JSON supports nested objects and arrays, while CSV is inherently flat. When converting between formats with different structural capabilities, the tool makes reasonable choices about how to represent the data, but you should always review the output to ensure it matches your expectations.",
+          "This tool handles the conversion in your browser without sending your data to any server. This makes it safe to use with sensitive content such as data schemas, configuration snippets, and private datasets that you need to transform for your next project.",
+          "Understanding the strengths of each format is important. JSON is for web APIs; CSV is for spreadsheets; YAML is for configuration; and XML is for enterprise documentation. Our tools provide a seamless way to move between these formats while preserving the data integrity you rely on.",
         ],
         faqs: [
           {
-            question: `Why would I need to convert ${tool.from.toUpperCase()} to ${tool.to.toUpperCase()}?`,
-            answer: `Different tools and systems expect data in different formats. You might need to convert ${tool.from.toUpperCase()} to ${tool.to.toUpperCase()} when importing data into a tool that only accepts ${tool.to.toUpperCase()}, when sharing data with a team that uses a different stack, or when a downstream API or service requires a specific format.`,
-          },
-          {
-            question: "Will the conversion preserve all my data?",
-            answer: `In most cases, yes. However, some format conversions involve structural differences that can affect how data is represented. For example, converting nested JSON to CSV flattens the structure, which may lose some hierarchy. Always review the output to confirm it contains all the data you expect.`,
-          },
-          {
-            question: "What should I do if the conversion produces unexpected output?",
-            answer: "Check that your input is valid and well-formed. Invalid or malformed input is the most common cause of unexpected conversion results. Use a validator for your source format first, then retry the conversion.",
-          },
-          {
-            question: "Is there a size limit for the input?",
-            answer: "No practical limit for typical use cases. The conversion happens in your browser, so performance depends on your device. Very large files (several megabytes) may take a moment to process.",
+            question: `What is ${tool.name} used for?`,
+            answer: `${tool.description} This type of conversion is commonly needed when moving data between different systems, preparing files for analysis, or simply transforming data to match the requirements of a specific programming language or tool.`,
           },
           {
             question: "Is my data sent to a server?",
-            answer: "No. All conversion happens locally in your browser. Your data never leaves your device.",
+            answer: "No. All conversion operations happen locally in your browser. Your data never leaves your device, making it safe for private and development data.",
+          },
+          {
+            question: "Will the conversion handle big data?",
+            answer: "The tool works efficiently with data files up to several megabytes. For extremely large datasets, your browser's memory and processor speed will determine the performance.",
           },
         ],
       };

@@ -13,7 +13,9 @@
     "backfill:pages": "tsx scripts/backfill-pages.ts",
     "generate:insights": "tsx scripts/generate-all-insights.ts",
     "audit:tools": "tsx scripts/audit-tools.ts",
-    "audit:fix": "tsx scripts/audit-tools.ts --fix"
+    "audit:fix": "tsx scripts/audit-tools.ts --fix",
+    "quality:program": "tsx scripts/tool-quality-program.ts",
+    "quality:guardrails": "tsx scripts/tool-quality-program.ts --strict"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

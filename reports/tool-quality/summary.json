@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-04-15T15:26:37.985Z",
+  "threshold": 70,
+  "topN": 20,
+  "inventoryCount": 584,
+  "builtinPageCount": 127,
+  "guardrailViolationCount": 30,
+  "topPriority": {
+    "toolKey": "finance/invoice-generator",
+    "category": "finance",
+    "pagePath": "src/app/finance/invoice-generator/page.tsx",
+    "overallScore": 94,
+    "contentRisk": 96,
+    "seoOpportunity": 15,
+    "uxImpact": 0,
+    "templateDebt": 20,
+    "quickWin": 100,
+    "priorityScore": 49.35,
+    "warningCount": 1
+  }
+}

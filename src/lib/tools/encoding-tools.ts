@@ -22,7 +22,22 @@ export type EncodingMode =
   | "idn-encode"
   | "idn-decode";
 
-function htmlEncode(text: string) {
+function htmlEncode(text: string, options: EncodingOptions = {}) {
+  const type = options.htmlEntityType || "named";
+
+  if (type === "decimal") {
+    return Array.from(text)
+      .map((c) => `&#${c.charCodeAt(0)};`)
+      .join("");
+  }
+
+  if (type === "hex") {
+    return Array.from(text)
+      .map((c) => `&#x${c.charCodeAt(0).toString(16).toUpperCase()};`)
+      .join("");
+  }
+
+  // Basic named entities (safe for most contexts)
   return text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -32,12 +47,27 @@ function htmlEncode(text: string) {
 }
 
 function htmlDecode(text: string) {
-  return text
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&amp;/g, "&");
+  const entities: Record<string, string> = {
+    "&amp;": "&",
+    "&lt;": "<",
+    "&gt;": ">",
+    "&quot;": '"',
+    "&apos;": "'",
+    "&#39;": "'",
+  };
+
+  return text.replace(/&[#a-z0-9]+;/gi, (match) => {
+    if (entities[match.toLowerCase()]) {
+      return entities[match.toLowerCase()];
+    }
+    if (match.startsWith("&#x")) {
+      return String.fromCharCode(Number.parseInt(match.slice(3, -1), 16));
+    }
+    if (match.startsWith("&#")) {
+      return String.fromCharCode(Number.parseInt(match.slice(2, -1), 10));
+    }
+    return match;
+  });
 }
 
 function rotateAlpha(text: string, shift: number) {
@@ -66,15 +96,27 @@ function joinedToBytes(text: string, radix: number) {
     .join("");
 }
 
-export function transformEncoding(mode: EncodingMode, input: string) {
+export interface EncodingOptions {
+  plusForSpace?: boolean;
+  htmlEntityType?: "named" | "decimal" | "hex";
+}
+
+export function transformEncoding(mode: EncodingMode, input: string, options: EncodingOptions = {}) {
   try {
     switch (mode) {
-      case "url-encode":
-        return { output: encodeURIComponent(input) };
-      case "url-decode":
-        return { output: decodeURIComponent(input) };
+      case "url-encode": {
+        let result = encodeURIComponent(input);
+        if (options.plusForSpace) {
+          result = result.replace(/%20/g, "+");
+        }
+        return { output: result };
+      }
+      case "url-decode": {
+        const decoded = input.replace(/\+/g, " ");
+        return { output: decodeURIComponent(decoded) };
+      }
       case "html-encode":
-        return { output: htmlEncode(input) };
+        return { output: htmlEncode(input, options) };
       case "html-decode":
         return { output: htmlDecode(input) };
       case "base64-encode":

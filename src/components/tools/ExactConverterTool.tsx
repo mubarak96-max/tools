@@ -2,8 +2,9 @@
 
 import { useId, useMemo, useState } from "react";
 
+import { AlertCircle, Code, Copy, Cpu } from "lucide-react";
 import type { ExactConverterTool } from "@/lib/tools/exact-catalog";
-import { convertDataFormat } from "@/lib/tools/data-format-converter";
+import { convertDataFormat, type DataFormat } from "@/lib/tools/data-format-converter";
 import { transformEncoding, type EncodingMode } from "@/lib/tools/encoding-tools";
 import { convertTime } from "@/lib/tools/time-converter";
 import { convertUnit } from "@/lib/tools/unit-converter";
@@ -105,6 +106,696 @@ function toUrlSafeBase64(base64: string) {
 
 function getBase64RouteTitle(mode: Base64UiMode) {
   return mode === "encode" ? "Base64 encode" : "Base64 decode";
+}
+
+type EncodingTool = ExactConverterTool & { family: "encoding" };
+
+function UrlEncoderPanel({ tool }: { tool: EncodingTool }) {
+  const [mode, setMode] = useState<UrlUiMode>(tool.mode === "url-decode" ? "decode" : "encode");
+  const [text, setText] = useState("");
+  const [plusForSpace, setPlusForSpace] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const result = useMemo(() => {
+    const currentMode = mode === "encode" ? "url-encode" : "url-decode";
+    return transformEncoding(currentMode as EncodingMode, text, { plusForSpace });
+  }, [mode, text, plusForSpace]);
+
+  async function copyText(value: string) {
+    if (!value) return;
+    await navigator.clipboard.writeText(value);
+    setStatusMessage("Copied to clipboard.");
+    setTimeout(() => setStatusMessage(""), 2000);
+  }
+
+  const inputCharCount = text.length;
+  const outputCharCount = result.output.length;
+
+  return (
+    <section className="tool-frame p-4 sm:p-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="space-y-5">
+          <div className="flex w-full max-w-xs items-center rounded-[1rem] border border-border bg-muted/30 p-1">
+            {(["encode", "decode"] as const).map((nextMode) => (
+              <button
+                key={nextMode}
+                type="button"
+                onClick={() => {
+                  setMode(nextMode);
+                  setStatusMessage("");
+                }}
+                className={`flex-1 rounded-[0.75rem] py-2 text-sm font-medium transition-colors ${
+                  mode === nextMode ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {nextMode === "encode" ? "Encode" : "Decode"}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Input</span>
+              <span className="text-xs text-muted-foreground">{inputCharCount} characters</span>
+            </div>
+            <textarea
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              placeholder={mode === "encode" ? "Paste text to encode..." : "Paste encoded URL string to decode..."}
+              className={textareaClass}
+              rows={6}
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4">
+            {mode === "encode" && (
+              <label className="flex cursor-pointer items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground">
+                <input
+                  type="checkbox"
+                  checked={plusForSpace}
+                  onChange={(e) => setPlusForSpace(e.target.checked)}
+                  className="h-4 w-4 rounded border-border bg-background text-primary focus:ring-2 focus:ring-primary"
+                />
+                <span>Encode space as `+` (RFC 1738)</span>
+              </label>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Result</span>
+              <span className="text-xs text-muted-foreground">{outputCharCount} characters</span>
+            </div>
+            <textarea
+              value={result.output}
+              readOnly
+              placeholder="Output appears here..."
+              className={`${textareaClass} bg-muted/20`}
+              rows={6}
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={() => copyText(result.output)} className={actionClass}>
+              Copy result
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setText("");
+                setStatusMessage("");
+              }}
+              className={actionClass}
+            >
+              Clear
+            </button>
+            {statusMessage && (
+              <span className="flex items-center px-2 text-sm font-medium text-success animate-in fade-in duration-300">
+                {statusMessage}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <aside className={`space-y-4 ${panelClass}`}>
+          <div className="rounded-[1rem] border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
+            <p className="font-semibold text-foreground">What is URL Encoding?</p>
+            <p className="mt-2">
+              Also known as percent-encoding, it converts characters that might have special meaning in a URL into a safe format (e.g., spaces become `%20` or `+`).
+            </p>
+          </div>
+
+          <div className="rounded-[1rem] border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
+            <p className="font-semibold text-foreground font-mono">Code Snippets</p>
+            <div className="mt-3 space-y-4">
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70">JavaScript</p>
+                <code className="mt-1 block rounded bg-muted/40 p-2 text-xs text-foreground overflow-x-auto whitespace-pre">
+                  {mode === "encode" ? "encodeURIComponent(text)" : "decodeURIComponent(text)"}
+                </code>
+              </div>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70">Python</p>
+                <code className="mt-1 block rounded bg-muted/40 p-2 text-xs text-foreground overflow-x-auto whitespace-pre">
+                  {mode === "encode" ? "urllib.parse.quote(text)" : "urllib.parse.unquote(text)"}
+                </code>
+              </div>
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70">PHP</p>
+                <code className="mt-1 block rounded bg-muted/40 p-2 text-xs text-foreground overflow-x-auto whitespace-pre">
+                  {mode === "encode" ? "rawurlencode($text)" : "rawurldecode($text)"}
+                </code>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-[1rem] border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
+            <p className="font-semibold text-foreground">Common references</p>
+            <table className="mt-3 w-full text-left">
+              <thead>
+                <tr>
+                  <th className="pb-1 text-xs font-medium text-muted-foreground">Char</th>
+                  <th className="pb-1 text-xs font-medium text-muted-foreground">Encoded</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/50 text-xs tabular-nums">
+                <tr><td className="py-1">Space</td><td className="py-1">%20 or +</td></tr>
+                <tr><td className="py-1">&amp;</td><td className="py-1">%26</td></tr>
+                <tr><td className="py-1">=</td><td className="py-1">%3D</td></tr>
+                <tr><td className="py-1">?</td><td className="py-1">%3F</td></tr>
+                <tr><td className="py-1">/</td><td className="py-1">%2F</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+type DataTool = ExactConverterTool & { family: "data" };
+
+function DataFormatConverterPanel({ tool }: { tool: DataTool }) {
+  const fromFormat = (tool.from as DataFormat) || "json";
+  const [toFormat, setToFormat] = useState<DataFormat>((tool.to as DataFormat) || "csv");
+  const [text, setText] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const result = useMemo(() => {
+    if (text.length === 0) return { output: "" };
+    return convertDataFormat(text, fromFormat, toFormat);
+  }, [text, fromFormat, toFormat]);
+
+  async function copyText(value: string) {
+    if (!value) return;
+    await navigator.clipboard.writeText(value);
+    setStatusMessage("Copied to clipboard.");
+    setTimeout(() => setStatusMessage(""), 2000);
+  }
+
+  const destinationOptions: DataFormat[] =
+    fromFormat === "json"
+      ? ["csv", "yaml", "xml", "text"]
+      : fromFormat === "csv"
+        ? ["json", "xml"]
+        : fromFormat === "xml"
+          ? ["json", "csv", "yaml", "text"]
+          : fromFormat === "yaml"
+            ? ["json", "xml"]
+            : fromFormat === "markdown"
+              ? ["html"]
+              : fromFormat === "html"
+                ? ["markdown"]
+                : [];
+
+  const icons = {
+    json: "{}",
+    csv: "▦",
+    xml: "</>",
+    yaml: "⌥",
+    text: "T",
+    html: "H",
+    markdown: "M↓",
+  };
+
+  return (
+    <section className="tool-frame p-4 sm:p-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-2">
+             <div className="space-y-2">
+               <span className="text-sm font-medium text-muted-foreground ml-1">Source Format</span>
+               <div className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-border bg-muted/20 text-foreground font-bold">
+                  <span className="text-primary text-lg">{icons[fromFormat]}</span>
+                  {fromFormat.toUpperCase()}
+               </div>
+             </div>
+             <div className="space-y-2">
+               <span className="text-sm font-medium text-muted-foreground ml-1">Destination Format</span>
+               <select
+                 value={toFormat}
+                 onChange={(e) => setToFormat(e.target.value as DataFormat)}
+                 className={inputClass}
+               >
+                 {destinationOptions.map((opt) => (
+                   <option key={opt} value={opt}>
+                     {opt.toUpperCase()}
+                   </option>
+                 ))}
+               </select>
+             </div>
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Source Data</span>
+              <span className="text-xs text-muted-foreground">{text.length} characters</span>
+            </div>
+            <textarea
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              placeholder={`Paste your ${fromFormat.toUpperCase()} content here...`}
+              className={textareaClass}
+              rows={10}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Converted Output</span>
+              <span className="text-xs text-muted-foreground">{result.output.length} characters</span>
+            </div>
+            <textarea
+              value={result.output}
+              readOnly
+              placeholder="Conversion results will appear here..."
+              className={`${textareaClass} bg-muted/20 font-mono`}
+              rows={10}
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={() => copyText(result.output)} className={actionClass}>
+              <Copy size={16} className="mr-1.5" />
+              Copy result
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setText("");
+                setStatusMessage("");
+              }}
+              className={actionClass}
+            >
+              Clear
+            </button>
+            {statusMessage && (
+              <span className="flex items-center px-2 text-sm font-medium text-success animate-in fade-in duration-300">
+                {statusMessage}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <aside className="space-y-6">
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+              <Code size={16} className="text-primary" /> Technical Profile
+            </h3>
+            <div className="space-y-4">
+              <div className="text-[11px] leading-relaxed">
+                <p className="font-bold text-foreground capitalize mb-1">{fromFormat}</p>
+                <p className="text-muted-foreground">
+                  {fromFormat === "json" && "Standard lightweight data-interchange format. Perfect for APIs and modern web apps."}
+                  {fromFormat === "csv" && "Tabular data format. Ideal for importing into spreadsheets like Excel or Google Sheets."}
+                  {fromFormat === "xml" && "Extensible markup language. Common in enterprise systems and legacy data exchange."}
+                  {fromFormat === "yaml" && "Human-friendly data serialization. Mostly used for configuration files."}
+                </p>
+              </div>
+              <div className="text-[11px] leading-relaxed border-t border-border/10 pt-3">
+                <p className="font-bold text-foreground mb-1 italic">Conversion Logic</p>
+                <p className="text-muted-foreground">
+                   {toFormat === "csv" && "Nested objects will be flattened into column headers using dot notation."}
+                   {toFormat === "json" && "Validates source structure before creating a clean, indented JSON object."}
+                   {toFormat === "xml" && "Maps object trees to nested XML tags with standard attribute handling."}
+                   {toFormat === "yaml" && "Converts complex structures into readable, whitespace-sensitive YAML."}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2 text-primary">
+              <AlertCircle size={16} /> Privacy Guard
+            </h3>
+            <p className="text-[11px] leading-relaxed text-muted-foreground">
+               This converter uses <b>local parsing</b>. No data is sent to our servers. All transformations from {fromFormat.toUpperCase()} to {toFormat.toUpperCase()} happen in your browser memory for maximum security.
+            </p>
+          </div>
+
+          {result.error && (
+            <div className="p-4 rounded-[1.25rem] border border-danger/20 bg-danger-soft text-sm text-danger flex gap-3">
+              <AlertCircle size={18} className="shrink-0" />
+              <p className="text-[11px] leading-tight font-medium">
+                <b>Parsing Error:</b> {result.error}
+              </p>
+            </div>
+          )}
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function LowLevelEncoderPanel({ tool }: { tool: EncodingTool }) {
+  const isBinary = tool.slug === "binary-encoder-decoder";
+  const isHex = tool.slug === "hex-encoder-decoder";
+  const isOctal = tool.slug === "octal-encoder-decoder";
+  const isDecimal = tool.slug === "decimal-encoder-decoder";
+
+  const defaultMode = tool.mode.startsWith("text-to-") ? "encode" : "decode";
+  const [mode, setMode] = useState<UrlUiMode>(defaultMode);
+  const [text, setText] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const result = useMemo(() => {
+    if (text.length === 0) return { output: "" };
+    const transformMode = mode === "encode" ? tool.mode : tool.mode.replace("text-to-", "").concat("-to-text");
+    return transformEncoding(transformMode as EncodingMode, text);
+  }, [mode, text, tool.mode]);
+
+  async function copyText(value: string) {
+    if (!value) return;
+    await navigator.clipboard.writeText(value);
+    setStatusMessage("Copied to clipboard.");
+    setTimeout(() => setStatusMessage(""), 2000);
+  }
+
+  const baseName = isBinary ? "Binary" : isHex ? "Hex" : isOctal ? "Octal" : "Decimal";
+  const basePrefix = isHex ? "0x" : isBinary ? "0b" : "";
+
+  return (
+    <section className="tool-frame p-4 sm:p-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="space-y-6">
+          <div className="flex w-full max-w-xs items-center rounded-[1rem] border border-border bg-muted/30 p-1">
+            {(["encode", "decode"] as const).map((nextMode) => (
+              <button
+                key={nextMode}
+                type="button"
+                onClick={() => {
+                  setMode(nextMode);
+                  setStatusMessage("");
+                }}
+                className={`flex-1 rounded-[0.75rem] py-2 text-sm font-medium transition-colors ${
+                  mode === nextMode ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {nextMode === "encode" ? "Text to " + baseName : baseName + " to Text"}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Input</span>
+              <span className="text-xs text-muted-foreground">{text.length} characters</span>
+            </div>
+            <textarea
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              placeholder={mode === "encode" ? "Paste text to convert..." : `Paste ${baseName.toLowerCase()} values...`}
+              className={textareaClass}
+              rows={8}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Result</span>
+              <span className="text-xs text-muted-foreground">{result.output.length} characters</span>
+            </div>
+            <textarea
+              value={result.output}
+              readOnly
+              placeholder="Output will appear here..."
+              className={`${textareaClass} bg-muted/20 font-mono`}
+              rows={8}
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={() => copyText(result.output)} className={actionClass}>
+              <Copy size={16} className="mr-1.5" />
+              Copy result
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setText("");
+                setStatusMessage("");
+              }}
+              className={actionClass}
+            >
+              Clear
+            </button>
+            {statusMessage && (
+              <span className="flex items-center px-2 text-sm font-medium text-success animate-in fade-in duration-300">
+                {statusMessage}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <aside className="space-y-6">
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+              <Code size={16} className="text-primary" /> Representation
+            </h3>
+            <p className="text-[11px] text-muted-foreground leading-relaxed">
+              This tool converts characters into their underlying <b>{baseName}</b> values according to the ASCII/Unicode standard.
+              {isBinary && " Each character is represented by an 8-bit sequence (e.g., 'A' becomes 01000001)."}
+              {isHex && " Hexadecimal is base-16, often used in memory addresses and color codes."}
+              {isOctal && " Octal is base-8, historically used in computing where bits were grouped in threes."}
+              {isDecimal && " Decimal is base-10, the standard human counting system based on character codes."}
+            </p>
+          </div>
+
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2 text-primary">
+              <AlertCircle size={16} /> Technical Tip
+            </h3>
+            <p className="text-[11px] leading-relaxed text-muted-foreground">
+              {isBinary || isHex ? (
+                <>
+                  These formats are common in <b>low-level debugging</b> and bitwise operations. When decoding, ensure values are separated by spaces for accurate results.
+                </>
+              ) : (
+                <>
+                  Character codes represent the numerical mapping of a character in the Unicode standard. This is the <b>absolute value</b> used by computer systems to identify a glyph.
+                </>
+              )}
+            </p>
+          </div>
+
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3">Quick Reference</h3>
+            <div className="space-y-2 text-[10px] font-mono">
+              <div className="flex justify-between border-b border-border/10 pb-1">
+                <span className="text-muted-foreground">Char: A</span>
+                <span className="text-foreground">
+                  {isBinary ? "01000001" : isHex ? "41" : isOctal ? "101" : "65"}
+                </span>
+              </div>
+              <div className="flex justify-between border-b border-border/10 pb-1">
+                <span className="text-muted-foreground">Char: a</span>
+                <span className="text-foreground">
+                  {isBinary ? "01100001" : isHex ? "61" : isOctal ? "141" : "97"}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted-foreground">Char: !</span>
+                <span className="text-foreground">
+                  {isBinary ? "00100001" : isHex ? "21" : isOctal ? "041" : "33"}
+                </span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+type UrlUiMode = "encode" | "decode";
+
+function HtmlEncoderPanel({ tool }: { tool: EncodingTool }) {
+  const [mode, setMode] = useState<UrlUiMode>(tool.mode === "html-decode" ? "decode" : "encode");
+  const [text, setText] = useState("");
+  const [entityType, setEntityType] = useState<"named" | "decimal" | "hex">("named");
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const result = useMemo(() => {
+    if (text.length === 0) {
+      return { output: "" };
+    }
+    return transformEncoding(mode === "encode" ? "html-encode" : "html-decode", text, {
+      htmlEntityType: entityType,
+    });
+  }, [mode, text, entityType]);
+
+  async function copyText(value: string) {
+    if (!value) return;
+    await navigator.clipboard.writeText(value);
+    setStatusMessage("Copied to clipboard.");
+    setTimeout(() => setStatusMessage(""), 2000);
+  }
+
+  const snippets = {
+    js:
+      mode === "encode"
+        ? `const escaped = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");`
+        : `const textarea = document.createElement("textarea");\ntextarea.innerHTML = escapedText;\nconst decoded = textarea.value;`,
+    python:
+      mode === "encode"
+        ? `import html\nescaped = html.escape(text)`
+        : `import html\ndecoded = html.unescape(escaped_text)`,
+    php:
+      mode === "encode"
+        ? `$escaped = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');`
+        : `$decoded = htmlspecialchars_decode($escaped_text, ENT_QUOTES);`,
+  };
+
+  return (
+    <section className="tool-frame p-4 sm:p-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
+        <div className="space-y-6">
+          <div className="flex w-full max-w-xs items-center rounded-[1rem] border border-border bg-muted/30 p-1">
+            {(["encode", "decode"] as const).map((nextMode) => (
+              <button
+                key={nextMode}
+                type="button"
+                onClick={() => {
+                  setMode(nextMode);
+                  setStatusMessage("");
+                }}
+                className={`flex-1 rounded-[0.75rem] py-2 text-sm font-medium transition-colors ${
+                  mode === nextMode ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                {nextMode === "encode" ? "Encode" : "Decode"}
+              </button>
+            ))}
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Input</span>
+              <span className="text-xs text-muted-foreground">{text.length} characters</span>
+            </div>
+            <textarea
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              placeholder={mode === "encode" ? "Paste HTML code or text to escape..." : "Paste HTML entities to decode..."}
+              className={textareaClass}
+              rows={8}
+            />
+          </div>
+
+          {mode === "encode" && (
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-muted-foreground ml-1">Output Entity Type</label>
+              <div className="flex flex-wrap gap-2">
+                {(["named", "decimal", "hex"] as const).map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setEntityType(type)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                      entityType === type
+                        ? "bg-primary/10 border-primary/40 text-primary shadow-sm"
+                        : "bg-background border-border text-muted-foreground hover:border-muted-foreground"
+                    }`}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Result</span>
+              <span className="text-xs text-muted-foreground">{result.output.length} characters</span>
+            </div>
+            <textarea
+              value={result.output}
+              readOnly
+              placeholder="Output will appear here..."
+              className={`${textareaClass} bg-muted/20 font-mono`}
+              rows={8}
+            />
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <button type="button" onClick={() => copyText(result.output)} className={actionClass}>
+              <Copy size={16} className="mr-1.5" />
+              Copy result
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setText("");
+                setStatusMessage("");
+              }}
+              className={actionClass}
+            >
+              Clear
+            </button>
+            {statusMessage && (
+              <span className="flex items-center px-2 text-sm font-medium text-success animate-in fade-in duration-300">
+                {statusMessage}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <aside className="space-y-6">
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+              <Code size={16} className="text-primary" /> Common Entities
+            </h3>
+            <div className="space-y-2 text-[11px]">
+              <div className="grid grid-cols-2 p-2 rounded-lg bg-muted/40 font-mono border border-border/10">
+                <span className="text-muted-foreground">{"<"}</span>
+                <span className="text-foreground text-right">&lt; / &#60;</span>
+              </div>
+              <div className="grid grid-cols-2 p-2 rounded-lg bg-muted/40 font-mono border border-border/10">
+                <span className="text-muted-foreground">{">"}</span>
+                <span className="text-foreground text-right">&gt; / &#62;</span>
+              </div>
+              <div className="grid grid-cols-2 p-2 rounded-lg bg-muted/40 font-mono border border-border/10">
+                <span className="text-muted-foreground">{"&"}</span>
+                <span className="text-foreground text-right">&amp; / &#38;</span>
+              </div>
+              <div className="grid grid-cols-2 p-2 rounded-lg bg-muted/40 font-mono border border-border/10">
+                <span className="text-muted-foreground">{'"'}</span>
+                <span className="text-foreground text-right">&quot; / &#34;</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2 text-primary">
+              <AlertCircle size={16} /> Security Tip
+            </h3>
+            <p className="text-[11px] leading-relaxed text-muted-foreground">
+              Always <b>escape</b> user-provided data before injecting it into HTML attributes or tags. This prevents 
+              <b> Cross-Site Scripting (XSS)</b> attacks where malicious code could be executed in the victim's browser.
+            </p>
+          </div>
+
+          <div className="space-y-3">
+             <h3 className="text-sm font-bold px-1 flex items-center gap-2">
+               <Cpu size={16} className="text-primary" /> Code Snippets
+             </h3>
+             <div className="space-y-2">
+               {Object.entries(snippets).map(([lang, code]) => (
+                 <div key={lang} className="group relative">
+                   <div className="absolute top-2 right-2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[9px] font-bold text-muted-foreground uppercase bg-background/80 px-1.5 py-0.5 rounded border border-border/50">{lang}</span>
+                   </div>
+                   <pre className="p-3 rounded-xl bg-muted/30 text-[10px] font-mono overflow-x-auto border border-border/50 transition-all group-hover:bg-muted/50 group-hover:border-primary/20 whitespace-pre-wrap">
+                     {code}
+                   </pre>
+                 </div>
+               ))}
+             </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
 }
 
 function Base64ConverterPanel({ tool }: { tool: Base64ConverterTool }) {
@@ -237,12 +928,28 @@ function Base64ConverterPanel({ tool }: { tool: Base64ConverterTool }) {
     if (!value) return;
     await navigator.clipboard.writeText(value);
     setStatusMessage("Copied to clipboard.");
+    setTimeout(() => setStatusMessage(""), 2000);
   }
+
+  const snippets = {
+    js:
+      mode === "encode"
+        ? `const b64 = btoa(unescape(encodeURIComponent(text)));`
+        : `const decoded = decodeURIComponent(escape(atob(b64)));`,
+    python:
+      mode === "encode"
+        ? `import base64\nb64 = base64.b64encode(text.encode('utf-8')).decode('utf-8')`
+        : `import base64\ndecoded = base64.b64decode(b64).decode('utf-8')`,
+    php:
+      mode === "encode"
+        ? `$b64 = base64_encode($text);`
+        : `$decoded = base64_decode($b64);`,
+  };
 
   return (
     <section className="tool-frame p-4 sm:p-6">
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_20rem]">
-        <div className="space-y-5">
+        <div className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="flex w-full items-center rounded-[1rem] border border-border bg-muted/30 p-1">
               {(["encode", "decode"] as const).map((nextMode) => (
@@ -286,56 +993,53 @@ function Base64ConverterPanel({ tool }: { tool: Base64ConverterTool }) {
             ) : null}
           </div>
 
-          {mode === "encode" && inputSource === "file" ? (
-            <div className="space-y-3 rounded-[1.25rem] border border-border bg-background p-4">
-              <label
-                htmlFor={fileInputId}
-                className="flex cursor-pointer flex-col gap-2 rounded-[1rem] border border-dashed border-border bg-card px-4 py-5 text-sm text-muted-foreground transition-colors hover:border-primary/30 hover:bg-primary-soft"
-              >
-                <span className="font-medium text-foreground">Choose a file or image</span>
-                <span>Encode local file data into Base64 without sending it to a server.</span>
-              </label>
-              <input id={fileInputId} type="file" className="sr-only" onChange={handleFileChange} />
-              {fileName ? <p className="text-sm text-muted-foreground">Loaded file: {fileName}</p> : null}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Input</span>
+              <span className="text-xs text-muted-foreground">
+                {mode === "encode" && inputSource === "file" ? fileName : `${text.length} characters`}
+              </span>
             </div>
-          ) : null}
-
-          {mode === "encode" && inputSource === "text" ? (
-            <textarea
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-              placeholder="Enter plain text to encode into Base64."
-              className={textareaClass}
-            />
-          ) : null}
-
-          {mode === "decode" ? (
-            <textarea
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-              placeholder="Paste a Base64 string or a full data URL to decode it."
-              className={textareaClass}
-            />
-          ) : null}
+            {mode === "encode" && inputSource === "file" ? (
+              <div className="rounded-[1.25rem] border border-dashed border-border bg-card/50 p-1">
+                <label
+                  htmlFor={fileInputId}
+                  className="flex cursor-pointer flex-col items-center gap-3 px-4 py-12 text-center text-sm text-muted-foreground transition-all hover:bg-primary-soft rounded-[1rem]"
+                >
+                  <Cpu size={32} className="text-primary/40" />
+                  <div>
+                    <span className="font-bold text-foreground block">Click to upload file</span>
+                    <span className="text-xs mt-1 block">Local processing — no data is sent to servers.</span>
+                  </div>
+                </label>
+                <input id={fileInputId} type="file" className="sr-only" onChange={handleFileChange} />
+              </div>
+            ) : (
+              <textarea
+                value={text}
+                onChange={(event) => setText(event.target.value)}
+                placeholder={mode === "encode" ? "Enter plain text to encode..." : "Paste Base64 string to decode..."}
+                className={textareaClass}
+                rows={8}
+              />
+            )}
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2">
             <label className="space-y-2">
-              <span className="text-sm font-medium text-muted-foreground">MIME type / prefix</span>
+              <span className="text-sm font-medium text-muted-foreground ml-1">MIME Type / Prefix</span>
               <input
                 type="text"
                 value={mimeType}
                 onChange={(event) => setMimeType(event.target.value)}
-                placeholder="text/plain;charset=utf-8"
+                placeholder="text/plain"
                 className={inputClass}
               />
-              <span className="block text-xs leading-5 text-muted-foreground">
-                Useful for data URLs and decoded previews. Common values: `text/plain`, `application/json`, `image/png`.
-              </span>
             </label>
 
             {mode === "encode" ? (
               <label className="space-y-2">
-                <span className="text-sm font-medium text-muted-foreground">Output format</span>
+                <span className="text-sm font-medium text-muted-foreground ml-1">Output Format</span>
                 <select
                   value={outputFormat}
                   onChange={(event) => setOutputFormat(event.target.value as Base64OutputFormat)}
@@ -343,43 +1047,37 @@ function Base64ConverterPanel({ tool }: { tool: Base64ConverterTool }) {
                 >
                   <option value="raw">Raw Base64</option>
                   <option value="data-url">Data URL</option>
-                  <option value="url-safe">URL-safe Base64</option>
+                  <option value="url-safe">URL-safe</option>
                 </select>
-                <span className="block text-xs leading-5 text-muted-foreground">
-                  Raw for most payloads, Data URL for inline HTML/CSS, URL-safe for transport where `+` and `/` are inconvenient.
-                </span>
               </label>
             ) : (
-              <div className="rounded-[1rem] border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
-                Base64 is encoding, not encryption. Decoding restores the original bytes only if the source string is valid.
+              <div className="flex items-end h-full pb-1">
+                 <p className="text-[11px] text-muted-foreground leading-tight italic">
+                   Supports decoding standard, URL-safe, and data URLs automatically.
+                 </p>
               </div>
             )}
           </div>
 
-          <textarea
-            value={activeOutput}
-            readOnly
-            placeholder={mode === "encode" ? "Encoded Base64 output appears here." : "Decoded text appears here when the bytes are valid UTF-8 text."}
-            className={textareaClass}
-          />
+          <div className="space-y-2">
+            <div className="flex items-center justify-between px-1">
+              <span className="text-sm font-medium text-muted-foreground">Result</span>
+              <span className="text-xs text-muted-foreground">{activeOutput.length} characters</span>
+            </div>
+            <textarea
+              value={activeOutput}
+              readOnly
+              placeholder="Output will appear here..."
+              className={`${textareaClass} bg-muted/20 font-mono`}
+              rows={8}
+            />
+          </div>
 
           <div className="flex flex-wrap gap-2">
             <button type="button" onClick={() => copyText(activeOutput)} className={actionClass}>
-              {mode === "encode" ? "Copy output" : "Copy decoded text"}
+              <Copy size={16} className="mr-1.5" />
+              Copy result
             </button>
-            {mode === "encode" && encodeResult?.rawBase64 ? (
-              <>
-                <button type="button" onClick={() => copyText(encodeResult.rawBase64)} className={actionClass}>
-                  Copy raw Base64
-                </button>
-                <button type="button" onClick={() => copyText(encodeResult.rawBase64.replace(/=+$/g, ""))} className={actionClass}>
-                  Copy without padding
-                </button>
-                <button type="button" onClick={() => copyText(toDataUrl(encodeResult.rawBase64, mimeType))} className={actionClass}>
-                  Copy data URL
-                </button>
-              </>
-            ) : null}
             <button
               type="button"
               onClick={() => {
@@ -392,68 +1090,94 @@ function Base64ConverterPanel({ tool }: { tool: Base64ConverterTool }) {
             >
               Clear
             </button>
+            {statusMessage && (
+              <span className="flex items-center px-2 text-sm font-medium text-success animate-in fade-in duration-300">
+                {statusMessage}
+              </span>
+            )}
           </div>
         </div>
 
-        <aside className={`space-y-4 ${panelClass}`}>
-          <p className="text-sm text-muted-foreground">
-            {getBase64RouteTitle(mode)} text, files, or images in the browser. This tool is useful for API payloads, data URLs, quick debugging, and transport-safe conversion.
-          </p>
-
-          <div className="rounded-[1rem] border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
-            <p className="font-medium text-foreground">Size insight</p>
-            <div className="mt-3 space-y-2">
-              <div className="flex items-center justify-between gap-3">
-                <span>Original size</span>
-                <span className="font-medium text-foreground">
+        <aside className="space-y-6">
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3 flex items-center gap-2">
+              <AlertCircle size={16} className="text-primary" /> Size Insight
+            </h3>
+            <div className="space-y-3 text-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-muted-foreground">Original</span>
+                <span className="font-mono font-bold text-foreground">
                   {mode === "encode"
                     ? formatBytes(encodeResult?.originalBytes ?? 0)
                     : formatBytes(decodeResult?.decodedBytes ?? 0)}
                 </span>
               </div>
-              <div className="flex items-center justify-between gap-3">
-                <span>{mode === "encode" ? "Encoded size" : "Input Base64 size"}</span>
-                <span className="font-medium text-foreground">
+              <div className="flex items-center justify-between border-t border-border/10 pt-2">
+                <span className="text-muted-foreground">Encoded</span>
+                <span className="font-mono font-bold text-foreground">
                   {mode === "encode"
                     ? formatBytes(encodeResult?.encodedBytes ?? 0)
                     : formatBytes(decodeResult?.encodedBytes ?? 0)}
                 </span>
               </div>
-              <div className="flex items-center justify-between gap-3">
-                <span>Approx. overhead</span>
-                <span className="font-medium text-foreground">
-                  {sizeDelta !== null ? `${sizeDelta.toFixed(0)}%` : "-"}
+              <div className="flex items-center justify-between border-t border-border/10 pt-2">
+                <span className="text-muted-foreground">Overhead</span>
+                <span className={`font-mono font-bold ${sizeDelta && sizeDelta > 0 ? "text-warning" : "text-foreground"}`}>
+                  {sizeDelta !== null ? `+${sizeDelta.toFixed(1)}%` : "-"}
                 </span>
               </div>
             </div>
           </div>
 
           {mode === "decode" && decodeResult?.dataUrl && decodeResult.mimeType.startsWith("image/") ? (
-            <div className="rounded-[1rem] border border-border bg-card p-4">
-              <p className="text-sm font-medium text-foreground">Decoded preview</p>
-              <img src={decodeResult.dataUrl} alt="Decoded Base64 preview" className="mt-3 max-h-48 rounded-xl border border-border object-contain" />
-            </div>
-          ) : null}
-
-          {statusMessage ? (
-            <div className="rounded-[1rem] border border-success/20 bg-success-soft p-4 text-sm text-success-soft-foreground">
-              {statusMessage}
+            <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+              <h3 className="text-sm font-bold mb-3">Decoded Preview</h3>
+              <div className="rounded-xl overflow-hidden border border-border bg-muted/20">
+                <img src={decodeResult.dataUrl} alt="Base64 Preview" className="max-w-full h-auto object-contain mx-auto" />
+              </div>
+              <p className="text-[10px] mt-2 text-center text-muted-foreground uppercase font-bold tracking-wider">
+                {decodeResult.mimeType}
+              </p>
             </div>
           ) : null}
 
           {activeError ? (
-            <div className="rounded-[1rem] border border-danger/20 bg-danger-soft p-4 text-sm text-danger">
-              {activeError}
+            <div className="p-4 rounded-[1.25rem] border border-danger/20 bg-danger-soft text-sm text-danger flex gap-3">
+              <AlertCircle size={18} className="shrink-0" />
+              <p>{activeError}</p>
             </div>
           ) : null}
 
-          <div className="rounded-[1rem] border border-border bg-card p-4 text-sm leading-6 text-muted-foreground">
-            <p className="font-medium text-foreground">Developer notes</p>
-            <ul className="mt-3 space-y-2">
-              <li>Base64 is not encryption. It only turns bytes into ASCII text.</li>
-              <li>Use Data URLs for small inline assets, not large images.</li>
-              <li>URL-safe Base64 replaces `+` and `/` for transport-sensitive contexts.</li>
-            </ul>
+          <div className="space-y-3">
+             <h3 className="text-sm font-bold px-1 flex items-center gap-2">
+               <Cpu size={16} className="text-primary" /> Code Snippets
+             </h3>
+             <div className="space-y-2">
+               {Object.entries(snippets).map(([lang, code]) => (
+                 <div key={lang} className="group relative">
+                   <div className="absolute top-2 right-2 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="text-[9px] font-bold text-muted-foreground uppercase bg-background/80 px-1.5 py-0.5 rounded border border-border/50">{lang}</span>
+                   </div>
+                   <pre className="p-3 rounded-xl bg-muted/30 text-[10px] font-mono overflow-x-auto border border-border/50 transition-all group-hover:bg-muted/50 group-hover:border-primary/20 whitespace-pre-wrap">
+                     {code}
+                   </pre>
+                 </div>
+               ))}
+             </div>
+          </div>
+
+          <div className={`p-4 rounded-[1.25rem] border border-border bg-card/50 ${panelClass}`}>
+            <h3 className="text-sm font-bold mb-3">Quick Example</h3>
+            <div className="space-y-2 font-mono text-[10px]">
+              <div className="p-2 rounded bg-muted/30 border border-border/50">
+                 <span className="text-muted-foreground block mb-1 uppercase tracking-tighter">Plain:</span>
+                 <span className="text-foreground">Hello World</span>
+              </div>
+              <div className="p-2 rounded bg-muted/30 border border-border/50">
+                 <span className="text-muted-foreground block mb-1 uppercase tracking-tighter">Base64:</span>
+                 <span className="text-foreground whitespace-pre-wrap break-all">SGVsbG8gV29ybGQ=</span>
+              </div>
+            </div>
           </div>
         </aside>
       </div>
@@ -473,6 +1197,16 @@ export default function ExactConverterToolRunner({ tool }: { tool: ExactConverte
   const isJsonInputTool = tool.family === "data" && tool.from === "json";
   const isBase64Tool =
     tool.family === "encoding" && (tool.mode === "base64-encode" || tool.mode === "base64-decode");
+  const isUrlTool =
+    tool.family === "encoding" && (tool.mode === "url-encode" || tool.mode === "url-decode");
+  const isHtmlTool =
+    tool.family === "encoding" && (tool.mode === "html-encode" || tool.mode === "html-decode");
+  const isLowLevelTool = [
+    "convert-binary-encoder-decoder",
+    "convert-hex-encoder-decoder",
+    "convert-octal-encoder-decoder",
+    "convert-decimal-encoder-decoder",
+  ].includes(tool.slug);
 
   const result = useMemo(() => {
     if (text.length === 0) {
@@ -564,8 +1298,24 @@ export default function ExactConverterToolRunner({ tool }: { tool: ExactConverte
     }
   }
 
-  if (tool.family === "encoding" && (tool.mode === "base64-encode" || tool.mode === "base64-decode")) {
+  if (isBase64Tool) {
     return <Base64ConverterPanel tool={tool as Base64ConverterTool} />;
+  }
+
+  if (isUrlTool) {
+    return <UrlEncoderPanel tool={tool as EncodingTool} />;
+  }
+
+  if (isHtmlTool) {
+    return <HtmlEncoderPanel tool={tool as EncodingTool} />;
+  }
+
+  if (isLowLevelTool) {
+    return <LowLevelEncoderPanel tool={tool as EncodingTool} />;
+  }
+
+  if (tool.family === "data") {
+    return <DataFormatConverterPanel tool={tool as DataTool} />;
   }
 
   return (
