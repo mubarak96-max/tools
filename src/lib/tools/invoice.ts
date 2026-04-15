@@ -27,6 +27,7 @@ export interface InvoiceCurrency {
   code: string;    // ISO 4217, e.g. "USD"
   label: string;   // e.g. "US Dollar"
   locale: string;  // BCP 47 locale for Intl.NumberFormat, e.g. "en-US"
+  symbol?: string; // optional custom symbol for non-ISO or branded currencies
 }
 
 export const INVOICE_CURRENCIES: InvoiceCurrency[] = [
@@ -122,4 +123,22 @@ export function calculateInvoice(input: InvoiceCalculationInput): InvoiceCalcula
     total,
     balanceDue,
   };
+}
+
+export function formatInvoiceCurrency(value: number, currency: InvoiceCurrency): string {
+  try {
+    return new Intl.NumberFormat(currency.locale, {
+      style: "currency",
+      currency: currency.code,
+      maximumFractionDigits: 2,
+    }).format(value);
+  } catch {
+    const amount = new Intl.NumberFormat(currency.locale || "en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value);
+
+    const marker = currency.symbol?.trim() || currency.code.trim();
+    return marker ? `${marker} ${amount}` : amount;
+  }
 }

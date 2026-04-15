@@ -1,4 +1,4 @@
-import type { AddressBlock, InvoiceCalculationResult, InvoiceCurrency, DiscountMode } from "@/lib/tools/invoice";
+import { formatInvoiceCurrency, type AddressBlock, type InvoiceCalculationResult, type InvoiceCurrency, type DiscountMode } from "@/lib/tools/invoice";
 
 interface InvoiceState {
     invoiceNumber: string;
@@ -6,6 +6,7 @@ interface InvoiceState {
     dueDate: string;
     sender: AddressBlock;
     recipient: AddressBlock;
+    logoDataUrl: string;
     items: Array<{ id: string; description: string; quantity: number; unitPrice: number }>;
     discountMode: DiscountMode;
     discountValue: number | "";
@@ -13,14 +14,6 @@ interface InvoiceState {
     amountPaid: number | "";
     paymentTerms: string;
     notes: string;
-}
-
-function formatCurrency(value: number, currency: InvoiceCurrency): string {
-    return new Intl.NumberFormat(currency.locale, {
-        style: "currency",
-        currency: currency.code,
-        maximumFractionDigits: 2,
-    }).format(value);
 }
 
 function renderAddressLines(block: AddressBlock): string {
@@ -58,13 +51,17 @@ export function buildInvoiceHtml(
     const discountValue = typeof state.discountValue === "number" ? state.discountValue : 0;
     const shipping = typeof state.shipping === "number" ? state.shipping : 0;
     const amountPaid = typeof state.amountPaid === "number" ? state.amountPaid : 0;
+    const safeLogoDataUrl =
+        typeof state.logoDataUrl === "string" && state.logoDataUrl.startsWith("data:image/")
+            ? escapeHtml(state.logoDataUrl)
+            : "";
 
     const lineItemsRows = result.items.map((item, index) => `
     <tr>
       <td style="padding: 12px; border-bottom: 1px solid #e5e7eb;">${escapeHtml(item.description || `Item ${index + 1}`)}</td>
       <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">${item.quantity}</td>
-      <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">${formatCurrency(item.unitPrice, currency)}</td>
-      <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right; font-weight: 600;">${formatCurrency(item.lineTotal, currency)}</td>
+      <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right;">${formatInvoiceCurrency(item.unitPrice, currency)}</td>
+      <td style="padding: 12px; border-bottom: 1px solid #e5e7eb; text-align: right; font-weight: 600;">${formatInvoiceCurrency(item.lineTotal, currency)}</td>
     </tr>
   `).join('');
 
@@ -122,6 +119,13 @@ export function buildInvoiceHtml(
     }
     .address-block {
       margin-bottom: 30px;
+    }
+    .logo {
+      display: block;
+      max-width: 150px;
+      max-height: 80px;
+      object-fit: contain;
+      margin-bottom: 16px;
     }
     table {
       width: 100%;
@@ -186,10 +190,12 @@ export function buildInvoiceHtml(
 <body>
   <div class="header">
     <div class="header-left">
+      ${safeLogoDataUrl ? `<img src="${safeLogoDataUrl}" alt="Business logo" class="logo" />` : ''}
       <div class="section-title">From</div>
       ${renderAddressLines(state.sender)}
     </div>
     <div class="header-right">
+      <div class="section-title" style="margin-bottom: 6px;">Invoice</div>
       <div class="invoice-title">${escapeHtml(state.invoiceNumber)}</div>
       <div class="invoice-meta">
         <p>Issue Date: ${escapeHtml(state.issueDate || 'Not set')}</p>
@@ -220,36 +226,36 @@ export function buildInvoiceHtml(
   <div class="totals">
     <div class="totals-row">
       <span>Subtotal</span>
-      <span>${formatCurrency(result.subtotal, currency)}</span>
+      <span>${formatInvoiceCurrency(result.subtotal, currency)}</span>
     </div>
     ${discountValue > 0 ? `
     <div class="totals-row">
       <span>Discount</span>
-      <span>-${formatCurrency(result.discountAmount, currency)}</span>
+      <span>-${formatInvoiceCurrency(result.discountAmount, currency)}</span>
     </div>
     ` : ''}
     ${shipping > 0 ? `
     <div class="totals-row">
       <span>Shipping</span>
-      <span>${formatCurrency(shipping, currency)}</span>
+      <span>${formatInvoiceCurrency(shipping, currency)}</span>
     </div>
     ` : ''}
     <div class="totals-row">
       <span>Tax</span>
-      <span>${formatCurrency(result.taxAmount, currency)}</span>
+      <span>${formatInvoiceCurrency(result.taxAmount, currency)}</span>
     </div>
     <div class="totals-row total">
       <span>Total</span>
-      <span>${formatCurrency(result.total, currency)} ${currency.code}</span>
+      <span>${formatInvoiceCurrency(result.total, currency)}</span>
     </div>
     ${amountPaid > 0 ? `
     <div class="totals-row">
       <span>Amount Paid</span>
-      <span>-${formatCurrency(amountPaid, currency)}</span>
+      <span>-${formatInvoiceCurrency(amountPaid, currency)}</span>
     </div>
     <div class="totals-row balance">
       <span>Balance Due</span>
-      <span>${formatCurrency(result.balanceDue, currency)}</span>
+      <span>${formatInvoiceCurrency(result.balanceDue, currency)}</span>
     </div>
     ` : ''}
   </div>

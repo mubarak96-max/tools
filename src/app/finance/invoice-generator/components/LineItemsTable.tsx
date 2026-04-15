@@ -1,4 +1,4 @@
-import type { InvoiceLineItemInput, InvoiceLineItemResult, InvoiceCurrency } from "@/lib/tools/invoice";
+import { formatInvoiceCurrency, type InvoiceLineItemInput, type InvoiceLineItemResult, type InvoiceCurrency } from "@/lib/tools/invoice";
 
 const fieldClass =
     "w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary";
@@ -11,15 +11,8 @@ interface LineItemsTableProps {
     currency: InvoiceCurrency;
     onUpdate: (id: string, field: keyof InvoiceLineItemInput, value: string) => void;
     onAdd: () => void;
+    onDuplicate: (id: string) => void;
     onRemove: (id: string) => void;
-}
-
-function formatCurrency(value: number, currency: InvoiceCurrency) {
-    return new Intl.NumberFormat(currency.locale, {
-        style: "currency",
-        currency: currency.code,
-        maximumFractionDigits: 2,
-    }).format(value);
 }
 
 export default function LineItemsTable({
@@ -28,6 +21,7 @@ export default function LineItemsTable({
     currency,
     onUpdate,
     onAdd,
+    onDuplicate,
     onRemove,
 }: LineItemsTableProps) {
     return (
@@ -79,8 +73,16 @@ export default function LineItemsTable({
                             </label>
                             <div className="flex items-end gap-3">
                                 <div className="min-w-0 flex-1 rounded-[1rem] border border-border bg-muted/30 px-4 py-3 text-sm font-semibold text-foreground">
-                                    {formatCurrency(resultItems[index]?.lineTotal ?? 0, currency)}
+                                    {formatInvoiceCurrency(resultItems[index]?.lineTotal ?? 0, currency)}
                                 </div>
+                                <button
+                                    type="button"
+                                    onClick={() => onDuplicate(item.id)}
+                                    className="rounded-full border border-border px-3 py-3 text-sm font-semibold text-foreground transition hover:border-primary hover:text-primary"
+                                    aria-label={`Duplicate item ${index + 1}`}
+                                >
+                                    Duplicate
+                                </button>
                                 <button
                                     type="button"
                                     onClick={() => onRemove(item.id)}

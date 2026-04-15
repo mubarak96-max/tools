@@ -2,6 +2,15 @@ import type { DiscountMode } from "@/lib/tools/invoice";
 
 const fieldClass =
     "w-full rounded-[1rem] border border-border bg-background px-4 py-3 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary";
+const CUSTOM_PAYMENT_TERMS_OPTION = "__custom_payment_terms__";
+const PAYMENT_TERMS_OPTIONS = [
+    "Due on receipt",
+    "Net 7",
+    "Net 15",
+    "Net 30",
+    "Net 45",
+    "Net 60",
+];
 
 interface TotalsFormProps {
     discountMode: DiscountMode;
@@ -38,6 +47,12 @@ export default function TotalsForm({
     onPaymentTermsChange,
     onNotesChange,
 }: TotalsFormProps) {
+    const selectedPaymentTerms = PAYMENT_TERMS_OPTIONS.includes(paymentTerms)
+        ? paymentTerms
+        : paymentTerms
+            ? CUSTOM_PAYMENT_TERMS_OPTION
+            : "";
+
     return (
         <div className="space-y-5">
             <div className="grid gap-5 md:grid-cols-2">
@@ -123,15 +138,38 @@ export default function TotalsForm({
 
                 <label className="space-y-2">
                     <span className="text-sm font-medium text-muted-foreground">Payment terms</span>
+                    <select
+                        value={selectedPaymentTerms}
+                        onChange={(e) =>
+                            onPaymentTermsChange(
+                                e.target.value === CUSTOM_PAYMENT_TERMS_OPTION ? paymentTerms : e.target.value,
+                            )
+                        }
+                        className={fieldClass}
+                    >
+                        <option value="">Select terms</option>
+                        {PAYMENT_TERMS_OPTIONS.map((option) => (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                        <option value={CUSTOM_PAYMENT_TERMS_OPTION}>Custom terms</option>
+                    </select>
+                </label>
+            </div>
+
+            {selectedPaymentTerms === CUSTOM_PAYMENT_TERMS_OPTION && (
+                <label className="space-y-2">
+                    <span className="text-sm font-medium text-muted-foreground">Custom payment terms</span>
                     <input
                         type="text"
                         value={paymentTerms}
                         onChange={(e) => onPaymentTermsChange(e.target.value)}
                         className={fieldClass}
-                        placeholder="Net 30, Net 15, Due on receipt"
+                        placeholder="Net 21, 50% upfront, due in 10 days"
                     />
                 </label>
-            </div>
+            )}
 
             <label className="space-y-2">
                 <div className="flex items-center justify-between">
