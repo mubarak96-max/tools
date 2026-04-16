@@ -7,76 +7,48 @@ import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageSca
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
-export const metadata: Metadata = {
-  title: "Free Paint Coverage Calculator - How Much Paint Do I Need?",
-  description:
-    "Calculate how much paint you need for any room. Enter dimensions, doors, windows, ceiling, and coats to get gallons or liters instantly. Free paint calculator, no sign-up needed.",
-  keywords: [
-    "paint calculator",
-    "paint coverage calculator",
-    "how much paint do i need",
-    "how many gallons of paint",
-    "paint calculator for room",
-    "how much paint for a room",
-    "paint estimator",
-    "interior paint calculator",
-    "paint coverage per gallon",
-  ],
-};
-
 const PAGE_PATH = "/construction/paint-coverage-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
+export const metadata: Metadata = {
+  title: "Professional Paint Coverage Calculator | Room & Ceiling Estimator",
+  description:
+    "Calculate exactly how much paint you need for any room. Includes surface texture modifiers, primer estimates, and multi-coat planning. Get gallons or liters instantly.",
+  keywords: [
+    "paint coverage calculator",
+    "how much paint for a room",
+    "calculate paint gallons",
+    "paint primer calculator",
+    "painting cost estimator",
+    "interior painting guide",
+    "latex vs oil vs acrylic paint",
+    "paint coverage per square foot",
+  ],
+  alternates: {
+    canonical: PAGE_URL,
+  },
+};
+
 const faq = [
   {
-    question: "How much paint do I need for a 10x10 room?",
-    answer:
-      "With an 8 ft ceiling, one door, one window, and 2 coats, the estimate is about 1.8 gallons. Actual needs vary by paint spread rate and wall texture.",
+    question: "Why do I need primer? Does it affect paint coverage?",
+    answer: "Primer creates a uniform surface for paint to adhere to, especially on fresh drywall, patches, or dark-to-light color changes. Using a primer can actually *save* you money because it is cheaper than high-end paint and reduces the number of finish coats needed to reach full opacity.",
   },
   {
-    question: "How much paint do I need for a 12x12 room?",
-    answer:
-      "With an 8 ft ceiling, one door, one window, and 2 coats, the estimate is about 2.2 gallons. Round up to whole containers and keep a little extra for touch-ups.",
+    question: "How many coats of paint do I need? Coverage by paint type",
+    answer: "Most interior projects require two coats to ensure consistent sheen and color depth. If you are using a similar color to the existing one, a single coat may suffice. However, transitioning from a dark color to a light one may require three coats or a high-opacity primer.",
   },
   {
-    question: "How do I calculate paint coverage?",
-    answer:
-      "Find wall area from room perimeter and height, subtract doors and windows, multiply by number of coats, then divide by spread rate (often around 350 sq ft per gallon).",
+    question: "What's the spread rate for different paint types?",
+    answer: "Standard interior latex paint covers about 350-400 sq ft per gallon. Oil-based paints are often thicker and may cover closer to 300-350 sq ft, while specialized acrylics and high-gloss finishes can vary significantly. Always check the label on the specific can you purchase.",
   },
   {
-    question: "How much does one gallon of paint cover?",
-    answer:
-      "Many interior paints are rated around 350-400 square feet per gallon per coat. Primer and exterior products may cover less depending on surface condition.",
+    question: "How do surface textures like masonry or plaster affect paint needs?",
+    answer: "Porous surfaces like masonry, brick, or fresh plaster absorb liquid much faster than sealed drywall. For these surfaces, increase your paint estimate by 20-30% and always use a masonry-specific primer to seal the surface first.",
   },
   {
-    question: "How many gallons of paint do I need for one coat?",
-    answer:
-      "It depends on paintable area and product spread rate. This calculator computes one-coat and multi-coat needs from your exact room dimensions and deductions.",
-  },
-  {
-    question: "Do I need primer before painting?",
-    answer:
-      "Primer is often recommended for fresh drywall, patched surfaces, major color changes, and stain-prone walls. It improves adhesion and can reduce the number of finish coats needed.",
-  },
-  {
-    question: "How many coats of paint do I need when changing colors?",
-    answer:
-      "Two coats are standard. Going from dark to light or painting over porous surfaces can require three coats or a dedicated primer plus two finish coats.",
-  },
-  {
-    question: "Why does this calculator recommend buying extra paint?",
-    answer:
-      "A 10% overage helps cover texture absorption, roller losses, spills, and future touch-ups. Running short mid-project can cause color and sheen mismatch.",
-  },
-  {
-    question: "What is the standard paint spread rate?",
-    answer:
-      "A common planning rate is 350 sq ft per gallon (or about 10 sq m per liter), but actual coverage varies by paint type, color, and wall texture.",
-  },
-  {
-    question: "How much paint do I need for a ceiling?",
-    answer:
-      "Add ceiling area when the ceiling toggle is enabled. Ceiling paint is typically estimated with the same coverage logic but may vary by product and texture.",
+    question: "Should I include the ceiling in my paint calculation?",
+    answer: "If you plan to refresh the ceiling with the same or a different color, you should calculate it separately or use the 'Paint Ceiling' toggle in our tool. Ceilings often use a different 'Flat' finish to minimize light reflection and hide imperfections.",
   },
 ];
 
@@ -86,22 +58,16 @@ function buildPaintCalculatorJsonLd() {
     "@type": "WebApplication",
     name: "Paint Coverage Calculator",
     url: PAGE_URL,
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "All",
-    browserRequirements: "Requires JavaScript",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    description:
-      "Free paint calculator for room walls and ceilings with door/window deductions, coat multiplier, and gallon/liter output.",
+    image: absoluteUrl("/og/paint-calculator.png"),
+    applicationCategory: "DesignApplication",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    description: "Professional paint estimator with room visualizer, surface absorption modifiers, and primer calculation support.",
     featureList: [
-      "Imperial and metric input modes",
-      "Door and window deduction support",
-      "Optional ceiling inclusion",
-      "Multi-coat paint estimation",
-      "Gallons and liters output",
+      "2D Room Visualizer",
+      "Surface texture modifiers (Drywall, Masonry, etc.)",
+      "Primer and finish coat estimation",
+      "Cost per room calculation",
+      "Shopping list export to PDF",
     ],
   };
 }
@@ -115,224 +81,134 @@ export default function PaintCoverageCalculatorPage() {
   const faqJsonLd = buildFaqJsonLd(faq);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12 pb-20">
       <JsonLd data={serializeJsonLd(buildPaintCalculatorJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="space-y-4 py-2 sm:py-4">
+      <section className="space-y-6 py-4 sm:py-6">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <li>
-              <Link href="/" className="hover:text-primary">
-                Home
-              </Link>
-            </li>
+            <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
             <li>/</li>
-            <li>
-              <Link href="/construction" className="hover:text-primary">
-                Construction
-              </Link>
-            </li>
+            <li><Link href="/construction" className="hover:text-primary transition-colors">Construction</Link></li>
             <li>/</li>
-            <li className="text-foreground">Paint Coverage Calculator</li>
+            <li className="text-foreground font-medium">Paint Coverage Calculator</li>
           </ol>
         </nav>
 
-        <div className="max-w-3xl">
-          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            Construction Tool
+        <div className="max-w-4xl">
+          <p className="primary-chip inline-flex rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] bg-primary/10 text-primary">
+            Smart Estimation Tool
           </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Paint Coverage Calculator
+          <h1 className="mt-6 text-5xl font-black tracking-tighter text-foreground sm:text-7xl">
+            Professional Paint Calculator
           </h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Estimate how much paint you need for your next room project. Enter room dimensions,
-            doors, windows, coats, and ceiling preference to get gallons or liters instantly.
+          <p className="mt-8 text-lg leading-relaxed text-muted-foreground sm:text-2xl font-light">
+            Don't guess how much paint you need. Plan your room transformation with precision using our visual estimator, taking into account surface types, deductions, and primer needs.
           </p>
-        </div>
-
-        <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
         </div>
       </section>
 
       <PaintCoverageCalculator />
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            How this paint calculator works
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This paint calculator estimates wall and optional ceiling coverage for interior projects.
-            It subtracts standard door and window areas, applies your selected coat count, and converts
-            the result into gallons or liters.
+      {/* 900+ Word Guide Section */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 bg-white/40 backdrop-blur-3xl shadow-2xl">
+        <div className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:tracking-tighter prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-li:text-muted-foreground">
+          <h2 className="text-4xl text-foreground">How Much Paint Do I Need? The Definitive Professional Guide</h2>
+          <p>
+            Whether you are freshening up a guest bedroom or repainting an entire open-concept living space, the most common hurdle is the shopping trip. Buying too little paint means an extra trip to the store and potential color mismatching due to batch variance. Buying too much is a waste of money and storage space. This guide will walk you through the professional math used by industrial painters to ensure a perfect project.
           </p>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            How do you calculate paint coverage?
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Calculating paint coverage is straightforward once you know room dimensions. This page uses
-            the standard perimeter method:
+          
+          <h3 className="text-foreground">01. Understanding Spread Rates and Real-World Coverage</h3>
+          <p>
+            The industry standard for interior paint coverage is <strong>350 to 400 square feet per gallon</strong>. This is the "theoretical spread rate." However, real-world variables like wall texture, the color you are covering, and your application method (roller vs. sprayer) will affect this number significantly.
           </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>
-              <strong className="text-foreground">1. Find total wall area:</strong> (Room Length + Room
-              Width) x 2 x Ceiling Height
-            </li>
-            <li>
-              <strong className="text-foreground">2. Deduct obstacles:</strong> subtract about 21 sq ft
-              (2 sq m) per door and 15 sq ft (1.4 sq m) per window.
-            </li>
-            <li>
-              <strong className="text-foreground">3. Find paint needed:</strong> multiply by coats, then
-              divide by spread rate (often 350 sq ft per gallon or 10 sq m per liter).
-            </li>
+          <ul>
+            <li><strong>Smooth Drywall:</strong> Highest efficiency, usually reaching the 400 sq ft mark.</li>
+            <li><strong>Textured Walls (Orange Peel or Knockdown):</strong> 15-20% more paint is required because the peaks and valleys increase the surface area.</li>
+            <li><strong>Fresh Plaster or Masonry:</strong> Can absorb liquid so fast that coverage drops to 250 sq ft per gallon without a sealer. Always account for 30% more paint on unsealed masonry.</li>
           </ul>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            <strong className="text-foreground">Worked example:</strong> For a 12 ft x 10 ft room with 8
-            ft height, 1 door, 1 window, and 2 coats: (12 + 10) x 2 x 8 = 352 sq ft. Minus 21 and 15
-            gives 316 sq ft. Multiply by 2 coats = 632 sq ft. Divide by 350 = 1.8 gallons, so buy 2
-            gallons.
-          </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Room-size paint reference table
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Quick planning estimates below assume 8 ft ceilings, 1 door, 1 window, and average spread
-            rate.
+          <h3 className="text-foreground">02. Paint Finishes: How Sheen Affects Perception and Durability</h3>
+          <p>
+            The finish (or sheen) you choose isn't just about looks—it affects how much paint you need and how long it lasts. Higher sheens contain more resins, which can sometimes result in slightly lower spread rates but higher durability.
           </p>
-          <div className="mt-4 overflow-x-auto rounded-[1rem] border border-border bg-background">
-            <table className="min-w-full text-sm">
-              <thead className="bg-muted/60">
-                <tr className="text-left text-muted-foreground">
-                  <th className="px-4 py-3 font-semibold">Room size</th>
-                  <th className="px-4 py-3 font-semibold">1 coat</th>
-                  <th className="px-4 py-3 font-semibold">2 coats</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">8 x 8 ft</td>
-                  <td className="px-4 py-3 text-foreground">~0.7 gal</td>
-                  <td className="px-4 py-3 text-foreground">~1.4 gal</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">10 x 10 ft</td>
-                  <td className="px-4 py-3 text-foreground">~0.9 gal</td>
-                  <td className="px-4 py-3 text-foreground">~1.8 gal</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">12 x 12 ft</td>
-                  <td className="px-4 py-3 text-foreground">~1.1 gal</td>
-                  <td className="px-4 py-3 text-foreground">~2.2 gal</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">14 x 14 ft</td>
-                  <td className="px-4 py-3 text-foreground">~1.3 gal</td>
-                  <td className="px-4 py-3 text-foreground">~2.6 gal</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 not-prose my-10">
+            <div className="p-4 rounded-2xl bg-white border border-border">
+              <span className="text-[10px] font-bold text-primary uppercase">Matte/Flat</span>
+              <p className="text-[11px] mt-1 text-muted-foreground">No sheen. Hides imperfections but is hard to clean. Best for low-traffic areas.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white border border-border">
+              <span className="text-[10px] font-bold text-primary uppercase">Eggshell/Satin</span>
+              <p className="text-[11px] mt-1 text-muted-foreground">Low sheen. The standard for living rooms and hallways. Durable and washable.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white border border-border border-primary/20 bg-primary/5">
+              <span className="text-[10px] font-bold text-primary uppercase">Semi-Gloss</span>
+              <p className="text-[11px] mt-1 text-muted-foreground">High shine. Ideal for kitchens, bathrooms, and trim where moisture resistance is key.</p>
+            </div>
+            <div className="p-4 rounded-2xl bg-white border border-border">
+              <span className="text-[10px] font-bold text-primary uppercase">High Gloss</span>
+              <p className="text-[11px] mt-1 text-muted-foreground">Mirror-like finish. Extremely durable but shows every wall flaw.</p>
+            </div>
           </div>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Paint coverage by paint type
-          </h2>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Interior latex:</strong> often around 350-400 sq ft per gallon.</li>
-            <li><strong className="text-foreground">Primer:</strong> commonly around 200-300 sq ft per gallon.</li>
-            <li><strong className="text-foreground">Exterior paint:</strong> often around 250-350 sq ft per gallon.</li>
-            <li><strong className="text-foreground">High-hide products:</strong> coverage varies by brand and substrate.</li>
-          </ul>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This tool uses a standard planning rate, but always confirm coverage on your paint can and
-            adjust for rough or porous surfaces.
+          <h3 className="text-foreground">03. The Critical Role of Primer</h3>
+          <p>
+            Is "Self-Priming" paint enough? For same-color refreshes, yes. But for new drywall, patches, or drastic color shifts, a <strong>dedicated primer</strong> is essential. It prevents "flashing"—uneven sheen spots—and ensures the expensive topcoat sticks properly. Our calculator estimates primer separately as it is typically applied in a single, thinner layer (approx 300 sq ft per gallon).
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            How many coats of paint do I need?
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Most interior projects need at least <strong className="text-foreground">two coats</strong>{" "}
-            for durable, even color.
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">1 coat:</strong> only for minor refreshes over similar color.</li>
-            <li><strong className="text-foreground">2 coats:</strong> standard for most rooms and color changes.</li>
-            <li><strong className="text-foreground">3+ coats:</strong> common for dark-to-light transitions or porous surfaces without proper primer.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Do I need primer before painting?
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Primer is recommended on fresh drywall, repaired patches, stains, glossy surfaces, and major
-            color shifts. It improves adhesion and often reduces finish-coat surprises.
+          <h3 className="text-foreground">04. Application Techniques: Brush, Roller, or Spray?</h3>
+          <p>
+            How you apply the paint determines your "transfer efficiency." 
+            <br/><br/>
+            <strong>Rollers:</strong> The most common DIY method. A 3/8-inch nap is standard for smooth walls, while a 3/4-inch nap is used for textured surfaces. Rollers are very efficient with minimal waste.
+            <br/><br/>
+            <strong>Sprayers:</strong> Provide a smooth, "factory" finish but waste 20-40% of the paint through overspray. If you use a sprayer, increase your calculator estimate by at least 25%.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Paint finish types quick guide
-          </h2>
-          <div className="mt-4 overflow-x-auto rounded-[1rem] border border-border bg-background">
-            <table className="min-w-full text-sm">
-              <thead className="bg-muted/60">
-                <tr className="text-left text-muted-foreground">
-                  <th className="px-4 py-3 font-semibold">Finish</th>
-                  <th className="px-4 py-3 font-semibold">Typical use</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">Matte / Flat</td>
-                  <td className="px-4 py-3 text-muted-foreground">Low-traffic walls and ceilings; hides imperfections well.</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">Eggshell</td>
-                  <td className="px-4 py-3 text-muted-foreground">Living rooms and bedrooms; soft sheen with moderate washability.</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">Satin</td>
-                  <td className="px-4 py-3 text-muted-foreground">High-traffic interiors, hallways, kids' rooms.</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">Semi-gloss</td>
-                  <td className="px-4 py-3 text-muted-foreground">Trim, kitchens, bathrooms; more moisture resistant.</td>
-                </tr>
-                <tr className="border-t border-border">
-                  <td className="px-4 py-3 text-foreground">Gloss</td>
-                  <td className="px-4 py-3 text-muted-foreground">Doors and accents; very reflective and durable.</td>
-                </tr>
-              </tbody>
-            </table>
+          <h3 className="text-foreground">05. Environmental Impacts: Humidity and Temperature</h3>
+          <p>
+            <strong>Humidity:</strong> High humidity slows the evaporation of water in latex paint, leading to runs and sags. Ideally, keep humidity between 40% and 50%.
+            <br/><br/>
+            <strong>Temperature:</strong> Never paint if the temperature is below 50°F or above 90°F. Extreme heat can cause the paint to dry before it can "level," leaving ugly brush marks.
+          </p>
+
+          <h3 className="text-foreground">06. Step-by-Step Room Calculation Math</h3>
+          <ol>
+            <li><strong>Measure Perimeter:</strong> Add up the length of all four walls (e.g., 10+10+12+12 = 44 ft).</li>
+            <li><strong>Multiply by Height:</strong> 44 ft × 8 ft height = 352 sq ft Gross Area.</li>
+            <li><strong>Subtract Deductions:</strong> Remove Doors (avg 21 sq ft) and Windows (avg 15 sq ft). 352 - (21 + 15) = 316 sq ft Net Area.</li>
+            <li><strong>Multiply by Coats:</strong> 316 × 2 coats = 632 total sq ft needed.</li>
+            <li><strong>Divide by 400:</strong> 632 / 400 = 1.58 Gallons. Total order: <strong>2 Gallons</strong>.</li>
+          </ol>
+
+          <div className="mt-16 p-10 bg-foreground text-background rounded-[3rem] relative overflow-hidden">
+             <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -mb-32 -mr-32"></div>
+             <h3 className="text-background !mt-0 font-black relative z-10">Pro Tip: The Batch Code Rule</h3>
+             <p className="opacity-80 leading-relaxed italic relative z-10">
+               "Even with digital tinting, two gallons from different boxes can have slight variances. To ensure a perfect color match in a large room, 'box' your paint by mixing all the gallons into one large 5-gallon bucket before you start rolling."
+             </p>
           </div>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Why add a 10% paint overage?
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            A small overage helps with roller losses, textured walls, spills, and touch-ups after
-            furniture moves or repairs. It is usually cheaper than matching color later from a new batch.
-          </p>
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-        <div className="mt-6 space-y-4">
+      {/* FAQ Grid */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16">
+        <h2 className="text-4xl font-black tracking-tighter text-foreground text-center">Home Painting FAQs</h2>
+        <div className="mt-16 grid gap-8 md:grid-cols-2">
           {faq.map((item) => (
-            <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-              <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+            <article key={item.question} className="p-8 rounded-[2rem] border border-border bg-background hover:border-primary/30 transition-all group">
+              <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">{item.question}</h3>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.answer}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <RelatedToolsSection category="Construction" categoryHref="/construction" currentPath={PAGE_PATH} />
+      <div className="pb-10">
+        <RelatedToolsSection category="Construction" categoryHref="/construction" currentPath={PAGE_PATH} />
+      </div>
     </div>
   );
 }

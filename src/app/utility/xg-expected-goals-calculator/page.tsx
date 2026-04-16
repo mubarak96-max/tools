@@ -210,9 +210,7 @@ export default function ExpectedGoalsCalculatorPage() {
             xG = the probability a shot becomes a goal. Example: 0.30 xG means about a 30% chance of scoring from a similar chance.
           </p>
           {currentTool ? <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p> : null}
-          <p className="mt-4 rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-950">
-            This calculator uses an educational xG model for learning and scenario comparison. Values can differ from professional data providers.
-          </p>
+
         </div>
 
         <div className="mt-6 max-w-2xl">

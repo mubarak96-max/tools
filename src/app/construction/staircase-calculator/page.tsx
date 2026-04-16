@@ -122,67 +122,95 @@ export default function StaircaseCalculatorPage() {
 
       <StaircaseCalculator />
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Staircase terminology explained</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Understanding stair terminology is essential before building. The key terms:
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 bg-white/40 backdrop-blur-3xl shadow-2vw">
+        <div className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:tracking-tighter prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-li:text-muted-foreground">
+          <h2 className="text-4xl text-foreground italic">Gravity vs. Geometry: The Professional Stair Builder's Manual</h2>
+          <p>
+            Staircases are the most complex intersection of geometry and safety in any construction project. A mistake of just 1/4 inch in riser height inconsistency can cause a "trip hazard," as the human brain builds a subconscious muscle memory of the step height within the first two strides. Precision is not just an aesthetic choice—it is a legal and safety requirement.
           </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Rise:</strong> The vertical height of a single step. Also called riser height.</li>
-            <li><strong className="text-foreground">Run:</strong> The horizontal depth of a single step (the part you walk on). Also called tread depth.</li>
-            <li><strong className="text-foreground">Total rise:</strong> The total vertical distance from the lower floor to the upper floor.</li>
-            <li><strong className="text-foreground">Total run:</strong> The total horizontal distance the staircase covers from the first riser to the last.</li>
-            <li><strong className="text-foreground">Stringer:</strong> The diagonal structural board that supports the treads and risers. Most staircases use two or three stringers.</li>
-            <li><strong className="text-foreground">Nosing:</strong> The front edge of the tread that overhangs the riser below. Typically 0.75–1.25 inches.</li>
-            <li><strong className="text-foreground">Headroom:</strong> The vertical clearance above the stair nosing to any overhead obstruction.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">The rise-run formula for comfortable stairs</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The most widely used formula for comfortable stair proportions is: <strong>2 × rise + run = 24–25 inches</strong>. This formula, attributed to French architect François Blondel in 1675, produces stairs that feel natural to climb because they match the average human stride.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Common comfortable combinations: 7" rise + 11" run (2×7+11=25), 7.5" rise + 10" run (2×7.5+10=25), 6.5" rise + 11" run (2×6.5+11=24). Steeper stairs (higher rise, shorter run) are more compact but tiring to climb. Shallower stairs (lower rise, longer run) are easier to climb but require more horizontal space.
+          
+          <h3 className="text-foreground">01. The "Rule of 25" and Ergonomic Comfort</h3>
+          <p>
+            Why do some stairs feel "natural" while others feel exhausting or awkward? It comes down to the <strong>Blondel's Formula</strong>, often called the "Rule of 25." 
+            <br/><br/>
+            The formula states: <strong>(2 × Rise) + (1 × Run) = 24 to 25 inches</strong>. 
+            <br/><br/>
+            This matches the average human gait. If your rise is 7 inches, your run should be 11 inches (2x7 + 11 = 25). If your rise is lower, say 6 inches, your run must be longer (13 inches) to maintain the comfortable stride length. Our calculator automatically flags dimensions that fall outside this "comfort zone."
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Building code requirements for residential stairs</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The International Residential Code (IRC) sets minimum standards for residential stair construction in the US. Key requirements:
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Maximum riser height:</strong> 7.75 inches (196 mm)</li>
-            <li><strong className="text-foreground">Minimum tread depth:</strong> 10 inches (254 mm)</li>
-            <li><strong className="text-foreground">Minimum headroom:</strong> 6 feet 8 inches (2032 mm)</li>
-            <li><strong className="text-foreground">Minimum stair width:</strong> 36 inches (914 mm)</li>
-            <li><strong className="text-foreground">Riser consistency:</strong> The greatest riser height in any flight must not exceed the smallest by more than 3/8 inch</li>
-            <li><strong className="text-foreground">Handrail height:</strong> 34–38 inches above the stair nosing</li>
-          </ul>
-          <p className="mt-4 text-base leading-7 text-muted-foreground">
-            Always verify requirements with your local building department, as some jurisdictions have stricter standards than the IRC minimums.
+          <h3 className="text-foreground">02. Stringer Geometry: The Backbone of the Stair</h3>
+          <p>
+            The <strong>Stringer</strong> is the diagonal board (usually a 2x12) that supports the steps. When you "notch" a stringer, you remove wood, which weakens the board.
+            <ul>
+              <li><strong>Effective Depth:</strong> You must leave at least 3.5 inches of solid wood *below* the notches. This is called the "effective depth." If your notches are too deep, the stringer will crack under the weight of a person.</li>
+              <li><strong>The Bottom Riser Adjustment:</strong> A common amateur error is forgetting to subtract the thickness of the tread from the bottom of the stringer. If you don't, the first step will be too high, and the top step will be too low once the flooring is installed.</li>
+            </ul>
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How to cut a stair stringer</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Cutting a stringer accurately is the most technically demanding part of stair construction. The process:
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Mark the rise and run dimensions on a framing square using stair gauges (small clamps that attach to the square).</li>
-            <li>Position the square at the top of the stringer board and trace the first step. Slide the square down and repeat for each step.</li>
-            <li>The bottom cut must be reduced by the thickness of the tread material so the first step has the same effective rise as all others.</li>
-            <li>Use a circular saw to make the cuts, stopping short of the corner and finishing with a handsaw to avoid weakening the stringer.</li>
-            <li>The minimum remaining stringer depth after cutting (the "effective depth") should be at least 3.5 inches for structural integrity.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-          <div className="mt-6 space-y-4">
-            {faq.map((item) => (
-              <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-                <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-              </article>
-            ))}
+          <div className="my-16 p-10 bg-foreground text-background rounded-[3rem] shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+             <h3 className="text-primary font-black italic !mt-0">Headroom: The 80-Inch Rule</h3>
+             <p className="opacity-80 leading-relaxed mb-0">
+               Building codes (IRC) require a minimum **80 inches (6' 8")** of vertical clearance. This is measured from the "plane" of the stair nosings to the ceiling above. If you are building a staircase into an existing floor opening, you must calculate the "Total Run" to ensure the ceiling opening is long enough so that a tall person doesn't hit their head on the way down.
+             </p>
           </div>
+
+          <h3 className="text-foreground">03. Complex Layouts: Landings and Returns</h3>
+          <p>
+            Rarely does a staircase go in a single straight line for more than 12 feet.
+            <ul>
+              <li><strong>Landings:</strong> Codes require a landing every 12 feet of vertical rise. A landing must be at least as wide as the stairs (typically 36").</li>
+              <li><strong>U-Shaped & L-Shaped:</strong> When stairs turn, the landing acts as the "Zero Point" for a second calculation. Treat the landing like a floor, and run our calculator twice—once for the bottom flight and once for the top.</li>
+            </ul>
+          </p>
+
+          <h3 className="text-foreground">04. The Baluster & Handrail Safety Mesh</h3>
+          <p>
+            A staircase isn't finished until it's safe.
+            <ul>
+              <li><strong>The 4-Inch Sphere Rule:</strong> Balusters (the vertical spindles) must be spaced so that a 4-inch sphere cannot pass through them. This prevents small children from getting their heads stuck.</li>
+              <li><strong>Handrail Grip:</strong> Handrails must be between 34 and 38 inches high and must be "graspable"—meaning you can wrap your fingers around them. A 2x4 is *not* a legal handrail.</li>
+            </ul>
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Grid */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 relative overflow-hidden bg-muted/5">
+        <h2 className="text-4xl font-black tracking-tighter text-foreground text-center italic">Master Staircase FAQ</h2>
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-balance">
+          {[
+            { 
+              question: "What is the maximum allowed rise in residential building code?", 
+              answer: "The International Residential Code (IRC) specifies a maximum rise of 7.75 inches. Anything higher is considered too steep and dangerous for standard home use." 
+            },
+            { 
+              question: "How do I calculate for the thickness of the tread?", 
+              answer: "Subtract the thickness of one tread (usually 1 inch for oak or 1.5 inches for 2x lumber) from the bottom of your stringer. This ensures the first step height matches all others once finished." 
+            },
+            { 
+              question: "What is a 'Nosing' and do I need one?", 
+              answer: "A nosing is the part of the tread that hangs over the riser below. It provides more surface area for your foot without increasing the horizontal 'run' of the stairs. Codes usually require a nosing of 0.75 to 1.25 inches if your tread is less than 11 inches deep." 
+            },
+            {
+              question: "How many stringers do I need for a 36-inch wide stair?", 
+              answer: "For standard 1-inch thick treads, you need a stringer every 12 to 16 inches. For a 36-inch wide staircase, use 3 stringers (one on each side and one in the center) to prevent the treads from flexing or 'bouncing.'"
+            },
+            {
+              question: "Can I build stairs with different heights to save space?",
+              answer: "Absolutely not. This is the #1 cause of staircase falls. Code allows for a maximum deviation of only 3/8 inch between the tallest and shortest riser in a single flight. Consistency is the foundation of stair safety."
+            }
+          ].map((item) => (
+            <article key={item.question} className="p-8 rounded-[2.5rem] border border-border bg-background hover:shadow-2xl transition-all flex flex-col justify-between group">
+              <div>
+                <h3 className="text-lg font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{item.question}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-[10px] font-black uppercase text-primary tracking-widest">
+                 <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Expert Answer
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -107,7 +107,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                 </div>
 
                 <div className="mt-5 rounded-lg border border-border bg-muted/20 p-4">
-                    <p className="text-sm font-semibold text-foreground">Plain-English read</p>
+
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">
                         {interpretation.description}
                     </p>
@@ -140,7 +140,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                             <div className="flex justify-between items-center rounded bg-muted/30 p-2">
                                 <span className="text-sm">Shot type</span>
                                 <span className={`text-sm font-medium ${calculation.shotTypeModifier > 1 ? 'text-green-600' :
-                                        calculation.shotTypeModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
+                                    calculation.shotTypeModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
                                     }`}>
                                     x{calculation.shotTypeModifier.toFixed(2)}
                                 </span>
@@ -149,7 +149,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                             <div className="flex justify-between items-center rounded bg-muted/30 p-2">
                                 <span className="text-sm">Assist quality</span>
                                 <span className={`text-sm font-medium ${calculation.assistModifier > 1 ? 'text-green-600' :
-                                        calculation.assistModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
+                                    calculation.assistModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
                                     }`}>
                                     x{calculation.assistModifier.toFixed(2)}
                                 </span>
@@ -158,7 +158,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                             <div className="flex justify-between items-center rounded bg-muted/30 p-2">
                                 <span className="text-sm">Pressure</span>
                                 <span className={`text-sm font-medium ${calculation.pressureModifier > 1 ? 'text-green-600' :
-                                        calculation.pressureModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
+                                    calculation.pressureModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
                                     }`}>
                                     x{calculation.pressureModifier.toFixed(2)}
                                 </span>
@@ -167,7 +167,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                             <div className="flex justify-between items-center rounded bg-muted/30 p-2">
                                 <span className="text-sm">Situation</span>
                                 <span className={`text-sm font-medium ${calculation.situationModifier > 1 ? 'text-green-600' :
-                                        calculation.situationModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
+                                    calculation.situationModifier < 1 ? 'text-red-600' : 'text-muted-foreground'
                                     }`}>
                                     x{calculation.situationModifier.toFixed(2)}
                                 </span>
@@ -187,7 +187,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                                 <div className="flex items-center gap-2">
                                     <span className="font-medium">{factor.name}</span>
                                     <span className={`h-2 w-2 rounded-full ${factor.impact === 'positive' ? 'bg-green-500' :
-                                            factor.impact === 'negative' ? 'bg-red-500' : 'bg-gray-400'
+                                        factor.impact === 'negative' ? 'bg-red-500' : 'bg-gray-400'
                                         }`} />
                                 </div>
                                 <div className="text-sm text-muted-foreground mt-1">
@@ -195,7 +195,7 @@ export default function XGResultsDisplay({ calculation, className = '' }: XGResu
                                 </div>
                             </div>
                             <div className={`text-sm font-medium ${factor.impact === 'positive' ? 'text-green-600' :
-                                    factor.impact === 'negative' ? 'text-red-600' : 'text-muted-foreground'
+                                factor.impact === 'negative' ? 'text-red-600' : 'text-muted-foreground'
                                 }`}>
                                 {factor.impact === 'positive' ? 'Up' : factor.impact === 'negative' ? 'Down' : 'Flat'}
                             </div>

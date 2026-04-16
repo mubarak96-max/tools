@@ -1,365 +1,219 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import {
-  calculateStaircase,
-  type StaircaseInputs,
-  type StaircaseSystem,
-} from "@/lib/tools/staircase";
+import { 
+  Plus, Minus, Ruler, Download, Layout, 
+  Trash2, Info, ShoppingCart, TrendingUp, Sparkles, Check, Home, Layers,
+  Box, Shield, GripVertical, AlertTriangle
+} from "lucide-react";
 
-/* ─── helpers ─────────────────────────────────────────────────────── */
-function Field({
-  label,
-  unit,
-  value,
-  min = 0,
-  step = 1,
-  onChange,
-}: {
-  label: string;
-  unit: string;
-  value: number;
-  min?: number;
-  step?: number;
-  onChange: (v: number) => void;
-}) {
-  return (
-    <label className="space-y-2">
-      <span className="text-sm font-medium text-muted-foreground">{label}</span>
-      <div className="relative">
-        <input
-          type="number"
-          min={min}
-          step={step}
-          value={value === 0 ? "" : value}
-          placeholder="0"
-          onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 pr-12 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary"
-        />
-        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
-          {unit}
-        </span>
-      </div>
-    </label>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between gap-4 text-sm">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="font-semibold tabular-nums text-foreground">{value}</span>
-    </div>
-  );
-}
-
-function ResultCard({
-  icon,
-  label,
-  value,
-  sub,
-}: {
-  icon: string;
-  label: string;
-  value: string | number;
-  sub?: string;
-}) {
-  return (
-    <div className="rounded-[1.25rem] border border-primary/20 bg-primary/5 p-5">
-      <p className="mb-1 text-xl">{icon}</p>
-      <p className="text-2xl font-bold tabular-nums text-foreground">{value}</p>
-      <p className="mt-0.5 text-sm font-medium text-muted-foreground">{label}</p>
-      {sub && <p className="mt-1 text-xs text-muted-foreground/70">{sub}</p>}
-    </div>
-  );
-}
-
-/* ─── main component ──────────────────────────────────────────────── */
 export function StaircaseCalculator() {
-  const [sys, setSys] = useState<StaircaseSystem>("imperial");
+  const [totalRise, setTotalRise] = useState(108); // 9ft
+  const [targetRise, setTargetRise] = useState(7.5);
+  const [treadDepth, setTreadDepth] = useState(11);
+  const [treadThickness, setTreadThickness] = useState(1);
+  const [stairWidth, setStairWidth] = useState(36);
+  const [nosing, setNosing] = useState(1);
 
-  const imperialDefaults: StaircaseInputs = {
-    totalRise: 108,
-    targetRise: 7.5,
-    targetRun: 10,
-    nosing: 0.75,
-    stairWidth: 36,
-    stringerCount: 2,
-    system: "imperial",
+  const results = useMemo(() => {
+    const numRisers = Math.round(totalRise / targetRise);
+    const actualRise = totalRise / numRisers;
+    const numTreads = numRisers - 1;
+    const totalRun = numTreads * treadDepth;
+    const stairAngle = (Math.atan(actualRise / treadDepth) * 180) / Math.PI;
+    const stringerLength = Math.sqrt(Math.pow(totalRise, 2) + Math.pow(totalRun, 2));
+    
+    // Safety Checks (IRC)
+    const isRiseSafe = actualRise <= 7.75;
+    const isTreadSafe = treadDepth >= 10;
+    const isAngleSafe = stairAngle >= 30 && stairAngle <= 37;
+    const isRuleOf25Safe = (2 * actualRise) + treadDepth >= 24 && (2 * actualRise) + treadDepth <= 25;
+
+    return {
+      numRisers,
+      actualRise,
+      numTreads,
+      totalRun,
+      stairAngle,
+      stringerLength,
+      isRiseSafe,
+      isTreadSafe,
+      isAngleSafe,
+      isRuleOf25Safe,
+      blondel: (2 * actualRise) + treadDepth
+    };
+  }, [totalRise, targetRise, treadDepth]);
+
+  const exportPDF = async () => {
+    const { jsPDF } = await import("jspdf/dist/jspdf.es.min.js");
+    const doc = new jsPDF();
+    doc.setFontSize(22);
+    doc.text("Staircase Engineering Report", 20, 30);
+    doc.setFontSize(12);
+    doc.text(`Total Rise: ${totalRise} in`, 20, 45);
+    doc.text(`Total Run: ${results.totalRun.toFixed(2)} in`, 20, 52);
+    doc.text(`Step Count: ${results.numRisers} Risers, ${results.numTreads} Treads`, 20, 59);
+    doc.text(`Individual Rise: ${results.actualRise.toFixed(3)} in`, 20, 66);
+    doc.text(`Individual Run: ${treadDepth} in`, 20, 73);
+    doc.text(`Stringer Length: ${results.stringerLength.toFixed(2)} in`, 20, 80);
+    doc.text(`-------------------------------------------`, 20, 87);
+    doc.text(`Code Compliance: ${results.isRiseSafe ? "PASS" : "FAIL (Rise too high)"}`, 20, 94);
+    doc.save("stair-calculation.pdf");
   };
-
-  const metricDefaults: StaircaseInputs = {
-    totalRise: 274,
-    targetRise: 19,
-    targetRun: 25,
-    nosing: 2,
-    stairWidth: 92,
-    stringerCount: 2,
-    system: "metric",
-  };
-
-  const [inputs, setInputs] = useState<StaircaseInputs>(imperialDefaults);
-
-  const set = (key: keyof StaircaseInputs, val: number | StaircaseSystem) =>
-    setInputs((p) => ({ ...p, [key]: val }));
-
-  const switchSys = (s: StaircaseSystem) => {
-    setSys(s);
-    setInputs(s === "imperial" ? imperialDefaults : metricDefaults);
-  };
-
-  const r = useMemo(() => calculateStaircase(inputs), [inputs]);
-
-  const u = sys === "imperial" ? "in" : "cm";
 
   return (
-    <section className="tool-frame p-4 sm:p-6">
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_22rem]">
-
-        {/* ── Left: inputs ── */}
-        <div className="space-y-6">
-
-          {/* Unit toggle */}
-          <div className="inline-flex rounded-[1rem] border border-border bg-card p-1">
-            {(["imperial", "metric"] as StaircaseSystem[]).map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => switchSys(s)}
-                className={`rounded-[0.75rem] px-5 py-2 text-sm font-semibold transition-colors ${
-                  sys === s
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
-              >
-                {s === "imperial" ? "Imperial (in)" : "Metric (cm)"}
-              </button>
-            ))}
+    <section className="tool-frame p-4 sm:p-8 md:p-12 rounded-[3.5rem] bg-white border border-border/50 shadow-2vw relative overflow-hidden">
+      <div className="grid lg:grid-cols-[1fr_400px] gap-0 border border-border rounded-[3rem] overflow-hidden bg-background shadow-2xl">
+        {/* Workspace */}
+        <div className="p-6 sm:p-10 space-y-10 border-b lg:border-b-0 lg:border-r border-border">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-muted-foreground flex items-center gap-2">
+              <Ruler className="w-4 h-4 text-primary" />
+              Rise & Run Parameters
+            </h3>
           </div>
 
-          {/* Inputs */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              label="Total Rise (floor-to-floor)"
-              unit={u}
-              value={inputs.totalRise}
-              min={1}
-              step={sys === "imperial" ? 0.5 : 1}
-              onChange={(v) => set("totalRise", v)}
-            />
-            <Field
-              label="Target Riser Height"
-              unit={u}
-              value={inputs.targetRise}
-              min={1}
-              step={0.25}
-              onChange={(v) => set("targetRise", v)}
-            />
-            <Field
-              label="Target Tread Depth (run)"
-              unit={u}
-              value={inputs.targetRun}
-              min={1}
-              step={0.25}
-              onChange={(v) => set("targetRun", v)}
-            />
-            <Field
-              label="Nosing Overhang"
-              unit={u}
-              value={inputs.nosing}
-              min={0}
-              step={0.25}
-              onChange={(v) => set("nosing", v)}
-            />
-            <Field
-              label="Stair Width"
-              unit={u}
-              value={inputs.stairWidth}
-              min={1}
-              step={1}
-              onChange={(v) => set("stairWidth", v)}
-            />
-            <div className="space-y-2">
-              <span className="text-sm font-medium text-muted-foreground">Stringers</span>
-              <div className="inline-flex w-full rounded-[1rem] border border-border bg-card p-1">
-                {[2, 3].map((n) => (
-                  <button
-                    key={n}
-                    type="button"
-                    onClick={() => set("stringerCount", n)}
-                    className={`flex-1 rounded-[0.75rem] py-2.5 text-sm font-semibold transition-colors ${
-                      inputs.stringerCount === n
-                        ? "bg-primary text-primary-foreground"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                    }`}
-                  >
-                    {n} stringers
-                  </button>
-                ))}
-              </div>
+          <div className="grid gap-12">
+            <div className="grid sm:grid-cols-2 gap-10">
+               <InputBlock label="Total Rise (Floor to Floor)" value={totalRise} unit="in" onChange={setTotalRise} />
+               <InputBlock label="Target Vertical Rise" value={targetRise} unit="in" onChange={setTargetRise} />
             </div>
-          </div>
 
-          {/* Comfort score */}
-          <div
-            className={`rounded-[1.25rem] border p-5 ${
-              r.comfortOk
-                ? "border-emerald-500/20 bg-emerald-500/5"
-                : "border-amber-500/20 bg-amber-500/5"
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <p className="text-sm font-semibold text-foreground">
-                Comfort formula: 2 × rise + run
-              </p>
-              <span
-                className={`rounded-full px-3 py-1 text-xs font-bold ${
-                  r.comfortOk
-                    ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
-                    : "bg-amber-500/15 text-amber-600 dark:text-amber-400"
-                }`}
-              >
-                {r.comfortOk ? "✓ Comfortable" : "⚠ Outside ideal"}
-              </span>
+            <div className="pt-10 border-t border-border">
+               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <InputBlock label="Tread Depth (Run)" value={treadDepth} unit="in" onChange={setTreadDepth} />
+                  <InputBlock label="Tread Thickness" value={treadThickness} unit="in" onChange={setTreadThickness} />
+                  <InputBlock label="Nosing Overhang" value={nosing} unit="in" onChange={setNosing} />
+               </div>
             </div>
-            <p className="mt-2 text-2xl font-bold tabular-nums text-foreground">
-              {r.comfortScore.toFixed(2)}{" "}
-              <span className="text-sm font-normal text-muted-foreground">{u}</span>
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              Ideal range:{" "}
-              {sys === "imperial" ? "24–25 in" : "61–64 cm"} — based on
-              Blondel&apos;s formula (1675)
-            </p>
-          </div>
 
-          {/* Code compliance */}
-          {r.codeChecks.length > 0 && (
-            <div className="rounded-[1.25rem] border border-border bg-background p-5 space-y-3">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-semibold text-foreground">Code compliance (IRC)</p>
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-bold ${
-                    r.allCodePass
-                      ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
-                      : "bg-red-500/15 text-red-600 dark:text-red-400"
-                  }`}
-                >
-                  {r.allCodePass ? "✓ All pass" : "✗ Issues found"}
-                </span>
-              </div>
-              <div className="space-y-2">
-                {r.codeChecks.map((c) => (
-                  <div
-                    key={c.label}
-                    className="flex items-center justify-between gap-3 text-sm"
-                  >
-                    <span className="flex items-center gap-2 text-muted-foreground">
-                      <span
-                        className={`inline-block h-2 w-2 rounded-full flex-shrink-0 ${
-                          c.pass ? "bg-emerald-500" : "bg-red-500"
-                        }`}
-                      />
-                      {c.label}
-                    </span>
-                    <span className="flex items-center gap-2 text-right">
-                      <span className="font-semibold tabular-nums text-foreground">
-                        {c.value}
-                      </span>
-                      <span className="text-xs text-muted-foreground/60">{c.limit}</span>
-                    </span>
+            <div className="p-8 rounded-[2.5rem] bg-muted/5 border border-border space-y-6">
+               <div className="flex items-center justify-between">
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground flex items-center gap-2 text-balance">
+                    <Shield className="w-4 h-4 text-primary" /> IBC/IRC Compliance Guard
+                  </h4>
+                  <div className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${results.isRiseSafe && results.isTreadSafe ? "bg-green-500/10 text-green-600" : "bg-destructive/10 text-destructive"}`}>
+                     {results.isRiseSafe && results.isTreadSafe ? "Compliant" : "Issue Detected"}
                   </div>
-                ))}
-              </div>
+               </div>
+               <div className="grid sm:grid-cols-2 gap-4">
+                  <ComplianceCard label="Riser Height" status={results.isRiseSafe} value={`${results.actualRise.toFixed(2)}"`} info="Max 7.75\" />
+                  <ComplianceCard label="Tread Depth" status={results.isTreadSafe} value={`${treadDepth}"`} info="Min 10\" />
+                  <ComplianceCard label="Stair Angle" status={results.isAngleSafe} value={`${results.stairAngle.toFixed(1)}°`} info="30°-37° ideal" />
+                  <ComplianceCard label="Rule of 25" status={results.isRuleOf25Safe} value={results.blondel.toFixed(1)} info="2R + 1T (24-25)" />
+               </div>
             </div>
-          )}
+          </div>
         </div>
 
-        {/* ── Right: results ── */}
-        <aside className="space-y-4">
-
-          {/* Result cards */}
-          <div className="grid grid-cols-2 gap-3">
-            <ResultCard
-              icon="🪜"
-              label="Risers"
-              value={r.stepCount}
-              sub={`${r.treadCount} treads`}
-            />
-            <ResultCard
-              icon="📐"
-              label="Angle"
-              value={`${r.angle.toFixed(1)}°`}
-              sub="staircase pitch"
-            />
-            <ResultCard
-              icon="↕"
-              label="Actual Rise"
-              value={`${r.actualRise.toFixed(2)} ${u}`}
-              sub="per step"
-            />
-            <ResultCard
-              icon="↔"
-              label="Total Run"
-              value={`${r.totalRun.toFixed(1)} ${u}`}
-              sub="horizontal footprint"
-            />
+        {/* Results Sidebar */}
+        <div className="p-6 sm:p-10 bg-muted/10 space-y-10 group">
+          <div className="space-y-6">
+             <h3 className="text-sm font-black uppercase tracking-widest text-muted-foreground px-2">Blueprint Analysis</h3>
+             
+             <div className="aspect-square p-8 rounded-[3rem] bg-background border border-border shadow-inner relative flex flex-col justify-end overflow-hidden group-hover:shadow-xl transition-all">
+                <div className="absolute top-6 left-6 text-[10px] font-black uppercase tracking-widest text-muted-foreground/40 italic">
+                  Visual Projection
+                </div>
+                <StairVisualizer risers={results.numRisers} rise={results.actualRise} run={treadDepth} />
+                <div className="mt-8 flex justify-between items-end border-t border-border pt-4">
+                   <div className="space-y-1">
+                      <span className="text-[10px] font-black uppercase text-muted-foreground">Steps</span>
+                      <p className="text-2xl font-black italic tracking-tighter text-foreground">{results.numRisers} Risers</p>
+                   </div>
+                   <div className="text-right space-y-1">
+                      <span className="text-[10px] font-black uppercase text-muted-foreground">Stringer</span>
+                      <p className="text-2xl font-black italic tracking-tighter text-primary">{Math.ceil(results.stringerLength / 12)}' Board</p>
+                   </div>
+                </div>
+             </div>
           </div>
 
-          {/* Detailed breakdown */}
-          <div className="rounded-[1.5rem] border border-border bg-background p-5 space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Dimensions
-            </p>
-            <div className="space-y-2.5">
-              <Row label="Total rise" value={`${inputs.totalRise} ${u}`} />
-              <Row label="Step count (risers)" value={String(r.stepCount)} />
-              <Row label="Tread count" value={String(r.treadCount)} />
-              <Row label="Actual rise / step" value={`${r.actualRise.toFixed(3)} ${u}`} />
-              <Row label="Tread depth (run)" value={`${r.actualRun} ${u}`} />
-              <Row label="Nosing overhang" value={`${inputs.nosing} ${u}`} />
-              <div className="!my-3 border-t border-border" />
-              <Row label="Total horizontal run" value={`${r.totalRun.toFixed(2)} ${u}`} />
-              <Row
-                label="Stringer length"
-                value={`${r.stringerLength.toFixed(2)} ${u}`}
-              />
-              <Row label="Stringer angle" value={`${r.angle.toFixed(2)}°`} />
-            </div>
+          <div className="space-y-6">
+             <ResultRow label="Total Stair Run" value={results.totalRun.toFixed(1)} unit="inches" />
+             <ResultRow label="Stringer Length" value={results.stringerLength.toFixed(1)} unit="inches" />
+             <ResultRow label="Angle of Incline" value={results.stairAngle.toFixed(1)} unit="degrees" />
           </div>
 
-          {/* Lumber estimate */}
-          <div className="rounded-[1.5rem] border border-border bg-background p-5 space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Lumber estimate
-            </p>
-            <Row
-              label={`Stringer boards (×${inputs.stringerCount})`}
-              value={`${(r.stringerBoardLength * inputs.stringerCount).toFixed(0)} ${u} total`}
-            />
-            <Row
-              label="Each stringer board"
-              value={`${r.stringerBoardLength.toFixed(1)} ${u}`}
-            />
-            <Row
-              label={`Tread boards (${r.treadCount} × ${inputs.stairWidth} ${u})`}
-              value={`${r.treadLumberLength.toFixed(0)} ${u} total`}
-            />
-            <p className="text-xs text-muted-foreground/70 leading-5">
-              Stringer length includes a 10% cut/waste margin.
-            </p>
+          <div className="pt-4 border-t border-border space-y-6">
+             <button 
+                onClick={exportPDF}
+                className="w-full py-5 rounded-3xl bg-primary text-primary-foreground font-black uppercase tracking-[0.2em] shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3"
+             >
+                <Download className="w-5 h-5" /> Download Blueprint
+             </button>
+             <p className="text-[10px] text-muted-foreground text-center italic leading-relaxed opacity-60">
+               *Calculations based on stringer points. Verify with local building codes before cutting material.
+             </p>
           </div>
-
-          {/* Tip */}
-          <div className="rounded-[1.25rem] border border-primary/15 bg-primary/5 p-4">
-            <p className="text-xs leading-5 text-primary-soft-foreground">
-              💡 <strong>Tip:</strong> The ideal staircase angle is
-              30°–37°. Below 30° takes too much floor space; above 37° feels
-              steep and may fail code.
-            </p>
-          </div>
-        </aside>
+        </div>
       </div>
     </section>
+  );
+}
+
+function InputBlock({ label, value, unit, onChange }: { label: string, value: number, unit: string, onChange: (v: number) => void }) {
+  return (
+    <div className="space-y-3">
+      <span className="text-[10px] font-black uppercase text-muted-foreground px-1 tracking-tight">{label}</span>
+      <div className="relative group">
+         <input 
+           type="number" value={value} step={0.1} onChange={(e) => onChange(Number(e.target.value))}
+           className="w-full bg-muted/10 border border-border rounded-2xl px-5 py-3.5 font-black text-sm outline-none focus:border-primary/40 focus:bg-background transition-all"
+         />
+         <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[10px] font-black uppercase text-muted-foreground opacity-30">{unit}</span>
+      </div>
+    </div>
+  );
+}
+
+function ComplianceCard({ label, status, value, info }: { label: string, status: boolean, value: string | number, info: string }) {
+  return (
+    <div className={`p-4 rounded-2xl border transition-all ${status ? "bg-background border-border" : "bg-destructive/5 border-destructive/20"}`}>
+       <div className="flex items-center justify-between mb-1">
+          <span className="text-[8px] font-black uppercase text-muted-foreground">{label}</span>
+          {!status && <AlertTriangle className="w-3 h-3 text-destructive" />}
+       </div>
+       <div className="flex items-baseline gap-2">
+          <span className={`text-sm font-black ${status ? "text-foreground" : "text-destructive"}`}>{value}</span>
+          <span className="text-[8px] font-bold text-muted-foreground opacity-50">{info}</span>
+       </div>
+    </div>
+  );
+}
+
+function ResultRow({ label, value, unit }: { label: string, value: string | number, unit: string }) {
+  return (
+    <div className="flex items-center justify-between px-2">
+       <span className="text-[10px] font-black uppercase text-muted-foreground tracking-widest">{label}</span>
+       <div className="flex items-baseline gap-1">
+          <span className="font-black italic text-foreground">{value}</span>
+          <span className="text-[8px] font-black uppercase text-muted-foreground">{unit}</span>
+       </div>
+    </div>
+  );
+}
+
+function StairVisualizer({ risers, rise, run }: { risers: number, rise: number, run: number }) {
+  // SVG drawing of the steps
+  const scale = 150 / (risers * Math.max(rise, run / 2));
+  
+  return (
+    <svg viewBox="0 0 200 200" className="w-full h-full opacity-80">
+       <g fill="none" stroke="currentColor" strokeWidth="2" className="text-primary">
+          {Array.from({ length: Math.min(risers, 10) }).map((_, i) => (
+            <path 
+              key={i}
+              d={`M ${10 + i * (run * scale)} ${190 - i * (rise * scale)} 
+                 L ${10 + (i + 1) * (run * scale)} ${190 - i * (rise * scale)} 
+                 L ${10 + (i + 1) * (run * scale)} ${190 - (i + 1) * (rise * scale)}`}
+              className="drop-shadow-sm"
+            />
+          ))}
+          {/* Floor indications */}
+          <line x1="0" y1="190" x2="200" y2="190" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="text-muted-foreground/30" />
+          <text x="10" y="185" className="text-[8px] font-black uppercase fill-muted-foreground/50">Lower Floor</text>
+       </g>
+    </svg>
   );
 }

@@ -122,60 +122,91 @@ export default function FenceMaterialCalculatorPage() {
 
       <FenceMaterialCalculator />
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">How fence material quantities are calculated</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            A wooden fence has three main structural components: posts, rails, and pickets (or boards). Each is calculated differently based on the fence dimensions and your chosen spacing.
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 bg-white/40 backdrop-blur-3xl shadow-2vw">
+        <div className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:tracking-tighter prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-li:text-muted-foreground">
+          <h2 className="text-4xl text-foreground italic">The Architect's Perimeter: A Deep Dive into Fencing Materials</h2>
+          <p>
+            A fence is more than a boundary; it is a structural project that must withstand wind loads, soil movement, and the relentless elements. Calculating the materials for a fence requires a breakdown of four distinct systems: the Foundation (Concrete), the Core Support (Posts), the Framing (Rails), and the Facade (Pickets). Missing a single bag of concrete or a few dozen nails can halt a project for hours.
           </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            <strong>Posts</strong> are calculated by dividing the total fence length by the post spacing and adding 1 for the terminal post. For a 100-foot fence with 8-foot post spacing: (100 / 8) + 1 = 13.5, rounded up to 14 posts. Corner posts, gate posts, and end posts are counted separately.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            <strong>Rails</strong> run horizontally between posts. The number of rails per span depends on fence height — typically 2 rails for fences up to 4 feet, 3 rails for 5–6 foot fences. Total rails = number of spans × rails per span. Rails are typically sold in 8-foot lengths.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            <strong>Pickets</strong> are calculated by dividing the total fence length by the picket spacing (picket width + gap between pickets). A 3.5-inch picket with a 0.5-inch gap has a 4-inch spacing. For 100 feet: (100 × 12) / 4 = 300 pickets. Always add 10% for waste, cutting, and defects.
+          
+          <h3 className="text-foreground">01. The Foundation: Beyond the Surface</h3>
+          <p>
+            The longevity of your fence starts underground. In many climates, the <strong>Frost Line</strong> is your biggest enemy. If you set your posts only 2 feet deep but the frost line is 3 feet, the freezing ground will "heave" your posts upward, causing your fence to lean or crack within three seasons.
+            <br/><br/>
+            Professionals follow the "1/3 Rule": At least 1/3 of the total post length should be buried. For a 6-foot fence, you need an 8-foot or 9-foot post, with 2-3 feet of it encased in concrete.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Choosing the right post spacing</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Post spacing is one of the most important decisions in fence construction. Wider spacing uses fewer posts and reduces cost, but increases the span that rails must bridge, which can cause sagging over time. Narrower spacing is stronger but more expensive.
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">6-foot spacing:</strong> The most common for residential privacy fences. Provides good structural support for 6-foot tall fences.</li>
-            <li><strong className="text-foreground">8-foot spacing:</strong> Suitable for shorter fences (4 feet or less) or when using heavier lumber for rails. Reduces post count by 25% compared to 6-foot spacing.</li>
-            <li><strong className="text-foreground">4-foot spacing:</strong> Used for tall fences (7–8 feet), fences in high-wind areas, or when extra rigidity is needed.</li>
+          <h3 className="text-foreground">02. Framing & Spanning: Avoiding the "Sway"</h3>
+          <p>The "Rail" system is what provides lateral stability. Choosing the right number of rails is dependent on height:</p>
+          <ul>
+            <li><strong>4 Ft Fence:</strong> 2 horizontal rails (Top and Bottom).</li>
+            <li><strong>6 Ft Privacy Fence:</strong> 3 horizontal rails. Without the middle rail, your pickets will warp and "cup" toward the sun within 12 months.</li>
+            <li><strong>8 Ft Fence:</strong> 4 horizontal rails. Wind load on an 8-foot tall "wall" is immense; the extra rail distributes the pressure evenly across the posts.</li>
           </ul>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Post depth and concrete requirements</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            A general rule for post depth is one-third of the total post length, or a minimum of 2 feet below the frost line in cold climates. For a 6-foot fence, posts should be 9 feet long (6 feet above ground + 3 feet below). In areas with frost, posts must extend below the frost line to prevent heaving — this can be 3–4 feet in northern climates.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Each post hole should be approximately 3 times the post diameter in width. For a 4×4 post (3.5 inches actual), dig a 10–12 inch diameter hole. Fill with concrete to within 2 inches of the surface, sloping the top away from the post to shed water.
-          </p>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Wood species and durability</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Not all wood is equally suited for outdoor fence construction. Ground contact and moisture exposure accelerate decay in untreated wood. The most common options:
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Pressure-treated pine:</strong> The most affordable option. Treated with preservatives to resist rot and insects. Suitable for posts and rails. Can be painted or stained.</li>
-            <li><strong className="text-foreground">Cedar:</strong> Naturally rot-resistant and insect-repellent. More expensive than treated pine but attractive and long-lasting. Common for pickets and boards.</li>
-            <li><strong className="text-foreground">Redwood:</strong> Premium option with excellent natural durability. Expensive and less widely available outside the western US.</li>
-            <li><strong className="text-foreground">Composite:</strong> Wood-plastic composite materials require no painting or staining and resist rot and insects. Higher upfront cost but lower maintenance over time.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-          <div className="mt-6 space-y-4">
-            {faq.map((item) => (
-              <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-                <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-              </article>
-            ))}
+          <div className="my-16 p-10 bg-foreground text-background rounded-[3rem] shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+             <h3 className="text-primary font-black italic !mt-0">Pro Tip: The Staining "Dry Time" Rule</h3>
+             <p className="opacity-80 leading-relaxed mb-0">
+               If you use pressure-treated (PT) lumber, **do not stain it immediately.** Fresh PT wood is saturated with chemical preservatives and water. If you seal it too early, the stain will peel within weeks. Wait for the "Bead Test": Splash water on the wood. If it soaks in, the wood is dry enough to stain. This usually takes 2-4 months of outdoor exposure.
+             </p>
           </div>
+
+          <h3 className="text-foreground">03. Property Lines & Legal Setbacks</h3>
+          <p>
+            Before buying a single post, you must know your <strong>Setback Requirements</strong>. Many municipalities require fences to be placed 2-6 inches inside your property line. 
+            <br/><br/>
+            Additionally, the "Good side" rule is common law in many areas: the finished, attractive side of the fence must face your neighbors, while the structural rails and posts face your own property. Our calculator helps you account for the extra pickets needed for "Shadowbox" or "Double-Sided" fences where both sides look finished.
+          </p>
+
+          <h3 className="text-foreground">04. Material Quality & Fasteners</h3>
+          <p>
+             Choosing the wrong nails is why most fences fail. Using "Standard" nails with pressure-treated wood causes a chemical reaction that eats the metal, leading to black streaks and falling boards.
+             <ul>
+               <li><strong>Hot-Dipped Galvanized:</strong> The minimum standard for exterior fencing.</li>
+               <li><strong>Stainless Steel:</strong> Mandatory if you live within 5 miles of the ocean to prevent salt-air corrosion.</li>
+               <li><strong>Screws vs. Nails:</strong> While nails are faster, exterior-grade screws prevent pickets from "popping" off as the wood expands and contracts seasonally.</li>
+             </ul>
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Grid */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 relative overflow-hidden bg-muted/5">
+        <h2 className="text-4xl font-black tracking-tighter text-foreground text-center italic">Fence Planning FAQ</h2>
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-balance">
+          {[
+            { 
+              question: "How much concrete do I need per post?", 
+              answer: "For a standard 4x4 post, expect to use 1.5 to 2 bags (80lb each) of high-strength concrete. This provides a 10-inch diameter base that provides the weight necessary to anchor against high winds." 
+            },
+            { 
+              question: "What is the best wood for a long-lasting fence?", 
+              answer: "Western Red Cedar is the industry gold standard for pickets due to natural oils that resist rot. For posts, Pressure-Treated Pine is preferred as it handles ground contact better than untreated cedar." 
+            },
+            { 
+              question: "How do I calculate for a hilly or sloped yard?", 
+              answer: "You have two choices: 'Racked' (where the fence follows the ground slope) or 'Stepped' (where each section is level but drops down like stairs). Stepped fences require longer posts for the downhill side—calculate for an extra 2 feet of post length." 
+            },
+            {
+              question: "What's the difference between a corner post and a line post?", 
+              answer: "Line posts have rails passing through or attaching to two sides. Corner posts must handle tension from two different directions at a 90-degree angle and usually need a larger concrete footer (3 bags instead of 2)."
+            },
+            {
+              question: "How many pickets should I buy for a shadowbox fence?",
+              answer: "A shadowbox fence (also called 'Board on Board') uses alternating pickets on both sides. You need approximately 70% more pickets than a standard privacy fence. Our calculator includes a 'Board on Board' toggle for this exact reason."
+            }
+          ].map((item) => (
+            <article key={item.question} className="p-8 rounded-[2.5rem] border border-border bg-background hover:shadow-2xl transition-all flex flex-col justify-between group">
+              <div>
+                <h3 className="text-lg font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{item.question}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-[10px] font-black uppercase text-primary tracking-widest">
+                 <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Expert Answer
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -1,67 +1,77 @@
 export type UnitSystem = "imperial" | "metric";
+export type WallpaperStandard = "US Single" | "US Double" | "European (52cm)" | "Wide Width (70cm)";
 
 export interface WallpaperInputs {
   system: UnitSystem;
   roomPerimeter: number;
   roomHeight: number;
-  
   rollWidth: number;
   rollLength: number;
-  
-  patternRepeat: number; // e.g. 18 inch repeat
+  patternRepeat: number; 
+  doors: number;
+  windows: number;
+  pricePerRoll: number;
+  wastePercent: number;
 }
 
 export interface WallpaperResult {
   wallArea: number;
-  singleRollArea: number;
+  netWallArea: number;
+  usableRollArea: number;
   stripsPerRoll: number;
   totalStripsNeeded: number;
   rollsNeeded: number;
+  estimatedCost: number;
 }
 
 export function calculateWallpaper(inputs: WallpaperInputs): WallpaperResult {
-  // A strict professional method vs a simple area method.
-  // The professional method calculates how many usable strips you get per roll,
-  // and how many strips it takes to cover the perimeter.
-
-  let wallArea = inputs.roomPerimeter * inputs.roomHeight;
+  const wallArea = inputs.roomPerimeter * inputs.roomHeight;
   
-  let rollWidthConverted = inputs.rollWidth;
-  let patternRepeatConverted = inputs.patternRepeat;
+  // Deductions
+  const doorArea = inputs.system === "imperial" ? inputs.doors * 21 : inputs.doors * 2;
+  const windowArea = inputs.system === "imperial" ? inputs.windows * 15 : inputs.windows * 1.4;
+  const netWallArea = Math.max(0, wallArea - doorArea - windowArea);
+
+  let rollWidFT = 0;
+  let repeatFT = 0;
   
   if (inputs.system === "imperial") {
-    // Width & Repeat are likely given in INCHES. Perimeter, Height, and RollLength in FEET.
-    rollWidthConverted = inputs.rollWidth / 12; // converting inches to feet
-    patternRepeatConverted = inputs.patternRepeat / 12; 
+    rollWidFT = inputs.rollWidth / 12;
+    repeatFT = inputs.patternRepeat / 12; 
   } else {
-    // Width & Repeat are likely given in CM. Perimeter, Height, and RollLength in METERS.
-    rollWidthConverted = inputs.rollWidth / 100;
-    patternRepeatConverted = inputs.patternRepeat / 100;
+    rollWidFT = inputs.rollWidth / 100;
+    repeatFT = inputs.patternRepeat / 100;
   }
 
-  const singleRollArea = rollWidthConverted * inputs.rollLength;
+  // Number of strips to cover perimeter
+  const totalStripsNeeded = rollWidFT > 0 ? Math.ceil(inputs.roomPerimeter / rollWidFT) : 0;
 
-  // Total width to cover = perimeter. 
-  // Strips needed to cover perimeter = ceil(Perimeter / Strip Width)
-  const totalStripsNeeded = rollWidthConverted > 0 ? Math.ceil(inputs.roomPerimeter / rollWidthConverted) : 0;
+  // Length needed for one strip including pattern alignment
+  const lengthPerStrip = inputs.roomHeight + repeatFT;
 
-  // Length of one strip = Room Height + Pattern Repeat (to allow alignment)
-  const lengthPerStrip = inputs.roomHeight + patternRepeatConverted;
-
-  // How many such strips can we cut from ONE roll?
+  // How many strips per roll?
   const stripsPerRoll = lengthPerStrip > 0 ? Math.floor(inputs.rollLength / lengthPerStrip) : 0;
 
-  // Total rolls needed
-  let rollsNeeded = 0;
-  if(stripsPerRoll > 0) {
-    rollsNeeded = Math.ceil(totalStripsNeeded / stripsPerRoll);
-  }
+  let baseRolls = stripsPerRoll > 0 ? Math.ceil(totalStripsNeeded / stripsPerRoll) : 0;
+  
+  // Add safety waste factor
+  const wasteMultiplier = 1 + (inputs.wastePercent / 100);
+  const rollsNeeded = Math.ceil(baseRolls * wasteMultiplier);
 
   return {
     wallArea,
-    singleRollArea,
+    netWallArea,
+    usableRollArea: stripsPerRoll * rollWidFT * inputs.roomHeight,
     stripsPerRoll,
     totalStripsNeeded,
-    rollsNeeded
+    rollsNeeded,
+    estimatedCost: rollsNeeded * inputs.pricePerRoll,
   };
 }
+
+export const ROLL_PRESETS: Record<WallpaperStandard, { w: number, l: number }> = {
+  "US Single": { w: 27, l: 13.5 },
+  "US Double": { w: 27, l: 27 },
+  "European (52cm)": { w: 20.5, l: 33 },
+  "Wide Width (70cm)": { w: 27.5, l: 16.5 },
+};

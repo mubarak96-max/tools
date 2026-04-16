@@ -63,62 +63,120 @@ export default function GravelMulchVolumeCalculatorPage() {
 
       <GravelMulchVolumeCalculator />
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Why weight matters as much as volume</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            While volume (cubic yards or cubic metres) tells you how much space the material will fill, most quarries and landscaping suppliers sell bulk materials by weight (tons). Knowing the weight also prevents overloading your vehicle — a standard pickup truck has a payload capacity of 1,000–2,000 lbs, while a cubic yard of gravel weighs approximately 2,700 lbs. That is more than most trucks can safely carry in a single load.
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 bg-white/40 backdrop-blur-3xl shadow-2vw">
+        <div className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:tracking-tighter prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-li:text-muted-foreground">
+          <h2 className="text-4xl text-foreground italic">Beyond the Surface: The Professional's Guide to Landscaping Volume</h2>
+          <p>
+            Whether you are installing a gravel driveway, refreshing your garden's mulch, or leveling a yard with topsoil, the most common mistake is underestimating the volume needed for settlement and compaction. Buying in bulk is significantly cheaper than buying by the bag, but it requires precision calculation to avoid the high cost of a "short-load" delivery fee for a second trip.
           </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The volume-to-weight conversion uses bulk density, which varies significantly between materials and is affected by moisture content. Wet gravel can weigh 10–15% more than dry gravel. Always ask your supplier for the specific density of the material you are ordering.
+          
+          <h3 className="text-foreground">01. Volume vs. Weight: Why Quarries Sell by the Ton</h3>
+          <p>
+            While we think in <strong>Cubic Yards</strong> (volume), most quarries sell bulk material by <strong>Weight (Tons)</strong>. This is because their loader scales measure weight in real-time. 
+            <br/><br/>
+            One cubic yard of gravel typically weighs about 1.4 tons (2,800 lbs). However, a cubic yard of mulch only weighs about 0.4 tons (800 lbs). Our calculator bridging this gap by using standard material density constants, ensuring you know exactly what your delivery truck will be carrying.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Standard material densities</h2>
-          <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Pea gravel / crushed stone:</strong> 1.35–1.45 tons per cubic yard (1,800–1,950 kg/m³). Dense and heavy. Commonly used for driveways, drainage, and decorative ground cover.</li>
-            <li><strong className="text-foreground">River rock / decorative stone:</strong> 1.35–1.50 tons per cubic yard. Similar to crushed stone but rounded. Used for landscaping beds and water features.</li>
-            <li><strong className="text-foreground">Topsoil:</strong> 1.00–1.20 tons per cubic yard (1,350–1,620 kg/m³). Density varies with moisture and organic content. Dry topsoil is lighter; wet topsoil is heavier.</li>
-            <li><strong className="text-foreground">Fill dirt / subsoil:</strong> 1.10–1.30 tons per cubic yard. Denser than topsoil due to lower organic content and finer particle size.</li>
-            <li><strong className="text-foreground">Wood mulch (shredded):</strong> 0.35–0.45 tons per cubic yard (470–610 kg/m³). Very light. A cubic yard covers approximately 100 sq ft at 3-inch depth.</li>
-            <li><strong className="text-foreground">Bark mulch (nuggets):</strong> 0.40–0.50 tons per cubic yard. Slightly denser than shredded mulch. Lasts longer but allows more weed growth.</li>
-            <li><strong className="text-foreground">Sand:</strong> 1.30–1.50 tons per cubic yard. Used for levelling, drainage, and as a base for pavers.</li>
+          <h3 className="text-foreground">02. The Compaction Factor: The "Hidden" 20%</h3>
+          <p>Loose material occupies more space than settled material. Professionals always add a compaction factor based on the application:</p>
+          <ul>
+            <li><strong>Driveway Gravel:</strong> Needs 20-30% extra. As cars drive over the stones, they lock together and the "air voids" disappear, effectively lowering the surface level.</li>
+            <li><strong>Garden Mulch:</strong> Needs 10-15% extra. While it doesn't compact under weight, it settles quickly after the first rain.</li>
+            <li><strong>Topsoil for Lawns:</strong> Needs 25% extra. Soil contains air pockets that vanish as the ground is watered or rolled before seeding.</li>
           </ul>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Recommended depths by application</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The depth of material you need depends on its purpose:
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Decorative gravel (pathways, beds):</strong> 2–3 inches (5–7.5 cm). Enough to suppress weeds and provide visual coverage.</li>
-            <li><strong className="text-foreground">Driveway gravel:</strong> 4–6 inches (10–15 cm) for a new driveway. 2–3 inches for a top-up layer.</li>
-            <li><strong className="text-foreground">Drainage gravel:</strong> 6–12 inches (15–30 cm) depending on drainage requirements.</li>
-            <li><strong className="text-foreground">Mulch (weed suppression):</strong> 2–3 inches (5–7.5 cm). More than 4 inches can prevent water penetration and cause root problems.</li>
-            <li><strong className="text-foreground">Topsoil (lawn or garden):</strong> 4–6 inches (10–15 cm) for new lawns; 6–12 inches for vegetable gardens.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Compaction factor</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Loose materials compact when loaded, transported, and placed. Gravel typically compacts by 15–20% from its loose volume. If you need 10 cubic yards of compacted gravel, order 11.5–12 cubic yards of loose material. Topsoil compacts by 20–30% when settled. Mulch compacts very little (5–10%) as it is already loose.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            For critical applications like driveway bases or structural fill, always account for compaction in your calculations. This calculator provides loose volume — add the appropriate compaction factor for your material and application.
-          </p>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-          <div className="mt-6 space-y-4">
-            {[
-              { question: "How many cubic yards in a ton of gravel?", answer: "One ton of gravel is approximately 0.74 cubic yards (1 cubic yard weighs about 1.35 tons). For a quick estimate, divide the number of tons by 1.35 to get cubic yards, or multiply cubic yards by 1.35 to get tons." },
-              { question: "How much does a cubic yard of mulch cover?", answer: "One cubic yard of mulch covers approximately 100 square feet at 3-inch depth, 150 square feet at 2-inch depth, or 75 square feet at 4-inch depth. For most landscaping beds, 2–3 inches is the recommended depth." },
-              { question: "How do I calculate cubic yards from square feet?", answer: "Multiply the area in square feet by the depth in inches, then divide by 324. For example, 500 sq ft at 3 inches deep: (500 × 3) / 324 = 4.63 cubic yards." },
-              { question: "Can I pick up gravel in my truck?", answer: "A standard half-ton pickup can safely carry about 1,000 lbs (0.37 cubic yards of gravel). A three-quarter ton truck can carry about 1,500 lbs (0.55 cubic yards). For larger quantities, arrange delivery or make multiple trips." },
-              { question: "How much does gravel delivery cost?", answer: "Delivery costs vary by location and quantity. Most suppliers charge a flat delivery fee of $50–$150 for local deliveries, with minimum order quantities of 1–5 cubic yards. Bulk orders (10+ yards) often qualify for reduced delivery rates." },
-            ].map((item) => (
-              <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-                <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-              </article>
-            ))}
+          <div className="my-16 p-10 bg-foreground text-background rounded-[3rem] shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+             <h3 className="text-primary font-black italic !mt-0">Pro Tip: Measuring Irregular Shapes</h3>
+             <p className="opacity-80 leading-relaxed mb-0 text-balance">
+               Landscapes are rarely perfect rectangles. To calculate irregular beds:
+               <br/><br/>
+               • **Circles:** Calculate (Radius × Radius × 3.14).
+               <br/>
+               • **Triangles:** Calculate (Base × Height ÷ 2).
+               <br/>
+               • **Kidney Shapes:** Measure the length, then measure the width at 3 different points. Average those widths and treat it like a rectangle.
+             </p>
           </div>
+
+          <h3 className="text-foreground">03. Material Reference & Density Table</h3>
+          <div className="overflow-x-auto my-10 border border-border rounded-3xl bg-muted/5">
+            <table className="w-full text-sm">
+              <thead className="bg-muted/20 text-foreground font-black uppercase text-[10px] tracking-widest text-left">
+                <tr>
+                  <th className="p-6">Material Type</th>
+                  <th className="p-6">Lbs per Yard</th>
+                  <th className="p-6">Tons per Yard</th>
+                  <th className="p-6">Best Use</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border">
+                {[
+                  { name: "Pea Gravel", lbs: "2,800", tons: "1.4", use: "Walkways/Drainage" },
+                  { name: "Crushed Stone", lbs: "2,950", tons: "1.48", use: "Driveway Base" },
+                  { name: "Shredded Mulch", lbs: "800", tons: "0.4", use: "Gardens/Moisture" },
+                  { name: "Screened Topsoil", lbs: "2,200", tons: "1.1", use: "Lawn Leveling" },
+                  { name: "Sharp Sand", lbs: "2,700", tons: "1.35", use: "Paver Base" }
+                ].map((row) => (
+                  <tr key={row.name} className="hover:bg-primary/5 transition-colors">
+                    <td className="p-6 font-bold text-foreground">{row.name}</td>
+                    <td className="p-6 italic">{row.lbs}</td>
+                    <td className="p-6 font-black">{row.tons}</td>
+                    <td className="p-6 text-muted-foreground">{row.use}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h3 className="text-foreground">04. Determining the Right Depth</h3>
+          <p>
+            Correct depth is critical for both function and cost-efficiency:
+            <ul>
+              <li><strong>Weed Suppression (Mulch):</strong> 3 inches is the "goldilocks" zone. Less than 2 inches allows sunlight to hit seeds; more than 4 inches can choke plant roots.</li>
+              <li><strong>Walking Paths (Gravel):</strong> 2 inches of pea gravel is sufficient. Any deeper and your feet will "sink" into the stones, making it difficult to walk or push a stroller.</li>
+              <li><strong>Driveway (Gravel):</strong> 4-6 inches. A new driveway requires a 4-inch base of "Crusher Run" (coarse) and a 2-inch top layer of decorative stone.</li>
+            </ul>
+          </p>
+        </div>
+      </section>
+
+      {/* FAQ Grid */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 relative overflow-hidden bg-muted/5">
+        <h2 className="text-4xl font-black tracking-tighter text-foreground text-center italic">Landscape Estimator FAQ</h2>
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-balance">
+          {[
+            { 
+              question: "How many cubic yards are in a standard dump truck?", 
+              answer: "A standard small dump truck (single axle) typically holds 5-7 cubic yards. A large 'Tri-axle' commercial truck can carry 15-20 yards. Always confirm access for large trucks before ordering." 
+            },
+            { 
+              question: "What's the difference between mulch and compost?", 
+              answer: "Mulch is a protective 'blanket' for the surface (bark, straw, stones). Compost is an organic 'amendment' designed to be mixed into the soil to provide nutrients. You calculate volume for both using the same formula." 
+            },
+            { 
+              question: "Why does my gravel look dusty/dirty when delivered?", 
+              answer: "Quarry gravel (like 57 stone or crusher run) is unwashed and contains 'fines' (rock dust). These fines are actually beneficial for driveways as they help lock the stones together. Rain will wash the dust off decorative stones within a week." 
+            },
+            {
+              question: "Can I put mulch directly over weeds?", 
+              answer: "No. While 3 inches of mulch might slow them down, established weeds will grow right through. For best results, clear the area, apply a pre-emergent herbicide or landscape fabric, then calculate your mulch volume."
+            },
+            {
+              question: "Should I buy by the bag or in bulk?",
+              answer: "Bulk is almost always 40-60% cheaper if you need more than 1 cubic yard. One yard equals 27 bags (1 cubic foot each) or 13.5 large bags (2 cubic feet each). If your calculation says you need more than 25 small bags, order bulk."
+            }
+          ].map((item) => (
+            <article key={item.question} className="p-8 rounded-[2.5rem] border border-border bg-background hover:shadow-2xl transition-all flex flex-col justify-between group">
+              <div>
+                <h3 className="text-lg font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{item.question}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-[10px] font-black uppercase text-primary tracking-widest">
+                 <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Expert Answer
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -63,64 +63,104 @@ export default function WallpaperCalculatorPage() {
 
       <WallpaperCalculator />
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Why pattern repeat is the most important variable</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Wallpaper is hung in vertical strips called drops. If your wallpaper has a repeating pattern, each strip must be cut so the pattern aligns perfectly with the adjacent strip. This alignment requires trimming material from the top of each roll, and that trimmed material is wasted. The larger the pattern repeat, the more waste per strip.
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 bg-white/40 backdrop-blur-3xl shadow-2vw">
+        <div className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:tracking-tighter prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-li:text-muted-foreground">
+          <h2 className="text-4xl text-foreground italic">The Science of Wallpaper Calculation: Avoiding the "Short One Roll" Nightmare</h2>
+          <p>
+            Wallpapering is one of the most transformative interior design projects you can undertake, yet it is often the most frustrating due to poor planning. Ordering too little wallpaper can be a catastrophe, as separate manufacturing batches (dye lots) often have subtle color variations. Ordering too much is a waste of money. 
           </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            For a straight match pattern with a 12-inch repeat, you waste up to 12 inches per strip. For a drop match with a 24-inch repeat, you can waste up to 24 inches per strip. On a room with 10 strips, a 24-inch drop match wastes up to 20 feet of wallpaper — potentially an entire roll.
+          
+          <h3 className="text-foreground">01. Why Pattern Repeat is Your Biggest Variable</h3>
+          <p>
+            Wallpaper is hung in vertical strips called "drops." If your wallpaper has a repeating pattern, every strip must be shifted upward or downward to align perfectly with the adjacent piece. This shift creates <strong>"pattern waste."</strong>
+            <br/><br/>
+            The larger the pattern repeat (the vertical distance before the design starts over), the more waste you will generate per strip. A 24-inch repeat on a 9-foot wall might result in 15-20% material loss. Our calculator accounts for this by calculating "usable height" rather than just raw area.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Types of pattern match</h2>
-          <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">Free match (no repeat):</strong> Solid colours, textures, and some abstract designs. No waste from pattern matching. The most economical option.</li>
-            <li><strong className="text-foreground">Straight match:</strong> The pattern repeats horizontally at the same height across all strips. Each strip starts at the same point in the pattern. Waste equals up to one full repeat per strip.</li>
-            <li><strong className="text-foreground">Half-drop match:</strong> The pattern drops by half the repeat height on alternating strips. Creates a diagonal visual effect. Waste can equal up to one full repeat per strip, and you need to cut from two different points in the pattern alternately.</li>
-            <li><strong className="text-foreground">Random match:</strong> The pattern is designed to be hung without alignment. Rare in modern wallpaper but common in some grasscloth and natural fibre wallcoverings.</li>
+          <h3 className="text-foreground">02. Deciphering Pattern Match Types</h3>
+          <p>The label on your roll will indicate one of three match types. Choosing the wrong one in your calculation will lead to an incorrect order:</p>
+          <ul>
+            <li><strong>Free Match (No Repeat):</strong> Typically textures or solid colors. The easiest to calculate as no alignment is needed.</li>
+            <li><strong>Straight Match:</strong> The pattern repeats horizontally at the same height across every strip. Each strip starts at the same point in the cycle.</li>
+            <li><strong>Drop Match / Half-Drop:</strong> To create a larger, more complex visual, the pattern alternates. Strip 1 and Strip 3 match, while Strip 2 is shifted down by half the repeat length. This requires the most careful calculation.</li>
           </ul>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Standard roll sizes and coverage</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Wallpaper roll sizes vary by country and manufacturer. Common standards:
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">US single roll:</strong> Typically 27 inches wide × 13.5 feet long = 30.4 sq ft. Often sold as double rolls (60.8 sq ft).</li>
-            <li><strong className="text-foreground">European roll:</strong> Typically 20.5 inches (52 cm) wide × 33 feet (10 m) long = 56.4 sq ft (5.25 m²).</li>
-            <li><strong className="text-foreground">UK roll:</strong> Typically 20.5 inches (52 cm) wide × 33 feet (10 m) long, same as European standard.</li>
-          </ul>
-          <p className="mt-4 text-base leading-7 text-muted-foreground">
-            Always verify the exact dimensions of your chosen wallpaper before ordering. Some designer wallpapers come in non-standard widths (24", 27", 36") and lengths. This calculator uses the specific dimensions you enter, bypassing standard size assumptions entirely.
-          </p>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How to measure your room accurately</h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Accurate room measurement is critical for ordering the right amount of wallpaper. Follow these steps:
-          </p>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Measure the perimeter of the room (sum of all wall widths) in feet or metres.</li>
-            <li>Measure the ceiling height from floor to ceiling.</li>
-            <li>Measure the width and height of all doors and windows. Subtract these from the total wall area.</li>
-            <li>For rooms with sloped ceilings (attics, dormers), measure the average height.</li>
-            <li>Add 10–15% to your final roll count as a safety margin for mistakes, future repairs, and dye lot matching.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-          <div className="mt-6 space-y-4">
-            {[
-              { question: "How many rolls of wallpaper do I need for a 12×12 room?", answer: "A 12×12 room with 8-foot ceilings has approximately 384 sq ft of wall area. Subtract doors (typically 21 sq ft each) and windows (typically 15 sq ft each). For a room with one door and two windows, net area is about 333 sq ft. At 30 sq ft per single roll with 10% waste, you need approximately 12 single rolls (6 double rolls)." },
-              { question: "Should I order extra wallpaper?", answer: "Always order 10–15% extra. Wallpaper is produced in batches (dye lots), and colours can vary slightly between batches. If you run short and need to reorder, the new batch may not match perfectly. Extra rolls are also useful for future repairs." },
-              { question: "Can I wallpaper over existing wallpaper?", answer: "It is generally not recommended. Old wallpaper can bubble, peel, or show through the new layer. The added weight can also cause both layers to fall. Remove existing wallpaper before applying new wallpaper for the best results." },
-              { question: "What is the difference between wallpaper and wallcovering?", answer: "Wallpaper traditionally refers to paper-based products. Wallcovering is a broader term that includes vinyl, fabric, grasscloth, and other materials. Vinyl wallcoverings are more durable and washable than paper, making them popular for kitchens and bathrooms." },
-              { question: "How do I calculate wallpaper for a ceiling?", answer: "Measure the ceiling area (length × width). Divide by the usable area per roll (accounting for pattern repeat waste). Ceiling installation is more challenging than walls — consider adding 20% waste allowance for the difficulty of aligning patterns overhead." },
-            ].map((item) => (
-              <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-                <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-              </article>
-            ))}
+          <div className="my-16 p-10 bg-foreground text-background rounded-[3rem] shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+             <h3 className="text-primary font-black italic !mt-0">Pro Secret: The "Batch Match" Rule</h3>
+             <p className="opacity-80 leading-relaxed mb-0">
+               Always check the **Dye Lot Number** or **Run Number** on every roll before you open the plastic. Even the most expensive brands have slight color shifts between production runs. If you realize you are short and order one more roll three weeks later, the new roll may look like a different shade of blue once it dries on your wall. Always order 1 bonus roll to keep in the attic for future repairs.
+             </p>
           </div>
+
+          <h3 className="text-foreground">03. Usable Area vs. Total Area</h3>
+          <p>
+            A standard European/UK roll is usually 20.5 inches wide and 33 feet long (covering roughly 56 sq ft). However, once you account for trimming at the ceiling, the baseboard, and the pattern shift, you rarely get more than 45-50 square feet of <strong>usable coverage</strong> out of that roll. 
+            <br/><br/>
+            Our tool uses a "Drop Count" logic rather than the "Area Method" used by basic calculators. We determine how many full vertical strips you can get out of a single roll. If your wall is 8 feet high and your roll is 33 feet, you can theoretically get 4 strips—but if you have a 12-inch repeat, you might only get 3 strips.
+          </p>
+
+          <h3 className="text-foreground">04. How to Measure Complex Rooms</h3>
+          <p>
+            Don't just measure the floor area. Measure the <strong>Perimeter</strong> (the total distance around all walls).
+            <ul>
+              <li><strong>Windows & Doors:</strong> For standard small windows, don't subtract them from your calculation. The extra wallpaper acts as your safety margin. Only subtract large features like 8-foot sliding glass doors or double entryways.</li>
+              <li><strong>Wait for the Surface:</strong> Ensure your walls are primed with a "wallpaper primer" or "sizer" before installation. This prevents the adhesive from soaking into the drywall and making the paper impossible to adjust.</li>
+            </ul>
+          </p>
+
+          <h3 className="text-foreground">05. Standard Roll Reference Chart</h3>
+          <div className="not-prose grid sm:grid-cols-2 gap-6 my-10">
+             <div className="p-8 rounded-3xl bg-muted/10 border border-border">
+                <span className="text-[10px] font-black uppercase text-primary">Standard US Roll</span>
+                <p className="text-sm font-bold mt-2 text-foreground">27" Wide x 13.5' Long</p>
+                <p className="text-xs text-muted-foreground mt-1">Covers ~30 sq ft total. Usable ~25 sq ft.</p>
+             </div>
+             <div className="p-8 rounded-3xl bg-muted/10 border border-border">
+                <span className="text-[10px] font-black uppercase text-primary">Standard Euro/UK Roll</span>
+                <p className="text-sm font-bold mt-2 text-foreground">20.5" Wide x 33' Long</p>
+                <p className="text-xs text-muted-foreground mt-1">Covers ~56 sq ft total. Usable ~48 sq ft.</p>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Grid */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 relative overflow-hidden bg-muted/5">
+        <h2 className="text-4xl font-black tracking-tighter text-foreground text-center italic">Wallpaper Precision FAQ</h2>
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-balance">
+          {[
+            { 
+              question: "How do I calculate for sloped or vaulted ceilings?", 
+              answer: "Measure the wall at its highest point. It's better to calculate based on the tall section for every strip that touches the slope. You will have more waste, but you guarantee that the pattern continuous perfectly across the angle." 
+            },
+            { 
+              question: "What is 'Sizing' and do I need to include it in cost?", 
+              answer: "Sizing is a primer that makes the wall 'slippery' so you can slide the wallpaper into place to match the pattern. It costs about $15 per gallon and covers 400 sq ft. Absolutely include it for a professional finish." 
+            },
+            { 
+              question: "Can I use 'Peel and Stick' wallpaper with this calculator?", 
+              answer: "Yes. The math for coverage and pattern repeat remains identical. However, peel-and-stick is harder to adjust if you miss a match, so we recommend increasing your waste factor by 5%." 
+            },
+            {
+              question: "How many rolls of wallpaper do I need for a 12×12 room?", 
+              answer: "Assuming 8-foot ceilings and one door: A 12x12 room has 48 linear feet of wall. At 21-inch width, you need 28 drops. If using Euro rolls (33ft), you get 4 drops per roll (if no repeat). 28 / 4 = 7 rolls. Safely order 8."
+            },
+            {
+              question: "What's the difference between a single and double roll?",
+              answer: "This is a common source of confusion in the US. Most wallpaper is *priced* in single rolls but only *sold* in double rolls (one continuous long roll). Our calculator asks for the actual length to avoid this confusion."
+            }
+          ].map((item) => (
+            <article key={item.question} className="p-8 rounded-[2.5rem] border border-border bg-background hover:shadow-2xl transition-all flex flex-col justify-between group">
+              <div>
+                <h3 className="text-lg font-black text-foreground mb-4 leading-tight group-hover:text-primary transition-colors">{item.question}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-[10px] font-black uppercase text-primary tracking-widest">
+                 <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Expert Answer
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 

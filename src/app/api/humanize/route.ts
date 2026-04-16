@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const text = body?.text;
+    const { text, tone, complexity, preserveKeywords } = body;
 
     if (!text || typeof text !== "string") {
       return NextResponse.json({ error: "Missing or invalid text field." }, { status: 400 });
@@ -89,9 +89,9 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: HUMANIZER_MODEL,
-        messages: buildHumanizerPrompt(trimmed),
-        temperature: 0.85,
-        max_tokens: 600,
+        messages: buildHumanizerPrompt(trimmed, tone, complexity, preserveKeywords),
+        temperature: 0.9,
+        max_tokens: 1500,
       }),
     });
 

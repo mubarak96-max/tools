@@ -1,354 +1,248 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import {
-  calculateFenceMaterial,
-  type FenceInputs,
-  type FenceSystem,
-} from "@/lib/tools/fence-material";
+import { 
+  Plus, Minus, Ruler, Download, Layout, 
+  Trash2, Info, ShoppingCart, TrendingUp, Sparkles, Check, Home, Layers,
+  Box, Shield, GripVertical
+} from "lucide-react";
 
-/* ─── tiny helpers ───────────────────────────────────────────────── */
-function Field({
-  label,
-  unit,
-  value,
-  min = 0,
-  step = 1,
-  onChange,
-}: {
-  label: string;
-  unit: string;
-  value: number;
-  min?: number;
-  step?: number;
-  onChange: (v: number) => void;
-}) {
-  return (
-    <label className="space-y-2">
-      <span className="text-sm font-medium text-muted-foreground">{label}</span>
-      <div className="relative">
-        <input
-          type="number"
-          min={min}
-          step={step}
-          value={value === 0 ? "" : value}
-          placeholder="0"
-          onChange={(e) => onChange(Number(e.target.value))}
-          className="w-full rounded-[1rem] border border-border bg-background px-4 py-3 pr-12 text-sm font-medium text-foreground outline-none focus:ring-2 focus:ring-primary"
-        />
-        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
-          {unit}
-        </span>
-      </div>
-    </label>
-  );
-}
+const FENCE_TYPES = [
+  { id: "privacy", name: "Privacy (Solid)", ratio: 1, rails: 3, icon: <Shield className="w-4 h-4" /> },
+  { id: "shadowbox", name: "Shadowbox", ratio: 1.7, rails: 3, icon: <Layers className="w-4 h-4" /> },
+  { id: "picket", name: "Spaced Picket", ratio: 0.8, rails: 2, icon: <GripVertical className="w-4 h-4" /> },
+  { id: "postrail", name: "Post & Rail", ratio: 0.3, rails: 2, icon: <Box className="w-4 h-4" /> },
+];
 
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between gap-4 text-sm">
-      <span className="text-muted-foreground">{label}</span>
-      <span className="font-semibold tabular-nums text-foreground">{value}</span>
-    </div>
-  );
-}
-
-function ResultCard({
-  icon,
-  label,
-  value,
-  sub,
-  accent,
-}: {
-  icon: string;
-  label: string;
-  value: number | string;
-  sub?: string;
-  accent?: boolean;
-}) {
-  return (
-    <div
-      className={`rounded-[1.25rem] border p-5 ${
-        accent
-          ? `border-primary/20 bg-primary/5`
-          : "border-border bg-background"
-      }`}
-    >
-      <p className="mb-1 text-xl">{icon}</p>
-      <p className="text-2xl font-bold tabular-nums text-foreground">{value}</p>
-      <p className="mt-0.5 text-sm font-medium text-muted-foreground">{label}</p>
-      {sub && <p className="mt-1 text-xs text-muted-foreground/70">{sub}</p>}
-    </div>
-  );
-}
-
-/* ─── main component ─────────────────────────────────────────────── */
 export function FenceMaterialCalculator() {
-  const [sys, setSys] = useState<FenceSystem>("imperial");
+  const [length, setLength] = useState(100);
+  const [height, setHeight] = useState(6);
+  const [postSpacing, setPostSpacing] = useState(8);
+  const [picketWidth, setPicketWidth] = useState(5.5);
+  const [picketGap, setPicketGap] = useState(0);
+  const [selectedType, setSelectedType] = useState("privacy");
+  const [pricePerPost, setPricePerPost] = useState(18.00);
+  const [pricePerPicket, setPricePerPicket] = useState(3.50);
+  const [pricePerRail, setPricePerRail] = useState(12.00);
 
-  const [inputs, setInputs] = useState<FenceInputs>({
-    fenceLength: 100,
-    fenceHeight: 6,
-    postSpacing: 8,
-    gateCount: 1,
-    picketWidth: 3.5,
-    picketSpacing: 0.5,
-    wastePct: 10,
-    system: "imperial",
-  });
+  const type = FENCE_TYPES.find(t => t.id === selectedType) || FENCE_TYPES[0];
 
-  const set = (key: keyof FenceInputs, val: number | FenceSystem) =>
-    setInputs((p) => ({ ...p, [key]: val }));
-
-  const switchSys = (s: FenceSystem) => {
-    setSys(s);
-    if (s === "imperial") {
-      setInputs({
-        fenceLength: 100,
-        fenceHeight: 6,
-        postSpacing: 8,
-        gateCount: 1,
-        picketWidth: 3.5,
-        picketSpacing: 0.5,
-        wastePct: 10,
-        system: "imperial",
-      });
-    } else {
-      setInputs({
-        fenceLength: 30,
-        fenceHeight: 1.8,
-        postSpacing: 2.4,
-        gateCount: 1,
-        picketWidth: 9,
-        picketSpacing: 1.5,
-        wastePct: 10,
-        system: "metric",
-      });
+  const results = useMemo(() => {
+    const postCount = Math.ceil(length / postSpacing) + 1;
+    const railsPerSpan = height > 5 ? 3 : 2;
+    const railCount = (postCount - 1) * railsPerSpan;
+    
+    // Picket calculation
+    const picketCoverage = picketWidth + picketGap;
+    let picketCount = 0;
+    if (selectedType !== "postrail") {
+      const lengthInches = length * 12;
+      picketCount = Math.ceil(lengthInches / picketCoverage) * type.ratio;
     }
+
+    const matCost = (postCount * pricePerPost) + (railCount * pricePerRail) + (picketCount * pricePerPicket);
+    const concreteBags = postCount * 1.5;
+
+    return {
+      postCount,
+      railCount: Math.ceil(railCount),
+      picketCount: Math.ceil(picketCount),
+      concreteBags: Math.ceil(concreteBags),
+      materialCost: matCost,
+      totalCost: matCost + (Math.ceil(concreteBags) * 6.00) // $6 per bag concrete
+    };
+  }, [length, height, postSpacing, picketWidth, picketGap, selectedType, pricePerPost, pricePerPicket, pricePerRail, type]);
+
+  const exportPDF = async () => {
+    const { jsPDF } = await import("jspdf/dist/jspdf.es.min.js");
+    const doc = new jsPDF();
+    doc.setFontSize(22);
+    doc.text("Fence Material Shopping List", 20, 30);
+    doc.setFontSize(12);
+    doc.text(`Style: ${type.name}`, 20, 45);
+    doc.text(`Length: ${length}ft | Height: ${height}ft`, 20, 52);
+    doc.text(`-------------------------------------------`, 20, 59);
+    doc.text(`1. Posts (4x4 PT): ${results.postCount}`, 20, 70);
+    doc.text(`2. Rails (2x4 PT): ${results.railCount}`, 20, 77);
+    doc.text(`3. Pickets: ${results.picketCount}`, 20, 84);
+    doc.text(`4. Concrete Bags (80lb): ${results.concreteBags}`, 20, 91);
+    doc.text(`-------------------------------------------`, 20, 98);
+    doc.text(`Estimated Total Cost: $${results.totalCost.toFixed(2)}`, 20, 105);
+    doc.save("fence-material-list.pdf");
   };
 
-  const r = useMemo(() => calculateFenceMaterial(inputs), [inputs]);
-
-  const lenUnit = sys === "imperial" ? "ft" : "m";
-  const dimUnit = sys === "imperial" ? "in" : "cm";
-
-  const railLenFormatted =
-    sys === "imperial"
-      ? `${r.totalRailLength.toFixed(0)} ft`
-      : `${r.totalRailLength.toFixed(1)} m`;
-
   return (
-    <section className="tool-frame p-4 sm:p-6">
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_22rem]">
-
-        {/* ── Left: inputs ── */}
-        <div className="space-y-6">
-
-          {/* Unit toggle */}
-          <div className="inline-flex rounded-[1rem] border border-border bg-card p-1">
-            {(["imperial", "metric"] as FenceSystem[]).map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => switchSys(s)}
-                className={`rounded-[0.75rem] px-5 py-2 text-sm font-semibold transition-colors ${
-                  sys === s
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                }`}
-              >
-                {s === "imperial" ? "Imperial (ft / in)" : "Metric (m / cm)"}
-              </button>
-            ))}
+    <section className="tool-frame p-4 sm:p-8 md:p-12 rounded-[3.5rem] bg-white border border-border/50 shadow-2vw relative overflow-hidden">
+      <div className="grid lg:grid-cols-[1fr_400px] gap-0 border border-border rounded-[3rem] overflow-hidden bg-background shadow-2xl">
+        {/* Workspace */}
+        <div className="p-6 sm:p-10 space-y-10 border-b lg:border-b-0 lg:border-r border-border">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-muted-foreground flex items-center gap-2">
+              <Layout className="w-4 h-4 text-primary" />
+              Dimensions & Spacing
+            </h3>
           </div>
 
-          {/* Input grid */}
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field
-              label="Total Fence Length"
-              unit={lenUnit}
-              value={inputs.fenceLength}
-              min={1}
-              step={sys === "imperial" ? 1 : 0.5}
-              onChange={(v) => set("fenceLength", v)}
-            />
-            <Field
-              label="Fence Height"
-              unit={lenUnit}
-              value={inputs.fenceHeight}
-              min={0.5}
-              step={sys === "imperial" ? 0.5 : 0.1}
-              onChange={(v) => set("fenceHeight", v)}
-            />
-            <Field
-              label="Post Spacing"
-              unit={lenUnit}
-              value={inputs.postSpacing}
-              min={1}
-              step={sys === "imperial" ? 1 : 0.5}
-              onChange={(v) => set("postSpacing", v)}
-            />
-            <Field
-              label="Gate Openings"
-              unit="gates"
-              value={inputs.gateCount}
-              min={0}
-              onChange={(v) => set("gateCount", v)}
-            />
-            <Field
-              label="Picket Width"
-              unit={dimUnit}
-              value={inputs.picketWidth}
-              min={1}
-              step={0.25}
-              onChange={(v) => set("picketWidth", v)}
-            />
-            <Field
-              label="Gap Between Pickets"
-              unit={dimUnit}
-              value={inputs.picketSpacing}
-              min={0}
-              step={0.25}
-              onChange={(v) => set("picketSpacing", v)}
-            />
-          </div>
-
-          {/* Waste slider */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-muted-foreground">
-                Waste &amp; Offcut Buffer
-              </span>
-              <span className="text-sm font-bold text-foreground">
-                {inputs.wastePct}%
-              </span>
+          <div className="grid gap-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+               <InputBlock label="Total Length" value={length} unit="ft" min={1} max={5000} onChange={setLength} />
+               <InputBlock label="Fence Height" value={height} unit="ft" min={1} max={12} onChange={setHeight} />
+               <InputBlock label="Post Spacing" value={postSpacing} unit="ft" min={4} max={12} onChange={setPostSpacing} />
             </div>
-            <input
-              type="range"
-              min={0}
-              max={25}
-              step={5}
-              value={inputs.wastePct}
-              onChange={(e) => set("wastePct", Number(e.target.value))}
-              className="w-full accent-primary"
-            />
-            <div className="flex justify-between text-xs text-muted-foreground/60">
-              <span>0%</span>
-              <span>5%</span>
-              <span>10%</span>
-              <span>15%</span>
-              <span>20%</span>
-              <span>25%</span>
-            </div>
-          </div>
 
-          {/* How it was calculated */}
-          <div className="rounded-[1.25rem] border border-border bg-background p-5 text-sm leading-6 text-muted-foreground space-y-1">
-            <p className="font-semibold text-foreground mb-2">Calculation summary</p>
-            <p>
-              <strong className="text-foreground">{r.sections}</strong> sections
-              × <strong className="text-foreground">{r.railsPerSection}</strong> rails
-              per section (auto-determined from {inputs.fenceHeight} {lenUnit} height)
-            </p>
-            <p>
-              Base posts: {r.sections} sections + 1 end post
-              {inputs.gateCount > 0
-                ? ` + ${inputs.gateCount * 2} gate posts (${inputs.gateCount} × 2)`
-                : ""}
-              {" "}= <strong className="text-foreground">{r.postsBase}</strong>
-            </p>
-            <p>
-              Base pickets: {inputs.fenceLength} {lenUnit} ÷ (
-              {inputs.picketWidth} + {inputs.picketSpacing}) {dimUnit} ={" "}
-              <strong className="text-foreground">{r.picketsBase}</strong>
-            </p>
-            <p>
-              All quantities rounded up and inflated by{" "}
-              <strong className="text-foreground">{inputs.wastePct}%</strong> waste.
-            </p>
+            <div className="pt-10 border-t border-border">
+               <div className="grid sm:grid-cols-2 gap-10">
+                  <div className="space-y-6">
+                     <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Select Fence Style</h4>
+                     <div className="grid grid-cols-2 gap-3">
+                        {FENCE_TYPES.map(t => (
+                          <button 
+                            key={t.id}
+                            onClick={() => setSelectedType(t.id)}
+                            className={`p-4 rounded-2xl border transition-all text-left space-y-2 ${selectedType === t.id ? "bg-foreground text-background border-foreground shadow-lg scale-[1.02]" : "bg-muted/5 border-border hover:border-primary/50 text-muted-foreground"}`}
+                          >
+                            <div className="flex items-center gap-2 text-primary">
+                               {t.icon}
+                               <span className="text-[10px] font-black tracking-widest uppercase">{t.id}</span>
+                            </div>
+                            <p className="text-xs font-bold leading-tight line-clamp-1">{t.name}</p>
+                          </button>
+                        ))}
+                     </div>
+                  </div>
+
+                  {selectedType !== "postrail" && (
+                    <div className="space-y-6">
+                       <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Picket Specifications</h4>
+                       <div className="grid grid-cols-2 gap-6">
+                          <InputBlock label="Picket Width" value={picketWidth} unit="in" min={1} max={10} onChange={setPicketWidth} />
+                          <InputBlock label="Gap Between" value={picketGap} unit="in" min={0} max={6} onChange={setPicketGap} />
+                       </div>
+                    </div>
+                  )}
+               </div>
+            </div>
+
+            <div className="pt-10 border-t border-border space-y-6">
+               <h4 className="text-[10px] font-black uppercase tracking-widest text-muted-foreground px-1">Unit Pricing Adjustment</h4>
+               <div className="grid sm:grid-cols-3 gap-6">
+                  <PriceInput label="Post (ea)" value={pricePerPost} onChange={setPricePerPost} />
+                  <PriceInput label="Rail (ea)" value={pricePerRail} onChange={setPricePerRail} />
+                  <PriceInput label="Picket (ea)" value={pricePerPicket} onChange={setPricePerPicket} />
+               </div>
+            </div>
           </div>
         </div>
 
-        {/* ── Right: results ── */}
-        <aside className="space-y-4">
-          {/* Primary cards */}
-          <div className="grid grid-cols-2 gap-3">
-            <ResultCard icon="🪧" label="Posts" value={r.posts} sub="incl. gate posts" accent />
-            <ResultCard icon="📏" label="Rails" value={r.rails} sub={`${r.railsPerSection} rails/section`} accent />
-            <ResultCard icon="🏗️" label="Pickets" value={r.pickets} sub={`base: ${r.picketsBase}`} accent />
-            <ResultCard
-              icon="📐"
-              label="Rail Lumber"
-              value={railLenFormatted}
-              sub="total linear length"
-              accent
-            />
+        {/* Results Sidebar */}
+        <div className="p-6 sm:p-10 bg-muted/10 space-y-10 group">
+          <div className="space-y-6">
+             <h3 className="text-sm font-black uppercase tracking-widest text-muted-foreground px-2">Material Summary</h3>
+             
+             <div className="p-10 rounded-[3rem] bg-foreground text-background shadow-2xl relative overflow-hidden transition-all group-hover:shadow-primary/20">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+                <span className="text-[10px] font-black uppercase opacity-60 tracking-widest italic">Est. Total Cost</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-5xl font-black italic tracking-tighter">${results.totalCost.toFixed(2)}</span>
+                </div>
+             </div>
+
+             <div className="grid gap-3">
+                <MaterialRow label="Vertical Posts" value={results.postCount} unit="Pieces" icon={<GripVertical className="w-4 h-4" />} />
+                <MaterialRow label="Horizontal Rails" value={results.railCount} unit="Pieces" icon={<Box className="w-4 h-4" />} />
+                <MaterialRow label="Facade Pickets" value={results.picketCount} unit="Boards" icon={<Layers className="w-4 h-4" />} />
+                <MaterialRow label="Concrete Mix" value={results.concreteBags} unit="Bags" icon={<Check className="w-4 h-4" />} />
+             </div>
           </div>
 
-          {/* Detailed breakdown */}
-          <div className="rounded-[1.5rem] border border-border bg-background p-5 space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Breakdown
-            </p>
-            <div className="space-y-2.5">
-              <Row label="Fence sections" value={String(r.sections)} />
-              <Row label="Rails per section" value={String(r.railsPerSection)} />
-              <Row label="Gate post pairs" value={String(inputs.gateCount)} />
-              <div className="!my-3 border-t border-border" />
-              <Row label="Posts (base)" value={String(r.postsBase)} />
-              <Row label="Rails (base)" value={String(r.railsBase)} />
-              <Row label="Pickets (base)" value={String(r.picketsBase)} />
-              <div className="!my-3 border-t border-border" />
-              <Row
-                label={`Posts (+${inputs.wastePct}%)`}
-                value={String(r.posts)}
-              />
-              <Row
-                label={`Rails (+${inputs.wastePct}%)`}
-                value={String(r.rails)}
-              />
-              <Row
-                label={`Pickets (+${inputs.wastePct}%)`}
-                value={String(r.pickets)}
-              />
-            </div>
-          </div>
+          <div className="pt-8 border-t border-border space-y-8">
+             <div className="p-6 rounded-[2rem] border border-primary/20 bg-primary/5 space-y-4">
+                <div className="flex items-center justify-between">
+                   <span className="text-[10px] font-black uppercase text-primary tracking-widest italic shadow-sm">Blueprint Scale</span>
+                   <Shield className="w-4 h-4 text-primary" />
+                </div>
+                <div className="aspect-video bg-background/50 rounded-2xl border border-primary/10 relative overflow-hidden flex items-end">
+                   <FenceVisualizer type={selectedType} count={8} />
+                </div>
+             </div>
 
-          {/* Concrete */}
-          <div className="rounded-[1.5rem] border border-border bg-background p-5 space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Concrete bags for posts
-            </p>
-            {sys === "imperial" ? (
-              <>
-                <Row label="80 lb bags" value={String(r.bags80lb)} />
-                <Row label="60 lb bags" value={String(r.bags60lb)} />
-              </>
-            ) : (
-              <>
-                <Row label="25 kg bags" value={String(r.bags25kg)} />
-                <Row label="20 kg bags" value={String(r.bags20kg)} />
-              </>
-            )}
-            <p className="text-xs text-muted-foreground/70 leading-5">
-              Based on{" "}
-              {sys === "imperial"
-                ? `${inputs.fenceHeight <= 6 ? 1 : 2} bag(s) per post for a ${inputs.fenceHeight} ft fence`
-                : `${inputs.fenceHeight <= 1.8 ? 1 : 2} bag(s) per post for a ${inputs.fenceHeight} m fence`}
-              .
-            </p>
+             <button 
+                onClick={exportPDF}
+                className="w-full py-5 rounded-3xl bg-primary text-primary-foreground font-black uppercase tracking-[0.2em] shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3"
+             >
+                <Download className="w-5 h-5" /> Export Material List
+             </button>
           </div>
-
-          {/* Tip */}
-          <div className="rounded-[1.25rem] border border-primary/15 bg-primary/5 p-4">
-            <p className="text-xs leading-5 text-primary-soft-foreground">
-              💡 <strong>Tip:</strong> Always buy an extra 5–10% of pickets for
-              future repairs. Lumber dye lots vary — matching stain later can be
-              difficult.
-            </p>
-          </div>
-        </aside>
+        </div>
       </div>
     </section>
+  );
+}
+
+function InputBlock({ label, value, unit, min, max, onChange }: { label: string, value: number, unit: string, min: number, max: number, onChange: (v: number) => void }) {
+  return (
+    <div className="space-y-2">
+      <span className="text-[10px] font-black uppercase text-muted-foreground block px-1 tracking-tighter">{label}</span>
+      <div className="flex items-center gap-3 bg-muted/10 border border-border rounded-2xl p-1 px-4 focus-within:border-primary/30 transition-all">
+         <input 
+           type="number" value={value} min={min} max={max} onChange={(e) => onChange(Number(e.target.value))}
+           className="w-full bg-transparent font-black text-sm outline-none no-spinner py-2.5"
+         />
+         <span className="text-[10px] font-black uppercase text-muted-foreground opacity-50">{unit}</span>
+      </div>
+    </div>
+  );
+}
+
+function PriceInput({ label, value, onChange }: { label: string, value: number, onChange: (v: number) => void }) {
+  return (
+    <div className="space-y-1">
+       <span className="text-[8px] font-black uppercase text-muted-foreground ml-1">{label}</span>
+       <div className="relative">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground font-bold text-xs">$</span>
+          <input 
+            type="number" value={value} step={0.01} onChange={(e) => onChange(Number(e.target.value))}
+            className="w-full pl-6 pr-3 py-2 rounded-xl bg-muted/5 border border-border/50 font-black text-xs outline-none"
+          />
+       </div>
+    </div>
+  );
+}
+
+function MaterialRow({ label, value, unit, icon }: { label: string, value: number, unit: string, icon: React.ReactNode }) {
+  return (
+    <div className="flex items-center justify-between p-4 rounded-2xl border border-border/50 bg-background text-sm">
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 rounded-lg bg-muted/20 flex items-center justify-center text-primary">
+           {icon}
+        </div>
+        <span className="font-bold text-foreground text-xs">{label}</span>
+      </div>
+      <div className="flex items-baseline gap-1">
+         <span className="font-black italic text-primary">{value}</span>
+         <span className="text-[8px] font-black uppercase text-muted-foreground">{unit}</span>
+      </div>
+    </div>
+  );
+}
+
+function FenceVisualizer({ type, count }: { type: string, count: number }) {
+  return (
+    <div className="flex gap-1 items-end px-4 w-full h-full pb-2">
+       {Array.from({ length: 12 }).map((_, i) => {
+         const isPost = i % 4 === 0;
+         if (isPost) {
+           return <div key={i} className="w-1.5 h-[80%] bg-muted rounded-t-sm border-r border-background/20" />;
+         }
+         return (
+           <div 
+             key={i} 
+             className={`flex-1 rounded-t-[1px] border-r border-background/10 transition-all ${type === "privacy" ? "h-[70%] bg-primary/40" : type === "picket" ? "h-[60%] bg-primary/30 mx-0.5" : type === "shadowbox" ? "h-[70%] bg-primary/50 shadow-inner" : "h-[10%] bg-primary/20 my-12"}`}
+           />
+         );
+       })}
+       <div className="absolute inset-x-0 top-[40%] h-1 bg-muted/20" />
+       <div className="absolute inset-x-0 bottom-[30%] h-1 bg-muted/20" />
+    </div>
   );
 }

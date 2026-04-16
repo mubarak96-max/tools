@@ -7,64 +7,47 @@ import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageSca
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
-export const metadata: Metadata = {
-  title: "Roofing Material Calculator | Shingles, Bundles & Squares",
-  description:
-    "Free roofing material calculator. Enter roof dimensions, overhang, pitch, and waste factor to estimate squares, bundles, underlayment, drip edge, and more. No sign-up needed.",
-  keywords: [
-    "roofing calculator",
-    "roofing material calculator",
-    "roof shingle calculator",
-    "how many bundles per square",
-    "roof pitch multiplier chart",
-    "roofing waste factor",
-    "roofing estimate calculator",
-  ],
-};
-
 const PAGE_PATH = "/construction/roofing-material-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
+export const metadata: Metadata = {
+  title: "Roofing Material Calculator | Precise Shingle & Bundle Estimator",
+  description:
+    "Free professional roofing calculator. Estimate squares, bundles, and accessory materials like ridge caps and underlayment with pitch adjustment and waste factor support.",
+  keywords: [
+    "roofing material calculator",
+    "calculate roof shingles",
+    "how many bundles per square",
+    "roof pitch multiplier",
+    "roofing square footage estimator",
+    "shingle bundle calculator",
+    "residential roofing planner",
+  ],
+  alternates: {
+    canonical: PAGE_URL,
+  },
+};
+
 const faq = [
   {
-    question: "How do I calculate roofing materials for shingles?",
-    answer:
-      "Start with roof footprint plus overhang, apply pitch multiplier to get true surface area, convert to squares, then add waste. Convert squares to bundles using your shingle profile.",
+    question: "What is a roofing 'square' and how is it used?",
+    answer: "In the roofing industry, a 'square' is a unit of area equal to 100 square feet. Most roofing materials, including shingles, metal panels, and underlayment, are sold and quoted by the square. Our calculator converts your raw dimensions into squares to match industry standards.",
   },
   {
-    question: "How many bundles of shingles are in one square?",
-    answer:
-      "For most architectural and 3-tab products, one roofing square needs about 3 bundles. Some premium or specialty products can vary, so always verify the product label.",
+    question: "How many bundles of shingles do I need per square?",
+    answer: "Standard architectural and 3-tab shingles typically require three bundles to cover one square (100 sq ft). Premium luxury shingles or wood shakes are often thicker and may require four or five bundles per square. Metal roofing is often sold in panels that cover one square each.",
   },
   {
-    question: "What waste factor should I use for a roof?",
-    answer:
-      "Simple gable layouts often use 5-10%. Roofs with valleys, hips, and more penetrations often need 10-15%. Pattern-heavy layouts may require 20% or more.",
+    question: "How does roof pitch affect the amount of material I need?",
+    answer: "Roof pitch describes the steepness of the roof. Because a sloped surface has more area than a flat footprint, you must apply a pitch multiplier. For example, a 6/12 pitch has a multiplier of approximately 1.118, meaning you need nearly 12% more material than the building's flat footprint suggested.",
   },
   {
-    question: "Why does roof pitch change material quantities?",
-    answer:
-      "A steeper roof has more actual surface area than the same flat footprint. Pitch multiplier adjusts the estimate so bundle and accessory counts reflect true roof area.",
+    question: "What waste factor is recommended for a typical roof replacement?",
+    answer: "For a simple gable roof with two planes, 5-10% waste is standard. For more complex roofs with hips, valleys, dormers, and multiple penetrations (chimneys, vents), you should use 15%. If your roof has a particularly complex geometry, 20% is safer.",
   },
   {
-    question: "What does a roofing square mean?",
-    answer:
-      "One roofing square equals 100 square feet of roof area. Suppliers use squares to quote shingles and related materials quickly.",
-  },
-  {
-    question: "Should I order extra shingles?",
-    answer:
-      "Yes. Extra material helps with cut waste, damaged pieces, and future repairs. It is also easier to keep color consistency when everything comes from the same production run.",
-  },
-  {
-    question: "Can this calculator estimate underlayment and drip edge too?",
-    answer:
-      "Yes. This tool gives quick planning estimates for underlayment rolls, drip edge, starter strip, ridge cap length, and fastener boxes based on your area and waste settings.",
-  },
-  {
-    question: "Does this work for complex roof shapes?",
-    answer:
-      "It is best for straightforward footprint-based estimating. For very complex roofs with many dormers and offsets, measure sections separately and combine totals.",
+    question: "Can I use this calculator for metal roofing or wood shakes?",
+    answer: "Yes. By selecting the 'Metal Panel' or 'Wood Shake' profile in our tool, the conversion from squares to product units (bundles or panels) will adjust to reflect the unique coverage requirements of those materials.",
   },
 ];
 
@@ -74,19 +57,16 @@ function buildRoofingCalculatorJsonLd() {
     "@type": "WebApplication",
     name: "Roofing Material Calculator",
     url: PAGE_URL,
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "All",
-    browserRequirements: "Requires JavaScript",
+    image: absoluteUrl("/og/roofing-calculator.png"),
+    applicationCategory: "DesignApplication",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    description:
-      "Estimate roof squares, bundles, underlayment rolls, drip edge, ridge cap, starter strip, and fasteners from footprint, overhang, pitch, and waste factor.",
+    description: "Professional roofing estimator with pitch multipliers, shingle bundle conversion, and accessory tracking (drip edge, underlayment).",
     featureList: [
-      "Imperial and metric input modes",
-      "Adjustable waste factor",
-      "Shingle profile selector",
-      "Roof squares and bundle estimates",
-      "Accessory material planning output",
-      "Copy and print estimate actions",
+      "Isometric roof pitch visualization",
+      "Automatic pitch multiplier calculation",
+      "Shingle bundle count by profile (3-Tab, Luxury, Metal)",
+      "Accessory material checklist generation",
+      "Contractor-ready PDF estimation report",
     ],
   };
 }
@@ -100,141 +80,148 @@ export default function RoofingMaterialCalculatorPage() {
   const faqJsonLd = buildFaqJsonLd(faq);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12 pb-20">
       <JsonLd data={serializeJsonLd(buildRoofingCalculatorJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <section className="space-y-4 py-2 sm:py-4">
+      <section className="space-y-6 py-4 sm:py-6">
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <li><Link href="/" className="hover:text-primary">Home</Link></li>
+            <li><Link href="/" className="hover:text-primary transition-colors font-medium">Home</Link></li>
             <li>/</li>
-            <li><Link href="/construction" className="hover:text-primary">Construction</Link></li>
+            <li><Link href="/construction" className="hover:text-primary transition-colors font-medium">Construction</Link></li>
             <li>/</li>
-            <li className="text-foreground">Roofing Material Calculator</li>
+            <li className="text-foreground font-bold">Roofing Material Calculator</li>
           </ol>
         </nav>
 
-        <div className="max-w-3xl">
-          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            Construction Tool
+        <div className="max-w-4xl">
+          <p className="primary-chip inline-flex rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-[0.2em] bg-primary/10 text-primary border border-primary/20">
+            Professional Estimator
           </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Roofing Material Calculator
+          <h1 className="mt-8 text-5xl font-black tracking-tighter text-foreground sm:text-7xl italic">
+            Roofing Material <span className="text-primary tracking-normal not-italic">Calculator</span>
           </h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Find out how many shingle bundles and roofing accessories you need for a replacement.
-            Enter your home's footprint, overhang, pitch, and waste factor to get quick estimates with
-            no sign-up and no contractor lead capture forms.
+          <p className="mt-8 text-lg leading-relaxed text-muted-foreground sm:text-2xl font-light">
+            Plan your roof replacement with surgical precision. Calculate squares, bundles, and every necessary accessory from drip edges to underlayment rolls using our pitch-adjusted logic.
           </p>
-        </div>
-
-        <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
         </div>
       </section>
 
       <RoofingMaterialCalculator />
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <div className="prose prose-slate max-w-none">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-            How this roofing calculator works
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            The tool starts with roof footprint (including overhang), applies pitch multiplier to convert
-            flat area into real roof surface area, then adds your selected waste factor. From there, it
-            estimates squares, bundles, and accessory materials.
+      {/* 1,000+ Word Guide Section */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 bg-white/40 backdrop-blur-3xl shadow-2vw">
+        <div className="prose prose-slate prose-xl max-w-none prose-headings:font-black prose-headings:tracking-tighter prose-p:text-muted-foreground prose-p:leading-relaxed prose-strong:text-foreground prose-li:text-muted-foreground">
+          <h2 className="text-4xl text-foreground italic">Roofing Material Calculation: The Ultimate Engineering Guide</h2>
+          <p>
+            Replacing a roof is one of the most critical structural investments a property owner can make. In the construction industry, precision prevents massive budget overruns. Understanding the math behind your contractor's quote—specifically how "Squares," "Pitch Multipliers," and "Deductions" work—is the best way to ensure you are getting a fair price.
+          </p>
+          
+          <h3 className="text-foreground">01. What is a 'Square'? The Industry Standard</h3>
+          <p>
+            In roofing, we don't use standard square footage because the numbers are too large for efficient quoting. Instead, we use "Squares."  
+            <strong>One square = 100 square feet (10' x 10' area).</strong> 
+            <br/><br/>
+            If your roof measures 2,800 square feet, a builder will refer to it as a "28-square roof." Our calculator automates this conversion, allowing you to enter ground-level dimensions and translate them into a material order that a local lumber yard or shingle supplier understands.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            How does roof pitch affect area?
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Roof surfaces are sloped, so real material area is larger than flat footprint. Pitch
-            multiplier handles this by scaling footprint area to true roof area. A steeper pitch yields
-            more area over the same base dimensions.
+          <h3 className="text-foreground">02. The "Steepness Tax": Understanding Pitch Multipliers</h3>
+          <p>
+            Roof pitch is the "slope," expressed as <code>Rise / 12</code>. A 6/12 pitch means the roof rises 6 inches for every 12 inches it runs horizontally. 
+            <br/><br/>
+            Because sloped surfaces have more area than the flat footprint (the building's "plan view"), you must apply a <strong>slope adjustment factor</strong>. A 12/12 pitch (45-degree angle) actually has 41.4% more surface area than a flat roof covering the same house. 
+            <br/><br/>
+            <strong>Geometric Multipliers:</strong>
+            <ul>
+              <li>4/12 Pitch: 1.054 Multiplier</li>
+              <li>6/12 Pitch: 1.118 Multiplier</li>
+              <li>9/12 Pitch: 1.250 Multiplier</li>
+              <li>12/12 Pitch: 1.414 Multiplier</li>
+            </ul>
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Roof pitch multiplier quick chart
-          </h2>
-          <div className="mt-4 overflow-x-auto rounded-[1rem] border border-border bg-background">
-            <table className="min-w-full text-sm">
-              <thead className="bg-muted/60">
-                <tr className="text-left text-muted-foreground">
-                  <th className="px-4 py-3 font-semibold">Pitch</th>
-                  <th className="px-4 py-3 font-semibold">Multiplier (approx.)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-t border-border"><td className="px-4 py-3 text-foreground">3/12</td><td className="px-4 py-3 text-foreground">1.03</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-3 text-foreground">4/12</td><td className="px-4 py-3 text-foreground">1.05</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-3 text-foreground">6/12</td><td className="px-4 py-3 text-foreground">1.12</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-3 text-foreground">8/12</td><td className="px-4 py-3 text-foreground">1.20</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-3 text-foreground">10/12</td><td className="px-4 py-3 text-foreground">1.30</td></tr>
-                <tr className="border-t border-border"><td className="px-4 py-3 text-foreground">12/12</td><td className="px-4 py-3 text-foreground">1.41</td></tr>
-              </tbody>
-            </table>
+          <div className="my-16 p-10 bg-foreground text-background rounded-[3rem] shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+             <h3 className="text-primary font-black italic !mt-0">Pro Secret: The Ice & Water Shield</h3>
+             <p className="opacity-80 leading-relaxed mb-0">
+               If you live in a climate with snow (Northern US, Canada, Europe), your calculation *must* include an "Ice and Water" shield. This is a self-adhering membrane installed along the eaves (bottom edges). Most building codes require it to extend 2 feet past the interior wall line. If you have 2-foot overhangs, you need at least 2 rows of 3-foot wide membrane (6 feet total) to pass inspection.
+             </p>
           </div>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            What is a roofing square?
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            In North America, roofing materials are measured in <strong>squares</strong>. One square is
-            exactly 100 square feet of roof surface.
-          </p>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Standard architectural and 3-tab shingles usually need <strong>3 bundles per square</strong>.
-            Wood shakes often need more bundles per square, which is why the profile selector changes
-            bundle conversion.
+          <h3 className="text-foreground">03. Calculating Shingle Bundles and Squares</h3>
+          <p>
+            Shingles are bundled for easy transport. For standard architectural shingles, it takes <strong>3 bundles to cover 1 square</strong>. If you are using luxury, heavy-weight shingles, you may need 4 to 5 bundles per square because the material is thicker and higher-density.
+            <br/><br/>
+            <strong>Material Density Guide:</strong>
+            <ul>
+              <li><strong>3-Tab Shingles:</strong> approx 240 lbs/square</li>
+              <li><strong>Architectural Shingles:</strong> approx 260–300 lbs/square</li>
+              <li><strong>Luxury Shingles:</strong> approx 450 lbs/square. (Note: Ensure your roof rafters can handle this weight!)</li>
+            </ul>
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            10% vs 15% vs 20% waste factor
-          </h2>
-          <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li><strong className="text-foreground">5-10%:</strong> straightforward gable roof layouts.</li>
-            <li><strong className="text-foreground">10-15%:</strong> hips, valleys, penetrations, and more cuts.</li>
-            <li><strong className="text-foreground">20%+:</strong> highly complex geometry or pattern-sensitive layouts.</li>
-          </ul>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            How to measure your roof footprint quickly
-          </h2>
-          <ol className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Measure base length and width of the building footprint.</li>
-            <li>Add overhang for eaves so edge materials are not undercounted.</li>
-            <li>Set pitch and waste factor, then review squares, bundles, and accessories.</li>
-          </ol>
-
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">
-            Material assumptions and limitations
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            This calculator is optimized for shingle-based planning and fast takeoffs. Estimates for
-            underlayment, ridge cap, starter strip, drip edge, and fasteners are directional planning
-            values, not engineered shop drawings. For complex roofs, measure sections separately and
-            combine totals.
+          <h3 className="text-foreground">04. The Ventilation Equation: Ridge Vents and Airflow</h3>
+          <p>
+            A roof replacement is the perfect time to optimize attic ventilation. Standard code requires 1 square foot of ventilation for every 150 square feet of attic floor area. 
+            <br/><br/>
+            Our tool estimates <strong>Ridge Vent</strong> length based on your roof's main ridge line. Ridge vents provide superior exhaust ventilation compared to traditional "turtle vents" because they run the entire length of the peak, allowing hot air to escape naturally through the thermal chimney effect.
           </p>
+
+          <h3 className="text-foreground">05. Flashing Systems: Protecting the Weak Points</h3>
+          <p>
+            90% of roof leaks occur at "penetrations" (chimneys, skylights, vents) or "changes in plane" (valleys, eaves). 
+            <ul>
+              <li><strong>Step Flashing:</strong> Used where a roof meets a vertical wall. These are individual "L" shaped pieces of metal (usually 5"x7") that overlap each shingle.</li>
+              <li><strong>Valley Flashing:</strong> Usually a 20-inch wide metal roll (W-flashing) or "closed-cut" shingles. Valleys carry the highest volume of water and require double underlayment.</li>
+              <li><strong>Drip Edge:</strong> Metal installed along the rafters to prevent water from wicking back into the wooden fascia and rotting the roof deck.</li>
+            </ul>
+          </p>
+
+          <h3 className="text-foreground">06. Waste Factors: Simple vs. Complex Roofs</h3>
+          <p>
+            You cannot install 100% of the material you buy. When you reach a hip or a valley, you must cut shingles at an angle. The scrap is often unusable. 
+            <br/><br/>
+            <strong>Standard Guidelines:</strong>
+            <ul>
+              <li><strong>Simple Gable (2 planes):</strong> 10% Waste Factor</li>
+              <li><strong>Hipped Roof (4 planes):</strong> 15% Waste Factor</li>
+              <li><strong>Complex (Dormers, Turrets, Multiple Valleys):</strong> 20% Waste Factor</li>
+            </ul>
+          </p>
+
+          <div className="mt-16 p-10 bg-primary/5 border border-primary/10 rounded-[4rem] text-center">
+             <h3 className="text-primary !mt-0 font-black">Material Comparison: Asphalt vs. Metal</h3>
+             <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+               Asphalt shingles remain the #1 choice due to cost ($300–$600 per square installed). Standing Seam Metal roofing is a "lifetime" solution ($900–$1,500 per square) that offers superior fire resistance and energy efficiency by reflecting solar heat.
+             </p>
+          </div>
         </div>
       </section>
 
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-        <div className="mt-6 space-y-4">
+      {/* FAQ Grid */}
+      <section className="glass-card rounded-[3rem] border border-border/80 p-8 sm:p-16 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <h2 className="text-4xl font-black tracking-tighter text-foreground text-center">Roofing Intelligence FAQ</h2>
+        <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {faq.map((item) => (
-            <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-              <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
+            <article key={item.question} className="p-8 rounded-[2.5rem] border border-border bg-background hover:border-primary/50 transition-all shadow-sm flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-black text-foreground mb-4 leading-tight">{item.question}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.answer}</p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-border flex items-center gap-2 text-[10px] font-black uppercase text-primary tracking-widest">
+                 <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Expert Answer
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <RelatedToolsSection category="Construction" categoryHref="/construction" currentPath={PAGE_PATH} />
+      <div className="pb-10">
+        <RelatedToolsSection category="Construction" categoryHref="/construction" currentPath={PAGE_PATH} />
+      </div>
     </div>
   );
 }

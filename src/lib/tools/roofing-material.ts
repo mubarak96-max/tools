@@ -1,13 +1,23 @@
 export type UnitSystem = "imperial" | "metric";
+export type ShingleProfile = "3-Tab" | "Architectural" | "Luxury" | "Wood Shake" | "Metal Panel";
+export type RoofingMaterialType = "Asphalt" | "Metal" | "Tile" | "Wood";
 
 export interface RoofingInputs {
-  system: UnitSystem;
-  baseLength: number;
-  baseWidth: number;
-  pitchRise: number; // e.g., 4 or 6 (for 4/12 or 6/12 pitch)
-  overhang: number; // e.g., 1.5 ft overhang on all sides
-  wastePercent: number;
-  bundlesPerSquare: number;
+  system?: UnitSystem;
+  baseLength?: number;
+  baseWidth?: number;
+  pitchRise?: number;
+  overhang?: number;
+  wastePercent?: number;
+  profile?: ShingleProfile;
+  pricePerSquare?: number;
+  length?: number;
+  width?: number;
+  pitch?: number;
+  waste?: number;
+  materialType?: RoofingMaterialType;
+  bundlesPerSq?: number;
+  pricePerSq?: number;
 }
 
 export interface RoofingResult {
@@ -18,52 +28,80 @@ export interface RoofingResult {
   pitchMultiplier: number;
   roofArea: number;
   roofAreaWithWaste: number;
-  squares: number; // 1 square = 100 sq ft or approx. 9.29 sq m
-  bundles: number; // typically 3 bundles per square
+  totalArea: number;
+  squares: number;
+  totalSquares: number;
+  bundles: number;
+  totalBundles: number;
   underlaymentRolls: number;
   ridgeCapLength: number;
   starterStripLength: number;
   dripEdgeLength: number;
   fastenerBoxes: number;
+  estimatedCost: number;
+}
+
+const BUNDLES_PER_SQUARE: Record<ShingleProfile, number> = {
+  "3-Tab": 3,
+  Architectural: 3,
+  Luxury: 4,
+  "Wood Shake": 5,
+  "Metal Panel": 1, // Sheets are usually 1 square per unit for estimation
+};
+
+export const PITCH_MULTIPLIERS: Record<number, number> = Object.fromEntries(
+  Array.from({ length: 13 }, (_, pitch) => [
+    pitch,
+    Math.sqrt(Math.pow(12, 2) + Math.pow(pitch, 2)) / 12,
+  ]),
+) as Record<number, number>;
+
+function normalizeProfile(materialType?: RoofingMaterialType): ShingleProfile {
+  switch (materialType) {
+    case "Metal":
+      return "Metal Panel";
+    case "Tile":
+      return "Luxury";
+    case "Wood":
+      return "Wood Shake";
+    default:
+      return "Architectural";
+  }
 }
 
 export function calculateRoofing(inputs: RoofingInputs): RoofingResult {
-  // If base dimensions are given, add overhang to all 4 sides. 
-  // Length + 2*overhang, Width + 2*overhang
-  const totalLength = inputs.baseLength + (inputs.overhang * 2);
-  const totalWidth = inputs.baseWidth + (inputs.overhang * 2);
+  const system = inputs.system ?? "imperial";
+  const baseLength = inputs.baseLength ?? inputs.length ?? 0;
+  const baseWidth = inputs.baseWidth ?? inputs.width ?? 0;
+  const pitchRise = inputs.pitchRise ?? inputs.pitch ?? 0;
+  const overhang = inputs.overhang ?? 0;
+  const wastePercent = inputs.wastePercent ?? inputs.waste ?? 0;
+  const profile = inputs.profile ?? normalizeProfile(inputs.materialType);
+  const pricePerSquare = inputs.pricePerSquare ?? inputs.pricePerSq ?? 0;
+
+  const totalLength = baseLength + (overhang * 2);
+  const totalWidth = baseWidth + (overhang * 2);
   const perimeter = (totalLength * 2) + (totalWidth * 2);
   
   const baseArea = totalLength * totalWidth;
-
-  // The pitch multiplier is calculated using the Pythagorean theorem where run is always 12 (in imperial)
-  // Multiplier = sqrt(run^2 + rise^2) / run
-  // A standard rule is that 12 is the denominator, so sqrt(12^2 + pitchRise^2) / 12
-  const pitchMultiplier = Math.sqrt(Math.pow(12, 2) + Math.pow(inputs.pitchRise, 2)) / 12;
+  const pitchMultiplier = PITCH_MULTIPLIERS[pitchRise] ?? (Math.sqrt(Math.pow(12, 2) + Math.pow(pitchRise, 2)) / 12);
 
   const roofArea = baseArea * pitchMultiplier;
   
-  let squares = 0;
-  if(inputs.system === "imperial") {
-    // 1 Square = 100 sq ft
-    squares = roofArea / 100;
-  } else {
-    // 1 Square approx 9.29 sq m
-    squares = roofArea / 9.2903;
-  }
+  const conversionFactor = system === "imperial" ? 100 : 9.2903;
+  let squaresCount = roofArea / conversionFactor;
 
-  // Multiply by user-selected waste factor
-  const wasteMultiplier = 1 + (Math.max(0, inputs.wastePercent) / 100);
-  const totalSquaresWithWaste = squares * wasteMultiplier;
+  const wasteMultiplier = 1 + (wastePercent / 100);
+  const totalSquaresWithWaste = squaresCount * wasteMultiplier;
   const roofAreaWithWaste = roofArea * wasteMultiplier;
   
-  // Standard 3-tab or architectural shingles typically require 3 bundles per square
-  const bundles = Math.ceil(totalSquaresWithWaste * Math.max(1, inputs.bundlesPerSquare));
-  const underlaymentCoverage = inputs.system === "imperial" ? 400 : 37.16; // sq ft or sq m
-  const underlaymentRolls = Math.ceil(roofAreaWithWaste / underlaymentCoverage);
-  const ridgeCapLength = totalLength;
+  const bundlesPerSquare = inputs.bundlesPerSq ?? BUNDLES_PER_SQUARE[profile];
+  const bundlesCount = Math.ceil(totalSquaresWithWaste * bundlesPerSquare);
+  
+  const underlaymentRolls = Math.ceil(roofAreaWithWaste / (system === "imperial" ? 400 : 37.16));
+  const ridgeCapLength = totalLength; 
   const starterStripLength = perimeter;
-  const dripEdgeLength = Math.ceil(perimeter * 1.1);
+  const dripEdgeLength = Math.ceil(perimeter * 1.05);
   const fastenerBoxes = Math.max(1, Math.ceil(totalSquaresWithWaste / 20));
 
   return {
@@ -74,12 +112,16 @@ export function calculateRoofing(inputs: RoofingInputs): RoofingResult {
     pitchMultiplier,
     roofArea,
     roofAreaWithWaste,
+    totalArea: roofAreaWithWaste,
     squares: Math.ceil(totalSquaresWithWaste),
-    bundles,
+    totalSquares: totalSquaresWithWaste,
+    bundles: bundlesCount,
+    totalBundles: bundlesCount,
     underlaymentRolls,
     ridgeCapLength,
     starterStripLength,
     dripEdgeLength,
     fastenerBoxes,
+    estimatedCost: totalSquaresWithWaste * pricePerSquare,
   };
 }
