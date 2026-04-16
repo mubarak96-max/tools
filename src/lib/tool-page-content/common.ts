@@ -1,3 +1,5 @@
+import React from "react";
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -13,6 +15,7 @@ export type EditorialContent = {
   introParagraphs: string[];
   sections: Section[];
   faqs: FaqItem[];
+  guide?: React.ReactNode;
 };
 
 const MOJIBAKE_REPLACEMENTS: Array<[RegExp, string]> = [

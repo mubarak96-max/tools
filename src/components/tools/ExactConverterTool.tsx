@@ -3,7 +3,7 @@
 import { useId, useMemo, useState } from "react";
 
 import { AlertCircle, Code, Copy, Cpu } from "lucide-react";
-import type { ExactConverterTool } from "@/lib/tools/exact-catalog";
+import { EXACT_CONVERTER_TOOL_MAP, type ExactConverterTool } from "@/lib/tools/exact-catalog";
 import { convertDataFormat, type DataFormat } from "@/lib/tools/data-format-converter";
 import { transformEncoding, type EncodingMode } from "@/lib/tools/encoding-tools";
 import { convertTime } from "@/lib/tools/time-converter";
@@ -1185,7 +1185,9 @@ function Base64ConverterPanel({ tool }: { tool: Base64ConverterTool }) {
   );
 }
 
-export default function ExactConverterToolRunner({ tool }: { tool: ExactConverterTool }) {
+export default function ExactConverterToolRunner({ slug }: { slug: string }) {
+  const tool = EXACT_CONVERTER_TOOL_MAP[slug];
+  if (!tool) return null;
   const [text, setText] = useState("");
   const [jsonInputSource, setJsonInputSource] = useState<JsonInputSource>("paste");
   const [jsonUrl, setJsonUrl] = useState("");
@@ -1296,6 +1298,11 @@ export default function ExactConverterToolRunner({ tool }: { tool: ExactConverte
       setJsonSourceError("That file does not contain valid JSON.");
       setJsonSourceStatus("");
     }
+  }
+
+  if ("customRunner" in tool && tool.customRunner) {
+    const CustomRunner = tool.customRunner;
+    return <CustomRunner tool={tool} />;
   }
 
   if (isBase64Tool) {

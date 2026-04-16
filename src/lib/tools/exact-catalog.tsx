@@ -1,4 +1,17 @@
+import React from "react";
+import dynamic from "next/dynamic";
 import type { BackslashMode, TextCleanerOptions, WhitespaceMode } from "@/lib/tools/text-cleaner";
+
+const UrlEncoderDecoderTool = dynamic(() => import("@/components/tools/converters/UrlEncoderDecoderTool"));
+const Base64ConverterTool = dynamic(() => import("@/components/tools/converters/Base64EncoderDecoderTool"));
+const Rot13Tool = dynamic(() => import("@/components/tools/converters/Rot13Tool"));
+const Rot47Tool = dynamic(() => import("@/components/tools/converters/Rot47Tool"));
+const BinaryTool = dynamic(() => import("@/components/tools/converters/BinaryTool"));
+const HexTool = dynamic(() => import("@/components/tools/converters/HexTool"));
+const OctalTool = dynamic(() => import("@/components/tools/converters/OctalTool"));
+const DecimalTool = dynamic(() => import("@/components/tools/converters/DecimalTool"));
+const PunycodeTool = dynamic(() => import("@/components/tools/converters/PunycodeTool"));
+const IdnTool = dynamic(() => import("@/components/tools/converters/IdnTool"));
 import type { SortMode, SortScope } from "@/lib/tools/line-tools";
 import type { TextAlignMode } from "@/lib/tools/text-aligner";
 import type { ExtractorMode } from "@/lib/tools/text-extractors";
@@ -70,10 +83,35 @@ export type ExactTextTool =
     });
 
 export type ExactConverterTool =
-  | (BaseTool & { family: "encoding"; mode: EncodingMode })
-  | (BaseTool & { family: "data"; from: DataFormat; to: DataFormat })
-  | (BaseTool & { family: "time"; mode: TimeMode })
-  | (BaseTool & { family: "unit"; mode: UnitMode });
+  | (BaseTool & { 
+      family: "encoding"; 
+      mode: EncodingMode; 
+      guide?: React.ReactNode; 
+      bonusFaqs?: Array<{ question: string; answer: string }>;
+      customRunner?: React.ComponentType<{ tool: any }>;
+    })
+  | (BaseTool & { 
+      family: "data"; 
+      from: DataFormat; 
+      to: DataFormat;
+      guide?: React.ReactNode;
+      bonusFaqs?: Array<{ question: string; answer: string }>;
+      customRunner?: React.ComponentType<{ tool: any }>;
+    })
+  | (BaseTool & { 
+      family: "time"; 
+      mode: TimeMode;
+      guide?: React.ReactNode;
+      bonusFaqs?: Array<{ question: string; answer: string }>;
+      customRunner?: React.ComponentType<{ tool: any }>;
+    })
+  | (BaseTool & { 
+      family: "unit"; 
+      mode: UnitMode;
+      guide?: React.ReactNode;
+      bonusFaqs?: Array<{ question: string; answer: string }>;
+      customRunner?: React.ComponentType<{ tool: any }>;
+    });
 
 export type ExactUtilityTool =
   | (BaseTool & { family: "code"; language: CodeLanguage; action: CodeAction })
@@ -244,17 +282,271 @@ export const EXACT_TEXT_TOOLS = [
 ] as const;
 
 export const EXACT_CONVERTER_TOOLS = [
-  converter({ slug: "url-encoder-decoder", name: "URL Encoder/Decoder", description: "Free online URL encoder and decoder. Convert text to percent-encoded format or decode percent-encoded URLs instantly.", category: "Converter", icon: "URL", family: "encoding", mode: "url-encode" }),
-  converter({ slug: "html-entity-encoder-decoder", name: "HTML Entity Encoder/Decoder", description: "Free online HTML entity encoder and decoder. Convert special characters to HTML entities like &lt;, &gt;, and &amp; or decode them back to text.", category: "Converter", icon: "HTML", family: "encoding", mode: "html-encode" }),
-  converter({ slug: "base64-encoder-decoder", name: "Base64 Encoder/Decoder", description: "Free online Base64 encoder and decoder. Encode text and files into Base64 or decode them back, with support for data URLs and URL-safe variants.", category: "Converter", icon: "B64", family: "encoding", mode: "base64-encode" }),
-  converter({ slug: "rot13-encoder-decoder", name: "ROT13 Encoder/Decoder", description: "Rotate alphabetic characters by 13 positions in either direction.", category: "Converter", icon: "ROT13", family: "encoding", mode: "rot13" }),
-  converter({ slug: "rot47-encoder-decoder", name: "ROT47 Encoder/Decoder", description: "Rotate printable ASCII characters with the ROT47 cipher.", category: "Converter", icon: "ROT47", family: "encoding", mode: "rot47" }),
-  converter({ slug: "binary-encoder-decoder", name: "Binary Encoder/Decoder", description: "Free online Binary encoder and decoder. Convert text to 8-bit binary strings and decode them back to readable text.", category: "Converter", icon: "BIN", family: "encoding", mode: "text-to-binary" }),
-  converter({ slug: "hex-encoder-decoder", name: "Hex Encoder/Decoder", description: "Free online Hex encoder and decoder. Convert text to hexadecimal byte values and decode them back into text.", category: "Converter", icon: "HEX", family: "encoding", mode: "text-to-hex" }),
-  converter({ slug: "octal-encoder-decoder", name: "Octal Encoder/Decoder", description: "Free online Octal encoder and decoder. Convert text to octal byte values and decode them back into text.", category: "Converter", icon: "OCT", family: "encoding", mode: "text-to-octal" }),
-  converter({ slug: "decimal-encoder-decoder", name: "Decimal Encoder/Decoder", description: "Free online Decimal encoder and decoder. Convert text to decimal character codes and decode them back into readable text.", category: "Converter", icon: "DEC", family: "encoding", mode: "text-to-decimal" }),
-  converter({ slug: "punycode-encoder-decoder", name: "Punycode Encoder/Decoder", description: "Free online Punycode encoder and decoder. Convert Unicode text to Punycode and back for domain name compatibility.", category: "Converter", icon: "PUNY", family: "encoding", mode: "punycode-encode" }),
-  converter({ slug: "idn-encoder-decoder", name: "IDN Encoder/Decoder", description: "Free online IDN encoder and decoder. Convert Internationalized Domain Names to ASCII Punycode and back.", category: "Converter", icon: "IDN", family: "encoding", mode: "idn-encode" }),
+  converter({ 
+    slug: "url-encoder-decoder", 
+    name: "URL Encoder/Decoder", 
+    description: "Free online URL encoder and decoder. Convert text to percent-encoded format or decode percent-encoded URLs instantly.", 
+    category: "Converter", 
+    icon: "URL", 
+    family: "encoding", 
+    mode: "url-encode",
+    customRunner: UrlEncoderDecoderTool as any,
+    bonusFaqs: [
+      {
+        question: "Why does a space become %20 in URLs?",
+        answer: "Space characters are not allowed in URLs because they are used as separators in many protocols. URL encoding converts a space to '%20' (the hexadecimal representation of ASCII character 32) to ensure the URL remains syntactically valid."
+      },
+      {
+        question: "Is there a difference between %20 and + for spaces?",
+        answer: "Yes. '%20' is the standard percent-encoding for any URL component. '+' is specifically used for spaces in query strings (the 'application/x-www-form-urlencoded' format). Our tool supports both behaviors."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>URL Encoding Explained: When and Why Special Characters Get Converted</h2>
+        <p>
+          URL encoding, or percent-encoding, is a mechanism for translating characters that have special meaning in a URL into a safe format that can be understood by web servers and browsers. A URL can only contain a limited set of ASCII characters. If you need to include characters outside this set—like spaces, emojis, or reserved symbols—they must be encoded.
+        </p>
+        <h3>The Anatomy of Percent-Encoding</h3>
+        <p>
+          Each unsafe character is replaced by a percent sign (%) followed by its two-digit hexadecimal equivalent. For instance, the ampersand (<code>&amp;</code>) becomes <code>%26</code>. This ensures that the ampersand isn't confused with a query parameter separator.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "html-entity-encoder-decoder", 
+    name: "HTML Entity Encoder/Decoder", 
+    description: "Free online HTML entity encoder and decoder. Convert text to HTML entities or decode them instantly.", 
+    category: "Converter", 
+    icon: "HTML", 
+    family: "encoding", 
+    mode: "html-encode",
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>HTML Entity Encoding Explained</h2>
+        <p>
+          HTML entity encoding is a secure way to prevent Cross-Site Scripting (XSS) by translating special characters like &lt; and &gt; into safe formats that browsers render as text rather than code.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "base64-encoder-decoder", 
+    name: "Base64 Encoder/Decoder", 
+    description: "Free online Base64 encoder and decoder. Encode text and files into Base64 or decode them back, with support for data URLs and URL-safe variants.", 
+    category: "Converter", 
+    icon: "B64", 
+    family: "encoding", 
+    mode: "base64-encode",
+    customRunner: Base64ConverterTool as any,
+    bonusFaqs: [
+      {
+        question: "What's the difference between Base64 and URL encoding?",
+        answer: "Base64 turns binary data into a set of 64 character representations for storage or transport. URL encoding (percent-encoding) translates characters that are 'unsafe' for a URI into a hex-based format. They serve entirely different purposes."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Base64 Encoding: Why It's Used in APIs, Email, and Data URIs</h2>
+        <p>
+          Base64 is not encryption; it is an encoding scheme that represents binary data in an ASCII string format. It is primarily used when there is a need to encode binary data that needs to be stored and transferred over media that are designed to deal with textual data.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "rot13-encoder-decoder", 
+    name: "ROT13 Encoder/Decoder", 
+    description: "Rotate alphabetic characters by 13 positions in either direction.", 
+    category: "Converter", 
+    icon: "ROT13", 
+    family: "encoding", 
+    mode: "rot13",
+    customRunner: Rot13Tool as any,
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>ROT13 Cipher Explained: Simple Substitution for Spoiling and Fun</h2>
+        <p>
+          ROT13 ("rotate by 13 places") is a simple substitution cipher that replaces a letter with the 13th letter after it in the alphabet. Because there are 26 letters in the Latin alphabet, the same algorithm is used to both encode and decode.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "rot47-encoder-decoder", 
+    name: "ROT47 Encoder/Decoder", 
+    description: "Rotate printable ASCII characters with the ROT47 cipher.", 
+    category: "Converter", 
+    icon: "ROT47", 
+    family: "encoding", 
+    mode: "rot47",
+    customRunner: Rot47Tool as any,
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>ROT47 Cipher: Extended ASCII Substitution</h2>
+        <p>
+          ROT47 is a derivative of ROT13 that expands the rotation to include all printable ASCII characters. By shifting characters by 47 positions, it provides a much larger character set for simple obfuscation.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "binary-encoder-decoder", 
+    name: "Binary Encoder/Decoder", 
+    description: "Free online Binary encoder and decoder. Convert text to 8-bit binary strings and decode them back to readable text.", 
+    category: "Converter", 
+    icon: "BIN", 
+    family: "encoding", 
+    mode: "text-to-binary",
+    customRunner: BinaryTool as any,
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Binary Logic: The Foundational Language of Computing</h2>
+        <p>
+          Binary encoding represents each character as a unique 8-bit sequence (a byte). This is how computers actually store and process text at the hardware level.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "hex-encoder-decoder", 
+    name: "Hex Encoder/Decoder", 
+    description: "Free online Hex encoder and decoder. Convert text to hexadecimal byte values and decode them back into text.", 
+    category: "Converter", 
+    icon: "HEX", 
+    family: "encoding", 
+    mode: "text-to-hex",
+    customRunner: HexTool as any,
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Hexadecimal Encoding: Converting Text for Debugging</h2>
+        <p>
+          Hexadecimal (Base-16) is a compact way to represent binary data. It is widely used in debugging, memory analysis, and web design (CSS colors).
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "octal-encoder-decoder", 
+    name: "Octal Encoder/Decoder", 
+    description: "Free online Octal encoder and decoder. Convert text to octal byte values and decode them back into text.", 
+    category: "Converter", 
+    icon: "OCT", 
+    family: "encoding", 
+    mode: "text-to-octal",
+    customRunner: OctalTool as any,
+    bonusFaqs: [
+      {
+        question: "Where is octal still used today?",
+        answer: "Octal is primarily used in Unix/Linux operating systems for setting file permissions (e.g., chmod 755). It is also used in some legacy digital displays and watermarking systems."
+      },
+      {
+        question: "How do I convert octal to decimal?",
+        answer: "Multiply each digit by 8 raised to the power of its position (from right to left, starting at 0). For example, octal 157 is (1*8^2) + (5*8^1) + (7*8^0) = 64 + 40 + 7 = 111 in decimal."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Octal Representation: Understanding Base-8 Encoding for Legacy Systems</h2>
+        <p>
+          Octal is a base-8 number system that uses the digits 0 to 7. Historically, it was widely used in early computing when word sizes were multiples of 3 bits, or for representing Unix file permissions compactly. While binary and hexadecimal have become more dominant, octal remains a critical concept in historical computer science and specific operating system protocols.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "decimal-encoder-decoder", 
+    name: "Decimal Encoder/Decoder", 
+    description: "Free online Decimal encoder and decoder. Convert text to decimal character codes and decode them back into readable text.", 
+    category: "Converter", 
+    icon: "DEC", 
+    family: "encoding", 
+    mode: "text-to-decimal",
+    customRunner: DecimalTool as any,
+    bonusFaqs: [
+      {
+        question: "What is an ASCII character code?",
+        answer: "ASCII (American Standard Code for Information Interchange) is a character encoding standard for electronic communication. Each character is assigned a unique number from 0 to 127. Unicode expands this set to over 140,000 characters."
+      },
+      {
+        question: "How is decimal different from hex?",
+        answer: "Decimal is Base-10 (using digits 0-9), while Hexadecimal is Base-16 (using 0-9 and A-F). Decimal is easier for human counting, while hex is more efficient for representing computer memory bytes."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Decimal Encoding: Converting Text to Base-10 Character Codes</h2>
+        <p>
+          Decimal encoding involves representing characters using their numerical equivalent in the denary (Base-10) system. Every character on your keyboard and thousands of symbols besides have a specific integer value assigned to them in the Unicode standard. Converting text to decimal is a fundamental way to see how computers interpret "A" as 65 and "a" as 97.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "punycode-encoder-decoder", 
+    name: "Punycode Encoder/Decoder", 
+    description: "Free online Punycode encoder and decoder. Convert Unicode text to Punycode and back for domain name compatibility.", 
+    category: "Converter", 
+    icon: "PUNY", 
+    family: "encoding", 
+    mode: "punycode-encode",
+    customRunner: PunycodeTool as any,
+    bonusFaqs: [
+      {
+        question: "What is the xn-- prefix in domains?",
+        answer: "The 'xn--' prefix is a signal used in the Domain Name System to indicate that the following label is encoded using Punycode. This allows the DNS, which historically only supported ASCII, to handle international characters."
+      },
+      {
+        question: "Is Punycode the same as Unicode?",
+        answer: "No. Unicode is a universal character set that includes characters from almost all writing systems. Punycode is an encoding algorithm that represents those Unicode characters using only the limited set of ASCII characters allowed in domain names."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Punycode Explained: How International Domain Names Work</h2>
+        <p>
+          Internationalized Domain Names (IDNs) allow people around the world to use domain names in their local languages and scripts. However, the foundational systems of the internet were designed to only handle a small subset of ASCII characters. <strong>Punycode</strong> is the translation layer that makes IDNs possible.
+        </p>
+        <h3>The Translation Process</h3>
+        <p>
+          When you type a domain like <code>bücher.de</code>, your browser uses Punycode to convert it into <code>xn--bcher-kva.de</code>. This ASCII version is what is actually looked up in the global DNS registry, ensuring compatibility across all legacy systems while allowing users to see their native script.
+        </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "idn-encoder-decoder", 
+    name: "IDN Encoder/Decoder", 
+    description: "Free online IDN encoder and decoder. Convert Internationalized Domain Names to ASCII Punycode and back.", 
+    category: "Converter", 
+    icon: "IDN", 
+    family: "encoding", 
+    mode: "idn-encode",
+    customRunner: IdnTool as any,
+    bonusFaqs: [
+      {
+        question: "What is an Internationalized Domain Name (IDN)?",
+        answer: "An IDN is a domain name that contains at least one character from a non-ASCII script, such as accents, Chinese characters, or Cyrillic letters. These are represented internally using Punycode."
+      },
+      {
+        question: "Are IDNs secure?",
+        answer: "Generally yes, but they are vulnerable to homograph attacks where a character looks identical to another (e.g., a Latin 'a' and a Cyrillic 'а'). Our tool includes a security audit to detect these potential spoofing risks."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>IDN Converters: Bridging the Gap Between Unicode and ASCII</h2>
+        <p>
+          Internationalized Domain Names allow the global community to access the web in their native scripts. While Punycode handled individual labels, an <strong>IDN Converter</strong> often handles entire URLs, ensuring that paths, query parameters, and subdomains are all correctly translated for legacy DNS systems.
+        </p>
+        <h3>Homograph Protection</h3>
+        <p>
+          One of the critical roles of a modern IDN tool is security. Because many characters in different languages look exactly the same (homoglyphs), malicious actors can create domains that look like <code>google.com</code> but are actually registered with characters from another script. Using an IDN converter reveals the hidden <code>xn--</code> syntax and helps identify these potential threats.
+        </p>
+      </div>
+    )
+  }),
   converter({ slug: "json-converter", name: "JSON Converter", description: "Convert JSON to CSV, YAML, XML, or plain text instantly. Professional JSON tool with validator and formatter.", category: "Converter", icon: "JSON", family: "data", from: "json", to: "csv" }),
   converter({ slug: "csv-converter", name: "CSV Converter", description: "Convert CSV to JSON or XML. Efficiently transform spreadsheet data into machine-readable formats.", category: "Converter", icon: "CSV", family: "data", from: "csv", to: "json" }),
   converter({ slug: "xml-converter", name: "XML Converter", description: "Convert XML to JSON, CSV, or YAML. Robust XML parser and transformer for data interchange.", category: "Converter", icon: "XML", family: "data", from: "xml", to: "json" }),

@@ -189,6 +189,7 @@ export function buildExactConverterEditorial(tool: ExactConverterTool): Editoria
       },
     ],
     faqs: ensureFaqCount(seed.faqs, [
+      ...(tool.bonusFaqs || []),
       ...notes.extras,
       {
         question: `What is ${tool.name.toLowerCase()} best used for?`,
@@ -207,6 +208,7 @@ export function buildExactConverterEditorial(tool: ExactConverterTool): Editoria
       },
 
     ]),
+    guide: tool.guide,
   };
 
   return normalizeEditorialContent(ensureLongEnough(content, {

@@ -5,11 +5,13 @@ import ToolPageScaffold from "@/components/tools/ToolPageScaffold";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { buildExactConverterEditorial } from "@/lib/tool-page-content/exact-converter";
 import { EXACT_CONVERTER_TOOL_MAP } from "@/lib/tools/exact-catalog";
+import { withConvertSlug } from "@/lib/tools/conversion-routes";
 
 import { renderEditorialContent } from "./shared";
 
 export function buildExactConverterMetadata(slug: string) {
-  const tool = EXACT_CONVERTER_TOOL_MAP[slug];
+  const finalSlug = withConvertSlug(slug);
+  const tool = EXACT_CONVERTER_TOOL_MAP[finalSlug];
 
   if (!tool) {
     notFound();
@@ -18,12 +20,13 @@ export function buildExactConverterMetadata(slug: string) {
   return buildMetadata({
     title: `${tool.name} | Free Online ${tool.name}`,
     description: tool.description,
-    path: `/converter/${slug}`,
+    path: `/converter/${finalSlug}`,
   });
 }
 
 export function ExactConverterPage({ slug }: { slug: string }) {
-  const tool = EXACT_CONVERTER_TOOL_MAP[slug];
+  const finalSlug = withConvertSlug(slug);
+  const tool = EXACT_CONVERTER_TOOL_MAP[finalSlug];
 
   if (!tool) {
     notFound();
@@ -33,7 +36,7 @@ export function ExactConverterPage({ slug }: { slug: string }) {
 
   return (
     <ToolPageScaffold
-      path={`/converter/${slug}`}
+      path={`/converter/${finalSlug}`}
       category="Converter"
       categoryHref="/converter"
       title={tool.name}
@@ -41,7 +44,12 @@ export function ExactConverterPage({ slug }: { slug: string }) {
       learn={renderEditorialContent(content)}
       faqs={content.faqs}
     >
-      <ExactConverterToolRunner tool={tool} />
+      <ExactConverterToolRunner slug={finalSlug} />
+      {content.guide && (
+        <div className="mt-16 border-t border-border pt-16">
+          {content.guide}
+        </div>
+      )}
     </ToolPageScaffold>
   );
 }
