@@ -23,6 +23,12 @@ export default function DubaiServiceChargeCalculator() {
     [numericArea, numericRate],
   );
 
+  const copyResults = async () => {
+    const text = `Annual Service Charge: ${formatMoney(result.annualServiceCharge, AED_MARKET)}\nMonthly Equivalent: ${formatMoney(result.monthlyEquivalent, AED_MARKET)}\nTitle Deed Area: ${formatNumber(numericArea)} sq ft\nApproved Rate: ${formatMoney(numericRate, AED_MARKET)} / sq ft`;
+    await navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  };
+
   return (
     <div className="space-y-8">
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
@@ -42,6 +48,14 @@ export default function DubaiServiceChargeCalculator() {
             step={0.01}
             helper="Enter the annual approved service-charge rate per square foot for the development."
           />
+          <div className="flex items-end md:col-span-2">
+             <button
+                onClick={copyResults}
+                className="flex w-full md:w-auto items-center justify-center gap-2 rounded-xl bg-secondary px-8 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
+             >
+                Copy Results
+             </button>
+          </div>
         </div>
       </section>
 
@@ -66,6 +80,15 @@ export default function DubaiServiceChargeCalculator() {
           value={`${formatMoney(numericRate, AED_MARKET)} / sq ft`}
           helper="Annual approved service-charge rate entered above."
         />
+        <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 shadow-sm md:col-span-2 xl:col-span-4 flex flex-col justify-center">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-primary/70 mb-2">Market Comparison</h3>
+            <p className="text-sm font-medium text-foreground">
+              Average Rate Comparison: <strong className="text-primary">{numericRate > 20 ? "Above average (Premium/Luxury typical)" : numericRate < 12 && numericRate > 0 ? "Below average (Affordable typical)" : "Average Dubai rate range"}</strong>
+            </p>
+            <p className="text-[11px] text-muted-foreground mt-1">
+              Note: The standard average in Dubai ranges between 12 to 20 AED/sqft based on amenities and location.
+            </p>
+        </div>
       </section>
 
       <NoteCard title="What this Dubai service charge estimate assumes">

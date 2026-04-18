@@ -35,6 +35,15 @@ export default function RentalYieldCalculator() {
     [annualExpensesValue, annualRent, propertyPriceValue],
   );
 
+  const copyResults = async () => {
+    const text = `Gross Yield: ${formatPercent(result.grossYield)}\nNet Yield: ${formatPercent(result.netYield)}\nAnnual Cash Flow (NOI): ${formatMoney(result.netOperatingIncome, market)}\nMonthly Cash Flow: ${formatMoney(result.netOperatingIncome / 12, market)}\nBreak-Even Occupancy: ${formatPercent((annualExpensesValue / Math.max(1, annualRent)) * 100)}`;
+    await navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  };
+
+  const marketComparison = result.netYield > 6 ? "Above Market" : result.netYield > 4 ? "Average Market" : "Below Market";
+  const breakEvenOccupancy = (annualExpensesValue / Math.max(1, annualRent)) * 100;
+
   return (
     <div className="space-y-8">
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
@@ -61,6 +70,14 @@ export default function RentalYieldCalculator() {
             placeholder="Enter annual costs"
             helper="Include maintenance, service charges, insurance, vacancy, and other yearly costs."
           />
+          <div className="flex items-end">
+             <button
+                onClick={copyResults}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
+             >
+                Copy Results
+             </button>
+          </div>
         </div>
       </section>
 
@@ -84,6 +101,24 @@ export default function RentalYieldCalculator() {
           label="Net operating income"
           value={formatMoney(result.netOperatingIncome, market)}
           helper="Annual rent minus annual operating costs."
+        />
+      </section>
+
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <ResultCard
+          label="Monthly Cash Flow"
+          value={formatMoney(result.netOperatingIncome / 12, market)}
+          helper="Estimated net monthly income before financing."
+        />
+        <ResultCard
+          label="Break-Even Occupancy"
+          value={annualRent > 0 ? formatPercent(breakEvenOccupancy) : "0%"}
+          helper="Occupancy required to cover expenses."
+        />
+        <ResultCard
+          label="Market Average Comparison"
+          value={marketComparison}
+          helper="General estimate for typical urban markets."
         />
       </section>
 

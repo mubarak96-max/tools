@@ -103,7 +103,7 @@ export function ToolSearch() {
         <input
           ref={inputRef}
           type="text"
-          className="block w-full rounded-2xl border border-border bg-card py-4 pl-12 pr-12 text-base text-foreground placeholder-muted-foreground shadow-[0_18px_40px_-28px_rgba(15,23,42,0.45)] transition-all focus:border-primary/30 focus:outline-none focus:ring-4 focus:ring-primary/5 sm:text-lg"
+          className="block w-full rounded-2xl border border-border bg-card py-5 pl-14 pr-14 text-lg text-foreground placeholder-muted-foreground shadow-[0_18px_40px_-28px_rgba(15,23,42,0.45)] transition-all focus:border-primary/30 focus:outline-none focus:ring-4 focus:ring-primary/5 sm:text-xl"
           placeholder="Search for tools (e.g. 'salary', 'pdf', 'image')..."
           value={query}
           onChange={(e) => {

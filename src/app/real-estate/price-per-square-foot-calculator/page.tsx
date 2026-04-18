@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
 import PricePerSquareFootCalculator from "@/app/real-estate/price-per-square-foot-calculator/components/PricePerSquareFootCalculator";
-import JsonLd from "@/components/seo/JsonLd";
 import ToolPageScaffold from "@/components/tools/ToolPageScaffold";
 import { absoluteUrl, buildMetadata } from "@/lib/seo/metadata";
-import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
+import { buildFaqJsonLd } from "@/lib/seo/jsonld";
 
 export const revalidate = 43200;
 
@@ -70,50 +69,11 @@ export const metadata: Metadata = {
   ],
 };
 
-function buildApplicationJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: "Price per Square Foot Calculator",
-    url: PAGE_URL,
-    applicationCategory: "FinanceApplication",
-    operatingSystem: "All",
-    browserRequirements: "Requires JavaScript",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    description:
-      "Free property comparison calculator for price per square foot, price per square metre, reverse property valuation, and rent per square foot analysis.",
-    featureList: [
-      "Price per square foot and square metre calculation",
-      "Reverse mode to estimate total property value from a target rate",
-      "Buy and rent modes",
-      "Custom benchmark comparison",
-      "Two-property comparison workflow",
-      "Real estate learning content and FAQ",
-    ],
-  };
-}
 
 export default function PricePerSquareFootCalculatorPage() {
-  const faqJsonLd = buildFaqJsonLd(faq);
 
   return (
     <>
-      <JsonLd data={serializeJsonLd(buildApplicationJsonLd())} />
-      <JsonLd
-        data={serializeJsonLd(
-          buildBreadcrumbJsonLd([
-            { name: "Home", path: "/" },
-            { name: "Real Estate", path: "/real-estate" },
-            { name: "Price per Square Foot Calculator", path: PAGE_PATH },
-          ]),
-        )}
-      />
-      {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
-
       <ToolPageScaffold
         path={PAGE_PATH}
         category="Real Estate"

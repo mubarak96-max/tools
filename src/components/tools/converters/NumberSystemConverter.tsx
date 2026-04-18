@@ -142,6 +142,40 @@ export default function NumberSystemConverter() {
                  ))}
               </div>
            </div>
+
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+              <div className="p-8 rounded-[2.5rem] border border-border bg-card shadow-lg">
+                <h3 className="text-xl font-black uppercase tracking-widest italic text-foreground mb-4">Binary Formats & Two's Complement</h3>
+                <div className="space-y-4 font-mono text-sm">
+                   {[8, 16, 32, 64].map(bits => {
+                      let val = BigInt(values.decimal || "0");
+                      if (val < 0n) {
+                         let mask = (1n << BigInt(bits)) - 1n;
+                         val = val & mask;
+                      }
+                      let binStr = val.toString(2);
+                      if (binStr.length <= bits) binStr = binStr.padStart(bits, BigInt(values.decimal || "0") < 0n ? "1" : "0");
+                      else binStr = "Overflow (Value too large)";
+
+                      return (
+                         <div key={bits} className="flex flex-col gap-1 pb-4 border-b border-border/50 last:border-0 last:pb-0">
+                           <span className="text-xs text-muted-foreground uppercase">{bits}-bit {BigInt(values.decimal || "0") < 0n ? "(Two's Complement)" : ""}</span>
+                           <span className="break-all font-bold text-primary">{binStr}</span>
+                         </div>
+                      );
+                   })}
+                </div>
+              </div>
+              <div className="p-8 rounded-[2.5rem] border border-border bg-card shadow-lg flex flex-col justify-center">
+                <h3 className="text-xl font-black uppercase tracking-widest italic text-foreground mb-4">Base Place Values</h3>
+                <div className="space-y-4">
+                   <div className="text-xs text-muted-foreground"><strong className="text-rose-500 block text-sm">Decimal (Base 10)</strong> 10⁰=1, 10¹=10, 10²=100, 10³=1000...</div>
+                   <div className="text-xs text-muted-foreground"><strong className="text-emerald-500 block text-sm">Hexadecimal (Base 16)</strong> 16⁰=1, 16¹=16, 16²=256, 16³=4096...</div>
+                   <div className="text-xs text-muted-foreground"><strong className="text-orange-500 block text-sm">Octal (Base 8)</strong> 8⁰=1, 8¹=8, 8²=64, 8³=512...</div>
+                   <div className="text-xs text-muted-foreground"><strong className="text-blue-500 block text-sm">Binary (Base 2)</strong> 2⁰=1, 2¹=2, 2²=4, 2³=8, 2⁴=16...</div>
+                </div>
+              </div>
+           </div>
         </div>
       )}
 

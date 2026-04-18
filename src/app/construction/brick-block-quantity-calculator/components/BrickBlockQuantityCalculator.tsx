@@ -1,16 +1,17 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { 
-  type MasonryInputs, 
-  type UnitSystem, 
-  type BrickType, 
+import Link from "next/link";
+import {
+  type MasonryInputs,
+  type UnitSystem,
+  type BrickType,
   type BondingPattern,
-  calculateMasonry 
+  calculateMasonry
 } from "@/lib/tools/brick-calculator";
-import { 
-  Plus, Minus, Ruler, Download, Trash2, 
-  Grid, Move, Info, ShoppingCart, TrendingUp, Sparkles, Check, Database, Boxes
+import {
+  Plus, Minus, Ruler, Download, Trash2,
+  Grid, Move, Info, ShoppingCart, TrendingUp, Sparkles, Check, Database, Boxes, ChevronDown
 } from "lucide-react";
 
 const BRICK_TYPES: { id: BrickType, label: string, l: number, h: number, d: number, cat: "brick" | "block" }[] = [
@@ -20,6 +21,12 @@ const BRICK_TYPES: { id: BrickType, label: string, l: number, h: number, d: numb
   { id: "Standard_Block", label: "8x8x16 CMU Block", l: 15.625, h: 7.625, d: 7.625, cat: "block" },
   { id: "Utility_Block", label: "4x8x16 CMU Block", l: 15.625, h: 7.625, d: 3.625, cat: "block" },
 ];
+
+const SUPPLIERS = [
+  { id: "home-depot", label: "Home Depot", logo: "🏪", color: "bg-orange-500", url: "https://www.homedepot.com" },
+  { id: "lowes", label: "Lowe's", logo: "🔧", color: "bg-blue-500", url: "https://www.lowes.com" },
+  { id: "local", label: "Local Supplier", logo: "🏘️", color: "bg-green-500", url: "#" },
+] as const;
 
 const PATTERNS: { id: BondingPattern, label: string }[] = [
   { id: "Running", label: "Running Bond" },
@@ -36,6 +43,8 @@ export function BrickBlockQuantityCalculator() {
   const [pattern, setPattern] = useState<BondingPattern>("Running");
   const [waste, setWaste] = useState(10);
   const [pricePerUnit, setPricePerUnit] = useState(0.85);
+  const [selectedSupplier, setSelectedSupplier] = useState<string>("home-depot");
+  const [showSupplierMenu, setShowSupplierMenu] = useState(false);
 
   const selectedBrick = BRICK_TYPES.find(b => b.id === brickTypeId)!;
 
@@ -187,19 +196,50 @@ export function BrickBlockQuantityCalculator() {
              </div>
 
              <div className="pt-8 border-t border-border space-y-6">
-                <h4 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Material Checklist</h4>
-                <div className="space-y-3">
-                   <MaterialRow label={`${selectedBrick.label}`} qty={result.totalBricks} unit="Units" price={pricePerUnit} />
-                   <MaterialRow label="Quikrete Type S Mortar" qty={result.mortarBags} unit="Bags" price={12.50} />
-                   <MaterialRow label="Masonry Rebar (Optional)" qty={4} unit="Pieces" price={8.25} />
-                </div>
-                <div className="p-6 rounded-[2rem] bg-foreground text-background">
-                   <div className="flex justify-between items-center mb-1">
-                      <span className="text-[10px] font-black uppercase opacity-60">Estimated Project Cost</span>
-                      <TrendingUp className="w-4 h-4 opacity-50" />
+                <div className="flex items-center justify-between">
+                   <h4 className="text-xs font-black uppercase tracking-widest text-muted-foreground">Shopping List</h4>
+                   <div className="relative">
+                      <button onClick={(e) => {
+                        e.stopPropagation();
+                        setShowSupplierMenu(!showSupplierMenu);
+                      }} className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground hover:text-primary transition-colors p-2 rounded-lg">
+                         {selectedSupplier && SUPPLIERS.find(s => s.id === selectedSupplier)?.logo} View on {selectedSupplier && SUPPLIERS.find(s => s.id === selectedSupplier)?.label}
+                         <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${showSupplierMenu ? "rotate-180" : ""}`} />
+                      </button>
+                      {showSupplierMenu && (
+                        <div className="absolute left-0 mt-2 w-48 rounded-xl border border-border bg-card z-50 shadow-lg">
+                           {SUPPLIERS.map(supplier => (
+                             <button
+                               key={supplier.id}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 setSelectedSupplier(supplier.id);
+                                 setShowSupplierMenu(false);
+                               }}
+                               className={`flex items-center gap-3 px-4 py-3 text-sm font-medium
+                                 ${selectedSupplier === supplier.id ? "bg-primary/10 text-primary" : "text-muted-foreground hover:bg-muted"}`}
+                             >
+                               {supplier.logo}
+                               <span>{supplier.label}</span>
+                             </button>
+                           ))}
+                        </div>
+                      )}
                    </div>
-                   <div className="text-4xl font-black italic tracking-tighter">
-                      ${(result.estimatedCost + (result.mortarBags * 12.50) + 33).toFixed(2)}
+                </div>
+                <div className="space-y-4">
+                   <div className="space-y-2">
+                      <MaterialRow label={`${selectedBrick.label}`} qty={result.totalBricks} unit="Units" price={pricePerUnit} />
+                      <MaterialRow label="Quikrete Type S Mortar (80-lb)" qty={result.mortarBags} unit="Bags" price={12.50} />
+                      <MaterialRow label="Masonry Rebar (1/2 in. x 10 ft.)" qty={4} unit="Pieces" price={8.25} />
+                   </div>
+                   <div className="pt-4 border-t border-border">
+                      <div className="flex justify-between items-center text-xs font-medium">
+                         <span>Estimated Total Cost</span>
+                         <span className="font-bold text-primary">
+                           ${(result.estimatedCost + (result.mortarBags * 12.50) + (result.totalBricks * pricePerUnit)).toFixed(2)}
+                         </span>
+                      </div>
                    </div>
                 </div>
              </div>

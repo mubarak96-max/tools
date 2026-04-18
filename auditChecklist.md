@@ -8347,7 +8347,7 @@
 - [ ] Maintain aspect ratio
 - [ ] Multiple resize modes
 - [ ] Download in multiple formats
-- [ ] Batch resize
+- [ ] Batch resizenco
 
 ---
 

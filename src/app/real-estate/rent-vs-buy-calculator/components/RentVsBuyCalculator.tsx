@@ -35,6 +35,12 @@ export default function RentVsBuyCalculator() {
         ? "Renting looks cheaper"
         : "Costs are the same";
 
+  const copyResults = async () => {
+    const text = `Home Price: ${formatMoney(Number(homePrice)||0, market)}\nRent Cost: ${formatMoney(result.rentCost, market)}\nBuy Cost: ${formatMoney(result.buyCost, market)}\nDifference: ${formatMoney(Math.abs(result.difference), market)}\nRecommendation: ${decisionLabel}`;
+    await navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  };
+
   return (
     <div className="space-y-8">
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
@@ -79,6 +85,14 @@ export default function RentVsBuyCalculator() {
             step={1}
             helper="This calculator compares your total cost over that time horizon."
           />
+          <div className="flex items-end">
+             <button
+                onClick={copyResults}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
+             >
+                Copy Results
+             </button>
+          </div>
         </div>
       </section>
 
@@ -103,6 +117,22 @@ export default function RentVsBuyCalculator() {
           value={formatMoney(result.homePrice, market)}
           helper="Included so you can compare the buying cost against the property value."
         />
+        <ResultCard
+          label="Recommendation"
+          value={decisionLabel}
+          helper="Based on raw cost comparison over the period."
+        />
+        <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 shadow-sm md:col-span-2 xl:col-span-4 flex flex-col justify-center">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-primary/70 mb-4">Cost Comparison Over Time</h3>
+            <div className="flex h-6 w-full overflow-hidden rounded-full mb-4">
+              <div style={{ width: `${(result.rentCost/(result.buyCost+result.rentCost))*100}%` }} className="bg-amber-500/80" title="Total Rent" />
+              <div style={{ width: `${(result.buyCost/(result.buyCost+result.rentCost))*100}%` }} className="bg-blue-500/80" title="Total Buy" />
+            </div>
+            <div className="flex flex-wrap gap-6 text-xs text-muted-foreground font-medium">
+              <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-amber-500/80"/> Total Rent</div>
+              <div className="flex items-center gap-2"><div className="w-3 h-3 rounded-full bg-blue-500/80"/> Total Buy</div>
+           </div>
+        </div>
       </section>
 
       <NoteCard title="What this simplified comparison includes">

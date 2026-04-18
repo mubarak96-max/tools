@@ -2,7 +2,9 @@ import { XMLBuilder, XMLParser } from "fast-xml-parser";
 import { marked } from "marked";
 import Papa from "papaparse";
 import TurndownService from "turndown";
+import * as XLSX from "xlsx";
 import YAML from "yaml";
+
 
 export type DataFormat = "json" | "yaml" | "xml" | "csv" | "text" | "html" | "markdown";
 
@@ -27,13 +29,37 @@ function parseCsv(value: string) {
   return parsed.data;
 }
 
+function flattenObject(obj: any, prefix = ""): Record<string, any> {
+  const flattened: Record<string, any> = {};
+
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      const propName = prefix ? `${prefix}.${key}` : key;
+      const value = obj[key];
+
+      if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+        Object.assign(flattened, flattenObject(value, propName));
+      } else {
+        flattened[propName] = value;
+      }
+    }
+  }
+
+  return flattened;
+}
+
 function stringifyCsv(value: unknown) {
   if (Array.isArray(value)) {
+    // If it's an array of objects, flatten each object
+    if (value.length > 0 && typeof value[0] === "object" && value[0] !== null) {
+      const flattenedArray = value.map((item) => (typeof item === "object" ? flattenObject(item) : { value: item }));
+      return Papa.unparse(flattenedArray);
+    }
     return Papa.unparse(value as string[][]);
   }
 
   if (typeof value === "object" && value) {
-    return Papa.unparse([value as Record<string, string | number | boolean | null>]);
+    return Papa.unparse([flattenObject(value)]);
   }
 
   return String(value ?? "");
@@ -105,5 +131,22 @@ export function convertDataFormat(input: string, from: DataFormat, to: DataForma
       output: "",
       error: error instanceof Error ? error.message : "Conversion failed.",
     };
+  }
+}
+
+export function exportToExcel(data: string, from: DataFormat) {
+  try {
+    const intermediate = toIntermediate(from, data);
+    const rows = Array.isArray(intermediate)
+      ? intermediate.map((item: any) => (typeof item === "object" && item !== null ? flattenObject(item) : { value: item }))
+      : [typeof intermediate === "object" && intermediate !== null ? flattenObject(intermediate) : { value: intermediate }];
+
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    return new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+  } catch {
+    return null;
   }
 }

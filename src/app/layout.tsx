@@ -62,8 +62,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <script
+      <body
+        className={`${sansFont.variable} ${displayFont.variable} ${monoFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
+      >
+        <Script
+          id="clarity-script"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               (function(c,l,a,r,i,t,y){
@@ -74,10 +78,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body
-        className={`${sansFont.variable} ${displayFont.variable} ${monoFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
-      >
         <div className="site-backdrop pointer-events-none fixed inset-0 z-[-1]" />
         <Header />
         <main className="flex-grow pt-20 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">

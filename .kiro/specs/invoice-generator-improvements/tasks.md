@@ -140,7 +140,7 @@ Extend the existing invoice generator from a minimal drafting tool into a profes
 - Tasks marked with `*` are optional and can be skipped for a faster MVP
 - fast-check `^4.6.0` is already installed as a dev dependency — no install step needed
 - The test runner is vitest; run tests with `npx vitest --run`
-- All property tests go in `src/lib/tools/__tests__/invoice.property.test.ts`; each test references its property number and the requirements clause it validates
+- All property tests go in `src/lib/tools/__tests__/FindMyTool Studioinvoice.property.test.ts`; each test references its property number and the requirements clause it validates
 - `buildInvoiceHtml` must use only inline styles — Puppeteer renders the HTML without the app's Tailwind stylesheet
 - The PDF download filename is constructed as `invoice-${invoiceNumber.replace(/[^\w-]+/g, "-").toLowerCase()}.pdf`
 - `InvoiceState` and `EditableInvoiceItem` are component-level types in `InvoiceGenerator.tsx` and are not exported from `invoice.ts`

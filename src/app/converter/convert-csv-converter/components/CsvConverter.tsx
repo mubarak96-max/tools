@@ -5,6 +5,32 @@ import { FileDown, FileJson, Settings2, Code2, Copy, CheckCircle2, ChevronRight,
 
 type ExportFormat = "json" | "xml" | "tsv";
 
+function detectDelimiter(text: string): string {
+  const delimiters = [",", ";", "\t", "|"];
+  const lines = text.split("\n").filter(l => l.trim().length > 0).slice(0, 5);
+  if (lines.length === 0) return ",";
+  
+  let bestDelimiter = ",";
+  let maxWeight = -1;
+
+  for (const d of delimiters) {
+    let weights = lines.map(line => (line.match(new RegExp(`\\${d === '|' ? '\\|' : d === '\t' ? '\\t' : d}`, "g")) || []).length);
+    const avg = weights.reduce((a, b) => a + b, 0) / weights.length;
+    // Standard deviation to check consistency
+    const variance = weights.reduce((a, b) => a + Math.pow(b - avg, 2), 0) / weights.length;
+    
+    // Delimiter should appear in every line and have low variance
+    if (avg > 0) {
+      const weight = avg - variance;
+      if (weight > maxWeight) {
+        maxWeight = weight;
+        bestDelimiter = d;
+      }
+    }
+  }
+  return bestDelimiter;
+}
+
 function parseCsv(csv: string, delimiter: string): string[][] {
   const result: string[][] = [];
   let row: string[] = [];
@@ -12,6 +38,9 @@ function parseCsv(csv: string, delimiter: string): string[][] {
   let currentVal = "";
 
   if (!csv.trim()) return [];
+
+  // Handle Tab delimiter escaped string
+  const actualDelimiter = delimiter === "\\t" ? "\t" : delimiter;
 
   for (let i = 0; i < csv.length; i++) {
     const char = csv[i];
@@ -22,7 +51,7 @@ function parseCsv(csv: string, delimiter: string): string[][] {
       i++;
     } else if (char === '"') {
       inQuotes = !inQuotes;
-    } else if (char === delimiter && !inQuotes) {
+    } else if (char === actualDelimiter && !inQuotes) {
       row.push(currentVal);
       currentVal = "";
     } else if ((char === '\n' || char === '\r') && !inQuotes) {
@@ -30,7 +59,6 @@ function parseCsv(csv: string, delimiter: string): string[][] {
         i++;
       }
       row.push(currentVal);
-      // Avoid pushing empty rows if trailing newline
       if (row.length > 1 || row[0] !== "") {
         result.push(row);
       }
@@ -41,7 +69,7 @@ function parseCsv(csv: string, delimiter: string): string[][] {
     }
   }
 
-  if (currentVal || csv[csv.length - 1] === delimiter) {
+  if (currentVal || csv[csv.length - 1] === actualDelimiter) {
     row.push(currentVal);
   }
   if (row.length > 0 && (row.length > 1 || row[0] !== "")) {
@@ -57,6 +85,24 @@ export function CsvConverter() {
   const [hasHeader, setHasHeader] = useState<boolean>(true);
   const [format, setFormat] = useState<ExportFormat>("json");
   const [copied, setCopied] = useState<boolean>(false);
+  const [showPreview, setShowPreview] = useState(false);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const text = event.target?.result as string;
+        setCsvInput(text);
+        const d = detectDelimiter(text);
+        setDelimiter(d);
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const lineCount = csvInput.split("\n").length;
+
 
   const parsedData = useMemo(() => {
     return parseCsv(csvInput, delimiter);
@@ -180,16 +226,23 @@ export function CsvConverter() {
           </div>
           
           <div className="relative group rounded-3xl border border-border shadow-inner bg-muted/10 overflow-hidden">
-             <div className="absolute top-0 left-0 bottom-0 w-12 bg-muted/20 border-r border-border pointer-events-none flex flex-col items-center py-6 gap-2 opacity-50 font-mono text-[10px]">
-                {Array.from({length: 15}).map((_, i) => <span key={i}>{i+1}</span>)}
+             <div className="absolute top-0 left-0 bottom-0 w-12 bg-muted/20 border-r border-border pointer-events-none flex flex-col items-center py-6 gap-0 opacity-50 font-mono text-[10px] overflow-hidden">
+                {Array.from({length: Math.min(lineCount, 50)}).map((_, i) => <span key={i} className="h-[21px] leading-[21px]">{i+1}</span>)}
+                {lineCount > 50 && <span>...</span>}
              </div>
              <textarea 
-               className="w-full h-[500px] bg-transparent pl-16 pr-6 py-6 font-mono text-sm leading-relaxed outline-none resize-none placeholder-foreground/20 text-foreground whitespace-pre"
-               value={csvInput}
-               onChange={(e) => setCsvInput(e.target.value)}
-               placeholder="Paste your CSV data here..."
-               spellCheck="false"
+                className="w-full h-[500px] bg-transparent pl-16 pr-6 py-6 font-mono text-sm leading-[21px] outline-none resize-none placeholder-foreground/20 text-foreground whitespace-pre overflow-auto"
+                value={csvInput}
+                onChange={(e) => setCsvInput(e.target.value)}
+                placeholder="Paste your CSV data here..."
+                spellCheck="false"
              />
+             <div className="absolute bottom-4 right-4 flex gap-2">
+                <input type="file" id="csv-upload" className="hidden" accept=".csv,.txt,.tsv" onChange={handleFileUpload} />
+                <label htmlFor="csv-upload" className="cursor-pointer px-4 py-2 bg-background border border-border rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-muted transition-all shadow-sm">
+                   Upload File
+                </label>
+             </div>
           </div>
 
           <div className="flex justify-between items-center px-4 py-3 rounded-2xl bg-muted/20 border border-border">
@@ -233,11 +286,45 @@ export function CsvConverter() {
           </div>
 
           <div className="relative group rounded-3xl border border-border shadow-inner bg-[#1e1e1e] overflow-hidden text-[#d4d4d4]">
-             <pre className="w-full h-[500px] overflow-auto p-6 font-mono text-sm leading-relaxed hide-scrollbar">
-                <code>{convertedData}</code>
-             </pre>
-             <div className="absolute top-4 right-4 text-[9px] font-black uppercase tracking-widest px-3 py-1 bg-white/10 rounded-full">
-               {format.toUpperCase()} Render
+             {showPreview ? (
+                <div className="w-full h-[500px] overflow-auto p-6 bg-white text-foreground font-sans">
+                   <table className="w-full text-left border-collapse text-xs">
+                      <thead>
+                         <tr className="bg-muted border-b border-border">
+                            {parsedData[0]?.map((h, i) => (
+                               <th key={i} className="px-3 py-2 font-bold whitespace-nowrap">{h || `Col ${i+1}`}</th>
+                            ))}
+                         </tr>
+                      </thead>
+                      <tbody className="divide-y divide-border">
+                         {parsedData.slice(1, 10).map((row, ri) => (
+                            <tr key={ri} className="hover:bg-muted/30">
+                               {row.map((cell, ci) => (
+                                  <td key={ci} className="px-3 py-2 whitespace-nowrap">{cell}</td>
+                               ))}
+                            </tr>
+                         ))}
+                      </tbody>
+                   </table>
+                   {parsedData.length > 10 && (
+                      <p className="text-[10px] text-muted-foreground mt-4 text-center italic">Only first 10 rows shown in preview</p>
+                   )}
+                </div>
+             ) : (
+                <pre className="w-full h-[500px] overflow-auto p-6 font-mono text-sm leading-relaxed hide-scrollbar">
+                   <code>{convertedData}</code>
+                </pre>
+             )}
+             <div className="absolute top-4 right-4 flex gap-2">
+                <button 
+                   onClick={() => setShowPreview(!showPreview)}
+                   className="text-[9px] font-black uppercase tracking-widest px-3 py-1 bg-white/10 rounded-full hover:bg-white/20 transition-all"
+                >
+                   {showPreview ? "Show Code" : "Show Preview"}
+                </button>
+                <div className="text-[9px] font-black uppercase tracking-widest px-3 py-1 bg-white/10 rounded-full">
+                  {format.toUpperCase()} Render
+                </div>
              </div>
           </div>
         </div>

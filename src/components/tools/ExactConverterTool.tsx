@@ -4,7 +4,7 @@ import { useId, useMemo, useState } from "react";
 
 import { AlertCircle, Code, Copy, Cpu } from "lucide-react";
 import { EXACT_CONVERTER_TOOL_MAP, type ExactConverterTool } from "@/lib/tools/exact-catalog";
-import { convertDataFormat, type DataFormat } from "@/lib/tools/data-format-converter";
+import { convertDataFormat, exportToExcel, type DataFormat } from "@/lib/tools/data-format-converter";
 import { transformEncoding, type EncodingMode } from "@/lib/tools/encoding-tools";
 import { convertTime } from "@/lib/tools/time-converter";
 import { convertUnit } from "@/lib/tools/unit-converter";
@@ -281,6 +281,41 @@ function DataFormatConverterPanel({ tool }: { tool: DataTool }) {
   const [text, setText] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setText(event.target?.result as string);
+        setStatusMessage(`File "${file.name}" uploaded.`);
+        setTimeout(() => setStatusMessage(""), 3000);
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const downloadResult = () => {
+    const blob = new Blob([result.output], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `converted-data.${toFormat}`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const downloadExcel = () => {
+    const blob = exportToExcel(text, fromFormat);
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `data.xlsx`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+
   const result = useMemo(() => {
     if (text.length === 0) return { output: "" };
     return convertDataFormat(text, fromFormat, toFormat);
@@ -379,6 +414,24 @@ function DataFormatConverterPanel({ tool }: { tool: DataTool }) {
               <Copy size={16} className="mr-1.5" />
               Copy result
             </button>
+            <button type="button" onClick={downloadResult} className={actionClass} disabled={!result.output}>
+              <Cpu size={16} className="mr-1.5" />
+              Download .{toFormat}
+            </button>
+            {toFormat === "csv" && (
+              <button type="button" onClick={downloadExcel} className={actionClass} disabled={!text}>
+                <Cpu size={16} className="mr-1.5" />
+                Download Excel
+              </button>
+            )}
+
+            <div className="relative">
+              <input type="file" id="data-upload" className="hidden" onChange={handleFileUpload} accept={`.${fromFormat}`} />
+              <label htmlFor="data-upload" className={`${actionClass} cursor-pointer`}>
+                <Code size={16} className="mr-1.5" />
+                Upload File
+              </label>
+            </div>
             <button
               type="button"
               onClick={() => {

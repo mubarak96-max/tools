@@ -12,6 +12,7 @@ const OctalTool = dynamic(() => import("@/components/tools/converters/OctalTool"
 const DecimalTool = dynamic(() => import("@/components/tools/converters/DecimalTool"));
 const PunycodeTool = dynamic(() => import("@/components/tools/converters/PunycodeTool"));
 const IdnTool = dynamic(() => import("@/components/tools/converters/IdnTool"));
+const NumberSystemConverter = dynamic(() => import("@/components/tools/converters/NumberSystemConverter"));
 import type { SortMode, SortScope } from "@/lib/tools/line-tools";
 import type { TextAlignMode } from "@/lib/tools/text-aligner";
 import type { ExtractorMode } from "@/lib/tools/text-extractors";
@@ -406,6 +407,44 @@ export const EXACT_CONVERTER_TOOLS = [
         <p>
           Binary encoding represents each character as a unique 8-bit sequence (a byte). This is how computers actually store and process text at the hardware level.
         </p>
+      </div>
+    )
+  }),
+  converter({ 
+    slug: "convert-binary-converter", 
+    name: "Binary Converter (Number Systems)", 
+    description: "Convert numbers between binary, decimal, hexadecimal, and octal. Real-time conversion across all four number systems with large number support.", 
+    category: "Converter", 
+    icon: "BIN", 
+    family: "encoding", 
+    mode: "text-to-binary",
+    customRunner: NumberSystemConverter as any,
+    bonusFaqs: [
+      {
+        question: "Why do computers use binary?",
+        answer: "Computers use binary logic (base-2) because it maps directly to hardware states (on/off, high/low voltage). It is the most reliable, noise-resistant way to process information electronically."
+      },
+      {
+        question: "What's the easiest way to convert between number systems?",
+        answer: "The easiest way is to use intermediate bases, like converting hex to binary to octal, rather than doing math directly. Or, simply use an online converter for real-time translation."
+      }
+    ],
+    guide: (
+      <div className="prose prose-slate max-w-none">
+        <h2>Number Systems Explained: Binary, Decimal, Hexadecimal, and Octal</h2>
+        <p>
+          Number systems define how we represent values. While humans use base-10 (Decimal), low-level computing often uses base-2 (Binary), base-16 (Hexadecimal), and base-8 (Octal) to optimize operations.
+        </p>
+        <h3>Comparing Systems</h3>
+        <table>
+          <thead>
+            <tr><th>Decimal (Base 10)</th><th>Binary (Base 2)</th><th>Hex (Base 16)</th><th>Octal (Base 8)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>255</td><td>11111111</td><td>FF</td><td>377</td></tr>
+            <tr><td>1024</td><td>10000000000</td><td>400</td><td>2000</td></tr>
+          </tbody>
+        </table>
       </div>
     )
   }),

@@ -30,6 +30,12 @@ export default function ClosingCostsCalculator() {
 
   const estimatedLoanAmount = Math.max(0, purchasePriceValue - downPaymentValue);
 
+  const copyResults = async () => {
+    const text = `Purchase Price: ${formatMoney(purchasePriceValue, market)}\nEstimated Closing Costs: ${formatMoney(result.estimatedClosingCosts, market)}\nTotal Cash Needed: ${formatMoney(result.totalCashNeeded, market)}`;
+    await navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  };
+
   return (
     <div className="space-y-8">
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
@@ -63,6 +69,14 @@ export default function ClosingCostsCalculator() {
             placeholder="Enter fixed fees"
             helper="Use this for inspections, appraisals, filing fees, or other flat costs."
           />
+          <div className="flex items-end">
+             <button
+                onClick={copyResults}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
+             >
+                Copy Results
+             </button>
+          </div>
         </div>
       </section>
 
@@ -87,6 +101,15 @@ export default function ClosingCostsCalculator() {
           value={`${purchasePriceValue > 0 ? ((result.totalCashNeeded / purchasePriceValue) * 100).toFixed(2) : "0.00"}%`}
           helper="A quick sense of how much cash you need before financing starts."
         />
+        <div className="rounded-2xl border border-primary/20 bg-primary/5 p-6 shadow-sm md:col-span-2 xl:col-span-4 flex flex-col justify-center">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-primary/70 mb-2">Market Comparison</h3>
+            <p className="text-sm font-medium text-foreground">
+              Average Rate Comparison: <strong className="text-primary">{Number(closingCostPercent) > 5 ? "Above Average" : Number(closingCostPercent) < 2 && Number(closingCostPercent) > 0 ? "Below Average" : "Average Market Rates"}</strong>
+            </p>
+            <p className="text-[11px] text-muted-foreground mt-1">
+              Note: Typical closing costs range between 2% to 5% of the purchase price. Most states average around 3%.
+            </p>
+        </div>
       </section>
 
       <NoteCard title="Why buyers underestimate closing costs">

@@ -30,6 +30,21 @@ export default function CapRateCalculator() {
     [annualExpenses, annualRent, propertyValue],
   );
 
+  const copyResults = async () => {
+    const text = `Cap Rate: ${formatPercent(result.capRate)}\nNet Operating Income: ${formatMoney(result.noi, market)}\nProperty Value: ${formatMoney(Number(propertyValue) || 0, market)}`;
+    await navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  };
+
+  const getInvestmentQuality = (rate: number) => {
+    if (rate <= 0) return { label: "No Return", description: "Negative or zero NOI.", color: "text-muted-foreground" };
+    if (rate < 4) return { label: "Low Yield / Low Risk", description: "Typical in high-demand or premium markets.", color: "text-amber-500" };
+    if (rate <= 8) return { label: "Average Market Yield", description: "Standard risk/reward profile.", color: "text-emerald-500" };
+    return { label: "High Yield / High Risk", description: "Could indicate higher returns or potential property issues.", color: "text-blue-500" };
+  };
+
+  const quality = getInvestmentQuality(result.capRate);
+
   return (
     <div className="space-y-8">
       <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
@@ -56,6 +71,14 @@ export default function CapRateCalculator() {
             placeholder="Enter annual expenses"
             helper="Exclude mortgage payments. Cap rate is based on NOI before financing."
           />
+          <div className="flex items-end">
+             <button
+                onClick={copyResults}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
+             >
+                Copy Results
+             </button>
+          </div>
         </div>
       </section>
 
@@ -75,6 +98,11 @@ export default function CapRateCalculator() {
           value={formatMoney(result.noi / 12, market)}
           helper="A quick monthly view of the property's operating income."
         />
+        <div className="rounded-2xl border border-border bg-card p-6 shadow-sm md:col-span-2 xl:col-span-3">
+          <h3 className="text-sm font-bold tracking-tight text-muted-foreground uppercase opacity-80 mb-2">Market Comparison & Quality</h3>
+          <p className={`text-xl font-black ${quality.color} mb-1`}>{quality.label}</p>
+          <p className="text-sm text-muted-foreground">{quality.description}</p>
+        </div>
       </section>
 
       <NoteCard title="What cap rate helps you compare">

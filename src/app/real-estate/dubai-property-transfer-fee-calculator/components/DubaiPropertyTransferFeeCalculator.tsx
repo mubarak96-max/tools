@@ -9,6 +9,7 @@ const AED_MARKET = { key: "AE", label: "Dubai / UAE", currency: "AED", locale: "
 
 export default function DubaiPropertyTransferFeeCalculator() {
   const [salePrice, setSalePrice] = useState("");
+  const [propertyType, setPropertyType] = useState("residential");
 
   const result = useMemo(
     () =>
@@ -17,6 +18,12 @@ export default function DubaiPropertyTransferFeeCalculator() {
       }),
     [salePrice],
   );
+
+  const copyResults = async () => {
+    const text = `Property Type: ${propertyType.toUpperCase()}\nSale Price: ${formatMoney(Number(salePrice) || 0, AED_MARKET)}\nDLD Transfer Fee (4%): ${formatMoney(result.dldTransferFee, AED_MARKET)}\nTotal Registration Fees: ${formatMoney(result.totalFees, AED_MARKET)}`;
+    await navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  };
 
   return (
     <div className="space-y-8">
@@ -28,6 +35,25 @@ export default function DubaiPropertyTransferFeeCalculator() {
             onChange={setSalePrice}
             placeholder="Enter sale price"
           />
+          <div className="space-y-4">
+             <label className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">Property type</label>
+             <select 
+               value={propertyType} 
+               onChange={(e) => setPropertyType(e.target.value)}
+               className="w-full px-5 py-3 rounded-2xl border border-border bg-muted/10 font-bold text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none"
+             >
+               <option value="residential">Residential</option>
+               <option value="commercial">Commercial</option>
+             </select>
+          </div>
+          <div className="flex items-end">
+             <button
+                onClick={copyResults}
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
+             >
+                Copy Results
+             </button>
+          </div>
         </div>
       </section>
 

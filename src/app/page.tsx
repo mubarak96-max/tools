@@ -15,6 +15,7 @@ import {
   Sparkles,
   Type,
   Wrench,
+  User,
 } from "lucide-react";
 
 import { ToolSearch } from "@/components/home/ToolSearch";
@@ -27,9 +28,9 @@ import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 1800;
 
-const HOME_TITLE = "FindBest.tools | Free Online Tools & Calculators";
+const HOME_TITLE = "FindBestTtools | Free Online Tools & Calculators";
 const HOME_DESCRIPTION =
-  "Free online tools for text, images, PDFs, finance, real estate, health, and more. No sign-up required. Get fast results in your browser.";
+  "Free online tools for text, images, PDFs, finance, and more. No sign-up, no tracking.";
 
 const baseMetadata = buildMetadata({
   title: "Free Online Tools & Calculators",
@@ -49,18 +50,29 @@ export const metadata: Metadata = {
     "merge pdf",
     "image compressor",
     "text tools",
-    "browser based tools",
   ],
   openGraph: {
     ...baseMetadata.openGraph,
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
     url: absoluteUrl("/"),
+    images: [
+      {
+        url: absoluteUrl("/images/logo.svg"),
+      },
+    ],
+    type: "website",
   },
   twitter: {
     ...baseMetadata.twitter,
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
+    images: [
+      {
+        url: absoluteUrl("/images/logo.svg"),
+      },
+    ],
+    card: "summary_large_image",
   },
 };
 
@@ -83,8 +95,8 @@ const FEATURED_TOOL_HREFS = [
 ];
 
 const CATEGORY_ORDER = [
-  "Finance",
   "Text",
+  "Finance",
   "Image",
   "PDF",
   "Health",
@@ -108,12 +120,13 @@ const CATEGORY_META: Record<
     ctaHref: string;
     icon: LucideIcon;
     navTag?: string;
+    heroImage?: string;
   }
 > = {
   Finance: {
     heading: "Finance calculators for salary, loans, tax, and pricing.",
     description:
-      "Salary, mortgage, tax, and pricing calculators built for clear inputs and fast answers.",
+      "Calculate salary, mortgage, ROI, and more. Make informed financial decisions with accurate calculators.",
     browseLabel: "View all finance calculators",
     ctaLabel: "Calculate your salary",
     ctaHref: "/finance/salary-calculator",
@@ -123,7 +136,7 @@ const CATEGORY_META: Record<
   Text: {
     heading: "Text tools for cleanup, analysis, and conversion.",
     description:
-      "Transform, analyze, and clean up text for writing, SEO, social posts, and developer workflows.",
+      "Transform, analyze, and optimize text instantly. Count characters, convert cases, extract emails, generate word clouds, and more.",
     browseLabel: "View all text tools",
     ctaLabel: "Start analyzing text",
     ctaHref: "/text/character-counter",
@@ -133,7 +146,7 @@ const CATEGORY_META: Record<
   Image: {
     heading: "Image tools for compression, conversion, and quick edits.",
     description:
-      "Compress, convert, crop, and clean up images in the browser without slowing down your workflow.",
+      "Edit, convert, and enhance images in your browser. Compress, crop, remove backgrounds, add watermarks, and convert formats.",
     browseLabel: "View all image tools",
     ctaLabel: "Compress an image",
     ctaHref: "/image/image-compressor",
@@ -214,24 +227,6 @@ const CATEGORY_META: Record<
   },
 };
 
-const HERO_TRUST_ITEMS = [
-  {
-    title: "Free tools",
-    copy: "Useful utilities across text, PDFs, images, finance, and more.",
-  },
-  {
-    title: "No sign-up",
-    copy: "Open a tool and get to work without a gated flow.",
-  },
-  {
-    title: "Fast results",
-    copy: "Built for quick answers when you do not want extra software.",
-  },
-  {
-    title: "Browser-based",
-    copy: "Designed for desktop and mobile without extra installs.",
-  },
-] as const;
 
 function buildHomeOrganizationJsonLd() {
   return {
@@ -243,7 +238,7 @@ function buildHomeOrganizationJsonLd() {
   };
 }
 
-function ToolCard({ tool }: { tool: FreeToolMeta }) {
+function ToolCard({ tool, why }: { tool: FreeToolMeta; why?: string }) {
   return (
     <Link
       href={tool.href}
@@ -261,6 +256,11 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
         {tool.name}
       </h3>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{tool.description}</p>
+      {why && (
+        <p className="mt-1 text-xs text-muted-foreground">
+          {why}
+        </p>
+      )}
       <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
         Open tool
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -390,104 +390,42 @@ export default function Home() {
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-start">
           <div>
             <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-              {toolCount}+ browser-based tools
+              {toolCount}+ Free Tools
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {toolCount}+ free tools for text, PDFs, images, and calculators.
+              Free Tools. No Sign-Up.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-              Solve practical problems fast, from salary calculations to PDF cleanup to image
-              compression. Open a tool, get the answer, and keep moving.
+              From salary calculations to PDF merging to AI writing—solve real problems instantly.
+              No uploads, no sign-up required.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="#featured-tools"
+                href="/sitemap"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
               >
-                Browse featured tools
-                <ArrowRight className="h-4 w-4" />
+                Start Using Tools
               </Link>
               <Link
-                href="/finance/salary-calculator"
+                href="#featured-tools"
                 className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
               >
-                Start with salary calculator
+                Browse All Tools
+                <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
 
             <ToolSearch />
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-              {HERO_TRUST_ITEMS.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-[1.25rem] border border-border/70 bg-background px-4 py-4"
-                >
-                  <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{item.copy}</p>
-                </div>
-              ))}
-            </div>
+
           </div>
 
-          <div className="rounded-[1.75rem] border border-border/70 bg-background p-5 sm:p-6">
-            <div className="flex items-center justify-between gap-4">
-              <Image
-                src="/images/logo.svg"
-                alt="FindBest Tools"
-                width={182}
-                height={42}
-                className="h-9 w-auto"
-              />
-              <span className="primary-chip rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                Popular workflows
-              </span>
-            </div>
 
-            <div className="mt-5 space-y-3">
-              {featuredTools.map((tool) => (
-                <Link
-                  key={tool.href}
-                  href={tool.href}
-                  className="flex items-center justify-between gap-4 rounded-[1.25rem] border border-border/70 bg-card px-4 py-3 transition-colors hover:border-primary/20 hover:bg-primary-soft"
-                >
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">{tool.name}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{tool.category}</p>
-                  </div>
-                  <div className="shrink-0 rounded-xl border border-border bg-muted p-2.5">
-                    <FreeToolIcon tool={tool} size={18} />
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[1.25rem] border border-border/70 bg-card px-4 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Top categories
-                </p>
-                <p className="mt-2 text-base font-semibold text-foreground">Finance, Text, and Image</p>
-                <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                  High-intent tools up front so the homepage gets to useful work quickly.
-                </p>
-              </div>
-              <div className="rounded-[1.25rem] border border-border/70 bg-card px-4 py-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                  Fast entry points
-                </p>
-                <p className="mt-2 text-base font-semibold text-foreground">Search or jump by category</p>
-                <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                  Browse by intent, not by endless scrolling.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="sticky top-[4.75rem] z-20 -mx-4 border-y border-border/70 bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <section id="categories" className="sticky top-[4.75rem] z-20 -mx-4 border-y border-border/70 bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div className="flex gap-2 overflow-x-auto">
           {orderedCategories.map((entry) => (
             <CategoryNavItem
@@ -529,19 +467,29 @@ export default function Home() {
               Popular tools
             </p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Strong starting points across the site.
+              Most Popular Tools
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
-              A broader mix of utilities across finance, PDFs, images, AI, and productivity so the
-              homepage does not repeat the same text tools everywhere.
+              These are the tools our users rely on most, based on recent usage.
             </p>
           </div>
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {mostUsedTools.map((tool) => (
-            <ToolCard key={tool.href} tool={tool} />
-          ))}
+          {mostUsedTools.map((tool) => {
+            const whyMap: Record<string, string> = {
+              "/finance/salary-calculator": "Estimate salary after tax, take-home pay, and employer cost across major countries.",
+              "/pdf/merge-pdf": "Combine multiple PDF files into one document without leaving your browser.",
+              "/image/image-compressor": "Reduce image file size while maintaining quality for faster sharing and storage.",
+              "/finance/mortgage-calculator": "Calculate monthly mortgage payments and total loan cost with taxes and insurance.",
+              "/text/convert-image-to-text": "Extract text from images, screenshots, or scanned documents instantly.",
+              "/ai/ai-humanizer": "Rewrite AI-generated text to sound more natural and human-like.",
+              "/utility/free-cv-resume-builder": "Create professional resumes and CVs with easy-to-use templates.",
+            };
+            return (
+              <ToolCard key={tool.href} tool={tool} why={whyMap[tool.href] || ""} />
+            );
+          })}
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import EmDashRemover from "@/app/text/em-dash-remover/components/EmDashRemover";
@@ -15,38 +15,41 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "When would I use an em dash remover?",
+    question: "How do I remove em dashes from ChatGPT or AI writing?",
     answer:
-      "It scans text for em dashes and en dashes, then replaces them with a punctuation option you choose, such as a comma, hyphen, space, or nothing.",
+      "Paste your AI-generated text into the input box. Most AI tools use em dashes (—) frequently. Select 'Comma' or 'Hyphen' from the replacement dropdown, and the tool will instantly swap them out, making your text look more natural and human-written.",
   },
   {
-    question: "Why would I replace em dashes?",
+    question: "When should I use an em dash remover?",
     answer:
-      "Some style guides, publishing systems, and formatting workflows avoid em dashes. Replacing them can make text simpler, more consistent, or easier to paste into restricted editors.",
+      "Use it when you need to standardize punctuation for web publishing, avoid stylistic 'tells' in AI writing, or ensure compatibility with plain-text systems that don't support special dash characters.",
   },
   {
-    question: "Does this tool also catch en dashes?",
+    question: "Does this tool also catch en dashes (–)?",
     answer:
-      "Yes. It counts and replaces both em dashes and en dashes so you can clean mixed punctuation in one pass.",
+      "Yes. The tool detects and replaces both em dashes (—) and en dashes (–) in one step, so you can clean up a variety of punctuation styles simultaneously.",
   },
   {
-    question: "Can I remove dashes completely?",
+    question: "Can I remove dashes completely without replacing them?",
     answer:
-      "Yes. The replacement dropdown includes a nothing option, which removes the dash characters and then normalizes leftover spacing.",
+      "Yes. Select the 'Remove Completely' (nothing) option. This will delete the dash characters and intelligently merge the surrounding text with single spaces, preventing double spacing issues.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Em Dash Remover | Replace Em Dashes with Comma, Hyphen, Space, or Nothing",
+  title: "Em Dash Remover — Free Online Tool | Clean AI & Editorial Text",
   description:
-    "Replace em dashes and en dashes instantly with a comma, hyphen, space, or nothing using one free text-cleanup tool.",
+    "Free long dash remover. Replace — with comma, hyphen, space, or nothing. Clean AI-generated text, editorial drafts, and plain-text workflows instantly.",
   keywords: [
     "em dash remover",
+    "long dash remover",
     "replace em dash",
+    "replacing em dashes with commas",
     "remove em dashes from text",
     "replace em dash with hyphen",
-    "replace em dash with comma",
     "punctuation cleanup tool",
+    "clean ai writing em dash",
+    "chatgpt em dash remover",
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -54,15 +57,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Em Dash Remover for Fast Punctuation Cleanup",
+    title: "Em Dash Remover — Free Online Text Cleanup Tool",
     description:
-      "Replace em dashes and en dashes with a comma, hyphen, space, or nothing in one pass.",
+      "Instantly replace em dashes and en dashes with a comma, hyphen, or space. Perfect for cleaning up AI-generated text and editorial drafts.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Em Dash Remover",
+    title: "Em Dash Remover — Clean AI Punctuation",
     description:
-      "Clean up em dashes and en dashes instantly with flexible replacement options.",
+      "The fastest way to replace em dashes and en dashes in your drafts and AI-generated content.",
   },
 };
 
@@ -124,10 +127,10 @@ export default function EmDashRemoverPage() {
             Text utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Em Dash Remover
+            Em Dash Remover — Free Online Tool
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Replace em dashes and en dashes quickly with a comma, hyphen, space, or nothing. Useful for punctuation cleanup, stricter style guides, and plain-text publishing workflows.
+            Our free <strong>long dash remover</strong> lets you replace em dashes and en dashes quickly with a comma, hyphen, space, or nothing. Perfect for <strong>replacing em dashes with commas</strong> in AI-generated text or editorial drafts.
           </p>
           {currentTool ? (
             <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
@@ -151,20 +154,28 @@ export default function EmDashRemoverPage() {
             A dedicated remover saves time when you need cleaner punctuation quickly. It lets you choose whether the dash becomes a comma, a simple hyphen, a space, or disappears entirely.
           </p>
 
-          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How the replacement works</h2>
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">How the long dash remover works</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Both em dashes and en dashes are detected in the input.</li>
-            <li>You choose one replacement style from the dropdown.</li>
+            <li>Both em dashes (—) and en dashes (–) are detected in the input.</li>
+            <li>You choose one replacement style, such as replacing em dashes with commas or hyphens.</li>
             <li>The tool cleans leftover spacing after replacement so the output stays readable.</li>
             <li>The rest of the text stays intact.</li>
           </ul>
 
+          <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Perfect for AI & ChatGPT writing cleanup</h2>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            If you use AI writers like ChatGPT or Claude, you probably noticed they love using em dashes (—) to structure sentences. While grammatically correct, an overabundance of these dashes is a well-known "tell" for AI-generated content.
+          </p>
+          <p className="mt-3 text-base leading-7 text-muted-foreground">
+            Our tool helps you "humanize" your AI drafts by instantly swapping these stylistic tells for more natural punctuation like commas or hyphens. For a complete transformation, you can also use our <Link href="/ai/ai-humanizer" className="text-primary hover:underline font-medium">AI Humanizer</Link> to refine the overall flow and tone of your text.
+          </p>
+
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Common use cases</h2>
           <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-            <li>Preparing text for style guides that avoid em dashes</li>
-            <li>Cleaning AI-generated or editorial drafts before publishing</li>
-            <li>Converting punctuation for plain-text systems and forms</li>
-            <li>Standardizing typography before handing text to another team</li>
+            <li><strong>AI Content Polish:</strong> Removing distinctive AI writing patterns for a more human feel.</li>
+            <li><strong>Editorial Workflow:</strong> Standardizing drafts before publishing to platforms like WordPress.</li>
+            <li><strong>Plain-Text Emails:</strong> Converting em dashes to hyphens for guaranteed compatibility across email clients.</li>
+            <li><strong>Academic Writing:</strong> Adjusting punctuation to meet specific university style guide requirements.</li>
           </ul>
         </div>
       </section>
