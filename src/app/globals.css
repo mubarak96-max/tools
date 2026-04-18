@@ -88,60 +88,10 @@
   }
 }
 
-.site-backdrop {
-  background:
-    radial-gradient(circle at top left, rgba(79, 70, 229, 0.05), transparent 32%),
-    linear-gradient(180deg, rgba(248, 250, 252, 1) 0%, rgba(241, 245, 249, 0.94) 100%);
-}
-
-@utility glass {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
-
-@utility glass-card {
-  background: transparent !important;
-  backdrop-filter: none !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  transition: color 220ms ease, background-color 220ms ease;
-
-  &:hover {
-    box-shadow: none !important;
-    border-color: transparent !important;
-  }
-}
-
 @utility tool-frame {
-  border: 1px solid color-mix(in srgb, var(--color-border) 85%, transparent);
+  border: 1px solid var(--color-border);
   border-radius: 0;
   background: transparent;
-}
-
-@utility text-gradient {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(120deg, var(--color-secondary), color-mix(in srgb, var(--color-secondary) 60%, white));
-}
-
-@utility text-gradient-primary {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background-image: linear-gradient(120deg, var(--color-foreground), color-mix(in srgb, var(--color-primary) 65%, var(--color-foreground)));
-}
-
-@utility surface-outline {
-  border: 1px solid color-mix(in srgb, var(--color-border-soft) 72%, transparent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-}
-
-@utility section-heading {
-  font-family: var(--font-serif), serif;
-  line-height: 1.02;
 }
 
 @utility muted-chip {

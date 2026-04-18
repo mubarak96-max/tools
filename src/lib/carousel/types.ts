@@ -89,10 +89,13 @@ export type TemplateSlidePreset = {
     fields: {
         title?: boolean;
         body?: boolean;
+        title2?: boolean;
+        body2?: boolean;
         bullets?: boolean;
         badge?: boolean;
         buttonText?: boolean;
         image?: boolean;
+        emoji?: boolean;
     };
 
     // Dummy content shown in preview / initial load
@@ -208,12 +211,16 @@ export type CarouselSlide = {
     data: SlideFields;
 };
 
+export type CarouselAspectRatio = "1/1" | "4/5" | "9/16";
+
 export type CarouselDocument = {
     templateId: string;
 
     slides: CarouselSlide[];
 
     backgroundId?: string;
+    
+    aspectRatio?: CarouselAspectRatio;
 };
 
 // ==============================

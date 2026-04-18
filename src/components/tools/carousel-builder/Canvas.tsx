@@ -32,7 +32,7 @@ export default function Canvas({
     return (
       <div
         className={cn(
-          "flex aspect-square w-full items-center justify-center rounded-[26px] border border-gray-200 bg-white text-sm text-gray-400 shadow-sm",
+          "flex aspect-square w-full items-center justify-center border border-gray-200 bg-white text-sm text-gray-400",
           className
         )}
       >
@@ -56,10 +56,11 @@ export default function Canvas({
   return (
     <div
       className={cn(
-        "relative aspect-[4/5] w-full overflow-hidden rounded-[26px] border border-gray-200 shadow-sm",
+        "relative w-full overflow-hidden border border-gray-200 transition-all duration-300",
         className
       )}
       style={{
+        aspectRatio: className?.includes('aspect') ? undefined : "4/5",
         backgroundColor: template.styles.colors.background || "#ffffff",
       }}
     >
@@ -93,11 +94,11 @@ export default function Canvas({
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-[2] flex justify-between px-3 py-3">
-        <span className="rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-600 backdrop-blur-sm">
+        <span className="rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-600">
           {slide.role}
         </span>
 
-        <span className="rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] font-medium text-gray-500 backdrop-blur-sm">
+        <span className="rounded-full border border-black/10 bg-white/70 px-2.5 py-1 text-[10px] font-medium text-gray-500">
           {slideIndex + 1}/{totalSlides}
         </span>
       </div>

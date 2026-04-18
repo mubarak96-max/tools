@@ -147,19 +147,19 @@ export default function NumberSystemConverter() {
               <div className="p-8 rounded-[2.5rem] border border-border bg-card shadow-lg">
                 <h3 className="text-xl font-black uppercase tracking-widest italic text-foreground mb-4">Binary Formats & Two's Complement</h3>
                 <div className="space-y-4 font-mono text-sm">
-                   {[8, 16, 32, 64].map(bits => {
+                    {[8, 16, 32, 64].map(bits => {
                       let val = BigInt(values.decimal || "0");
-                      if (val < 0n) {
-                         let mask = (1n << BigInt(bits)) - 1n;
+                      if (val < BigInt(0)) {
+                         let mask = (BigInt(1) << BigInt(bits)) - BigInt(1);
                          val = val & mask;
                       }
                       let binStr = val.toString(2);
-                      if (binStr.length <= bits) binStr = binStr.padStart(bits, BigInt(values.decimal || "0") < 0n ? "1" : "0");
+                      if (binStr.length <= bits) binStr = binStr.padStart(bits, BigInt(values.decimal || "0") < BigInt(0) ? "1" : "0");
                       else binStr = "Overflow (Value too large)";
 
                       return (
                          <div key={bits} className="flex flex-col gap-1 pb-4 border-b border-border/50 last:border-0 last:pb-0">
-                           <span className="text-xs text-muted-foreground uppercase">{bits}-bit {BigInt(values.decimal || "0") < 0n ? "(Two's Complement)" : ""}</span>
+                           <span className="text-xs text-muted-foreground uppercase">{bits}-bit {BigInt(values.decimal || "0") < BigInt(0) ? "(Two's Complement)" : ""}</span>
                            <span className="break-all font-bold text-primary">{binStr}</span>
                          </div>
                       );

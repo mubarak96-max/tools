@@ -3,13 +3,17 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 
-import type { CarouselSlide, CarouselTemplate } from "@/lib/carousel/types";
+import type { CarouselSlide, CarouselTemplate, BackgroundPreset } from "@/lib/carousel/types";
+import { getBackgroundStyle } from "@/lib/carousel/renderBackground";
 
 type SlideRendererProps = {
     slide: CarouselSlide;
     template: CarouselTemplate;
+    background?: BackgroundPreset;
     className?: string;
     transparent?: boolean;
+    slideIndex?: number;
+    totalSlides?: number;
 };
 
 const cn = (...classes: Array<string | false | null | undefined>) =>
@@ -98,10 +102,20 @@ function TextBlock({
                 compact ? "gap-3" : "gap-4"
             )}
         >
-            {badge ? <Badge text={badge} template={template} /> : null}
+            {badge ? (
+                <div 
+                    className={cn(
+                        "text-[12px] font-bold uppercase tracking-[0.2em] opacity-80 mb-2",
+                        align === "center" && "text-center"
+                    )}
+                    style={{ color: template.styles.colors.text }}
+                >
+                    {badge}
+                </div>
+            ) : null}
 
             {title ? (
-                <h2 className="whitespace-pre-wrap" style={titleStyle}>
+                <h2 className="whitespace-pre-wrap leading-[1.05]" style={titleStyle}>
                     {title}
                 </h2>
             ) : null}
@@ -109,8 +123,8 @@ function TextBlock({
             {body ? (
                 <p
                     className={cn(
-                        "whitespace-pre-wrap",
-                        align === "left" ? "max-w-[34ch]" : "max-w-[32ch]"
+                        "whitespace-pre-wrap mt-2",
+                        align === "left" ? "max-w-[34ch]" : "max-w-[32ch] mx-auto"
                     )}
                     style={bodyStyle}
                 >
@@ -119,7 +133,7 @@ function TextBlock({
             ) : null}
 
             {bullets?.length ? (
-                <ul className={cn("space-y-2", align === "center" && "text-center")}>
+                <ul className={cn("space-y-2 mt-4", align === "center" && "text-center")}>
                     {bullets.map((bullet, index) => (
                         <li
                             key={`${bullet}-${index}`}
@@ -137,7 +151,7 @@ function TextBlock({
             ) : null}
 
             {buttonText ? (
-                <div className={cn("pt-2", align === "center" && "flex justify-center")}>
+                <div className={cn("pt-6", align === "center" && "flex justify-center")}>
                     <CTAButton text={buttonText} template={template} />
                 </div>
             ) : null}
@@ -167,9 +181,9 @@ function FramedImage({
                 "relative transition-all duration-500",
                 behavior === "framed" && "overflow-hidden border border-black/10 bg-white/40 shadow-sm",
                 behavior === "none" && "overflow-hidden",
-                isHero && "overflow-hidden scale-105 shadow-xl",
-                isOverlap && "overflow-hidden border-2 border-white/20 shadow-lg",
-                rounded ? "rounded-[24px]" : "rounded-none",
+                isHero && "overflow-hidden scale-105",
+                isOverlap && "overflow-hidden border-2 border-white/20",
+                rounded ? "rounded-xl" : "rounded-none",
                 className
             )}
         >
@@ -208,18 +222,7 @@ function BackgroundImage({
 }
 
 function DecorativeOverlay({ template }: { template: CarouselTemplate }) {
-    return (
-        <>
-            <div
-                className="absolute -right-10 -top-10 h-32 w-32 rounded-full blur-2xl"
-                style={{ backgroundColor: `${template.styles.colors.primary}20` }}
-            />
-            <div
-                className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full blur-2xl"
-                style={{ backgroundColor: `${template.styles.colors.accent}18` }}
-            />
-        </>
-    );
+    return null; // Removed fancy decorations
 }
 
 function SplitLeftLayout({
@@ -411,7 +414,7 @@ function FullImageLayout({
         <div className="relative flex h-full items-end">
             {slide.data.image ? <BackgroundImage src={slide.data.image} opacity={0.28} /> : null}
 
-            <div className="relative z-[2] w-full rounded-[28px] border border-white/10 bg-black/20 p-5 backdrop-blur-[2px]">
+            <div className="relative z-[2] w-full rounded-2xl border border-white/10 bg-black/20 p-5">
                 <TextBlock slide={slide} template={template} align="left" compact />
             </div>
         </div>
@@ -551,7 +554,7 @@ function IntroHeadshotLayout({
     return (
         <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
              {image && imagePosition === "top" && (
-                 <div className="relative mb-6 h-32 w-32 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-xl">
+                 <div className="relative mb-6 h-32 w-32 shrink-0 overflow-hidden rounded-full border-4 border-white">
                      <Image src={image} alt="Headshot" fill className="object-cover" unoptimized />
                  </div>
              )}
@@ -561,7 +564,7 @@ function IntroHeadshotLayout({
             </div>
 
             {image && imagePosition === "bottom" && (
-                 <div className="relative mt-8 h-28 w-28 shrink-0 overflow-hidden rounded-full border-4 border-white shadow-lg">
+                 <div className="relative mt-8 h-28 w-28 shrink-0 overflow-hidden rounded-full border-4 border-white">
                      <Image src={image} alt="Headshot" fill className="object-cover" unoptimized />
                  </div>
              )}
@@ -585,14 +588,19 @@ function IntroImageLayout({
 
             {image && (
                 <div 
-                    className="absolute bottom-0 left-0 z-0 h-2/3 w-2/3 origin-bottom-left transition-transform duration-500"
-                    style={{ transform: `scale(${imageScale}) translate(-10%, 10%)` }}
+                    className="absolute z-0 origin-bottom-right transition-all duration-300 pointer-events-none"
+                    style={{ 
+                        bottom: "calc(-1 * var(--slide-padding))",
+                        right: "calc(-1 * var(--slide-padding))",
+                        width: `calc( min(50%, 25% * ${imageScale}) + var(--slide-padding) )`,
+                        height: `calc( min(50%, 25% * ${imageScale}) + var(--slide-padding) )`,
+                    }}
                 >
                     <Image 
                         src={image} 
                         alt="Decor" 
                         fill 
-                        className="object-contain object-bottom-left grayscale-[0.2] opacity-90 drop-shadow-2xl" 
+                        className="object-contain object-bottom-right grayscale-[0.2] opacity-90" 
                         unoptimized 
                     />
                 </div>
@@ -601,31 +609,64 @@ function IntroImageLayout({
     );
 }
 
+function IntroStandardLayout({
+    slide,
+    template,
+}: {
+    slide: CarouselSlide;
+    template: CarouselTemplate;
+}) {
+    return (
+        <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
+             <div className="w-full max-w-[44ch]">
+                <TextBlock
+                    slide={slide}
+                    template={template}
+                    align="center"
+                />
+            </div>
+        </div>
+    );
+}
+
 export default function SlideRenderer({
     slide,
     template,
+    background,
     className,
     transparent = false,
+    slideIndex,
+    totalSlides,
 }: SlideRendererProps) {
     const wrapperStyle: CSSProperties = {
         backgroundColor: transparent ? "transparent" : template.styles.colors.background,
         color: template.styles.colors.text,
-        borderRadius: `${template.styles.spacing.radius + 10}px`,
+        borderRadius: `${template.styles.spacing.radius}px`,
         padding: `${template.styles.spacing.padding}px`,
         "--slide-padding": `${template.styles.spacing.padding}px`,
     } as any;
 
-    const hasBorder = !transparent && !className?.includes("border-0");
+    const backgroundStyle = background ? getBackgroundStyle(
+        background.id,
+        background.opacity ?? 0.1,
+        template.styles.colors.text
+    ) : null;
 
     return (
         <div
             className={cn(
                 "relative h-full w-full overflow-hidden",
-                !transparent && "border border-black/10 shadow-sm",
+                !transparent && "border border-black/10",
                 className
             )}
             style={wrapperStyle}
         >
+            {backgroundStyle && (
+                <div 
+                    className="absolute inset-0 z-0 pointer-events-none" 
+                    style={backgroundStyle} 
+                />
+            )}
             {template.styles.decorations?.shapes ? <DecorativeOverlay template={template} /> : null}
 
             {/* Background Faded Behavior */}
@@ -640,7 +681,9 @@ export default function SlideRenderer({
                     <SplitRightLayout slide={slide} template={template} />
                 ) : slide.layout === "top" ? (
                     <TopLayout slide={slide} template={template} />
-                ) : slide.layout === "center" || slide.layout === "intro-standard" ? (
+                ) : slide.layout === "intro-standard" ? (
+                    <IntroStandardLayout slide={slide} template={template} />
+                ) : slide.layout === "center" ? (
                     <CenterLayout slide={slide} template={template} />
                 ) : slide.layout === "intro-emoji" ? (
                     <IntroEmojiLayout slide={slide} template={template} />

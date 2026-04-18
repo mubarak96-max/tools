@@ -41,6 +41,7 @@ type UseCarouselReturn = {
     setTemplate: (templateId: string) => void;
     resetFromTemplate: (templateId?: string) => void;
     setBackground: (backgroundId?: string) => void;
+    setAspectRatio: (ratio: import("@/lib/carousel/types").CarouselAspectRatio) => void;
 
     updateSlideData: (slideId: string, updates: UpdateSlideDataInput) => void;
     updateSlideMeta: (
@@ -60,10 +61,15 @@ type UseCarouselReturn = {
 const cloneSlideData = (data?: CarouselSlide["data"]): CarouselSlide["data"] => ({
     title: data?.title ?? "",
     body: data?.body ?? "",
+    title2: data?.title2 ?? "",
+    body2: data?.body2 ?? "",
     bullets: data?.bullets ? [...data.bullets] : [],
     badge: data?.badge ?? "",
     buttonText: data?.buttonText ?? "",
     image: data?.image ?? "",
+    emoji: data?.emoji ?? "",
+    imageScale: data?.imageScale ?? 1,
+    imagePosition: data?.imagePosition ?? "top",
 });
 
 const presetToEditableSlide = (
@@ -83,6 +89,7 @@ const buildDocumentFromTemplate = (template: CarouselTemplate): CarouselDocument
     templateId: template.id,
     slides: createSlidesFromTemplate(template),
     backgroundId: template.background?.presetId,
+    aspectRatio: "4/5",
 });
 
 const createBlankSlideFromRole = (role: SlideRole): CarouselSlide => {
@@ -100,10 +107,15 @@ const createBlankSlideFromRole = (role: SlideRole): CarouselSlide => {
                 badge: "",
                 buttonText: "",
                 image: "",
+                emoji: "",
+                title2: "",
+                body2: "",
+                imageScale: 1,
+                imagePosition: "top",
             },
         },
         content: {
-            layout: "top",
+            layout: "center",
             imageBehavior: "none",
             data: {
                 title: "",
@@ -112,6 +124,11 @@ const createBlankSlideFromRole = (role: SlideRole): CarouselSlide => {
                 badge: "",
                 buttonText: "",
                 image: "",
+                emoji: "",
+                title2: "",
+                body2: "",
+                imageScale: 1,
+                imagePosition: "top",
             },
         },
         outro: {
@@ -124,6 +141,11 @@ const createBlankSlideFromRole = (role: SlideRole): CarouselSlide => {
                 badge: "",
                 buttonText: "",
                 image: "",
+                emoji: "",
+                title2: "",
+                body2: "",
+                imageScale: 1,
+                imagePosition: "top",
             },
         },
     };
@@ -203,6 +225,13 @@ export function useCarousel(options?: UseCarouselOptions): UseCarouselReturn {
         }));
     }, []);
 
+    const setAspectRatio = useCallback((ratio: import("@/lib/carousel/types").CarouselAspectRatio) => {
+        setDocument((prev) => ({
+            ...prev,
+            aspectRatio: ratio,
+        }));
+    }, []);
+
     const updateSlideData = useCallback(
         (slideId: string, updates: UpdateSlideDataInput) => {
             setDocument((prev) => ({
@@ -267,16 +296,32 @@ export function useCarousel(options?: UseCarouselOptions): UseCarouselReturn {
 
             setDocument((prev) => {
                 const slides = [...prev.slides];
+                let targetIndex = insertAtIndex;
 
-                if (
-                    typeof insertAtIndex === "number" &&
-                    insertAtIndex >= 0 &&
-                    insertAtIndex <= slides.length
-                ) {
-                    slides.splice(insertAtIndex, 0, nextSlide);
-                } else {
-                    slides.push(nextSlide);
+                if (typeof targetIndex !== "number") {
+                    const currentIndex = slides.findIndex((s) => s.id === activeSlideId);
+                    
+                    if (slides.length <= 1) {
+                        targetIndex = slides.length;
+                    } else {
+                        // Smart insertion logic to preserve first/last positions
+                        if (currentIndex === 0) {
+                            // Currently at first slide, insert as second
+                            targetIndex = 1;
+                        } else if (currentIndex === slides.length - 1) {
+                            // Currently at last slide, insert as second to last
+                            targetIndex = slides.length - 1;
+                        } else if (currentIndex !== -1) {
+                            // Somewhere in middle, insert after current
+                            targetIndex = currentIndex + 1;
+                        } else {
+                            // Default: insert before last slide if more than 1 slide exists
+                            targetIndex = Math.max(1, slides.length - 1);
+                        }
+                    }
                 }
+
+                slides.splice(targetIndex, 0, nextSlide);
 
                 return {
                     ...prev,
@@ -286,7 +331,7 @@ export function useCarousel(options?: UseCarouselOptions): UseCarouselReturn {
 
             setActiveSlideId(nextSlide.id);
         },
-        []
+        [activeSlideId]
     );
 
     const duplicateSlide = useCallback((slideId: string) => {
@@ -397,6 +442,7 @@ export function useCarousel(options?: UseCarouselOptions): UseCarouselReturn {
         setTemplate,
         resetFromTemplate,
         setBackground,
+        setAspectRatio,
 
         updateSlideData,
         updateSlideMeta,

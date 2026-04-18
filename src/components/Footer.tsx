@@ -119,7 +119,7 @@ export default function Footer() {
                 {column.links.map((link, index) => {
                   // For social media column, we want to render icons instead of text links
                   if (column.heading === "Connect" && column.icons) {
-                    const Icon = column.icons[index as keyof typeof column.icons];
+                    const Icon = column.icons[index];
                     return (
                       <li key={index}>
                         <a

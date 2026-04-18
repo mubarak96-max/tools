@@ -4,7 +4,6 @@ import {
   DM_Serif_Display,
   Inter,
   JetBrains_Mono,
-  Source_Serif_4,
   Space_Grotesk,
   Syne,
 } from "next/font/google";
@@ -33,7 +32,7 @@ const monoFont = JetBrains_Mono({
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
-const serifFont = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif" });
+const serifFont = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable: "--font-serif" });
 const syneFont = Syne({ subsets: ["latin"], weight: ["400", "700", "800"], variable: "--font-syne" });
 const dmSansFont = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-dm-sans" });
 const dmSerifFont = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable: "--font-dm-serif" });
