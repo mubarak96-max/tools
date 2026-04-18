@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import CarouselBuilderClient from "@/components/tools/carousel-builder/CarouselBuilderClient";
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Free Social Media Carousel Builder | Create Instagram, LinkedIn & TikTok Carousels",
