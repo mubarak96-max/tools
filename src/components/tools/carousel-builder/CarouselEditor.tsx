@@ -23,9 +23,6 @@ import {
 } from "lucide-react";
 import { useCarousel } from "./useCarousel";
 import { cn } from "@/lib/utils";
-import { toPng } from "html-to-image";
-import { jsPDF } from "jspdf";
-import JSZip from "jszip";
 import { CarouselSlide, CarouselTemplate, CarouselAspectRatio } from "@/lib/carousel/types";
 import { carouselTemplates } from "@/lib/carousel/templates";
 import { backgroundPresets } from "@/lib/carousel/backgrounds";
@@ -72,7 +69,21 @@ export default function CarouselEditor({ initialTemplateId }: CarouselEditorProp
         console.log(`Starting ${format} export for ${slides.length} slides...`);
 
         try {
+            const [
+                { toPng },
+                jspdfModule,
+                jszipModule
+            ] = await Promise.all([
+                import("html-to-image"),
+                import("jspdf"),
+                import("jszip")
+            ]);
+
+            const jsPDF = jspdfModule.jsPDF || (jspdfModule as any).default;
+            const JSZip = (jszipModule as any).default || jszipModule;
+
             const slideNodes = Array.from(exportRef.current.children) as HTMLElement[];
+
             if (slideNodes.length === 0) {
                 throw new Error("No slides found in export container");
             }
