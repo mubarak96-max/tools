@@ -33,9 +33,8 @@ const FOOTER_COLUMNS = [
       { name: "Contact", href: "/contact" },
       { name: "Privacy Policy", href: "/privacy" },
       { name: "Terms", href: "/terms" },
-      { name: "GDPR", href: "/gdpr" },
+
     ],
-  },
   },
 ];
 
