@@ -21,8 +21,6 @@ const FOOTER_COLUMNS = [
     heading: "Resources",
     links: [
       { name: "Blog", href: "/blog" },
-      { name: "Guides", href: "/guides" },
-      { name: "API Docs", href: "/api" },
       { name: "Sitemap", href: "/sitemap" },
     ],
   },
@@ -59,27 +57,6 @@ export default function Footer() {
             <p className="max-w-md text-center text-sm leading-6 text-muted-foreground lg:text-left">
               Browser-based tools for practical work across text, images, PDFs, finance, real
               estate, health, and lightweight AI workflows.
-            </p>
-          </div>
-
-          {/* Newsletter signup */}
-          <div className="flex flex-col items-center lg:items-start lg:ml-10">
-            <h3 className="mb-2 text-lg font-semibold text-foreground">Get Tool Updates</h3>
-            <form className="flex gap-2 w-full max-w-xs">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 rounded-xl border border-border bg-card py-3 pl-5 pr-5 text-sm text-foreground placeholder-muted-foreground focus:border-primary/30 focus:outline-none focus:ring-4 focus:ring-primary/5"
-              />
-              <button
-                type="submit"
-                className="rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p className="mt-2 text-xs text-muted-foreground">
-              Get notified when we add new tools and features.
             </p>
           </div>
         </div>
