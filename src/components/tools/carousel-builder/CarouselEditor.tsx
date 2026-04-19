@@ -60,6 +60,7 @@ export default function CarouselEditor({ initialTemplateId }: CarouselEditorProp
     const exportRef = useRef<HTMLDivElement>(null);
 
     const handleExport = async (format: 'pdf' | 'images') => {
+        if (typeof window === "undefined") return;
         if (!exportRef.current) {
             console.error("Export ref not found");
             return;
@@ -69,15 +70,12 @@ export default function CarouselEditor({ initialTemplateId }: CarouselEditorProp
         console.log(`Starting ${format} export for ${slides.length} slides...`);
 
         try {
-            const [
-                { toPng },
-                jspdfModule,
-                jszipModule
-            ] = await Promise.all([
-                import("html-to-image"),
-                import("jspdf"),
-                import("jszip")
-            ]);
+            // Import html-to-image separately as it's generally safer
+            const { toPng } = await import("html-to-image");
+            
+            // Import jspdf and jszip cautiously
+            const jspdfModule = await import("jspdf/dist/jspdf.es.min.js");
+            const jszipModule = await import("jszip");
 
             const jsPDF = jspdfModule.jsPDF || (jspdfModule as any).default;
             const JSZip = (jszipModule as any).default || jszipModule;

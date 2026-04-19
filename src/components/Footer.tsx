@@ -189,6 +189,9 @@ export default function Footer() {
             <Link href="/contact" className="transition-colors hover:text-foreground">
               Contact
             </Link>
+            <Link href="/blog" className="transition-colors hover:text-foreground">
+              Blog
+            </Link>
           </div>
         </div>
       </div>

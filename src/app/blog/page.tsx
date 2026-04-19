@@ -15,6 +15,46 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "How to Write a Carousel Caption That Gets Engagement (2026 Guide)",
+    description: "Your caption is your second hook. Master the 4-part carousel caption formula for Instagram and LinkedIn to drive more swipes, saves, and comments.",
+    href: "/blog/carousel-caption-guide",
+    tag: "Copywriting",
+    readTime: "9 min read",
+    date: "April 2026",
+  },
+  {
+    title: "How to Make a Carousel Go Viral in 2026: Tactics That Actually Work",
+    description: "Learn the specific engagement tactics—from value delay to continuous backgrounds—that force the Instagram and LinkedIn algorithms to boost your reach.",
+    href: "/blog/how-to-make-a-carousel-go-viral",
+    tag: "Growth Strategy",
+    readTime: "13 min read",
+    date: "April 2026",
+  },
+  {
+    title: "7 Free Canva Alternatives for Making Social Media Carousels in 2026",
+    description: "Discover the best dedicated carousel builders that produce no-watermark, high-res slides for Instagram and LinkedIn without a Canva subscription.",
+    href: "/blog/free-carousel-maker-no-canva",
+    tag: "Tool Comparison",
+    readTime: "11 min read",
+    date: "April 2026",
+  },
+  {
+    title: "How to Make a LinkedIn Carousel in 2026: The Complete Guide",
+    description: "Master LinkedIn document posts. Learn the viral hook formulas, PDF specs, and design rules that drive B2B engagement and reach.",
+    href: "/blog/how-to-make-a-linkedin-carousel",
+    tag: "LinkedIn Guide",
+    readTime: "12 min read",
+    date: "April 2026",
+  },
+  {
+    title: "Instagram Carousel Size Guide for 2026: Every Dimension You Need to Get Right",
+    description: "Master Instagram carousel aspect ratios, safe zones, and the secret export settings for sharp text. Complete guide for 4:5, 1:1, and the new 3:4 format.",
+    href: "/blog/instagram-carousel-size",
+    tag: "Design Guide",
+    readTime: "10 min read",
+    date: "April 2026",
+  },
+  {
     title: "How to Convert Text to Binary (and Binary Back to Text)",
     description: "A complete guide to binary code translation — how it works, worked examples, and ASCII reference tables.",
     href: "/blog/how-to-convert-text-to-binary",
