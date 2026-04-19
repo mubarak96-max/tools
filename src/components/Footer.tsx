@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Github, Linkedin, Twitter, Zap, ServerCog, ShieldCheck } from "lucide-react";
 
 const FOOTER_COLUMNS = [
   {
@@ -37,24 +36,10 @@ const FOOTER_COLUMNS = [
       { name: "GDPR", href: "/gdpr" },
     ],
   },
-  {
-    heading: "Connect",
-    links: [
-      { name: "Twitter", href: "https://twitter.com/findbest_tools" },
-      { name: "GitHub", href: "https://github.com/findbest" },
-      { name: "LinkedIn", href: "https://linkedin.com/company/findbest-tools" },
-      { name: "Product Hunt", href: "https://www.producthunt.com/@findbest" },
-    ],
-    icons: [Twitter, Github, Linkedin, Mail], // Note: Product Hunt icon not in lucide-react by default, we can use Mail as placeholder or skip
   },
-] as const;
+];
 
-const TRUST_BADGES = [
-  { label: "🔒 GDPR Compliant", icon: ShieldCheck },
-  { label: "📖 Open Source", icon: ServerCog },
-  { label: "⚡ 100% Free", icon: Zap },
-  { label: "🚀 Fast & Reliable", icon: Zap }, // Using Zap again for simplicity; could use another icon like Clock if available
-] as const;
+
 
 export default function Footer() {
   return (
@@ -100,15 +85,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Trust Badges */}
-        <div className="mb-10 flex flex-wrap items-center gap-4 justify-center">
-          {TRUST_BADGES.map((badge, index) => (
-            <div key={index} className="flex items-center gap-2 text-sm font-medium">
-              {badge.icon && <badge.icon className="h-4 w-4" />}
-              <span>{badge.label}</span>
-            </div>
-          ))}
-        </div>
+
 
         {/* Footer Columns */}
         <div className="grid gap-10 lg:grid-cols-4">
