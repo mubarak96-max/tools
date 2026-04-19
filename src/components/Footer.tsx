@@ -93,23 +93,7 @@ export default function Footer() {
               <h3 className="mb-4 text-sm font-semibold text-foreground">{column.heading}</h3>
               <ul className="space-y-2">
                 {column.links.map((link, index) => {
-                  // For social media column, we want to render icons instead of text links
-                  if (column.heading === "Connect" && column.icons) {
-                    const Icon = column.icons[index];
-                    return (
-                      <li key={index}>
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-2 hover:text-primary transition-colors"
-                        >
-                          {Icon && <Icon className="h-5 w-5" />}
-                          <span>{link.name}</span>
-                        </a>
-                      </li>
-                    );
-                  }
+
                   return (
                     <li key={index}>
                       <Link
