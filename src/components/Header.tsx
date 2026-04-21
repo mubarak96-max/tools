@@ -19,6 +19,9 @@ const NAV_GROUPS = [
     href: '/text',
     tools: [
       { name: 'Word Frequency', href: '/text/word-frequency', icon: 'FREQ' },
+      { name: 'Case Converter', href: '/text/case-converter', icon: 'CASE' },
+      { name: 'Word Cloud Generator', href: '/text/word-cloud-generator', icon: 'CLOUD' },
+      { name: 'Duplicate Word Finder', href: '/text/duplicate-word-finder', icon: 'DUP' },
       { name: 'Morse Code Translator', href: '/text/morse-code-translator', icon: 'MORSE' },
       { name: 'Binary Code Translator', href: '/text/binary-code-translator', icon: 'BIN' },
       { name: 'Image to Text (OCR)', href: '/text/convert-image-to-text', icon: 'OCR' },
@@ -29,8 +32,32 @@ const NAV_GROUPS = [
     label: 'Image',
     href: '/image',
     tools: [
-      { name: 'AI Background Remover', href: '/image/ai-background-remover', icon: 'AI' },
+      { name: 'AI Background Remover', href: '/image/free-image-background-remover-online', icon: 'AI' },
       { name: 'Image to Base64', href: '/image/convert-image-to-base64', icon: 'B64' },
+    ],
+  },
+  {
+    label: 'AI',
+    href: '/ai',
+    tools: [
+      { name: 'AI Humanizer', href: '/ai/ai-humanizer', icon: 'AI' },
+    ],
+  },
+  {
+    label: 'Finance',
+    href: '/finance',
+    tools: [
+      { name: 'Invoice Generator', href: '/finance/invoice-generator', icon: 'INV' },
+    ],
+  },
+  {
+    label: 'Construction',
+    href: '/construction',
+    tools: [
+      { name: 'Concrete Volume', href: '/construction/concrete-volume-calculator', icon: 'CON' },
+      { name: 'Paint Coverage', href: '/construction/paint-coverage-calculator', icon: 'PNT' },
+      { name: 'Flooring Materials', href: '/construction/flooring-material-calculator', icon: 'FLR' },
+      { name: 'Roofing Materials', href: '/construction/roofing-material-calculator', icon: 'ROOF' },
     ],
   },
   {
@@ -38,6 +65,7 @@ const NAV_GROUPS = [
     href: '/health',
     tools: [
       { name: 'BMR Calculator', href: '/health/bmr-calculator', icon: 'BMR' },
+      { name: 'Calorie Calculator', href: '/health/calorie-calculator', icon: 'CAL' },
     ],
   },
   {
@@ -45,12 +73,21 @@ const NAV_GROUPS = [
     href: '/real-estate',
     tools: [
       { name: 'NYC Transfer Tax', href: '/real-estate/nyc-transfer-tax-calculator', icon: 'NYC' },
+      { name: 'Price per Sq Ft', href: '/real-estate/price-per-square-foot-calculator', icon: 'SQFT' },
+      { name: 'UK Stamp Duty', href: '/real-estate/uk-stamp-duty-calculator', icon: 'UK' },
+      { name: 'Singapore Property Stamp Duty', href: '/real-estate/singapore-property-stamp-duty-calculator', icon: 'SG' },
+      { name: 'Singapore Buyer Stamp Duty', href: '/real-estate/singapore-buyers-stamp-duty-calculator', icon: 'BSD' },
+      { name: 'Singapore Seller Stamp Duty', href: '/real-estate/singapore-sellers-stamp-duty-calculator', icon: 'SSD' },
+      { name: 'Scotland LBTT', href: '/real-estate/scotland-lbtt-calculator', icon: 'LBTT' },
+      { name: 'Wales LTT', href: '/real-estate/wales-ltt-calculator', icon: 'LTT' },
+      { name: 'Hong Kong Stamp Duty', href: '/real-estate/hong-kong-stamp-duty-calculator', icon: 'HK' },
     ],
   },
   {
     label: 'Utility',
     href: '/utility',
     tools: [
+      { name: 'DNS Checker', href: '/utility/dns-checker', icon: 'DNS' },
       { name: 'Free CV Resume Builder', href: '/utility/free-cv-resume-builder', icon: 'CV' },
       { name: 'QR Code Generator', href: '/utility/qr-code-generator', icon: 'QR' },
       { name: 'Barcode Generator', href: '/utility/barcode-generator', icon: 'CODE' },

@@ -18,6 +18,12 @@ const UTILITY_TOOLS = [
     icon: "XG",
   },
   {
+    name: "DNS Checker",
+    href: "/utility/dns-checker",
+    description: "Look up A, AAAA, MX, TXT, NS, and other DNS records for any domain.",
+    icon: "DNS",
+  },
+  {
     name: "Free CV Resume Builder",
     href: "/utility/free-cv-resume-builder",
     description: "Build a resume online for free with editable sections, multiple templates, browser autosave, and print-to-PDF export.",

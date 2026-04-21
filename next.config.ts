@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/image/ai-background-remover",
+        destination: "/image/free-image-background-remover-online",
+        permanent: true,
+      },
+      {
         source: "/free-tools",
         destination: "/",
         permanent: true,
@@ -60,7 +65,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), geolocation=(), microphone=()",
+            value: "camera=(self), geolocation=(), microphone=()",
           },
           {
             key: "Cross-Origin-Opener-Policy",

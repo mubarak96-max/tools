@@ -12,6 +12,50 @@ export const metadata = buildMetadata({
 
 const SITEMAP_TOOLS = [
   {
+    category: "AI",
+    categoryHref: "/ai",
+    categoryDescription: "AI-assisted rewriting and text-polishing tools.",
+    tools: [
+      {
+        name: "AI Humanizer",
+        href: "/ai/ai-humanizer",
+        description: "Rewrite AI-like text into a more natural draft with tone and complexity controls.",
+        icon: "AI",
+      },
+    ],
+  },
+  {
+    category: "Construction",
+    categoryHref: "/construction",
+    categoryDescription: "Material calculators for concrete, paint, and roofing projects.",
+    tools: [
+      {
+        name: "Concrete Volume Calculator",
+        href: "/construction/concrete-volume-calculator",
+        description: "Estimate concrete volume for slabs, footings, columns, holes, and mixed shapes.",
+        icon: "CON",
+      },
+      {
+        name: "Paint Coverage Calculator",
+        href: "/construction/paint-coverage-calculator",
+        description: "Estimate paint, primer, coats, and wall coverage for room projects.",
+        icon: "PNT",
+      },
+      {
+        name: "Flooring Material Calculator",
+        href: "/construction/flooring-material-calculator",
+        description: "Estimate flooring area, boxes, waste allowance, underlayment, and project cost.",
+        icon: "FLR",
+      },
+      {
+        name: "Roofing Material Calculator",
+        href: "/construction/roofing-material-calculator",
+        description: "Estimate shingles, bundles, underlayment, nails, and waste.",
+        icon: "ROOF",
+      },
+    ],
+  },
+  {
     category: "Design",
     categoryHref: "/design",
     categoryDescription: "Browser-based design tools for social media assets and visual content.",
@@ -21,6 +65,19 @@ const SITEMAP_TOOLS = [
         href: "/design/free-social-media-carousel-builder",
         description: "Create Instagram, LinkedIn, and TikTok carousel posts with templates and export options.",
         icon: "CAR",
+      },
+    ],
+  },
+  {
+    category: "Finance",
+    categoryHref: "/finance",
+    categoryDescription: "Finance tools for business paperwork and practical calculations.",
+    tools: [
+      {
+        name: "Invoice Generator",
+        href: "/finance/invoice-generator",
+        description: "Create printable invoices with line items, taxes, discounts, and totals.",
+        icon: "INV",
       },
     ],
   },
@@ -35,6 +92,12 @@ const SITEMAP_TOOLS = [
         description: "Calculate your Basal Metabolic Rate using the Mifflin-St Jeor Equation.",
         icon: "BMR",
       },
+      {
+        name: "Calorie Calculator",
+        href: "/health/calorie-calculator",
+        description: "Estimate TDEE and daily calorie targets for weight loss, maintenance, or muscle gain.",
+        icon: "CAL",
+      },
     ],
   },
   {
@@ -44,7 +107,7 @@ const SITEMAP_TOOLS = [
     tools: [
       {
         name: "AI Background Remover",
-        href: "/image/ai-background-remover",
+        href: "/image/free-image-background-remover-online",
         description: "Remove the background from any photo instantly using local WebAssembly AI.",
         icon: "AI",
       },
@@ -67,6 +130,54 @@ const SITEMAP_TOOLS = [
         description: "Estimate New York City real property transfer tax from the transfer price and property type.",
         icon: "NYC",
       },
+      {
+        name: "Price per Square Foot Calculator",
+        href: "/real-estate/price-per-square-foot-calculator",
+        description: "Compare sale or rent listings by price per square foot or square metre.",
+        icon: "SQFT",
+      },
+      {
+        name: "UK Stamp Duty Calculator",
+        href: "/real-estate/uk-stamp-duty-calculator",
+        description: "Calculate SDLT for England and Northern Ireland purchases.",
+        icon: "UK",
+      },
+      {
+        name: "Singapore Property Stamp Duty Calculator",
+        href: "/real-estate/singapore-property-stamp-duty-calculator",
+        description: "Estimate BSD, ABSD, and SSD for Singapore property purchases.",
+        icon: "SG",
+      },
+      {
+        name: "Singapore Buyer's Stamp Duty Calculator",
+        href: "/real-estate/singapore-buyers-stamp-duty-calculator",
+        description: "Calculate Singapore buyer stamp duty by residency and property count.",
+        icon: "BSD",
+      },
+      {
+        name: "Singapore Seller's Stamp Duty Calculator",
+        href: "/real-estate/singapore-sellers-stamp-duty-calculator",
+        description: "Estimate Singapore seller stamp duty by sale price and holding period.",
+        icon: "SSD",
+      },
+      {
+        name: "Scotland LBTT Calculator",
+        href: "/real-estate/scotland-lbtt-calculator",
+        description: "Calculate Scotland Land and Buildings Transaction Tax.",
+        icon: "LBTT",
+      },
+      {
+        name: "Wales LTT Calculator",
+        href: "/real-estate/wales-ltt-calculator",
+        description: "Estimate Welsh Land Transaction Tax for residential purchases.",
+        icon: "LTT",
+      },
+      {
+        name: "Hong Kong Stamp Duty Calculator",
+        href: "/real-estate/hong-kong-stamp-duty-calculator",
+        description: "Calculate Hong Kong ad valorem stamp duty for residential property.",
+        icon: "HK",
+      },
     ],
   },
   {
@@ -79,6 +190,24 @@ const SITEMAP_TOOLS = [
         href: "/text/word-frequency",
         description: "Analyze repeated words, filter stop words, and surface the most-used terms in any text block.",
         icon: "FREQ",
+      },
+      {
+        name: "Case Converter",
+        href: "/text/case-converter",
+        description: "Convert text between uppercase, lowercase, title case, sentence case, and code formats.",
+        icon: "CASE",
+      },
+      {
+        name: "Word Cloud Generator",
+        href: "/text/word-cloud-generator",
+        description: "Generate a visual word cloud from pasted text with frequency-based sizing.",
+        icon: "CLOUD",
+      },
+      {
+        name: "Duplicate Word Finder",
+        href: "/text/duplicate-word-finder",
+        description: "Find repeated words and overused terms in drafts and web copy.",
+        icon: "DUP",
       },
       {
         name: "Morse Code Translator",
@@ -116,6 +245,12 @@ const SITEMAP_TOOLS = [
         href: "/utility/xg-expected-goals-calculator",
         description: "Interactive football xG calculator with shot position, pressure, assist type, and match comparison.",
         icon: "XG",
+      },
+      {
+        name: "DNS Checker",
+        href: "/utility/dns-checker",
+        description: "Look up A, AAAA, MX, TXT, NS, and other DNS records for any domain.",
+        icon: "DNS",
       },
       {
         name: "Free CV Resume Builder",

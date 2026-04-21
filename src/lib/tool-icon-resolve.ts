@@ -112,6 +112,7 @@ const EXACT_BY_SLUG: Record<string, string> = {
 
   // Image
   "ai-background-remover": "lucide:eraser",
+  "free-image-background-remover-online": "lucide:eraser",
   "random-color-generator": "lucide:palette",
   "convert-image-to-base64": "lucide:image-up",
   "convert-image-to-text": "lucide:scan-text",

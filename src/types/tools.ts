@@ -12,6 +12,8 @@ export interface WordFrequencyComparisonItem {
   countDelta: number;
 }
 
+export type HumanizerStatus = "idle" | "queued" | "processing" | "done" | "error";
+
 export interface FreeToolMeta {
   name: string;
   href: string;

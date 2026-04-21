@@ -114,13 +114,14 @@ export default function BmrCalculatorPage() {
             <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
               Calculate your Basal Metabolic Rate - the number of calories your body burns at complete rest - using the Mifflin-St Jeor formula. Use it as the foundation for setting accurate calorie targets.
             </p>
+            <p className="mt-4 rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950">
+              This calculator is for education and planning only. It is not medical advice,
+              diagnosis, treatment, or a substitute for guidance from a qualified clinician,
+              dietitian, or other health professional.
+            </p>
           </div>
 
-          <div className="mt-6 max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
-              Private and browser-native
-            </div>
-          </div>
+
         </section>
 
         <BmrCalculator />
@@ -136,6 +137,18 @@ export default function BmrCalculatorPage() {
             </p>
 
             <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">The Mifflin-St Jeor formula</h2>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Source:{" "}
+              <a
+                href="https://pubmed.ncbi.nlm.nih.gov/2305711/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-primary hover:underline"
+              >
+                Mifflin MD, St Jeor ST, et al. A new predictive equation for resting energy expenditure in healthy individuals.
+              </a>{" "}
+              Last reviewed on April 21, 2026.
+            </p>
             <p className="mt-3 text-base leading-7 text-muted-foreground">
               This calculator uses the Mifflin-St Jeor equation, published in 1990 and validated as the most accurate predictive formula for modern populations. It was developed by MD Mifflin and ST St Jeor using data from 498 subjects and outperforms the older Harris-Benedict equation (1919) by approximately 5% in accuracy.
             </p>

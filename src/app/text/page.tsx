@@ -26,6 +26,24 @@ const TEXT_TOOLS: TextToolMeta[] = [
     icon: "FREQ",
   },
   {
+    name: "Case Converter",
+    href: "/text/case-converter",
+    description: "Convert text between uppercase, lowercase, title case, sentence case, camelCase, and more.",
+    icon: "CASE",
+  },
+  {
+    name: "Word Cloud Generator",
+    href: "/text/word-cloud-generator",
+    description: "Generate a visual word cloud from pasted text with frequency-based sizing.",
+    icon: "CLOUD",
+  },
+  {
+    name: "Duplicate Word Finder",
+    href: "/text/duplicate-word-finder",
+    description: "Find repeated words and overused terms in drafts, essays, and web copy.",
+    icon: "DUP",
+  },
+  {
     name: "Morse Code Translator",
     href: "/text/morse-code-translator",
     description: "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",

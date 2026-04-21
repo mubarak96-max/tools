@@ -11,7 +11,7 @@ export const revalidate = 1800;
 
 const HOME_TITLE = "FindBest Tools | Free Professional Online utilities";
 const HOME_DESCRIPTION =
-  "Access premium browser-based tools for text, images, and daily tasks. No sign-up, no tracking, just high-performance results.";
+  "Access premium browser-based tools for text, images, and daily tasks. No sign-up, privacy-conscious design, and high-performance results.";
 
 const baseMetadata = buildMetadata({
   title: "Free Professional Online Tools",
@@ -66,7 +66,7 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
   },
   {
     name: "AI Background Remover",
-    href: "/image/ai-background-remover",
+    href: "/image/free-image-background-remover-online",
     description: "Remove the background from any photo instantly using local WebAssembly AI.",
     category: "Image",
     icon: "AI",

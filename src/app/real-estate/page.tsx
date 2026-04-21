@@ -5,9 +5,9 @@ import { buildMetadata } from "@/lib/seo/metadata";
 export const revalidate = 43200;
 
 export const metadata = buildMetadata({
-  title: "Real Estate Calculators for NYC Transfer Tax",
+  title: "Real Estate Calculators for Property Taxes and Valuation",
   description:
-    "Estimate New York City real property transfer tax from the transfer price and property type.",
+    "Estimate property taxes, stamp duty, transfer fees, and price per square foot across major real estate markets.",
   path: "/real-estate",
 });
 
@@ -24,6 +24,54 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
     href: "/real-estate/nyc-transfer-tax-calculator",
     description: "Estimate New York City real property transfer tax from the transfer price and property type.",
     icon: "NYC",
+  },
+  {
+    name: "Price per Square Foot Calculator",
+    href: "/real-estate/price-per-square-foot-calculator",
+    description: "Compare property value or rent using price per square foot or square metre.",
+    icon: "SQFT",
+  },
+  {
+    name: "UK Stamp Duty Calculator",
+    href: "/real-estate/uk-stamp-duty-calculator",
+    description: "Calculate SDLT for England and Northern Ireland purchases with surcharge options.",
+    icon: "UK",
+  },
+  {
+    name: "Singapore Property Stamp Duty Calculator",
+    href: "/real-estate/singapore-property-stamp-duty-calculator",
+    description: "Estimate Singapore BSD, ABSD, and SSD for private property purchases.",
+    icon: "SG",
+  },
+  {
+    name: "Singapore Buyer's Stamp Duty Calculator",
+    href: "/real-estate/singapore-buyers-stamp-duty-calculator",
+    description: "Calculate Singapore BSD and ABSD for buyers by residency and property count.",
+    icon: "BSD",
+  },
+  {
+    name: "Singapore Seller's Stamp Duty Calculator",
+    href: "/real-estate/singapore-sellers-stamp-duty-calculator",
+    description: "Estimate Singapore SSD based on sale price and holding period.",
+    icon: "SSD",
+  },
+  {
+    name: "Scotland LBTT Calculator",
+    href: "/real-estate/scotland-lbtt-calculator",
+    description: "Calculate Scotland Land and Buildings Transaction Tax with ADS options.",
+    icon: "LBTT",
+  },
+  {
+    name: "Wales LTT Calculator",
+    href: "/real-estate/wales-ltt-calculator",
+    description: "Estimate Welsh Land Transaction Tax for residential property purchases.",
+    icon: "LTT",
+  },
+  {
+    name: "Hong Kong Stamp Duty Calculator",
+    href: "/real-estate/hong-kong-stamp-duty-calculator",
+    description: "Calculate Hong Kong ad valorem stamp duty for residential property.",
+    icon: "HK",
   },
 ];
 
@@ -64,10 +112,10 @@ export default function RealEstatePage() {
           Real Estate · {REAL_ESTATE_TOOLS.length} calculators
         </p>
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Real estate calculator for NYC property transfer tax.
+          Real estate calculators for property taxes and valuation.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-          Estimate New York City real property transfer tax from the transfer price and property type — all browser-based with no sign-up needed.
+          Estimate transfer taxes, stamp duty, and price-per-area metrics across major real estate markets.
         </p>
       </section>
 

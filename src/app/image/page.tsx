@@ -14,7 +14,7 @@ export const metadata = buildMetadata({
 const IMAGE_TOOLS = [
   {
     name: "AI Background Remover",
-    href: "/image/ai-background-remover",
+    href: "/image/free-image-background-remover-online",
     description: "Remove the background from any photo instantly using local WebAssembly AI.",
     icon: "AI",
   },

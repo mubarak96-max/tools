@@ -25,6 +25,12 @@ const HEALTH_TOOLS: HealthToolMeta[] = [
     description: "Calculate your Basal Metabolic Rate using the Mifflin-St Jeor Equation.",
     icon: "BMR",
   },
+  {
+    name: "Calorie Calculator",
+    href: "/health/calorie-calculator",
+    description: "Estimate TDEE and daily calorie targets for weight loss, maintenance, or muscle gain.",
+    icon: "CAL",
+  },
 ];
 
 function ToolCard({ tool }: { tool: HealthToolMeta }) {

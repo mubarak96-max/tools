@@ -41,9 +41,9 @@ const faq = [
 
 export const metadata: Metadata = {
   ...buildMetadata({
-    title: "NYC & NYS Transfer Tax Calculator 2025 - 2026: RPTT & Mansion Tax",
+    title: "NYC & NYS Transfer Tax Calculator 2026: RPTT & Mansion Tax",
     description:
-      "Calculate 2025 NYC Real Property Transfer Tax (RPTT), NYS Transfer Tax, and Mansion Tax. Factual rates for Co-ops, Condos, and Residential homes.",
+      "Estimate NYC Real Property Transfer Tax (RPTT), NYS transfer tax, and mansion tax using current public rate references.",
     path: PAGE_PATH,
   }),
   keywords: [
@@ -72,7 +72,7 @@ function buildApplicationJsonLd() {
       price: "0",
       priceCurrency: "USD",
     },
-    description: "Accurate calculator for NYC RPTT, NYS Transfer Tax, and Mansion Tax for 2025 real estate transactions.",
+    description: "Estimator for NYC RPTT, NYS transfer tax, and mansion tax using current public rate references.",
   };
 }
 
@@ -109,7 +109,12 @@ export default function NYCTransferTaxCalculatorPage() {
               NYC & NYS Transfer Tax Calculator
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
-              Estimate New York City RPTT, New York State Transfer Tax, and Mansion Tax based on current 2025 thresholds.
+              Estimate New York City RPTT, New York State transfer tax, and mansion tax based on current public rate references.
+            </p>
+            <p className="mt-4 max-w-3xl rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-950">
+              This calculator is for general education and planning only. It is not legal,
+              tax, accounting, or closing-cost advice. Confirm the result with your attorney,
+              CPA, title company, or the relevant tax agency before relying on it for a transaction.
             </p>
 
             <nav aria-label="Breadcrumb" className="mt-8">
@@ -142,7 +147,7 @@ export default function NYCTransferTaxCalculatorPage() {
               <li><strong>NYC High-Value Rate (Peat Tax):</strong> For transfers within NYC, the rate increases to 0.65% if the price is $3 million or more for residential properties (1-3 family) or $2 million or more for non-residential properties.</li>
             </ul>
 
-            <h2 className="text-2xl font-bold mt-8">NYC Real Property Transfer Tax Rates (2025)</h2>
+            <h2 className="text-2xl font-bold mt-8">NYC Real Property Transfer Tax Rates</h2>
             <p>NYC uses a two-tier rate system based on the property type and the sale price:</p>
 
             <div className="overflow-x-auto my-6">
@@ -192,6 +197,44 @@ export default function NYCTransferTaxCalculatorPage() {
             <p>
               While the RPTT rates are identical for condos and co-ops, the legal structure differs. Condo transfers involve a deed, while co-op transfers involve shares in a corporation and a proprietary lease. Despite being personal property, co-ops have been subject to RPTT since 1989.
             </p>
+
+            <h2 className="text-2xl font-bold mt-8">Official References</h2>
+            <p>
+              Last reviewed on April 21, 2026. Rate references should be checked again before a real
+              transaction, because filing instructions and exemptions can change.
+            </p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>
+                <a
+                  href="https://www.nyc.gov/site/finance/property/property-real-property-transfer-tax-rptt.page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary hover:underline"
+                >
+                  NYC Department of Finance: Real Property Transfer Tax
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tax.ny.gov/bus/transfer/rptidx.htm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary hover:underline"
+                >
+                  New York State Department of Taxation and Finance: Real estate transfer tax
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tax.ny.gov/forms/real_prop_tran_cur_forms.htm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary hover:underline"
+                >
+                  NYS current real estate transfer tax forms and TP-584-NYC instructions
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
 
