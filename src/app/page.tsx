@@ -51,6 +51,13 @@ type HomeToolMeta = {
 
 const FEATURED_TOOLS: HomeToolMeta[] = [
   {
+    name: "Expected Goals (xG) Calculator",
+    href: "/utility/xg-expected-goals-calculator",
+    description: "Interactive xG calculator for football: pitch heatmap and shot parameters for expected goals modelling.",
+    category: "Utility",
+    icon: "XG",
+  },
+  {
     name: "Free CV Resume Builder",
     href: "/utility/free-cv-resume-builder",
     description: "Build a resume online for free with editable sections, multiple templates, browser autosave, and print-to-PDF export.",

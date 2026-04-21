@@ -138,9 +138,7 @@ export default async function SitemapPage() {
   return (
     <div className="space-y-8">
       <section className="space-y-4 py-2 sm:py-4">
-        <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-          HTML sitemap
-        </p>
+
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
           Browse tools
         </h1>

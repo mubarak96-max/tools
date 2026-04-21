@@ -169,7 +169,7 @@ export default function BinaryCybersecurityBlogPage() {
             Binary code is more than just a series of zeros and ones; it&apos;s the bedrock of digital information and a critical component in the realm of cybersecurity. Whether you&apos;re analyzing malware, cracking a CTF challenge, or simply trying to understand a hidden message, the ability to work with binary is a powerful skill.
           </p>
           <p>
-            Empower your cybersecurity journey with our <Link href="/converter/convert-binary-encoder-decoder" className="text-primary font-bold underline decoration-primary/30 hover:decoration-primary transition-all">Free Binary Code Translator</Link>. It&apos;s a fast, accurate, and easy-to-use tool that supports various encodings, making it perfect for all your binary translation needs in the world of digital security and puzzles.
+            Empower your cybersecurity journey with our <Link href="/text/binary-code-translator" className="text-primary font-bold underline decoration-primary/30 hover:decoration-primary transition-all">Free Binary Code Translator</Link>. It&apos;s a fast, accurate, and easy-to-use tool that supports various encodings, making it perfect for all your binary translation needs in the world of digital security and puzzles.
           </p>
         </section>
 
@@ -203,7 +203,7 @@ export default function BinaryCybersecurityBlogPage() {
             Convert suspicious binary strings or prepare your own encrypted messages with our professional translator.
           </p>
           <Link 
-            href="/converter/convert-binary-encoder-decoder" 
+            href="/text/binary-code-translator" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-red-600 text-white font-bold rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-red-500/20"
           >
             Access Binary Translator →

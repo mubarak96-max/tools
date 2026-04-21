@@ -49,6 +49,7 @@ const NAV_GROUPS = [
       { name: 'Barcode Generator', href: '/utility/barcode-generator', icon: 'CODE' },
       { name: 'QR Code Scanner', href: '/utility/qr-code-scanner', icon: 'CAM' },
       { name: 'Barcode Scanner', href: '/utility/barcode-scanner', icon: 'SCAN' },
+      { name: 'xG Calculator', href: '/utility/xg-expected-goals-calculator', icon: 'XG' },
     ],
   },
 ];

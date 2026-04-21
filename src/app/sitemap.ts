@@ -38,6 +38,7 @@ const TOOL_PATHS = [
   "/utility/free-cv-resume-builder",
   "/utility/qr-code-generator",
   "/utility/qr-code-scanner",
+  "/utility/xg-expected-goals-calculator",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

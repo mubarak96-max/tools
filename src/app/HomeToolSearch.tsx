@@ -14,6 +14,13 @@ type HomeSearchTool = {
 
 const SEARCH_TOOLS: HomeSearchTool[] = [
   {
+    name: "Expected Goals (xG) Calculator",
+    href: "/utility/xg-expected-goals-calculator",
+    description: "Interactive football xG calculator with pitch placement, shot factors, and match comparison.",
+    category: "Utility",
+    icon: "XG",
+  },
+  {
     name: "Free CV Resume Builder",
     href: "/utility/free-cv-resume-builder",
     description: "Build a resume online with editable sections, templates, autosave, and print export.",
@@ -269,10 +276,8 @@ export default function HomeToolSearch() {
           ) : (
             <div className="space-y-8 p-2">
               <div>
-                <p className="px-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                  Popular Queries
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
+
+                <div className="mt-1 flex flex-wrap gap-2">
                   {popularSearches.map((item) => (
                     <button
                       key={item}

@@ -12,6 +12,12 @@ export const metadata = buildMetadata({
 
 const UTILITY_TOOLS = [
   {
+    name: "Expected Goals (xG) Calculator",
+    href: "/utility/xg-expected-goals-calculator",
+    description: "Interactive xG calculator for football with shot position, pressure, assist type, and match comparison.",
+    icon: "XG",
+  },
+  {
     name: "Free CV Resume Builder",
     href: "/utility/free-cv-resume-builder",
     description: "Build a resume online for free with editable sections, multiple templates, browser autosave, and print-to-PDF export.",
