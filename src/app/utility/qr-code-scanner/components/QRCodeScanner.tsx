@@ -2,7 +2,45 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
-import { FilePicker } from "@/components/image/shared";
+
+function FilePicker({
+  label,
+  accept,
+  onFile,
+}: {
+  label: string;
+  accept: string;
+  onFile: (file: File) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  return (
+    <div>
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        className="hidden"
+        onChange={(event) => {
+          const file = event.target.files?.[0];
+          if (file) onFile(file);
+          event.currentTarget.value = "";
+        }}
+      />
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        className="w-full rounded-[1.35rem] border border-dashed border-border bg-background/80 p-5 text-left transition hover:border-primary/25 hover:bg-primary-soft/30 focus:outline-none focus:ring-2 focus:ring-primary"
+      >
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          {label}
+        </span>
+        <span className="mt-1 block text-sm font-semibold text-foreground">Drop an image here or browse</span>
+        <span className="mt-1 block text-xs text-muted-foreground">PNG, JPG, WEBP, and more</span>
+      </button>
+    </div>
+  );
+}
 
 export default function QRCodeScanner() {
   const [activeTab, setActiveTab] = useState<"camera" | "upload">("camera");

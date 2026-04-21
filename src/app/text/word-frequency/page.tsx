@@ -3,8 +3,6 @@ import type { Metadata } from "next";
 
 import WordFrequency from "@/app/text/word-frequency/components/WordFrequency";
 import JsonLd from "@/components/seo/JsonLd";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
-import { FREE_TOOLS } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
@@ -110,7 +108,6 @@ export default function WordFrequencyCounterPage() {
     { name: "Word Frequency Counter", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const currentTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
     <div className="space-y-8">
@@ -139,13 +136,12 @@ export default function WordFrequencyCounterPage() {
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
             Find what you repeat, what matters, and how to improve your content. Paste text to see word counts, keyword density, dominant terms, rare words, visual charts, and overuse warnings.
           </p>
-          {currentTool ? (
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
-          ) : null}
         </div>
       
         <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
+          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
+            Private and browser-native
+          </div>
         </div>
       </section>
 
@@ -196,7 +192,11 @@ export default function WordFrequencyCounterPage() {
         </div>
       </section>
 
-      <RelatedToolsSection category="Text" categoryHref="/text" currentPath={PAGE_PATH} />
+      <section className="mt-16 border-t border-slate-100 pt-16">
+        <Link href="/text" className="secondary-button px-4 py-2 text-xs">
+          View All Text Tools
+        </Link>
+      </section>
     </div>
   );
 }

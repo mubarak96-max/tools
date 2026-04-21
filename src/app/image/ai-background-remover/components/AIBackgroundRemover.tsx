@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState, type ClipboardEvent } from "react";
+import { useMemo, useRef, useState, type ClipboardEvent } from "react";
 import { removeBackground } from "@imgly/background-removal";
-
-import { FilesPicker } from "@/components/image/shared";
 
 type BackgroundMode = "transparent" | "white" | "color";
 type ExportFormat = "png" | "jpg";
@@ -25,6 +23,56 @@ const selectClass =
 
 const linkActionClass =
   "inline-flex rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary";
+
+function FilesPicker({
+  label,
+  accept,
+  onFiles,
+}: {
+  label: string;
+  accept: string;
+  onFiles: (files: FileList) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [selection, setSelection] = useState("");
+
+  function handleFiles(files: FileList | null) {
+    if (!files?.length) return;
+    setSelection(files.length === 1 ? files[0]?.name ?? "1 image selected" : `${files.length} images selected`);
+    onFiles(files);
+  }
+
+  return (
+    <div className="min-w-[260px]">
+      <input
+        ref={inputRef}
+        type="file"
+        accept={accept}
+        multiple
+        className="hidden"
+        onChange={(event) => {
+          handleFiles(event.target.files);
+          event.currentTarget.value = "";
+        }}
+      />
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        className="w-full rounded-[1.35rem] border border-dashed border-border bg-background/80 p-4 text-left transition hover:border-primary/25 hover:bg-primary-soft/30 focus:outline-none focus:ring-2 focus:ring-primary"
+      >
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          {label}
+        </span>
+        <span className="mt-1 block truncate text-sm font-semibold text-foreground">
+          {selection || "Drop images here or browse"}
+        </span>
+        <span className="mt-1 block truncate text-xs text-muted-foreground">
+          PNG, JPG, and WEBP
+        </span>
+      </button>
+    </div>
+  );
+}
 
 function getBackgroundStyle(mode: BackgroundMode, color: string) {
   if (mode === "transparent") {
@@ -415,14 +463,8 @@ export default function AIBackgroundRemover() {
           <div className="rounded-[1rem] border border-border bg-card p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Continue workflow</p>
             <div className="mt-3 flex flex-wrap gap-2">
-              <Link href="/image/image-cropper-resizer" className={linkActionClass}>
-                Resize image
-              </Link>
-              <Link href="/image/image-compressor" className={linkActionClass}>
-                Compress image
-              </Link>
-              <Link href="/image/convert-png-to-jpg" className={linkActionClass}>
-                Convert format
+              <Link href="/image/convert-image-to-base64" className={linkActionClass}>
+                Convert to Base64
               </Link>
             </div>
           </div>

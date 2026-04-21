@@ -3,10 +3,8 @@ import type { Metadata } from "next";
 
 import BinaryCodeTranslator from "@/app/text/binary-code-translator/components/BinaryCodeTranslator";
 import JsonLd from "@/components/seo/JsonLd";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
 
@@ -24,28 +22,28 @@ const referenceCharacters = Array.from("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789").m
 
 const relatedWorkflows = [
   {
-    href: "/text/unicode-ascii-table-search",
-    title: "Unicode / ASCII Table Search",
+    href: "/text/morse-code-translator",
+    title: "Morse Code Translator",
     description:
-      "Look up code points, decimal values, and named characters when you need to confirm exactly which byte or symbol you are working with.",
+      "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",
   },
   {
-    href: "/converter/convert-hex-encoder-decoder",
-    title: "Hex Encoder / Decoder",
-    description:
-      "Switch from binary to hexadecimal debugging when you want a shorter, byte-oriented representation of the same underlying data.",
-  },
-  {
-    href: "/converter/convert-base64-encoder-decoder",
-    title: "Base64 Encoder / Decoder",
+    href: "/image/convert-image-to-base64",
+    title: "Image to Base64 Converter",
     description:
       "Useful when the workflow moves from raw bytes into payload-safe text encodings for APIs, inline assets, or transport layers.",
   },
   {
-    href: "/text/ascii-art-generator",
-    title: "ASCII Art Generator",
+    href: "/text/word-frequency",
+    title: "Word Frequency Counter",
     description:
-      "A more visual follow-up when you are exploring text-based output, monospace layouts, or creative ASCII workflows instead of plain byte conversion.",
+      "Analyze repeated words and surface the most-used terms in any text block.",
+  },
+  {
+    href: "/text/readability-flesch-kincaid-calculator",
+    title: "Readability / Flesch-Kincaid Calculator",
+    description:
+      "A more analytical follow-up when you want to score text for reading ease and grade level after working through encoding.",
   },
 ];
 
@@ -234,7 +232,6 @@ export default function BinaryCodeTranslatorPage() {
     { name: "Binary Code Translator", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const currentTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
     <div className="space-y-8">
@@ -267,13 +264,12 @@ export default function BinaryCodeTranslatorPage() {
           <p className="mt-4 text-base leading-7 text-muted-foreground">
             Got a mysterious binary string? Paste it in and decode it instantly. Need to convert binary to English, generate 8-bit byte groups, or check how characters map to machine-readable values? This page is built to be both a working online binary translator and a useful learning resource.
           </p>
-          {currentTool ? (
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
-          ) : null}
         </div>
 
         <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
+          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
+            Private and browser-native
+          </div>
         </div>
       </section>
 
@@ -395,7 +391,7 @@ export default function BinaryCodeTranslatorPage() {
             <li>Lightweight encoding tasks: copy, download, share, or load a local text file without installing anything.</li>
           </ul>
           <p className="mt-4 text-base leading-7 text-muted-foreground">
-            If you also work with other text formats, try the <Link href="/text/morse-code-translator" className="font-medium text-primary hover:underline">Morse code translator</Link>, the <Link href="/text/character-counter" className="font-medium text-primary hover:underline">character counter</Link>, the <Link href="/text/case-converter" className="font-medium text-primary hover:underline">case converter</Link>, or the <Link href="/text/ascii-art-generator" className="font-medium text-primary hover:underline">ASCII art generator</Link>.
+            If you also work with other text formats, try the <Link href="/text/morse-code-translator" className="font-medium text-primary hover:underline">Morse code translator</Link>, the <Link href="/text/word-frequency" className="font-medium text-primary hover:underline">word frequency counter</Link>, the <Link href="/text/readability-flesch-kincaid-calculator" className="font-medium text-primary hover:underline">readability calculator</Link>, or the <Link href="/text/convert-image-to-text" className="font-medium text-primary hover:underline">image to text OCR tool</Link>.
           </p>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Binary Reference Table: A-Z and 0-9</h2>
@@ -481,7 +477,11 @@ export default function BinaryCodeTranslatorPage() {
         </div>
       </section>
 
-      <RelatedToolsSection category="Text" categoryHref="/text" currentPath={PAGE_PATH} />
+      <section className="mt-16 border-t border-slate-100 pt-16">
+        <Link href="/text" className="secondary-button px-4 py-2 text-xs">
+          View All Text Tools
+        </Link>
+      </section>
     </div>
   );
 }

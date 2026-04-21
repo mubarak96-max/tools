@@ -8,8 +8,8 @@ export default function AboutPage() {
       <div className="glass-card p-8 rounded-2xl space-y-6 text-muted-foreground leading-relaxed">
         <p className="text-lg text-foreground">
           <strong className="text-primary">FindBest Tools</strong> is a browser-based utility site built
-          around practical tasks people need to finish quickly: text cleanup, OCR, finance calculations,
-          and lightweight AI-assisted writing workflows.
+          around practical tasks people need to finish quickly: text analysis, coding translations,
+          real estate tax estimations, health tracking, and professional productivity.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-12 mb-4">Our Goal</h2>
@@ -20,16 +20,16 @@ export default function AboutPage() {
         </p>
 
         <p>
-          We focus on three things: fast output, readable interfaces, and trustworthy behavior. Most
-          tools run directly in the browser, and where third-party services are used, we explain that in
-          our privacy policy.
+          We focus on three things: fast output, readable interfaces, and privacy-conscious behavior.
+          Most tools run directly in your browser, meaning your data stays local unless explicitly needed
+          for a specific service.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-12 mb-4">What You&apos;ll Find Here</h2>
         <p>
-          The site currently includes text tools such as OCR, character counting, case conversion, ASCII
-          art, and cleanup utilities, alongside finance calculators for salary, loans, VAT, discounts,
-          and pricing workflows. We also maintain a smaller AI utility section for focused writing tasks.
+          The site currently includes text tools for word frequency, Morse code, binary translation, and OCR
+          alongside specialized calculators for NYC real estate transfer taxes and health tracking (BMR).
+          We also provide professional utilities for building CVs/resumes and managing QR codes or barcodes.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-12 mb-4">How We Sustain the Site</h2>

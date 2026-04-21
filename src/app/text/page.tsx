@@ -1,28 +1,57 @@
 import Link from "next/link";
 
-import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
-import {
-  WORD_COUNTER_HUB_PATH,
-  WORD_COUNTER_LANDINGS_ANCHOR_ID,
-  getWordCounterLandingNavHighlights,
-  getWordCounterLandingNavItems,
-} from "@/lib/word-counter-landings/registry";
-import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 43200;
 
 export const metadata = buildMetadata({
-  title: "Text Tools for Analysis, Conversion, and Cleanup",
+  title: "Text Tools for Analysis, Translation, and OCR",
   description:
-    "Free text tools for character counting, case conversion, word frequency, Morse code, binary translation, ASCII art, and more.",
+    "Free text tools for word frequency analysis, Morse code, binary translation, and image-to-text OCR.",
   path: "/text",
 });
 
-const TEXT_TOOLS = FREE_TOOLS.filter((tool) => tool.category === "Text");
+type TextToolMeta = {
+  name: string;
+  href: string;
+  description: string;
+  icon: string;
+};
 
-function ToolCard({ tool }: { tool: FreeToolMeta }) {
+const TEXT_TOOLS: TextToolMeta[] = [
+  {
+    name: "Word Frequency Counter",
+    href: "/text/word-frequency",
+    description: "Analyze repeated words, filter stop words, and surface the most-used terms in any text block.",
+    icon: "FREQ",
+  },
+  {
+    name: "Morse Code Translator",
+    href: "/text/morse-code-translator",
+    description: "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",
+    icon: "MORSE",
+  },
+  {
+    name: "Binary Code Translator",
+    href: "/text/binary-code-translator",
+    description: "Translate text to binary and binary back to text with 8-bit byte conversion and validation.",
+    icon: "BIN",
+  },
+  {
+    name: "Image to Text OCR",
+    href: "/text/convert-image-to-text",
+    description: "Extract, clean, copy, and download editable text from JPG, PNG, WEBP, and BMP images with OCR.",
+    icon: "OCR",
+  },
+  {
+    name: "Readability / Flesch-Kincaid Calculator",
+    href: "/text/readability-flesch-kincaid-calculator",
+    description: "Score pasted text for reading ease, grade level, and sentence complexity.",
+    icon: "READ",
+  },
+];
+
+function ToolCard({ tool }: { tool: TextToolMeta }) {
   return (
     <Link
       href={tool.href}
@@ -33,7 +62,7 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
           {tool.name}
         </h2>
         <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <FreeToolIcon tool={tool} size={18} />
+          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
         </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
@@ -44,12 +73,7 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
   );
 }
 
-const highlightSet = new Set(getWordCounterLandingNavHighlights().map((item) => item.slug));
-
 export default function TextPage() {
-  const navHighlights = getWordCounterLandingNavHighlights();
-  const navRest = getWordCounterLandingNavItems().filter((item) => !highlightSet.has(item.slug));
-
   return (
     <div className="space-y-10 pb-4">
       {/* Header */}
@@ -65,69 +89,14 @@ export default function TextPage() {
           Text · {TEXT_TOOLS.length} tools
         </p>
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Text tools for quick analysis, cleanup, and conversion.
+          Text tools for analysis, translation, and conversion.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-          Focused utilities for analyzing copy, converting case, counting characters, and transforming text — all browser-based with no sign-up needed.
-        </p>
-        <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">
-          Need word limits, reading time, or audience-specific guides? Jump to{" "}
-          <Link href={`#${WORD_COUNTER_LANDINGS_ANCHOR_ID}`} className="font-medium text-primary hover:underline">
-            word and character entry points
-          </Link>{" "}
-          below, or open the neutral{" "}
-          <Link href={WORD_COUNTER_HUB_PATH} className="font-medium text-primary hover:underline">
-            character counter
-          </Link>
-          .
+          Focused utilities for analyzing word frequency, translating codes, and extracting text from images — all browser-based with no sign-up needed.
         </p>
       </section>
 
-      <section
-        id={WORD_COUNTER_LANDINGS_ANCHOR_ID}
-        className="scroll-mt-8 rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8"
-      >
-        <h2 className="text-xl font-semibold tracking-tight text-foreground">Word, character, and reading-time entry points</h2>
-        <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
-          These pages share the same live counter with different titles, FAQs, and examples so you can land on the intent that matches your search—essays, SEO, limits, or “how many words is…”.
-        </p>
-        <p className="mt-3 text-sm leading-6 text-muted-foreground">
-          <Link href={WORD_COUNTER_HUB_PATH} className="font-medium text-primary hover:underline">
-            Character counter hub
-          </Link>{" "}
-          keeps neutral copy; the links here add context for specific workflows.
-        </p>
 
-        <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">Popular</h3>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {navHighlights.map((item) => (
-            <Link
-              key={item.slug}
-              href={item.href}
-              className="rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary/25 hover:bg-primary-soft hover:text-primary"
-            >
-              {item.title}
-            </Link>
-          ))}
-        </div>
-
-        <details className="mt-8 rounded-[1.25rem] border border-border bg-background p-4 sm:p-5">
-          <summary className="cursor-pointer text-sm font-semibold text-foreground">
-            Show all entry points ({navRest.length} more)
-          </summary>
-          <div className="mt-4 flex max-h-[min(24rem,55vh)] flex-wrap gap-2 overflow-y-auto pr-1">
-            {navRest.map((item) => (
-              <Link
-                key={item.slug}
-                href={item.href}
-                className="rounded-full border border-border/80 bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
-              >
-                {item.title}
-              </Link>
-            ))}
-          </div>
-        </details>
-      </section>
 
       {/* Tool grid */}
       <section>
@@ -144,17 +113,14 @@ export default function TextPage() {
         </div>
       </section>
 
-      {/* Cross-category */}
       <section className="rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8">
         <h2 className="text-lg font-semibold text-foreground mb-4">Explore other categories</h2>
         <div className="flex flex-wrap gap-2">
           {[
-            { label: "Finance Tools", href: "/finance" },
             { label: "Image Tools", href: "/image" },
-            { label: "PDF Tools", href: "/pdf" },
-            { label: "AI Tools", href: "/ai" },
-            { label: "Converter Tools", href: "/converter" },
-            { label: "Tailwind Tools", href: "/tailwind" },
+            { label: "Health Tools", href: "/health" },
+            { label: "Real Estate Tools", href: "/real-estate" },
+            { label: "Utility Tools", href: "/utility" },
           ].map((item) => (
             <Link
               key={item.href}
@@ -164,7 +130,6 @@ export default function TextPage() {
               {item.label}
             </Link>
           ))}
-
         </div>
       </section>
     </div>

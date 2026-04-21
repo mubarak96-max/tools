@@ -1,22 +1,33 @@
 import Link from "next/link";
 
-import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
-import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 43200;
 
 export const metadata = buildMetadata({
-  title: "Health Tools for BMI, Glucose, Blood Pressure, Fitness, and Tracking",
+  title: "Health Tools for BMR and Calorie Calculation",
   description:
-    "Use browser-based health tools for blood glucose conversion, BMI, blood pressure, calorie needs, hydration, fitness pacing, and more.",
+    "Use browser-based health tools for calculating your Basal Metabolic Rate (BMR) and planning your calorie needs.",
   path: "/health",
 });
 
-const HEALTH_TOOLS = FREE_TOOLS.filter((tool) => tool.category === "Health" || tool.href === "/utility/bmi-calculator");
+type HealthToolMeta = {
+  name: string;
+  href: string;
+  description: string;
+  icon: string;
+};
 
-function ToolCard({ tool }: { tool: FreeToolMeta }) {
+const HEALTH_TOOLS: HealthToolMeta[] = [
+  {
+    name: "BMR Calculator",
+    href: "/health/bmr-calculator",
+    description: "Calculate your Basal Metabolic Rate using the Mifflin-St Jeor Equation.",
+    icon: "BMR",
+  },
+];
+
+function ToolCard({ tool }: { tool: HealthToolMeta }) {
   return (
     <Link
       href={tool.href}
@@ -27,12 +38,12 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
           {tool.name}
         </h2>
         <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <FreeToolIcon tool={tool} size={18} />
+          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
         </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
-      <span className="mt-auto text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-        Open tool {"->"}
+      <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Open tool →
       </span>
     </Link>
   );
@@ -53,10 +64,10 @@ export default function HealthPage() {
           Health · {HEALTH_TOOLS.length} tools
         </p>
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Health tools built for quick checks, clear interpretation, and safer context.
+          Health tools for BMR and nutrition planning.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-          Blood glucose, blood pressure, BMI, calorie, hydration, fitness, and tracking tools that run in your browser.
+          Calculate your metabolic rate and work through calorie numbers with standalone calculators.
         </p>
         <p className="mt-4 max-w-2xl rounded-[1rem] border border-amber-300/40 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-950">
           These tools are for education, planning, and self-tracking. They do not replace diagnosis, treatment, or individualized medical advice.
@@ -81,11 +92,10 @@ export default function HealthPage() {
         <h2 className="mb-4 text-lg font-semibold text-foreground">Explore other categories</h2>
         <div className="flex flex-wrap gap-2">
           {[
-            { label: "Finance Tools", href: "/finance" },
-            { label: "Utility Tools", href: "/utility" },
-            { label: "Real Estate Tools", href: "/real-estate" },
             { label: "Text Tools", href: "/text" },
             { label: "Image Tools", href: "/image" },
+            { label: "Real Estate Tools", href: "/real-estate" },
+            { label: "Utility Tools", href: "/utility" },
           ].map((item) => (
             <Link
               key={item.href}

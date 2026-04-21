@@ -1,12 +1,10 @@
 ﻿import Link from "next/link";
 import type { Metadata } from "next";
 
-import ImageToText from "@/app/text/image-to-text/components/ImageToText";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
+import ImageToText from "./components/ImageToText";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
 
 export const revalidate = 43200;
 
@@ -120,7 +118,6 @@ export default function ConvertImageToTextPage() {
     { name: "Convert Image to Text", path: PAGE_PATH },
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
-  const currentTool = FREE_TOOLS.find((tool) => tool.href === PAGE_PATH);
 
   return (
     <div className="space-y-8">
@@ -149,13 +146,12 @@ export default function ConvertImageToTextPage() {
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
             Extract, clean, and use text from images instantly. Upload screenshots, notes, receipts, or document photos, run OCR, then copy, download, or continue the text into editing and analysis tools.
           </p>
-          {currentTool ? (
-            <p className="mt-4 text-sm leading-6 text-muted-foreground">{currentTool.description}</p>
-          ) : null}
         </div>
 
         <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
+          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
+            Private and browser-native
+          </div>
         </div>
       </section>
 
@@ -228,7 +224,53 @@ export default function ConvertImageToTextPage() {
         </div>
       </section>
 
-      <RelatedToolsSection category="Text" categoryHref="/text" currentPath={PAGE_PATH} />
+      <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Text Tools</h2>
+            <p className="mt-1 text-sm text-slate-500">Other utilities you might find helpful</p>
+          </div>
+          <Link href="/text" className="secondary-button px-4 py-2 text-xs">View All</Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              name: "Word Frequency Counter",
+              href: "/text/word-frequency",
+              description: "Analyze repeated words and surface the most-used terms in any text block.",
+              icon: "FREQ",
+            },
+            {
+              name: "Readability / Flesch-Kincaid Calculator",
+              href: "/text/readability-flesch-kincaid-calculator",
+              description: "Score pasted text for reading ease, grade level, and sentence complexity.",
+              icon: "READ",
+            },
+            {
+              name: "Morse Code Translator",
+              href: "/text/morse-code-translator",
+              description: "Translate text to Morse code and Morse code back to text.",
+              icon: "MORSE",
+            },
+          ].map((tool) => (
+            <Link
+              key={tool.href}
+              href={tool.href}
+              className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
+                {tool.icon}
+              </span>
+              <div>
+                <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
+                  {tool.name}
+                </h3>
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">{tool.description}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

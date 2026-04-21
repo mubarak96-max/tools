@@ -306,8 +306,8 @@ export default function WordFrequency() {
                   type="button"
                   onClick={() => setActiveGroup(key as ResultGroup)}
                   className={`rounded-[0.9rem] border px-3 py-2 text-left text-xs font-semibold uppercase tracking-[0.14em] ${activeGroup === key
-                      ? "border-primary/30 bg-primary-soft text-primary-soft-foreground"
-                      : "border-border bg-card text-muted-foreground hover:border-primary/20"
+                    ? "border-primary/30 bg-primary-soft text-primary-soft-foreground"
+                    : "border-border bg-card text-muted-foreground hover:border-primary/20"
                     }`}
                 >
                   {label}

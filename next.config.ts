@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import { CONVERSION_ROUTE_REDIRECTS } from "./src/lib/tools/conversion-routes";
 
 const firebaseStorageBucket = (process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "").replace(
   /^gs:\/\//,
@@ -30,60 +29,14 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      ...CONVERSION_ROUTE_REDIRECTS,
-      {
-        source: "/free-tools",
-        destination: "/finance",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/car-loan-calculator",
-        destination: "/finance/car-loan-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/compound-interest-calculator",
-        destination: "/finance/compound-interest-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/discount-calculator",
-        destination: "/finance/discount-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/emi-calculator",
-        destination: "/finance/emi-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/mortgage-calculator",
-        destination: "/finance/mortgage-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/profit-margin-calculator",
-        destination: "/finance/profit-margin-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/salary-calculator",
-        destination: "/finance/salary-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/uae-salary-calculator",
-        destination: "/finance/uae-salary-calculator",
-        permanent: true,
-      },
-      {
-        source: "/free-tools/vat-calculator",
-        destination: "/finance/vat-calculator",
-        permanent: true,
-      },
       {
         source: "/free-tools/word-frequency-counter",
         destination: "/text/word-frequency",
+        permanent: true,
+      },
+      {
+        source: "/free-tools",
+        destination: "/",
         permanent: true,
       },
     ];

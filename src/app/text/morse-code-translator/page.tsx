@@ -5,7 +5,6 @@ import MorseCodeTranslator from "@/app/text/morse-code-translator/components/Mor
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 export const revalidate = 43200;
 
@@ -216,7 +215,9 @@ export default function MorseCodeTranslatorPage() {
         </div>
 
         <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
+          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
+            Private and browser-native
+          </div>
         </div>
       </section>
 
@@ -301,7 +302,11 @@ export default function MorseCodeTranslatorPage() {
         </div>
       </section>
 
-      <RelatedToolsSection category="Text" categoryHref="/text" currentPath={PAGE_PATH} />
+      <section className="mt-16 border-t border-slate-100 pt-16">
+        <Link href="/text" className="secondary-button px-4 py-2 text-xs">
+          View All Text Tools
+        </Link>
+      </section>
     </div>
   );
 }

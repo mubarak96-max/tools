@@ -1,22 +1,33 @@
 import Link from "next/link";
 
-import { FreeToolIcon } from "@/components/tools/FreeToolIcon";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { FREE_TOOLS } from "@/lib/tools/registry";
-import type { FreeToolMeta } from "@/types/tools";
 
 export const revalidate = 43200;
 
 export const metadata = buildMetadata({
-  title: "Real Estate Calculators for Rent, Yield, ROI, and Buying Costs",
+  title: "Real Estate Calculators for NYC Transfer Tax",
   description:
-    "Use real-estate calculators for rental yield, cap rate, rent affordability, closing costs, rent vs buy, and price per square foot.",
+    "Estimate New York City real property transfer tax from the transfer price and property type.",
   path: "/real-estate",
 });
 
-const REAL_ESTATE_TOOLS = FREE_TOOLS.filter((tool) => tool.category === "Real Estate");
+type RealEstateToolMeta = {
+  name: string;
+  href: string;
+  description: string;
+  icon: string;
+};
 
-function ToolCard({ tool }: { tool: FreeToolMeta }) {
+const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
+  {
+    name: "NYC Transfer Tax Calculator",
+    href: "/real-estate/nyc-transfer-tax-calculator",
+    description: "Estimate New York City real property transfer tax from the transfer price and property type.",
+    icon: "NYC",
+  },
+];
+
+function ToolCard({ tool }: { tool: RealEstateToolMeta }) {
   return (
     <Link
       href={tool.href}
@@ -27,10 +38,13 @@ function ToolCard({ tool }: { tool: FreeToolMeta }) {
           {tool.name}
         </h2>
         <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <FreeToolIcon tool={tool} size={18} />
+          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
         </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
+      <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+        Open tool →
+      </span>
     </Link>
   );
 }
@@ -50,10 +64,10 @@ export default function RealEstatePage() {
           Real Estate · {REAL_ESTATE_TOOLS.length} calculators
         </p>
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Real-estate calculators built for property decisions, not spreadsheet cleanup.
+          Real estate calculator for NYC property transfer tax.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-          Compare renting and buying, estimate yield and cap rate, budget for closing costs, and work through property numbers with standalone calculators.
+          Estimate New York City real property transfer tax from the transfer price and property type — all browser-based with no sign-up needed.
         </p>
       </section>
 
@@ -67,6 +81,26 @@ export default function RealEstatePage() {
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {REAL_ESTATE_TOOLS.map((tool) => (
             <ToolCard key={tool.href} tool={tool} />
+          ))}
+        </div>
+      </section>
+
+      <section className="rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8">
+        <h2 className="mb-4 text-lg font-semibold text-foreground">Explore other categories</h2>
+        <div className="flex flex-wrap gap-2">
+          {[
+            { label: "Text Tools", href: "/text" },
+            { label: "Image Tools", href: "/image" },
+            { label: "Health Tools", href: "/health" },
+            { label: "Utility Tools", href: "/utility" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary"
+            >
+              {item.label}
+            </Link>
           ))}
         </div>
       </section>

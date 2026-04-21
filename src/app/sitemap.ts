@@ -1,168 +1,65 @@
-import { MetadataRoute } from 'next';
-import { listComparisonSlugs } from "@/lib/db/comparisons";
-import { listPages } from "@/lib/db/pages";
-import { listTools } from "@/lib/db/tools";
-import { listCategoryAudienceHubSlugs, listCategoryHubSlugs } from "@/lib/discovery/hubs";
-import { slugify } from "@/lib/slug";
-import { FREE_TOOL_CATEGORY_ROUTES, FREE_TOOLS } from "@/lib/tools/registry";
+import { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://findbest.tools';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://findbest.tools";
 
 export const revalidate = 14400;
 
+const STATIC_PATHS = [
+  { path: "/", changeFrequency: "daily" as const, priority: 1 },
+  { path: "/sitemap", changeFrequency: "weekly" as const, priority: 0.6 },
+  { path: "/about", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/contact", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/privacy", changeFrequency: "yearly" as const, priority: 0.3 },
+  { path: "/terms", changeFrequency: "yearly" as const, priority: 0.3 },
+  { path: "/text", changeFrequency: "weekly" as const, priority: 0.8 },
+  { path: "/image", changeFrequency: "weekly" as const, priority: 0.6 },
+  { path: "/health", changeFrequency: "weekly" as const, priority: 0.6 },
+  { path: "/real-estate", changeFrequency: "weekly" as const, priority: 0.8 },
+  { path: "/utility", changeFrequency: "weekly" as const, priority: 0.6 },
+  { path: "/blog", changeFrequency: "weekly" as const, priority: 0.5 },
+  { path: "/blog/binary-code-in-cybersecurity", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/binary-code-translation-for-developers", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/how-to-convert-text-to-binary", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/understanding-binary-code", changeFrequency: "monthly" as const, priority: 0.5 },
+];
+
+const TOOL_PATHS = [
+  "/health/bmr-calculator",
+  "/image/ai-background-remover",
+  "/image/convert-image-to-base64",
+  "/real-estate/nyc-transfer-tax-calculator",
+  "/text/binary-code-translator",
+  "/text/convert-image-to-text",
+  "/text/morse-code-translator",
+  "/text/readability-flesch-kincaid-calculator",
+  "/text/word-frequency",
+  "/utility/barcode-generator",
+  "/utility/barcode-scanner",
+  "/utility/free-cv-resume-builder",
+  "/utility/qr-code-generator",
+  "/utility/qr-code-scanner",
+];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const sitemapEntries: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/tools`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/sitemap`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${BASE_URL}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+  const now = new Date();
+  const entries: MetadataRoute.Sitemap = [
+    ...STATIC_PATHS.map((entry) => ({
+      url: `${BASE_URL}${entry.path === "/" ? "" : entry.path}`,
+      lastModified: now,
+      changeFrequency: entry.changeFrequency,
+      priority: entry.priority,
+    })),
+    ...TOOL_PATHS.map((path) => ({
+      url: `${BASE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: path.startsWith("/text/") ? 0.9 : 0.8,
+    })),
   ];
 
-  const utilityCategoryRoutes = [...new Set(FREE_TOOLS.map((tool) => FREE_TOOL_CATEGORY_ROUTES[tool.category]))];
-
-  utilityCategoryRoutes.forEach((route) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: route === '/finance' || route === '/ai' || route === '/real-estate' ? 0.8 : 0.6,
-    });
-  });
-
-  FREE_TOOLS.forEach((tool) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}${tool.href}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: tool.category === 'Finance' ? 0.9 : tool.category === 'AI' ? 0.9 : 0.8,
-    });
-  });
-
-  const [tools, pages, categorySlugs, categoryAudiencePairs, comparisonSlugs] = await Promise.all([
-    listTools({ status: ["published"] }),
-    listPages({ status: ["published"] }),
-    listCategoryHubSlugs(),
-    listCategoryAudienceHubSlugs(),
-    listComparisonSlugs(),
-  ]);
-
-  const useCaseSlugs = new Set<string>();
-
-  tools.forEach((tool) => {
-    const updated = tool.updatedAt ? new Date(tool.updatedAt) : new Date();
-
-    sitemapEntries.push({
-      url: `${BASE_URL}/tools/${tool.slug}`,
-      lastModified: updated,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    });
-
-    sitemapEntries.push({
-      url: `${BASE_URL}/alternatives-to-${tool.slug}`,
-      lastModified: updated,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    });
-
-    tool.useCases.forEach((useCase) => {
-      const useCaseSlug = slugify(useCase);
-      if (useCaseSlug) {
-        useCaseSlugs.add(useCaseSlug);
-      }
-    });
-  });
-
-  useCaseSlugs.forEach((useCaseSlug) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}/tools-for-${useCaseSlug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.65,
-    });
-  });
-
-  categorySlugs.forEach((categorySlug) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}/best/${categorySlug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.75,
-    });
-  });
-
-  categoryAudiencePairs.forEach(({ category, audience }) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}/best/${category}/for/${audience}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    });
-  });
-
-  comparisonSlugs.forEach((slug) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}/compare/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    });
-  });
-
-  pages.forEach((page) => {
-    sitemapEntries.push({
-      url: `${BASE_URL}/p/${page.slug}`,
-      lastModified: page.updatedAt ? new Date(page.updatedAt) : new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    });
-  });
-
   const seen = new Set<string>();
-
-  return sitemapEntries.filter((entry) => {
-    if (seen.has(entry.url)) {
-      return false;
-    }
-
+  return entries.filter((entry) => {
+    if (seen.has(entry.url)) return false;
     seen.add(entry.url);
     return true;
   });

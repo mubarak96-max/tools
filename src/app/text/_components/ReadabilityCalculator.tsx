@@ -1,9 +1,76 @@
 "use client";
 
-import React, { useMemo, useState, useRef, useEffect } from "react";
-import { calculateReadability, type ReadabilitySentence } from "@/lib/tools/readability";
-import ReadabilityGauge from "@/components/tools/ReadabilityGauge";
-import { actionClass, textareaClass, panelClass } from "@/components/tools/shared";
+import React, { useMemo, useState, useEffect } from "react";
+import { calculateReadability } from "@/lib/tools/readability";
+
+const actionClass =
+  "rounded-[0.9rem] border border-border bg-card px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-primary/20 hover:bg-primary-soft hover:text-primary disabled:cursor-not-allowed disabled:opacity-50";
+
+const textareaClass =
+  "w-full rounded-[1.5rem] border border-border bg-background px-4 py-3 text-sm text-foreground outline-none transition-shadow focus:ring-2 focus:ring-primary";
+
+function ReadabilityGauge({
+  score,
+  label,
+  min = 0,
+  max = 100,
+  className = "",
+}: {
+  score: number;
+  label: string;
+  min?: number;
+  max?: number;
+  className?: string;
+}) {
+  const normalizedScore = Math.min(Math.max(score, min), max);
+  const percentage = ((normalizedScore - min) / (max - min)) * 100;
+  const colorClass =
+    normalizedScore >= 80
+      ? "text-emerald-500"
+      : normalizedScore >= 60
+        ? "text-green-500"
+        : normalizedScore >= 50
+          ? "text-yellow-500"
+          : normalizedScore >= 30
+            ? "text-orange-500"
+            : "text-red-500";
+  const radius = 36;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div className={`relative flex flex-col items-center justify-center ${className}`}>
+      <svg className="h-32 w-32 -rotate-90 transform" viewBox="0 0 100 100">
+        <circle
+          className="text-muted/20"
+          strokeWidth="8"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx="50"
+          cy="50"
+        />
+        <circle
+          className={`${colorClass} transition-all duration-700 ease-in-out`}
+          strokeWidth="8"
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
+          strokeLinecap="round"
+          stroke="currentColor"
+          fill="transparent"
+          r={radius}
+          cx="50"
+          cy="50"
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center space-y-0.5">
+        <span className={`text-2xl font-bold ${colorClass}`}>{score.toFixed(1)}</span>
+        <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">Score</span>
+      </div>
+      <p className="mt-2 text-sm font-semibold text-foreground">{label}</p>
+    </div>
+  );
+}
 
 export default function ReadabilityCalculator() {
   const [text, setText] = useState("");

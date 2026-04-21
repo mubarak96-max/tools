@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 
 import NYCTransferTaxCalculator from "@/app/real-estate/nyc-transfer-tax-calculator/components/NYCTransferTaxCalculator";
 import JsonLd from "@/components/seo/JsonLd";
-import ToolPageScaffold from "@/components/tools/ToolPageScaffold";
 import { absoluteUrl, buildMetadata } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
@@ -94,14 +93,40 @@ export default function NYCTransferTaxCalculatorPage() {
       />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <ToolPageScaffold
-        path={PAGE_PATH}
-        category="Real Estate"
-        categoryHref="/real-estate"
-        title="NYC & NYS Transfer Tax Calculator"
-        description="Estimate New York City RPTT, New York State Transfer Tax, and Mansion Tax based on current 2025 thresholds."
-        faqs={faq}
-        learn={
+      <div className="space-y-8 sm:space-y-10">
+        <section className="relative overflow-hidden pt-8 sm:pt-12">
+          <div className="max-w-4xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <Link href="/real-estate" className="primary-chip rounded-full px-3 py-1 shadow-sm drop-shadow-sm">
+                Real Estate
+              </Link>
+              <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
+                Private and browser-native
+              </div>
+            </div>
+
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              NYC & NYS Transfer Tax Calculator
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+              Estimate New York City RPTT, New York State Transfer Tax, and Mansion Tax based on current 2025 thresholds.
+            </p>
+
+            <nav aria-label="Breadcrumb" className="mt-8">
+              <ol className="flex flex-wrap items-center gap-2 text-[13px] font-medium text-slate-400">
+                <li><Link href="/" className="hover:text-primary">Home</Link></li>
+                <li>/</li>
+                <li><Link href="/real-estate" className="hover:text-primary">Real Estate</Link></li>
+                <li>/</li>
+                <li className="text-slate-900">NYC Transfer Tax Calculator</li>
+              </ol>
+            </nav>
+          </div>
+        </section>
+
+        <NYCTransferTaxCalculator />
+
+        <section className="space-y-4 border-t border-border/60 pt-8">
           <div className="prose prose-slate max-w-none">
             <h2 className="text-2xl font-bold">What is NYC Real Property Transfer Tax (RPTT)?</h2>
             <p>
@@ -168,10 +193,51 @@ export default function NYCTransferTaxCalculatorPage() {
               While the RPTT rates are identical for condos and co-ops, the legal structure differs. Condo transfers involve a deed, while co-op transfers involve shares in a corporation and a proprietary lease. Despite being personal property, co-ops have been subject to RPTT since 1989.
             </p>
           </div>
-        }
-      >
-        <NYCTransferTaxCalculator />
-      </ToolPageScaffold>
+        </section>
+
+        <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900">Practical Guide and FAQ</h2>
+            <p className="mt-2 text-slate-500">Common questions about transfer taxes and closing costs.</p>
+          </div>
+          <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
+            {faq.map((item) => (
+              <article key={item.question} className="rounded-3xl border border-slate-100 bg-white/30 p-6 shadow-sm backdrop-blur-sm">
+                <h3 className="text-[17px] font-bold text-slate-900">{item.question}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-500">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Tools</h2>
+              <p className="mt-1 text-sm text-slate-500">Other utilities you might find helpful</p>
+            </div>
+            <Link href="/real-estate" className="secondary-button px-4 py-2 text-xs">View All</Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Link
+              href="/health/bmr-calculator"
+              className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
+                BMR
+              </span>
+              <div>
+                <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
+                  BMR Calculator
+                </h3>
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
+                  Calculate your basal metabolic rate with the Mifflin-St Jeor equation.
+                </p>
+              </div>
+            </Link>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

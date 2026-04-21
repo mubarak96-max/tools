@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BmrCalculator } from "./components/BmrCalculator";
-import { HealthToolPage } from "@/app/health/components/HealthToolPage";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -92,13 +92,41 @@ export default function BmrCalculatorPage() {
       <JsonLd data={serializeJsonLd(buildJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
-      <HealthToolPage
-        title="BMR Calculator"
-        description="Calculate your Basal Metabolic Rate — the number of calories your body burns at complete rest — using the Mifflin-St Jeor formula. Use it as the foundation for setting accurate calorie targets."
-        category="Health"
-        path={PAGE_PATH}
-        infoSection={
-          <>
+      <div className="space-y-8">
+        <section className="space-y-4 py-2 sm:py-4">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+              <li><Link href="/" className="hover:text-primary">Home</Link></li>
+              <li>/</li>
+              <li><Link href="/health" className="hover:text-primary">Health</Link></li>
+              <li>/</li>
+              <li className="text-foreground">BMR Calculator</li>
+            </ol>
+          </nav>
+
+          <div className="max-w-3xl">
+            <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
+              Health Tool
+            </p>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+              BMR Calculator
+            </h1>
+            <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
+              Calculate your Basal Metabolic Rate - the number of calories your body burns at complete rest - using the Mifflin-St Jeor formula. Use it as the foundation for setting accurate calorie targets.
+            </p>
+          </div>
+
+          <div className="mt-6 max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
+              Private and browser-native
+            </div>
+          </div>
+        </section>
+
+        <BmrCalculator />
+
+        <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+          <div className="prose prose-slate max-w-none prose-invert">
             <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is Basal Metabolic Rate?</h2>
             <p className="mt-3 text-base leading-7 text-muted-foreground">
               Basal Metabolic Rate (BMR) is the number of calories your body requires to maintain basic physiological functions while at complete rest — breathing, circulation, cell production, protein synthesis, ion transport, and temperature regulation. It represents the minimum energy needed to keep you alive if you did nothing but lie still all day.
@@ -163,11 +191,37 @@ export default function BmrCalculatorPage() {
                 </article>
               ))}
             </div>
-          </>
-        }
-      >
-        <BmrCalculator />
-      </HealthToolPage>
+          </div>
+        </section>
+
+        <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Health Tools</h2>
+              <p className="mt-1 text-sm text-slate-500">Other utilities you might find helpful</p>
+            </div>
+            <Link href="/health" className="secondary-button px-4 py-2 text-xs">View All</Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <Link
+              href="/text/readability-flesch-kincaid-calculator"
+              className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
+                READ
+              </span>
+              <div>
+                <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
+                  Readability / Flesch-Kincaid Calculator
+                </h3>
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
+                  Score pasted text for reading ease, grade level, and sentence complexity.
+                </p>
+              </div>
+            </Link>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

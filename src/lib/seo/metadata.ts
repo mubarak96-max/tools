@@ -1,8 +1,29 @@
 import type { Metadata } from "next";
-import type { CategoryAudienceHubData, CategoryHubData, UseCaseHubData } from "@/lib/discovery/hubs";
 import { comparisonSlug } from "@/lib/slug";
 import { compactText } from "@/lib/text";
 import type { CustomPage, Tool } from "@/types/database";
+
+type CategoryHubData = {
+  categoryLabel: string;
+  categorySlug: string;
+  categoryDescription: string;
+  tools: Tool[];
+};
+
+type CategoryAudienceHubData = {
+  categoryLabel: string;
+  categorySlug: string;
+  audienceLabel: string;
+  audienceSlug: string;
+  tools: Tool[];
+};
+
+type UseCaseHubData = {
+  useCaseLabel: string;
+  useCaseSlug: string;
+  description: string;
+  tools: Tool[];
+};
 
 export const SITE_NAME = "FindBest Tools";
 export const SITE_DESCRIPTION =

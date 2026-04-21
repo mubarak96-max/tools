@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 
 import QRCodeGenerator from "@/app/utility/qr-code-generator/components/QRCodeGenerator";
 import JsonLd from "@/components/seo/JsonLd";
-import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
@@ -252,7 +251,11 @@ export default function QRCodeGeneratorPage() {
         </div>
       </section>
 
-      <RelatedToolsSection category="Utility" categoryHref="/utility" currentPath={PAGE_PATH} />
+      <section className="mt-16 border-t border-slate-100 pt-16">
+        <Link href="/utility" className="secondary-button px-4 py-2 text-xs">
+          View All Utility Tools
+        </Link>
+      </section>
     </div>
   );
 }
