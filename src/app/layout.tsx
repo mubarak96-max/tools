@@ -61,6 +61,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="google-adsense"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
+          strategy="beforeInteractive"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${sansFont.variable} ${displayFont.variable} ${monoFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
@@ -83,13 +91,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-
-        <Script
-          id="google-adsense"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
 
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-056PHFBMP3"
