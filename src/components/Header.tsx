@@ -8,6 +8,13 @@ import { usePathname } from 'next/navigation';
 
 const NAV_GROUPS = [
   {
+    label: 'Design',
+    href: '/design',
+    tools: [
+      { name: 'Social Media Carousel', href: '/design/free-social-media-carousel-builder', icon: 'CAR' },
+    ],
+  },
+  {
     label: 'Text',
     href: '/text',
     tools: [

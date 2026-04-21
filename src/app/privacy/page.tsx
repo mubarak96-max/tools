@@ -11,8 +11,7 @@ export default function PrivacyPage() {
         <p className="text-lg text-foreground">
           At <strong className="text-primary">FindBest Tools</strong> (findbest.tools), the privacy of
           our visitors is a top priority. This policy explains what information may be processed when you
-          use the site, which third-party services we rely on, and how consent affects Google ads and
-          analytics.
+          use the site and which third-party services we rely on for Google ads and analytics.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. How the tools handle your input</h2>
@@ -60,7 +59,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">6. Your options</h2>
         <p>
-          You can stop using the site at any time, decline Google services through the consent banner,
+          You can stop using the site at any time, use your browser controls to limit cookies or tracking,
           or contact us if you have questions about data handling.
         </p>
 

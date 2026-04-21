@@ -223,7 +223,7 @@ export default function BinaryBasicsBlogPage() {
             Understanding binary is a foundational step in comprehending how our digital world functions. Whether you&apos;re a student, a budding programmer, or just curious, exploring binary can unlock a deeper appreciation for technology.
           </p>
           <p>
-            Ready to see binary in action? Our <Link href="/converter/convert-binary-encoder-decoder" className="text-primary font-bold underline decoration-primary/30 hover:decoration-primary transition-all">Free Binary Code Translator</Link> allows you to effortlessly convert text to binary and binary back to text, supporting ASCII, UTF-8, and UTF-16. It&apos;s a perfect tool for learning, debugging, or simply satisfying your curiosity!
+            Ready to see binary in action? Our <Link href="/text/binary-code-translator" className="text-primary font-bold underline decoration-primary/30 hover:decoration-primary transition-all">Free Binary Code Translator</Link> allows you to effortlessly convert text to binary and binary back to text, supporting ASCII, UTF-8, and UTF-16. It&apos;s a perfect tool for learning, debugging, or simply satisfying your curiosity!
           </p>
         </section>
 
@@ -247,7 +247,7 @@ export default function BinaryBasicsBlogPage() {
             Instantly translate between text and binary with our free simulator. Learn as you convert.
           </p>
           <Link 
-            href="/converter/convert-binary-encoder-decoder" 
+            href="/text/binary-code-translator" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white font-bold rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-emerald-500/20"
           >
             Start Translating Binary →

@@ -227,7 +227,7 @@ export default function BinaryDeveloperBlogPage() {
             While binary code might seem intimidating, its understanding and the ability to translate it are powerful assets for any developer. From debugging elusive bugs to unraveling complex data structures, a reliable binary code translator is more than just a utility; it&apos;s a window into the core operations of computing.
           </p>
           <p>
-            Ready to enhance your development toolkit? Our <Link href="/converter/convert-binary-encoder-decoder" className="text-primary font-bold underline decoration-primary/30 hover:decoration-primary transition-all">Free Binary Code Translator</Link> is designed for speed, accuracy, and ease of use, supporting all major encodings. Try it now to inspect, debug, and understand your data at the binary level!
+            Ready to enhance your development toolkit? Our <Link href="/text/binary-code-translator" className="text-primary font-bold underline decoration-primary/30 hover:decoration-primary transition-all">Free Binary Code Translator</Link> is designed for speed, accuracy, and ease of use, supporting all major encodings. Try it now to inspect, debug, and understand your data at the binary level!
           </p>
         </section>
 
@@ -251,7 +251,7 @@ export default function BinaryDeveloperBlogPage() {
             Convert text to binary or decode binary back to text — instantly, free, and entirely in your browser.
           </p>
           <Link 
-            href="/converter/convert-binary-encoder-decoder" 
+            href="/text/binary-code-translator" 
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-bold rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-primary/20"
           >
             Open Binary Translator →

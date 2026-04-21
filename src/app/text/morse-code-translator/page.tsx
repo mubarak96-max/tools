@@ -286,7 +286,7 @@ export default function MorseCodeTranslatorPage() {
         </div>
 
         <p className="mt-4 text-sm leading-6 text-muted-foreground">
-          Common example: SOS = <span className="font-mono text-foreground">... --- ...</span>. If you need another text utility after translating, try the <Link href="/text/binary-code-translator" className="font-medium text-primary hover:underline">binary code translator</Link>, <Link href="/text/case-converter" className="font-medium text-primary hover:underline">case converter</Link>, or <Link href="/text/character-counter" className="font-medium text-primary hover:underline">character counter</Link>.
+          Common example: SOS = <span className="font-mono text-foreground">... --- ...</span>. If you need another text utility after translating, try the <Link href="/text/binary-code-translator" className="font-medium text-primary hover:underline">binary code translator</Link>, <Link href="/text/word-frequency" className="font-medium text-primary hover:underline">word frequency counter</Link>, or <Link href="/text/readability-flesch-kincaid-calculator" className="font-medium text-primary hover:underline">readability calculator</Link>.
         </p>
       </section>
 

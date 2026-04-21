@@ -445,11 +445,11 @@ export default function WordFrequency() {
               <Link href="/text/readability-flesch-kincaid-calculator" onClick={handleNextStep} className={linkActionClass}>
                 Check readability
               </Link>
-              <Link href="/text/phrase-frequency-calculator" onClick={handleNextStep} className={linkActionClass}>
-                Phrase frequency
+              <Link href="/text/morse-code-translator" onClick={handleNextStep} className={linkActionClass}>
+                Morse translator
               </Link>
-              <Link href="/text/case-converter" onClick={handleNextStep} className={linkActionClass}>
-                Convert case
+              <Link href="/text/binary-code-translator" onClick={handleNextStep} className={linkActionClass}>
+                Binary translator
               </Link>
             </div>
           </div>

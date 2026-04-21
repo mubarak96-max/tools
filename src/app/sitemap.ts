@@ -16,14 +16,21 @@ const STATIC_PATHS = [
   { path: "/health", changeFrequency: "weekly" as const, priority: 0.6 },
   { path: "/real-estate", changeFrequency: "weekly" as const, priority: 0.8 },
   { path: "/utility", changeFrequency: "weekly" as const, priority: 0.6 },
+  { path: "/design", changeFrequency: "weekly" as const, priority: 0.6 },
   { path: "/blog", changeFrequency: "weekly" as const, priority: 0.5 },
   { path: "/blog/binary-code-in-cybersecurity", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/binary-code-translation-for-developers", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/carousel-caption-guide", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/free-carousel-maker-no-canva", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/how-to-convert-text-to-binary", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/how-to-make-a-carousel-go-viral", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/how-to-make-a-linkedin-carousel", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/instagram-carousel-size", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/understanding-binary-code", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [
+  "/design/free-social-media-carousel-builder",
   "/health/bmr-calculator",
   "/image/ai-background-remover",
   "/image/convert-image-to-base64",

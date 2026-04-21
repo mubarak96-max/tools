@@ -24,7 +24,7 @@ const posts = [
   },
   {
     title: "How to Make a Carousel Go Viral in 2026: Tactics That Actually Work",
-    description: "Learn the specific engagement tactics—from value delay to continuous backgrounds—that force the Instagram and LinkedIn algorithms to boost your reach.",
+    description: "Learn the specific engagement tactics, from value delay to continuous backgrounds, that force Instagram and LinkedIn algorithms to boost your reach.",
     href: "/blog/how-to-make-a-carousel-go-viral",
     tag: "Growth Strategy",
     readTime: "13 min read",
@@ -48,7 +48,7 @@ const posts = [
   },
   {
     title: "Instagram Carousel Size Guide for 2026: Every Dimension You Need to Get Right",
-    description: "Master Instagram carousel aspect ratios, safe zones, and the secret export settings for sharp text. Complete guide for 4:5, 1:1, and the new 3:4 format.",
+    description: "Master Instagram carousel aspect ratios, safe zones, and export settings for sharp text across square, portrait, and tall formats.",
     href: "/blog/instagram-carousel-size",
     tag: "Design Guide",
     readTime: "10 min read",
@@ -56,7 +56,7 @@ const posts = [
   },
   {
     title: "How to Convert Text to Binary (and Binary Back to Text)",
-    description: "A complete guide to binary code translation — how it works, worked examples, and ASCII reference tables.",
+    description: "A complete guide to binary code translation, how it works, worked examples, and ASCII reference tables.",
     href: "/blog/how-to-convert-text-to-binary",
     tag: "Guide",
     readTime: "8 min read",
@@ -72,7 +72,7 @@ const posts = [
   },
   {
     title: "Binary Basics: Understanding the Language of Computers",
-    description: "Demystify binary code! Learn what binary is, how it works, and its role as the fundamental language of all digital systems.",
+    description: "Demystify binary code. Learn what binary is, how it works, and its role as the fundamental language of all digital systems.",
     href: "/blog/understanding-binary-code",
     tag: "Basics",
     readTime: "5 min read",
@@ -80,7 +80,7 @@ const posts = [
   },
   {
     title: "Binary Code in Cybersecurity: Decoding Hidden Messages and CTF Challenges",
-    description: "Uncover the secrets of binary in cybersecurity! Learn how binary code is used in CTF challenges, forensics, and more.",
+    description: "Uncover the role of binary in cybersecurity, including CTF challenges, forensics, and hidden-message workflows.",
     href: "/blog/binary-code-in-cybersecurity",
     tag: "Security",
     readTime: "7 min read",
@@ -100,8 +100,8 @@ export default function BlogIndexPage() {
 
       <div className="grid gap-8 md:grid-cols-2">
         {posts.map((post) => (
-          <Link 
-            key={post.href} 
+          <Link
+            key={post.href}
             href={post.href}
             className="group block bg-card border border-border rounded-3xl p-8 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-300"
           >
@@ -110,32 +110,32 @@ export default function BlogIndexPage() {
                 {post.tag}
               </span>
               <span className="text-xs text-muted-foreground font-medium">
-                {post.date} · {post.readTime}
+                {post.date} - {post.readTime}
               </span>
             </div>
-            
+
             <h2 className="text-2xl font-bold group-hover:text-primary transition-colors mb-4 leading-tight">
               {post.title}
             </h2>
-            
+
             <p className="text-muted-foreground leading-relaxed mb-8">
               {post.description}
             </p>
-            
+
             <span className="inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
-              Read Article 
-              <svg 
-                width="16" 
-                height="16" 
-                viewBox="0 0 16 16" 
-                fill="none" 
+              Read Article
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path 
-                  d="M6 12L10 8L6 4" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
+                <path
+                  d="M6 12L10 8L6 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>

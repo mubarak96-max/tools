@@ -197,7 +197,7 @@ export function BmrCalculator() {
               ))}
             </ul>
             <p>
-              Once you have your TDEE, you can set your weight goals. To lose weight, aim for a 500-calorie daily deficit. To gain weight, aim for a 300-500 calorie surplus. For more precise goal tracking, check our <a href="/health/ideal-weight-calculator" className="text-primary hover:underline font-semibold">Ideal Body Weight Calculator</a>.
+              Once you have your TDEE, you can set your weight goals. To lose weight, aim for a 500-calorie daily deficit. To gain weight, aim for a 300-500 calorie surplus. For related review, try the <a href="/text/readability-flesch-kincaid-calculator" className="text-primary hover:underline font-semibold">readability calculator</a> for nutrition notes and plans.
             </p>
           </div>
         </section>
@@ -261,9 +261,9 @@ export function BmrCalculator() {
           <h2 className="text-2xl font-bold text-foreground mb-6">Explore Related Health Tools</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {[
-              { name: "Ideal Weight Calculator", href: "/health/ideal-weight-calculator", desc: "Find your target body weight range." },
-              { name: "Body Fat Estimator", href: "/health/body-fat-calculator", desc: "Calculate percentage using US Navy method." },
-              { name: "Water Intake Calculator", href: "/health/water-intake-calculator", desc: "Daily hydration needs based on activity." },
+              { name: "Readability Calculator", href: "/text/readability-flesch-kincaid-calculator", desc: "Review health notes for reading ease." },
+              { name: "Word Frequency Counter", href: "/text/word-frequency", desc: "Check repeated terms in nutrition plans." },
+              { name: "xG Calculator", href: "/utility/xg-expected-goals-calculator", desc: "Model football chance quality and match xG." },
             ].map((tool, i) => (
               <a key={i} href={tool.href} className="group bg-card rounded-2xl border border-border/60 p-5 hover:border-primary/40 transition-all shadow-sm">
                 <h4 className="font-bold text-foreground group-hover:text-primary mb-2 transition-colors">{tool.name}</h4>

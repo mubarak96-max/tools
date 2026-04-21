@@ -23,9 +23,10 @@ export default function TermsPage() {
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Ads, analytics, and consent</h2>
         <p>
-          We may use advertising and analytics to support the site. Where consent is required, we only
-          load those Google services after you accept them. Your use of the site also remains subject to
-          the terms and privacy policies of relevant third-party providers.
+          We may use advertising and analytics to support the site. Google services may load when you
+          visit the site and may use cookies, identifiers, and device information according to regional
+          consent requirements and Google&apos;s policies. Your use of the site also remains subject to the
+          terms and privacy policies of relevant third-party providers.
         </p>
 
         <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Disclaimer of Warranty</h2>

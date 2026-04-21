@@ -12,6 +12,19 @@ export const metadata = buildMetadata({
 
 const SITEMAP_TOOLS = [
   {
+    category: "Design",
+    categoryHref: "/design",
+    categoryDescription: "Browser-based design tools for social media assets and visual content.",
+    tools: [
+      {
+        name: "Free Social Media Carousel Builder",
+        href: "/design/free-social-media-carousel-builder",
+        description: "Create Instagram, LinkedIn, and TikTok carousel posts with templates and export options.",
+        icon: "CAR",
+      },
+    ],
+  },
+  {
     category: "Health",
     categoryHref: "/health",
     categoryDescription: "Health and nutrition calculators.",
@@ -98,6 +111,12 @@ const SITEMAP_TOOLS = [
     categoryHref: "/utility",
     categoryDescription: "Formatting, generation, and scanning tools for quick browser work.",
     tools: [
+      {
+        name: "Expected Goals (xG) Calculator",
+        href: "/utility/xg-expected-goals-calculator",
+        description: "Interactive football xG calculator with shot position, pressure, assist type, and match comparison.",
+        icon: "XG",
+      },
       {
         name: "Free CV Resume Builder",
         href: "/utility/free-cv-resume-builder",
