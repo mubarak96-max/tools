@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Calculator, ShieldCheck } from "lucide-react";
+import { CalendarDays, Calculator, Landmark, ShieldCheck, TrendingUp } from "lucide-react";
 
 import EMICalculator from "@/app/finance/emi-calculator/components/EMICalculator";
 import JsonLd from "@/components/seo/JsonLd";
@@ -184,13 +184,15 @@ export default function EMICalculatorPage() {
 
           <div className="grid sm:grid-cols-2 gap-8 not-prose my-16">
              {[
-               { icon: "🏛️", title: "Principal Portion", body: "The slice of your EMI that actually pays off the 'debt'. In early stages, this is small, but it grows exponentially as the loan matures." },
-               { icon: "📈", title: "Interest Expense", body: "The profit the lender earns. This is calculated on the remaining balance each month, which is why it decreases over time." },
-               { icon: "📅", title: "Tenure Impact", body: "Short tenures mean high EMIs but low total interest. Long tenures provide monthly relief but can double the total cost of the asset." },
-               { icon: "🛡️", title: "Amortization", body: "The systematic reduction of debt. Our calculator provides a full schedule so you can see exactly when you truly 'own' your asset." },
+               { icon: <Landmark className="h-7 w-7" />, title: "Principal Portion", body: "The slice of your EMI that actually pays off the 'debt'. In early stages, this is small, but it grows exponentially as the loan matures." },
+               { icon: <TrendingUp className="h-7 w-7" />, title: "Interest Expense", body: "The profit the lender earns. This is calculated on the remaining balance each month, which is why it decreases over time." },
+               { icon: <CalendarDays className="h-7 w-7" />, title: "Tenure Impact", body: "Short tenures mean high EMIs but low total interest. Long tenures provide monthly relief but can double the total cost of the asset." },
+               { icon: <ShieldCheck className="h-7 w-7" />, title: "Amortization", body: "The systematic reduction of debt. Our calculator provides a full schedule so you can see exactly when you truly 'own' your asset." },
              ].map((box) => (
                 <div key={box.title} className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-primary/30 hover:shadow-2xl transition-all group">
-                  <div className="text-3xl mb-6 group-hover:scale-110 transition-transform inline-block">{box.icon}</div>
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/10 bg-primary/5 text-primary transition-transform group-hover:scale-110">
+                    {box.icon}
+                  </div>
                   <h4 className="text-lg font-black text-slate-900 mb-3">{box.title}</h4>
                   <p className="text-sm text-slate-600 leading-relaxed font-medium">{box.body}</p>
                 </div>
