@@ -91,6 +91,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "BEP",
   },
   {
+    name: "Marketing ROI Calculator",
+    href: "/marketing/marketing-roi-calculator",
+    description: "Calculate ROAS, ROMI, CAC, and LTV. Compare performance across Google, Meta, and Email.",
+    category: "Marketing",
+    icon: "ROI",
+  },
+  {
     name: "Concrete Volume Calculator",
     href: "/construction/concrete-volume-calculator",
     description: "Estimate concrete volume for slabs, footings, columns, and holes.",
