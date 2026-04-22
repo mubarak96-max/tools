@@ -85,6 +85,12 @@ const SITEMAP_TOOLS = [
         description: "Create printable invoices with line items, taxes, discounts, and totals.",
         icon: "INV",
       },
+      {
+        name: "Break Even Calculator",
+        href: "/finance/break-even-calculator",
+        description: "Find your break even point in units or sales dollars to understand your business viability.",
+        icon: "BEP",
+      },
     ],
   },
   {
@@ -122,6 +128,12 @@ const SITEMAP_TOOLS = [
         href: "/image/convert-image-to-base64",
         description: "Convert any image into a Base64 string or data URL directly in your browser.",
         icon: "B64",
+      },
+      {
+        name: "Instagram Photo Resizer",
+        href: "/image/resize-photo-instagram-online",
+        description: "Quickly resize or crop photos for Instagram (1:1, 4:5, 1.91:1) with high-quality export.",
+        icon: "IG",
       },
     ],
   },
@@ -183,6 +195,19 @@ const SITEMAP_TOOLS = [
         href: "/real-estate/hong-kong-stamp-duty-calculator",
         description: "Calculate Hong Kong ad valorem stamp duty for residential property.",
         icon: "HK",
+      },
+    ],
+  },
+  {
+    category: "Marketing",
+    categoryHref: "/marketing",
+    categoryDescription: "Growth marketing calculators and performance analysis tools.",
+    tools: [
+      {
+        name: "Marketing ROI Calculator",
+        href: "/marketing/marketing-roi-calculator",
+        description: "Calculate ROAS, ROMI, CAC, and LTV across every channel to know exactly what your budget is earning.",
+        icon: "ROI",
       },
     ],
   },
