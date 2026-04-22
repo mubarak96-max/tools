@@ -12,10 +12,10 @@ import {
 } from "lucide-react";
 
 const MATERIALS = [
-  { id: "Asphalt", label: "Architectural Asphalt", bundlesPerSq: 3, pricePerSq: 120, icon: "🏠" },
-  { id: "Metal", label: "Standing Seam Metal", bundlesPerSq: 1, pricePerSq: 450, icon: "🏭" },
-  { id: "Tile", label: "Clay / Concrete Tile", bundlesPerSq: 5, pricePerSq: 600, icon: "🧱" },
-  { id: "Wood", label: "Cedar Shakes", bundlesPerSq: 4, pricePerSq: 550, icon: "🌲" },
+  { id: "Asphalt", label: "Architectural Asphalt", bundlesPerSq: 3, pricePerSq: 120, icon: <Home className="h-5 w-5" /> },
+  { id: "Metal", label: "Standing Seam Metal", bundlesPerSq: 1, pricePerSq: 450, icon: <Layers className="h-5 w-5" /> },
+  { id: "Tile", label: "Clay / Concrete Tile", bundlesPerSq: 5, pricePerSq: 600, icon: <Box className="h-5 w-5" /> },
+  { id: "Wood", label: "Cedar Shakes", bundlesPerSq: 4, pricePerSq: 550, icon: <Hammer className="h-5 w-5" /> },
 ];
 
 export function RoofingMaterialCalculator() {
@@ -104,7 +104,9 @@ export function RoofingMaterialCalculator() {
                       onClick={() => setMaterialId(m.id)}
                       className={`flex flex-col items-center gap-2 p-3 rounded-2xl border transition-all ${materialId === m.id ? "bg-primary text-primary-foreground border-primary shadow-lg" : "bg-muted/10 border-border hover:border-primary/20"}`}
                     >
-                      <span className="text-xl">{m.icon}</span>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-background/70 text-current">
+                        {m.icon}
+                      </span>
                       <span className="text-[8px] font-black uppercase tracking-tighter line-clamp-1">{m.label}</span>
                     </button>
                   ))}

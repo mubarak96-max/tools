@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import ReadabilityCalculator from "../_components/ReadabilityCalculator";
 import { buildMetadata } from "@/lib/seo/metadata";
-import { FileText, BrainCircuit } from "lucide-react";
+import { FileText, BrainCircuit, Landmark, Scale, Search, GraduationCap } from "lucide-react";
 
 export const revalidate = 43200;
 
@@ -126,13 +126,15 @@ export default function ReadabilityPage() {
 
           <div className="grid sm:grid-cols-2 gap-8 not-prose my-16">
              {[
-               { icon: "🏛️", title: "Military Origins", body: "Originally used to standardize Navy manuals, ensuring technical safety through linguistic simplicity and clear, actionable syntax." },
-               { icon: "⚖️", title: "Legal Standards", body: "In many jurisdictions, insurance policies and legal disclosures must meet a minimum Flesch Reading Ease score to be legally binding." },
-               { icon: "🔍", title: "Search Authority", body: "Modern search engines prioritize content that regular people can understand. Readability is a proxy for user experience and 'answer quality'." },
-               { icon: "🎓", title: "Educational Tech", body: "Teachers use these scores to level books, ensuring students are challenged without being overwhelmed by inaccessible vocabulary." },
+               { icon: <Landmark className="h-7 w-7" />, title: "Military Origins", body: "Originally used to standardize Navy manuals, ensuring technical safety through linguistic simplicity and clear, actionable syntax." },
+               { icon: <Scale className="h-7 w-7" />, title: "Legal Standards", body: "In many jurisdictions, insurance policies and legal disclosures must meet a minimum Flesch Reading Ease score to be legally binding." },
+               { icon: <Search className="h-7 w-7" />, title: "Search Authority", body: "Modern search engines prioritize content that regular people can understand. Readability is a proxy for user experience and 'answer quality'." },
+               { icon: <GraduationCap className="h-7 w-7" />, title: "Educational Tech", body: "Teachers use these scores to level books, ensuring students are challenged without being overwhelmed by inaccessible vocabulary." },
              ].map((box) => (
                 <div key={box.title} className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-primary/30 hover:shadow-2xl transition-all group shadow-sm">
-                  <div className="text-3xl mb-6 group-hover:scale-110 transition-transform inline-block">{box.icon}</div>
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/10 bg-primary/5 text-primary transition-transform group-hover:scale-110">
+                    {box.icon}
+                  </div>
                   <h4 className="text-lg font-black text-slate-900 mb-3">{box.title}</h4>
                   <p className="text-sm text-slate-600 leading-relaxed font-medium">{box.body}</p>
                 </div>
