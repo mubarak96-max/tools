@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BmrCalculator } from "./components/BmrCalculator";
 import JsonLd from "@/components/seo/JsonLd";
-import { absoluteUrl } from "@/lib/seo/metadata";
+import { absoluteUrl, buildMetadata } from "@/lib/seo/metadata";
+import { Activity, Flame, TrendingUp, Dna, Stethoscope, Brain, Heart, Syringe } from "lucide-react";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
 export const revalidate = 43200;
@@ -126,115 +127,218 @@ export default function BmrCalculatorPage() {
 
         <BmrCalculator />
 
-        <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-          <div className="prose prose-slate max-w-none prose-invert">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground">What is Basal Metabolic Rate?</h2>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              Basal Metabolic Rate (BMR) is the number of calories your body requires to maintain basic physiological functions while at complete rest — breathing, circulation, cell production, protein synthesis, ion transport, and temperature regulation. It represents the minimum energy needed to keep you alive if you did nothing but lie still all day.
-            </p>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              BMR accounts for approximately 60–70% of total daily energy expenditure in sedentary individuals. It is the largest single component of your caloric needs, which is why understanding it is fundamental to any nutrition or weight management strategy.
-            </p>
+      {/* ── EDUCATIONAL EXPANSION: 1500+ WORDS OF AUTHORITY ── */}
+      <section className="mx-auto max-w-4xl space-y-24 px-4 py-16">
+        
+        {/* Section 1: The Thermodynamics of Survival */}
+        <article className="prose prose-slate max-w-none">
+          <h2 className="text-3xl font-black text-slate-900 border-l-4 border-primary pl-6 py-2">The Thermodynamics of Survival: Understanding BMR</h2>
+          <p className="text-lg text-slate-600 leading-relaxed font-medium mt-6">
+            Basal Metabolic Rate (BMR) is often described as the calories you burn "doing nothing," but from a physiological perspective, your body is never truly doing nothing. Even in a state of complete rest, your biological machinery is performing a staggering amount of work to maintain <strong>homeostasis</strong>.
+          </p>
+          <p className="text-slate-600 leading-relaxed">
+            Every second, your cells are actively pumping ions across membranes to maintain electrical gradients. Your liver is synthesizing proteins and detoxifying blood. Your brain is processing neurotransmitters. Your kidneys are filtering waste. BMR is the energy required to support this invisible, non-stop "cellular housekeeping." It typically accounts for <strong>60-75% of your Total Daily Energy Expenditure (TDEE)</strong>, making it the single most important variable in your caloric balance.
+          </p>
 
-            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">The Mifflin-St Jeor formula</h2>
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              Source:{" "}
-              <a
-                href="https://pubmed.ncbi.nlm.nih.gov/2305711/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-primary hover:underline"
-              >
-                Mifflin MD, St Jeor ST, et al. A new predictive equation for resting energy expenditure in healthy individuals.
-              </a>{" "}
-              Last reviewed on April 21, 2026.
-            </p>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              This calculator uses the Mifflin-St Jeor equation, published in 1990 and validated as the most accurate predictive formula for modern populations. It was developed by MD Mifflin and ST St Jeor using data from 498 subjects and outperforms the older Harris-Benedict equation (1919) by approximately 5% in accuracy.
-            </p>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              <strong>Men:</strong> BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age in years) + 5<br />
-              <strong>Women:</strong> BMR = (10 × weight in kg) + (6.25 × height in cm) − (5 × age in years) − 161
-            </p>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              The formula accounts for the fact that women have a lower BMR than men of the same weight and height, primarily due to differences in muscle mass and body composition. The −161 constant for women reflects this systematic difference.
-            </p>
+          <div className="grid sm:grid-cols-2 gap-8 not-prose my-16">
+             {[
+               { icon: <Activity className="h-7 w-7" />, title: "Cellular Processing", body: "Over 20% of your BMR is dedicated solely to the sodium-potassium pump, maintaining the chemical balance of your cells." },
+               { icon: <Flame className="h-7 w-7" />, title: "Thermoregulation", body: "Humans are endotherms; a significant portion of BMR is converted to heat to maintain a core temperature of 37°C." },
+               { icon: <Brain className="h-7 w-7" />, title: "Neural Overhead", body: "The brain represents only 2% of body weight but consumes nearly 20% of resting energy to maintain cognitive integrity." },
+               { icon: <Heart className="h-7 w-7" />, title: "Mechanical Work", body: "Continuous muscular work from the diaphragm and heart muscle ensures life-sustaining oxygen delivery and circulation." },
+             ].map((box) => (
+                <div key={box.title} className="p-8 rounded-[2.5rem] bg-white border border-slate-100 hover:border-primary/30 hover:shadow-2xl transition-all group shadow-sm">
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/10 bg-primary/5 text-primary transition-transform group-hover:scale-110">
+                    {box.icon}
+                  </div>
+                  <h4 className="text-xl font-black text-slate-900 mb-3">{box.title}</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed font-medium">{box.body}</p>
+                </div>
+             ))}
+          </div>
+        </article>
 
-            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">What affects your BMR</h2>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              Several factors influence your resting metabolic rate beyond the variables in the formula:
-            </p>
-            <ul className="mt-4 space-y-3 text-base leading-7 text-muted-foreground">
-              <li><strong className="text-foreground">Muscle mass:</strong> Muscle tissue burns approximately 13 kcal per kg per day at rest, compared to roughly 4.5 kcal per kg for fat tissue. More muscle means a higher BMR — this is the primary reason resistance training supports long-term weight management.</li>
-              <li><strong className="text-foreground">Age:</strong> BMR declines approximately 2–3% per decade after age 20, largely due to progressive muscle loss (sarcopenia). A 60-year-old has roughly 10–15% lower BMR than they did at 20, all else being equal.</li>
-              <li><strong className="text-foreground">Thyroid function:</strong> The thyroid gland regulates metabolic rate through hormones T3 and T4. Hypothyroidism (underactive thyroid) can reduce BMR by 30–40%; hyperthyroidism can increase it by a similar amount.</li>
-              <li><strong className="text-foreground">Body temperature:</strong> Fever increases BMR by approximately 7% for each degree Celsius rise in body temperature. Cold environments also slightly increase BMR as the body generates heat.</li>
-              <li><strong className="text-foreground">Genetics:</strong> Twin studies suggest that 40–70% of variation in BMR between individuals is genetically determined, independent of body composition.</li>
-            </ul>
+        {/* Section 2: Detailed Biological Drivers */}
+        <section className="prose prose-slate max-w-none">
+          <h2 className="text-3xl font-black text-slate-900 mb-8 uppercase tracking-tight">The Bio-Variable Library: What Truly Affects BMR</h2>
+          <p className="text-slate-600">
+            While weight, height, and age are the primary inputs for predictive formulas, they are proxies for underlying biological drivers. To truly optimize your metabolism, you must understand these five hidden variables:
+          </p>
+          
+          <div className="space-y-12 mt-12">
+            {[
+              { 
+                tag: "PROTEIN TURNOVER", 
+                title: "The Muscular Advantage", 
+                txt: "Skeletal muscle is roughly 3x more metabolically active than adipose (fat) tissue. However, the 'metabolic boost' from muscle is often overstated. Every 1kg of muscle added increases BMR by approximately 13 kcal/day. The real advantage lies in muscle's ability to increase 'Work Efficiency' during exercise rather than its resting burn rate." 
+              },
+              { 
+                tag: "ENDOCRINE CONTROL", 
+                title: "The Hormonal Thermostat", 
+                txt: "The thyroid gland acts as the body's primary thermostat. Hormones T3 (triiodothyronine) and T4 (thyroxine) directly stimulate ATP production in cells. Even slight deviations in thyroid health can swing BMR by 10-20%, making 'metabolic slowing' a clinical reality for many." 
+              },
+              { 
+                tag: "SATIETY SIGNALS", 
+                title: "The Leptin Connection", 
+                txt: "Leptin is a hormone produced by fat cells that signals the brain to maintain BMR. When you diet and lose fat, leptin levels drop, signaling the hypothalamus to conserve energy by lowering BMR. This is a survival mechanism evolved to prevent starvation." 
+              },
+              { 
+                tag: "DIGESTIVE LOAD", 
+                title: "Thermogenic Effect of Food (TEF)", 
+                txt: "Often confused with BMR, TEF is the energy used to digest and process nutrients. Protein has the highest TEF (20-30% of its calories are burned during digestion), which is why high-protein diets effectively increase net daily energy expenditure." 
+              }
+            ].map((item) => (
+              <div key={item.title} className="border-l-2 border-slate-100 pl-8 relative">
+                <div className="absolute -left-[5px] top-0 h-4 w-2 bg-primary rounded-full" />
+                <span className="text-[10px] font-black text-primary tracking-widest uppercase">{item.tag}</span>
+                <h4 className="text-xl font-bold text-slate-900 mt-1 mb-3">{item.title}</h4>
+                <p className="text-sm text-slate-600 leading-relaxed font-medium">{item.txt}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">From BMR to TDEE: activity multipliers</h2>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              Your BMR is multiplied by an activity factor to estimate your Total Daily Energy Expenditure (TDEE) — the actual number of calories you burn each day:
+        {/* Section 3: Metabolic Adaptation (The Truth About the 'Plateau') */}
+        <section className="bg-slate-900 rounded-[3.5rem] p-10 sm:p-20 text-white overflow-hidden relative group">
+          <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12">
+             <Dna className="w-64 h-64" />
+          </div>
+          
+          <div className="relative z-10 max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl font-black mb-8 leading-tight">Adaptive Thermogenesis: Why Weight Loss Stalls</h2>
+            <p className="text-slate-400 text-lg leading-relaxed mb-10">
+              When you eat in a caloric deficit for an extended period, your body begins to defend its energy stores. This phenomenon, known as <strong>Adaptive Thermogenesis</strong> (or metabolic adaptation), causes BMR to drop faster than predicted by weight loss alone.
             </p>
-            <ul className="mt-4 space-y-2 text-base leading-7 text-muted-foreground">
-              <li><strong className="text-foreground">Sedentary (×1.2):</strong> Desk job, little or no exercise.</li>
-              <li><strong className="text-foreground">Lightly active (×1.375):</strong> Light exercise 1–3 days per week.</li>
-              <li><strong className="text-foreground">Moderately active (×1.55):</strong> Moderate exercise 3–5 days per week.</li>
-              <li><strong className="text-foreground">Very active (×1.725):</strong> Hard exercise 6–7 days per week.</li>
-              <li><strong className="text-foreground">Extra active (×1.9):</strong> Very hard exercise or physical job, twice-daily training.</li>
-            </ul>
-            <p className="mt-4 text-base leading-7 text-muted-foreground">
-              Most people overestimate their activity level. If you exercise 3–4 times per week but have a desk job, lightly active (×1.375) is usually more accurate than moderately active.
-            </p>
-
-            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Metabolic adaptation during dieting</h2>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              One of the most important — and frustrating — aspects of weight loss is metabolic adaptation. When you eat in a caloric deficit, your body responds by lowering BMR beyond what is explained by weight loss alone. This adaptive thermogenesis can reduce BMR by an additional 10–15% below predicted values.
-            </p>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              This is why weight loss slows over time even when maintaining the same caloric deficit. Strategies to minimise metabolic adaptation include: avoiding very large deficits (stay above 500 kcal/day below TDEE), maintaining high protein intake, continuing resistance training, and incorporating diet breaks (periods at maintenance calories) every 8–12 weeks.
-            </p>
-
-            <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-            <div className="mt-6 space-y-4">
-              {faq.map((item) => (
-                <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-                  <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-                </article>
-              ))}
+            
+            <div className="grid sm:grid-cols-2 gap-8 text-left">
+              <div className="bg-white/5 border border-white/10 p-8 rounded-3xl group-hover:bg-white/10 transition-colors">
+                <h4 className="font-bold text-white mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-primary" /> The Resistance Factor
+                </h4>
+                <p className="text-sm text-slate-400 leading-relaxed font-medium">As you lose weight, your organs (heart, liver, kidneys) actually shrink slightly in mass, and their mitochondrial efficiency increases, requiring fewer calories to perform the same life-sustaining work.</p>
+              </div>
+              <div className="bg-white/5 border border-white/10 p-8 rounded-3xl group-hover:bg-white/10 transition-colors">
+                <h4 className="font-bold text-white mb-3 flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-primary" /> Behavioral Downregulation
+                </h4>
+                <p className="text-sm text-slate-400 leading-relaxed font-medium">Subconsciously, your brain reduces NEAT (Non-Exercise Activity Thermogenesis). You fidget less, stand less, and move with less intensity—often saving 200-400 calories a day without noticing.</p>
+              </div>
+            </div>
+            
+            <div className="mt-12 p-8 rounded-[2rem] bg-primary/10 border border-primary/20 text-primary-soft italic text-sm">
+              "The most effective way to combat metabolic adaptation is through 'Maintenance Phases' or 'Diet Breaks'—periodic returns to maintenance calories to reassure the leptin-signaling system that food is plentiful."
             </div>
           </div>
         </section>
 
-        <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Health Tools</h2>
-              <p className="mt-1 text-sm text-slate-500">Other utilities you might find helpful</p>
-            </div>
-            <Link href="/health" className="secondary-button px-4 py-2 text-xs">View All</Link>
+        {/* Section 4: Formula Analysis - The Math of Metabolism */}
+        <article className="prose prose-slate max-w-none">
+          <h2 className="text-3xl font-black text-slate-900 border-b border-slate-100 pb-6">Beyond Mifflin-St Jeor: Comparing the Formulas</h2>
+          <p className="text-slate-600 leading-relaxed">
+            While our calculator uses the modern gold standard, different scenarios may require different mathematical models. Understanding which formula applies to you is key to dietary accuracy:
+          </p>
+          <ul className="text-slate-600 space-y-6 font-medium mt-8">
+             <li>
+               <strong className="text-slate-900 block text-lg">1. Mifflin-St Jeor (1990)</strong>
+               <span className="text-sm font-normal">Best for: General population and overweight individuals. This formula was developed using a more modern demographic than its predecessors and remains the most reliable for those without an exact measure of body fat percentage.</span>
+             </li>
+             <li>
+               <strong className="text-slate-900 block text-lg">2. Katch-McArdle (1983)</strong>
+               <span className="text-sm font-normal">Best for: Athletes and lean individuals. This formula ignores weight/height proxies and uses <strong>Lean Body Mass (LBM)</strong> directly. If you have a low body fat percentage, this is significantly more accurate than Mifflin-St Jeor.</span>
+             </li>
+             <li>
+               <strong className="text-slate-900 block text-lg">3. Harris-Benedict (1919)</strong>
+               <span className="text-sm font-normal">Best for: Historical context. While still popular, it tends to overestimate BMR in modern populations by roughly 5%, as active metabolic rates were higher in the early 20th century due to labor-intensive lifestyles.</span>
+             </li>
+          </ul>
+        </article>
+
+        {/* Section 5: The Master Strategy for Metabolism */}
+        <section className="prose prose-slate max-w-none">
+          <h2 className="text-3xl font-black text-slate-900">How to 'Hack' Your BMR: The Evidence-Based Guide</h2>
+          <p className="text-slate-600">While BMR is largely determined by physical size, you can influence the 'Metabolic Ceiling' through targeted interventions:</p>
+
+          <div className="space-y-8 mt-12">
+            {[
+              { step: "01", name: "Prioritize Hypertrophy", txt: "Resistance training doesn't just burn calories during the session; it increases the mass of metabolically expensive tissue. A muscular individual has a 'higher floor' for calories even on sedentary days." },
+              { step: "02", name: "Cyclical Dieting", txt: "Avoid chronic low-calorie intake. By cycling between fat loss phases and maintenance phases, you prevent the deep downregulation of thyroid and leptin hormones." },
+              { step: "03", name: "Optimize Sleep Hygiene", txt: "Sleep deprivation reduces BMR by disrupting the cortisol-insulin axis. Just one night of poor sleep can significantly reduce resting energy expenditure the following day." },
+              { step: "04", name: "The Protein Leverage", txt: "Aim for 1.6g to 2.2g of protein per kg of body weight. The increased Thermic Effect of Food (TEF) effectively raises your total daily expenditure without requiring more movement." },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-8 items-start group">
+                <div className="text-4xl font-black text-primary/10 group-hover:text-primary transition-colors shrink-0">{item.step}</div>
+                <div>
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">{item.name}</h4>
+                  <p className="text-sm text-slate-600 leading-relaxed font-semibold">{item.txt}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        </section>
+
+        {/* Section 6: Advanced FAQ */}
+        <section id="faq" className="space-y-16">
+          <div className="text-center">
+            <h2 className="text-4xl font-black text-slate-900 mb-4">Metabolism & Physiology FAQ</h2>
+            <p className="text-slate-500 font-medium max-w-2xl mx-auto text-lg leading-relaxed">Scientific answers for fitness professionals and precision nutritionists.</p>
+          </div>
+          
+          <div className="grid gap-6">
+             {[
+               { q: "Can caffeine or spicy food increase BMR?", a: "Yes, but only temporarily and marginally. Stimulants like caffeine and capsaicin (found in chili) can increase BMR through thermogenesis by 3-5%, but the effect is too small to serve as a primary weight loss strategy." },
+               { q: "Is 'Starvation Mode' real?", a: "The term is a myth, but the phenomenon of 'Metabolic Adaptation' is very real. Your metabolism doesn't stop, but it can slow down by up to 15% as a survival response. You cannot physically stop losing weight if you are in a true deficit, but the 'deficit' point moves as you lose weight." },
+               { q: "Does drinking cold water burn more calories?", a: "Technically, yes. Your body must heat the water to 37°C. However, drinking two liters of ice-cold water only burns roughly 50-70 additional calories—less than a single small apple." },
+               { q: "Why is my BMR lower than my friend's of the same size?", a: "Individual variation is massive. Differences in organ size, mitochondrial density, hormonal health, and lean body mass distribution can lead to a 200-300 calorie difference between two seemingly identical people." },
+             ].map((item) => (
+                <div key={item.q} className="p-10 rounded-[3rem] border border-slate-100 bg-white hover:border-primary/40 hover:shadow-2xl transition-all group shadow-sm">
+                   <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-primary transition-colors italic">{item.q}</h3>
+                   <p className="text-base text-slate-600 leading-relaxed font-medium">{item.a}</p>
+                </div>
+             ))}
+          </div>
+        </section>
+
+        {/* Closing Disclaimer */}
+        <div className="p-8 rounded-[2.5rem] bg-indigo-50 border border-indigo-100 text-slate-700 italic text-sm leading-relaxed text-center">
+          "Metabolism is a dynamic ecosystem, not a fixed number. Formulas provide the starting line, but consistent tracking of biofeedback (energy levels, sleep quality, and performance) is the only way to find your true metabolic needs."
+        </div>
+
+      </section>
+
+      <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
+        <div className="flex items-center justify-between px-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Professional Tools</h2>
+            <p className="mt-1 text-sm text-slate-500">Utilities designed for growth and precision.</p>
+          </div>
+          <Link href="/health" className="secondary-button px-4 py-2 text-xs">View All</Link>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 px-4 pb-20 text-left">
+          {[
+            { name: "Calorie Calculator", href: "/health/calorie-calculator", icon: "CAL", desc: "Estimate TDEE and daily targets for weight goals." },
+            { name: "Marketing ROI Calculator", href: "/marketing/marketing-roi-calculator", icon: "ROI", desc: "Calculate ROAS, ROMI, and CAC across channels." },
+            { name: "Halal Mortgage Calculator", href: "/finance/halal-mortgage-calculator", icon: "HLM", desc: "Compare Sharia-compliant home finance structures." },
+          ].map((tool) => (
             <Link
-              href="/text/readability-flesch-kincaid-calculator"
-              className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
+              key={tool.href}
+              href={tool.href}
+              className="group flex flex-col gap-3 rounded-[2rem] border border-white/40 bg-white/40 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                READ
-              </span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
+                {tool.icon}
+              </div>
               <div>
                 <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
-                  Readability / Flesch-Kincaid Calculator
+                  {tool.name}
                 </h3>
-                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
-                  Score pasted text for reading ease, grade level, and sentence complexity.
-                </p>
+                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500 font-medium">{tool.desc}</p>
               </div>
             </Link>
-          </div>
-        </section>
-      </div>
-    </>
+          ))}
+        </div>
+      </section>
+      </section>
+    </div>
+  </>
   );
 }
