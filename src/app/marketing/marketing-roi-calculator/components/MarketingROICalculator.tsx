@@ -381,13 +381,15 @@ export default function MarketingROICalculator() {
 
             <div className="grid sm:grid-cols-2 gap-8 not-prose my-16">
               {[
-                { icon: "💹", title: "Economic Truth", body: "Stop guessing if a campaign worked. Transition from reporting on 'engagement' to reporting on 'contribution margin' and 'incremental EBITDA'." },
-                { icon: "🚀", title: "Scaling Velocity", body: "Identify the exact moment a channel becomes inefficient. Shift budget from diminishing-return platforms to untapped growth engines." },
-                { icon: "🛡️", title: "Budget Defense", body: "When CFOs look to cut costs, marketing is the first target. Guard your budget with cold, hard LTV and CAC payback data." },
-                { icon: "📈", title: "Forecasting Precision", body: "Turn historical performance into predictive models. Know exactly how much revenue an extra $50,000 in spend will generate." },
+                { icon: <DollarSign className="h-7 w-7" />, title: "Economic Truth", body: "Stop guessing if a campaign worked. Transition from reporting on 'engagement' to reporting on 'contribution margin' and 'incremental EBITDA'." },
+                { icon: <Zap className="h-7 w-7" />, title: "Scaling Velocity", body: "Identify the exact moment a channel becomes inefficient. Shift budget from diminishing-return platforms to untapped growth engines." },
+                { icon: <AlertCircle className="h-7 w-7" />, title: "Budget Defense", body: "When CFOs look to cut costs, marketing is the first target. Guard your budget with cold, hard LTV and CAC payback data." },
+                { icon: <TrendingUp className="h-7 w-7" />, title: "Forecasting Precision", body: "Turn historical performance into predictive models. Know exactly how much revenue an extra $50,000 in spend will generate." },
               ].map((box) => (
                 <div key={box.title} className="p-8 rounded-3xl bg-white border border-slate-100 hover:border-primary/30 hover:shadow-2xl transition-all group">
-                  <div className="text-3xl mb-6 group-hover:scale-110 transition-transform inline-block">{box.icon}</div>
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-primary/10 bg-primary/5 text-primary transition-transform group-hover:scale-110">
+                    {box.icon}
+                  </div>
                   <h4 className="text-lg font-black text-slate-900 mb-3">{box.title}</h4>
                   <p className="text-sm text-slate-600 leading-relaxed font-medium">{box.body}</p>
                 </div>
