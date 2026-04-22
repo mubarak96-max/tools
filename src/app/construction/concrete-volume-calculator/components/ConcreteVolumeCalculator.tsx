@@ -200,9 +200,9 @@ export function ConcreteVolumeCalculator() {
                   {/* Shape Selector */}
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { id: "slab", label: "Slab", icon: "🍱" },
-                      { id: "column", label: "Column", icon: "🧪" },
-                      { id: "stairs", label: "Stairs", icon: "🪜" }
+                      { id: "slab", label: "Slab", icon: <Layers className="h-5 w-5" /> },
+                      { id: "column", label: "Column", icon: <MoreVertical className="h-5 w-5" /> },
+                      { id: "stairs", label: "Stairs", icon: <Ruler className="h-5 w-5" /> }
                     ].map((sh) => (
                       <button
                         key={sh.id}
@@ -213,7 +213,9 @@ export function ConcreteVolumeCalculator() {
                             : "bg-muted/10 border-border hover:border-primary/30"
                         }`}
                       >
-                        <span className="text-xl">{sh.icon}</span>
+                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-background/70 text-current">
+                          {sh.icon}
+                        </span>
                         <span className="text-[10px] font-black uppercase tracking-tighter">{sh.label}</span>
                       </button>
                     ))}

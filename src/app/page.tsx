@@ -127,6 +127,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     category: "Text",
     icon: "BIN",
   },
+  {
+    name: "Halal Mortgage Calculator",
+    href: "/finance/halal-mortgage-calculator",
+    description: "Compare Sharia-compliant home finance: Musharakah, Murabaha, and Ijara structures without interest.",
+    category: "Finance",
+    icon: "HLM",
+  },
 ];
 
 function ToolCard({ tool }: { tool: HomeToolMeta }) {

@@ -91,6 +91,12 @@ const SITEMAP_TOOLS = [
         description: "Find your break even point in units or sales dollars to understand your business viability.",
         icon: "BEP",
       },
+      {
+        name: "Halal Mortgage Calculator",
+        href: "/finance/halal-mortgage-calculator",
+        description: "Compare Sharia-compliant home finance: Musharakah, Murabaha, and Ijara structures without interest.",
+        icon: "HLM",
+      },
     ],
   },
   {
