@@ -33,6 +33,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
   ],
   Finance: [
     {
+      name: "EMI Calculator",
+      href: "/finance/emi-calculator",
+      description: "Estimate monthly loan payment, total interest, and affordability.",
+    },
+    {
       name: "Invoice Generator",
       href: "/finance/invoice-generator",
       description: "Create printable invoices with line items, taxes, discounts, and totals.",

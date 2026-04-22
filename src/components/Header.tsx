@@ -47,6 +47,7 @@ const NAV_GROUPS = [
     label: 'Finance',
     href: '/finance',
     tools: [
+      { name: 'EMI Calculator', href: '/finance/emi-calculator', icon: 'EMI' },
       { name: 'Invoice Generator', href: '/finance/invoice-generator', icon: 'INV' },
     ],
   },

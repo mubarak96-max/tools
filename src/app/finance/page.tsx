@@ -6,10 +6,22 @@ export const revalidate = 43200;
 
 const FINANCE_TOOLS = [
   {
+    name: "EMI Calculator",
+    href: "/finance/emi-calculator",
+    description: "Estimate monthly loan EMI, total interest, repayment, affordability, and amortization.",
+    icon: "EMI",
+  },
+  {
     name: "Invoice Generator",
     href: "/finance/invoice-generator",
     description: "Create printable invoices with line items, taxes, discounts, business details, and totals.",
     icon: "INV",
+  },
+  {
+    name: "Break Even Point (BEP) Calculator",
+    href: "/finance/break-even-calculator",
+    description: "Calculate your break even point in units or revenue. Includes chart maker and goal modeling.",
+    icon: "BEP",
   },
 ];
 

@@ -74,6 +74,12 @@ const SITEMAP_TOOLS = [
     categoryDescription: "Finance tools for business paperwork and practical calculations.",
     tools: [
       {
+        name: "EMI Calculator",
+        href: "/finance/emi-calculator",
+        description: "Estimate monthly loan EMI, total interest, repayment, and affordability.",
+        icon: "EMI",
+      },
+      {
         name: "Invoice Generator",
         href: "/finance/invoice-generator",
         description: "Create printable invoices with line items, taxes, discounts, and totals.",

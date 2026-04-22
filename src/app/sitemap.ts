@@ -44,6 +44,8 @@ const TOOL_PATHS = [
   "/construction/paint-coverage-calculator",
   "/construction/roofing-material-calculator",
   "/design/free-social-media-carousel-builder",
+  "/finance/break-even-calculator",
+  "/finance/emi-calculator",
   "/finance/invoice-generator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",

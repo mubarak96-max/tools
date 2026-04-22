@@ -14,6 +14,20 @@ export interface WordFrequencyComparisonItem {
 
 export type HumanizerStatus = "idle" | "queued" | "processing" | "done" | "error";
 
+export interface EMIResult {
+  emi: number;
+  totalPayment: number;
+  totalInterest: number;
+}
+
+export interface EMIAmortizationRow {
+  month: number;
+  emi: number;
+  principalPaid: number;
+  interest: number;
+  balance: number;
+}
+
 export interface FreeToolMeta {
   name: string;
   href: string;

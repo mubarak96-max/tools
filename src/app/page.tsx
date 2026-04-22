@@ -133,13 +133,13 @@ function ToolCard({ tool }: { tool: HomeToolMeta }) {
   return (
     <Link
       href={tool.href}
-      className="group relative flex flex-col items-start gap-3 overflow-hidden rounded-3xl border border-white/40 bg-white/40 p-5 shadow-premium backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/60 hover:shadow-hover"
+      className="group relative flex flex-col items-start gap-2.5 overflow-hidden rounded-2xl border border-white/40 bg-white/40 p-4 shadow-premium backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/60 hover:shadow-hover"
     >
       <div className="flex w-full items-center justify-between">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-          <span className="text-[11px] font-black text-primary">{tool.icon}</span>
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
         </div>
-        <span className="primary-chip rounded-full px-3 py-1 text-[10px] drop-shadow-sm">
+        <span className="primary-chip rounded-full px-2.5 py-0.5 text-[9px] drop-shadow-sm">
           {tool.category}
         </span>
       </div>
@@ -153,9 +153,9 @@ function ToolCard({ tool }: { tool: HomeToolMeta }) {
         </p>
       </div>
 
-      <div className="mt-4 flex w-full items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-          Launch Tool <ArrowRight className="h-3.5 w-3.5" />
+      <div className="mt-3 flex w-full items-center justify-between">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+          Launch Tool <ArrowRight className="h-3 w-3" />
         </span>
       </div>
     </Link>
@@ -170,7 +170,7 @@ export default function Home() {
       <JsonLd data={serializeJsonLd(breadcrumbJsonLd)} />
 
       {/* Hero Section */}
-      <section className="relative overflow-visible pt-20 pb-16 lg:pt-32 lg:pb-24">
+      <section className="relative overflow-visible pt-16 pb-12 lg:pt-24 lg:pb-16">
         {/* Background Mesh */}
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_45%_at_50%_50%,rgba(99,102,241,0.05)_0,rgba(255,255,255,0)_100%)]" />
         <div className="absolute top-0 left-1/2 -z-10 h-[1000px] w-[1000px] -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(99,102,241,0.03)_0,rgba(255,255,255,0)_100%)]" />
@@ -185,7 +185,7 @@ export default function Home() {
 
 
 
-            <div className="relative z-20 mt-10 flex flex-col items-center gap-6 animate-fade-in [animation-delay:400ms]">
+            <div className="relative z-20 mt-8 flex flex-col items-center gap-5 animate-fade-in [animation-delay:400ms]">
               <div className="w-full max-w-xl">
                 <HomeToolSearch />
               </div>
@@ -196,22 +196,22 @@ export default function Home() {
       </section>
 
       {/* Grid Section */}
-      <section className="relative bg-white/30 py-16 backdrop-blur-sm">
+      <section className="relative bg-white/30 py-12 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-16 flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
+          <div className="mb-10 flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
             <div className="text-center md:text-left">
-              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Essential Utilities</h2>
-              <p className="mt-2 text-slate-500">Pick a tool to start your task immediately.</p>
+              <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Most Used Tools</h2>
+
             </div>
             <Link
               href="/sitemap"
-              className="secondary-button px-6 py-2.5 text-sm"
+              className="secondary-button px-5 py-2 text-sm"
             >
               Explore Full Library
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
             {FEATURED_TOOLS.map((tool, idx) => (
               <div key={tool.href} className="animate-slide-up" style={{ animationDelay: `${idx * 50}ms` }}>
                 <ToolCard tool={tool} />
@@ -222,7 +222,7 @@ export default function Home() {
       </section>
 
       {/* Footer-ish spacer */}
-      <div className="h-24 bg-gradient-to-b from-transparent to-[#F8FAFC]" />
+      <div className="h-16 bg-gradient-to-b from-transparent to-[#F8FAFC]" />
     </div>
   );
 }

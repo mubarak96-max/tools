@@ -77,6 +77,20 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "INV",
   },
   {
+    name: "EMI Calculator",
+    href: "/finance/emi-calculator",
+    description: "Estimate monthly loan EMI, total interest, repayment, and affordability.",
+    category: "Finance",
+    icon: "EMI",
+  },
+  {
+    name: "Break Even Point (BEP) Calculator",
+    href: "/finance/break-even-calculator",
+    description: "Calculate your break even point in units or revenue. Includes chart maker and goal modeling.",
+    category: "Finance",
+    icon: "BEP",
+  },
+  {
     name: "Concrete Volume Calculator",
     href: "/construction/concrete-volume-calculator",
     description: "Estimate concrete volume for slabs, footings, columns, and holes.",
@@ -374,10 +388,10 @@ export default function HomeToolSearch() {
       </div>
 
       {isOpen ? (
-        <div className="absolute left-0 right-0 z-50 mt-4 max-h-[460px] overflow-y-auto rounded-[2.5rem] border border-white/40 bg-white/95 p-4 shadow-hover backdrop-blur-2xl animate-fade-in sm:p-6 lg:-mx-12">
+        <div className="absolute left-0 right-0 z-50 mt-4 max-h-[460px] overflow-y-auto rounded-[2.5rem] border border-white/40 bg-white/95 p-4 shadow-hover backdrop-blur-2xl animate-fade-in">
           {query.trim() ? (
             filteredTools.length > 0 ? (
-              <div className="grid gap-2">
+              <div className="grid gap-1">
                 <p className="px-3 pb-2 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                   Search Results
                 </p>
@@ -385,20 +399,20 @@ export default function HomeToolSearch() {
                   <Link
                     key={tool.href}
                     href={tool.href}
-                    className="flex items-center gap-4 rounded-2xl p-4 transition-all hover:scale-[1.01] hover:bg-primary/5"
+                    className="flex items-center gap-3 rounded-2xl p-3 transition-all hover:scale-[1.01] hover:bg-primary/5"
                     onClick={() => {
                       saveRecentQuery(query);
                       setIsOpen(false);
                     }}
                   >
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white bg-white text-[10px] font-black text-primary shadow-sm ring-1 ring-black/5">
                       {tool.icon}
                     </span>
                     <span className="flex min-w-0 flex-col overflow-hidden">
-                      <span className="truncate text-[15px] font-bold text-slate-900">{tool.name}</span>
-                      <span className="truncate text-sm text-slate-500">{tool.description}</span>
+                      <span className="truncate text-sm font-bold text-slate-900">{tool.name}</span>
+                      <span className="truncate text-xs text-slate-500">{tool.description}</span>
                     </span>
-                    <span className="ml-auto rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                    <span className="ml-auto rounded-full bg-primary/10 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-primary">
                       {tool.category}
                     </span>
                   </Link>

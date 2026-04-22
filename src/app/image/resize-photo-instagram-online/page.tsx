@@ -97,20 +97,20 @@ export default function InstagramResizePage() {
       />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
-      <div className="space-y-16 sm:space-y-24 pb-20">
+      <div className="space-y-12 sm:space-y-16 pb-16">
         {/* Header Section */}
-        <section className="relative overflow-hidden pt-12 sm:pt-20">
+        <section className="relative overflow-hidden pt-10 sm:pt-16">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0">
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px]" />
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-[120px]" />
           </div>
 
           <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-            <h1 className="text-5xl sm:text-7xl font-black tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.1]">
+            <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 dark:text-white mb-4 leading-[1.1]">
               Resize Photo for <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-pink-600 to-orange-500">Instagram</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10 font-medium">
+            <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8 font-medium">
               Instantly adjust your photos for Square, Portrait, or Story formats without losing quality. No sign-up, no watermark.
             </p>
           </div>
@@ -122,10 +122,10 @@ export default function InstagramResizePage() {
         </section>
 
         {/* Info & SEO Section */}
-        <div className="max-w-4xl mx-auto px-4 space-y-24">
+        <div className="max-w-4xl mx-auto px-4 space-y-16 sm:space-y-20">
           
           {/* How It Works */}
-          <section className="grid md:grid-cols-3 gap-8">
+          <section className="grid md:grid-cols-3 gap-6">
             {[
               {
                 number: "01",
@@ -146,13 +146,13 @@ export default function InstagramResizePage() {
                 body: "Choose a background fill color or blur if your image doesn't fill the frame, then download your resized photo. Your image is exported at full Instagram-ready resolution — no compression artifacts or watermark."
               }
             ].map((step) => (
-              <div key={step.number} className="relative p-8 rounded-[2rem] bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
-                <div className="text-4xl font-black text-indigo-500/20 absolute top-6 right-8">{step.number}</div>
-                <div className="w-10 h-10 rounded-xl bg-indigo-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20">
+              <div key={step.number} className="relative p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                <div className="text-3xl font-black text-indigo-500/20 absolute top-5 right-6">{step.number}</div>
+                <div className="w-9 h-9 rounded-xl bg-indigo-500 text-white flex items-center justify-center mb-5 shadow-lg shadow-indigo-500/20">
                   {step.icon}
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">{step.title}</h3>
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">{step.body}</p>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">{step.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed">{step.body}</p>
               </div>
             ))}
           </section>
@@ -176,66 +176,66 @@ export default function InstagramResizePage() {
               the exact pixel dimensions, aspect ratios, and the maximum file size Instagram will accept.
             </p>
 
-            <div className="overflow-x-auto my-8">
-              <table className="min-w-full text-sm border-collapse rounded-2xl overflow-hidden shadow-sm">
-                <thead className="bg-slate-100 dark:bg-slate-900 font-bold uppercase tracking-widest text-[10px] text-slate-500">
+            <div className="overflow-x-auto my-6">
+              <table className="min-w-full text-xs border-collapse rounded-xl overflow-hidden shadow-sm">
+                <thead className="bg-slate-100 dark:bg-slate-900 font-bold uppercase tracking-widest text-[9px] text-slate-500">
                   <tr>
-                    <th className="py-4 px-6 text-left">Format</th>
-                    <th className="py-4 px-6 text-left">Dimensions</th>
-                    <th className="py-4 px-6 text-left">Aspect Ratio</th>
-                    <th className="py-4 px-6 text-left">Max File Size</th>
-                    <th className="py-4 px-6 text-left">Best For</th>
+                    <th className="py-3 px-5 text-left">Format</th>
+                    <th className="py-3 px-5 text-left">Dimensions</th>
+                    <th className="py-3 px-5 text-left">Aspect Ratio</th>
+                    <th className="py-3 px-5 text-left">Max File Size</th>
+                    <th className="py-3 px-5 text-left">Best For</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                   <tr>
-                    <td className="py-4 px-6 font-bold">Square Post</td>
-                    <td className="py-4 px-6">1080 × 1080 px</td>
-                    <td className="py-4 px-6">1:1</td>
-                    <td className="py-4 px-6">8 MB</td>
-                    <td className="py-4 px-6">Feed posts, product shots</td>
+                    <td className="py-3 px-5 font-bold">Square Post</td>
+                    <td className="py-3 px-5">1080 × 1080 px</td>
+                    <td className="py-3 px-5">1:1</td>
+                    <td className="py-3 px-5">8 MB</td>
+                    <td className="py-3 px-5">Feed posts, product shots</td>
                   </tr>
                   <tr className="bg-indigo-50/20 dark:bg-indigo-500/5">
-                    <td className="py-4 px-6 font-bold text-indigo-600">Portrait Post</td>
-                    <td className="py-4 px-6">1080 × 1350 px</td>
-                    <td className="py-4 px-6">4:5</td>
-                    <td className="py-4 px-6">8 MB</td>
-                    <td className="py-4 px-6">Max Real Estate, portraits</td>
+                    <td className="py-3 px-5 font-bold text-indigo-600">Portrait Post</td>
+                    <td className="py-3 px-5">1080 × 1350 px</td>
+                    <td className="py-3 px-5">4:5</td>
+                    <td className="py-3 px-5">8 MB</td>
+                    <td className="py-3 px-5">Max Real Estate, portraits</td>
                   </tr>
                   <tr>
-                    <td className="py-4 px-6 font-bold">Landscape Post</td>
-                    <td className="py-4 px-6">1080 × 566 px</td>
-                    <td className="py-4 px-6">1.91:1</td>
-                    <td className="py-4 px-6">8 MB</td>
-                    <td className="py-4 px-6">Wide shots, panoramas</td>
+                    <td className="py-3 px-5 font-bold">Landscape Post</td>
+                    <td className="py-3 px-5">1080 × 566 px</td>
+                    <td className="py-3 px-5">1.91:1</td>
+                    <td className="py-3 px-5">8 MB</td>
+                    <td className="py-3 px-5">Wide shots, panoramas</td>
                   </tr>
                   <tr>
-                    <td className="py-4 px-6 font-bold">Story</td>
-                    <td className="py-4 px-6">1080 × 1920 px</td>
-                    <td className="py-4 px-6">9:16</td>
-                    <td className="py-4 px-6">30 MB</td>
-                    <td className="py-4 px-6">Stories, Reels covers</td>
+                    <td className="py-3 px-5 font-bold">Story</td>
+                    <td className="py-3 px-5">1080 × 1920 px</td>
+                    <td className="py-3 px-5">9:16</td>
+                    <td className="py-3 px-5">30 MB</td>
+                    <td className="py-3 px-5">Stories, Reels covers</td>
                   </tr>
                   <tr>
-                    <td className="py-4 px-6 font-bold">Reel Cover</td>
-                    <td className="py-4 px-6">1080 × 1920 px</td>
-                    <td className="py-4 px-6">9:16</td>
-                    <td className="py-4 px-6">8 MB</td>
-                    <td className="py-4 px-6">Reel thumbnail in feed</td>
+                    <td className="py-3 px-5 font-bold">Reel Cover</td>
+                    <td className="py-3 px-5">1080 × 1920 px</td>
+                    <td className="py-3 px-5">9:16</td>
+                    <td className="py-3 px-5">8 MB</td>
+                    <td className="py-3 px-5">Reel thumbnail in feed</td>
                   </tr>
                   <tr>
-                    <td className="py-4 px-6 font-bold">Carousel Slide</td>
-                    <td className="py-4 px-6">1080 × 1080 px</td>
-                    <td className="py-4 px-6">1:1</td>
-                    <td className="py-4 px-6">8 MB</td>
-                    <td className="py-4 px-6">Multi-image posts</td>
+                    <td className="py-3 px-5 font-bold">Carousel Slide</td>
+                    <td className="py-3 px-5">1080 × 1080 px</td>
+                    <td className="py-3 px-5">1:1</td>
+                    <td className="py-3 px-5">8 MB</td>
+                    <td className="py-3 px-5">Multi-image posts</td>
                   </tr>
                   <tr>
-                    <td className="py-4 px-6 font-bold">Profile Picture</td>
-                    <td className="py-4 px-6">320 × 320 px</td>
-                    <td className="py-4 px-6">1:1</td>
-                    <td className="py-4 px-6">8 MB</td>
-                    <td className="py-4 px-6">Profile display</td>
+                    <td className="py-3 px-5 font-bold">Profile Picture</td>
+                    <td className="py-3 px-5">320 × 320 px</td>
+                    <td className="py-3 px-5">1:1</td>
+                    <td className="py-3 px-5">8 MB</td>
+                    <td className="py-3 px-5">Profile display</td>
                   </tr>
                 </tbody>
               </table>
@@ -343,22 +343,22 @@ export default function InstagramResizePage() {
           <hr className="border-slate-100 dark:border-slate-800" />
 
           {/* FAQ Section */}
-          <section id="faq" className="space-y-12 pb-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-black text-slate-900 dark:text-white">Questions & Answers</h2>
-              <p className="text-slate-500 max-w-lg mx-auto font-medium leading-relaxed">
+          <section id="faq" className="space-y-10 pb-8">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl font-black text-slate-900 dark:text-white">Questions & Answers</h2>
+              <p className="text-slate-500 max-w-lg mx-auto font-medium leading-relaxed text-sm">
                 Everything you need to know about Instagram photo dimensions and image quality.
               </p>
             </div>
 
-            <div className="grid gap-6">
+            <div className="grid gap-4">
               {faq.map((item, i) => (
-                <div key={i} className="group p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 bg-white dark:dark:bg-slate-900 hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300">
-                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
-                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-xs">Q</span>
+                <div key={i} className="group p-6 rounded-2xl border border-slate-100 dark:border-slate-800 bg-white dark:dark:bg-slate-900 hover:border-indigo-500/30 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-300">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-3">
+                    <span className="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-500 flex items-center justify-center text-[10px]">Q</span>
                     {item.question}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed pl-11">
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed pl-10 text-sm">
                     {item.answer}
                   </p>
                 </div>
