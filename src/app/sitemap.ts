@@ -49,6 +49,7 @@ const TOOL_PATHS = [
   "/health/calorie-calculator",
   "/image/free-image-background-remover-online",
   "/image/convert-image-to-base64",
+  "/image/resize-photo-instagram-online",
   "/real-estate/nyc-transfer-tax-calculator",
   "/real-estate/price-per-square-foot-calculator",
   "/real-estate/uk-stamp-duty-calculator",

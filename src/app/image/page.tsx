@@ -24,6 +24,12 @@ const IMAGE_TOOLS = [
     description: "Convert any image into a Base64 string or data URL directly in your browser.",
     icon: "B64",
   },
+  {
+    name: "Instagram Photo Resizer",
+    href: "/image/resize-photo-instagram-online",
+    description: "Resize any photo for Instagram Square, Portrait, Story, or Profile formats. No crop support.",
+    icon: "IG",
+  },
 ];
 
 function ToolCard({ tool }: { tool: (typeof IMAGE_TOOLS)[number] }) {

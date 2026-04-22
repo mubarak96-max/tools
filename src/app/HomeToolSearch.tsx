@@ -231,6 +231,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "B64",
   },
   {
+    name: "Instagram Photo Resizer",
+    href: "/image/resize-photo-instagram-online",
+    description: "Resize any photo for Instagram Square, Portrait, Story, or Profile formats.",
+    category: "Image",
+    icon: "IG",
+  },
+  {
     name: "Barcode Generator",
     href: "/utility/barcode-generator",
     description: "Create CODE128, UPC, and EAN barcodes and download PNGs.",
