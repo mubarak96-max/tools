@@ -29,6 +29,11 @@ const STATIC_PATHS = [
   { path: "/blog/how-to-make-a-carousel-go-viral", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/how-to-make-a-linkedin-carousel", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/instagram-carousel-size", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/nyc-closing-costs-2026", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/who-pays-transfer-tax-nyc", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/nyc-investment-property-transfer-tax", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/nyc-sponsor-sales-closing-costs", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/nyc-condo-vs-coop-closing-costs", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/understanding-binary-code", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 

@@ -170,7 +170,7 @@ export default function Home() {
       <JsonLd data={serializeJsonLd(breadcrumbJsonLd)} />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
+      <section className="relative overflow-visible pt-20 pb-16 lg:pt-32 lg:pb-24">
         {/* Background Mesh */}
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(45%_45%_at_50%_50%,rgba(99,102,241,0.05)_0,rgba(255,255,255,0)_100%)]" />
         <div className="absolute top-0 left-1/2 -z-10 h-[1000px] w-[1000px] -translate-x-1/2 bg-[radial-gradient(50%_50%_at_50%_50%,rgba(99,102,241,0.03)_0,rgba(255,255,255,0)_100%)]" />
@@ -185,7 +185,7 @@ export default function Home() {
 
 
 
-            <div className="mt-10 flex flex-col items-center gap-6 animate-fade-in [animation-delay:400ms]">
+            <div className="relative z-20 mt-10 flex flex-col items-center gap-6 animate-fade-in [animation-delay:400ms]">
               <div className="w-full max-w-xl">
                 <HomeToolSearch />
               </div>

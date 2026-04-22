@@ -1,12 +1,12 @@
 "use client";
 
 import { useMemo, useState, useRef } from "react";
-import { 
-  NumberField, 
-  ResultCard, 
-  SelectField, 
-  formatMoney, 
-  formatPercent 
+import {
+  NumberField,
+  ResultCard,
+  SelectField,
+  formatMoney,
+  formatPercent
 } from "@/components/real-estate/shared";
 import { calculateNycTransferTax } from "@/lib/tools/real-estate";
 import { PrinterIcon } from "lucide-react";
@@ -60,15 +60,7 @@ export default function NYCTransferTaxCalculator() {
             ]}
             helper="NYC and NYS transfer tax rates differ by property class and price thresholds."
           />
-          <div className="flex items-end">
-            <button
-              onClick={handlePrint}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-secondary px-6 py-3 text-sm font-medium transition-all hover:bg-secondary/80"
-            >
-              <PrinterIcon className="h-4 w-4" />
-              Print Results
-            </button>
-          </div>
+
         </div>
       </section>
 
@@ -99,7 +91,7 @@ export default function NYCTransferTaxCalculator() {
         {totalTaxes > 0 && (
           <div className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
             <h3 className="mb-6 text-lg font-bold">Detailed Tax Breakdown</h3>
-            
+
             <div className="mb-8">
               <div className="flex h-10 w-full overflow-hidden rounded-full bg-muted/30">
                 {breakDown.map((item, idx) => (
@@ -147,7 +139,7 @@ export default function NYCTransferTaxCalculator() {
                     <tr>
                       <td className="py-4 font-medium">NYS Mansion Tax</td>
                       <td className="py-4 text-sm text-muted-foreground">
-                        {formatPercent((result.mansionTax / (Number(transferPrice) || 1)) * 100)} 
+                        {formatPercent((result.mansionTax / (Number(transferPrice) || 1)) * 100)}
                         <span className="ml-1 text-[10px] italic opacity-70">(Effective)</span>
                       </td>
                       <td className="py-4 text-right font-semibold">{formatMoney(result.mansionTax, USD_MARKET)}</td>

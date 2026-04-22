@@ -15,6 +15,46 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "Condo vs. Co-op in NYC: How Closing Costs and Transfer Taxes Differ",
+    description: "The financial side of the decision: why co-op buyers save $20k+ on closing costs compared to condos, and when a flip tax changes the math.",
+    href: "/blog/nyc-condo-vs-coop-closing-costs",
+    tag: "Property Types",
+    readTime: "12 min read",
+    date: "April 2026",
+  },
+  {
+    title: "Sponsor Sales in NYC: Why Your Closing Costs Are Higher Than You Think",
+    description: "The truth about new development: how the 'Transfer Tax Flip' and sponsor fees can add $40k+ to your NYC closing costs.",
+    href: "/blog/nyc-sponsor-sales-closing-costs",
+    tag: "New Development",
+    readTime: "12 min read",
+    date: "April 2026",
+  },
+  {
+    title: "NYC Transfer Tax on Investment Properties: What Investors Need to Know (2026)",
+    description: "Navigate high-value NYC real estate taxes: commercial RPTT, entity transfers, and the full tax stack for property investors.",
+    href: "/blog/nyc-investment-property-transfer-tax",
+    tag: "Investment",
+    readTime: "11 min read",
+    date: "April 2026",
+  },
+  {
+    title: "Who Pays Transfer Tax in NYC? Seller Closing Costs Explained (2026)",
+    description: "Selling an apartment in New York? Learn about RPTT, State transfer taxes, and why sponsor sales change the rules for sellers.",
+    href: "/blog/who-pays-transfer-tax-nyc",
+    tag: "Real Estate",
+    readTime: "10 min read",
+    date: "April 2026",
+  },
+  {
+    title: "NYC Closing Costs in 2026: The Complete Buyer's Guide",
+    description: "Navigate NYC's complex closing costs, from Mansion Tax to Mortgage Recording Tax, with our detailed 2026 breakdown for condos, co-ops, and houses.",
+    href: "/blog/nyc-closing-costs-2026",
+    tag: "Real Estate",
+    readTime: "12 min read",
+    date: "April 2026",
+  },
+  {
     title: "How to Write a Carousel Caption That Gets Engagement (2026 Guide)",
     description: "Your caption is your second hook. Master the 4-part carousel caption formula for Instagram and LinkedIn to drive more swipes, saves, and comments.",
     href: "/blog/carousel-caption-guide",
