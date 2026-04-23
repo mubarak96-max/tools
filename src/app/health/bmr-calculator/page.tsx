@@ -337,7 +337,6 @@ export default function BmrCalculatorPage() {
           ))}
         </div>
       </section>
-      </section>
     </div>
   </>
   );

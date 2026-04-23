@@ -13,44 +13,44 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What is NYC Real Property Transfer Tax (RPTT)?",
+    question: "What is the NYC Real Property Transfer Tax (RPTT)?",
     answer:
-      "RPTT is a tax levied by New York City on the transfer of real property or interests in real property (like co-ops). The tax is based on the purchase price and varies by property type and price threshold.",
+      "RPTT is a tax levied by New York City on the transfer of real property or interests in real property (like co-op shares). It applies to nearly all transactions over $25,000 within the five boroughs. The rate is determined by the property type and the sale price, with a significant rate jump at the $500,000 threshold.",
   },
   {
-    question: "Do I pay transfer tax on a co-op in NYC?",
+    question: "Who pays the transfer tax in NYC: Buyer or Seller?",
     answer:
-      "Yes. Both condos (real property) and co-ops (shares in a corporation) are subject to the NYC Real Property Transfer Tax. Co-op transfers have been subject to RPTT since 1989 because they represent a transfer of an interest in real property.",
+      "In a standard resale, the seller is legally responsible for paying both NYC RPTT and NYS Transfer Tax. However, in 'Sponsor Sales' (new construction or condo conversions), the buyer is almost always contractually required to pay these taxes, which can add tens of thousands to their closing costs.",
   },
   {
-    question: "How much is transfer tax on a $2 million NYC condo?",
+    question: "Do co-ops pay transfer tax in New York City?",
     answer:
-      "For a $2 million NYC condo, the seller typically pays 1.425% NYC RPTT ($28,500) and 0.65% NYS Transfer Tax ($13,000). Total transfer taxes equal $41,500. Additionally, the buyer likely pays the NYS Mansion Tax of 1.25% ($25,000).",
+      "Yes. While co-op buyers save on Mortgage Recording Tax and Title Insurance, they (or the seller) must still pay the NYC RPTT and NYS Transfer Tax. Co-ops have been subject to these taxes since 1989 because the sale of shares is considered a transfer of an interest in real property.",
   },
   {
-    question: "Who pays the NYC transfer tax, the buyer or the seller?",
+    question: "What is the Mansion Tax, and when does it apply?",
     answer:
-      "In most resale transactions, the seller is responsible for paying both NYC and NYS transfer taxes. However, in new construction (sponsor sales), the buyer typically assumes this cost contractually, which can significantly increase closing costs.",
+      "The Mansion Tax is a New York State tax on residential purchases of $1 million or more. It starts at 1% for sales between $1M and $2M and scales progressively up to 3.9% for sales of $25M+. Unlike transfer taxes, the Mansion Tax is almost always paid by the buyer.",
   },
   {
-    question: "Can you deduct NYC transfer tax?",
+    question: "Is NYC transfer tax tax-deductible?",
     answer:
-      "Generally, you cannot deduct transfer taxes as an itemized deduction on your federal income tax return. Instead, for the seller, they are treated as an expense of sale that reduces the capital gain. For the buyer, they are added to the property's cost basis.",
+      "Generally, transfer taxes are not deductible as an itemized expense. However, for the seller, they are treated as a cost of sale which reduces the capital gain (lowering potential capital gains tax). For the buyer, if they pay the tax, it is added to their 'cost basis,' which reduces their future capital gains when they sell.",
   },
   {
-    question: "How much is the New York State transfer tax?",
+    question: "What is the 'Peat Tax' in NYC?",
     answer:
-      "In addition to NYC tax, the State charges 0.4% ($2 per $500) for properties under $2M, and 0.65% for residential properties over $2M (or commercial over $3M).",
+      "The 'Peat Tax' refers to the supplemental New York State transfer tax rate of 0.25% (totaling 0.65%) that applies to residential transfers over $3 million and commercial transfers over $2 million within New York City.",
   },
   {
-    question: "Transfer tax on new construction NYC",
+    question: "Does the 4-unit rule affect transfer tax rates?",
     answer:
-      "On new construction (sponsor sales), the buyer is almost always expected to pay the NYC RPTT and NYS Transfer Tax, as well as the sponsor's legal fees. This is a key difference from resale purchases where the seller pays.",
+      "Yes. Properties with 1-3 residential units are taxed at the 'Residential' rate. If a property has 4 or more residential units, NYC classifies it as 'All Other Types' (Commercial), which triggers a much higher RPTT rate of 2.625% if the price is over $500,000.",
   },
   {
-    question: "When is the transfer tax paid?",
+    question: "How do you calculate transfer tax on a gift or 'love and affection' transfer?",
     answer:
-      "The tax is typically paid at the closing of the transaction. The RPTT return must be filed and the tax paid within 30 days of the transfer.",
+      "Even if no money changes hands, the tax may be based on the remaining mortgage balance on the property. If there is no mortgage and no consideration, the tax may be zero, but a return must still be filed (Form NYC-RPT).",
   },
 ];
 
@@ -155,267 +155,283 @@ export default function NYCTransferTaxCalculatorPage() {
 
         <NYCTransferTaxCalculator />
 
-        <section className="space-y-4 border-t border-border/60 pt-8">
+        <section className="space-y-16 border-t border-border/60 pt-16 pb-24">
           <div className="prose prose-slate max-w-none">
-            <h2 className="text-2xl font-bold">What is NYC Real Property Transfer Tax (RPTT)?</h2>
-            <p>
-              The New York City Real Property Transfer Tax (RPTT) applies to nearly every real estate transaction in the five boroughs totaling over $25,000. This includes the sale of houses, condos, and co-op apartments.
+            <h2 className="text-4xl font-extrabold tracking-tight text-slate-900 mb-8">The Definitive NYC Transfer Tax Encyclopedia (2026 Edition)</h2>
+            
+            <p className="text-xl leading-relaxed text-slate-600 mb-12">
+              Buying or selling a property in New York City is not just a real estate transaction; it is a complex navigation through a multi-layered tax environment. The <strong>Real Property Transfer Tax (RPTT)</strong> and the <strong>New York State Transfer Tax</strong> represent some of the most significant line items on a closing statement. This guide provides over 2,000 words of actionable, factual intelligence to help you master these costs.
             </p>
 
-            <div className="my-10 bg-slate-50 border border-slate-100 rounded-[2rem] p-8">
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Worked Example: $1.5M Condo Purchase (NYC Resale)</h3>
-              <p className="text-sm text-slate-600 mb-6 italic">How much would the taxes be on a $1,500,000 condo? Here is the breakdown:</p>
-              <div className="grid gap-4 sm:grid-cols-2 text-slate-900">
-                <div className="rounded-xl bg-white p-5 border border-slate-200">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Seller Responsibilities</p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex justify-between"><span>NYC RPTT (1.425%)</span> <span className="font-bold">$21,375</span></li>
-                    <li className="flex justify-between"><span>NYS Transfer Tax (0.4%)</span> <span className="font-bold">$6,000</span></li>
-                    <li className="border-t pt-2 flex justify-between font-bold text-slate-900"><span>Total Seller Tax</span> <span>$27,375</span></li>
-                  </ul>
-                </div>
-                <div className="rounded-xl bg-white p-5 border border-slate-200">
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Buyer Responsibilities</p>
-                  <ul className="space-y-2 text-sm">
-                    <li className="flex justify-between"><span>NYS Mansion Tax (1.0%)</span> <span className="font-bold">$15,000</span></li>
-                    <li className="border-t pt-2 flex justify-between font-bold text-slate-900"><span>Total Buyer Tax</span> <span>$15,000</span></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="mt-8 p-8 bg-primary/5 rounded-[2rem] border border-primary/10">
-                <h4 className="text-lg font-bold text-slate-900 mb-2 text-center">Comprehensive NYC Closing Cost Guides</h4>
-                <p className="text-sm text-slate-600 mb-8 text-center">
-                    Transfer taxes are just one part of the equation. Explore our detailed 2026 guides for a complete breakdown of every fee.
+            <div className="grid gap-8 lg:grid-cols-3 mb-16">
+              <div className="lg:col-span-2 space-y-8">
+                <h3 className="text-2xl font-bold text-slate-900 border-b pb-4">1. Understanding the Core Rates</h3>
+                <p>
+                  NYC taxes property transfers based on two primary factors: the <strong>property class</strong> and the <strong>consideration</strong> (sale price).
                 </p>
-                <div className="grid gap-4 sm:grid-cols-2">
-                    <Link 
-                        href="/blog/nyc-closing-costs-2026"
-                        className="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm"
-                    >
-                        <span className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">NYC Buyer&apos;s Closing Guide</span>
-                        <span className="text-xs text-slate-500">Mansion Tax & standard resale fees</span>
-                    </Link>
-                    <Link 
-                        href="/blog/who-pays-transfer-tax-nyc"
-                        className="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm"
-                    >
-                        <span className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">Seller Tax Explained</span>
-                        <span className="text-xs text-slate-500">RPTT, Net proceeds & broker fees</span>
-                    </Link>
-                    <Link 
-                        href="/blog/nyc-investment-property-transfer-tax"
-                        className="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm"
-                    >
-                        <span className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">Investor & Commercial Guide</span>
-                        <span className="text-xs text-slate-500">4-unit trap & entity transfers</span>
-                    </Link>
-                    <Link 
-                        href="/blog/nyc-sponsor-sales-closing-costs"
-                        className="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm"
-                    >
-                        <span className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">Sponsor Sale (New Dev) Guide</span>
-                        <span className="text-xs text-slate-500">The "Transfer Tax Flip" cost gap</span>
-                    </Link>
-                    <Link 
-                        href="/blog/nyc-condo-vs-coop-closing-costs"
-                        className="group flex flex-col gap-1 p-4 bg-white rounded-xl border border-border hover:border-primary/30 transition-all shadow-sm sm:col-span-2 lg:col-span-2"
-                    >
-                        <span className="text-sm font-bold text-slate-900 group-hover:text-primary transition-colors">Condo vs. Co-op: The Financial Side</span>
-                        <span className="text-xs text-slate-500">Mortgage tax exemptions & flip taxes</span>
-                    </Link>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full border-collapse">
+                        <thead>
+                            <tr className="bg-slate-50">
+                                <th className="p-4 text-left font-bold text-slate-900 border">Property Type</th>
+                                <th className="p-4 text-left font-bold text-slate-900 border">Under $500,000</th>
+                                <th className="p-4 text-left font-bold text-slate-900 border">$500,000 & Above</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className="p-4 border font-medium">Residential (1-3 Family, Condo, Co-op)</td>
+                                <td className="p-4 border text-primary font-bold">1.000%</td>
+                                <td className="p-4 border text-primary font-bold">1.425%</td>
+                            </tr>
+                            <tr>
+                                <td className="p-4 border font-medium">Commercial & Multi-Family (4+ Units)</td>
+                                <td className="p-4 border text-primary font-bold">1.425%</td>
+                                <td className="p-4 border text-primary font-bold">2.625%</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <p className="text-sm text-slate-500 italic">
+                    Note: "Consideration" includes the cash paid plus the amount of any mortgage or lien remaining on the property at the time of transfer.
+                </p>
+              </div>
+              <div className="bg-slate-900 rounded-[2rem] p-8 text-white h-fit">
+                <h4 className="text-lg font-bold mb-4 text-primary">Quick Calculation Shortcut</h4>
+                <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+                    For a typical $1.2M condo resale in NYC:
+                </p>
+                <ul className="space-y-3 text-sm">
+                    <li className="flex justify-between"><span>NYC RPTT (1.425%)</span> <strong>$17,100</strong></li>
+                    <li className="flex justify-between"><span>NYS Tax (0.4%)</span> <strong>$4,800</strong></li>
+                    <li className="flex justify-between border-t border-white/20 pt-2 text-primary font-bold"><span>Total Seller Tax</span> <span>$21,900</span></li>
+                </ul>
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold mt-8">Transfer Tax Responsibility: Buyer vs. Seller</h2>
-            <p>Understanding who pays what is crucial for budgeting closing costs in NYC.</p>
-            <div className="overflow-x-auto my-6">
-              <table className="min-w-full border border-border rounded-lg text-sm">
-                <thead className="bg-muted">
-                  <tr>
-                    <th className="px-4 py-3 text-left border-b border-border font-bold">Closing Cost</th>
-                    <th className="px-4 py-3 text-left border-b border-border font-bold">Standard Resale</th>
-                    <th className="px-4 py-3 text-left border-b border-border font-bold">Sponsor Sale (New Construction)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  <tr>
-                    <td className="px-4 py-3 font-medium">NYC RPTT</td>
-                    <td className="px-4 py-3">Typically Seller</td>
-                    <td className="px-4 py-3 font-bold text-primary">Buyer Pays</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 font-medium">NYS Transfer Tax</td>
-                    <td className="px-4 py-3">Typically Seller</td>
-                    <td className="px-4 py-3 font-bold text-primary">Buyer Pays</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 font-medium">Mansion Tax</td>
-                    <td className="px-4 py-3">Always Buyer</td>
-                    <td className="px-4 py-3">Always Buyer</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 font-medium">Title Insurance</td>
-                    <td className="px-4 py-3">Buyer Pays</td>
-                    <td className="px-4 py-3">Buyer Pays</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h2 className="text-2xl font-bold mt-8">NYS Transfer Tax Rates (Standard & Peat Tax)</h2>
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">2. The Filing Process: ACRIS, Forms, and Timelines</h3>
             <p>
-              Beyond the city-level tax, all transactions in the state are subject to the <strong>New York State Transfer Tax</strong>.
+                In New York City, the payment of transfer tax is inextricably linked with the filing of the <strong>Real Property Transfer Tax Return (Form NYC-RPT)</strong>. This process is managed through <strong>ACRIS</strong> (Automated City Register Information System).
             </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Standard Rate:</strong> 0.4% ($2 per $500) for most transactions.</li>
-              <li><strong>NYC High-Value Rate (Peat Tax):</strong> For transfers within NYC, the rate increases to 0.65% if the price is $3 million or more for residential properties (1-3 family) or $2 million or more for non-residential properties.</li>
-            </ul>
-
-            <h2 className="text-2xl font-bold mt-8">NYC Real Property Transfer Tax Rates</h2>
-            <p>NYC uses a two-tier rate system based on the property type and the sale price:</p>
-
-            <div className="overflow-x-auto my-6">
-              <table className="min-w-full border border-border rounded-lg">
-                <thead className="bg-muted">
-                  <tr>
-                    <th className="px-4 py-3 text-left border-b border-border">Property Type</th>
-                    <th className="px-4 py-3 text-left border-b border-border">Under $500,000</th>
-                    <th className="px-4 py-3 text-left border-b border-border">$500,000 and Above</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border">
-                  <tr>
-                    <td className="px-4 py-3 font-medium">Residential (1-3 Family, Condo, Co-op)</td>
-                    <td className="px-4 py-3">1.000%</td>
-                    <td className="px-4 py-3">1.425%</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 font-medium">All Other Types (Commercial)</td>
-                    <td className="px-4 py-3">1.425%</td>
-                    <td className="px-4 py-3">2.625%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h2 className="text-2xl font-bold mt-8">The NYS Mansion Tax</h2>
-            <p>
-              Residential purchases of $1 million or more trigger the <strong>NYS Mansion Tax</strong>. Unlike the transfer taxes which are typically paid by the seller, the Mansion Tax is almost always paid by the <strong>buyer</strong>. The rate starts at 1% and scales progressively:
-            </p>
-            <ul className="list-disc pl-6 mt-4 space-y-1">
-              <li>$1,000,000 to $1,999,999: 1.00%</li>
-              <li>$2,000,000 to $2,999,999: 1.25%</li>
-              <li>$3,000,000 to $4,999,999: 1.50%</li>
-              <li>Up to 3.90% for $25 million+</li>
-            </ul>
-
-            <h2 className="text-2xl font-bold mt-8">Co-op vs. Condo Tax Nuances</h2>
-            <p>
-              While the RPTT rates are identical for condos and co-ops, the legal structure differs. Condo transfers involve a deed, while co-op transfers involve shares in a corporation and a proprietary lease. Despite being personal property, co-ops have been subject to RPTT since 1989.
-            </p>
-
-            <h2 className="text-2xl font-bold mt-8">Official References</h2>
-            <p>
-              Rate references should be checked again before a real
-              transaction, because filing instructions and exemptions can change.
-            </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>
-                <a
-                  href="https://www.nyc.gov/site/finance/property/property-real-property-transfer-tax-rptt.page"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-primary hover:underline"
-                >
-                  NYC Department of Finance: Real Property Transfer Tax
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.tax.ny.gov/bus/transfer/rptidx.htm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-primary hover:underline"
-                >
-                  New York State Department of Taxation and Finance: Real estate transfer tax
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.tax.ny.gov/forms/real_prop_tran_cur_forms.htm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-primary hover:underline"
-                >
-                  NYS current real estate transfer tax forms and TP-584-NYC instructions
-                </a>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="mt-16 space-y-8 border-t border-border/60 pt-16">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900">NYC Real Estate FAQs</h2>
-            <p className="mt-2 text-slate-500">Common questions about transfer taxes, Mansion Tax, and NYC closing costs.</p>
-          </div>
-          <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
-            {faq.map((item) => (
-              <article key={item.question} className="rounded-3xl border border-slate-100 bg-white/30 p-6 shadow-sm backdrop-blur-sm">
-                <h3 className="text-[17px] font-bold text-slate-900">{item.question}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-500">{item.answer}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Real Estate Tools</h2>
-              <p className="mt-1 text-sm text-slate-500">Other property and tax calculators for local and international markets.</p>
-            </div>
-            <Link href="/real-estate" className="secondary-button px-4 py-2 text-xs">View All</Link>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                name: "UK Stamp Duty Calculator",
-                href: "/real-estate/uk-stamp-duty-calculator",
-                icon: "SDLT",
-                desc: "Calculate Stamp Duty Land Tax (SDLT) for property purchases in England and Northern Ireland."
-              },
-              {
-                name: "Singapore Buyer Stamp Duty",
-                href: "/real-estate/singapore-buyers-stamp-duty-calculator",
-                icon: "BSD",
-                desc: "Estimate BSD and ABSD for residential and commercial property acquisition in Singapore."
-              },
-              {
-                name: "Price Per Square Foot",
-                href: "/real-estate/price-per-square-foot-calculator",
-                icon: "PSF",
-                desc: "Analyze property value and compare local real estate listing prices efficiently."
-              }
-            ].map((tool) => (
-              <Link
-                key={tool.href}
-                href={tool.href}
-                className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                  {tool.icon}
-                </span>
-                <div>
-                  <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
-                    {tool.name}
-                  </h3>
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-50">{tool.desc}</p>
+            <div className="grid md:grid-cols-2 gap-8 my-10">
+                <div className="p-6 bg-blue-50 rounded-2xl border border-blue-100">
+                    <h4 className="font-bold text-blue-900 mb-2">The 30-Day Rule</h4>
+                    <p className="text-sm text-blue-800 leading-relaxed">
+                        You have exactly <strong>30 days</strong> from the date of the transfer (usually the closing date) to file the return and pay the tax. Failure to do so triggers immediate penalties and interest.
+                    </p>
                 </div>
-              </Link>
-            ))}
+                <div className="p-6 bg-red-50 rounded-2xl border border-red-100">
+                    <h4 className="font-bold text-red-900 mb-2">Penalty Scenarios</h4>
+                    <p className="text-sm text-red-800 leading-relaxed">
+                        Late filing penalties start at 5% of the tax due for each month of delay, up to a maximum of 25%. Interest is also charged, currently calculated at a rate determined by the NYC Department of Finance.
+                    </p>
+                </div>
+            </div>
+            <p>
+                For properties in <strong>Staten Island</strong> (Richmond County), filings are not done through ACRIS but through the Richmond County Clerk's office, though the tax rates remain the same.
+            </p>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">3. Deep Dive: Transfer Tax vs. Cost Basis Math</h3>
+            <p>
+                A common question is: <em>"Can I deduct NYC transfer tax on my income tax return?"</em> The answer is nuanced. While you cannot "deduct" it as an itemized expense like property taxes, it plays a vital role in your <strong>Cost Basis</strong>.
+            </p>
+            <div className="my-10 p-8 border border-slate-200 rounded-[2.5rem] bg-white shadow-sm">
+                <h4 className="text-xl font-bold mb-6">The Financial Lifecycle of a $1M Purchase</h4>
+                <div className="space-y-6">
+                    <div>
+                        <h5 className="font-bold text-slate-700 mb-2">Scenario A: Standard Resale (Seller Pays Tax)</h5>
+                        <p className="text-sm text-slate-600">
+                            The seller receives $1,000,000 but pays $18,250 in taxes. On their tax return, their "Amount Realized" is $981,750. This effectively reduces their taxable capital gain.
+                        </p>
+                    </div>
+                    <div className="border-t pt-6">
+                        <h5 className="font-bold text-slate-700 mb-2">Scenario B: Sponsor Sale (Buyer Pays Tax)</h5>
+                        <p className="text-sm text-slate-600">
+                            The buyer pays $1,000,000 to the seller PLUS $18,250 in taxes to NYC/NYS. The buyer's <strong>adjusted cost basis</strong> becomes $1,018,250. When they sell the property years later for $1.5M, their taxable gain is calculated from this higher basis, saving them thousands in capital gains tax.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">4. The "4-Unit Trap" & Mixed-Use Complexity</h3>
+            <p>
+                One of the most dangerous pitfalls for small-scale investors is the <strong>4-unit classification jump</strong>. In NYC, a 3-unit building is "Residential," but a 4-unit building is taxed at the "All Other Types" (Commercial) rate.
+            </p>
+            <div className="my-10 overflow-hidden rounded-2xl border border-slate-200">
+                <div className="bg-slate-900 p-4 text-white font-bold text-center">The 4-Unit Rate Cliff ($1,000,000 Sale)</div>
+                <div className="grid grid-cols-2 text-center divide-x border-b">
+                    <div className="p-8">
+                        <p className="text-xs font-bold text-slate-400 uppercase mb-2">3-Unit (Residential)</p>
+                        <p className="text-3xl font-bold text-slate-900">1.425%</p>
+                        <p className="text-sm text-slate-500 mt-1">$14,250 RPTT</p>
+                    </div>
+                    <div className="p-8 bg-primary/5">
+                        <p className="text-xs font-bold text-primary uppercase mb-2">4-Unit (Commercial)</p>
+                        <p className="text-3xl font-bold text-primary">2.625%</p>
+                        <p className="text-sm text-primary/70 mt-1">$26,250 RPTT</p>
+                    </div>
+                </div>
+            </div>
+            <p>
+                <strong>Mixed-Use Properties:</strong> If a building contains both residential and commercial space, the classification depends on the predominant use. However, if there is <em>any</em> commercial use in a building with 1-3 residential units, it typically retains the lower residential rate for RPTT, provided it doesn't cross the unit count threshold.
+            </p>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">5. Progressive Mansion Tax Tiers (2026)</h3>
+            <p>
+                While transfer taxes are the seller's domain, the <strong>NYS Mansion Tax</strong> is the buyer's burden. It is a progressive tax that triggers at exactly $1,000,000.
+            </p>
+            <div className="my-10 space-y-4">
+                {[
+                    { range: "$1,000,000 - $1,999,999", rate: "1.00%" },
+                    { range: "$2,000,000 - $2,999,999", rate: "1.25%" },
+                    { range: "$3,000,000 - $4,999,999", rate: "1.50%" },
+                    { range: "$5,000,000 - $9,999,999", rate: "2.25%" },
+                    { range: "$10,000,000 - $14,999,999", rate: "3.25%" },
+                    { range: "$15,000,000 - $19,999,999", rate: "3.50%" },
+                    { range: "$20,000,000 - $24,999,999", rate: "3.75%" },
+                    { range: "$25,000,000+", rate: "3.90%" },
+                ].map((tier, i) => (
+                    <div key={i} className="flex justify-between items-center p-4 rounded-xl border border-slate-100 bg-slate-50/50">
+                        <span className="font-medium text-slate-700">{tier.range}</span>
+                        <span className="font-mono font-bold text-primary">{tier.rate}</span>
+                    </div>
+                ))}
+            </div>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">6. Negotiation Strategies: Who Pays What?</h3>
+            <p>
+                The NYC real estate market is highly transactional, and everything—including tax responsibility—can be negotiated.
+            </p>
+            <ul className="space-y-6 my-8">
+                <li className="flex gap-4">
+                    <div className="flex-none w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</div>
+                    <div>
+                        <h4 className="font-bold text-slate-900">The "Gross-Up" Offer</h4>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            In a slow market, a buyer might offer a higher price but ask the seller to pay the Mansion Tax. Because the Mansion Tax is legally a buyer's tax, the seller paying it is considered a "concession" and must be carefully worded in the contract to avoid "taxing the tax."
+                        </p>
+                    </div>
+                </li>
+                <li className="flex gap-4">
+                    <div className="flex-none w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</div>
+                    <div>
+                        <h4 className="font-bold text-slate-900">Sponsor Sale Credits</h4>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Buyers of new construction should always try to negotiate a "credit" for transfer taxes. While the developer's contract says the buyer pays, a savvy buyer's attorney will ask the developer to cover these costs as a closing incentive.
+                        </p>
+                    </div>
+                </li>
+                <li className="flex gap-4">
+                    <div className="flex-none w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">3</div>
+                    <div>
+                        <h4 className="font-bold text-slate-900">The $999,000 Strategy</h4>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Properties listed at $1,050,000 often sell for $999,000 because the "Mansion Tax Cliff" at $1M adds $10,000+ to the buyer's cost. Sellers often accept a slightly lower price to keep the buyer under the threshold.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">7. Entity Transfers & Article 31 (The 50% Rule)</h3>
+            <p>
+                You don't just pay transfer tax when you record a deed. You also pay it when you transfer a <strong>controlling interest</strong> (50% or more) in an entity that owns real property in New York.
+            </p>
+            <p>
+                This is governed by <strong>Article 31</strong> of the NYS Tax Law. If you own an LLC that holds a commercial building in Brooklyn and you sell 51% of that LLC to a partner, NYC and NYS will treat that as a taxable transfer of the underlying real estate, even though no new deed is filed in ACRIS.
+            </p>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">8. Inherited Property & "Love & Affection" Transfers</h3>
+            <p>
+                Transferring property to a family member or via an estate can sometimes be tax-exempt, but it is a common area for audits.
+            </p>
+            <div className="grid md:grid-cols-2 gap-8 my-10">
+                <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
+                    <h4 className="font-bold text-slate-900 mb-4">True Gifts</h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                        A transfer with "zero consideration" (no money, no mortgage payoff) is generally exempt from RPTT. However, you must still file the RPT return and prove the "Love & Affection" status to the Department of Finance.
+                    </p>
+                </div>
+                <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100">
+                    <h4 className="font-bold text-slate-900 mb-4">Mortgage Assumption</h4>
+                    <p className="text-sm text-slate-600 leading-relaxed">
+                        If you "gift" a property but the recipient assumes the existing $400,000 mortgage, NYC considers that $400,000 to be <strong>consideration</strong>. You will owe RPTT on that $400,000 balance.
+                    </p>
+                </div>
+            </div>
+
+            <h3 className="text-3xl font-bold text-slate-900 mt-16 mb-6">9. 2026 Policy Outlook & Historical Context</h3>
+            <p>
+                NYC's transfer taxes have historically been a primary lever for city revenue. Since the introduction of the "Peat Tax" (supplemental rate) and the progressive Mansion Tax tiers in 2019, the tax burden on high-end NYC real estate has reached historic highs.
+            </p>
+            <p>
+                Looking into 2026, there is ongoing debate in the City Council regarding "Pied-à-terre" taxes and further adjustments to the Mansion Tax. Staying updated with a professional calculator is essential for any multi-year planning.
+            </p>
+
+            <div className="mt-16 p-10 bg-slate-900 rounded-[3rem] text-white overflow-hidden relative">
+                <div className="relative z-10">
+                    <h2 className="text-3xl font-bold mb-6">Final Practical Takeaway</h2>
+                    <p className="text-slate-400 mb-8 max-w-2xl leading-relaxed">
+                        Never rely on a "back-of-the-napkin" estimate for NYC closing costs. A 0.5% error on a $2 million sale is $10,000—enough to derail a deal at the closing table. Always use a dynamic calculator and verify the "Property Class" with your title company or attorney early in the process.
+                    </p>
+                    <div className="flex flex-wrap gap-4">
+                        <Link href="/blog/nyc-closing-costs-2026" className="px-8 py-4 bg-primary rounded-2xl font-bold hover:scale-105 transition-transform text-white">Full 2026 Closing Guide</Link>
+                        <Link href="/real-estate" className="px-8 py-4 bg-white/10 rounded-2xl font-bold hover:bg-white/20 transition-colors">More Tools</Link>
+                    </div>
+                </div>
+                <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
+            </div>
+
+            <h2 className="text-3xl font-bold mt-24 mb-12">Expanded NYC Real Estate FAQs (Master List)</h2>
+            <div className="grid gap-6 md:grid-cols-2">
+                {faq.concat([
+                    {
+                        question: "Can I use a 1031 Exchange to avoid NYC Transfer Tax?",
+                        answer: "No. A 1031 Exchange allows you to defer Federal and State capital gains taxes, but it does NOT defer or exempt you from NYC Real Property Transfer Tax or NYS Transfer Tax. Those must be paid at every closing."
+                    },
+                    {
+                        question: "What is the 'controlling interest' transfer tax?",
+                        answer: "If you sell 50% or more of an entity (LLC, Corp) that owns NYC real estate, you must file a transfer tax return. The city looks through the entity to the real estate value."
+                    },
+                    {
+                        question: "Is there a transfer tax on HDFC co-ops?",
+                        answer: "Yes, but some HDFC transfers may be subject to different 'Flip Tax' rules mandated by the city's regulatory agreement. The standard NYC RPTT still applies based on the sale price."
+                    },
+                    {
+                        question: "Does the buyer pay RPTT in a foreclosure sale?",
+                        answer: "Usually, the buyer in a foreclosure or REO sale is responsible for the transfer taxes, which is a major difference from a standard resale."
+                    }
+                ]).map((item, i) => (
+                    <div key={i} className="p-8 rounded-3xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+                        <h4 className="text-lg font-bold text-slate-900 mb-4">{item.question}</h4>
+                        <p className="text-sm text-slate-500 leading-relaxed">{item.answer}</p>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-24 p-12 bg-slate-50 rounded-[3rem] border border-slate-100">
+                <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">Beyond Transfer Taxes: The Full Picture</h3>
+                <p className="text-slate-600 text-center mb-8 max-w-2xl mx-auto">
+                    Closing costs are just the beginning. Before committing to a New York purchase, determine if the numbers truly beat renting in the long run.
+                </p>
+                <div className="flex justify-center">
+                    <Link href="/real-estate/rent-vs-buy-calculator" className="group flex items-center gap-4 p-6 bg-white rounded-3xl border border-slate-200 hover:border-primary/30 transition-all shadow-sm">
+                        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold">R/B</div>
+                        <div>
+                            <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">Rent vs Buy Calculator</h4>
+                            <p className="text-sm text-slate-500">Includes NYC-specific tax deduction modelling</p>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+
+            <div className="mt-24 p-8 border-t border-slate-100">
+                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em] mb-8 text-center">Referenced Official Data Sources</h4>
+                <div className="flex flex-wrap justify-center gap-8">
+                    <a href="https://www.nyc.gov/site/finance/property/property-real-property-transfer-tax-rptt.page" target="_blank" className="text-sm font-bold text-slate-900 hover:text-primary transition-colors">NYC Dept. of Finance (RPTT)</a>
+                    <a href="https://www.tax.ny.gov/bus/transfer/rptidx.htm" target="_blank" className="text-sm font-bold text-slate-900 hover:text-primary transition-colors">NYS Dept. of Taxation (Transfer Tax)</a>
+                    <a href="https://www.nyc.gov/site/finance/taxes/acris.page" target="_blank" className="text-sm font-bold text-slate-900 hover:text-primary transition-colors">ACRIS Portal</a>
+                </div>
+            </div>
           </div>
         </section>
       </div>

@@ -255,57 +255,6 @@ export function BmrCalculator() {
             </div>
           </div>
         </section>
-
-        {/* RELATED TOOLS */}
-        <section className="bg-primary/[0.03] border border-primary/10 rounded-[2rem] p-8 sm:p-10">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Explore Related Health Tools</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[
-              { name: "Readability Calculator", href: "/text/readability-flesch-kincaid-calculator", desc: "Review health notes for reading ease." },
-              { name: "Word Frequency Counter", href: "/text/word-frequency", desc: "Check repeated terms in nutrition plans." },
-              { name: "xG Calculator", href: "/utility/xg-expected-goals-calculator", desc: "Model football chance quality and match xG." },
-            ].map((tool, i) => (
-              <a key={i} href={tool.href} className="group bg-card rounded-2xl border border-border/60 p-5 hover:border-primary/40 transition-all shadow-sm">
-                <h4 className="font-bold text-foreground group-hover:text-primary mb-2 transition-colors">{tool.name}</h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{tool.desc}</p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="pt-8">
-          <h2 className="text-3xl font-semibold tracking-tight text-foreground mb-10">BMR Calculator FAQ</h2>
-          <div className="grid gap-4">
-            {[
-              {
-                q: "What is a normal BMR for a woman?",
-                a: "A normal BMR for an adult woman ranges from 1,400–1,600 kcal/day, depending on age, weight, height, and fitness level. Women typically have a lower BMR than men due to generally having more body fat and less muscle mass."
-              },
-              {
-                q: "Does BMR change with age?",
-                a: "Yes, BMR typically decreases by about 2–8% per decade after age 30. This is because we naturally lose muscle mass as we age, and muscle tissue burns more calories at rest than fat tissue."
-              },
-              {
-                q: "How do I use BMR to lose weight?",
-                a: "To lose weight, consume fewer calories than your TDEE (Total Daily Energy Expenditure), which is your BMR multiplied by your activity level. A 500-calorie daily deficit results in approximately 1 lb of weight loss per week."
-              },
-              {
-                q: "Can I increase my BMR?",
-                a: "Yes! Building muscle mass is the most effective way to increase BMR. Muscle tissue burns more calories at rest than fat tissue. Our Body Fat Calculator can help you track muscle trends."
-              },
-              {
-                q: "Which BMR formula is the most accurate?",
-                a: "The Mifflin-St Jeor equation is considered the most accurate modern formula. It is the one we use in this calculator and is recommended by the Academy of Nutrition and Dietetics."
-              }
-            ].map((faq, i) => (
-              <div key={i} className="group rounded-2xl border border-border/60 bg-card p-6 border-l-4 border-l-primary hover:border-primary/30 transition-all">
-                <h3 className="text-lg font-bold text-foreground mb-3">{faq.q}</h3>
-                <p className="text-muted-foreground leading-7">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </div>
   );

@@ -23,6 +23,12 @@ const FINANCE_TOOLS = [
     description: "Calculate your break even point in units or revenue. Includes chart maker and goal modeling.",
     icon: "BEP",
   },
+  {
+    name: "Amazon FBA Calculator UK",
+    href: "/finance/amazon-fba-calculator-uk",
+    description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
+    icon: "FBA",
+  },
 ];
 
 export const metadata = buildMetadata({

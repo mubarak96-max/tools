@@ -42,6 +42,16 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/finance/invoice-generator",
       description: "Create printable invoices with line items, taxes, discounts, and totals.",
     },
+    {
+      name: "Break Even Point (BEP) Calculator",
+      href: "/finance/break-even-calculator",
+      description: "Calculate your break even point in units or revenue. Includes chart maker and goal modeling.",
+    },
+    {
+      name: "Amazon FBA Calculator UK",
+      href: "/finance/amazon-fba-calculator-uk",
+      description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
+    },
   ],
   Health: [
     {
@@ -70,6 +80,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "UK Stamp Duty Calculator",
       href: "/real-estate/uk-stamp-duty-calculator",
       description: "Calculate SDLT for England and Northern Ireland purchases.",
+    },
+    {
+      name: "Rent vs Buy Calculator",
+      href: "/real-estate/rent-vs-buy-calculator",
+      description: "Compare the long-term cost of renting versus buying a home, including tax benefits and ROI.",
     },
   ],
   Text: [

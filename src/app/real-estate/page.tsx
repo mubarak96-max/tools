@@ -73,6 +73,12 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
     description: "Calculate Hong Kong ad valorem stamp duty for residential property.",
     icon: "HK",
   },
+  {
+    name: "Rent vs Buy Calculator",
+    href: "/real-estate/rent-vs-buy-calculator",
+    description: "Compare the long-term costs of renting vs buying a home, including tax savings.",
+    icon: "R/B",
+  },
 ];
 
 function ToolCard({ tool }: { tool: RealEstateToolMeta }) {

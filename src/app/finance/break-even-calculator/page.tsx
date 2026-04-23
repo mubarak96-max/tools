@@ -472,6 +472,9 @@ export default function BreakEvenPage() {
               <Link href="/finance/invoice-generator" className="px-8 py-4 bg-white text-slate-900 font-bold rounded-2xl hover:scale-105 transition-transform">
                 Invoice Generator
               </Link>
+              <Link href="/finance/amazon-fba-calculator-uk" className="px-8 py-4 bg-orange-500 text-white font-bold rounded-2xl hover:scale-105 transition-transform">
+                Amazon FBA Calculator
+              </Link>
               <Link href="/finance/emi-calculator" className="px-8 py-4 bg-slate-800 text-white font-bold rounded-2xl hover:scale-105 border border-slate-700 transition-transform">
                 EMI Calculator
               </Link>

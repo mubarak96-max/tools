@@ -134,6 +134,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     category: "Finance",
     icon: "HLM",
   },
+  {
+    name: "Amazon FBA Calculator UK",
+    href: "/finance/amazon-fba-calculator-uk",
+    description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
+    category: "Finance",
+    icon: "FBA",
+  },
 ];
 
 function ToolCard({ tool }: { tool: HomeToolMeta }) {

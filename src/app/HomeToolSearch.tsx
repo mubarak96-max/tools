@@ -91,6 +91,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "BEP",
   },
   {
+    name: "Amazon FBA Calculator UK",
+    href: "/finance/amazon-fba-calculator-uk",
+    description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
+    category: "Finance",
+    icon: "FBA",
+  },
+  {
     name: "Marketing ROI Calculator",
     href: "/marketing/marketing-roi-calculator",
     description: "Calculate ROAS, ROMI, CAC, and LTV. Compare performance across Google, Meta, and Email.",

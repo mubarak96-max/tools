@@ -167,6 +167,16 @@ export default function PricePerSquareFootCalculatorPage() {
               balconies, parking, ceiling height, natural light, service charges, amenities, building age, or local
               demand. Use it to narrow decisions, then validate with deeper due diligence.
             </p>
+
+            <div className="mt-12 p-8 bg-slate-50 rounded-3xl border border-slate-100 not-prose">
+                <h3 className="text-xl font-bold text-slate-900 mb-4">Should you Rent or Buy?</h3>
+                <p className="text-slate-600 mb-6">
+                    Once you&apos;ve compared the price per square foot, the next big question is whether buying the asset makes more financial sense than renting it.
+                </p>
+                <a href="/real-estate/rent-vs-buy-calculator" className="inline-flex items-center gap-2 font-bold text-primary hover:underline">
+                    Try the Rent vs Buy Calculator →
+                </a>
+            </div>
           </div>
         }
       >
