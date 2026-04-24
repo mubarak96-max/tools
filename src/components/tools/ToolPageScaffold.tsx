@@ -54,7 +54,7 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
     },
     {
       name: "US Take-Home Calculator",
-      href: "/finance/us-take-home-calculator",
+      href: "/finance/us-take-home-pay-calculator",
       description: "Calculate US net pay with benefits.",
     },
     {

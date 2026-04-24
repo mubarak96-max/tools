@@ -50,7 +50,7 @@ const TOOL_PATHS = [
   "/finance/dropshipping-break-even",
   "/finance/etsy-profit-calculator",
   "/finance/product-pricing-calculator",
-  "/finance/us-take-home-calculator",
+  "/finance/us-take-home-pay-calculator",
   "/finance/salary-after-tax-calculator",
   "/finance/bonus-tax-calculator",
   "/finance/emi-calculator",

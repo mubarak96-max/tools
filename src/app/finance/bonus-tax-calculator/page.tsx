@@ -489,7 +489,7 @@ export default function BonusTaxCalculatorPage() {
           <section className="mb-16 border-t border-neutral-100 dark:border-neutral-800 pt-16" id="related">
             <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Related Tax & Payroll Tools</h2>
             <div className="grid sm:grid-cols-2 gap-6">
-              <Link href="/finance/us-take-home-calculator" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-violet-500 transition-colors">
+              <Link href="/finance/us-take-home-pay-calculator" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-violet-500 transition-colors">
                 <Calculator className="h-6 w-6 text-violet-600 mb-3" />
                 <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-violet-600 transition-colors">US Take-Home Salary Calculator</h3>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Calculate your total annual net pay after federal, FICA, state tax, 401(k), and healthcare deductions.</p>

@@ -37,7 +37,7 @@ const FINANCE_TOOLS = [
   },
   {
     name: "US Take-Home Calculator",
-    href: "/finance/us-take-home-calculator",
+    href: "/finance/us-take-home-pay-calculator",
     description: "Calculate 2026 US net pay with federal/state tax, FICA, 401(k), and health benefits.",
     icon: "SALARY",
   },

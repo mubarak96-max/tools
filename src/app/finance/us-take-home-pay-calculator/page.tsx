@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/finance/us-take-home-calculator',
+    url: 'http://findbest.tools/finance/us-take-home-pay-calculator',
     siteName: 'Creator Tools by Mubarak',
     title: 'US Take-Home Salary Calculator 2026 | Federal, FICA, 401k & Healthcare',
     description: 'Know exactly what lands in your bank account. Real 2026 IRS brackets, FICA, 401(k), HSA, health insurance, and state tax — all in one calculator.',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     images: ['/og-us-take-home-calculator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/us-take-home-calculator',
+    canonical: 'http://findbest.tools/finance/us-take-home-pay-calculator',
   },
   category: 'Finance',
 }
