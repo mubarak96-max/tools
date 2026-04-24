@@ -98,6 +98,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "FBA",
   },
   {
+    name: "Etsy Profit Calculator",
+    href: "/finance/etsy-profit-calculator",
+    description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",
+    category: "Finance",
+    icon: "ETS",
+  },
+  {
     name: "Marketing ROI Calculator",
     href: "/marketing/marketing-roi-calculator",
     description: "Calculate ROAS, ROMI, CAC, and LTV. Compare performance across Google, Meta, and Email.",

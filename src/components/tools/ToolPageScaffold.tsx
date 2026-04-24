@@ -45,12 +45,59 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
     {
       name: "Break Even Point (BEP) Calculator",
       href: "/finance/break-even-calculator",
-      description: "Calculate your break even point in units or revenue. Includes chart maker and goal modeling.",
+      description: "Calculate your break even point in units or revenue.",
     },
     {
-      name: "Amazon FBA Calculator UK",
-      href: "/finance/amazon-fba-calculator-uk",
-      description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
+      name: "Dropshipping Break-even Calculator",
+      href: "/finance/dropshipping-break-even",
+      description: "Calculate break-even ROAS, CPA, and required sales.",
+    },
+    {
+      name: "US Take-Home Calculator",
+      href: "/finance/us-take-home-calculator",
+      description: "Calculate US net pay with benefits.",
+    },
+    {
+      name: "Bonus Tax Calculator",
+      href: "/finance/bonus-tax-calculator",
+      description: "Employee bonus & business depreciation tool.",
+    },
+    {
+      name: "Salary After Tax Calculator",
+      href: "/finance/salary-after-tax-calculator",
+      description: "Calculate take-home pay with 2026 tax brackets.",
+    },
+    {
+      name: "Product Pricing Calculator",
+      href: "/finance/product-pricing-calculator",
+      description: "Optimize selling prices across Shopify, Etsy, and Amazon.",
+    },
+    {
+      name: "Etsy Profit Calculator",
+      href: "/finance/etsy-profit-calculator",
+      description: "Model Etsy fees, ads, and margins for handmade sellers.",
+    },
+  ],
+  SEO: [
+    {
+      name: "Keyword Clustering Tool",
+      href: "/seo/keyword-clustering",
+      description: "Group keywords into topic clusters with semantic NLP.",
+    },
+    {
+      name: "YouTube Title Checker",
+      href: "/seo/youtube-title-checker",
+      description: "Analyze video titles for pixel width and SEO score.",
+    },
+    {
+      name: "Meta Description Checker",
+      href: "/seo/meta-description-checker",
+      description: "Measure title and meta description pixel width.",
+    },
+    {
+      name: "Hreflang Tag Generator",
+      href: "/seo/hreflang-generator",
+      description: "Generate validated multi-language SEO tags.",
     },
   ],
   Health: [

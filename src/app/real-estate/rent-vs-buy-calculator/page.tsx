@@ -148,10 +148,7 @@ export default function RentVsBuyPage() {
 
         {/* Hero */}
         <div className="mb-8 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-medium px-3 py-1.5 rounded-full mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block" />
-            Includes mortgage interest tax deduction · Free · No sign-up
-          </div>
+
           <h1 className="text-4xl font-bold text-stone-900 leading-tight mb-3">
             Rent vs Buy Calculator
           </h1>
@@ -233,24 +230,24 @@ export default function RentVsBuyPage() {
           Before diving into the complex math of this calculator, many real estate investors look at the <strong>Price-to-Rent Ratio</strong>. This is a quick-and-dirty metric that helps you understand whether a local market is fundamentally "overpriced" or "underpriced" relative to renting. To calculate it, simply divide the median home price by the median annual rent.
         </Prose>
         <div className="my-8 p-8 bg-stone-900 rounded-[2rem] text-white">
-            <h4 className="text-xl font-bold mb-6">Price-to-Rent Benchmarks</h4>
-            <div className="grid sm:grid-cols-3 gap-8">
-                <div>
-                    <p className="text-primary font-bold text-2xl mb-1">1 to 15</p>
-                    <p className="text-sm font-semibold">Decisively Buy</p>
-                    <p className="text-xs text-stone-400 mt-2 leading-relaxed">The cost of buying is low relative to rent. You will likely break even in 3 years or less.</p>
-                </div>
-                <div>
-                    <p className="text-primary font-bold text-2xl mb-1">16 to 20</p>
-                    <p className="text-sm font-semibold">The Toss-Up Zone</p>
-                    <p className="text-xs text-stone-400 mt-2 leading-relaxed">Tax deductions and appreciation will decide the winner. Use this calculator for a precise breakdown.</p>
-                </div>
-                <div>
-                    <p className="text-primary font-bold text-2xl mb-1">21+</p>
-                    <p className="text-sm font-semibold">Decisively Rent</p>
-                    <p className="text-xs text-stone-400 mt-2 leading-relaxed">Markets like San Francisco or NYC often hit 30+. Renting is almost always cheaper unless you stay for 15+ years.</p>
-                </div>
+          <h4 className="text-xl font-bold mb-6">Price-to-Rent Benchmarks</h4>
+          <div className="grid sm:grid-cols-3 gap-8">
+            <div>
+              <p className="text-primary font-bold text-2xl mb-1">1 to 15</p>
+              <p className="text-sm font-semibold">Decisively Buy</p>
+              <p className="text-xs text-stone-400 mt-2 leading-relaxed">The cost of buying is low relative to rent. You will likely break even in 3 years or less.</p>
             </div>
+            <div>
+              <p className="text-primary font-bold text-2xl mb-1">16 to 20</p>
+              <p className="text-sm font-semibold">The Toss-Up Zone</p>
+              <p className="text-xs text-stone-400 mt-2 leading-relaxed">Tax deductions and appreciation will decide the winner. Use this calculator for a precise breakdown.</p>
+            </div>
+            <div>
+              <p className="text-primary font-bold text-2xl mb-1">21+</p>
+              <p className="text-sm font-semibold">Decisively Rent</p>
+              <p className="text-xs text-stone-400 mt-2 leading-relaxed">Markets like San Francisco or NYC often hit 30+. Renting is almost always cheaper unless you stay for 15+ years.</p>
+            </div>
+          </div>
         </div>
 
         <SectionHeading>Interest Rate Sensitivity: Why 1% Matters So Much</SectionHeading>
@@ -340,22 +337,22 @@ export default function RentVsBuyPage() {
         <SectionHeading>Frequently asked questions</SectionHeading>
         <div className="space-y-3">
           {FAQS.concat([
-              {
-                  q: "What is the 'forced savings' benefit of a mortgage?",
-                  a: "A mortgage payment consists of both interest (a cost) and principal (equity). Paying principal is essentially a forced savings plan. A renter must have the discipline to invest their monthly savings to match this equity growth. For many people, the 'forced' nature of a mortgage is a primary driver of long-term wealth building."
-              },
-              {
-                  q: "Should I wait for interest rates to drop before buying?",
-                  a: "If you wait for rates to drop, you may face increased competition and higher home prices as other buyers return to the market. This is known as 'buying the rate vs. buying the price.' Often, it is better to buy the price (when competition is lower) and refinance the rate later if they drop."
-              },
-              {
-                  q: "Does the calculator account for the 'Cost of Capital'?",
-                  a: "Yes. By including the 'Investment Return' field, we account for the cost of tying up your capital in a home rather than in a liquid, diversified investment portfolio."
-              },
-              {
-                  q: "How does the 'Standard Deduction' impact my tax savings?",
-                  a: "If your total itemized deductions (mortgage interest + property tax + charity) are less than the standard deduction ($14,600 single / $29,200 married), you get zero tax benefit from buying. Our calculator has a specific mode to show you exactly how much 'marginal' benefit you get once you cross that threshold."
-              }
+            {
+              q: "What is the 'forced savings' benefit of a mortgage?",
+              a: "A mortgage payment consists of both interest (a cost) and principal (equity). Paying principal is essentially a forced savings plan. A renter must have the discipline to invest their monthly savings to match this equity growth. For many people, the 'forced' nature of a mortgage is a primary driver of long-term wealth building."
+            },
+            {
+              q: "Should I wait for interest rates to drop before buying?",
+              a: "If you wait for rates to drop, you may face increased competition and higher home prices as other buyers return to the market. This is known as 'buying the rate vs. buying the price.' Often, it is better to buy the price (when competition is lower) and refinance the rate later if they drop."
+            },
+            {
+              q: "Does the calculator account for the 'Cost of Capital'?",
+              a: "Yes. By including the 'Investment Return' field, we account for the cost of tying up your capital in a home rather than in a liquid, diversified investment portfolio."
+            },
+            {
+              q: "How does the 'Standard Deduction' impact my tax savings?",
+              a: "If your total itemized deductions (mortgage interest + property tax + charity) are less than the standard deduction ($14,600 single / $29,200 married), you get zero tax benefit from buying. Our calculator has a specific mode to show you exactly how much 'marginal' benefit you get once you cross that threshold."
+            }
           ]).map((faq) => (
             <details
               key={faq.q}

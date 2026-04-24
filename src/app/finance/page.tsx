@@ -29,6 +29,48 @@ const FINANCE_TOOLS = [
     description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
     icon: "FBA",
   },
+  {
+    name: "Etsy Profit Calculator",
+    href: "/finance/etsy-profit-calculator",
+    description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",
+    icon: "ETS",
+  },
+  {
+    name: "US Take-Home Calculator",
+    href: "/finance/us-take-home-calculator",
+    description: "Calculate 2026 US net pay with federal/state tax, FICA, 401(k), and health benefits.",
+    icon: "SALARY",
+  },
+  {
+    name: "Salary After Tax Calculator",
+    href: "/finance/salary-after-tax-calculator",
+    description: "Calculate take-home pay with 2026 tax brackets and compare across all 50 states.",
+    icon: "TAX",
+  },
+  {
+    name: "Bonus Tax Calculator",
+    href: "/finance/bonus-tax-calculator",
+    description: "Calculate employee bonus tax withholding OR business bonus depreciation (Section 168k).",
+    icon: "BONUS",
+  },
+  {
+    name: "Product Pricing Calculator",
+    href: "/finance/product-pricing-calculator",
+    description: "Calculate optimal selling prices across Shopify, Etsy, and Amazon with multi-currency support.",
+    icon: "PRC",
+  },
+  {
+    name: "Dropshipping Break-even Calculator",
+    href: "/finance/dropshipping-break-even",
+    description: "Calculate break-even ROAS, CPA, and required sales for dropshipping and DTC brands.",
+    icon: "DRP",
+  },
+  {
+    name: "Halal Mortgage Calculator",
+    href: "/finance/halal-mortgage-calculator",
+    description: "Compare Islamic home financing models (Murabaha, Musharaka) against traditional interest-based loans.",
+    icon: "HLM",
+  },
 ];
 
 export const metadata = buildMetadata({
