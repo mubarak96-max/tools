@@ -39,6 +39,7 @@ const STATIC_PATHS = [
   { path: "/blog/understanding-binary-code", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/halal-mortgage-structure-comparison", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/hidden-costs-of-islamic-mortgages-uk", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/first-time-buyer-halal-mortgage-guide-uk", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [

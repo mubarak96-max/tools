@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "First-Time Buyer's Guide to Halal Mortgages in the UK (2026)",
+    description: "Navigate the journey from deposit to ownership without riba. Our complete step-by-step guide for Sharia-compliant home finance.",
+    href: "/blog/first-time-buyer-halal-mortgage-guide-uk",
+    tag: "Buying Guide",
+    readTime: "12 min read",
+    date: "April 2026",
+  },
+  {
     title: "The 'Hidden' Costs of Islamic Mortgages in the UK: What Lenders Don't Tell You",
     description: "Uncover the true costs of halal mortgages. From arrangement fees to early settlement charges, learn what Islamic home finance really costs in 2026.",
     href: "/blog/hidden-costs-of-islamic-mortgages-uk",
