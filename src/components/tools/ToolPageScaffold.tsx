@@ -83,6 +83,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Assess multi-dimensional business risk and get mitigation strategies.",
     },
     {
+      name: "Inheritance Tax Calculator",
+      href: "/finance/inheritance-tax-calculator",
+      description: "Calculate estate tax and succession duty for UK, USA, Ireland & more.",
+    },
+    {
       name: "Bonus Tax Calculator",
       href: "/finance/bonus-tax-calculator",
       description: "Employee bonus & business depreciation tool.",

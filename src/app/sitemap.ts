@@ -62,6 +62,7 @@ const TOOL_PATHS = [
   "/finance/general-liability-insurance-cost-estimator",
   "/finance/workers-comp-premium-calculator",
   "/finance/business-risk-exposure-score-calculator",
+  "/finance/inheritance-tax-calculator",
   "/finance/halal-mortgage-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",

@@ -140,6 +140,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "RISK",
   },
   {
+    name: "Inheritance Tax Calculator",
+    href: "/finance/inheritance-tax-calculator",
+    description: "Calculate inheritance tax, estate tax, and succession duty across 10 major global jurisdictions.",
+    category: "Finance",
+    icon: "🏛️",
+  },
+  {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",

@@ -198,6 +198,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     icon: "RISK",
   },
   {
+    name: "Inheritance Tax Calculator",
+    href: "/finance/inheritance-tax-calculator",
+    description: "Calculate inheritance tax, estate tax, and succession duty across 10 major global jurisdictions.",
+    category: "Finance",
+    icon: "🏛️",
+  },
+  {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
     description: "State-by-state 2026 take-home pay comparison and breakdown.",
