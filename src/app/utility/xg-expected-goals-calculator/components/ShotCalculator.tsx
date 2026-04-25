@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import type {
     Shot,
     ShotPosition,
@@ -25,6 +25,7 @@ export default function ShotCalculator() {
     const [showHeatmap, setShowHeatmap] = useState(false);
     const [teamAShots, setTeamAShots] = useState<Shot[]>([]);
     const [teamBShots, setTeamBShots] = useState<Shot[]>([]);
+    const [toast, setToast] = useState<{ msg: string; team: 'A' | 'B' } | null>(null);
 
     // Calculate xG whenever parameters change
     useEffect(() => {
@@ -45,6 +46,13 @@ export default function ShotCalculator() {
         const newCalculation = calculateShotXG(shotData);
         setCalculation(newCalculation);
     }, [shotPosition, shotType, assistType, defensivePressure, gameSituation]);
+
+    // Auto-dismiss toast after 2 seconds
+    useEffect(() => {
+        if (!toast) return;
+        const t = setTimeout(() => setToast(null), 2000);
+        return () => clearTimeout(t);
+    }, [toast]);
 
     const handleReset = () => {
         setShotPosition(undefined);
@@ -93,10 +101,12 @@ export default function ShotCalculator() {
 
         if (team === 'A') {
             setTeamAShots((current) => [shot, ...current]);
+            setToast({ msg: `Shot added to Team A — xG ${shot.xgValue.toFixed(3)}`, team: 'A' });
             return;
         }
 
         setTeamBShots((current) => [shot, ...current]);
+        setToast({ msg: `Shot added to Team B — xG ${shot.xgValue.toFixed(3)}`, team: 'B' });
     };
 
     const teamATotal = teamAShots.reduce((sum, shot) => sum + shot.xgValue, 0);
@@ -123,8 +133,43 @@ export default function ShotCalculator() {
                     ? 'Normal match volume. This is a realistic combined xG range for many games.'
                     : 'High-event match. Both teams are generating a lot of chance quality.';
 
+    const totalShots = teamAShots.length + teamBShots.length;
+
     return (
         <div className="space-y-8">
+            {/* Toast notification */}
+            {toast && (
+                <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all ${
+                    toast.team === 'A' ? 'bg-blue-600' : 'bg-emerald-600'
+                }`}>
+                    <span>✓</span> {toast.msg}
+                </div>
+            )}
+
+            {/* 3-step how-to guide */}
+            <div className="rounded-xl border border-border bg-muted/30 px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">How to use Match xG Comparison</p>
+                <ol className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
+                    <li className={`flex items-center gap-1.5 ${shotPosition ? 'text-green-600 font-medium' : ''}`}>
+                        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+                            shotPosition ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                        }`}>1</span>
+                        Click the pitch to place a shot
+                    </li>
+                    <li className={`flex items-center gap-1.5 ${calculation ? 'text-green-600 font-medium' : ''}`}>
+                        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+                            calculation ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                        }`}>2</span>
+                        Click &ldquo;Add shot to Team A/B&rdquo; below
+                    </li>
+                    <li className={`flex items-center gap-1.5 ${totalShots > 0 ? 'text-green-600 font-medium' : ''}`}>
+                        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+                            totalShots > 0 ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                        }`}>3</span>
+                        Scroll down to see Match xG Comparison
+                    </li>
+                </ol>
+            </div>
             <div className="grid gap-4 md:grid-cols-3">
                 <article className="rounded-[1.25rem] border border-border bg-card p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">What xG means</p>
@@ -209,27 +254,43 @@ export default function ShotCalculator() {
                         <button
                             onClick={() => handleAddShot('A')}
                             disabled={!calculation}
-                            className="rounded-lg border border-border px-4 py-3 text-sm font-medium transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+                            title={!calculation ? 'Place a shot on the pitch first (step 1)' : ''}
+                            className="rounded-lg border border-blue-300 bg-blue-50 px-4 py-3 text-sm font-semibold text-blue-700 transition-colors hover:bg-blue-100 disabled:cursor-not-allowed disabled:border-border disabled:bg-transparent disabled:text-muted-foreground disabled:opacity-60"
                         >
-                            Add current shot to Team A
+                            {calculation ? '+ Add shot to Team A' : 'Place a shot first (↑ click pitch)'}
                         </button>
                         <button
                             onClick={() => handleAddShot('B')}
                             disabled={!calculation}
-                            className="rounded-lg border border-border px-4 py-3 text-sm font-medium transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-50"
+                            title={!calculation ? 'Place a shot on the pitch first (step 1)' : ''}
+                            className="rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 disabled:cursor-not-allowed disabled:border-border disabled:bg-transparent disabled:text-muted-foreground disabled:opacity-60"
                         >
-                            Add current shot to Team B
+                            {calculation ? '+ Add shot to Team B' : 'Place a shot first (↑ click pitch)'}
                         </button>
                     </div>
+                    {!calculation && (
+                        <p className="mt-2 text-center text-xs text-muted-foreground">
+                            ☝️ Click anywhere on the pitch above to unlock
+                        </p>
+                    )}
                 </div>
             </div>
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <h2 className="text-xl font-semibold">Match xG Comparison</h2>
+                        <div className="flex items-center gap-2">
+                            <h2 className="text-xl font-semibold">Match xG Comparison</h2>
+                            {totalShots > 0 && (
+                                <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
+                                    {totalShots} shot{totalShots !== 1 ? 's' : ''}
+                                </span>
+                            )}
+                        </div>
                         <p className="text-sm text-muted-foreground">
-                            Save shots to compare teams and see total xG, average shot quality, and match-level context.
+                            {totalShots === 0
+                                ? '← Add shots using the buttons above to build a match-level xG view.'
+                                : 'Showing total xG, average shot quality, and match-level context.'}
                         </p>
                     </div>
                     <button
