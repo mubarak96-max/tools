@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -556,7 +556,7 @@ export function IncomeTaxCalculatorClient() {
                       ))}
                     </Pie>
                     <Tooltip
-                      formatter={(value: number) => formatMoney(value)}
+                      formatter={(value: any) => formatMoney(value)}
                       contentStyle={{
                         backgroundColor: "#ffffff",
                         border: "1px solid #e2e8f0",

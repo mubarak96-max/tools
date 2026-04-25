@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -486,7 +486,7 @@ export function GeneralLiabilityCalculatorClient() {
                     width={100}
                   />
                   <Tooltip
-                    formatter={(value: number) => formatMoney(value)}
+                    formatter={(value: any) => formatMoney(value)}
                     contentStyle={{
                       backgroundColor: "#ffffff",
                       border: "1px solid #e2e8f0",

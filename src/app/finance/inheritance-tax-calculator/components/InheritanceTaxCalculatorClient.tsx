@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -726,7 +726,7 @@ export function InheritanceTaxCalculatorClient() {
                       ))}
                     </Pie>
                     <Tooltip
-                      formatter={(value: number) => formatFullMoney(value, country.currencySymbol)}
+                      formatter={(value: any) => formatFullMoney(value, country.currencySymbol)}
                       contentStyle={{
                         backgroundColor: "#ffffff",
                         border: "1px solid #e2e8f0",

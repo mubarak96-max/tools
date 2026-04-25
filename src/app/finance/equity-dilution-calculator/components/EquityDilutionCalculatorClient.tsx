@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -611,7 +611,7 @@ export function EquityDilutionCalculatorClient() {
                       ))}
                     </Pie>
                     <Tooltip
-                      formatter={(value: number) => `${value.toFixed(2)}%`}
+                      formatter={(value: any) => `${parseFloat(value).toFixed(2)}%`}
                       contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#0f172a" }}
                     />
                     <Legend />
@@ -645,7 +645,7 @@ export function EquityDilutionCalculatorClient() {
                     <XAxis dataKey="name" stroke="#64748b" fontSize={12} />
                     <YAxis stroke="#64748b" fontSize={12} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} />
                     <Tooltip
-                      formatter={(value: number) => `${value.toFixed(2)}%`}
+                      formatter={(value: any) => `${parseFloat(value).toFixed(2)}%`}
                       contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#0f172a" }}
                     />
                     <Bar dataKey="founders" stackId="a" fill="#6366f1" name="Founders" />
@@ -667,7 +667,7 @@ export function EquityDilutionCalculatorClient() {
                     <XAxis dataKey="round" stroke="#64748b" fontSize={12} />
                     <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                     <Tooltip
-                      formatter={(value: number) => `${value.toFixed(2)}%`}
+                      formatter={(value: any) => `${parseFloat(value).toFixed(2)}%`}
                       contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#0f172a" }}
                     />
                     <Legend />
