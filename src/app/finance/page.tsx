@@ -54,6 +54,24 @@ const FINANCE_TOOLS = [
     icon: "AUS",
   },
   {
+    name: "Income Tax Calculator Ireland",
+    href: "/finance/income-tax-calculator-ireland",
+    description: "Calculate 2026 Irish net pay after PAYE, USC, and PRSI with Budget 2026 tax bands.",
+    icon: "IRE",
+  },
+  {
+    name: "General Liability Insurance Estimator",
+    href: "/finance/general-liability-insurance-cost-estimator",
+    description: "Estimate small business general liability premiums by industry, revenue, and location.",
+    icon: "GLI",
+  },
+  {
+    name: "Workers Comp Premium Calculator",
+    href: "/finance/workers-comp-premium-calculator",
+    description: "Estimate workers compensation insurance costs by industry class code, payroll, and state rates.",
+    icon: "WCOMP",
+  },
+  {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
     description: "Calculate take-home pay with 2026 tax brackets and compare across all 50 states.",

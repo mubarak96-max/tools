@@ -63,6 +63,21 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Calculate 2025-26 Australian tax with Medicare & HECS.",
     },
     {
+      name: "Income Tax Calculator Ireland",
+      href: "/finance/income-tax-calculator-ireland",
+      description: "Calculate 2026 Irish tax after PAYE, USC, and PRSI.",
+    },
+    {
+      name: "General Liability Insurance Estimator",
+      href: "/finance/general-liability-insurance-cost-estimator",
+      description: "Estimate small business general liability premiums by industry.",
+    },
+    {
+      name: "Workers Comp Premium Calculator",
+      href: "/finance/workers-comp-premium-calculator",
+      description: "Estimate workers compensation premiums by class code and state.",
+    },
+    {
       name: "Bonus Tax Calculator",
       href: "/finance/bonus-tax-calculator",
       description: "Employee bonus & business depreciation tool.",
