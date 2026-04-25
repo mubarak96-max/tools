@@ -68,6 +68,7 @@ const TOOL_PATHS = [
   "/finance/inheritance-tax-calculator",
   "/finance/equity-dilution-calculator",
   "/finance/halal-mortgage-calculator",
+  "/finance/self-employment-tax-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",
   "/marketing/marketing-roi-calculator",
