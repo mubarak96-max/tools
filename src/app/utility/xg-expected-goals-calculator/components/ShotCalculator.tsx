@@ -146,30 +146,7 @@ export default function ShotCalculator() {
                 </div>
             )}
 
-            {/* 3-step how-to guide */}
-            <div className="rounded-xl border border-border bg-muted/30 px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">How to use Match xG Comparison</p>
-                <ol className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
-                    <li className={`flex items-center gap-1.5 ${shotPosition ? 'text-green-600 font-medium' : ''}`}>
-                        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                            shotPosition ? 'bg-green-600 text-white' : 'bg-border text-foreground'
-                        }`}>1</span>
-                        Click the pitch to place a shot
-                    </li>
-                    <li className={`flex items-center gap-1.5 ${calculation ? 'text-green-600 font-medium' : ''}`}>
-                        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                            calculation ? 'bg-green-600 text-white' : 'bg-border text-foreground'
-                        }`}>2</span>
-                        Click &ldquo;Add shot to Team A/B&rdquo; below
-                    </li>
-                    <li className={`flex items-center gap-1.5 ${totalShots > 0 ? 'text-green-600 font-medium' : ''}`}>
-                        <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                            totalShots > 0 ? 'bg-green-600 text-white' : 'bg-border text-foreground'
-                        }`}>3</span>
-                        Scroll down to see Match xG Comparison
-                    </li>
-                </ol>
-            </div>
+
             <div className="grid gap-4 md:grid-cols-3">
                 <article className="rounded-[1.25rem] border border-border bg-card p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">What xG means</p>
@@ -277,6 +254,30 @@ export default function ShotCalculator() {
             </div>
 
             <section className="space-y-4">
+                {/* 3-step how-to guide */}
+                <div className="rounded-xl border border-border bg-muted/30 px-4 py-3">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">How to use this section</p>
+                    <ol className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
+                        <li className={`flex items-center gap-1.5 ${shotPosition ? 'text-green-600 font-medium' : ''}`}>
+                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+                                shotPosition ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                            }`}>1</span>
+                            Click the pitch to place a shot
+                        </li>
+                        <li className={`flex items-center gap-1.5 ${calculation ? 'text-green-600 font-medium' : ''}`}>
+                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+                                calculation ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                            }`}>2</span>
+                            Click &ldquo;Add shot to Team A/B&rdquo; above
+                        </li>
+                        <li className={`flex items-center gap-1.5 ${totalShots > 0 ? 'text-green-600 font-medium' : ''}`}>
+                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+                                totalShots > 0 ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                            }`}>3</span>
+                            Results update here instantly
+                        </li>
+                    </ol>
+                </div>
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
                         <div className="flex items-center gap-2">
