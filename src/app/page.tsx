@@ -163,8 +163,8 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     icon: "SAL",
   },
   {
-    name: "Self-Employment Tax Calculator",
-    href: "/finance/self-employment-tax-calculator",
+    name: "US Self-Employment Tax Calculator",
+    href: "/finance/us-self-employment-tax-calculator",
     description: "Calculate IRS self-employment tax for 2026. Social Security, Medicare, and deductions for freelancers.",
     category: "Finance",
     icon: "SE",

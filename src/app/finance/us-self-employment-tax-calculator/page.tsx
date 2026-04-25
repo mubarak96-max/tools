@@ -3,7 +3,7 @@ import { SelfEmploymentTaxCalculatorClient } from "./components/SelfEmploymentTa
 import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Self-Employment Tax Calculator 2026 | IRS SE Tax & Medicare Estimator",
+  title: "US Self-Employment Tax Calculator 2026 | IRS SE Tax & Medicare Estimator",
   description:
     "Free US self-employment tax calculator for 2026. Calculate Social Security and Medicare taxes for freelancers, contractors, and sole proprietors. Includes deduction, quarterly estimates, and W-2 comparison.",
   keywords: [
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     "net earnings from self employment calculator",
   ],
   alternates: {
-    canonical: "https://findbest.tools/finance/self-employment-tax-calculator",
+    canonical: "https://findbest.tools/finance/us-self-employment-tax-calculator",
   },
   openGraph: {
-    title: "Self-Employment Tax Calculator 2026 | IRS SE Tax Estimator",
+    title: "US Self-Employment Tax Calculator 2026 | IRS SE Tax Estimator",
     description:
       "Calculate 2026 self-employment tax for freelancers and contractors. Social Security, Medicare, deduction, and quarterly estimates.",
-    url: "https://findbest.tools/finance/self-employment-tax-calculator",
+    url: "https://findbest.tools/finance/us-self-employment-tax-calculator",
     siteName: "FindBest Tools",
     locale: "en_US",
     type: "website",
@@ -64,9 +64,9 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://findbest.tools/finance/self-employment-tax-calculator",
-      url: "https://findbest.tools/finance/self-employment-tax-calculator",
-      name: "Self-Employment Tax Calculator 2026",
+      "@id": "https://findbest.tools/finance/us-self-employment-tax-calculator",
+      url: "https://findbest.tools/finance/us-self-employment-tax-calculator",
+      name: "US Self-Employment Tax Calculator 2026",
       isPartOf: { "@id": "https://findbest.tools/#website" },
       datePublished: "2025-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
@@ -87,7 +87,7 @@ const structuredData = {
     },
     {
       "@type": "SoftwareApplication",
-      name: "Self-Employment Tax Calculator",
+      name: "US Self-Employment Tax Calculator",
       applicationCategory: "FinanceApplication",
       operatingSystem: "Any",
       offers: {
@@ -170,7 +170,7 @@ export default function SelfEmploymentTaxCalculatorPage() {
               IRS 2026 Rates & Wage Base Updated
             </div>
             <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-7xl uppercase italic">
-              Self-Employment <br />
+              US Self-Employment <br />
               <span className="text-blue-600 drop-shadow-sm">Tax Calculator 2026</span>
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg text-slate-600 font-medium leading-relaxed">
@@ -185,9 +185,7 @@ export default function SelfEmploymentTaxCalculatorPage() {
 
           {/* Trust Signal */}
           <div className="mx-auto mt-16 max-w-3xl rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-premium text-center">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-2xl font-black text-white shadow-xl shadow-blue-200">
-              FB
-            </div>
+
             <p className="text-lg font-black text-slate-900 uppercase tracking-tight">Verified Accuracy</p>
             <p className="mt-2 text-sm text-slate-500 font-medium leading-relaxed">
               Calculations based on IRS Schedule SE instructions, 2026
@@ -213,12 +211,12 @@ export default function SelfEmploymentTaxCalculatorPage() {
                   of 12.4% for Social Security and 2.9% for Medicare.
                 </p>
                 <div className="p-8 bg-blue-600 rounded-[2rem] text-white shadow-2xl shadow-blue-200">
-                   <h3 className="text-2xl font-black uppercase mb-4 tracking-tight leading-none italic">The 92.35% Rule</h3>
-                   <p className="opacity-90 leading-relaxed font-bold italic">
-                     The tax applies to &quot;net earnings from self-employment,&quot;
-                     calculated by multiplying net profit by 92.35%. This accounts for the employer-equivalent deduction. 
-                     If you earn $100,000 in net profit, only $92,350 is subject to SE tax.
-                   </p>
+                  <h3 className="text-2xl font-black uppercase mb-4 tracking-tight leading-none italic">The 92.35% Rule</h3>
+                  <p className="opacity-90 leading-relaxed font-bold italic">
+                    The tax applies to &quot;net earnings from self-employment,&quot;
+                    calculated by multiplying net profit by 92.35%. This accounts for the employer-equivalent deduction.
+                    If you earn $100,000 in net profit, only $92,350 is subject to SE tax.
+                  </p>
                 </div>
               </div>
             </section>
@@ -258,40 +256,40 @@ export default function SelfEmploymentTaxCalculatorPage() {
             </section>
 
             <section>
-                <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic mb-8">
-                  6 Strategies to Reduce SE Tax
-                </h2>
-                <div className="grid gap-6 md:grid-cols-2">
-                   {[
-                     { title: "Elect S-Corp Status", desc: "Pay a reasonable salary and take distributions SE-tax free." },
-                     { title: "Maximize Deductions", desc: "Every dollar deducted reduces both income and SE tax." },
-                     { title: "Hire Family Members", desc: "Legitimate wages to minor children are often FICA-free." },
-                     { title: "Retirement Contributions", desc: "Solo 401(k) or SEP-IRA contributions reduce taxable income." },
-                     { title: "Health Insurance", desc: "Self-employed health premiums reduce your total tax burden." },
-                     { title: "Income Splitting", desc: "Form partnerships to split income across lower tax brackets." }
-                   ].map((s, i) => (
-                     <div key={i} className="p-8 rounded-[2rem] bg-white border border-slate-100 shadow-premium hover:border-blue-200 transition-all group">
-                        <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-blue-600 font-black mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all">{i+1}</div>
-                        <h4 className="text-xl font-black text-slate-900 uppercase mb-2 tracking-tight">{s.title}</h4>
-                        <p className="text-slate-500 text-sm font-medium leading-relaxed">{s.desc}</p>
-                     </div>
-                   ))}
-                </div>
+              <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tighter italic mb-8">
+                6 Strategies to Reduce SE Tax
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {[
+                  { title: "Elect S-Corp Status", desc: "Pay a reasonable salary and take distributions SE-tax free." },
+                  { title: "Maximize Deductions", desc: "Every dollar deducted reduces both income and SE tax." },
+                  { title: "Hire Family Members", desc: "Legitimate wages to minor children are often FICA-free." },
+                  { title: "Retirement Contributions", desc: "Solo 401(k) or SEP-IRA contributions reduce taxable income." },
+                  { title: "Health Insurance", desc: "Self-employed health premiums reduce your total tax burden." },
+                  { title: "Income Splitting", desc: "Form partnerships to split income across lower tax brackets." }
+                ].map((s, i) => (
+                  <div key={i} className="p-8 rounded-[2rem] bg-white border border-slate-100 shadow-premium hover:border-blue-200 transition-all group">
+                    <div className="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center text-blue-600 font-black mb-4 group-hover:bg-blue-600 group-hover:text-white transition-all">{i + 1}</div>
+                    <h4 className="text-xl font-black text-slate-900 uppercase mb-2 tracking-tight">{s.title}</h4>
+                    <p className="text-slate-500 text-sm font-medium leading-relaxed">{s.desc}</p>
+                  </div>
+                ))}
+              </div>
             </section>
 
             <section className="p-12 bg-slate-900 rounded-[3rem] text-white relative overflow-hidden">
-                <div className="relative z-10">
-                  <h2 className="text-4xl font-black uppercase italic mb-6 tracking-tight leading-none text-center">Plan Your Quarterlies</h2>
-                  <p className="text-center opacity-80 max-w-2xl mx-auto mb-10 font-bold italic">
-                    The IRS requires quarterly estimated tax payments for self-employed individuals. 
-                    Failure to pay at least 90% of your current year or 100% of your prior year tax can result in penalties.
-                  </p>
-                  <div className="flex justify-center">
-                    <button className="px-10 py-5 bg-blue-600 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-blue-500/20">
-                      View Detailed Schedule ↑
-                    </button>
-                  </div>
+              <div className="relative z-10">
+                <h2 className="text-4xl font-black uppercase italic mb-6 tracking-tight leading-none text-center">Plan Your Quarterlies</h2>
+                <p className="text-center opacity-80 max-w-2xl mx-auto mb-10 font-bold italic">
+                  The IRS requires quarterly estimated tax payments for self-employed individuals.
+                  Failure to pay at least 90% of your current year or 100% of your prior year tax can result in penalties.
+                </p>
+                <div className="flex justify-center">
+                  <button className="px-10 py-5 bg-blue-600 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-blue-500/20">
+                    View Detailed Schedule ↑
+                  </button>
                 </div>
+              </div>
             </section>
           </article>
         </div>
