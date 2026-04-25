@@ -37,6 +37,7 @@ const STATIC_PATHS = [
   { path: "/blog/nyc-sponsor-sales-closing-costs", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/nyc-condo-vs-coop-closing-costs", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/understanding-binary-code", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/halal-mortgage-structure-comparison", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [

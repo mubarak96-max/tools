@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "Diminishing Musharakah vs Murabaha vs Ijara: Which Halal Mortgage Structure Saves You Money?",
+    description: "Compare Sharia-compliant mortgage structures side-by-side with real numbers. See which structure costs less for your home purchase in 2026.",
+    href: "/blog/halal-mortgage-structure-comparison",
+    tag: "Islamic Finance",
+    readTime: "9 min read",
+    date: "April 2026",
+  },
+  {
     title: "Condo vs. Co-op in NYC: How Closing Costs and Transfer Taxes Differ",
     description: "The financial side of the decision: why co-op buyers save $20k+ on closing costs compared to condos, and when a flip tax changes the math.",
     href: "/blog/nyc-condo-vs-coop-closing-costs",

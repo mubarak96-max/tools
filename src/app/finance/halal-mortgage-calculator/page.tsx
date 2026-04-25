@@ -295,6 +295,34 @@ export default function HalalMortgageCalculatorPage() {
           </div>
         </section>
 
+        {/* Section 6: Related Guides */}
+        <section className="space-y-8 border-t border-slate-100 pt-16">
+          <div className="text-center">
+            <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Expert Guides & Analysis</h2>
+            <p className="text-slate-500 font-medium text-sm mt-2">Deep dives into Sharia-compliant home finance structures.</p>
+          </div>
+          <div className="mx-auto max-w-2xl">
+            <Link 
+              href="/blog/halal-mortgage-structure-comparison"
+              className="group block p-8 rounded-[2.5rem] bg-emerald-50 border border-emerald-100 hover:shadow-xl transition-all"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="px-3 py-1 rounded-full bg-emerald-600 text-white text-[10px] font-black uppercase tracking-widest">Guide</span>
+                <span className="text-xs font-bold text-emerald-600">9 min read</span>
+              </div>
+              <h3 className="text-xl font-black text-slate-900 group-hover:text-emerald-700 transition-colors">
+                Diminishing Musharakah vs Murabaha vs Ijara: Which Structure Saves You Money in 2026?
+              </h3>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                A side-by-side comparison of the three main Islamic mortgage structures with real-world cost examples and ownership timelines.
+              </p>
+              <div className="mt-6 flex items-center gap-2 text-emerald-600 font-bold text-sm">
+                Read the Comparison Guide <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+          </div>
+        </section>
+
         {/* Legal Disclaimer */}
         <div className="p-8 rounded-[2rem] bg-slate-950 text-white/40 text-[10px] leading-relaxed uppercase tracking-widest text-center border border-white/5">
            <strong className="text-white">Strict Disclaimer:</strong> This calculator is an educational tool for modelling Sharia-compliant finance cashflows. It does not constitute financial, legal, or Sharia advisory. Home finance products carry risks; your home may be repossessed if you do not keep up with payments. Always consult a FCA-regulated and Sharia-vetted finance professional before entering into a legal agreement.
