@@ -625,7 +625,7 @@ export function BusinessRiskCalculatorClient() {
                   const recs = getRecommendations(cat, score);
                   const level = score >= 60 ? "high" : score >= 35 ? "medium" : "low";
                   const levelColor = level === "high" ? "text-rose-600" : level === "medium" ? "text-amber-600" : "text-emerald-600";
-                  const levelIcon = level === "high" ? XCircle : level === "medium" ? AlertCircle : CheckCircle2;
+                  const LevelIcon = level === "high" ? XCircle : level === "medium" ? AlertCircle : CheckCircle2;
 
                   return (
                     <div key={cat} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
@@ -635,7 +635,7 @@ export function BusinessRiskCalculatorClient() {
                         <span className={`ml-auto text-sm font-bold ${levelColor}`}>
                           {Math.round(score)}/100
                         </span>
-                        <levelIcon className={`h-4 w-4 ${levelColor}`} />
+                        <LevelIcon className={`h-4 w-4 ${levelColor}`} />
                       </div>
                       <ul className="mt-3 space-y-2">
                         {recs.map((rec, i) => (
