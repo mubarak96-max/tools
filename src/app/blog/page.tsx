@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "The 'Hidden' Costs of Islamic Mortgages in the UK: What Lenders Don't Tell You",
+    description: "Uncover the true costs of halal mortgages. From arrangement fees to early settlement charges, learn what Islamic home finance really costs in 2026.",
+    href: "/blog/hidden-costs-of-islamic-mortgages-uk",
+    tag: "UK Real Estate",
+    readTime: "10 min read",
+    date: "April 2026",
+  },
+  {
     title: "Diminishing Musharakah vs Murabaha vs Ijara: Which Halal Mortgage Structure Saves You Money?",
     description: "Compare Sharia-compliant mortgage structures side-by-side with real numbers. See which structure costs less for your home purchase in 2026.",
     href: "/blog/halal-mortgage-structure-comparison",

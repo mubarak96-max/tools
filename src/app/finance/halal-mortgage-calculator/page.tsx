@@ -301,7 +301,7 @@ export default function HalalMortgageCalculatorPage() {
             <h2 className="text-2xl font-black text-slate-900 uppercase tracking-tight">Expert Guides & Analysis</h2>
             <p className="text-slate-500 font-medium text-sm mt-2">Deep dives into Sharia-compliant home finance structures.</p>
           </div>
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-5xl grid gap-8 md:grid-cols-2">
             <Link 
               href="/blog/halal-mortgage-structure-comparison"
               className="group block p-8 rounded-[2.5rem] bg-emerald-50 border border-emerald-100 hover:shadow-xl transition-all"
@@ -311,13 +311,32 @@ export default function HalalMortgageCalculatorPage() {
                 <span className="text-xs font-bold text-emerald-600">9 min read</span>
               </div>
               <h3 className="text-xl font-black text-slate-900 group-hover:text-emerald-700 transition-colors">
-                Diminishing Musharakah vs Murabaha vs Ijara: Which Structure Saves You Money in 2026?
+                Diminishing Musharakah vs Murabaha vs Ijara: Which Structure Saves You Money?
               </h3>
               <p className="mt-3 text-sm text-slate-600 leading-relaxed">
-                A side-by-side comparison of the three main Islamic mortgage structures with real-world cost examples and ownership timelines.
+                A side-by-side comparison of the three main Islamic mortgage structures with real-world cost examples.
               </p>
               <div className="mt-6 flex items-center gap-2 text-emerald-600 font-bold text-sm">
-                Read the Comparison Guide <span className="group-hover:translate-x-1 transition-transform">→</span>
+                Read Comparison Guide <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+
+            <Link 
+              href="/blog/hidden-costs-of-islamic-mortgages-uk"
+              className="group block p-8 rounded-[2.5rem] bg-amber-50 border border-amber-100 hover:shadow-xl transition-all"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <span className="px-3 py-1 rounded-full bg-amber-600 text-white text-[10px] font-black uppercase tracking-widest">Fee Guide</span>
+                <span className="text-xs font-bold text-amber-600">10 min read</span>
+              </div>
+              <h3 className="text-xl font-black text-slate-900 group-hover:text-amber-700 transition-colors">
+                The &quot;Hidden&quot; Costs of Islamic Mortgages in the UK: What Lenders Don&apos;t Tell You
+              </h3>
+              <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                Uncover arrangement fees, valuation costs, and early exit charges beyond the monthly payment.
+              </p>
+              <div className="mt-6 flex items-center gap-2 text-amber-600 font-bold text-sm">
+                Read Fee Guide <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </Link>
           </div>
