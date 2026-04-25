@@ -98,6 +98,20 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "FBA",
   },
   {
+    name: "Amazon FBA Canada Calculator",
+    href: "/finance/amazon-fba-canada-calculator",
+    description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
+    category: "Finance",
+    icon: "CAD",
+  },
+  {
+    name: "Income Tax Calculator Australia",
+    href: "/finance/income-tax-calculator-australia",
+    description: "Calculate 2025-26 Australian tax with Medicare, HECS, and real ATO brackets.",
+    category: "Finance",
+    icon: "AUS",
+  },
+  {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",

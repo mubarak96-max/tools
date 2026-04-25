@@ -56,6 +56,8 @@ const TOOL_PATHS = [
   "/finance/emi-calculator",
   "/finance/invoice-generator",
   "/finance/amazon-fba-calculator-uk",
+  "/finance/amazon-fba-canada-calculator",
+  "/finance/income-tax-calculator-australia",
   "/finance/halal-mortgage-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",

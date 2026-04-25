@@ -142,6 +142,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     icon: "FBA",
   },
   {
+    name: "Amazon FBA Canada Calculator",
+    href: "/finance/amazon-fba-canada-calculator",
+    description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
+    category: "Finance",
+    icon: "CAD",
+  },
+  {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",
@@ -154,6 +161,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     description: "Calculate 2026 US net pay after federal/state tax and benefits.",
     category: "Finance",
     icon: "SAL",
+  },
+  {
+    name: "Income Tax Calculator Australia",
+    href: "/finance/income-tax-calculator-australia",
+    description: "Calculate 2025-26 Australian tax with Medicare, HECS, and real ATO brackets.",
+    category: "Finance",
+    icon: "AUS",
   },
   {
     name: "Salary After Tax Calculator",

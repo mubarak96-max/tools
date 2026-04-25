@@ -30,6 +30,12 @@ const FINANCE_TOOLS = [
     icon: "FBA",
   },
   {
+    name: "Amazon FBA Calculator Canada",
+    href: "/finance/amazon-fba-canada-calculator",
+    description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, storage, and profit margins with 2026 rates.",
+    icon: "CAD",
+  },
+  {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",
@@ -40,6 +46,12 @@ const FINANCE_TOOLS = [
     href: "/finance/us-take-home-pay-calculator",
     description: "Calculate 2026 US net pay with federal/state tax, FICA, 401(k), and health benefits.",
     icon: "SALARY",
+  },
+  {
+    name: "Income Tax Calculator Australia",
+    href: "/finance/income-tax-calculator-australia",
+    description: "Calculate 2025-26 Australian tax with ATO brackets, Medicare levy, and HECS repayments.",
+    icon: "AUS",
   },
   {
     name: "Salary After Tax Calculator",

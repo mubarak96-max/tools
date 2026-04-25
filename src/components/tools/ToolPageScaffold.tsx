@@ -58,6 +58,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Calculate US net pay with benefits.",
     },
     {
+      name: "Income Tax Calculator Australia",
+      href: "/finance/income-tax-calculator-australia",
+      description: "Calculate 2025-26 Australian tax with Medicare & HECS.",
+    },
+    {
       name: "Bonus Tax Calculator",
       href: "/finance/bonus-tax-calculator",
       description: "Employee bonus & business depreciation tool.",
@@ -76,6 +81,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "Etsy Profit Calculator",
       href: "/finance/etsy-profit-calculator",
       description: "Model Etsy fees, ads, and margins for handmade sellers.",
+    },
+    {
+      name: "Amazon FBA Calculator Canada",
+      href: "/finance/amazon-fba-canada-calculator",
+      description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
     },
   ],
   SEO: [
