@@ -133,6 +133,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "WCOMP",
   },
   {
+    name: "Business Risk Exposure Score Calculator",
+    href: "/finance/business-risk-exposure-score-calculator",
+    description: "Assess operational, financial, cyber, legal, market, physical, and reputational risk across 7 critical dimensions.",
+    category: "Finance",
+    icon: "RISK",
+  },
+  {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",

@@ -78,6 +78,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Estimate workers compensation premiums by class code and state.",
     },
     {
+      name: "Business Risk Exposure Score Calculator",
+      href: "/finance/business-risk-exposure-score-calculator",
+      description: "Assess multi-dimensional business risk and get mitigation strategies.",
+    },
+    {
       name: "Bonus Tax Calculator",
       href: "/finance/bonus-tax-calculator",
       description: "Employee bonus & business depreciation tool.",

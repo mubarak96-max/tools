@@ -72,6 +72,12 @@ const FINANCE_TOOLS = [
     icon: "WCOMP",
   },
   {
+    name: "Business Risk Exposure Score Calculator",
+    href: "/finance/business-risk-exposure-score-calculator",
+    description: "Assess operational, financial, cyber, legal, market, physical, and reputational risk across 7 critical dimensions.",
+    icon: "RISK",
+  },
+  {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
     description: "Calculate take-home pay with 2026 tax brackets and compare across all 50 states.",

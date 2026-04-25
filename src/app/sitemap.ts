@@ -61,6 +61,7 @@ const TOOL_PATHS = [
   "/finance/income-tax-calculator-ireland",
   "/finance/general-liability-insurance-cost-estimator",
   "/finance/workers-comp-premium-calculator",
+  "/finance/business-risk-exposure-score-calculator",
   "/finance/halal-mortgage-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",

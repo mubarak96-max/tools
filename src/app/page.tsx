@@ -191,6 +191,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     icon: "WCOMP",
   },
   {
+    name: "Business Risk Exposure Score Calculator",
+    href: "/finance/business-risk-exposure-score-calculator",
+    description: "Assess operational, financial, cyber, legal, market, physical, and reputational risk across 7 critical dimensions.",
+    category: "Finance",
+    icon: "RISK",
+  },
+  {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
     description: "State-by-state 2026 take-home pay comparison and breakdown.",
