@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -594,7 +594,7 @@ export function BusinessRiskCalculatorClient() {
                   <XAxis type="number" domain={[0, 100]} stroke="#64748b" fontSize={12} />
                   <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={110} />
                   <Tooltip
-                    formatter={(value: number) => `${value}/100`}
+                    formatter={(value: any) => `${value}/100`}
                     contentStyle={{
                       backgroundColor: "#ffffff",
                       border: "1px solid #e2e8f0",
