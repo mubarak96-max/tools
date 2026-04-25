@@ -90,6 +90,7 @@ const TOOL_PATHS = [
   "/real-estate/scotland-lbtt-calculator",
   "/real-estate/wales-ltt-calculator",
   "/real-estate/hong-kong-stamp-duty-calculator",
+  "/real-estate/rent-vs-buy-calculator",
   "/text/binary-code-translator",
   "/text/case-converter",
   "/text/convert-image-to-text",
