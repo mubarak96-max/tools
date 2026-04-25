@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { EquityDilutionCalculatorClient } from "./components/EquityDilutionCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -220,18 +220,18 @@ export default function EquityDilutionCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="min-h-screen bg-white text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20">
+            <div className="mb-4 inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-600 ring-1 ring-inset ring-indigo-500/20">
               Updated April 2026 — Multi-Round Cap Table Modeling
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Equity Dilution{" "}
-              <span className="text-indigo-400">Calculator</span>
+              <span className="text-indigo-600">Calculator</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-400">
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-500">
               Model founder and investor ownership through seed, Series A/B/C,
               option pool expansions, SAFEs, and convertible notes. Build
               your cap table and project dilution through exit.
@@ -242,14 +242,14 @@ export default function EquityDilutionCalculatorPage() {
           <EquityDilutionCalculatorClient />
 
           {/* Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur">
+          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-xl font-bold text-indigo-400">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-xl font-bold text-indigo-600">
                 FB
               </div>
               <div>
-                <p className="font-semibold text-white">Verified by FindBest Tools</p>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="font-semibold text-slate-900">Verified by FindBest Tools</p>
+                <p className="mt-1 text-sm text-slate-500">
                   Calculations based on standard venture capital term sheet
                   mechanics, NVCA model legal documents, and Y Combinator SAFE
                   documentation. Dilution math follows industry-standard
@@ -265,10 +265,10 @@ export default function EquityDilutionCalculatorPage() {
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1 */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Understanding Equity Dilution: The Founder&apos;s Guide to Ownership Through Funding
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Equity dilution is the reduction in ownership percentage that
                   occurs when a company issues new shares. For startup founders,
@@ -305,10 +305,10 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 2: Pre vs Post Money */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Pre-Money vs Post-Money Valuation: The Foundation of Dilution Math
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   The distinction between pre-money and post-money valuation is
                   the single most important concept in dilution calculation.
@@ -340,25 +340,25 @@ export default function EquityDilutionCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-indigo-400">Pre-Money Option Pool</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-indigo-600">Pre-Money Option Pool</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Option pool created BEFORE investment. Founders diluted by
                     full option pool amount. Investors get their percentage
                     after the pool is set aside.
                   </p>
-                  <p className="mt-2 text-sm font-medium text-rose-400">
+                  <p className="mt-2 text-sm font-medium text-rose-600">
                     More dilution for founders
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-indigo-400">Post-Money Option Pool</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-indigo-600">Post-Money Option Pool</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Option pool created AFTER investment. Dilution shared
                     proportionally between all shareholders including new
                     investors.
                   </p>
-                  <p className="mt-2 text-sm font-medium text-emerald-400">
+                  <p className="mt-2 text-sm font-medium text-emerald-600">
                     Less dilution for founders
                   </p>
                 </div>
@@ -367,15 +367,15 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 3: Round by Round */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Typical Founder Dilution by Funding Round: From Founder to Exit
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 The following table shows typical founder ownership trajectories
                 through standard funding rounds for a venture-backed startup
                 with a founding team of 2-3 people:
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -386,54 +386,54 @@ export default function EquityDilutionCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Cumulative Dilution</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Founding</td>
                       <td className="px-6 py-4">—</td>
                       <td className="px-6 py-4">—</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">100%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">100%</td>
                       <td className="px-6 py-4">0%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Angel / Pre-Seed</td>
                       <td className="px-6 py-4">$250k – $1M</td>
                       <td className="px-6 py-4">$2M – $5M</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">80-90%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">80-90%</td>
                       <td className="px-6 py-4">10-20%</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Seed Round</td>
                       <td className="px-6 py-4">$1M – $3M</td>
                       <td className="px-6 py-4">$5M – $15M</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">60-75%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">60-75%</td>
                       <td className="px-6 py-4">25-40%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Series A</td>
                       <td className="px-6 py-4">$5M – $20M</td>
                       <td className="px-6 py-4">$20M – $60M</td>
-                      <td className="px-6 py-4 font-medium text-blue-400">40-60%</td>
+                      <td className="px-6 py-4 font-medium text-blue-600">40-60%</td>
                       <td className="px-6 py-4">40-60%</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Series B</td>
                       <td className="px-6 py-4">$20M – $50M</td>
                       <td className="px-6 py-4">$80M – $250M</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">30-45%</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">30-45%</td>
                       <td className="px-6 py-4">55-70%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Series C</td>
                       <td className="px-6 py-4">$50M – $150M</td>
                       <td className="px-6 py-4">$250M – $1B</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">20-35%</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">20-35%</td>
                       <td className="px-6 py-4">65-80%</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Series D+ / Pre-IPO</td>
                       <td className="px-6 py-4">$100M+</td>
                       <td className="px-6 py-4">$1B+</td>
-                      <td className="px-6 py-4 font-medium text-rose-400">10-25%</td>
+                      <td className="px-6 py-4 font-medium text-rose-600">10-25%</td>
                       <td className="px-6 py-4">75-90%</td>
                     </tr>
                   </tbody>
@@ -449,10 +449,10 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 4: SAFEs and Convertible Notes */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 How SAFEs and Convertible Notes Convert to Equity
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   SAFEs (Simple Agreement for Future Equity) and convertible
                   notes are the dominant early-stage financing instruments in
@@ -486,9 +486,9 @@ export default function EquityDilutionCalculatorPage() {
                   lower of a negotiated cap or a discount to the next round.
                 </p>
               </div>
-              <div className="mt-4 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                <h4 className="font-semibold text-indigo-400">SAFE Conversion Example</h4>
-                <p className="mt-2 text-sm text-slate-300">
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <h4 className="font-semibold text-indigo-600">SAFE Conversion Example</h4>
+                <p className="mt-2 text-sm text-slate-600">
                   SAFE investment: $500,000 with $8M cap, 20% discount.<br />
                   Series A: $20M pre-money, $5M investment.<br />
                   Cap effective valuation: $8M (better for investor).<br />
@@ -501,10 +501,10 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 5: Anti-Dilution */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Anti-Dilution Protection: Full Ratchet vs Weighted Average
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Anti-dilution provisions protect investors in down rounds —
                   future equity financing at a valuation lower than what the
@@ -537,23 +537,23 @@ export default function EquityDilutionCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-5">
-                  <h4 className="font-semibold text-rose-400">Full Ratchet</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-rose-500/20 bg-rose-50 p-5">
+                  <h4 className="font-semibold text-rose-600">Full Ratchet</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Investor gets full price reset to down round price.
                     Maximum dilution for founders. Rare in standard VC deals.
                   </p>
-                  <p className="mt-2 text-sm font-bold text-rose-400">
+                  <p className="mt-2 text-sm font-bold text-rose-600">
                     Extreme founder dilution
                   </p>
                 </div>
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                  <h4 className="font-semibold text-emerald-400">Weighted Average</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-emerald-500/20 bg-emerald-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Weighted Average</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Formula-based adjustment considering round size. Moderate
                     dilution. Standard in nearly all venture deals.
                   </p>
-                  <p className="mt-2 text-sm font-bold text-emerald-400">
+                  <p className="mt-2 text-sm font-bold text-emerald-600">
                     Moderate founder dilution
                   </p>
                 </div>
@@ -562,10 +562,10 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 6: Option Pools */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Employee Option Pools: Size, Expansion, and Founder Dilution
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   The employee option pool (or ESOP — Employee Stock Ownership
                   Plan) is a reserved block of shares used to grant equity to
@@ -600,10 +600,10 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 7: Exit Analysis */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Exit Scenario Analysis: What Your Equity Is Actually Worth
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Ownership percentage is meaningless without considering
                   liquidation preferences, participation rights, and exit
@@ -641,15 +641,15 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Section 8: Strategies */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Strategies to Minimize Harmful Dilution
               </h2>
               <div className="mt-6 space-y-5">
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-400">1</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-600">1</div>
                   <div>
-                    <h4 className="font-semibold text-white">Negotiate Option Pool Treatment</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Negotiate Option Pool Treatment</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Always push for post-money option pool treatment. This
                       single term can save founders 3-8% ownership over
                       multiple rounds. If investors insist on pre-money,
@@ -658,10 +658,10 @@ export default function EquityDilutionCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-400">2</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-600">2</div>
                   <div>
-                    <h4 className="font-semibold text-white">Use High Valuation Caps on SAFEs</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Use High Valuation Caps on SAFEs</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       A $15M cap on a $1M SAFE vs a $5M cap means 3x less
                       dilution at a $30M Series A. Negotiate caps that reflect
                       realistic 12-18 month forward valuations.
@@ -669,10 +669,10 @@ export default function EquityDilutionCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-400">3</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-600">3</div>
                   <div>
-                    <h4 className="font-semibold text-white">Avoid Full Ratchet Anti-Dilution</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Avoid Full Ratchet Anti-Dilution</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Never agree to full ratchet. If an investor insists,
                       walk away. Weighted average anti-dilution is the
                       industry standard and protects both parties reasonably.
@@ -680,10 +680,10 @@ export default function EquityDilutionCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-400">4</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-600">4</div>
                   <div>
-                    <h4 className="font-semibold text-white">Maintain Supermajority Protections</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Maintain Supermajority Protections</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Protective provisions requiring founder approval for
                       future financings, acquisitions, and amendments prevent
                       unilateral dilution by investor-majority boards.
@@ -691,10 +691,10 @@ export default function EquityDilutionCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-400">5</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-indigo-500/10 text-sm font-bold text-indigo-600">5</div>
                   <div>
-                    <h4 className="font-semibold text-white">Model Before You Sign</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Model Before You Sign</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Use this calculator to model your ownership through
                       Series C before signing any term sheet. Understand
                       exactly what 20% dilution today means for your exit
@@ -707,15 +707,15 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* FAQ for Humans */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Frequently Asked Questions About Startup Equity Dilution
               </h2>
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-indigo-400">
+                  <h3 className="text-lg font-semibold text-indigo-600">
                     Is it better to own 10% of a $1B company or 50% of a $50M company?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Mathematically identical ($100M), but the $1B company
                     offers greater probability of additional upside, more
                     investor confidence, stronger talent attraction, and better
@@ -726,10 +726,10 @@ export default function EquityDilutionCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-indigo-400">
+                  <h3 className="text-lg font-semibold text-indigo-600">
                     How do I calculate my equity value as an employee?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Employee equity value = (Number of options × Exercise
                     price per share) / (Total fully diluted shares) × Company
                     valuation. For example, 10,000 options in a company with
@@ -741,10 +741,10 @@ export default function EquityDilutionCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-indigo-400">
+                  <h3 className="text-lg font-semibold text-indigo-600">
                     What is a 409A valuation and why does it matter?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     A 409A valuation is an independent appraisal of your
                     company&apos;s common stock fair market value, required by IRS
                     Section 409A for option pricing. It must be performed
@@ -756,10 +756,10 @@ export default function EquityDilutionCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-indigo-400">
+                  <h3 className="text-lg font-semibold text-indigo-600">
                     Can I prevent dilution entirely?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     No. Dilution is the cost of capital for growth. The only
                     way to avoid dilution is to never raise external capital
                     (bootstrapping) or to buy back shares (rare and expensive).
@@ -770,10 +770,10 @@ export default function EquityDilutionCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-indigo-400">
+                  <h3 className="text-lg font-semibold text-indigo-600">
                     What is a down round and how bad is it for founders?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     A down round occurs when a company raises capital at a
                     valuation lower than the previous round. It signals
                     distress, triggers anti-dilution provisions, demoralizes
@@ -790,10 +790,10 @@ export default function EquityDilutionCalculatorPage() {
 
             {/* Methodology */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Calculator Methodology and Assumptions
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 This calculator uses standard venture capital capitalization
                 mathematics as defined in NVCA model legal documents and Y
                 Combinator SAFE documentation. Pre-money and post-money
@@ -805,7 +805,7 @@ export default function EquityDilutionCalculatorPage() {
                 mechanics. Convertible note conversions include accrued
                 interest at the stated rate.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Anti-dilution calculations use the broad-based weighted
                 average formula per NVCA standards. Exit waterfall analysis
                 assumes non-participating preferred stock (1x liquidation

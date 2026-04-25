@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -451,24 +451,24 @@ export function InheritanceTaxCalculatorClient() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Inputs */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10">
-                <Globe className="h-5 w-5 text-violet-400" />
+                <Globe className="h-5 w-5 text-violet-600" />
               </div>
-              <h2 className="text-xl font-bold text-white">Estate Details</h2>
+              <h2 className="text-xl font-bold text-slate-900">Estate Details</h2>
             </div>
 
             {/* Country */}
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Globe className="h-4 w-4 text-violet-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Globe className="h-4 w-4 text-violet-600" />
                 Country / Jurisdiction
               </label>
               <select
                 value={state.country}
                 onChange={(e) => handleChange("country", e.target.value as CountryKey)}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
               >
                 {Object.entries(COUNTRIES).map(([key, val]) => (
                   <option key={key} value={key}>
@@ -480,44 +480,44 @@ export function InheritanceTaxCalculatorClient() {
 
             {/* Estate Value */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <CurrencyIcon className="h-4 w-4 text-violet-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <CurrencyIcon className="h-4 w-4 text-violet-600" />
                 Gross Estate Value
               </label>
               <input
                 type="number"
                 value={state.estateValue || ""}
                 onChange={(e) => handleChange("estateValue", Number(e.target.value))}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
                 placeholder="800000"
               />
             </div>
 
             {/* Debts */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <TrendingDown className="h-4 w-4 text-violet-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <TrendingDown className="h-4 w-4 text-violet-600" />
                 Debts & Liabilities
               </label>
               <input
                 type="number"
                 value={state.debts || ""}
                 onChange={(e) => handleChange("debts", Number(e.target.value))}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
                 placeholder="0"
               />
             </div>
 
             {/* Relationship */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Heart className="h-4 w-4 text-violet-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Heart className="h-4 w-4 text-violet-600" />
                 Relationship to Deceased
               </label>
               <select
                 value={state.relationship}
                 onChange={(e) => handleChange("relationship", e.target.value as RelationshipKey)}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
               >
                 {Object.entries(RELATIONSHIPS).map(([key, val]) => (
                   <option key={key} value={key}>
@@ -529,15 +529,15 @@ export function InheritanceTaxCalculatorClient() {
 
             {/* Beneficiaries */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Users className="h-4 w-4 text-violet-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Users className="h-4 w-4 text-violet-600" />
                 Number of Beneficiaries
               </label>
               <input
                 type="number"
                 value={state.numBeneficiaries}
                 onChange={(e) => handleChange("numBeneficiaries", Number(e.target.value))}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
                 min={1}
               />
             </div>
@@ -545,7 +545,7 @@ export function InheritanceTaxCalculatorClient() {
             {/* Advanced Toggle */}
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="mt-6 flex w-full items-center justify-between rounded-lg border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-300 hover:bg-slate-950"
+              className="mt-6 flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50"
             >
               <span>Advanced Options</span>
               {showAdvanced ? (
@@ -556,27 +556,27 @@ export function InheritanceTaxCalculatorClient() {
             </button>
 
             {showAdvanced && (
-              <div className="mt-4 space-y-5 rounded-xl border border-slate-800 bg-slate-950/30 p-4">
+              <div className="mt-4 space-y-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
                 {/* Main Residence */}
                 {(state.country === "uk" || state.country === "ireland") && (
                   <>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-slate-300">
+                      <label className="text-sm font-medium text-slate-600">
                         Main Residence Value
                       </label>
                       <input
                         type="number"
                         value={state.mainResidenceValue || ""}
                         onChange={(e) => handleChange("mainResidenceValue", Number(e.target.value))}
-                        className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-violet-500 focus:outline-none"
+                        className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-violet-500 focus:outline-none"
                       />
                     </div>
-                    <label className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2.5 text-sm text-slate-300 cursor-pointer">
+                    <label className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-600 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={state.mainResidenceToDescendants}
                         onChange={(e) => handleChange("mainResidenceToDescendants", e.target.checked)}
-                        className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-violet-500 focus:ring-violet-500"
+                        className="h-4 w-4 rounded border-slate-600 bg-slate-50 text-violet-500 focus:ring-violet-500"
                       />
                       Main residence passing to direct descendants
                     </label>
@@ -586,14 +586,14 @@ export function InheritanceTaxCalculatorClient() {
                 {/* Charity */}
                 {state.country === "uk" && (
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-300">
+                    <label className="text-sm font-medium text-slate-600">
                       % of Estate to Charity
                     </label>
                     <input
                       type="number"
                       value={state.charityPercent}
                       onChange={(e) => handleChange("charityPercent", Number(e.target.value))}
-                      className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-violet-500 focus:outline-none"
+                      className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-violet-500 focus:outline-none"
                       min={0}
                       max={100}
                     />
@@ -606,14 +606,14 @@ export function InheritanceTaxCalculatorClient() {
                 {/* Prior Gifts */}
                 {state.country === "ireland" && (
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-300">
+                    <label className="text-sm font-medium text-slate-600">
                       Prior Taxable Gifts (lifetime)
                     </label>
                     <input
                       type="number"
                       value={state.priorGifts || ""}
                       onChange={(e) => handleChange("priorGifts", Number(e.target.value))}
-                      className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-violet-500 focus:outline-none"
+                      className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-violet-500 focus:outline-none"
                     />
                     <p className="text-xs text-slate-500">
                       Reduces available group threshold
@@ -624,25 +624,25 @@ export function InheritanceTaxCalculatorClient() {
                 {/* Business Property */}
                 {(state.country === "uk" || state.country === "ireland") && (
                   <>
-                    <label className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2.5 text-sm text-slate-300 cursor-pointer">
+                    <label className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-600 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={state.isBusinessProperty}
                         onChange={(e) => handleChange("isBusinessProperty", e.target.checked)}
-                        className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-violet-500 focus:ring-violet-500"
+                        className="h-4 w-4 rounded border-slate-600 bg-slate-50 text-violet-500 focus:ring-violet-500"
                       />
                       Includes qualifying business property
                     </label>
                     {state.isBusinessProperty && (
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">
+                        <label className="text-sm font-medium text-slate-600">
                           Years Owned
                         </label>
                         <input
                           type="number"
                           value={state.yearsOwnedBusiness}
                           onChange={(e) => handleChange("yearsOwnedBusiness", Number(e.target.value))}
-                          className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-violet-500 focus:outline-none"
+                          className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-violet-500 focus:outline-none"
                         />
                       </div>
                     )}
@@ -651,12 +651,12 @@ export function InheritanceTaxCalculatorClient() {
 
                 {/* Agricultural */}
                 {state.country === "uk" && (
-                  <label className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2.5 text-sm text-slate-300 cursor-pointer">
+                  <label className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-600 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={state.isAgricultural}
                       onChange={(e) => handleChange("isAgricultural", e.target.checked)}
-                      className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-violet-500 focus:ring-violet-500"
+                      className="h-4 w-4 rounded border-slate-600 bg-slate-50 text-violet-500 focus:ring-violet-500"
                     />
                     Includes agricultural property (APR may apply)
                   </label>
@@ -670,43 +670,43 @@ export function InheritanceTaxCalculatorClient() {
         <div className="lg:col-span-7 space-y-6">
           {/* Score Cards */}
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Net Estate
               </p>
-              <p className="mt-2 text-xl font-bold text-white">
+              <p className="mt-2 text-xl font-bold text-slate-900">
                 {formatMoney(results.netEstate, country.currencySymbol)}
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Tax Payable
               </p>
-              <p className="mt-2 text-xl font-bold text-rose-400">
+              <p className="mt-2 text-xl font-bold text-rose-600">
                 {formatMoney(results.tax, country.currencySymbol)}
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Effective Rate
               </p>
-              <p className="mt-2 text-xl font-bold text-amber-400">
+              <p className="mt-2 text-xl font-bold text-amber-600">
                 {results.effectiveRate.toFixed(1)}%
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Net to Heirs
               </p>
-              <p className="mt-2 text-xl font-bold text-emerald-400">
+              <p className="mt-2 text-xl font-bold text-emerald-600">
                 {formatMoney(results.netEstate - results.tax, country.currencySymbol)}
               </p>
             </div>
           </div>
 
           {/* Pie Chart */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">Estate Distribution</h3>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">Estate Distribution</h3>
             <div className="grid items-center gap-6 md:grid-cols-2">
               <div className="h-56">
                 <ResponsiveContainer width="100%" height="100%">
@@ -728,10 +728,10 @@ export function InheritanceTaxCalculatorClient() {
                     <Tooltip
                       formatter={(value: number) => formatFullMoney(value, country.currencySymbol)}
                       contentStyle={{
-                        backgroundColor: "#0f172a",
-                        border: "1px solid #1e293b",
+                        backgroundColor: "#ffffff",
+                        border: "1px solid #e2e8f0",
                         borderRadius: "8px",
-                        color: "#f8fafc",
+                        color: "#0f172a",
                       }}
                     />
                     <Legend
@@ -739,7 +739,7 @@ export function InheritanceTaxCalculatorClient() {
                       height={36}
                       iconType="circle"
                       formatter={(value: string) => (
-                        <span className="text-slate-300 text-sm">{value}</span>
+                        <span className="text-slate-600 text-sm">{value}</span>
                       )}
                     />
                   </PieChart>
@@ -747,7 +747,7 @@ export function InheritanceTaxCalculatorClient() {
               </div>
               <div className="space-y-3">
                 {results.details.map((detail, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-slate-300">
+                  <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
                     <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
                     {detail}
                   </div>
@@ -758,24 +758,24 @@ export function InheritanceTaxCalculatorClient() {
 
           {/* Per Beneficiary */}
           {state.numBeneficiaries > 1 && results.tax > 0 && (
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-              <h3 className="mb-4 text-lg font-bold text-white">Per Beneficiary Breakdown</h3>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+              <h3 className="mb-4 text-lg font-bold text-slate-900">Per Beneficiary Breakdown</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-400">Share per beneficiary</span>
-                  <span className="font-medium text-white">
+                  <span className="text-slate-500">Share per beneficiary</span>
+                  <span className="font-medium text-slate-900">
                     {formatMoney(results.netEstate / state.numBeneficiaries, country.currencySymbol)}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-400">Tax per beneficiary</span>
-                  <span className="font-medium text-rose-400">
+                  <span className="text-slate-500">Tax per beneficiary</span>
+                  <span className="font-medium text-rose-600">
                     {formatMoney(results.tax / state.numBeneficiaries, country.currencySymbol)}
                   </span>
                 </div>
-                <div className="flex justify-between border-t border-slate-800 pt-2 text-base font-bold">
-                  <span className="text-white">Net per beneficiary</span>
-                  <span className="text-emerald-400">
+                <div className="flex justify-between border-t border-slate-200 pt-2 text-base font-bold">
+                  <span className="text-slate-900">Net per beneficiary</span>
+                  <span className="text-emerald-600">
                     {formatMoney((results.netEstate - results.tax) / state.numBeneficiaries, country.currencySymbol)}
                   </span>
                 </div>
@@ -784,11 +784,11 @@ export function InheritanceTaxCalculatorClient() {
           )}
 
           {/* Country Comparison */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">
               Tax Comparison by Country
             </h3>
-            <p className="mb-4 text-sm text-slate-400">
+            <p className="mb-4 text-sm text-slate-500">
               Estimated tax on {country.currencySymbol}{state.estateValue.toLocaleString()} estate to a {RELATIONSHIPS[state.relationship].toLowerCase()}:
             </p>
             <div className="space-y-2">
@@ -811,16 +811,16 @@ export function InheritanceTaxCalculatorClient() {
                     <div
                       key={c}
                       className={`flex items-center justify-between rounded-lg px-4 py-2.5 text-sm ${
-                        isActive ? "bg-violet-500/10 border border-violet-500/20" : "bg-slate-950/50"
+                        isActive ? "bg-violet-500/10 border border-violet-500/20" : "bg-slate-50"
                       }`}
                     >
                       <div className="flex items-center gap-2">
                         <span>{cData.flag}</span>
-                        <span className={isActive ? "text-white font-medium" : "text-slate-300"}>
+                        <span className={isActive ? "text-white font-medium" : "text-slate-600"}>
                           {cData.label}
                         </span>
                       </div>
-                      <span className={isActive ? "font-bold text-violet-400" : "font-medium text-slate-400"}>
+                      <span className={isActive ? "font-bold text-violet-600" : "font-medium text-slate-500"}>
                         {formatMoney(estTax, cData.currencySymbol)}
                       </span>
                     </div>
@@ -830,10 +830,10 @@ export function InheritanceTaxCalculatorClient() {
           </div>
 
           {/* Disclaimer */}
-          <div className="flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
-            <Info className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" />
-            <div className="text-sm text-slate-300">
-              <p className="font-medium text-amber-400">Estimate Only</p>
+          <div className="flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-50 p-4">
+            <Info className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
+            <div className="text-sm text-slate-600">
+              <p className="font-medium text-amber-600">Estimate Only</p>
               <p className="mt-1">
                 Actual tax liability depends on domicile, residency, treaty
                 relief, specific asset types, and individual circumstances.

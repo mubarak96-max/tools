@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Inheritance Tax Calculator 2026 | UK, USA, Ireland, France, Germany & More",

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -210,24 +210,24 @@ export function WorkersCompCalculatorClient() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Inputs */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
-                <Calculator className="h-5 w-5 text-emerald-400" />
+                <Calculator className="h-5 w-5 text-emerald-600" />
               </div>
-              <h2 className="text-xl font-bold text-white">Business Details</h2>
+              <h2 className="text-xl font-bold text-slate-900">Business Details</h2>
             </div>
 
             {/* Industry */}
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Building2 className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Building2 className="h-4 w-4 text-emerald-600" />
                 Industry / Class Code
               </label>
               <select
                 value={state.industry}
                 onChange={(e) => handleChange("industry", e.target.value as IndustryKey)}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 {Object.entries(INDUSTRIES).map(([key, val]) => (
                   <option key={key} value={key}>
@@ -253,44 +253,44 @@ export function WorkersCompCalculatorClient() {
 
             {/* Payroll */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <DollarSign className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <DollarSign className="h-4 w-4 text-emerald-600" />
                 Annual Payroll
               </label>
               <input
                 type="number"
                 value={state.annualPayroll || ""}
                 onChange={(e) => handleChange("annualPayroll", Number(e.target.value))}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 placeholder="250000"
               />
             </div>
 
             {/* Employees */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Users className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Users className="h-4 w-4 text-emerald-600" />
                 Number of Employees
               </label>
               <input
                 type="number"
                 value={state.employees}
                 onChange={(e) => handleChange("employees", Number(e.target.value))}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                 min={1}
               />
             </div>
 
             {/* State */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <MapPin className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <MapPin className="h-4 w-4 text-emerald-600" />
                 State
               </label>
               <select
                 value={state.state}
                 onChange={(e) => handleChange("state", e.target.value as StateKey)}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               >
                 {Object.entries(STATES).map(([key, val]) => (
                   <option key={key} value={key}>
@@ -299,7 +299,7 @@ export function WorkersCompCalculatorClient() {
                 ))}
               </select>
               {isMonopolistic && (
-                <p className="text-xs text-blue-400">
+                <p className="text-xs text-blue-600">
                   Monopolistic state — private insurance not available for standard coverage.
                 </p>
               )}
@@ -307,8 +307,8 @@ export function WorkersCompCalculatorClient() {
 
             {/* EMR */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Award className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Award className="h-4 w-4 text-emerald-600" />
                 Experience Mod Rate (EMR)
               </label>
               <input
@@ -316,10 +316,10 @@ export function WorkersCompCalculatorClient() {
                 step="0.01"
                 value={state.emr}
                 onChange={(e) => handleChange("emr", Number(e.target.value))}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
               />
               <div className="flex items-center gap-2 text-xs">
-                <span className={state.emr < 1 ? "text-emerald-400" : state.emr > 1 ? "text-rose-400" : "text-slate-400"}>
+                <span className={state.emr < 1 ? "text-emerald-600" : state.emr > 1 ? "text-rose-600" : "text-slate-500"}>
                   {state.emr < 1 ? "↓ Discount" : state.emr > 1 ? "↑ Surcharge" : "→ Average"}
                 </span>
                 <span className="text-slate-500">| 1.00 is industry average</span>
@@ -329,7 +329,7 @@ export function WorkersCompCalculatorClient() {
             {/* Advanced Toggle */}
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="mt-6 flex w-full items-center justify-between rounded-lg border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-300 hover:bg-slate-950"
+              className="mt-6 flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50"
             >
               <span>Advanced Options</span>
               {showAdvanced ? (
@@ -340,17 +340,17 @@ export function WorkersCompCalculatorClient() {
             </button>
 
             {showAdvanced && (
-              <div className="mt-4 space-y-5 rounded-xl border border-slate-800 bg-slate-950/30 p-4">
+              <div className="mt-4 space-y-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
                 {/* Years in Business */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-300">
+                  <label className="text-sm font-medium text-slate-600">
                     Years in Business
                   </label>
                   <input
                     type="number"
                     value={state.yearsInBusiness}
                     onChange={(e) => handleChange("yearsInBusiness", Number(e.target.value))}
-                    className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-emerald-500 focus:outline-none"
+                    className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-emerald-500 focus:outline-none"
                     min={0}
                   />
                   <p className="text-xs text-slate-500">
@@ -360,8 +360,8 @@ export function WorkersCompCalculatorClient() {
 
                 {/* Safety Program */}
                 <div className="flex items-center justify-between">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <Shield className="h-4 w-4 text-emerald-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <Shield className="h-4 w-4 text-emerald-600" />
                     Formal Safety Program
                   </label>
                   <button
@@ -380,8 +380,8 @@ export function WorkersCompCalculatorClient() {
 
                 {/* Drug Free */}
                 <div className="flex items-center justify-between">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <Award className="h-4 w-4 text-blue-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <Award className="h-4 w-4 text-blue-600" />
                     Drug-Free Workplace
                   </label>
                   <button
@@ -400,8 +400,8 @@ export function WorkersCompCalculatorClient() {
 
                 {/* Claims */}
                 <div className="flex items-center justify-between">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <AlertTriangle className="h-4 w-4 text-rose-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <AlertTriangle className="h-4 w-4 text-rose-600" />
                     Claims in Past 3 Years
                   </label>
                   <button
@@ -426,38 +426,38 @@ export function WorkersCompCalculatorClient() {
         <div className="lg:col-span-7 space-y-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Est. Annual Premium
               </p>
-              <p className="mt-2 text-2xl font-bold text-emerald-400">
+              <p className="mt-2 text-2xl font-bold text-emerald-600">
                 {formatMoney(results.premium)}
               </p>
               <p className="text-xs text-slate-500">before taxes & fees</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Est. Monthly
               </p>
-              <p className="mt-2 text-2xl font-bold text-blue-400">
+              <p className="mt-2 text-2xl font-bold text-blue-600">
                 {formatMoney(results.monthly)}
               </p>
               <p className="text-xs text-slate-500">estimated payment</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Per Employee
               </p>
-              <p className="mt-2 text-2xl font-bold text-amber-400">
+              <p className="mt-2 text-2xl font-bold text-amber-600">
                 {formatMoney(results.perEmployee)}
               </p>
               <p className="text-xs text-slate-500">annual avg.</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Rate per $100
               </p>
-              <p className="mt-2 text-2xl font-bold text-violet-400">
+              <p className="mt-2 text-2xl font-bold text-violet-600">
                 ${results.per100Payroll.toFixed(2)}
               </p>
               <p className="text-xs text-slate-500">of payroll</p>
@@ -465,14 +465,14 @@ export function WorkersCompCalculatorClient() {
           </div>
 
           {/* Chart */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">
               Premium Composition
             </h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={barData} layout="vertical" margin={{ left: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
                   <XAxis
                     type="number"
                     tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
@@ -489,10 +489,10 @@ export function WorkersCompCalculatorClient() {
                   <Tooltip
                     formatter={(value: number) => formatMoney(Math.abs(value))}
                     contentStyle={{
-                      backgroundColor: "#0f172a",
-                      border: "1px solid #1e293b",
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #e2e8f0",
                       borderRadius: "8px",
-                      color: "#f8fafc",
+                      color: "#0f172a",
                     }}
                   />
                   <ReferenceLine x={0} stroke="#475569" />
@@ -507,68 +507,68 @@ export function WorkersCompCalculatorClient() {
           </div>
 
           {/* Detailed Breakdown */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">
               Detailed Calculation
             </h3>
             <div className="space-y-2">
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">
                   Manual Premium ({INDUSTRIES[state.industry].classCode})
                 </span>
-                <span className="font-medium text-white">
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.manualPremium)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">
                   State Modifier ({STATES[state.state].label})
                 </span>
-                <span className="font-medium text-white">
+                <span className="font-medium text-slate-900">
                   × {results.stateModifier.toFixed(2)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">
                   Experience Mod (EMR)
                 </span>
-                <span className="font-medium text-white">
+                <span className="font-medium text-slate-900">
                   × {state.emr.toFixed(2)}
                 </span>
               </div>
               {results.safetySavings > 0 && (
-                <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                  <span className="text-emerald-400">Safety Program Discount</span>
-                  <span className="font-medium text-emerald-400">
+                <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                  <span className="text-emerald-600">Safety Program Discount</span>
+                  <span className="font-medium text-emerald-600">
                     -{formatMoney(results.safetySavings)}
                   </span>
                 </div>
               )}
               {results.drugSavings > 0 && (
-                <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                  <span className="text-emerald-400">Drug-Free Workplace Discount</span>
-                  <span className="font-medium text-emerald-400">
+                <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                  <span className="text-emerald-600">Drug-Free Workplace Discount</span>
+                  <span className="font-medium text-emerald-600">
                     -{formatMoney(results.drugSavings)}
                   </span>
                 </div>
               )}
               {results.claimsSurcharge > 0 && (
-                <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                  <span className="text-rose-400">Claims History Surcharge</span>
-                  <span className="font-medium text-rose-400">
+                <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                  <span className="text-rose-600">Claims History Surcharge</span>
+                  <span className="font-medium text-rose-600">
                     +{formatMoney(results.claimsSurcharge)}
                   </span>
                 </div>
               )}
               <div className="flex justify-between pt-2 text-base font-bold">
-                <span className="text-white">Estimated Annual Premium</span>
-                <span className="text-emerald-400">
+                <span className="text-slate-900">Estimated Annual Premium</span>
+                <span className="text-emerald-600">
                   {formatMoney(results.premium)}
                 </span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">Estimated Monthly</span>
-                <span className="font-semibold text-white">
+                <span className="text-slate-500">Estimated Monthly</span>
+                <span className="font-semibold text-slate-900">
                   {formatMoney(results.monthly)}
                 </span>
               </div>
@@ -576,11 +576,11 @@ export function WorkersCompCalculatorClient() {
           </div>
 
           {/* Industry Comparison */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">
               Cost Comparison by Industry
             </h3>
-            <p className="mb-4 text-sm text-slate-400">
+            <p className="mb-4 text-sm text-slate-500">
               Estimated annual premium for ${state.annualPayroll.toLocaleString()} payroll in {STATES[state.state].label} with EMR 1.0:
             </p>
             <div className="space-y-3">
@@ -593,16 +593,16 @@ export function WorkersCompCalculatorClient() {
                     <div
                       key={key}
                       className={`flex items-center justify-between rounded-lg px-4 py-2.5 text-sm ${
-                        isActive ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-slate-950/50"
+                        isActive ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-slate-50"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <span className="font-mono text-xs text-slate-500">{val.classCode}</span>
-                        <span className={isActive ? "text-white font-medium" : "text-slate-300"}>
+                        <span className={isActive ? "text-white font-medium" : "text-slate-600"}>
                           {val.label}
                         </span>
                       </div>
-                      <span className={isActive ? "font-bold text-emerald-400" : "font-medium text-slate-400"}>
+                      <span className={isActive ? "font-bold text-emerald-600" : "font-medium text-slate-500"}>
                         {formatMoney(est)}
                       </span>
                     </div>
@@ -614,9 +614,9 @@ export function WorkersCompCalculatorClient() {
           {/* Monopolistic Warning */}
           {isMonopolistic && (
             <div className="flex items-start gap-3 rounded-xl border border-blue-500/20 bg-blue-500/5 p-4">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-blue-400" />
-              <div className="text-sm text-slate-300">
-                <p className="font-medium text-blue-400">Monopolistic State Notice</p>
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-blue-600" />
+              <div className="text-sm text-slate-600">
+                <p className="font-medium text-blue-600">Monopolistic State Notice</p>
                 <p className="mt-1">
                   {STATES[state.state].label} operates a monopolistic workers
                   compensation fund. Employers must purchase coverage through the

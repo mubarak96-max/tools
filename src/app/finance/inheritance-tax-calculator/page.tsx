@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { InheritanceTaxCalculatorClient } from "./components/InheritanceTaxCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -222,18 +222,18 @@ export default function InheritanceTaxCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="min-h-screen bg-white text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-400 ring-1 ring-inset ring-violet-500/20">
+            <div className="mb-4 inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-600 ring-1 ring-inset ring-violet-500/20">
               Updated April 2026 — 10 Countries & Jurisdictions
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Inheritance Tax{" "}
-              <span className="text-violet-400">Calculator 2026</span>
+              <span className="text-violet-600">Calculator 2026</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-400">
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-slate-500">
               Calculate inheritance tax, estate tax, succession duty and capital
               acquisitions tax across the UK, USA, Ireland, France, Germany,
               Spain, Italy, Canada, Australia & India. Country-specific
@@ -250,10 +250,10 @@ export default function InheritanceTaxCalculatorPage() {
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1: Worldwide Comparison */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Worldwide Inheritance Tax Comparison 2026: Thresholds, Rates & Exemptions
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Inheritance taxation varies more dramatically between
                   jurisdictions than almost any other form of taxation. While
@@ -274,7 +274,7 @@ export default function InheritanceTaxCalculatorPage() {
                   provide relationship-based allowances with progressive rates.
                 </p>
               </div>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -285,76 +285,76 @@ export default function InheritanceTaxCalculatorPage() {
                       <th className="px-4 py-4 font-semibold">Spouse Exempt?</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-4 py-4 font-medium">🇬🇧 UK</td>
                       <td className="px-4 py-4">Estate Tax (IHT)</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">40%</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">40%</td>
                       <td className="px-4 py-4">£325,000 NRB + £175,000 RNRB</td>
-                      <td className="px-4 py-4 text-emerald-400">Unlimited</td>
+                      <td className="px-4 py-4 text-emerald-600">Unlimited</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-4 font-medium">🇺🇸 USA</td>
                       <td className="px-4 py-4">Federal Estate Tax</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">40%</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">40%</td>
                       <td className="px-4 py-4">$13.99M per person (2026)</td>
-                      <td className="px-4 py-4 text-emerald-400">Unlimited (US citizen)</td>
+                      <td className="px-4 py-4 text-emerald-600">Unlimited (US citizen)</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-4 py-4 font-medium">🇮🇪 Ireland</td>
                       <td className="px-4 py-4">CAT (Gift/Inheritance)</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">33%</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">33%</td>
                       <td className="px-4 py-4">€335,000 child; €32,500 other close</td>
-                      <td className="px-4 py-4 text-amber-400">Limited</td>
+                      <td className="px-4 py-4 text-amber-600">Limited</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-4 font-medium">🇫🇷 France</td>
                       <td className="px-4 py-4">Droits de succession</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">45%</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">45%</td>
                       <td className="px-4 py-4">€100,000 per child; spouse exempt</td>
-                      <td className="px-4 py-4 text-emerald-400">100% exempt</td>
+                      <td className="px-4 py-4 text-emerald-600">100% exempt</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-4 py-4 font-medium">🇩🇪 Germany</td>
                       <td className="px-4 py-4">Erbschaftsteuer</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">50%</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">50%</td>
                       <td className="px-4 py-4">€500,000 spouse; €400,000 children</td>
-                      <td className="px-4 py-4 text-emerald-400">€500,000 + 50% pension</td>
+                      <td className="px-4 py-4 text-emerald-600">€500,000 + 50% pension</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-4 font-medium">🇪🇸 Spain</td>
                       <td className="px-4 py-4">Impuesto Sucesiones</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">34% (state) / higher regional</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">34% (state) / higher regional</td>
                       <td className="px-4 py-4">Varies by region (€16k–€250k+)</td>
-                      <td className="px-4 py-4 text-amber-400">Varies by region</td>
+                      <td className="px-4 py-4 text-amber-600">Varies by region</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-4 py-4 font-medium">🇮🇹 Italy</td>
                       <td className="px-4 py-4">Imposta di successione</td>
-                      <td className="px-4 py-4 font-medium text-rose-400">8%</td>
+                      <td className="px-4 py-4 font-medium text-rose-600">8%</td>
                       <td className="px-4 py-4">€1M exempt for spouse/children</td>
-                      <td className="px-4 py-4 text-emerald-400">€1M exempt</td>
+                      <td className="px-4 py-4 text-emerald-600">€1M exempt</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-4 font-medium">🇨🇦 Canada</td>
                       <td className="px-4 py-4">Deemed Disposition (CGT)</td>
-                      <td className="px-4 py-4 font-medium text-amber-400">~27% max (incl. provincial)</td>
+                      <td className="px-4 py-4 font-medium text-amber-600">~27% max (incl. provincial)</td>
                       <td className="px-4 py-4">No inheritance tax; CGT on death</td>
-                      <td className="px-4 py-4 text-emerald-400">Rollover to spouse</td>
+                      <td className="px-4 py-4 text-emerald-600">Rollover to spouse</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-4 py-4 font-medium">🇦🇺 Australia</td>
                       <td className="px-4 py-4">None (CGT may apply)</td>
-                      <td className="px-4 py-4 font-medium text-emerald-400">0%</td>
+                      <td className="px-4 py-4 font-medium text-emerald-600">0%</td>
                       <td className="px-4 py-4">No inheritance tax nationally</td>
-                      <td className="px-4 py-4 text-emerald-400">N/A</td>
+                      <td className="px-4 py-4 text-emerald-600">N/A</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-4 font-medium">🇮🇳 India</td>
                       <td className="px-4 py-4">None (Stamp duty)</td>
-                      <td className="px-4 py-4 font-medium text-emerald-400">0%</td>
+                      <td className="px-4 py-4 font-medium text-emerald-600">0%</td>
                       <td className="px-4 py-4">No inheritance tax; stamp duty 3-8%</td>
-                      <td className="px-4 py-4 text-emerald-400">N/A</td>
+                      <td className="px-4 py-4 text-emerald-600">N/A</td>
                     </tr>
                   </tbody>
                 </table>
@@ -363,10 +363,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* UK Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 UK Inheritance Tax (IHT) 2026: Rates, Nil-Rate Band & Residence Nil-Rate Band
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   UK Inheritance Tax is charged at 40% on the value of an estate
                   above the nil-rate band (NRB) of £325,000. This threshold has
@@ -394,9 +394,9 @@ export default function InheritanceTaxCalculatorPage() {
                   the donor survives seven years.
                 </p>
               </div>
-              <div className="mt-4 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                <h4 className="font-semibold text-violet-400">UK IHT Example 2026</h4>
-                <p className="mt-2 text-sm text-slate-300">
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <h4 className="font-semibold text-violet-600">UK IHT Example 2026</h4>
+                <p className="mt-2 text-sm text-slate-600">
                   Estate value: £800,000 (including main residence worth £400,000).<br />
                   Beneficiaries: Two adult children.<br />
                   NRB: £325,000 + RNRB: £175,000 = £500,000 tax-free.<br />
@@ -409,10 +409,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* USA Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 US Federal Estate Tax 2026: Exemption, Rates & State Taxes
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   The United States imposes a federal estate tax on estates
                   exceeding the lifetime exemption, which is $13.99 million per
@@ -443,9 +443,9 @@ export default function InheritanceTaxCalculatorPage() {
                   exceeding 105% of the threshold.
                 </p>
               </div>
-              <div className="mt-4 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                <h4 className="font-semibold text-violet-400">US Estate Tax Example 2026</h4>
-                <p className="mt-2 text-sm text-slate-300">
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <h4 className="font-semibold text-violet-600">US Estate Tax Example 2026</h4>
+                <p className="mt-2 text-sm text-slate-600">
                   Estate value: $18,000,000. Single decedent.<br />
                   Federal exemption: $13,990,000.<br />
                   Taxable estate: $18,000,000 − $13,990,000 = $4,010,000.<br />
@@ -457,10 +457,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Ireland Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Irish Capital Acquisitions Tax (CAT) 2026: Group Thresholds & 33% Rate
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Ireland taxes gifts and inheritances under Capital
                   Acquisitions Tax (CAT) at a flat rate of 33%. The tax-free
@@ -485,9 +485,9 @@ export default function InheritanceTaxCalculatorPage() {
                   beneficiary.
                 </p>
               </div>
-              <div className="mt-4 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                <h4 className="font-semibold text-violet-400">Irish CAT Example 2026</h4>
-                <p className="mt-2 text-sm text-slate-300">
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
+                <h4 className="font-semibold text-violet-600">Irish CAT Example 2026</h4>
+                <p className="mt-2 text-sm text-slate-600">
                   Inheritance to adult child: €500,000 cash + €300,000 house = €800,000.<br />
                   Group A threshold: €335,000.<br />
                   Taxable: €800,000 − €335,000 = €465,000.<br />
@@ -499,10 +499,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* France Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 French Succession Tax (Droits de Succession) 2026
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   French succession tax applies to worldwide assets of French
                   residents and French situs assets of non-residents. Transfers
@@ -526,10 +526,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Germany Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 German Inheritance Tax (Erbschaftsteuer) 2026
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   German inheritance tax provides generous personal allowances
                   based on relationship. Spouses receive €500,000 plus a
@@ -554,10 +554,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Spain Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Spanish Inheritance Tax (Impuesto sobre Sucesiones y Donaciones) 2026
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Spanish inheritance tax is among the most complex in Europe
                   because each of Spain&apos;s 17 autonomous communities sets its own
@@ -582,10 +582,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Italy Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Italian Inheritance Tax (Imposta di Successione) 2026
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Italy has one of the most favorable inheritance tax regimes
                   in the EU. Transfers to spouses, children, and grandchildren
@@ -610,10 +610,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Canada Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Canada: Deemed Disposition & Capital Gains on Death
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Canada does not have a formal inheritance tax or estate tax.
                   Instead, the Income Tax Act deems a person to have disposed
@@ -641,10 +641,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Australia Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Australia: No Inheritance Tax, But CGT May Apply
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Australia abolished federal inheritance taxes in 1979, and no
                   state currently imposes a death duty. However, Capital Gains
@@ -668,10 +668,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* India Section */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 India: No Inheritance Tax, But Stamp Duty Applies
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   India abolished estate duty in 1985 and has not reintroduced
                   it. There is currently no inheritance tax, estate tax, or
@@ -694,15 +694,15 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* FAQ for Humans */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Frequently Asked Questions About Inheritance Tax Worldwide
               </h2>
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     Can I avoid inheritance tax by moving abroad?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Domicile rules, not residence alone, determine inheritance
                     tax liability in most countries. The UK taxes worldwide
                     assets of UK-domiciled individuals regardless of residence.
@@ -713,10 +713,10 @@ export default function InheritanceTaxCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     What is the most tax-efficient country to inherit property?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Italy offers the most favorable regime for close family,
                     with €1 million per beneficiary completely exempt and only
                     4% above that. Australia and Canada have no inheritance
@@ -727,10 +727,10 @@ export default function InheritanceTaxCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     Do double tax treaties cover inheritance tax?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Yes, many countries have double tax conventions (DTCs)
                     specifically for inheritance and estate taxes. The UK has
                     treaties with France, USA, Ireland, Netherlands, Italy,
@@ -742,10 +742,10 @@ export default function InheritanceTaxCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     How does the UK 7-year rule work for gifts?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Potentially Exempt Transfers (PETs) become completely
                     inheritance-tax-free if the donor survives seven years.
                     If the donor dies within seven years, taper relief reduces
@@ -756,10 +756,10 @@ export default function InheritanceTaxCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     Will the US estate tax exemption drop in 2026?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Unless Congress extends the Tax Cuts and Jobs Act, the
                     federal estate tax exemption is scheduled to revert to
                     approximately $7 million per person (adjusted for inflation
@@ -776,10 +776,10 @@ export default function InheritanceTaxCalculatorPage() {
 
             {/* Methodology */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Calculator Methodology and Data Sources
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 This calculator uses official 2026 tax parameters from each
                 jurisdiction&apos;s revenue authority. UK rates are sourced from
                 HMRC guidance and the Finance Act 2024. US federal rates are
@@ -796,7 +796,7 @@ export default function InheritanceTaxCalculatorPage() {
                 ATO guidance on inherited assets and CGT. Indian treatment
                 reflects CBDT and state stamp duty schedules.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Limitations: This tool does not account for complex estate
                 planning structures, trusts, double tax treaty relief,
                 specific regional variations (particularly in Spain and

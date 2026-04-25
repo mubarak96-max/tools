@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -157,10 +157,10 @@ const CATEGORY_CONFIG = {
 };
 
 function getRiskLevel(score: number) {
-  if (score <= 30) return { label: "Low Risk", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20", desc: "Strong controls. Continue current practices." };
-  if (score <= 50) return { label: "Moderate Risk", color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20", desc: "Manageable gaps. Monitor and address proactively." };
-  if (score <= 70) return { label: "High Risk", color: "text-amber-400", bg: "bg-amber-500/10", border: "border-amber-500/20", desc: "Significant vulnerabilities. 90-day mitigation plan needed." };
-  return { label: "Critical Risk", color: "text-rose-400", bg: "bg-rose-500/10", border: "border-rose-500/20", desc: "Severe exposure. Immediate intervention required." };
+  if (score <= 30) return { label: "Low Risk", color: "text-emerald-600", bg: "bg-emerald-500/10", border: "border-emerald-500/20", desc: "Strong controls. Continue current practices." };
+  if (score <= 50) return { label: "Moderate Risk", color: "text-blue-600", bg: "bg-blue-500/10", border: "border-blue-500/20", desc: "Manageable gaps. Monitor and address proactively." };
+  if (score <= 70) return { label: "High Risk", color: "text-amber-600", bg: "bg-amber-500/10", border: "border-amber-500/20", desc: "Significant vulnerabilities. 90-day mitigation plan needed." };
+  return { label: "Critical Risk", color: "text-rose-600", bg: "bg-rose-500/10", border: "border-rose-500/20", desc: "Severe exposure. Immediate intervention required." };
 }
 
 function getRecommendations(category: string, score: number): string[] {
@@ -355,8 +355,8 @@ export function BusinessRiskCalculatorClient() {
   const renderSlider = (label: string, value: number, onChange: (v: number) => void, lowLabel: string, highLabel: string) => (
     <div className="space-y-2">
       <div className="flex justify-between text-sm">
-        <span className="text-slate-300">{label}</span>
-        <span className="font-medium text-violet-400">{value}/5</span>
+        <span className="text-slate-600">{label}</span>
+        <span className="font-medium text-violet-600">{value}/5</span>
       </div>
       <input
         type="range"
@@ -452,24 +452,24 @@ export function BusinessRiskCalculatorClient() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Inputs */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10">
-                <Shield className="h-5 w-5 text-violet-400" />
+                <Shield className="h-5 w-5 text-violet-600" />
               </div>
-              <h2 className="text-xl font-bold text-white">Risk Assessment</h2>
+              <h2 className="text-xl font-bold text-slate-900">Risk Assessment</h2>
             </div>
 
             {/* Industry */}
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Building2 className="h-4 w-4 text-violet-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Building2 className="h-4 w-4 text-violet-600" />
                 Industry Sector
               </label>
               <select
                 value={industry}
                 onChange={(e) => setIndustry(e.target.value as IndustryKey)}
-                className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-violet-500 focus:outline-none focus:ring-1 focus:ring-violet-500"
               >
                 {Object.entries(INDUSTRIES).map(([key, val]) => (
                   <option key={key} value={key}>
@@ -486,19 +486,19 @@ export function BusinessRiskCalculatorClient() {
                 const isOpen = expandedCategory === cat.key;
                 const catScore = Math.round(categoryScores[cat.key as keyof typeof categoryScores]);
                 return (
-                  <div key={cat.key} className="rounded-xl border border-slate-800 overflow-hidden">
+                  <div key={cat.key} className="rounded-xl border border-slate-200 overflow-hidden">
                     <button
                       onClick={() => setExpandedCategory(isOpen ? null : cat.key)}
-                      className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-slate-950/50"
+                      className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-slate-50"
                     >
                       <div className="flex items-center gap-3">
-                        <Icon className="h-4 w-4 text-violet-400" />
-                        <span className="text-sm font-medium text-white">{cat.title}</span>
+                        <Icon className="h-4 w-4 text-violet-600" />
+                        <span className="text-sm font-medium text-slate-900">{cat.title}</span>
                       </div>
                       <div className="flex items-center gap-3">
                         <span
                           className={`text-xs font-bold ${
-                            catScore >= 70 ? "text-rose-400" : catScore >= 50 ? "text-amber-400" : catScore >= 30 ? "text-blue-400" : "text-emerald-400"
+                            catScore >= 70 ? "text-rose-600" : catScore >= 50 ? "text-amber-600" : catScore >= 30 ? "text-blue-600" : "text-emerald-600"
                           }`}
                         >
                           {catScore}
@@ -507,7 +507,7 @@ export function BusinessRiskCalculatorClient() {
                       </div>
                     </button>
                     {isOpen && (
-                      <div className="space-y-4 border-t border-slate-800 px-4 py-4">
+                      <div className="space-y-4 border-t border-slate-200 px-4 py-4">
                         {cat.questions.map((q) => (
                           <div key={q.field}>
                             {renderSlider(
@@ -531,7 +531,7 @@ export function BusinessRiskCalculatorClient() {
         {/* Results */}
         <div className="lg:col-span-7 space-y-6">
           {/* Score Card */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-8 text-center shadow-xl backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-xl backdrop-blur">
             <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
               Composite Risk Exposure Score
             </p>
@@ -545,22 +545,22 @@ export function BusinessRiskCalculatorClient() {
             <p className={`mt-4 text-xl font-bold ${riskLevel.color}`}>
               {riskLevel.label}
             </p>
-            <p className="mt-2 text-sm text-slate-400">{riskLevel.desc}</p>
+            <p className="mt-2 text-sm text-slate-500">{riskLevel.desc}</p>
             <div className="mt-4 flex justify-center gap-2">
-              <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">0-30 Low</span>
-              <span className="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400">31-50 Mod</span>
-              <span className="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-400">51-70 High</span>
-              <span className="rounded-full bg-rose-500/10 px-3 py-1 text-xs font-medium text-rose-400">71-100 Crit</span>
+              <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600">0-30 Low</span>
+              <span className="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-600">31-50 Mod</span>
+              <span className="rounded-full bg-amber-500/10 px-3 py-1 text-xs font-medium text-amber-600">51-70 High</span>
+              <span className="rounded-full bg-rose-500/10 px-3 py-1 text-xs font-medium text-rose-600">71-100 Crit</span>
             </div>
           </div>
 
           {/* Radar Chart */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">Risk Profile Radar</h3>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">Risk Profile Radar</h3>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <RadarChart cx="50%" cy="50%" outerRadius="70%" data={radarData}>
-                  <PolarGrid stroke="#1e293b" />
+                  <PolarGrid stroke="#f1f5f9" />
                   <PolarAngleAxis dataKey="subject" tick={{ fill: "#94a3b8", fontSize: 12 }} />
                   <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: "#64748b", fontSize: 10 }} />
                   <Radar
@@ -573,10 +573,10 @@ export function BusinessRiskCalculatorClient() {
                   />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: "#0f172a",
-                      border: "1px solid #1e293b",
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #e2e8f0",
                       borderRadius: "8px",
-                      color: "#f8fafc",
+                      color: "#0f172a",
                     }}
                   />
                 </RadarChart>
@@ -585,21 +585,21 @@ export function BusinessRiskCalculatorClient() {
           </div>
 
           {/* Bar Chart */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">Category Breakdown</h3>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">Category Breakdown</h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={barData} layout="vertical" margin={{ left: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
                   <XAxis type="number" domain={[0, 100]} stroke="#64748b" fontSize={12} />
                   <YAxis type="category" dataKey="name" stroke="#94a3b8" fontSize={12} width={110} />
                   <Tooltip
                     formatter={(value: number) => `${value}/100`}
                     contentStyle={{
-                      backgroundColor: "#0f172a",
-                      border: "1px solid #1e293b",
+                      backgroundColor: "#ffffff",
+                      border: "1px solid #e2e8f0",
                       borderRadius: "8px",
-                      color: "#f8fafc",
+                      color: "#0f172a",
                     }}
                   />
                   <Bar dataKey="score" radius={[0, 4, 4, 0]}>
@@ -613,8 +613,8 @@ export function BusinessRiskCalculatorClient() {
           </div>
 
           {/* Recommendations */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">Prioritized Mitigation Recommendations</h3>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">Prioritized Mitigation Recommendations</h3>
             <div className="space-y-4">
               {Object.entries(categoryScores)
                 .sort((a, b) => b[1] - a[1])
@@ -624,14 +624,14 @@ export function BusinessRiskCalculatorClient() {
                   const Icon = config.icon;
                   const recs = getRecommendations(cat, score);
                   const level = score >= 60 ? "high" : score >= 35 ? "medium" : "low";
-                  const levelColor = level === "high" ? "text-rose-400" : level === "medium" ? "text-amber-400" : "text-emerald-400";
+                  const levelColor = level === "high" ? "text-rose-600" : level === "medium" ? "text-amber-600" : "text-emerald-600";
                   const levelIcon = level === "high" ? XCircle : level === "medium" ? AlertCircle : CheckCircle2;
 
                   return (
-                    <div key={cat} className="rounded-xl border border-slate-800 bg-slate-950/30 p-4">
+                    <div key={cat} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
                       <div className="flex items-center gap-3">
                         <Icon className="h-5 w-5" style={{ color: config.color }} />
-                        <span className="font-semibold text-white">{config.label}</span>
+                        <span className="font-semibold text-slate-900">{config.label}</span>
                         <span className={`ml-auto text-sm font-bold ${levelColor}`}>
                           {Math.round(score)}/100
                         </span>
@@ -639,7 +639,7 @@ export function BusinessRiskCalculatorClient() {
                       </div>
                       <ul className="mt-3 space-y-2">
                         {recs.map((rec, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                          <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
                             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-violet-500" />
                             {rec}
                           </li>
@@ -652,10 +652,10 @@ export function BusinessRiskCalculatorClient() {
           </div>
 
           {/* Weights Info */}
-          <div className="flex items-start gap-3 rounded-xl border border-violet-500/20 bg-violet-500/5 p-4">
-            <Info className="mt-0.5 h-5 w-5 shrink-0 text-violet-400" />
-            <div className="text-sm text-slate-300">
-              <p className="font-medium text-violet-400">Industry-Weighted Scoring</p>
+          <div className="flex items-start gap-3 rounded-xl border border-violet-500/20 bg-violet-50 p-4">
+            <Info className="mt-0.5 h-5 w-5 shrink-0 text-violet-600" />
+            <div className="text-sm text-slate-600">
+              <p className="font-medium text-violet-600">Industry-Weighted Scoring</p>
               <p className="mt-1">
                 Your composite score uses industry-specific weights. For{" "}
                 <strong>{INDUSTRIES[industry].label}</strong>, the highest

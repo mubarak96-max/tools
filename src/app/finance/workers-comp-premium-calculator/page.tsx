@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { WorkersCompCalculatorClient } from "./components/WorkersCompCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -216,18 +216,18 @@ export default function WorkersCompCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="min-h-screen bg-white text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
+            <div className="mb-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-600 ring-1 ring-inset ring-emerald-500/20">
               Updated April 2026 — NCCI & State Rate Data
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Workers Comp Premium{" "}
-              <span className="text-emerald-400">Calculator by Industry</span>
+              <span className="text-emerald-600">Calculator by Industry</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500">
               Calculate workers compensation insurance costs using class codes,
               payroll, state rates, and experience modification rates. Accurate
               estimates for all 50 states.
@@ -241,10 +241,10 @@ export default function WorkersCompCalculatorPage() {
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1 */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 How Workers Compensation Insurance Premiums Are Calculated
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Workers compensation insurance is a state-mandated coverage that
                   provides medical benefits and wage replacement to employees
@@ -260,7 +260,7 @@ export default function WorkersCompCalculatorPage() {
                 <p>
                   The fundamental workers comp premium formula is:
                 </p>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/80 p-5 font-mono text-sm text-emerald-400 text-center">
+                <div className="rounded-xl border border-slate-200 bg-white p-5 font-mono text-sm text-emerald-600 text-center">
                   Premium = (Payroll ÷ $100) × Class Code Rate × EMR × State Adjustments × Discounts
                 </div>
                 <p>
@@ -279,16 +279,16 @@ export default function WorkersCompCalculatorPage() {
 
             {/* Section 2: Class Codes */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Workers Comp Rates by Industry and Class Code (2026)
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 The following table shows median manual rates per $100 of payroll
                 for common class codes across NCCI states. These are base rates
                 before application of experience mods, state deviations, or
                 carrier discounts:
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -298,66 +298,66 @@ export default function WorkersCompCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Median Rate / $100</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
-                      <td className="px-6 py-4 font-mono text-emerald-400">8810</td>
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-mono text-emerald-600">8810</td>
                       <td className="px-6 py-4">Clerical Office Employees</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Low</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$0.35</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$0.35</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-mono text-emerald-400">8742</td>
+                      <td className="px-6 py-4 font-mono text-emerald-600">8742</td>
                       <td className="px-6 py-4">Outside Salespersons</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Low</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$0.45</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$0.45</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
-                      <td className="px-6 py-4 font-mono text-emerald-400">8832</td>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-mono text-emerald-600">8832</td>
                       <td className="px-6 py-4">Physician Office — Clerical</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Low</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$0.55</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$0.55</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-mono text-amber-400">8017</td>
+                      <td className="px-6 py-4 font-mono text-amber-600">8017</td>
                       <td className="px-6 py-4">Retail Store — NOC</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$1.85</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$1.85</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
-                      <td className="px-6 py-4 font-mono text-amber-400">9082</td>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-mono text-amber-600">9082</td>
                       <td className="px-6 py-4">Restaurant — Fast Food</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$2.10</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$2.10</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-mono text-amber-400">9014</td>
+                      <td className="px-6 py-4 font-mono text-amber-600">9014</td>
                       <td className="px-6 py-4">Janitorial Services</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$2.85</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$2.85</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
-                      <td className="px-6 py-4 font-mono text-amber-400">0042</td>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-mono text-amber-600">0042</td>
                       <td className="px-6 py-4">Landscaping / Lawn Care</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium-High</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$4.20</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium-High</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$4.20</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-mono text-rose-400">5183</td>
+                      <td className="px-6 py-4 font-mono text-rose-600">5183</td>
                       <td className="px-6 py-4">Plumbing — Commercial</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$5.75</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$5.75</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
-                      <td className="px-6 py-4 font-mono text-rose-400">5645</td>
+                    <tr className="bg-slate-50">
+                      <td className="px-6 py-4 font-mono text-rose-600">5645</td>
                       <td className="px-6 py-4">Carpentry — Residential</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$8.50</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$8.50</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4 font-mono text-rose-400">5551</td>
+                      <td className="px-6 py-4 font-mono text-rose-600">5551</td>
                       <td className="px-6 py-4">Roofing — All Types</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">Very High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$18.50</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">Very High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$18.50</td>
                     </tr>
                   </tbody>
                 </table>
@@ -372,17 +372,17 @@ export default function WorkersCompCalculatorPage() {
 
             {/* Section 3: State Variations */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Workers Comp Costs by State: Competitive vs Monopolistic Markets
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Workers compensation is regulated at the state level, and costs
                 vary more dramatically than any other commercial insurance line.
                 The following table shows estimated annual premiums for a
                 standard $250,000 payroll across selected states for a medium-risk
                 class code (e.g., retail 8017):
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -392,53 +392,53 @@ export default function WorkersCompCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Key Characteristic</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Texas</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Competitive</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$3,200</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Competitive</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$3,200</td>
                       <td className="px-6 py-4">No state mandate; lowest rates nationally</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Indiana</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Competitive</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$3,400</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Competitive</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$3,400</td>
                       <td className="px-6 py-4">NCCI state; efficient medical fee schedule</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Virginia</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Competitive</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$3,600</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Competitive</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$3,600</td>
                       <td className="px-6 py-4">Competitive private market</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Pennsylvania</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Competitive + State Fund</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$4,800</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Competitive + State Fund</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$4,800</td>
                       <td className="px-6 py-4">State Workers&apos; Insurance Fund competes</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Florida</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Competitive</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$5,200</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Competitive</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$5,200</td>
                       <td className="px-6 py-4">High litigation; NCCI state</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">California</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">Competitive + State Fund</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$6,800</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">Competitive + State Fund</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$6,800</td>
                       <td className="px-6 py-4">Highest medical costs; State Compensation Insurance Fund</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">New York</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">Competitive + State Fund</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$7,200</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">Competitive + State Fund</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$7,200</td>
                       <td className="px-6 py-4">High benefit levels; NY State Insurance Fund</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Ohio</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-400">Monopolistic</span></td>
-                      <td className="px-6 py-4 font-medium text-blue-400">$4,500</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-600">Monopolistic</span></td>
+                      <td className="px-6 py-4 font-medium text-blue-600">$4,500</td>
                       <td className="px-6 py-4">BWC only; no private competition</td>
                     </tr>
                   </tbody>
@@ -453,10 +453,10 @@ export default function WorkersCompCalculatorPage() {
 
             {/* Section 4: Experience Mod */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Understanding the Experience Modification Rate (EMR)
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   The Experience Modification Rate is the most powerful lever
                   employers have to control workers compensation costs over the
@@ -484,38 +484,38 @@ export default function WorkersCompCalculatorPage() {
                 </p>
               </div>
               <div className="mt-6 grid gap-6 sm:grid-cols-3">
-                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5 text-center">
-                  <p className="text-3xl font-bold text-emerald-400">0.75</p>
+                <div className="rounded-xl border border-emerald-500/20 bg-emerald-50 p-5 text-center">
+                  <p className="text-3xl font-bold text-emerald-600">0.75</p>
                   <p className="mt-1 text-sm font-medium text-emerald-300">Excellent EMR</p>
-                  <p className="mt-1 text-xs text-slate-400">25% discount applied</p>
+                  <p className="mt-1 text-xs text-slate-500">25% discount applied</p>
                 </div>
-                <div className="rounded-xl border border-slate-700 bg-slate-900/50 p-5 text-center">
-                  <p className="text-3xl font-bold text-slate-300">1.00</p>
-                  <p className="mt-1 text-sm font-medium text-slate-300">Average EMR</p>
-                  <p className="mt-1 text-xs text-slate-400">No adjustment</p>
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-center">
+                  <p className="text-3xl font-bold text-slate-600">1.00</p>
+                  <p className="mt-1 text-sm font-medium text-slate-600">Average EMR</p>
+                  <p className="mt-1 text-xs text-slate-500">No adjustment</p>
                 </div>
-                <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-5 text-center">
-                  <p className="text-3xl font-bold text-rose-400">1.35</p>
+                <div className="rounded-xl border border-rose-500/20 bg-rose-50 p-5 text-center">
+                  <p className="text-3xl font-bold text-rose-600">1.35</p>
                   <p className="mt-1 text-sm font-medium text-rose-300">Poor EMR</p>
-                  <p className="mt-1 text-xs text-slate-400">35% surcharge applied</p>
+                  <p className="mt-1 text-xs text-slate-500">35% surcharge applied</p>
                 </div>
               </div>
             </section>
 
             {/* Section 5: Monopolistic States */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Monopolistic States: Special Rules for ND, OH, WA, and WY
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Four U.S. states prohibit private insurance carriers from writing
                 standard workers compensation policies. Employers in these states
                 must purchase coverage exclusively from the state fund:
               </p>
               <div className="mt-6 space-y-4">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">North Dakota — Workforce Safety & Insurance (WSI)</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">North Dakota — Workforce Safety & Insurance (WSI)</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     North Dakota operates a monopolistic, exclusive state fund.
                     Rates are set by WSI and employers cannot shop private
                     markets. The state has among the lowest workers comp costs
@@ -523,9 +523,9 @@ export default function WorkersCompCalculatorPage() {
                     return-to-work programs.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Ohio — Bureau of Workers&apos; Compensation (BWC)</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Ohio — Bureau of Workers&apos; Compensation (BWC)</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Ohio&apos;s BWC is the sole provider of workers comp. Employers
                     can participate in group rating programs that offer
                     significant discounts (often 50% or more) for businesses
@@ -533,9 +533,9 @@ export default function WorkersCompCalculatorPage() {
                     rating and deductible programs.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Washington — Department of Labor & Industries (L&I)</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Washington — Department of Labor & Industries (L&I)</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Washington L&I sets rates and provides coverage. Rates are
                     adjusted hourly rather than per $100 of payroll. Washington
                     has some of the highest workers comp costs on the West Coast
@@ -543,9 +543,9 @@ export default function WorkersCompCalculatorPage() {
                     the Seattle metro area.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Wyoming — Department of Workforce Services</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Wyoming — Department of Workforce Services</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Wyoming requires all employers to purchase coverage through
                     the state fund. Rates are generally moderate, though the
                     state&apos;s energy and extraction industries carry high class
@@ -554,7 +554,7 @@ export default function WorkersCompCalculatorPage() {
                   </p>
                 </div>
               </div>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Employers in monopolistic states cannot purchase stop-gap
                 employer&apos;s liability coverage as part of a standard general
                 liability policy. Instead, they must add stop-gap coverage via
@@ -566,54 +566,54 @@ export default function WorkersCompCalculatorPage() {
 
             {/* Section 6: Cost Reduction */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 How to Lower Your Workers Compensation Premium
               </h2>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">Implement a Formal Safety Program</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Implement a Formal Safety Program</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     OSHA-compliant safety programs, regular training, and
                     documented hazard assessments can reduce incidents by 20-40%.
                     Many carriers offer 5-10% safety program discounts.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">Manage Your EMR Proactively</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Manage Your EMR Proactively</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Report all claims immediately. Implement return-to-work
                     programs with modified duty assignments. Medical-only claims
                     receive a 70% ERA discount in NCCI states.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">Use Proper Class Codes</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Use Proper Class Codes</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Ensure employees are classified correctly. Misclassifying
                     clerical staff (8810) as general labor can increase premiums
                     by 500-1000%. Request a classification audit if unsure.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">Explore Dividend Plans</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Explore Dividend Plans</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Some carriers offer dividend plans that return 10-30% of
                     premium to employers with favorable loss experience. Group
                     captive programs offer similar benefits for larger
                     businesses.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">Shop at Renewal</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Shop at Renewal</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Workers comp rates vary significantly between carriers.
                     Obtain quotes from at least 3-5 carriers or use an
                     independent agent with access to multiple markets.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">Consider a PEO</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">Consider a PEO</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Professional Employer Organizations (PEOs) can provide
                     workers comp coverage under their master policy, often at
                     lower rates due to economies of scale and pooled risk.
@@ -624,15 +624,15 @@ export default function WorkersCompCalculatorPage() {
 
             {/* Section 7: FAQ for Humans */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Frequently Asked Questions About Workers Compensation
               </h2>
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     How much does workers comp insurance cost for a small business?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Small business workers comp costs vary from $500 per year
                     for a single clerical employee in Texas to $20,000+ for a
                     small roofing crew in California. The national median for a
@@ -641,10 +641,10 @@ export default function WorkersCompCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Is workers comp required for 1099 independent contractors?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Generally no, but misclassification is a major enforcement
                     target. If a contractor is deemed an employee under the
                     &quot;ABC test&quot; or common law rules, the hiring company may be
@@ -654,10 +654,10 @@ export default function WorkersCompCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     What is the minimum payroll for workers comp?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Most states set minimum payroll thresholds for owners and
                     officers. For example, NCCI states typically assign a
                     minimum payroll of $31,200 per year for active owners and
@@ -666,10 +666,10 @@ export default function WorkersCompCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Can I exclude myself from workers comp coverage?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     In most states, sole proprietors, partners, and LLC members
                     are automatically excluded from workers comp but can elect
                     coverage. Corporate officers and LLC managers can often
@@ -679,10 +679,10 @@ export default function WorkersCompCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     What happens if I don&apos;t have workers comp insurance?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Penalties vary by state but are severe. In California,
                     uninsured employers face penalties of $1,500 per employee
                     plus twice the amount of premium that should have been paid.
@@ -697,10 +697,10 @@ export default function WorkersCompCalculatorPage() {
 
             {/* Section 8: Methodology */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Calculator Methodology and Data Sources
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   This calculator uses composite manual rates derived from 2026 NCCI
                   loss cost filings, state rating bureau publications, and carrier

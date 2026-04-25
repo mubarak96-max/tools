@@ -162,41 +162,11 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     category: "Finance",
     icon: "SAL",
   },
-  {
-    name: "Income Tax Calculator Australia",
-    href: "/finance/income-tax-calculator-australia",
-    description: "Calculate 2025-26 Australian tax with Medicare, HECS, and real ATO brackets.",
-    category: "Finance",
-    icon: "AUS",
-  },
-  {
-    name: "Income Tax Calculator Ireland",
-    href: "/finance/income-tax-calculator-ireland",
-    description: "Calculate 2026 Ireland take-home pay after PAYE, USC, and PRSI.",
-    category: "Finance",
-    icon: "IRE",
-  },
-  {
-    name: "General Liability Insurance Estimator",
-    href: "/finance/general-liability-insurance-cost-estimator",
-    description: "Estimate small business general liability premiums by industry, revenue, and location.",
-    category: "Finance",
-    icon: "GLI",
-  },
-  {
-    name: "Workers Comp Premium Calculator",
-    href: "/finance/workers-comp-premium-calculator",
-    description: "Estimate workers compensation insurance costs by industry class code, payroll, and state rates.",
-    category: "Finance",
-    icon: "WCOMP",
-  },
-  {
-    name: "Business Risk Exposure Score Calculator",
-    href: "/finance/business-risk-exposure-score-calculator",
-    description: "Assess operational, financial, cyber, legal, market, physical, and reputational risk across 7 critical dimensions.",
-    category: "Finance",
-    icon: "RISK",
-  },
+
+
+
+
+
   {
     name: "Inheritance Tax Calculator",
     href: "/finance/inheritance-tax-calculator",
@@ -204,13 +174,7 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     category: "Finance",
     icon: "🏛️",
   },
-  {
-    name: "Equity Dilution Calculator",
-    href: "/finance/equity-dilution-calculator",
-    description: "Model founder ownership through funding rounds, SAFEs, and option pools.",
-    category: "Finance",
-    icon: "📈",
-  },
+
   {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",

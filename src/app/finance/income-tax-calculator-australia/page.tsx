@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next'
+﻿import type { Metadata, Viewport } from 'next'
 import { AustraliaTaxTool } from './components/AustraliaTaxTool'
 import { JsonLd } from './components/JsonLd'
 import { RelatedToolsSection } from '@/components/tools/ToolPageScaffold'

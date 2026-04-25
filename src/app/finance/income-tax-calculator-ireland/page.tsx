@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { IncomeTaxCalculatorClient } from "./components/IncomeTaxCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -211,18 +211,18 @@ export default function IncomeTaxCalculatorIrelandPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="min-h-screen bg-white text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
+            <div className="mb-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-600 ring-1 ring-inset ring-emerald-500/20">
               Updated April 2026 — Budget 2026 Rates
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Income Tax Calculator{" "}
-              <span className="text-emerald-400">Ireland 2026</span>
+              <span className="text-emerald-600">Ireland 2026</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500">
               Calculate your exact take-home pay after PAYE, USC and PRSI using
               official Revenue rates. Accurate for employees, self-employed,
               married couples and single parents.
@@ -233,18 +233,18 @@ export default function IncomeTaxCalculatorIrelandPage() {
           <IncomeTaxCalculatorClient />
 
           {/* Author / Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur">
+          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xl font-bold text-emerald-400">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xl font-bold text-emerald-600">
                 M
               </div>
               <div>
-                <p className="font-semibold text-white">Verified by Mubarak</p>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="font-semibold text-slate-900">Verified by Mubarak</p>
+                <p className="mt-1 text-sm text-slate-500">
                   Calculations based on{" "}
                   <a
                     href="https://www.revenue.ie"
-                    className="text-emerald-400 underline decoration-emerald-400/30 underline-offset-4 hover:text-emerald-300"
+                    className="text-emerald-600 underline decoration-emerald-400/30 underline-offset-4 hover:text-emerald-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -262,10 +262,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1 */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Understanding Irish Income Tax, USC and PRSI in 2026
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Ireland operates a progressive income tax system administered by
                   the Revenue Commissioners under the Taxes Consolidation Act 1997.
@@ -292,16 +292,16 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 2: Tax Bands Table */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 2026 Irish Income Tax Bands and Standard Rate Cut-Off Points
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 The standard rate of income tax in Ireland is 20%. The higher rate
                 is 40%. The threshold at which you move from the standard rate to
                 the higher rate is called your <strong>standard rate cut-off point</strong>.
                 This varies based on your personal circumstances:
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -310,25 +310,25 @@ export default function IncomeTaxCalculatorIrelandPage() {
                       <th className="px-6 py-4 font-semibold">40% Higher Rate</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Single / Widowed (no children)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">€44,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">€44,000</td>
                       <td className="px-6 py-4">Balance above €44,000</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Single Parent (qualifying for SPCCC)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">€48,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">€48,000</td>
                       <td className="px-6 py-4">Balance above €48,000</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Married / Civil Partner (one income)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">€53,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">€53,000</td>
                       <td className="px-6 py-4">Balance above €53,000</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Married / Civil Partner (two incomes)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">Up to €88,000*</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">Up to €88,000*</td>
                       <td className="px-6 py-4">Balance above €88,000</td>
                     </tr>
                   </tbody>
@@ -342,10 +342,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 3: USC */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Universal Social Charge (USC) Rates for 2026
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 The Universal Social Charge is a tax on gross income introduced in
                 2011. Unlike PAYE, USC is calculated before most deductions and has
                 its own set of thresholds. For 2026, the 2% USC rate ceiling has
@@ -353,7 +353,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 remain outside the highest USC rates following the hourly minimum
                 wage increase to €14.15.
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -361,36 +361,36 @@ export default function IncomeTaxCalculatorIrelandPage() {
                       <th className="px-6 py-4 font-semibold">USC Rate</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">First €12,012</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">0.5%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">0.5%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">€12,013 – €28,700</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">2%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">2%</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">€28,701 – €70,044</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">3%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">3%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Above €70,044</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">8%</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">8%</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div className="mt-6 rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
-                <h4 className="font-semibold text-amber-400">Reduced USC Rate</h4>
-                <p className="mt-2 text-sm text-slate-300">
+              <div className="mt-6 rounded-xl border border-amber-500/20 bg-amber-50 p-5">
+                <h4 className="font-semibold text-amber-600">Reduced USC Rate</h4>
+                <p className="mt-2 text-sm text-slate-600">
                   If you are aged 70 or over, or you hold a full medical card, and
                   your aggregate income does not exceed €60,000, you qualify for a
                   reduced USC rate of 0.5% on the first €12,012 and 2% on the
                   balance. This concession has been extended until 31 December 2027.
                 </p>
               </div>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Self-employed individuals face an additional 3% USC surcharge on
                 income exceeding €100,000, bringing the top USC rate to 11% for
                 that portion. This is an important consideration for contractors,
@@ -400,10 +400,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 4: PRSI */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 PRSI Rates and Changes for 2026
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Pay Related Social Insurance funds Ireland&apos;s social welfare
                 system, including the State Pension, illness benefit, and jobseeker
                 payments. For employees (Class A), the PRSI rate increased to 4.2%
@@ -411,7 +411,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 October 2026. This creates a composite effective rate of
                 approximately 4.2375% for the full 2026 tax year.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Self-employed individuals (Class S) pay PRSI at the same rates but
                 are subject to a minimum annual contribution of €650 from 1
                 October 2024. Employees earning €352 or less per week are exempt
@@ -425,14 +425,14 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 5: Tax Credits */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 2026 Tax Credits and Reliefs
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Tax credits reduce the amount of tax you pay dollar-for-euro. The
                 most common credits for 2026 include:
               </p>
-              <ul className="mt-4 list-disc space-y-2 pl-6 text-slate-300">
+              <ul className="mt-4 list-disc space-y-2 pl-6 text-slate-600">
                 <li>
                   <strong>Personal Tax Credit:</strong> €2,000 (single) or €4,000
                   (married/civil partners).
@@ -464,7 +464,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   individuals aged 65 and over.
                 </li>
               </ul>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Pension contributions qualify for tax relief at your marginal rate
                 (20% or 40%). For example, if you pay tax at 40%, a €1,000 pension
                 contribution reduces your tax bill by €400. Our calculator factors
@@ -474,51 +474,51 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 6: Examples */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Example Take-Home Pay Calculations for 2026
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 To illustrate how the Irish tax system works in practice, here are
                 three common scenarios calculated using the official 2026 rates:
               </p>
               <div className="mt-6 space-y-6">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Example 1: Single Employee Earning €50,000
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Income Tax: €8,800 (20% of €44,000) + €2,400 (40% of €6,000) = €11,200.
                     Less tax credits of €4,000 = <strong>€7,200 PAYE</strong>.
                     USC: €60.06 + €334.00 + €639.12 = <strong>€1,033.18</strong>.
                     PRSI: €50,000 × 4.2375% = <strong>€2,118.75</strong>.
                     <br />
-                    <span className="text-white">Net Take-Home Pay: €39,648.07 annually (€3,304.01 monthly)</span>
+                    <span className="text-slate-900">Net Take-Home Pay: €39,648.07 annually (€3,304.01 monthly)</span>
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Example 2: Married Couple (One Income) Earning €70,000
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Income Tax: €10,600 (20% of €53,000) + €6,800 (40% of €17,000) = €17,400.
                     Less married credits of €4,000 + PAYE €2,000 = <strong>€11,400 PAYE</strong>.
                     USC: €60.06 + €334.00 + €1,240.32 = <strong>€1,634.38</strong>.
                     PRSI: €70,000 × 4.2375% = <strong>€2,966.25</strong>.
                     <br />
-                    <span className="text-white">Net Take-Home Pay: €53,999.37 annually (€4,499.95 monthly)</span>
+                    <span className="text-slate-900">Net Take-Home Pay: €53,999.37 annually (€4,499.95 monthly)</span>
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-6">
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Example 3: Self-Employed Individual Earning €85,000
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Income Tax: €8,800 (20% of €44,000) + €16,400 (40% of €41,000) = €25,200.
                     Less credits of €4,000 = <strong>€21,200 PAYE</strong>.
                     USC: €60.06 + €334.00 + €1,240.32 + €1,196.48 = <strong>€2,830.86</strong>.
                     PRSI: €85,000 × 4.2375% = <strong>€3,601.88</strong> (above minimum €650).
                     <br />
-                    <span className="text-white">Net Take-Home Pay: €57,367.26 annually (€4,780.61 monthly)</span>
+                    <span className="text-slate-900">Net Take-Home Pay: €57,367.26 annually (€4,780.61 monthly)</span>
                   </p>
                 </div>
               </div>
@@ -526,19 +526,19 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 7: Tax Saving Tips */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 How to Reduce Your Tax Bill in Ireland
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Legal tax planning can significantly increase your net income.
                 Consider these strategies:
               </p>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">
                     Maximise Pension Contributions
                   </h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-slate-600">
                     Contributions to a Personal Retirement Savings Account (PRSA)
                     or occupational pension scheme attract tax relief at your
                     marginal rate. Age-related limits apply: up to 15% of net
@@ -546,32 +546,32 @@ export default function IncomeTaxCalculatorIrelandPage() {
                     60 and over.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">
                     Claim All Available Credits
                   </h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-slate-600">
                     Ensure your myAccount profile on Revenue.ie is up to date.
                     Many taxpayers fail to claim the Rent Tax Credit, Home Carer
                     Credit, or Medical Expense Relief, leaving hundreds of euros
                     unclaimed each year.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">
                     Flat-Rate Expenses
                   </h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-slate-600">
                     Certain professions qualify for flat-rate expenses that reduce
                     taxable income. Teachers, nurses, shop assistants, and many
                     tradespeople can claim these without receipts.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">
                     Income Splitting for Married Couples
                   </h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-slate-600">
                     Jointly assessed married couples can transfer unused standard
                     rate bands and tax credits between spouses, ensuring income
                     is taxed at 20% rather than 40% where possible.
@@ -582,17 +582,17 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 8: Methodology */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Calculator Methodology and Data Sources
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 This calculator uses the official tax parameters published by the
                 Revenue Commissioners and the Department of Finance following
                 Budget 2026. Income tax bands, tax credits, USC thresholds, and
                 PRSI rates are sourced directly from{" "}
                 <a
                   href="https://www.revenue.ie"
-                  className="text-emerald-400 underline"
+                  className="text-emerald-600 underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -601,7 +601,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 and{" "}
                 <a
                   href="https://www.citizensinformation.ie"
-                  className="text-emerald-400 underline"
+                  className="text-emerald-600 underline"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -610,7 +610,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 . The calculator assumes a composite PRSI rate of 4.2375% for
                 2026 to account for the October rate change.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Limitations: This tool does not account for the High Income Earner
                 Restriction, USC surcharges on specified property reliefs,
                 Local Property Tax (LPT), Auto-Enrolment pension deductions, or
@@ -622,15 +622,15 @@ export default function IncomeTaxCalculatorIrelandPage() {
 
             {/* Section 9: FAQ for Humans */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Frequently Asked Questions
               </h2>
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     What is the standard rate cut-off point for a single person in Ireland in 2026?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     For 2026, the standard rate cut-off point for a single person
                     is €44,000. This means you pay 20% income tax on the first
                     €44,000 of your earnings and 40% on any income above that
@@ -638,10 +638,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     How is USC different from income tax?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     USC is a separate charge on gross income that funds public
                     services. It is calculated before tax credits are applied and
                     uses its own tiered rate structure. Unlike PAYE, USC is not
@@ -650,10 +650,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Do self-employed people pay more tax in Ireland?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Self-employed individuals pay the same income tax rates as
                     employees but face an additional 3% USC surcharge on income
                     over €100,000. They also pay Class S PRSI (same rate as
@@ -663,10 +663,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     Can I claim tax relief on rent in Ireland?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Yes. The Rent Tax Credit allows renters to claim up to €1,000
                     (single) or €2,000 (married/jointly assessed) per year for
                     rent paid on your principal private residence. This is a tax
@@ -675,10 +675,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-emerald-400">
+                  <h3 className="text-lg font-semibold text-emerald-600">
                     What is the effective tax rate on €100,000 in Ireland?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     A single PAYE employee earning €100,000 in 2026 will pay
                     approximately €23,200 in income tax, €2,830 in USC, and
                     €4,238 in PRSI, leaving a net take-home pay of roughly

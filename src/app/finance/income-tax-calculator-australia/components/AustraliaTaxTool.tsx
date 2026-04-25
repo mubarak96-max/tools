@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState, useMemo } from 'react'
 import { 
@@ -190,7 +190,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                     type="number"
                     value={income}
                     onChange={(e) => setIncome(Number(e.target.value))}
-                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 pl-7 pr-3 py-2.5 text-lg font-semibold text-neutral-900 dark:text-white focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 pl-7 pr-3 py-2.5 text-lg font-semibold text-neutral-900 dark:text-slate-900 focus:border-yellow-500 outline-none"
                   />
                 </div>
               </div>
@@ -201,7 +201,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                   <select
                     value={residency}
                     onChange={(e) => setResidency(e.target.value as Residency)}
-                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 px-3 py-2 text-sm text-neutral-900 dark:text-white focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 px-3 py-2 text-sm text-neutral-900 dark:text-slate-900 focus:border-yellow-500 outline-none"
                   >
                     <option value="resident">🇦🇺 Australian Resident</option>
                     <option value="non_resident">🌏 Foreign Resident</option>
@@ -213,7 +213,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                   <select
                     value={frequency}
                     onChange={(e) => setFrequency(e.target.value as PayFrequency)}
-                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 px-3 py-2 text-sm text-neutral-900 dark:text-white focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 px-3 py-2 text-sm text-neutral-900 dark:text-slate-900 focus:border-yellow-500 outline-none"
                   >
                     <option value="annual">Annual</option>
                     <option value="monthly">Monthly</option>
@@ -231,7 +231,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                     type="number"
                     value={deductions}
                     onChange={(e) => setDeductions(Number(e.target.value))}
-                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 pl-6 pr-3 py-2 text-sm text-neutral-900 dark:text-white focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 pl-6 pr-3 py-2 text-sm text-neutral-900 dark:text-slate-900 focus:border-yellow-500 outline-none"
                   />
                 </div>
                 <p className="text-[10px] text-neutral-400 mt-0.5">Work-related expenses, donations, etc.</p>
@@ -310,10 +310,10 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
           
           {/* Net Pay Big Number */}
           <div className="rounded-2xl border border-emerald-200 dark:border-emerald-900/30 bg-emerald-50 dark:bg-emerald-950/20 p-6 text-center">
-            <p className="text-sm font-medium text-emerald-700 dark:text-emerald-400 mb-1">
+            <p className="text-sm font-medium text-emerald-700 dark:text-emerald-600 mb-1">
               {freqLabel[frequency]} Take-Home Pay
             </p>
-            <p className="text-4xl font-bold text-emerald-700 dark:text-emerald-400">
+            <p className="text-4xl font-bold text-emerald-700 dark:text-emerald-600">
               {formatCurrency(results.perPeriod.net)}
             </p>
             <p className="text-xs text-emerald-600 dark:text-emerald-500 mt-1">

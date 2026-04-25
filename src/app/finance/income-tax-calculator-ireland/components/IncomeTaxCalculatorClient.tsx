@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -234,18 +234,18 @@ export function IncomeTaxCalculatorClient() {
       <div className="grid gap-8 lg:grid-cols-12">
         {/* Inputs */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10">
-                <Calculator className="h-5 w-5 text-emerald-400" />
+                <Calculator className="h-5 w-5 text-emerald-600" />
               </div>
-              <h2 className="text-xl font-bold text-white">Your Details</h2>
+              <h2 className="text-xl font-bold text-slate-900">Your Details</h2>
             </div>
 
             {/* Gross Salary */}
             <div className="space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Euro className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Euro className="h-4 w-4 text-emerald-600" />
                 Gross Salary
               </label>
               <div className="flex gap-2">
@@ -255,7 +255,7 @@ export function IncomeTaxCalculatorClient() {
                   onChange={(e) =>
                     handleInputChange("grossSalary", Number(e.target.value))
                   }
-                  className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   placeholder="50000"
                 />
                 <select
@@ -263,7 +263,7 @@ export function IncomeTaxCalculatorClient() {
                   onChange={(e) =>
                     handleInputChange("frequency", e.target.value as Frequency)
                   }
-                  className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-3 text-sm text-white focus:border-emerald-500 focus:outline-none"
+                  className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-900 focus:border-emerald-500 focus:outline-none"
                 >
                   <option value="yearly">/year</option>
                   <option value="monthly">/month</option>
@@ -274,8 +274,8 @@ export function IncomeTaxCalculatorClient() {
 
             {/* Employment Type */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Briefcase className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Briefcase className="h-4 w-4 text-emerald-600" />
                 Employment Type
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -290,8 +290,8 @@ export function IncomeTaxCalculatorClient() {
                     }
                     className={`rounded-lg border px-4 py-2.5 text-sm font-medium transition ${
                       state.employmentType === opt.value
-                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
-                        : "border-slate-700 bg-slate-950 text-slate-400 hover:border-slate-600"
+                        ? "border-emerald-500 bg-emerald-100 text-emerald-700"
+                        : "border-slate-200 bg-slate-50 text-slate-500 hover:border-slate-600"
                     }`}
                   >
                     {opt.label}
@@ -302,8 +302,8 @@ export function IncomeTaxCalculatorClient() {
 
             {/* Marital Status */}
             <div className="mt-5 space-y-3">
-              <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                <Users className="h-4 w-4 text-emerald-400" />
+              <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                <Users className="h-4 w-4 text-emerald-600" />
                 Marital Status
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -320,8 +320,8 @@ export function IncomeTaxCalculatorClient() {
                     }
                     className={`rounded-lg border px-3 py-2.5 text-sm font-medium transition ${
                       state.maritalStatus === opt.value
-                        ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
-                        : "border-slate-700 bg-slate-950 text-slate-400 hover:border-slate-600"
+                        ? "border-emerald-500 bg-emerald-100 text-emerald-700"
+                        : "border-slate-200 bg-slate-50 text-slate-500 hover:border-slate-600"
                     }`}
                   >
                     {opt.label}
@@ -333,7 +333,7 @@ export function IncomeTaxCalculatorClient() {
             {/* Spouse Income */}
             {state.maritalStatus === "marriedTwo" && (
               <div className="mt-5 space-y-3">
-                <label className="text-sm font-medium text-slate-300">
+                <label className="text-sm font-medium text-slate-600">
                   Spouse&apos;s Annual Gross Income
                 </label>
                 <input
@@ -342,7 +342,7 @@ export function IncomeTaxCalculatorClient() {
                   onChange={(e) =>
                     handleInputChange("spouseIncome", Number(e.target.value))
                   }
-                  className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                   placeholder="30000"
                 />
               </div>
@@ -351,7 +351,7 @@ export function IncomeTaxCalculatorClient() {
             {/* Advanced Toggle */}
             <button
               onClick={() => setShowAdvanced(!showAdvanced)}
-              className="mt-6 flex w-full items-center justify-between rounded-lg border border-slate-800 bg-slate-950/50 px-4 py-3 text-sm font-medium text-slate-300 hover:bg-slate-950"
+              className="mt-6 flex w-full items-center justify-between rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50"
             >
               <span>Advanced Options</span>
               {showAdvanced ? (
@@ -362,10 +362,10 @@ export function IncomeTaxCalculatorClient() {
             </button>
 
             {showAdvanced && (
-              <div className="mt-4 space-y-5 rounded-xl border border-slate-800 bg-slate-950/30 p-4">
+              <div className="mt-4 space-y-5 rounded-xl border border-slate-200 bg-slate-50 p-4">
                 {/* Age */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-300">
+                  <label className="text-sm font-medium text-slate-600">
                     Your Age
                   </label>
                   <input
@@ -374,7 +374,7 @@ export function IncomeTaxCalculatorClient() {
                     onChange={(e) =>
                       handleInputChange("age", Number(e.target.value))
                     }
-                    className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-emerald-500 focus:outline-none"
+                    className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-emerald-500 focus:outline-none"
                   />
                   <p className="text-xs text-slate-500">
                     Affects USC reduced rate eligibility and PRSI liability.
@@ -383,8 +383,8 @@ export function IncomeTaxCalculatorClient() {
 
                 {/* Medical Card */}
                 <div className="flex items-center justify-between">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <HeartPulse className="h-4 w-4 text-rose-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <HeartPulse className="h-4 w-4 text-rose-600" />
                     Full Medical Card
                   </label>
                   <button
@@ -405,8 +405,8 @@ export function IncomeTaxCalculatorClient() {
 
                 {/* Children */}
                 <div className="flex items-center justify-between">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <Users className="h-4 w-4 text-blue-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <Users className="h-4 w-4 text-blue-600" />
                     Dependent Children
                   </label>
                   <button
@@ -427,8 +427,8 @@ export function IncomeTaxCalculatorClient() {
 
                 {/* Pension */}
                 <div className="space-y-3">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <PiggyBank className="h-4 w-4 text-amber-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <PiggyBank className="h-4 w-4 text-amber-600" />
                     Pension Contribution
                   </label>
                   <div className="flex gap-2">
@@ -438,7 +438,7 @@ export function IncomeTaxCalculatorClient() {
                       onChange={(e) =>
                         handleInputChange("pensionPercent", Number(e.target.value))
                       }
-                      className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-emerald-500 focus:outline-none"
+                      className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-emerald-500 focus:outline-none"
                       placeholder="%"
                     />
                     <span className="flex items-center text-slate-500">%</span>
@@ -448,7 +448,7 @@ export function IncomeTaxCalculatorClient() {
                       onChange={(e) =>
                         handleInputChange("pensionAmount", Number(e.target.value))
                       }
-                      className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-emerald-500 focus:outline-none"
+                      className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-emerald-500 focus:outline-none"
                       placeholder="€"
                     />
                   </div>
@@ -456,30 +456,30 @@ export function IncomeTaxCalculatorClient() {
 
                 {/* Tax Credits */}
                 <div className="space-y-3">
-                  <label className="flex items-center gap-2 text-sm font-medium text-slate-300">
-                    <Home className="h-4 w-4 text-violet-400" />
+                  <label className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                    <Home className="h-4 w-4 text-violet-600" />
                     Additional Tax Credits
                   </label>
                   <div className="space-y-2">
-                    <label className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2.5 text-sm text-slate-300 cursor-pointer">
+                    <label className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-600 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={state.rentCredit}
                         onChange={(e) =>
                           handleInputChange("rentCredit", e.target.checked)
                         }
-                        className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-emerald-500 focus:ring-emerald-500"
+                        className="h-4 w-4 rounded border-slate-600 bg-slate-50 text-emerald-500 focus:ring-emerald-500"
                       />
                       Rent Tax Credit
                     </label>
-                    <label className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/50 px-3 py-2.5 text-sm text-slate-300 cursor-pointer">
+                    <label className="flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-600 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={state.homeCarerCredit}
                         onChange={(e) =>
                           handleInputChange("homeCarerCredit", e.target.checked)
                         }
-                        className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-emerald-500 focus:ring-emerald-500"
+                        className="h-4 w-4 rounded border-slate-600 bg-slate-50 text-emerald-500 focus:ring-emerald-500"
                       />
                       Home Carer Tax Credit
                     </label>
@@ -494,38 +494,38 @@ export function IncomeTaxCalculatorClient() {
         <div className="lg:col-span-7 space-y-6">
           {/* Summary Cards */}
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Net Pay
               </p>
-              <p className="mt-2 text-2xl font-bold text-emerald-400">
+              <p className="mt-2 text-2xl font-bold text-emerald-600">
                 {formatMoney(fromAnnual(results.netPay, state.frequency))}
               </p>
               <p className="text-xs text-slate-500">per {state.frequency.slice(0, -2) || "year"}</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Total Tax
               </p>
-              <p className="mt-2 text-2xl font-bold text-rose-400">
+              <p className="mt-2 text-2xl font-bold text-rose-600">
                 {formatMoney(fromAnnual(results.totalDeductions, state.frequency))}
               </p>
               <p className="text-xs text-slate-500">per {state.frequency.slice(0, -2) || "year"}</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Effective Rate
               </p>
-              <p className="mt-2 text-2xl font-bold text-amber-400">
+              <p className="mt-2 text-2xl font-bold text-amber-600">
                 {results.effectiveRate.toFixed(1)}%
               </p>
               <p className="text-xs text-slate-500">of gross income</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl backdrop-blur">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl backdrop-blur">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
                 Marginal Rate
               </p>
-              <p className="mt-2 text-2xl font-bold text-blue-400">
+              <p className="mt-2 text-2xl font-bold text-blue-600">
                 {results.higherRateAmount > 0 ? "48.5%" : "28.5%"}
               </p>
               <p className="text-xs text-slate-500">tax + USC + PRSI</p>
@@ -533,8 +533,8 @@ export function IncomeTaxCalculatorClient() {
           </div>
 
           {/* Chart + Breakdown */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">
               Where Your Money Goes
             </h3>
             <div className="grid items-center gap-6 md:grid-cols-2">
@@ -558,10 +558,10 @@ export function IncomeTaxCalculatorClient() {
                     <Tooltip
                       formatter={(value: number) => formatMoney(value)}
                       contentStyle={{
-                        backgroundColor: "#0f172a",
-                        border: "1px solid #1e293b",
+                        backgroundColor: "#ffffff",
+                        border: "1px solid #e2e8f0",
                         borderRadius: "8px",
-                        color: "#f8fafc",
+                        color: "#0f172a",
                       }}
                     />
                     <Legend
@@ -569,7 +569,7 @@ export function IncomeTaxCalculatorClient() {
                       height={36}
                       iconType="circle"
                       formatter={(value: string) => (
-                        <span className="text-slate-300 text-sm">{value}</span>
+                        <span className="text-slate-600 text-sm">{value}</span>
                       )}
                     />
                   </PieChart>
@@ -577,49 +577,49 @@ export function IncomeTaxCalculatorClient() {
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center justify-between rounded-lg bg-slate-950/50 px-4 py-3">
+                <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-emerald-500" />
-                    <span className="text-sm text-slate-300">Net Take-Home Pay</span>
+                    <span className="text-sm text-slate-600">Net Take-Home Pay</span>
                   </div>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-slate-900">
                     {formatMoney(results.netPay)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg bg-slate-950/50 px-4 py-3">
+                <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-blue-500" />
-                    <span className="text-sm text-slate-300">PAYE Income Tax</span>
+                    <span className="text-sm text-slate-600">PAYE Income Tax</span>
                   </div>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-slate-900">
                     {formatMoney(results.incomeTax)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg bg-slate-950/50 px-4 py-3">
+                <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-amber-500" />
-                    <span className="text-sm text-slate-300">Universal Social Charge</span>
+                    <span className="text-sm text-slate-600">Universal Social Charge</span>
                   </div>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-slate-900">
                     {formatMoney(results.usc)}
                   </span>
                 </div>
-                <div className="flex items-center justify-between rounded-lg bg-slate-950/50 px-4 py-3">
+                <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3">
                   <div className="flex items-center gap-2">
                     <div className="h-3 w-3 rounded-full bg-red-500" />
-                    <span className="text-sm text-slate-300">PRSI</span>
+                    <span className="text-sm text-slate-600">PRSI</span>
                   </div>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-slate-900">
                     {formatMoney(results.prsi)}
                   </span>
                 </div>
                 {results.pensionContribution > 0 && (
-                  <div className="flex items-center justify-between rounded-lg bg-slate-950/50 px-4 py-3">
+                  <div className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className="h-3 w-3 rounded-full bg-violet-500" />
-                      <span className="text-sm text-slate-300">Pension Contribution</span>
+                      <span className="text-sm text-slate-600">Pension Contribution</span>
                     </div>
-                    <span className="font-semibold text-white">
+                    <span className="font-semibold text-slate-900">
                       {formatMoney(results.pensionContribution)}
                     </span>
                   </div>
@@ -629,92 +629,92 @@ export function IncomeTaxCalculatorClient() {
           </div>
 
           {/* Detailed Breakdown Table */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
-            <h3 className="mb-4 text-lg font-bold text-white">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">
               Detailed Annual Breakdown
             </h3>
             <div className="space-y-2">
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">Gross Income</span>
-                <span className="font-medium text-white">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">Gross Income</span>
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.gross)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">Taxable Income (after pension)</span>
-                <span className="font-medium text-white">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">Taxable Income (after pension)</span>
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.gross - results.pensionContribution)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">
                   Income Tax @ 20% (€{results.standardRateAmount.toFixed(0)})
                 </span>
-                <span className="font-medium text-white">
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.standardRateAmount * 0.2)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">
                   Income Tax @ 40% (€{results.higherRateAmount.toFixed(0)})
                 </span>
-                <span className="font-medium text-white">
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.higherRateAmount * 0.4)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">Total Tax Before Credits</span>
-                <span className="font-medium text-white">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">Total Tax Before Credits</span>
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.incomeTaxBeforeCredits)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-emerald-400">Less: Tax Credits</span>
-                <span className="font-medium text-emerald-400">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-emerald-600">Less: Tax Credits</span>
+                <span className="font-medium text-emerald-600">
                   -{formatMoney(results.credits)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">PAYE Tax Payable</span>
-                <span className="font-medium text-white">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">PAYE Tax Payable</span>
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.incomeTax)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">Universal Social Charge (USC)</span>
-                <span className="font-medium text-white">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">Universal Social Charge (USC)</span>
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.usc)}
                 </span>
               </div>
-              <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                <span className="text-slate-400">PRSI</span>
-                <span className="font-medium text-white">
+              <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                <span className="text-slate-500">PRSI</span>
+                <span className="font-medium text-slate-900">
                   {formatMoney(results.prsi)}
                 </span>
               </div>
               {results.pensionContribution > 0 && (
-                <div className="flex justify-between border-b border-slate-800 pb-2 text-sm">
-                  <span className="text-slate-400">Pension Contribution</span>
-                  <span className="font-medium text-white">
+                <div className="flex justify-between border-b border-slate-200 pb-2 text-sm">
+                  <span className="text-slate-500">Pension Contribution</span>
+                  <span className="font-medium text-slate-900">
                     {formatMoney(results.pensionContribution)}
                   </span>
                 </div>
               )}
               <div className="flex justify-between pt-2 text-base font-bold">
-                <span className="text-white">Net Annual Pay</span>
-                <span className="text-emerald-400">
+                <span className="text-slate-900">Net Annual Pay</span>
+                <span className="text-emerald-600">
                   {formatMoney(results.netPay)}
                 </span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">Net Monthly Pay</span>
-                <span className="font-semibold text-white">
+                <span className="text-slate-500">Net Monthly Pay</span>
+                <span className="font-semibold text-slate-900">
                   {formatMoney(results.netPay / 12)}
                 </span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-slate-400">Net Weekly Pay</span>
-                <span className="font-semibold text-white">
+                <span className="text-slate-500">Net Weekly Pay</span>
+                <span className="font-semibold text-slate-900">
                   {formatMoney(results.netPay / 52)}
                 </span>
               </div>
@@ -723,11 +723,11 @@ export function IncomeTaxCalculatorClient() {
 
           {/* Tax Rate Info */}
           <div className="flex items-start gap-3 rounded-xl border border-blue-500/20 bg-blue-500/5 p-4">
-            <div className="mt-0.5 h-5 w-5 shrink-0 text-blue-400">
+            <div className="mt-0.5 h-5 w-5 shrink-0 text-blue-600">
               <Info className="h-5 w-5" />
             </div>
-            <div className="text-sm text-slate-300">
-              <p className="font-medium text-blue-400">Marginal Rate Note</p>
+            <div className="text-sm text-slate-600">
+              <p className="font-medium text-blue-600">Marginal Rate Note</p>
               <p className="mt-1">
                 Your marginal tax rate is the total tax you pay on each additional
                 euro earned. For most Irish employees in 2026, this is{" "}

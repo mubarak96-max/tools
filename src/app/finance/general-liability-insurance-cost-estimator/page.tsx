@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { GeneralLiabilityCalculatorClient } from "./components/GeneralLiabilityCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -217,18 +217,18 @@ export default function GeneralLiabilityEstimatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="min-h-screen bg-white text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">
+            <div className="mb-4 inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-600 ring-1 ring-inset ring-blue-500/20">
               Updated April 2026 — Industry-Specific Rates
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               General Liability Insurance{" "}
-              <span className="text-blue-400">Cost Estimator</span>
+              <span className="text-blue-600">Cost Estimator</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500">
               Free tool to estimate your small business general liability
               insurance premium. Calculate costs by industry, revenue, location,
               employees, and coverage limits in seconds.
@@ -239,14 +239,14 @@ export default function GeneralLiabilityEstimatorPage() {
           <GeneralLiabilityCalculatorClient />
 
           {/* Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur">
+          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-xl font-bold text-blue-400">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-xl font-bold text-blue-600">
                 M
               </div>
               <div>
-                <p className="font-semibold text-white">Verified by Mubarak</p>
-                <p className="mt-1 text-sm text-slate-400">
+                <p className="font-semibold text-slate-900">Verified by Mubarak</p>
+                <p className="mt-1 text-sm text-slate-500">
                   Estimates based on 2026 market data from leading commercial
                   insurers including The Hartford, Hiscox, Next Insurance, and
                   Progressive Commercial. Actual quotes may vary. Always obtain
@@ -261,10 +261,10 @@ export default function GeneralLiabilityEstimatorPage() {
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1 */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 What Is General Liability Insurance and Why Does Your Business Need It?
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   General liability insurance, also known as commercial general
                   liability (CGL) or business liability insurance, is the
@@ -303,17 +303,17 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 2: Cost by Industry */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 General Liability Insurance Cost by Industry (2026 Estimates)
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Industry classification is the single most important factor in
                 determining your general liability premium. Insurers use
                 standardized classification codes to assess risk exposure. Below
                 are median annual premiums for a $1 million/$2 million policy
                 based on 2026 market data:
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -323,59 +323,59 @@ export default function GeneralLiabilityEstimatorPage() {
                       <th className="px-6 py-4 font-semibold">Typical Range</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Consulting / IT Services</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Low</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$450</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$450</td>
                       <td className="px-6 py-4">$350 – $750</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Real Estate Agents</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">Low</span></td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$500</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$500</td>
                       <td className="px-6 py-4">$400 – $900</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Retail Store (Small)</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$750</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$750</td>
                       <td className="px-6 py-4">$500 – $1,200</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Restaurant / Catering</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$1,200</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$1,200</td>
                       <td className="px-6 py-4">$800 – $2,500</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Landscaping / Lawn Care</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-400">Medium</span></td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$1,100</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$1,100</td>
                       <td className="px-6 py-4">$700 – $1,800</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Electrical Contractor</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$2,000</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$2,000</td>
                       <td className="px-6 py-4">$1,200 – $3,500</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Plumbing Contractor</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$2,200</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$2,200</td>
                       <td className="px-6 py-4">$1,400 – $4,000</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Roofing Contractor</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$4,500</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$4,500</td>
                       <td className="px-6 py-4">$2,500 – $8,000</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Manufacturing</td>
-                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-400">High</span></td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$1,800</td>
+                      <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$1,800</td>
                       <td className="px-6 py-4">$1,000 – $3,000</td>
                     </tr>
                   </tbody>
@@ -391,13 +391,13 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 3: Cost Factors */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Key Factors That Determine Your General Liability Insurance Premium
               </h2>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Industry Classification</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Industry Classification</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Insurers use ISO (Insurance Services Office) classification
                     codes to categorize risk. A roofing contractor (class code
                     5551) faces exponentially higher premiums than a software
@@ -405,9 +405,9 @@ export default function GeneralLiabilityEstimatorPage() {
                     work and height exposure.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Annual Revenue & Payroll</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Annual Revenue & Payroll</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Premiums scale with revenue because higher sales volume
                     increases the statistical probability of a claim. Some
                     carriers use payroll as the rating basis for certain
@@ -415,36 +415,36 @@ export default function GeneralLiabilityEstimatorPage() {
                     manufacturing.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Coverage Limits</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Coverage Limits</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     A $1 million/$2 million policy is standard. Increasing to
                     $2 million/$4 million typically adds 15-30% to the premium.
                     Umbrella policies providing excess liability above $1 million
                     generally cost $400-$800 per million of additional coverage.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Business Location</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Business Location</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     States with higher litigation rates and larger jury awards
                     (California, New York, Florida, Illinois) command higher
                     premiums. Urban areas generally cost more than rural
                     locations due to higher foot traffic and property values.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Number of Employees</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Number of Employees</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     More employees increase exposure to bodily injury claims and
                     property damage incidents. Each additional employee
                     typically adds $100-$300 to the annual premium depending on
                     job duties and risk level.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">Claims History</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">Claims History</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     A single general liability claim can increase premiums by
                     20-40% at renewal. Businesses with no claims for 3-5 years
                     may qualify for claims-free discounts of 10-15%. Some
@@ -456,10 +456,10 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 4: Coverage Limits */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Understanding General Liability Coverage Limits and Deductibles
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 General liability policies are written with two primary limits:
                 the <strong>per occurrence limit</strong> and the{" "}
                 <strong>aggregate limit</strong>. The per occurrence limit is the
@@ -467,7 +467,7 @@ export default function GeneralLiabilityEstimatorPage() {
                 limit is the maximum the insurer will pay for all claims during
                 the policy period (typically one year).
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 The most common limit structure for small businesses is{" "}
                 <strong>$1 million per occurrence / $2 million aggregate</strong>.
                 This is often written as "1/2" or "$1M/$2M" in insurance
@@ -477,7 +477,7 @@ export default function GeneralLiabilityEstimatorPage() {
                 $2 million/$4 million or higher may be required by contracts or
                 prudent risk management.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Your <strong>deductible</strong> (also called self-insured
                 retention in some policies) is the amount you pay out-of-pocket
                 before insurance coverage kicks in. Standard general liability
@@ -491,10 +491,10 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 5: BOP Bundling */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Bundling with a Business Owner's Policy (BOP)
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 A Business Owner's Policy (BOP) bundles general liability
                 insurance with commercial property insurance and often includes
                 business interruption coverage. For eligible small businesses
@@ -502,7 +502,7 @@ export default function GeneralLiabilityEstimatorPage() {
                 million in revenue), a BOP costs significantly less than
                 purchasing general liability and property coverage separately.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 In 2026, BOP premiums range from $500 to $3,500 annually
                 depending on property values and liability exposure. A retail
                 store with $50,000 in inventory might pay $1,200 for a BOP that
@@ -517,16 +517,16 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 6: State Variations */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 General Liability Insurance Costs by State
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 State regulations, litigation climates, and local market
                 competition significantly impact general liability premiums.
                 Below is a comparison of median annual premiums for a standard
                 $1M/$2M policy across selected states:
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -535,40 +535,40 @@ export default function GeneralLiabilityEstimatorPage() {
                       <th className="px-6 py-4 font-semibold">Key Cost Driver</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Texas</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$650</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$650</td>
                       <td className="px-6 py-4">Competitive market, tort reform</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Ohio</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$680</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$680</td>
                       <td className="px-6 py-4">Moderate litigation climate</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">North Carolina</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">$700</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">$700</td>
                       <td className="px-6 py-4">Business-friendly courts</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Illinois</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$950</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$950</td>
                       <td className="px-6 py-4">Cook County litigation risk</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">New York</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">$1,100</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">$1,100</td>
                       <td className="px-6 py-4">High verdicts, dense urban areas</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">California</td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$1,250</td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$1,250</td>
                       <td className="px-6 py-4">Prop 65, high litigation, labor laws</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Florida</td>
-                      <td className="px-6 py-4 font-medium text-rose-400">$1,300</td>
+                      <td className="px-6 py-4 font-medium text-rose-600">$1,300</td>
                       <td className="px-6 py-4">Assignment of benefits abuse</td>
                     </tr>
                   </tbody>
@@ -578,15 +578,15 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 7: How to Save */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 7 Proven Ways to Lower Your General Liability Insurance Premium
               </h2>
               <div className="mt-6 space-y-5">
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">1</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">1</div>
                   <div>
-                    <h4 className="font-semibold text-white">Bundle with a BOP</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Bundle with a BOP</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       If your business qualifies, a Business Owner's Policy can
                       save 15-25% compared to purchasing general liability and
                       property coverage separately.
@@ -594,10 +594,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">2</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">2</div>
                   <div>
-                    <h4 className="font-semibold text-white">Increase Your Deductible</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Increase Your Deductible</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Raising your deductible from $500 to $2,500 can reduce
                       premiums by 10-15%. Ensure you have cash reserves to cover
                       the higher out-of-pocket cost if a claim occurs.
@@ -605,10 +605,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">3</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">3</div>
                   <div>
-                    <h4 className="font-semibold text-white">Implement Risk Management</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Implement Risk Management</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Documented safety programs, employee training, and regular
                       property inspections can qualify you for risk management
                       discounts of 5-10% with many carriers.
@@ -616,10 +616,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">4</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">4</div>
                   <div>
-                    <h4 className="font-semibold text-white">Pay Annually Instead of Monthly</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Pay Annually Instead of Monthly</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Monthly payment plans typically include financing fees of
                       5-10%. Paying the full annual premium upfront eliminates
                       these charges.
@@ -627,10 +627,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">5</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">5</div>
                   <div>
-                    <h4 className="font-semibold text-white">Shop Multiple Carriers</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Shop Multiple Carriers</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Premiums can vary by 50% or more between carriers for the
                       same business. Use an independent agent or digital broker
                       to compare quotes from at least 3-5 insurers.
@@ -638,10 +638,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">6</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">6</div>
                   <div>
-                    <h4 className="font-semibold text-white">Maintain a Clean Claims Record</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Maintain a Clean Claims Record</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       A claims-free history of 3-5 years can trigger discounts
                       of 10-15%. Consider paying small claims out-of-pocket to
                       preserve your loss history.
@@ -649,10 +649,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-400">7</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-sm font-bold text-blue-600">7</div>
                   <div>
-                    <h4 className="font-semibold text-white">Accurately Classify Your Business</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Accurately Classify Your Business</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Misclassification into a higher-risk code can
                       unnecessarily inflate premiums. Review your class code
                       with your agent to ensure it accurately reflects your
@@ -665,15 +665,15 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 8: FAQ for Humans */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Frequently Asked Questions About General Liability Insurance
               </h2>
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-blue-400">
+                  <h3 className="text-lg font-semibold text-blue-600">
                     What is the average cost of general liability insurance for a small business?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     The average cost of general liability insurance for a small
                     business in the United States is approximately $1,200 per
                     year, or $100 per month, for a $1 million/$2 million policy.
@@ -683,10 +683,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-blue-400">
+                  <h3 className="text-lg font-semibold text-blue-600">
                     Does general liability insurance cover employee injuries?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     No. General liability insurance specifically excludes
                     employee injuries. Workers' compensation insurance is
                     required by law in nearly all states to cover medical
@@ -696,10 +696,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-blue-400">
+                  <h3 className="text-lg font-semibold text-blue-600">
                     Can I get general liability insurance without a business license?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Yes, most insurers do not require an active business license
                     to issue a general liability policy. However, some
                     industries (construction, healthcare, food service) may need
@@ -708,10 +708,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-blue-400">
+                  <h3 className="text-lg font-semibold text-blue-600">
                     How quickly can I get general liability insurance?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Many digital insurers (Next, Hiscox, Thimble) can issue
                     policies and provide a Certificate of Insurance (COI) within
                     minutes of online application. Traditional carriers may take
@@ -720,10 +720,10 @@ export default function GeneralLiabilityEstimatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-blue-400">
+                  <h3 className="text-lg font-semibold text-blue-600">
                     What happens if my general liability claim exceeds my policy limits?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     If a claim exceeds your per-occurrence or aggregate limit,
                     your business is responsible for the excess amount. This is
                     why many businesses purchase commercial umbrella insurance,
@@ -737,10 +737,10 @@ export default function GeneralLiabilityEstimatorPage() {
 
             {/* Section 9: Methodology */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Calculator Methodology and Data Sources
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 This estimator uses composite premium data aggregated from
                 publicly available rate filings, carrier quoting engines, and
                 industry benchmark reports. Base rates are derived from 2026
@@ -749,7 +749,7 @@ export default function GeneralLiabilityEstimatorPage() {
                 modifiers reflect NAIC loss cost trends and ISO advisory loss
                 costs.
               </p>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 <strong>Limitations:</strong> This tool provides estimates only
                 and should not be used for binding coverage decisions. Actual
                 premiums depend on individual underwriting factors including

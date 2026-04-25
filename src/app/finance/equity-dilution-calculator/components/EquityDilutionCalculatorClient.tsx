@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useMemo } from "react";
 import {
@@ -299,42 +299,42 @@ export function EquityDilutionCalculatorClient() {
         {/* Inputs */}
         <div className="lg:col-span-5 space-y-6">
           {/* Initial Setup */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
             <div className="mb-6 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500/10">
-                <Calculator className="h-5 w-5 text-indigo-400" />
+                <Calculator className="h-5 w-5 text-indigo-600" />
               </div>
-              <h2 className="text-xl font-bold text-white">Initial Setup</h2>
+              <h2 className="text-xl font-bold text-slate-900">Initial Setup</h2>
             </div>
 
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-300">Initial Shares Outstanding</label>
+                <label className="text-sm font-medium text-slate-600">Initial Shares Outstanding</label>
                 <input
                   type="number"
                   value={initialShares}
                   onChange={(e) => setInitialShares(Number(e.target.value))}
-                  className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
+                  className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-300">Founder Ownership (%)</label>
+                <label className="text-sm font-medium text-slate-600">Founder Ownership (%)</label>
                 <input
                   type="number"
                   value={founderSplit}
                   onChange={(e) => setFounderSplit(Number(e.target.value))}
-                  className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
+                  className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-indigo-500 focus:outline-none"
                   min={0}
                   max={100}
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-300">Initial Option Pool (%)</label>
+                <label className="text-sm font-medium text-slate-600">Initial Option Pool (%)</label>
                 <input
                   type="number"
                   value={initialOptionPool}
                   onChange={(e) => setInitialOptionPool(Number(e.target.value))}
-                  className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white focus:border-indigo-500 focus:outline-none"
+                  className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-indigo-500 focus:outline-none"
                   min={0}
                   max={100}
                 />
@@ -345,58 +345,58 @@ export function EquityDilutionCalculatorClient() {
           {/* Rounds */}
           <div className="space-y-3">
             {rounds.map((round) => (
-              <div key={round.id} className="rounded-2xl border border-slate-800 bg-slate-900/80 shadow-xl backdrop-blur overflow-hidden">
+              <div key={round.id} className="rounded-2xl border border-slate-200 bg-white shadow-xl backdrop-blur overflow-hidden">
                 <div className="flex items-center justify-between px-5 py-4">
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => setExpandedRound(expandedRound === round.id ? null : round.id)}
-                      className="text-slate-400 hover:text-white"
+                      className="text-slate-500 hover:text-white"
                     >
                       {expandedRound === round.id ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                     </button>
                     <input
                       value={round.name}
                       onChange={(e) => updateRound(round.id, "name", e.target.value)}
-                      className="bg-transparent text-sm font-semibold text-white focus:outline-none"
+                      className="bg-transparent text-sm font-semibold text-slate-900 focus:outline-none"
                     />
                     <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                      round.type === "priced" ? "bg-blue-500/10 text-blue-400" :
-                      round.type === "safe" ? "bg-emerald-500/10 text-emerald-400" :
-                      round.type === "convertible" ? "bg-amber-500/10 text-amber-400" :
-                      "bg-violet-500/10 text-violet-400"
+                      round.type === "priced" ? "bg-blue-100 text-blue-700" :
+                      round.type === "safe" ? "bg-emerald-100 text-emerald-700" :
+                      round.type === "convertible" ? "bg-amber-100 text-amber-700" :
+                      "bg-violet-100 text-violet-700"
                     }`}>
                       {round.type === "priced" ? "Priced" : round.type === "safe" ? "SAFE" : round.type === "convertible" ? "Note" : "ESOP"}
                     </span>
                   </div>
-                  <button onClick={() => removeRound(round.id)} className="text-slate-500 hover:text-rose-400">
+                  <button onClick={() => removeRound(round.id)} className="text-slate-500 hover:text-rose-600">
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
 
                 {expandedRound === round.id && (
-                  <div className="space-y-4 border-t border-slate-800 px-5 py-4">
+                  <div className="space-y-4 border-t border-slate-200 px-5 py-4">
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         onClick={() => updateRound(round.id, "type", "priced")}
-                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "priced" ? "border-blue-500 bg-blue-500/10 text-blue-400" : "border-slate-700 text-slate-400"}`}
+                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "priced" ? "border-blue-500 bg-blue-100 text-blue-700" : "border-slate-200 text-slate-500"}`}
                       >
                         Priced Round
                       </button>
                       <button
                         onClick={() => updateRound(round.id, "type", "safe")}
-                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "safe" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-slate-700 text-slate-400"}`}
+                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "safe" ? "border-emerald-500 bg-emerald-100 text-emerald-700" : "border-slate-200 text-slate-500"}`}
                       >
                         SAFE
                       </button>
                       <button
                         onClick={() => updateRound(round.id, "type", "convertible")}
-                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "convertible" ? "border-amber-500 bg-amber-500/10 text-amber-400" : "border-slate-700 text-slate-400"}`}
+                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "convertible" ? "border-amber-500 bg-amber-100 text-amber-700" : "border-slate-200 text-slate-500"}`}
                       >
                         Convertible Note
                       </button>
                       <button
                         onClick={() => updateRound(round.id, "type", "optionPool")}
-                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "optionPool" ? "border-violet-500 bg-violet-500/10 text-violet-400" : "border-slate-700 text-slate-400"}`}
+                        className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.type === "optionPool" ? "border-violet-500 bg-violet-100 text-violet-700" : "border-slate-200 text-slate-500"}`}
                       >
                         Option Pool Only
                       </button>
@@ -404,24 +404,24 @@ export function EquityDilutionCalculatorClient() {
 
                     {(round.type === "priced" || round.type === "safe" || round.type === "convertible") && (
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">Investment Amount</label>
+                        <label className="text-sm font-medium text-slate-600">Investment Amount</label>
                         <input
                           type="number"
                           value={round.investment}
                           onChange={(e) => updateRound(round.id, "investment", Number(e.target.value))}
-                          className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                          className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                         />
                       </div>
                     )}
 
                     {(round.type === "priced" || round.type === "safe" || round.type === "convertible") && (
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">Pre-Money Valuation</label>
+                        <label className="text-sm font-medium text-slate-600">Pre-Money Valuation</label>
                         <input
                           type="number"
                           value={round.preMoney}
                           onChange={(e) => updateRound(round.id, "preMoney", Number(e.target.value))}
-                          className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                          className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                         />
                       </div>
                     )}
@@ -429,22 +429,22 @@ export function EquityDilutionCalculatorClient() {
                     {round.type === "safe" && (
                       <>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Valuation Cap</label>
+                          <label className="text-sm font-medium text-slate-600">Valuation Cap</label>
                           <input
                             type="number"
                             value={round.safeCap || ""}
                             onChange={(e) => updateRound(round.id, "safeCap", Number(e.target.value))}
-                            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                             placeholder="Same as pre-money"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Discount (%)</label>
+                          <label className="text-sm font-medium text-slate-600">Discount (%)</label>
                           <input
                             type="number"
                             value={round.safeDiscount || ""}
                             onChange={(e) => updateRound(round.id, "safeDiscount", Number(e.target.value))}
-                            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                             placeholder="20"
                           />
                         </div>
@@ -454,31 +454,31 @@ export function EquityDilutionCalculatorClient() {
                     {round.type === "convertible" && (
                       <>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Interest Rate (%)</label>
+                          <label className="text-sm font-medium text-slate-600">Interest Rate (%)</label>
                           <input
                             type="number"
                             value={round.noteInterest || ""}
                             onChange={(e) => updateRound(round.id, "noteInterest", Number(e.target.value))}
-                            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                             placeholder="6"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Valuation Cap</label>
+                          <label className="text-sm font-medium text-slate-600">Valuation Cap</label>
                           <input
                             type="number"
                             value={round.noteCap || ""}
                             onChange={(e) => updateRound(round.id, "noteCap", Number(e.target.value))}
-                            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Discount (%)</label>
+                          <label className="text-sm font-medium text-slate-600">Discount (%)</label>
                           <input
                             type="number"
                             value={round.noteDiscount || ""}
                             onChange={(e) => updateRound(round.id, "noteDiscount", Number(e.target.value))}
-                            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                             placeholder="20"
                           />
                         </div>
@@ -488,24 +488,24 @@ export function EquityDilutionCalculatorClient() {
                     {(round.type === "priced" || round.type === "optionPool") && (
                       <>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-slate-300">Target Option Pool (%)</label>
+                          <label className="text-sm font-medium text-slate-600">Target Option Pool (%)</label>
                           <input
                             type="number"
                             value={round.optionPoolPercent}
                             onChange={(e) => updateRound(round.id, "optionPoolPercent", Number(e.target.value))}
-                            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <button
                             onClick={() => updateRound(round.id, "optionPoolTiming", "pre")}
-                            className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.optionPoolTiming === "pre" ? "border-rose-500 bg-rose-500/10 text-rose-400" : "border-slate-700 text-slate-400"}`}
+                            className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.optionPoolTiming === "pre" ? "border-rose-500 bg-rose-100 text-rose-700" : "border-slate-200 text-slate-500"}`}
                           >
                             Pre-Money (Dilutes Founders)
                           </button>
                           <button
                             onClick={() => updateRound(round.id, "optionPoolTiming", "post")}
-                            className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.optionPoolTiming === "post" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400" : "border-slate-700 text-slate-400"}`}
+                            className={`rounded-lg border px-3 py-2 text-xs font-medium ${round.optionPoolTiming === "post" ? "border-emerald-500 bg-emerald-100 text-emerald-700" : "border-slate-200 text-slate-500"}`}
                           >
                             Post-Money (Shared)
                           </button>
@@ -515,11 +515,11 @@ export function EquityDilutionCalculatorClient() {
 
                     {round.type === "priced" && (
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-slate-300">Anti-Dilution Protection</label>
+                        <label className="text-sm font-medium text-slate-600">Anti-Dilution Protection</label>
                         <select
                           value={round.antiDilution}
                           onChange={(e) => updateRound(round.id, "antiDilution", e.target.value)}
-                          className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+                          className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
                         >
                           <option value="none">None</option>
                           <option value="weighted">Weighted Average</option>
@@ -534,7 +534,7 @@ export function EquityDilutionCalculatorClient() {
 
             <button
               onClick={addRound}
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-slate-700 bg-slate-900/50 py-4 text-sm font-medium text-slate-400 hover:border-indigo-500 hover:text-indigo-400"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-slate-200 bg-slate-50 py-4 text-sm font-medium text-slate-500 hover:border-indigo-500 hover:text-indigo-600"
             >
               <Plus className="h-4 w-4" />
               Add Funding Round
@@ -545,7 +545,7 @@ export function EquityDilutionCalculatorClient() {
         {/* Results */}
         <div className="lg:col-span-7 space-y-6">
           {/* Tabs */}
-          <div className="flex gap-2 rounded-xl border border-slate-800 bg-slate-900/80 p-1">
+          <div className="flex gap-2 rounded-xl border border-slate-200 bg-white p-1">
             {[
               { key: "capTable", label: "Cap Table", icon: Users },
               { key: "waterfall", label: "Ownership Waterfall", icon: TrendingUp },
@@ -558,8 +558,8 @@ export function EquityDilutionCalculatorClient() {
                   onClick={() => setActiveTab(tab.key as any)}
                   className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium transition ${
                     activeTab === tab.key
-                      ? "bg-indigo-500/10 text-indigo-400"
-                      : "text-slate-400 hover:text-white"
+                      ? "bg-indigo-500/10 text-indigo-600"
+                      : "text-slate-500 hover:text-white"
                   }`}
                 >
                   <Icon className="h-4 w-4" />
@@ -571,27 +571,27 @@ export function EquityDilutionCalculatorClient() {
 
           {/* Final Ownership Card */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Founders</p>
-              <p className="mt-2 text-3xl font-bold text-indigo-400">{formatPercent(finalState.founderPct)}</p>
+              <p className="mt-2 text-3xl font-bold text-indigo-600">{formatPercent(finalState.founderPct)}</p>
               <p className="text-xs text-slate-500">{formatMoney(finalState.totalShares * (finalState.founderPct / 100) * (rounds[rounds.length - 1]?.preMoney || 1) / (finalState.totalShares || 1))} value</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Option Pool</p>
-              <p className="mt-2 text-3xl font-bold text-amber-400">{formatPercent(finalState.optionPoolPct)}</p>
+              <p className="mt-2 text-3xl font-bold text-amber-600">{formatPercent(finalState.optionPoolPct)}</p>
               <p className="text-xs text-slate-500">for employees</p>
             </div>
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-5 text-center shadow-xl">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 text-center shadow-xl">
               <p className="text-xs font-medium uppercase tracking-wider text-slate-500">Investors</p>
-              <p className="mt-2 text-3xl font-bold text-emerald-400">{formatPercent(100 - finalState.founderPct - finalState.optionPoolPct)}</p>
+              <p className="mt-2 text-3xl font-bold text-emerald-600">{formatPercent(100 - finalState.founderPct - finalState.optionPoolPct)}</p>
               <p className="text-xs text-slate-500">all rounds combined</p>
             </div>
           </div>
 
           {/* Tab Content */}
           {activeTab === "capTable" && (
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
-              <h3 className="mb-4 text-lg font-bold text-white">Final Cap Table</h3>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+              <h3 className="mb-4 text-lg font-bold text-slate-900">Final Cap Table</h3>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -612,7 +612,7 @@ export function EquityDilutionCalculatorClient() {
                     </Pie>
                     <Tooltip
                       formatter={(value: number) => `${value.toFixed(2)}%`}
-                      contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #1e293b", borderRadius: "8px", color: "#f8fafc" }}
+                      contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#0f172a" }}
                     />
                     <Legend />
                   </PieChart>
@@ -620,33 +620,33 @@ export function EquityDilutionCalculatorClient() {
               </div>
               <div className="mt-4 space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-400">Total Shares Outstanding</span>
-                  <span className="font-medium text-white">{finalState.totalShares.toLocaleString()}</span>
+                  <span className="text-slate-500">Total Shares Outstanding</span>
+                  <span className="font-medium text-slate-900">{finalState.totalShares.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-400">Founder Shares</span>
-                  <span className="font-medium text-indigo-400">{Math.round(finalState.totalShares * finalState.founderPct / 100).toLocaleString()}</span>
+                  <span className="text-slate-500">Founder Shares</span>
+                  <span className="font-medium text-indigo-600">{Math.round(finalState.totalShares * finalState.founderPct / 100).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-slate-400">Option Pool Shares</span>
-                  <span className="font-medium text-amber-400">{Math.round(finalState.totalShares * finalState.optionPoolPct / 100).toLocaleString()}</span>
+                  <span className="text-slate-500">Option Pool Shares</span>
+                  <span className="font-medium text-amber-600">{Math.round(finalState.totalShares * finalState.optionPoolPct / 100).toLocaleString()}</span>
                 </div>
               </div>
             </div>
           )}
 
           {activeTab === "waterfall" && (
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
-              <h3 className="mb-4 text-lg font-bold text-white">Ownership Waterfall by Round</h3>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+              <h3 className="mb-4 text-lg font-bold text-slate-900">Ownership Waterfall by Round</h3>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={waterfallData} stackOffset="expand">
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                     <XAxis dataKey="name" stroke="#64748b" fontSize={12} />
                     <YAxis stroke="#64748b" fontSize={12} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} />
                     <Tooltip
                       formatter={(value: number) => `${value.toFixed(2)}%`}
-                      contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #1e293b", borderRadius: "8px", color: "#f8fafc" }}
+                      contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#0f172a" }}
                     />
                     <Bar dataKey="founders" stackId="a" fill="#6366f1" name="Founders" />
                     <Bar dataKey="options" stackId="a" fill="#f59e0b" name="Option Pool" />
@@ -658,17 +658,17 @@ export function EquityDilutionCalculatorClient() {
           )}
 
           {activeTab === "timeline" && (
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
-              <h3 className="mb-4 text-lg font-bold text-white">Founder Dilution Timeline</h3>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+              <h3 className="mb-4 text-lg font-bold text-slate-900">Founder Dilution Timeline</h3>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={timelineData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                     <XAxis dataKey="round" stroke="#64748b" fontSize={12} />
                     <YAxis stroke="#64748b" fontSize={12} domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                     <Tooltip
                       formatter={(value: number) => `${value.toFixed(2)}%`}
-                      contentStyle={{ backgroundColor: "#0f172a", border: "1px solid #1e293b", borderRadius: "8px", color: "#f8fafc" }}
+                      contentStyle={{ backgroundColor: "#ffffff", border: "1px solid #e2e8f0", borderRadius: "8px", color: "#0f172a" }}
                     />
                     <Legend />
                     <Line type="monotone" dataKey="founders" stroke="#6366f1" strokeWidth={3} name="Founders" dot={{ r: 4 }} />
@@ -681,33 +681,33 @@ export function EquityDilutionCalculatorClient() {
           )}
 
           {/* Round-by-Round Breakdown */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
-            <h3 className="mb-4 text-lg font-bold text-white">Round-by-Round Breakdown</h3>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">Round-by-Round Breakdown</h3>
             <div className="space-y-3">
               {capTableHistory.map((h, i) => (
-                <div key={i} className={`rounded-lg border p-4 ${i === capTableHistory.length - 1 ? "border-indigo-500/30 bg-indigo-500/5" : "border-slate-800 bg-slate-950/30"}`}>
+                <div key={i} className={`rounded-lg border p-4 ${i === capTableHistory.length - 1 ? "border-indigo-500/30 bg-indigo-50" : "border-slate-200 bg-slate-50"}`}>
                   <div className="flex items-center justify-between">
-                    <span className="font-semibold text-white">{h.round}</span>
-                    <span className="text-sm text-slate-400">{h.totalShares.toLocaleString()} shares</span>
+                    <span className="font-semibold text-slate-900">{h.round}</span>
+                    <span className="text-sm text-slate-500">{h.totalShares.toLocaleString()} shares</span>
                   </div>
                   <div className="mt-2 grid grid-cols-3 gap-4 text-sm">
                     <div>
                       <span className="text-slate-500">Founders</span>
-                      <p className="font-medium text-indigo-400">{h.founderPct.toFixed(2)}%</p>
+                      <p className="font-medium text-indigo-600">{h.founderPct.toFixed(2)}%</p>
                     </div>
                     <div>
                       <span className="text-slate-500">Options</span>
-                      <p className="font-medium text-amber-400">{h.optionPoolPct.toFixed(2)}%</p>
+                      <p className="font-medium text-amber-600">{h.optionPoolPct.toFixed(2)}%</p>
                     </div>
                     <div>
                       <span className="text-slate-500">Other</span>
-                      <p className="font-medium text-emerald-400">{h.otherPct.toFixed(2)}%</p>
+                      <p className="font-medium text-emerald-600">{h.otherPct.toFixed(2)}%</p>
                     </div>
                   </div>
                   {h.newInvestors.length > 0 && (
                     <div className="mt-2 space-y-1">
                       {h.newInvestors.map((inv, j) => (
-                        <div key={j} className="flex justify-between text-xs text-slate-400">
+                        <div key={j} className="flex justify-between text-xs text-slate-500">
                           <span>+ {inv.name}</span>
                           <span>{inv.pct.toFixed(2)}%</span>
                         </div>
@@ -720,8 +720,8 @@ export function EquityDilutionCalculatorClient() {
           </div>
 
           {/* Exit Calculator */}
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl">
-            <h3 className="mb-4 text-lg font-bold text-white">Exit Value Calculator</h3>
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-premium border border-slate-200">
+            <h3 className="mb-4 text-lg font-bold text-slate-900">Exit Value Calculator</h3>
             <ExitCalculator founderPct={finalState.founderPct} />
           </div>
         </div>
@@ -741,43 +741,43 @@ function ExitCalculator({ founderPct }: { founderPct: number }) {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <label className="text-sm font-medium text-slate-300">Exit Valuation</label>
+        <label className="text-sm font-medium text-slate-600">Exit Valuation</label>
         <input
           type="number"
           value={exitValuation}
           onChange={(e) => setExitValuation(Number(e.target.value))}
-          className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+          className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
         />
       </div>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-300">Liquidation Preference (×)</label>
+          <label className="text-sm font-medium text-slate-600">Liquidation Preference (×)</label>
           <input
             type="number"
             step="0.5"
             value={liquidationPref}
             onChange={(e) => setLiquidationPref(Number(e.target.value))}
-            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-slate-300">Total Invested</label>
+          <label className="text-sm font-medium text-slate-600">Total Invested</label>
           <input
             type="number"
             value={totalInvested}
             onChange={(e) => setTotalInvested(Number(e.target.value))}
-            className="block w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-2.5 text-white focus:border-indigo-500 focus:outline-none"
+            className="block w-full rounded-lg border border-slate-200 bg-slate-50 px-4 py-2.5 text-slate-900 focus:border-indigo-500 focus:outline-none"
           />
         </div>
       </div>
       <div className="mt-4 grid grid-cols-2 gap-4">
-        <div className="rounded-xl border border-indigo-500/20 bg-indigo-500/5 p-4 text-center">
+        <div className="rounded-xl border border-indigo-500/20 bg-indigo-50 p-4 text-center">
           <p className="text-xs text-slate-500">Founder Proceeds</p>
-          <p className="text-2xl font-bold text-indigo-400">{formatMoney(founderProceeds)}</p>
+          <p className="text-2xl font-bold text-indigo-600">{formatMoney(founderProceeds)}</p>
         </div>
-        <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-4 text-center">
+        <div className="rounded-xl border border-emerald-500/20 bg-emerald-50 p-4 text-center">
           <p className="text-xs text-slate-500">Investor Proceeds</p>
-          <p className="text-2xl font-bold text-emerald-400">{formatMoney(investorProceeds)}</p>
+          <p className="text-2xl font-bold text-emerald-600">{formatMoney(investorProceeds)}</p>
         </div>
       </div>
     </div>

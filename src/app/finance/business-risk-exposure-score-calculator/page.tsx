@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+﻿import { Metadata } from "next";
 import { BusinessRiskCalculatorClient } from "./components/BusinessRiskCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -221,18 +221,18 @@ export default function BusinessRiskCalculatorPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <main className="min-h-screen bg-slate-950 text-slate-100">
+      <main className="min-h-screen bg-white text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
           <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-400 ring-1 ring-inset ring-violet-500/20">
+            <div className="mb-4 inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-600 ring-1 ring-inset ring-violet-500/20">
               Updated April 2026 — Multi-Dimensional Risk Framework
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Business Risk Exposure{" "}
-              <span className="text-violet-400">Score Calculator</span>
+              <span className="text-violet-600">Score Calculator</span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-500">
               Assess your business across 7 critical risk dimensions —
               operational, financial, cyber, legal, market, physical, and
               reputational. Get your composite risk score and actionable
@@ -244,9 +244,9 @@ export default function BusinessRiskCalculatorPage() {
           <BusinessRiskCalculatorClient />
 
           {/* Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur">
+          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur">
             <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-xl font-bold text-violet-400">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-xl font-bold text-violet-600">
                 FB
               </div>
 
@@ -257,10 +257,10 @@ export default function BusinessRiskCalculatorPage() {
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1 */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 What Is Business Risk Exposure and Why Should You Measure It?
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   Business risk exposure is the quantified probability and
                   potential impact of events that could negatively affect your
@@ -297,13 +297,13 @@ export default function BusinessRiskCalculatorPage() {
 
             {/* Section 2: 7 Risk Types */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 The 7 Dimensions of Business Risk Exposure
               </h2>
               <div className="mt-6 space-y-5">
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-blue-400">1. Operational Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-blue-600">1. Operational Risk</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Operational risk encompasses failures in internal processes,
                     people, and systems. Key indicators include supply chain
                     concentration (single-source suppliers are high risk),
@@ -315,9 +315,9 @@ export default function BusinessRiskCalculatorPage() {
                     procedures.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-emerald-400">2. Financial Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-emerald-600">2. Financial Risk</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Financial risk measures your company&apos;s ability to withstand
                     economic shocks. Critical factors include cash reserve
                     coverage (months of operating expenses), debt-to-equity
@@ -328,9 +328,9 @@ export default function BusinessRiskCalculatorPage() {
                     severe financial risk.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-rose-400">3. Cyber & Information Security Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-rose-600">3. Cyber & Information Security Risk</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Cyber risk has become the fastest-growing threat to small
                     businesses. This dimension evaluates multi-factor
                     authentication adoption, data backup frequency, incident
@@ -341,9 +341,9 @@ export default function BusinessRiskCalculatorPage() {
                     cyberattack.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-amber-400">4. Legal & Compliance Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-amber-600">4. Legal & Compliance Risk</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Legal risk includes regulatory compliance gaps, contract
                     exposure, intellectual property protection, and litigation
                     history. Businesses operating in highly regulated industries
@@ -353,9 +353,9 @@ export default function BusinessRiskCalculatorPage() {
                     lack of employment law compliance documentation.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-violet-400">5. Market & Competitive Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-violet-600">5. Market & Competitive Risk</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Market risk measures external threats to your revenue model.
                     Factors include competitive intensity, demand cyclicality,
                     pricing power, product/service diversification, and
@@ -365,9 +365,9 @@ export default function BusinessRiskCalculatorPage() {
                     proprietary technology or long-term contracts.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
-                  <h4 className="font-semibold text-cyan-400">6. Physical & Safety Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
+                  <h4 className="font-semibold text-cyan-600">6. Physical & Safety Risk</h4>
+                  <p className="mt-2 text-sm text-slate-600">
                     Physical risk covers workplace safety, property hazards,
                     natural disaster exposure, and equipment maintenance.
                     Industries with manual labor, hazardous materials, or
@@ -377,9 +377,9 @@ export default function BusinessRiskCalculatorPage() {
                     emergency preparedness planning.
                   </p>
                 </div>
-                <div className="rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
                   <h4 className="font-semibold text-pink-400">7. Reputational Risk</h4>
-                  <p className="mt-2 text-sm text-slate-300">
+                  <p className="mt-2 text-sm text-slate-600">
                     Reputational risk measures the potential for brand damage
                     to affect revenue and relationships. This includes online
                     review ratings, social media crisis response capability,
@@ -394,23 +394,23 @@ export default function BusinessRiskCalculatorPage() {
 
             {/* Section 3: Score Interpretation */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 How to Interpret Your Business Risk Exposure Score
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Your composite risk score is a weighted aggregation across all
                 seven risk dimensions. The score is normalized to a 0-100 scale,
                 where lower scores indicate stronger risk posture. Here is how
                 to interpret your results:
               </p>
               <div className="mt-6 space-y-4">
-                <div className="flex items-start gap-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-lg font-bold text-emerald-400">
+                <div className="flex items-start gap-4 rounded-xl border border-emerald-500/20 bg-emerald-50 p-5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-lg font-bold text-emerald-600">
                     0-30
                   </div>
                   <div>
-                    <h4 className="font-semibold text-emerald-400">Low Risk — Resilient</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-emerald-600">Low Risk — Resilient</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Your business demonstrates strong controls across most
                       risk dimensions. Continue current practices and conduct
                       annual reassessments. You likely qualify for preferred
@@ -419,12 +419,12 @@ export default function BusinessRiskCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4 rounded-xl border border-blue-500/20 bg-blue-500/5 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-lg font-bold text-blue-400">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/10 text-lg font-bold text-blue-600">
                     31-50
                   </div>
                   <div>
-                    <h4 className="font-semibold text-blue-400">Moderate Risk — Managed</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-blue-600">Moderate Risk — Managed</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Your business has acceptable risk controls but specific
                       gaps exist. Address the highest-scoring categories first.
                       This is the most common range for healthy small
@@ -432,13 +432,13 @@ export default function BusinessRiskCalculatorPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 rounded-xl border border-amber-500/20 bg-amber-500/5 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500/10 text-lg font-bold text-amber-400">
+                <div className="flex items-start gap-4 rounded-xl border border-amber-500/20 bg-amber-50 p-5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500/10 text-lg font-bold text-amber-600">
                     51-70
                   </div>
                   <div>
-                    <h4 className="font-semibold text-amber-400">High Risk — Vulnerable</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-amber-600">High Risk — Vulnerable</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Multiple significant risk exposures are present. Without
                       intervention, your business faces elevated probability of
                       disruption, financial loss, or insurability challenges.
@@ -447,13 +447,13 @@ export default function BusinessRiskCalculatorPage() {
                     </p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 rounded-xl border border-rose-500/20 bg-rose-500/5 p-5">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-500/10 text-lg font-bold text-rose-400">
+                <div className="flex items-start gap-4 rounded-xl border border-rose-500/20 bg-rose-50 p-5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-500/10 text-lg font-bold text-rose-600">
                     71-100
                   </div>
                   <div>
-                    <h4 className="font-semibold text-rose-400">Critical Risk — Immediate Action Required</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-rose-600">Critical Risk — Immediate Action Required</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Your business has severe risk exposures that threaten
                       continuity. Immediate intervention is required in multiple
                       categories. Consider engaging a risk management
@@ -467,15 +467,15 @@ export default function BusinessRiskCalculatorPage() {
 
             {/* Section 4: Industry Benchmarks */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Typical Risk Scores by Industry Sector
               </h2>
-              <p className="mt-4 text-slate-300 leading-relaxed">
+              <p className="mt-4 text-slate-600 leading-relaxed">
                 Risk profiles vary significantly by industry. The following
                 table shows median composite risk scores and primary risk
                 drivers by sector for small businesses with 5-50 employees:
               </p>
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-800">
+              <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
                   <thead className="bg-slate-900 text-slate-200">
                     <tr>
@@ -485,52 +485,52 @@ export default function BusinessRiskCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Secondary Risk Driver</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-300">
-                    <tr className="bg-slate-950/50">
+                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">SaaS / Technology</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">28</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">28</td>
                       <td className="px-6 py-4">Cyber Risk</td>
                       <td className="px-6 py-4">Market Risk</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Professional Services</td>
-                      <td className="px-6 py-4 font-medium text-emerald-400">32</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">32</td>
                       <td className="px-6 py-4">Key Person Risk</td>
                       <td className="px-6 py-4">Legal Risk</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Retail / E-commerce</td>
-                      <td className="px-6 py-4 font-medium text-blue-400">41</td>
+                      <td className="px-6 py-4 font-medium text-blue-600">41</td>
                       <td className="px-6 py-4">Market Risk</td>
                       <td className="px-6 py-4">Cyber Risk</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Healthcare / Medical</td>
-                      <td className="px-6 py-4 font-medium text-blue-400">45</td>
+                      <td className="px-6 py-4 font-medium text-blue-600">45</td>
                       <td className="px-6 py-4">Legal/Compliance Risk</td>
                       <td className="px-6 py-4">Cyber Risk</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Construction / Trades</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">58</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">58</td>
                       <td className="px-6 py-4">Physical/Safety Risk</td>
                       <td className="px-6 py-4">Financial Risk</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Manufacturing</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">54</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">54</td>
                       <td className="px-6 py-4">Supply Chain Risk</td>
                       <td className="px-6 py-4">Physical/Safety Risk</td>
                     </tr>
-                    <tr className="bg-slate-950/50">
+                    <tr className="bg-slate-50">
                       <td className="px-6 py-4">Hospitality / Restaurants</td>
-                      <td className="px-6 py-4 font-medium text-amber-400">52</td>
+                      <td className="px-6 py-4 font-medium text-amber-600">52</td>
                       <td className="px-6 py-4">Physical/Safety Risk</td>
                       <td className="px-6 py-4">Market Risk</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Transportation / Logistics</td>
-                      <td className="px-6 py-4 font-medium text-rose-400">62</td>
+                      <td className="px-6 py-4 font-medium text-rose-600">62</td>
                       <td className="px-6 py-4">Physical/Safety Risk</td>
                       <td className="px-6 py-4">Legal/Compliance Risk</td>
                     </tr>
@@ -541,15 +541,15 @@ export default function BusinessRiskCalculatorPage() {
 
             {/* Section 5: Risk Reduction */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 How to Reduce Your Business Risk Exposure Score
               </h2>
               <div className="mt-6 space-y-5">
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">1</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-600">1</div>
                   <div>
-                    <h4 className="font-semibold text-white">Diversify Revenue and Suppliers</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Diversify Revenue and Suppliers</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       No single customer should represent more than 20% of
                       revenue. Maintain relationships with at least two
                       suppliers for critical inputs. This single action can
@@ -558,10 +558,10 @@ export default function BusinessRiskCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">2</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-600">2</div>
                   <div>
-                    <h4 className="font-semibold text-white">Build Cash Reserves</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Build Cash Reserves</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Maintain 3-6 months of operating expenses in liquid
                       reserves. Businesses with less than one month of cash
                       score 25+ points higher on financial risk than those with
@@ -570,10 +570,10 @@ export default function BusinessRiskCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">3</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-600">3</div>
                   <div>
-                    <h4 className="font-semibold text-white">Implement Cybersecurity Basics</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Implement Cybersecurity Basics</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Enable multi-factor authentication on all accounts,
                       maintain encrypted daily backups, train employees on
                       phishing recognition, and keep all software patched.
@@ -582,10 +582,10 @@ export default function BusinessRiskCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">4</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-600">4</div>
                   <div>
-                    <h4 className="font-semibold text-white">Document Everything</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Document Everything</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Written contracts for all agreements, documented standard
                       operating procedures, employee handbooks, and safety
                       protocols eliminate ambiguity and reduce legal and
@@ -594,10 +594,10 @@ export default function BusinessRiskCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">5</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-600">5</div>
                   <div>
-                    <h4 className="font-semibold text-white">Cross-Train Your Team</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Cross-Train Your Team</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       Ensure no critical process depends on a single person.
                       Cross-training reduces key person dependency and
                       operational risk while improving employee engagement and
@@ -606,10 +606,10 @@ export default function BusinessRiskCalculatorPage() {
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">6</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-600">6</div>
                   <div>
-                    <h4 className="font-semibold text-white">Purchase Adequate Insurance</h4>
-                    <p className="mt-1 text-sm text-slate-300">
+                    <h4 className="font-semibold text-slate-900">Purchase Adequate Insurance</h4>
+                    <p className="mt-1 text-sm text-slate-600">
                       General liability, professional liability, cyber
                       insurance, and business interruption coverage transfer
                       catastrophic risk to insurers. Review coverage annually
@@ -622,15 +622,15 @@ export default function BusinessRiskCalculatorPage() {
 
             {/* Section 6: FAQ for Humans */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Frequently Asked Questions About Business Risk Assessment
               </h2>
               <div className="mt-6 space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     How often should I assess my business risk exposure?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Comprehensive risk assessments should be conducted annually
                     at minimum, with quarterly reviews of your highest-risk
                     categories. Trigger events — such as adding a major
@@ -640,10 +640,10 @@ export default function BusinessRiskCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     Can I use this risk score for insurance applications?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     While this calculator provides a useful self-assessment,
                     insurance carriers use their own proprietary risk scoring
                     models. However, understanding your risk profile before
@@ -653,10 +653,10 @@ export default function BusinessRiskCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     What is the difference between risk and uncertainty?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Risk refers to situations where the probability of outcomes
                     can be estimated (e.g., the historical frequency of
                     workplace injuries in your industry). Uncertainty refers to
@@ -667,10 +667,10 @@ export default function BusinessRiskCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     Do investors look at business risk scores?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Yes. Venture capitalists, private equity firms, and
                     commercial lenders routinely evaluate risk exposure during
                     due diligence. A high risk score can reduce valuation
@@ -681,10 +681,10 @@ export default function BusinessRiskCalculatorPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-violet-400">
+                  <h3 className="text-lg font-semibold text-violet-600">
                     What is risk appetite and how does it relate to my score?
                   </h3>
-                  <p className="mt-2 text-slate-300">
+                  <p className="mt-2 text-slate-600">
                     Risk appetite is the amount of risk your organization is
                     willing to accept in pursuit of strategic objectives. A
                     venture-backed tech startup may have a high risk appetite
@@ -699,10 +699,10 @@ export default function BusinessRiskCalculatorPage() {
 
             {/* Section 7: Methodology */}
             <section>
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Calculator Methodology and Framework
               </h2>
-              <div className="mt-6 space-y-4 text-slate-300 leading-relaxed">
+              <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   This calculator applies a weighted multi-criteria decision
                   analysis (MCDA) framework aligned with ISO 31000:2018 Risk
