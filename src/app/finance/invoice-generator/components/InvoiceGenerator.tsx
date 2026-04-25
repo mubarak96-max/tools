@@ -13,7 +13,7 @@ import {
 } from "@/lib/tools/invoice";
 import AddressBlockComponent from "./AddressBlock";
 import LineItemsTable from "./LineItemsTable";
-import TotalsForm from "./TotalsForm";
+import TotalsForm, { TAX_PRESETS, type TaxPreset } from "./TotalsForm";
 import InvoicePreview from "./InvoicePreview";
 import { buildInvoiceHtml } from "./buildInvoiceHtml";
 
@@ -100,10 +100,25 @@ export default function InvoiceGenerator() {
   const [discountMode, setDiscountMode] = useState<DiscountMode>("flat");
   const [discountValue, setDiscountValue] = useState<number | "">(0);
   const [taxPercent, setTaxPercent] = useState<number | "">(5);
+  const [taxPresetId, setTaxPresetId] = useState("manual");
   const [shipping, setShipping] = useState<number | "">(0);
   const [amountPaid, setAmountPaid] = useState<number | "">(0);
   const [paymentTerms, setPaymentTerms] = useState("");
   const [notes, setNotes] = useState("");
+
+  const activeTaxPreset = TAX_PRESETS.find((p) => p.id === taxPresetId) ?? TAX_PRESETS[0];
+
+  function handleTaxPresetChange(preset: TaxPreset) {
+    setTaxPresetId(preset.id);
+    if (preset.id !== "manual") {
+      setTaxPercent(preset.rate);
+      // Optionally suggest the matching currency
+      if (preset.currencyHint) {
+        const matchedCurrency = INVOICE_CURRENCIES.find((c) => c.code === preset.currencyHint);
+        if (matchedCurrency) setCurrencyCode(matchedCurrency.code);
+      }
+    }
+  }
 
   const [pdfLoading, setPdfLoading] = useState(false);
   const [pdfError, setPdfError] = useState<string | null>(null);
@@ -317,7 +332,7 @@ export default function InvoiceGenerator() {
         notes,
       };
 
-      const html = buildInvoiceHtml(state, result, currency);
+      const html = buildInvoiceHtml(state, result, currency, activeTaxPreset.taxName);
 
       const response = await fetch("/api/html-to-pdf", {
         method: "POST",
@@ -525,6 +540,7 @@ export default function InvoiceGenerator() {
               discountMode={discountMode}
               discountValue={discountValue}
               taxPercent={taxPercent}
+              taxPresetId={taxPresetId}
               shipping={shipping}
               amountPaid={amountPaid}
               paymentTerms={paymentTerms}
@@ -533,6 +549,7 @@ export default function InvoiceGenerator() {
               onDiscountModeChange={setDiscountMode}
               onDiscountValueChange={setDiscountValue}
               onTaxPercentChange={setTaxPercent}
+              onTaxPresetChange={handleTaxPresetChange}
               onShippingChange={setShipping}
               onAmountPaidChange={setAmountPaid}
               onPaymentTermsChange={setPaymentTerms}
@@ -558,6 +575,7 @@ export default function InvoiceGenerator() {
             }}
             result={result}
             currency={currency}
+            taxLabel={activeTaxPreset.taxName}
             validationErrors={validationErrors}
             onDownloadPdf={handleDownloadPdf}
             pdfLoading={pdfLoading}

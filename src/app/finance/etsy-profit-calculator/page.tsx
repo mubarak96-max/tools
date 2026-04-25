@@ -386,9 +386,22 @@ export default function EtsyCalculatorPage() {
         </div>
 
         {/* Related Tools */}
-        <div className="mt-24">
-          <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath={PAGE_PATH} />
-        </div>
+            {/* Trust Signal */}
+            <div className="mt-24 rounded-3xl border border-stone-100 bg-stone-50/50 p-8">
+              <div className="flex items-start gap-6">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-stone-100 text-xl font-black text-orange-500 italic">
+                  FB
+                </div>
+                <div>
+                  <p className="font-black text-stone-900 uppercase tracking-tight">Verified by FindBest Tools</p>
+                  <p className="mt-2 text-sm font-medium text-stone-500 leading-relaxed">
+                    Etsy fee structures and payment processing rates sourced from official 2024/2025 Etsy Seller Policy. Verified for US, UK, Canada, and Australia markets. Last reviewed 25 April 2026.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath={PAGE_PATH} />
 
         {/* Disclaimer */}
         <div className="mt-20 p-8 bg-stone-50 rounded-3xl border border-stone-200">

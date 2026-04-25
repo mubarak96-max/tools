@@ -119,6 +119,36 @@ const FINANCE_TOOLS = [
     description: "Compare Islamic home financing models (Murabaha, Musharaka) against traditional interest-based loans.",
     icon: "HLM",
   },
+  {
+    name: "India TDS Calculator",
+    href: "/finance/india-tds-calculator",
+    description: "Calculate 2025-26 TDS on salary, rent, fees, and more with surcharge & cess logic.",
+    icon: "TDS",
+  },
+  {
+    name: "Australia Stamp Duty",
+    href: "/finance/australia-stamp-duty-calculator",
+    description: "Calculate property transfer duty for all Australian states with 2026 rates & concessions.",
+    icon: "STAMP",
+  },
+  {
+    name: "Car Depreciation Calculator",
+    href: "/finance/car-depreciation-calculator",
+    description: "Model vehicle value decay over 15 years for 120+ models with condition & mileage adjustments.",
+    icon: "AUTO",
+  },
+  {
+    name: "Australia GST Calculator",
+    href: "/finance/australia-gst-calculator",
+    description: "Calculate GST, add/remove GST, and see total price for Australian business transactions.",
+    icon: "GST",
+  },
+  {
+    name: "Canada HST/GST Calculator",
+    href: "/finance/canada-hst-gst-calculator",
+    description: "Calculate sales tax across all Canadian provinces including HST, GST, and PST/QST.",
+    icon: "CAD",
+  },
 ];
 
 export const metadata = buildMetadata({

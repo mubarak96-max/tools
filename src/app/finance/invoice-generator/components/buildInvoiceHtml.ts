@@ -46,7 +46,8 @@ function escapeHtml(text: string): string {
 export function buildInvoiceHtml(
     state: InvoiceState,
     result: InvoiceCalculationResult,
-    currency: InvoiceCurrency
+    currency: InvoiceCurrency,
+    taxLabel: string = "Tax"
 ): string {
     const discountValue = typeof state.discountValue === "number" ? state.discountValue : 0;
     const shipping = typeof state.shipping === "number" ? state.shipping : 0;
@@ -241,7 +242,7 @@ export function buildInvoiceHtml(
     </div>
     ` : ''}
     <div class="totals-row">
-      <span>Tax</span>
+      <span>${escapeHtml(taxLabel)}</span>
       <span>${formatInvoiceCurrency(result.taxAmount, currency)}</span>
     </div>
     <div class="totals-row total">

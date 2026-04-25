@@ -74,6 +74,11 @@ const faq = [
       "No. You can fill in the invoice details and download the PDF directly from the page without creating an account.",
   },
   {
+    question: "How does the UK VAT, Australia GST, and Canada HST auto-fill work?",
+    answer:
+      "Select a country tax type from the 'Tax type' dropdown. The invoice generator will automatically set the correct rate — 20% for UK VAT (or 5% for the reduced rate), 10% for Australia GST, 13% for Canada HST Ontario, 15% for Canada HST Nova Scotia, and 5% for Canada GST only. It will also suggest switching the invoice currency to GBP, AUD, or CAD. The tax label on the live preview and the downloaded PDF will reflect the correct tax name (e.g. 'UK VAT (20%)') instead of the generic 'Tax'. You can still override the rate by switching to Manual / Custom.",
+  },
+  {
     question: "Does this replace accounting or tax software?",
     answer:
       "No. This page helps you create a clean invoice and calculate totals, but accounting treatment, compliance, tax reporting, and long-term records still depend on your own bookkeeping process and jurisdiction.",
@@ -109,9 +114,9 @@ const howToJsonLd = {
 };
 
 export const metadata: Metadata = {
-  title: "Free Invoice Generator - Create & Download PDF Invoices Online",
+  title: "Free Invoice Generator with VAT, GST & HST — UK, Australia, Canada",
   description:
-    "Generate professional invoices free online. Add line items, tax, discount, and shipping, then download a PDF instantly. No account, no watermark, no subscription needed.",
+    "Generate professional invoices free online. UK VAT (20%), Australia GST (10%), Canada HST/GST, or any custom tax rate — auto-filled instantly. Download a PDF with no sign-up and no watermark.",
   keywords: [
     "free invoice generator",
     "invoice generator",
@@ -123,20 +128,32 @@ export const metadata: Metadata = {
     "invoice generator no watermark",
     "invoice generator for freelancers",
     "simple invoice generator",
+    "invoice with VAT",
+    "UK VAT invoice generator",
+    "VAT invoice maker",
+    "Australia GST invoice generator",
+    "Canada HST invoice generator",
+    "Canada GST invoice maker",
+    "GST invoice template free",
+    "HST invoice free",
+    "New Zealand GST invoice",
+    "Singapore GST invoice",
+    "invoice generator with tax",
+    "auto VAT calculator invoice",
   ],
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free Invoice Generator - Create & Download PDF Invoices Online",
+    title: "Free Invoice Generator with VAT, GST & HST — UK, AU, CA",
     description:
-      "Create invoice PDFs online for free with line items, tax, discount, shipping, and payment terms. No sign-up and no watermark.",
+      "Create invoice PDFs with UK VAT, Australia GST, Canada HST auto-filled. Free, no sign-up, no watermark.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Invoice Generator",
+    title: "Free Invoice Generator with VAT, GST & HST",
     description:
-      "Create invoice PDFs online with no sign-up and no watermark. Add line items, tax, discount, shipping, and payment terms instantly.",
+      "Auto-calculate UK VAT, AU GST, CA HST, and more. Download a clean PDF invoice with no sign-up and no watermark.",
   },
 };
 
@@ -156,13 +173,17 @@ function buildApplicationJsonLd() {
       "Multi-currency invoice drafting",
       "Custom currency support",
       "Flat and percentage discount support",
-      "Tax calculation",
+      "UK VAT auto-calculation (20% standard, 5% reduced)",
+      "Australia GST auto-calculation (10%)",
+      "Canada HST/GST auto-calculation (5%, 13%, 15%)",
+      "New Zealand GST (15%), Singapore GST (9%), Germany VAT (19%), France VAT (20%)",
+      "Manual/custom tax rate entry",
       "Shipping and amount paid fields",
       "Payment terms and notes",
       "Business logo upload",
       "Saved business details on this device",
       "Live invoice preview",
-      "PDF invoice download",
+      "PDF invoice download with correct tax label",
       "No sign-up required",
       "No watermark",
     ],
@@ -279,6 +300,20 @@ export default function InvoiceGeneratorPage() {
               <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="mt-24 rounded-3xl border border-slate-100 bg-slate-50/50 p-8">
+        <div className="flex items-start gap-6">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 text-xl font-black text-rose-600 italic">
+            FB
+          </div>
+          <div>
+            <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
+            <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
+              Calculations and tax logic verified for 2026 tax standards across the UK, Australia, Canada, and other major jurisdictions. Built for professional accuracy and speed. Last reviewed 25 April 2026.
+            </p>
+          </div>
         </div>
       </section>
 

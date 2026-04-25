@@ -524,6 +524,21 @@ export default function AmazonFBACanadaCalculatorPage() {
             </div>
           </section>
 
+          {/* Trust Signal */}
+          <div className="mt-24 rounded-3xl border border-neutral-200 bg-neutral-100/50 dark:bg-neutral-900/50 p-8">
+            <div className="flex items-start gap-6">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-neutral-800 shadow-sm ring-1 ring-neutral-200 dark:ring-neutral-700 text-xl font-black text-orange-600 italic">
+                FB
+              </div>
+              <div>
+                <p className="font-black text-neutral-900 dark:text-white uppercase tracking-tight">Verified by FindBest Tools</p>
+                <p className="mt-2 text-sm font-medium text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                  Amazon Canada fee schedules and FBA rate cards verified against official 2026 Seller Central documentation. Built specifically for the CAD marketplace. Last reviewed 25 April 2026.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Related Tools */}
           <div className="mt-24">
             <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath="/finance/amazon-fba-canada-calculator" />

@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import { WorkersCompCalculatorClient } from "./components/WorkersCompCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -223,7 +223,7 @@ export default function WorkersCompCalculatorPage() {
             <div className="mb-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-600 ring-1 ring-inset ring-emerald-500/20">
               Updated April 2026 — NCCI & State Rate Data
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Workers Comp Premium{" "}
               <span className="text-emerald-600">Calculator by Industry</span>
             </h1>
@@ -290,7 +290,7 @@ export default function WorkersCompCalculatorPage() {
               </p>
               <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-900 text-slate-200">
+                  <thead className="bg-slate-50 text-slate-400 uppercase text-[10px] font-black tracking-widest">
                     <tr>
                       <th className="px-6 py-4 font-semibold">Class Code</th>
                       <th className="px-6 py-4 font-semibold">Industry / Description</th>
@@ -298,7 +298,7 @@ export default function WorkersCompCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Median Rate / $100</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                  <tbody className="divide-y divide-slate-100 text-slate-600">
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-mono text-emerald-600">8810</td>
                       <td className="px-6 py-4">Clerical Office Employees</td>
@@ -384,7 +384,7 @@ export default function WorkersCompCalculatorPage() {
               </p>
               <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-900 text-slate-200">
+                  <thead className="bg-slate-50 text-slate-400 uppercase text-[10px] font-black tracking-widest">
                     <tr>
                       <th className="px-6 py-4 font-semibold">State</th>
                       <th className="px-6 py-4 font-semibold">Market Type</th>
@@ -392,7 +392,7 @@ export default function WorkersCompCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Key Characteristic</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                  <tbody className="divide-y divide-slate-100 text-slate-600">
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4">Texas</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Competitive</span></td>

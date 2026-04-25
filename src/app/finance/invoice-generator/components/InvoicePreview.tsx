@@ -33,6 +33,7 @@ interface InvoicePreviewProps {
   state: InvoiceState;
   result: InvoiceCalculationResult;
   currency: InvoiceCurrency;
+  taxLabel?: string;
   validationErrors: ValidationErrors;
   onDownloadPdf: () => void;
   pdfLoading: boolean;
@@ -56,6 +57,7 @@ export default function InvoicePreview({
   state,
   result,
   currency,
+  taxLabel = "Tax",
   validationErrors,
   onDownloadPdf,
   pdfLoading,
@@ -197,7 +199,7 @@ export default function InvoicePreview({
                 ) : null}
 
                 <div className="flex items-center justify-between gap-4">
-                  <span className="text-slate-600">Tax</span>
+                  <span className="text-slate-600">{taxLabel}</span>
                   <span className="font-medium text-slate-900">
                     {formatInvoiceCurrency(result.taxAmount, currency)}
                   </span>

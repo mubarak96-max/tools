@@ -33,6 +33,41 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
   ],
   Finance: [
     {
+      name: "Australia Stamp Duty Calculator",
+      href: "/finance/australia-stamp-duty-calculator",
+      description: "Calculate property transfer duty across all 8 states with 2026 rates and concessions.",
+    },
+    {
+      name: "Australia GST Calculator",
+      href: "/finance/australia-gst-calculator",
+      description: "Add or remove 10% GST with multi-item invoice and BAS quick-fill helper.",
+    },
+    {
+      name: "India SIP Calculator",
+      href: "/finance/india-sip-calculator",
+      description: "Mutual fund SIP returns with Step-Up SIP, Lumpsum, and SWP modes.",
+    },
+    {
+      name: "India TDS Calculator",
+      href: "/finance/india-tds-calculator",
+      description: "Calculate TDS deductions on salary, interest, and professional services.",
+    },
+    {
+      name: "Car Depreciation Calculator",
+      href: "/finance/car-depreciation-calculator",
+      description: "Accurate resale value and depreciation curves for 500+ makes and models.",
+    },
+    {
+      name: "Canada HST/GST Calculator",
+      href: "/finance/canada-hst-gst-calculator",
+      description: "Calculate sales tax for all 13 Canadian provinces and territories.",
+    },
+    {
+      name: "US Self-Employment Tax Calculator",
+      href: "/finance/us-self-employment-tax-calculator",
+      description: "Estimate 2026 IRS self-employment tax for freelancers and contractors.",
+    },
+    {
       name: "EMI Calculator",
       href: "/finance/emi-calculator",
       description: "Estimate monthly loan payment, total interest, and affordability.",

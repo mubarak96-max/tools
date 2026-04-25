@@ -169,6 +169,27 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     category: "Finance",
     icon: "SE",
   },
+  {
+    name: "Australia Stamp Duty Calculator",
+    href: "/finance/australia-stamp-duty-calculator",
+    description: "Calculate property transfer duty across all 8 states. FHB concessions, foreign surcharges, and mortgage fees.",
+    category: "Finance",
+    icon: "🏠",
+  },
+  {
+    name: "Australia GST Calculator",
+    href: "/finance/australia-gst-calculator",
+    description: "Add or remove 10% GST from any amount. Single amount or multi-item invoice mode with BAS reporting helper.",
+    category: "Finance",
+    icon: "🇦🇺",
+  },
+  {
+    name: "Canada HST/GST Calculator",
+    href: "/finance/canada-hst-gst-calculator",
+    description: "Calculate sales tax for all 13 Canadian provinces and territories. Add or reverse-calculate GST, HST, PST, and QST.",
+    category: "Finance",
+    icon: "🇨🇦",
+  },
 
 
 
@@ -230,6 +251,27 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     description: "Generate and validate hreflang tags for multi-language SEO.",
     category: "SEO",
     icon: "Globe",
+  },
+  {
+    name: "India SIP Calculator",
+    href: "/finance/india-sip-calculator",
+    description: "Mutual fund SIP returns with Step-Up SIP, Lumpsum, and SWP modes. Includes 2026 LTCG tax estimation.",
+    category: "Finance",
+    icon: "IndianRupee",
+  },
+  {
+    name: "India TDS Calculator",
+    href: "/finance/india-tds-calculator",
+    description: "Calculate TDS on salary, rent, professional fees, and more for FY 2025-26 with surcharge and cess.",
+    category: "Finance",
+    icon: "Receipt",
+  },
+  {
+    name: "Car Depreciation Calculator",
+    href: "/finance/car-depreciation-calculator",
+    description: "Accurate resale value and depreciation curves for 500+ makes and models.",
+    category: "Finance",
+    icon: "Car",
   },
 ];
 

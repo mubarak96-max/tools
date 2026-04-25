@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import { BusinessRiskCalculatorClient } from "./components/BusinessRiskCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -228,7 +228,7 @@ export default function BusinessRiskCalculatorPage() {
             <div className="mb-4 inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-600 ring-1 ring-inset ring-violet-500/20">
               Updated April 2026 — Multi-Dimensional Risk Framework
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               Business Risk Exposure{" "}
               <span className="text-violet-600">Score Calculator</span>
             </h1>
@@ -477,7 +477,7 @@ export default function BusinessRiskCalculatorPage() {
               </p>
               <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
-                  <thead className="bg-slate-900 text-slate-200">
+                  <thead className="bg-slate-50 text-slate-400 uppercase text-[10px] font-black tracking-widest">
                     <tr>
                       <th className="px-6 py-4 font-semibold">Industry Sector</th>
                       <th className="px-6 py-4 font-semibold">Median Risk Score</th>
@@ -485,7 +485,7 @@ export default function BusinessRiskCalculatorPage() {
                       <th className="px-6 py-4 font-semibold">Secondary Risk Driver</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800 text-slate-600">
+                  <tbody className="divide-y divide-slate-100 text-slate-600">
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4">SaaS / Technology</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">28</td>

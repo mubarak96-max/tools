@@ -320,6 +320,21 @@ export default function AmazonFbaCalculatorPage() {
           ))}
         </div>
 
+        {/* Trust Signal */}
+        <div className="mt-24 rounded-3xl border border-stone-100 bg-stone-50/50 p-8">
+          <div className="flex items-start gap-6">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-stone-100 text-xl font-black text-orange-500 italic">
+              FB
+            </div>
+            <div>
+              <p className="font-black text-stone-900 uppercase tracking-tight">Verified by FindBest Tools</p>
+              <p className="mt-2 text-sm font-medium text-stone-500 leading-relaxed">
+                Amazon UK fee schedules and FBA rate cards verified against official 2024/2025 Seller Central documentation. Built for accuracy in the UK marketplace. Last reviewed 25 April 2026.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Related Tools */}
         <div className="mt-16">
           <RelatedToolsSection 

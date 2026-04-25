@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { SelfEmploymentTaxCalculatorClient } from "./components/SelfEmploymentTaxCalculatorClient";
+import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
@@ -161,7 +162,7 @@ const structuredData = {
 export default function SelfEmploymentTaxCalculatorPage() {
   return (
     <>
-      <JsonLd data={structuredData} />
+      <JsonLd data={JSON.stringify(structuredData)} />
       <main className="min-h-screen bg-slate-50 text-slate-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Hero */}
@@ -183,16 +184,6 @@ export default function SelfEmploymentTaxCalculatorPage() {
           {/* Calculator */}
           <SelfEmploymentTaxCalculatorClient />
 
-          {/* Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-premium text-center">
-
-            <p className="text-lg font-black text-slate-900 uppercase tracking-tight">Verified Accuracy</p>
-            <p className="mt-2 text-sm text-slate-500 font-medium leading-relaxed">
-              Calculations based on IRS Schedule SE instructions, 2026
-              Social Security wage base projections, and Medicare tax
-              regulations under IRC §§ 1401, 1402, and 3101. Verified 25 April 2026.
-            </p>
-          </div>
 
           {/* Long-form Content */}
           <article className="mx-auto mt-20 max-w-4xl space-y-24 pb-20">
@@ -453,6 +444,28 @@ export default function SelfEmploymentTaxCalculatorPage() {
               </p>
             </section>
           </article>
+
+            {/* Trust Signal */}
+            <div className="mt-24 rounded-3xl border border-slate-100 bg-slate-50/50 p-8">
+              <div className="flex items-start gap-6">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 text-xl font-black text-blue-500 italic">
+                  FB
+                </div>
+                <div>
+                  <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
+                  <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
+                    Calculations based on IRS Schedule SE instructions, 2026
+                    Social Security wage base projections, and Medicare tax
+                    regulations under IRC §§ 1401, 1402, and 3101. Verified 25 April 2026.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Related Tools */}
+          <div className="mt-20 border-t border-slate-100 pt-12">
+            <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath="/finance/us-self-employment-tax-calculator" />
+          </div>
 
         </div>
       </main>
