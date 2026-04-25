@@ -147,6 +147,13 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     icon: "🏛️",
   },
   {
+    name: "Equity Dilution Calculator",
+    href: "/finance/equity-dilution-calculator",
+    description: "Model founder ownership through funding rounds, SAFEs, and option pools.",
+    category: "Finance",
+    icon: "📈",
+  },
+  {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",

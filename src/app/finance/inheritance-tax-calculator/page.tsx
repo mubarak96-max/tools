@@ -244,26 +244,7 @@ export default function InheritanceTaxCalculatorPage() {
           {/* Calculator */}
           <InheritanceTaxCalculatorClient />
 
-          {/* Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-xl font-bold text-violet-400">
-                FB
-              </div>
-              <div>
-                <p className="font-semibold text-white">Verified by FindBest Tools</p>
-                <p className="mt-1 text-sm text-slate-400">
-                  Rates and thresholds verified against HMRC (UK), IRS (USA),
-                  Revenue Commissioners (Ireland), DGFiP (France), BZSt
-                  (Germany), AEAT (Spain), Agenzia Entrate (Italy), CRA
-                  (Canada), ATO (Australia), and CBDT (India). Last verified 25
-                  April 2026. This calculator provides estimates for
-                  illustrative purposes; consult a qualified tax advisor or
-                  solicitor for estate planning specific to your circumstances.
-                </p>
-              </div>
-            </div>
-          </div>
+
 
           {/* Long-form Content */}
           <article className="mx-auto mt-20 max-w-4xl space-y-16">

@@ -63,6 +63,7 @@ const TOOL_PATHS = [
   "/finance/workers-comp-premium-calculator",
   "/finance/business-risk-exposure-score-calculator",
   "/finance/inheritance-tax-calculator",
+  "/finance/equity-dilution-calculator",
   "/finance/halal-mortgage-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",

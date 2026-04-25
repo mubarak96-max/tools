@@ -205,6 +205,13 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     icon: "🏛️",
   },
   {
+    name: "Equity Dilution Calculator",
+    href: "/finance/equity-dilution-calculator",
+    description: "Model founder ownership through funding rounds, SAFEs, and option pools.",
+    category: "Finance",
+    icon: "📈",
+  },
+  {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
     description: "State-by-state 2026 take-home pay comparison and breakdown.",

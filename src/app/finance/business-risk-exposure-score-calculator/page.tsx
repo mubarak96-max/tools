@@ -249,16 +249,7 @@ export default function BusinessRiskCalculatorPage() {
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-xl font-bold text-violet-400">
                 FB
               </div>
-              <div>
-                <p className="font-semibold text-white">Verified by FindBest Tools</p>
-                <p className="mt-1 text-sm text-slate-400">
-                  Risk scoring methodology based on ISO 31000 risk management
-                  principles, COSO enterprise risk framework, and NIST
-                  cybersecurity guidelines. Scoring weights are calibrated for
-                  small and medium-sized businesses across major industry
-                  sectors. Last updated 25 April 2026.
-                </p>
-              </div>
+
             </div>
           </div>
 

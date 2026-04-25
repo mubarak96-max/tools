@@ -88,6 +88,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Calculate estate tax and succession duty for UK, USA, Ireland & more.",
     },
     {
+      name: "Equity Dilution Calculator",
+      href: "/finance/equity-dilution-calculator",
+      description: "Model founder ownership through funding rounds and SAFEs.",
+    },
+    {
       name: "Bonus Tax Calculator",
       href: "/finance/bonus-tax-calculator",
       description: "Employee bonus & business depreciation tool.",

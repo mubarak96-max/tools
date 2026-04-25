@@ -237,25 +237,6 @@ export default function WorkersCompCalculatorPage() {
           {/* Calculator */}
           <WorkersCompCalculatorClient />
 
-          {/* Trust Signal */}
-          <div className="mx-auto mt-16 max-w-3xl rounded-2xl border border-slate-800 bg-slate-900/50 p-6 backdrop-blur">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xl font-bold text-emerald-400">
-                FB
-              </div>
-              <div>
-                <p className="font-semibold text-white">Verified by FindBest Tools</p>
-                <p className="mt-1 text-sm text-slate-400">
-                  Rate data compiled from NCCI loss cost filings, state rating
-                  bureaus, and carrier filings for 2026. Monopolistic state
-                  rates (ND, OH, WA, WY) reflect state fund published rates.
-                  Last verified 25 April 2026. For binding quotes, contact a
-                  licensed workers comp agent.
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* Long-form Content */}
           <article className="mx-auto mt-20 max-w-4xl space-y-16">
             {/* Section 1 */}

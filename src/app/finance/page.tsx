@@ -84,6 +84,12 @@ const FINANCE_TOOLS = [
     icon: "🏛️",
   },
   {
+    name: "Equity Dilution Calculator",
+    href: "/finance/equity-dilution-calculator",
+    description: "Model founder ownership through funding rounds, SAFEs, and option pools.",
+    icon: "📈",
+  },
+  {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
     description: "Calculate take-home pay with 2026 tax brackets and compare across all 50 states.",
