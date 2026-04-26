@@ -246,10 +246,10 @@ const PERIODS = [
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
-      <div style={{ background: "#0a0f1a", border: "1px solid #1e2d40", borderRadius: 8, padding: "10px 14px", fontSize: 12, color: "#cbd5e1" }}>
-        <p style={{ fontWeight: 700, color: "#fff", marginBottom: 4 }}>{label}</p>
+      <div style={{ background: "#ffffff", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 14px", fontSize: 12, color: "var(--ink2)", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
+        <p style={{ fontWeight: 700, color: "var(--ink)", marginBottom: 4 }}>{label}</p>
         {payload.map((p: any) => (
-          <p key={p.name} style={{ color: p.fill || "#94a3b8" }}>
+          <p key={p.name} style={{ color: p.fill || "var(--ink2)" }}>
             {p.name}: {fmtC(p.value)}
           </p>
         ))}
@@ -1185,10 +1185,10 @@ export default function CanadaTaxCalculatorPage() {
                   [<span className="flex items-center gap-1.5"><Mountain size={14} /> NWT</span>,                    "4",  "14.05%", "$16,593", "~47.05%", "Territory"],
                   [<span className="flex items-center gap-1.5"><Mountain size={14} /> Yukon (YT)</span>,              "4",  "15.00%", "$15,705", "~48.00%", "Territory; mirrors federal brackets"],
                   [<span className="flex items-center gap-1.5"><Snowflake size={14} /> Nunavut (NU)</span>,            "4",  "11.50%", "$17,925", "~44.50%", "Lowest combined top rate in Canada"],
-                ].map(([prov, bkts, top, bpa, combined, notes]) => (
-                  <tr key={prov}>
-                    <td>{prov}</td>
-                    <td style={{ textAlign: "center" }}>{bkts}</td>
+                ].map(([prov, bkts, top, bpa, combined, notes], i) => (
+                  <tr key={i}>
+                    <td>{prov as React.ReactNode}</td>
+                    <td style={{ textAlign: "center" }}>{bkts as React.ReactNode}</td>
                     <td className="td-red">{top}</td>
                     <td>{bpa}</td>
                     <td className="td-red">{combined}</td>

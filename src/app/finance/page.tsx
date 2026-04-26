@@ -161,6 +161,12 @@ const FINANCE_TOOLS = [
     description: "Calculate UK student loan repayments, write-off periods, and interest for Plans 1, 2, 4, 5, and Postgrad.",
     icon: "SLOAN",
   },
+  {
+    name: "Capital Gains Tax Canada Calculator",
+    href: "/finance/capital-gains-tax-canada-calculator",
+    description: "Calculate exact capital gains tax in Canada on investments, real estate, and more. Includes 2024 inclusion rate changes.",
+    icon: "CGT",
+  },
 ];
 
 export const metadata = buildMetadata({

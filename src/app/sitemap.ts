@@ -80,6 +80,7 @@ const TOOL_PATHS = [
   "/finance/zakat-calculator",
   "/finance/canada-income-tax-calculator",
   "/finance/uk-student-loan-repayment-calculator",
+  "/finance/capital-gains-tax-canada-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",
   "/marketing/marketing-roi-calculator",
