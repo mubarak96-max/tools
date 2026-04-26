@@ -79,6 +79,12 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
     description: "Compare the long-term costs of renting vs buying a home, including tax savings.",
     icon: "R/B",
   },
+  {
+    name: "Rental Yield Calculator",
+    href: "/real-estate/rental-yield-calculator",
+    description: "Calculate gross vs net rental yield for UK, US & Australia. Auto-estimates stamp duty and compares against city medians.",
+    icon: "RYC",
+  },
 ];
 
 function ToolCard({ tool }: { tool: RealEstateToolMeta }) {

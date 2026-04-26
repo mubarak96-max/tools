@@ -149,6 +149,18 @@ const FINANCE_TOOLS = [
     description: "Calculate sales tax across all Canadian provinces including HST, GST, and PST/QST.",
     icon: "CAD",
   },
+  {
+    name: "Canada Income Tax Calculator",
+    href: "/finance/canada-income-tax-calculator",
+    description: "Estimate 2024 Canadian federal and provincial tax, CPP, EI, and exact take-home pay.",
+    icon: "TAX",
+  },
+  {
+    name: "UK Student Loan Repayment Calculator",
+    href: "/finance/uk-student-loan-repayment-calculator",
+    description: "Calculate UK student loan repayments, write-off periods, and interest for Plans 1, 2, 4, 5, and Postgrad.",
+    icon: "SLOAN",
+  },
 ];
 
 export const metadata = buildMetadata({
