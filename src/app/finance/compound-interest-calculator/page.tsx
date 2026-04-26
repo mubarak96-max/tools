@@ -44,11 +44,11 @@ const schema = {
 // ─── Content data ──────────────────────────────────────────────────
 
 const COMPOUNDING_TABLE = [
-  { frequency: "Daily",       n: "365", example10k: "$20,138",  note: "Best for savings accounts and money market funds" },
-  { frequency: "Monthly",     n: "12",  example10k: "$20,097",  note: "Common for investment accounts and ISAs" },
-  { frequency: "Quarterly",   n: "4",   example10k: "$20,016",  note: "Common for some bonds and GICs" },
-  { frequency: "Semi-annual", n: "2",   example10k: "$19,990",  note: "Common for government bonds" },
-  { frequency: "Annually",    n: "1",   example10k: "$19,672",  note: "Baseline — used in simple compound interest" },
+  { frequency: "Daily", n: "365", example10k: "$20,138", note: "Best for savings accounts and money market funds" },
+  { frequency: "Monthly", n: "12", example10k: "$20,097", note: "Common for investment accounts and ISAs" },
+  { frequency: "Quarterly", n: "4", example10k: "$20,016", note: "Common for some bonds and GICs" },
+  { frequency: "Semi-annual", n: "2", example10k: "$19,990", note: "Common for government bonds" },
+  { frequency: "Annually", n: "1", example10k: "$19,672", note: "Baseline — used in simple compound interest" },
 ];
 
 const SCENARIOS = [
@@ -149,10 +149,7 @@ export default function CompoundInterestPage() {
 
         {/* Hero */}
         <div className="mb-8 max-w-2xl">
-          <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-medium px-3 py-1.5 rounded-full mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
-            Free · Monthly contributions · Inflation adjusted
-          </div>
+
           <h1 className="text-4xl font-bold text-stone-900 leading-tight mb-3">
             Compound Interest Calculator<br />
             <span className="text-stone-400 text-3xl font-normal">with Monthly Contributions</span>

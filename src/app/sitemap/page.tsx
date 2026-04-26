@@ -235,6 +235,12 @@ const SITEMAP_TOOLS = [
         description: "See how regular deposits grow over time with daily, monthly, or annual compounding.",
         icon: "COMP",
       },
+      {
+        name: "Saudi End of Service Calculator",
+        href: "/finance/saudi-end-of-service-calculator",
+        description: "Calculate your Saudi Arabia end of service benefit (EOSB) accurately under Saudi Labor Law.",
+        icon: "SA-EOS",
+      },
     ],
   },
   {
