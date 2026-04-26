@@ -4,6 +4,20 @@ import { useState, useMemo } from "react";
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend,
 } from "recharts";
+import { 
+  Building2, 
+  Scale, 
+  CalendarDays, 
+  Globe, 
+  HandHeart, 
+  Home, 
+  ClipboardList, 
+  HeartHandshake, 
+  Link, 
+  Banknote, 
+  ShieldCheck, 
+  Plane 
+} from "lucide-react";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const fmt = (n: number, d = 2) =>
@@ -18,12 +32,12 @@ const fmtC = (n: number, currency = "USD") => {
 
 // Nisab values (approximate — users should verify with local scholars)
 // Gold nisab: 87.48g of gold  |  Silver nisab: 612.36g of silver
-const GOLD_NISAB_GRAMS   = 87.48;
+const GOLD_NISAB_GRAMS = 87.48;
 const SILVER_NISAB_GRAMS = 612.36;
-const ZAKAT_RATE         = 0.025; // 2.5%
+const ZAKAT_RATE = 0.025; // 2.5%
 
 // Approximate spot prices (users instructed to verify)
-const DEFAULT_GOLD_PRICE_PER_GRAM   = 92.50;  // USD per gram (~$2,875/oz)
+const DEFAULT_GOLD_PRICE_PER_GRAM = 92.50;  // USD per gram (~$2,875/oz)
 const DEFAULT_SILVER_PRICE_PER_GRAM = 1.05;   // USD per gram (~$32.5/oz)
 
 const CURRENCIES = [
@@ -61,29 +75,29 @@ const CustomPieTooltip = ({ active, payload }: any) => {
 
 // ── Main Component ────────────────────────────────────────────────────────────
 export default function ZakatCalculatorClient() {
-  const [nisabBasis, setNisabBasis]   = useState("gold"); // "gold" | "silver"
-  const [currency, setCurrency]       = useState("USD");
-  const [goldPriceG, setGoldPriceG]   = useState(DEFAULT_GOLD_PRICE_PER_GRAM.toString());
+  const [nisabBasis, setNisabBasis] = useState("gold"); // "gold" | "silver"
+  const [currency, setCurrency] = useState("USD");
+  const [goldPriceG, setGoldPriceG] = useState(DEFAULT_GOLD_PRICE_PER_GRAM.toString());
   const [silverPriceG, setSilverPriceG] = useState(DEFAULT_SILVER_PRICE_PER_GRAM.toString());
-  const [activeTab, setActiveTab]     = useState("summary");
+  const [activeTab, setActiveTab] = useState("summary");
 
   // Asset inputs
   const [assets, setAssets] = useState<Record<string, any>>({
-    cash:        { label: "Cash & Bank Balance",         value: 5000,  zakatable: true },
-    savings:     { label: "Savings Accounts",            value: 12000, zakatable: true },
-    gold:        { label: "Gold (market value)",         value: 3200,  zakatable: true },
-    silver:      { label: "Silver (market value)",       value: 400,   zakatable: true },
-    investments: { label: "Stocks & Investments",        value: 8000,  zakatable: true },
-    business:    { label: "Business Inventory",          value: 0,     zakatable: true },
-    receivables: { label: "Money Owed to You",           value: 1500,  zakatable: true },
-    other:       { label: "Other Zakatable Assets",      value: 0,     zakatable: true },
+    cash: { label: "Cash & Bank Balance", value: 5000, zakatable: true },
+    savings: { label: "Savings Accounts", value: 12000, zakatable: true },
+    gold: { label: "Gold (market value)", value: 3200, zakatable: true },
+    silver: { label: "Silver (market value)", value: 400, zakatable: true },
+    investments: { label: "Stocks & Investments", value: 8000, zakatable: true },
+    business: { label: "Business Inventory", value: 0, zakatable: true },
+    receivables: { label: "Money Owed to You", value: 1500, zakatable: true },
+    other: { label: "Other Zakatable Assets", value: 0, zakatable: true },
   });
 
   // Liability inputs
   const [liabilities, setLiabilities] = useState<Record<string, any>>({
-    debts:       { label: "Short-term Debts Due",        value: 2000  },
-    bills:       { label: "Bills & Expenses Due",        value: 500   },
-    other:       { label: "Other Liabilities",           value: 0     },
+    debts: { label: "Short-term Debts Due", value: 2000 },
+    bills: { label: "Bills & Expenses Due", value: 500 },
+    other: { label: "Other Liabilities", value: 0 },
   });
 
   const updateAsset = (key: string, field: string, val: string) =>
@@ -93,12 +107,12 @@ export default function ZakatCalculatorClient() {
 
   // ── Calculations ─────────────────────────────────────────────────────────
   const calc = useMemo(() => {
-    const gp = parseFloat(goldPriceG)   || DEFAULT_GOLD_PRICE_PER_GRAM;
+    const gp = parseFloat(goldPriceG) || DEFAULT_GOLD_PRICE_PER_GRAM;
     const sp = parseFloat(silverPriceG) || DEFAULT_SILVER_PRICE_PER_GRAM;
 
-    const nisabGold   = GOLD_NISAB_GRAMS   * gp;
+    const nisabGold = GOLD_NISAB_GRAMS * gp;
     const nisabSilver = SILVER_NISAB_GRAMS * sp;
-    const nisabValue  = nisabBasis === "gold" ? nisabGold : nisabSilver;
+    const nisabValue = nisabBasis === "gold" ? nisabGold : nisabSilver;
 
     const totalAssets = Object.values(assets)
       .filter(a => a.zakatable)
@@ -108,8 +122,8 @@ export default function ZakatCalculatorClient() {
       .reduce((s, l) => s + (parseFloat(l.value) || 0), 0);
 
     const netZakatableWealth = Math.max(0, totalAssets - totalLiabilities);
-    const aboveNisab         = netZakatableWealth >= nisabValue;
-    const zakatDue           = aboveNisab ? netZakatableWealth * ZAKAT_RATE : 0;
+    const aboveNisab = netZakatableWealth >= nisabValue;
+    const zakatDue = aboveNisab ? netZakatableWealth * ZAKAT_RATE : 0;
 
     const assetBreakdown = Object.entries(assets).map(([key, a]) => ({
       key, name: a.label,
@@ -558,7 +572,7 @@ export default function ZakatCalculatorClient() {
           {/* ── HERO ── */}
           <header className="zhero zanim">
             <p className="zbismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-            <div className="zbadge">✦ Updated for 2024 · Free · No Account Needed</div>
+
             <h1>Zakat Calculator<br /><em>Purify Your Wealth</em></h1>
             <p className="zhero-sub">
               Calculate your zakat al-mal accurately — on gold, silver, cash, savings, investments,
@@ -642,9 +656,9 @@ export default function ZakatCalculatorClient() {
                     <div key={key} className="zasset-row">
                       <div>
                         <div className="zasset-label">{a.label}</div>
-                        {key === "gold"        && <div className="zasset-hint">Jewelry worn regularly may be exempt — consult your scholar</div>}
+                        {key === "gold" && <div className="zasset-hint">Jewelry worn regularly may be exempt — consult your scholar</div>}
                         {key === "investments" && <div className="zasset-hint">Use zakatable portion: current market value of shares</div>}
-                        {key === "business"    && <div className="zasset-hint">Stock/inventory held for sale, not fixed assets</div>}
+                        {key === "business" && <div className="zasset-hint">Stock/inventory held for sale, not fixed assets</div>}
                         {key === "receivables" && <div className="zasset-hint">Include only debts you expect to recover</div>}
                       </div>
                       <div className="ziw">
@@ -691,8 +705,8 @@ export default function ZakatCalculatorClient() {
                 </div>
 
                 <div className="ztabs">
-                  {[["summary","Summary"],["breakdown","Breakdown"],["chart","Chart"]].map(([v,l]) => (
-                    <button key={v} className={`ztab ${activeTab===v?"zactive":""}`} onClick={() => setActiveTab(v)}>{l}</button>
+                  {[["summary", "Summary"], ["breakdown", "Breakdown"], ["chart", "Chart"]].map(([v, l]) => (
+                    <button key={v} className={`ztab ${activeTab === v ? "zactive" : ""}`} onClick={() => setActiveTab(v)}>{l}</button>
                   ))}
                 </div>
 
@@ -810,7 +824,7 @@ export default function ZakatCalculatorClient() {
           <section className="zsection" id="what-is">
             <div className="zsec-badge">The Foundation</div>
             <h2 className="zsec-title">What Is Zakat &amp; <em>Who Must Pay It?</em></h2>
-            <div className="zornament"><div className="zornament-line"/><div className="zornament-diamond"/><div className="zornament-line"/></div>
+            <div className="zornament"><div className="zornament-line" /><div className="zornament-diamond" /><div className="zornament-line" /></div>
             <div className="ztwo-col">
               <div className="zcbody">
                 <p>
@@ -842,10 +856,10 @@ export default function ZakatCalculatorClient() {
               <div>
                 <div className="zthree-col" style={{ gridTemplateColumns: "1fr 1fr", gap: 14, marginTop: 0 }}>
                   {[
-                    { icon: "🕌", title: "Fifth Pillar of Faith", body: "Zakat is not a tax or charitable donation — it is a pillar of Islamic worship, as fundamental as Salah and Sawm." },
-                    { icon: "⚖️", title: "Precise Rate: 2.5%", body: "The zakat percentage rate on most forms of wealth (gold, silver, cash, trade goods) is fixed at 2.5% — one-fortieth of net zakatable wealth." },
-                    { icon: "📅", title: "Annual Obligation", body: "Zakat is due once per lunar year on wealth that has been held above nisab for the full hawl period." },
-                    { icon: "🌍", title: "Eight Categories of Recipients", body: "The Quran specifies eight categories of valid zakat recipients (asnaf), from the poor and destitute to those burdened by debt." },
+                    { icon: <Building2 className="w-6 h-6 text-[#c9a84c]" />, title: "Fifth Pillar of Faith", body: "Zakat is not a tax or charitable donation — it is a pillar of Islamic worship, as fundamental as Salah and Sawm." },
+                    { icon: <Scale className="w-6 h-6 text-[#c9a84c]" />, title: "Precise Rate: 2.5%", body: "The zakat percentage rate on most forms of wealth (gold, silver, cash, trade goods) is fixed at 2.5% — one-fortieth of net zakatable wealth." },
+                    { icon: <CalendarDays className="w-6 h-6 text-[#c9a84c]" />, title: "Annual Obligation", body: "Zakat is due once per lunar year on wealth that has been held above nisab for the full hawl period." },
+                    { icon: <Globe className="w-6 h-6 text-[#c9a84c]" />, title: "Eight Categories of Recipients", body: "The Quran specifies eight categories of valid zakat recipients (asnaf), from the poor and destitute to those burdened by debt." },
                   ].map(c => (
                     <div className="zicard" key={c.title}>
                       <span className="zicard-icon">{c.icon}</span>
@@ -1031,14 +1045,14 @@ export default function ZakatCalculatorClient() {
             </p>
             <div className="zthree-col">
               {[
-                { icon: "🤲", title: "Al-Fuqara (The Poor)", body: "Those who have no or very little wealth and cannot meet their basic needs — below subsistence level." },
-                { icon: "🏠", title: "Al-Masakin (The Needy)", body: "Those who have some income or resources but insufficient to cover their essential needs." },
-                { icon: "📋", title: "Amil Al-Zakat (Zakat Administrators)", body: "Those appointed to collect, manage, and distribute zakat. Zakat institutions qualify under this category." },
-                { icon: "💛", title: "Al-Mu'allafatu Qulubuhum (New Muslims)", body: "Those whose hearts are being reconciled to Islam, including recent converts who may need support." },
-                { icon: "⛓️", title: "Fi Al-Riqab (Freeing Captives)", body: "Historically: freeing slaves. Contemporary scholars extend this to helping free those in modern forms of bondage or exploitation." },
-                { icon: "💸", title: "Al-Gharimun (Those in Debt)", body: "Muslims burdened by debt incurred for legitimate needs and unable to repay — not debts from sin or excess." },
-                { icon: "🛡️", title: "Fi Sabilillah (For Allah's Cause)", body: "Efforts in the way of Allah — historically defense of the Muslim community. Many scholars extend to Islamic education and da'wah." },
-                { icon: "✈️", title: "Ibn Al-Sabil (Wayfarers)", body: "Travelers who are stranded and without resources, even if they are wealthy in their home country." },
+                { icon: <HandHeart className="w-6 h-6 text-[#c9a84c]" />, title: "Al-Fuqara (The Poor)", body: "Those who have no or very little wealth and cannot meet their basic needs — below subsistence level." },
+                { icon: <Home className="w-6 h-6 text-[#c9a84c]" />, title: "Al-Masakin (The Needy)", body: "Those who have some income or resources but insufficient to cover their essential needs." },
+                { icon: <ClipboardList className="w-6 h-6 text-[#c9a84c]" />, title: "Amil Al-Zakat (Zakat Administrators)", body: "Those appointed to collect, manage, and distribute zakat. Zakat institutions qualify under this category." },
+                { icon: <HeartHandshake className="w-6 h-6 text-[#c9a84c]" />, title: "Al-Mu'allafatu Qulubuhum (New Muslims)", body: "Those whose hearts are being reconciled to Islam, including recent converts who may need support." },
+                { icon: <Link className="w-6 h-6 text-[#c9a84c]" />, title: "Fi Al-Riqab (Freeing Captives)", body: "Historically: freeing slaves. Contemporary scholars extend this to helping free those in modern forms of bondage or exploitation." },
+                { icon: <Banknote className="w-6 h-6 text-[#c9a84c]" />, title: "Al-Gharimun (Those in Debt)", body: "Muslims burdened by debt incurred for legitimate needs and unable to repay — not debts from sin or excess." },
+                { icon: <ShieldCheck className="w-6 h-6 text-[#c9a84c]" />, title: "Fi Sabilillah (For Allah's Cause)", body: "Efforts in the way of Allah — historically defense of the Muslim community. Many scholars extend to Islamic education and da'wah." },
+                { icon: <Plane className="w-6 h-6 text-[#c9a84c]" />, title: "Ibn Al-Sabil (Wayfarers)", body: "Travelers who are stranded and without resources, even if they are wealthy in their home country." },
               ].map(c => (
                 <div className="zicard" key={c.title}>
                   <span className="zicard-icon">{c.icon}</span>
@@ -1053,7 +1067,7 @@ export default function ZakatCalculatorClient() {
           <section className="zsection" id="faq">
             <div className="zsec-badge">FAQ</div>
             <h2 className="zsec-title">Frequently Asked <em>Questions</em></h2>
-            <div className="zornament" style={{ marginBottom: 24 }}><div className="zornament-line"/><div className="zornament-diamond"/><div className="zornament-line"/></div>
+            <div className="zornament" style={{ marginBottom: 24 }}><div className="zornament-line" /><div className="zornament-diamond" /><div className="zornament-line" /></div>
             <div style={{ maxWidth: 800 }}>
               {[
                 {
