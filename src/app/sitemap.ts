@@ -75,6 +75,7 @@ const TOOL_PATHS = [
   "/finance/equity-dilution-calculator",
   "/finance/halal-mortgage-calculator",
   "/finance/us-self-employment-tax-calculator",
+  "/finance/compound-interest-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",
   "/marketing/marketing-roi-calculator",

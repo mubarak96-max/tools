@@ -229,6 +229,12 @@ const SITEMAP_TOOLS = [
         description: "Estimate workers' compensation insurance premiums by industry class code and payroll.",
         icon: "WC",
       },
+      {
+        name: "Compound Interest Calculator",
+        href: "/finance/compound-interest-calculator",
+        description: "See how regular deposits grow over time with daily, monthly, or annual compounding.",
+        icon: "COMP",
+      },
     ],
   },
   {
