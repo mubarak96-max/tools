@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SaudiEosCalculator from "@/components/SaudiEosCalculator";
+import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 // ─── SEO metadata ──────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -312,6 +313,11 @@ export default function SaudiEosPage() {
             disputes or complex cases, consult a licensed Saudi labour lawyer or contact
             the Ministry of Human Resources and Social Development (MHRSD).
           </p>
+        </div>
+
+        {/* Related Tools */}
+        <div className="mt-20 border-t border-stone-100 pt-12">
+          <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath="/finance/saudi-end-of-service-calculator" />
         </div>
 
       </main>

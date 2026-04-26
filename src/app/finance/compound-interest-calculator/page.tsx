@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CompoundInterestCalculator from "@/components/CompoundInterestCalculator";
+import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 // ─── SEO ──────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -349,6 +350,11 @@ export default function CompoundInterestPage() {
             performance does not guarantee future results. Consult a qualified financial
             adviser before making investment decisions.
           </p>
+        </div>
+
+        {/* Related Tools */}
+        <div className="mt-20 border-t border-stone-100 pt-12">
+          <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath="/finance/compound-interest-calculator" />
         </div>
 
       </main>
