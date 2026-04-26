@@ -4,16 +4,16 @@ import { useState, useMemo, useRef, useCallback } from "react";
 
 // ─── Tax regimes by country ───────────────────────────────────────────────────
 const TAX_REGIMES = [
-  { code: "GB",  label: "United Kingdom",  taxName: "VAT",  rate: 20,   currency: "GBP", symbol: "£",  placeholder: "GB123456789",   regLabel: "VAT Number",    dateFormat: "DD/MM/YYYY" },
-  { code: "AU",  label: "Australia",       taxName: "GST",  rate: 10,   currency: "AUD", symbol: "A$", placeholder: "12 345 678 901", regLabel: "ABN",           dateFormat: "DD/MM/YYYY" },
-  { code: "CA",  label: "Canada",          taxName: "HST",  rate: 13,   currency: "CAD", symbol: "CA$",placeholder: "123456789 RT0001",regLabel: "GST/HST Number",dateFormat: "YYYY-MM-DD" },
-  { code: "NZ",  label: "New Zealand",     taxName: "GST",  rate: 15,   currency: "NZD", symbol: "NZ$",placeholder: "123-456-789",    regLabel: "GST Number",    dateFormat: "DD/MM/YYYY" },
-  { code: "SG",  label: "Singapore",       taxName: "GST",  rate: 9,    currency: "SGD", symbol: "S$", placeholder: "M12345678A",     regLabel: "GST Reg. No.", dateFormat: "DD/MM/YYYY" },
-  { code: "ZA",  label: "South Africa",    taxName: "VAT",  rate: 15,   currency: "ZAR", symbol: "R",  placeholder: "4123456789",     regLabel: "VAT Number",    dateFormat: "YYYY/MM/DD" },
-  { code: "DE",  label: "Germany",         taxName: "VAT",  rate: 19,   currency: "EUR", symbol: "€",  placeholder: "DE123456789",    regLabel: "USt-IdNr.",     dateFormat: "DD.MM.YYYY" },
-  { code: "AE",  label: "UAE",             taxName: "VAT",  rate: 5,    currency: "AED", symbol: "د.إ",placeholder: "100123456789003",regLabel: "TRN",           dateFormat: "DD/MM/YYYY" },
-  { code: "US",  label: "United States",   taxName: "Tax",  rate: 0,    currency: "USD", symbol: "$",  placeholder: "—",              regLabel: "EIN",           dateFormat: "MM/DD/YYYY" },
-  { code: "CUSTOM", label: "Custom",       taxName: "Tax",  rate: 0,    currency: "USD", symbol: "$",  placeholder: "",               regLabel: "Tax Number",    dateFormat: "MM/DD/YYYY" },
+  { code: "GB", label: "United Kingdom", taxName: "VAT", rate: 20, currency: "GBP", symbol: "£", placeholder: "GB123456789", regLabel: "VAT Number", dateFormat: "DD/MM/YYYY" },
+  { code: "AU", label: "Australia", taxName: "GST", rate: 10, currency: "AUD", symbol: "A$", placeholder: "12 345 678 901", regLabel: "ABN", dateFormat: "DD/MM/YYYY" },
+  { code: "CA", label: "Canada", taxName: "HST", rate: 13, currency: "CAD", symbol: "CA$", placeholder: "123456789 RT0001", regLabel: "GST/HST Number", dateFormat: "YYYY-MM-DD" },
+  { code: "NZ", label: "New Zealand", taxName: "GST", rate: 15, currency: "NZD", symbol: "NZ$", placeholder: "123-456-789", regLabel: "GST Number", dateFormat: "DD/MM/YYYY" },
+  { code: "SG", label: "Singapore", taxName: "GST", rate: 9, currency: "SGD", symbol: "S$", placeholder: "M12345678A", regLabel: "GST Reg. No.", dateFormat: "DD/MM/YYYY" },
+  { code: "ZA", label: "South Africa", taxName: "VAT", rate: 15, currency: "ZAR", symbol: "R", placeholder: "4123456789", regLabel: "VAT Number", dateFormat: "YYYY/MM/DD" },
+  { code: "DE", label: "Germany", taxName: "VAT", rate: 19, currency: "EUR", symbol: "€", placeholder: "DE123456789", regLabel: "USt-IdNr.", dateFormat: "DD.MM.YYYY" },
+  { code: "AE", label: "UAE", taxName: "VAT", rate: 5, currency: "AED", symbol: "د.إ", placeholder: "100123456789003", regLabel: "TRN", dateFormat: "DD/MM/YYYY" },
+  { code: "US", label: "United States", taxName: "Tax", rate: 0, currency: "USD", symbol: "$", placeholder: "—", regLabel: "EIN", dateFormat: "MM/DD/YYYY" },
+  { code: "CUSTOM", label: "Custom", taxName: "Tax", rate: 0, currency: "USD", symbol: "$", placeholder: "", regLabel: "Tax Number", dateFormat: "MM/DD/YYYY" },
 ];
 
 const fmtMoney = (n: number, sym = "$") => {
@@ -35,12 +35,12 @@ export default function InvoiceGeneratorClient() {
   const printRef = useRef<HTMLDivElement>(null);
 
   // Country / tax
-  const [countryCode, setCountryCode]     = useState("GB");
+  const [countryCode, setCountryCode] = useState("GB");
   const [customTaxName, setCustomTaxName] = useState("Tax");
-  const [customRate, setCustomRate]       = useState(10);
-  const [customSymbol, setCustomSymbol]   = useState("$");
-  const [taxEnabled, setTaxEnabled]       = useState(true);
-  const [taxInclusive, setTaxInclusive]   = useState(false);
+  const [customRate, setCustomRate] = useState(10);
+  const [customSymbol, setCustomSymbol] = useState("$");
+  const [taxEnabled, setTaxEnabled] = useState(true);
+  const [taxInclusive, setTaxInclusive] = useState(false);
 
   const regime = useMemo(() => {
     const r = TAX_REGIMES.find(t => t.code === countryCode) || TAX_REGIMES[0];
@@ -49,19 +49,19 @@ export default function InvoiceGeneratorClient() {
   }, [countryCode, customTaxName, customRate, customSymbol]);
 
   // Invoice fields
-  const [invNumber,  setInvNumber]  = useState("INV-001");
-  const [invDate,    setInvDate]    = useState(today());
-  const [dueDate,    setDueDate]    = useState(addDays(today(), 30));
-  const [logo,       setLogo]       = useState<string | null>(null);   // base64
-  const [fromName,   setFromName]   = useState("");
-  const [fromAddr,   setFromAddr]   = useState("");
-  const [fromEmail,  setFromEmail]  = useState("");
+  const [invNumber, setInvNumber] = useState("INV-001");
+  const [invDate, setInvDate] = useState(today());
+  const [dueDate, setDueDate] = useState(addDays(today(), 30));
+  const [logo, setLogo] = useState<string | null>(null);   // base64
+  const [fromName, setFromName] = useState("");
+  const [fromAddr, setFromAddr] = useState("");
+  const [fromEmail, setFromEmail] = useState("");
   const [fromTaxNum, setFromTaxNum] = useState("");
-  const [toName,     setToName]     = useState("");
-  const [toAddr,     setToAddr]     = useState("");
-  const [toEmail,    setToEmail]    = useState("");
-  const [notes,      setNotes]      = useState("Payment is due within 30 days. Thank you for your business.");
-  const [lines,      setLines]      = useState([newLine(), newLine()]);
+  const [toName, setToName] = useState("");
+  const [toAddr, setToAddr] = useState("");
+  const [toEmail, setToEmail] = useState("");
+  const [notes, setNotes] = useState("Payment is due within 30 days. Thank you for your business.");
+  const [lines, setLines] = useState([newLine(), newLine()]);
 
   // Logo upload
   const handleLogo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +74,7 @@ export default function InvoiceGeneratorClient() {
   // Line item CRUD
   const updateLine = (id: number, field: string, val: string | number) =>
     setLines(ls => ls.map(l => l.id === id ? { ...l, [field]: val } : l));
-  const addLine    = () => setLines(ls => [...ls, newLine()]);
+  const addLine = () => setLines(ls => [...ls, newLine()]);
   const removeLine = (id: number) => setLines(ls => ls.filter(l => l.id !== id));
 
   // Totals
@@ -83,17 +83,54 @@ export default function InvoiceGeneratorClient() {
     const rate = taxEnabled ? (regime.rate / 100) : 0;
     let taxAmt, grandTotal;
     if (taxInclusive) {
-      taxAmt    = subtotal * rate / (1 + rate);
+      taxAmt = subtotal * rate / (1 + rate);
       grandTotal = subtotal;
     } else {
-      taxAmt    = subtotal * rate;
+      taxAmt = subtotal * rate;
       grandTotal = subtotal + taxAmt;
     }
     return { subtotal, taxAmt, grandTotal };
   }, [lines, regime.rate, taxEnabled, taxInclusive]);
 
   // Print / PDF
-  const handlePrint = useCallback(() => window.print(), []);
+  const handlePrint = useCallback(async () => {
+    const target = printRef.current;
+    if (!target) return;
+
+    target.classList.add("printing-pdf");
+
+    try {
+      const html2canvas = (await import("html2canvas")).default;
+      // @ts-ignore
+      const jsPDFModule = await import("jspdf/dist/jspdf.umd.js");
+      const jsPDF = jsPDFModule.jsPDF || (jsPDFModule.default && jsPDFModule.default.jsPDF) || jsPDFModule.default;
+
+      const canvas = await html2canvas(target, {
+        scale: 3,
+        useCORS: true,
+        logging: false,
+        backgroundColor: "#ffffff",
+      });
+
+      const imgData = canvas.toDataURL("image/jpeg", 1.0);
+
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+      pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`${invNumber || "Invoice"}.pdf`);
+    } catch (err) {
+      console.error("PDF generation failed", err);
+    } finally {
+      target.classList.remove("printing-pdf");
+    }
+  }, [invNumber]);
 
   const sym = regime.symbol;
 
@@ -297,7 +334,7 @@ export default function InvoiceGeneratorClient() {
         @media(max-width:600px){ .inv-header { grid-template-columns: 1fr; padding: 24px 20px 20px; } }
 
         .inv-logo-area { display: flex; flex-direction: column; gap: 12px; }
-        .inv-logo-img { max-height: 64px; max-width: 180px; object-fit: contain; }
+        .inv-logo-img { max-height: 64px; max-width: 180px; height: auto; width: auto; }
         .inv-logo-placeholder {
           width: 64px; height: 64px; border: 2px dashed var(--border2);
           border-radius: 8px; display: flex; align-items: center;
@@ -530,6 +567,23 @@ export default function InvoiceGeneratorClient() {
           @page { margin: 15mm; size: A4; }
         }
 
+        /* ── PDF Generation Styles ── */
+        .printing-pdf {
+          border: none !important;
+          box-shadow: none !important;
+          border-radius: 0 !important;
+          background: #fff !important;
+          width: 800px !important; /* Fix width for reliable rendering */
+          max-width: none !important;
+        }
+        .printing-pdf .add-line-btn,
+        .printing-pdf .remove-btn {
+          display: none !important;
+        }
+        .printing-pdf [contenteditable]::before {
+          display: none !important;
+        }
+
         @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
         .anim { animation: fadeUp 0.4s ease both; }
         .d1 { animation-delay: 0.04s; } .d2 { animation-delay: 0.1s; } .d3 { animation-delay: 0.17s; }
@@ -600,12 +654,14 @@ export default function InvoiceGeneratorClient() {
                 <input type="date" value={dueDate} onChange={e => setDueDate(e.target.value)} />
               </div>
               {[
-                { label: "Quick Due", options: [
-                  { label: "Net 7",  days: 7  },
-                  { label: "Net 14", days: 14 },
-                  { label: "Net 30", days: 30 },
-                  { label: "Net 60", days: 60 },
-                ]},
+                {
+                  label: "Quick Due", options: [
+                    { label: "Net 7", days: 7 },
+                    { label: "Net 14", days: 14 },
+                    { label: "Net 30", days: 30 },
+                    { label: "Net 60", days: 60 },
+                  ]
+                },
               ].map(g => (
                 <div key={g.label} style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 4 }}>
                   {g.options.map(o => (
@@ -648,6 +704,37 @@ export default function InvoiceGeneratorClient() {
               <div className="sf"><label>Client Email</label>
                 <input type="email" value={toEmail} onChange={e => setToEmail(e.target.value)} placeholder="accounts@client.com" />
               </div>
+            </div>
+
+            {/* Line Items */}
+            <div className="s-section">
+              <div className="s-section-title">Line Items</div>
+              {lines.map((line, idx) => (
+                <div key={line.id} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px", padding: "12px", marginBottom: "10px" }}>
+                  <div className="sf" style={{ marginBottom: "8px" }}>
+                    <label>Description</label>
+                    <input value={line.desc} onChange={e => updateLine(line.id, "desc", e.target.value)} placeholder="Service or product..." />
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                    <div className="sf" style={{ marginBottom: 0 }}>
+                      <label>Qty</label>
+                      <input type="number" value={line.qty} onChange={e => updateLine(line.id, "qty", e.target.value)} min="0" step="1" />
+                    </div>
+                    <div className="sf" style={{ marginBottom: 0 }}>
+                      <label>Price</label>
+                      <input type="number" value={line.rate} onChange={e => updateLine(line.id, "rate", e.target.value)} min="0" step="0.01" />
+                    </div>
+                  </div>
+                  {lines.length > 1 && (
+                    <button className="btn btn-outline" onClick={() => removeLine(line.id)} style={{ marginTop: "10px", padding: "5px 10px", fontSize: "0.75rem", width: "auto" }}>
+                      ✕ Remove Item
+                    </button>
+                  )}
+                </div>
+              ))}
+              <button className="btn btn-outline" onClick={addLine} style={{ marginTop: "10px" }}>
+                ＋ Add Line Item
+              </button>
             </div>
 
             {/* Notes */}
@@ -694,7 +781,7 @@ export default function InvoiceGeneratorClient() {
                   Clear Lines
                 </button>
                 <button className="toolbar-btn tbtn-print" onClick={handlePrint}>
-                  ⬇ PDF
+                  ⬇ Download PDF
                 </button>
               </div>
             </div>
@@ -710,7 +797,7 @@ export default function InvoiceGeneratorClient() {
                     : (
                       <label className="inv-logo-placeholder">
                         <input type="file" accept="image/*" onChange={handleLogo} />
-                        <span>＋<br/>Add Logo</span>
+                        <span>＋<br />Add Logo</span>
                       </label>
                     )
                   }
@@ -792,33 +879,30 @@ export default function InvoiceGeneratorClient() {
 
               {/* Line items */}
               <div className="inv-table">
-                <div className="inv-table-head">
+                <div className="inv-table-head" style={{ gridTemplateColumns: "1fr 80px 100px 100px" }}>
                   <span>Description</span>
                   <span style={{ textAlign: "right" }}>Qty</span>
                   <span style={{ textAlign: "right" }}>Unit Price</span>
                   <span style={{ textAlign: "right" }}>Amount</span>
-                  <span />
                 </div>
 
                 {lines.map(line => (
-                  <div key={line.id} className="inv-line">
-                    <input className="line-input" placeholder="Service or product description…"
-                      value={line.desc} onChange={e => updateLine(line.id, "desc", e.target.value)} />
-                    <input className="line-input num" type="number" min="0" step="1"
-                      value={line.qty} onChange={e => updateLine(line.id, "qty", e.target.value)} />
-                    <input className="line-input num" type="number" min="0" step="0.01"
-                      value={line.rate} onChange={e => updateLine(line.id, "rate", e.target.value)} />
+                  <div key={line.id} className="inv-line" style={{ gridTemplateColumns: "1fr 80px 100px 100px" }}>
+                    <div style={{ padding: "3px 5px", fontSize: "0.87rem", color: "var(--ink)", wordBreak: "break-word" }}>
+                      {line.desc || <span style={{ color: "var(--border2)" }}>Description...</span>}
+                    </div>
+                    <div style={{ padding: "3px 5px", fontSize: "0.87rem", color: "var(--ink)", fontFamily: "var(--font-m)", textAlign: "right" }}>
+                      {line.qty}
+                    </div>
+                    <div style={{ padding: "3px 5px", fontSize: "0.87rem", color: "var(--ink)", fontFamily: "var(--font-m)", textAlign: "right" }}>
+                      {fmtMoney(Number(line.rate) || 0, sym)}
+                    </div>
                     <div className="line-total">
                       {fmtMoney((Number(line.qty) || 0) * (Number(line.rate) || 0), sym)}
                     </div>
-                    <button className="remove-btn" onClick={() => removeLine(line.id)} title="Remove line">✕</button>
                   </div>
                 ))}
               </div>
-
-              <button className="add-line-btn" onClick={addLine}>
-                ＋ Add line item
-              </button>
 
               {/* Totals */}
               <div className="inv-totals">

@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     "simple invoice generator",
     "invoice with VAT",
     "UK VAT invoice generator",
+    "UAE VAT invoice generator",
     "VAT invoice maker",
     "Australia GST invoice generator",
     "Canada HST invoice generator",
@@ -44,7 +45,7 @@ export default function InvoiceGeneratorPage() {
   return (
     <>
       <InvoiceGeneratorClient />
-      
+
       {/* Container for Related Tools with consistent background if needed */}
       <div style={{ background: "#f4f3ef", paddingBottom: "60px", paddingTop: "20px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto", padding: "0 40px" }}>
