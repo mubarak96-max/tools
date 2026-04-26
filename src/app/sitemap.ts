@@ -77,6 +77,7 @@ const TOOL_PATHS = [
   "/finance/us-self-employment-tax-calculator",
   "/finance/compound-interest-calculator",
   "/finance/saudi-end-of-service-calculator",
+  "/finance/zakat-calculator",
   "/health/bmr-calculator",
   "/health/calorie-calculator",
   "/marketing/marketing-roi-calculator",

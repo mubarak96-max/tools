@@ -241,6 +241,12 @@ const SITEMAP_TOOLS = [
         description: "Calculate your Saudi Arabia end of service benefit (EOSB) accurately under Saudi Labor Law.",
         icon: "SA-EOS",
       },
+      {
+        name: "Zakat Calculator 2024",
+        href: "/finance/zakat-calculator",
+        description: "Free online zakat calculator. Calculate zakat on gold, silver, savings, and investments.",
+        icon: "ZAKAT",
+      },
     ],
   },
   {
