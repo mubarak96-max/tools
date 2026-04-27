@@ -254,7 +254,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                     />
                     <div>
                       <span className="text-sm text-neutral-700 dark:text-neutral-300 font-medium">Include Medicare Levy (2%)</span>
-                      <p className="text-[10px] text-neutral-400">Exempt below $27,222; reduced $27,222–$34,027</p>
+                      <p className="text-[10px] text-neutral-400">Exempt below $27,222; reduced $27,222â€“$34,027</p>
                     </div>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer">
@@ -280,7 +280,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                 />
                 <div>
                   <span className="text-sm text-neutral-700 dark:text-neutral-300 font-medium">Include HECS-HELP Repayment</span>
-                  <p className="text-[10px] text-neutral-400">Compulsory repayment from $54,435 (1%–10%)</p>
+                  <p className="text-[10px] text-neutral-400">Compulsory repayment from $54,435 (1%â€“10%)</p>
                 </div>
               </label>
             </div>

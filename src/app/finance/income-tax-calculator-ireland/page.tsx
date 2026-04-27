@@ -164,7 +164,7 @@ const structuredData = {
           name: "What are the income tax rates in Ireland for 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Ireland has two income tax rates: the standard rate of 20% and the higher rate of 40%. For 2026, single individuals pay 20% on income up to €44,000 and 40% on the balance. Married couples with one income pay 20% on income up to €53,000. Married couples with two incomes can earn up to €88,000 at the 20% rate. Single parents qualify for a standard rate band of €48,000.",
+            text: "Ireland has two income tax rates: the standard rate of 20% and the higher rate of 40%. For 2026, single individuals pay 20% on income up to â‚¬44,000 and 40% on the balance. Married couples with one income pay 20% on income up to â‚¬53,000. Married couples with two incomes can earn up to â‚¬88,000 at the 20% rate. Single parents qualify for a standard rate band of â‚¬48,000.",
           },
         },
         {
@@ -172,7 +172,7 @@ const structuredData = {
           name: "How much is USC in Ireland in 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The Universal Social Charge (USC) for 2026 is 0.5% on the first €12,012, 2% on income from €12,013 to €28,700, 3% on income from €28,701 to €70,044, and 8% on income above €70,044. Self-employed individuals pay an additional 3% surcharge on income over €100,000. People aged 70+ or with a full medical card and income under €60,000 pay a reduced rate.",
+            text: "The Universal Social Charge (USC) for 2026 is 0.5% on the first â‚¬12,012, 2% on income from â‚¬12,013 to â‚¬28,700, 3% on income from â‚¬28,701 to â‚¬70,044, and 8% on income above â‚¬70,044. Self-employed individuals pay an additional 3% surcharge on income over â‚¬100,000. People aged 70+ or with a full medical card and income under â‚¬60,000 pay a reduced rate.",
           },
         },
         {
@@ -180,7 +180,7 @@ const structuredData = {
           name: "What is the employee PRSI rate in Ireland for 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The employee PRSI rate for Class A workers in Ireland is 4.2% for the first nine months of 2026, increasing to 4.35% from 1 October 2026. This gives an effective composite rate of approximately 4.2375% for the full year. Self-employed individuals pay Class S PRSI at the same rates with a minimum annual contribution of €650.",
+            text: "The employee PRSI rate for Class A workers in Ireland is 4.2% for the first nine months of 2026, increasing to 4.35% from 1 October 2026. This gives an effective composite rate of approximately 4.2375% for the full year. Self-employed individuals pay Class S PRSI at the same rates with a minimum annual contribution of â‚¬650.",
           },
         },
         {
@@ -188,7 +188,7 @@ const structuredData = {
           name: "What tax credits am I entitled to in Ireland in 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Most PAYE workers receive the Personal Tax Credit (€2,000) and the PAYE Tax Credit (€2,000), totaling €4,000. Self-employed workers receive the Personal Tax Credit (€2,000) and the Earned Income Credit (€2,000). Married couples receive a married tax credit of €4,000. Additional credits include the Single Person Child Carer Credit (€1,900), Home Carer Credit (€1,950), and Rent Tax Credit (up to €1,000 for single, €2,000 for married).",
+            text: "Most PAYE workers receive the Personal Tax Credit (â‚¬2,000) and the PAYE Tax Credit (â‚¬2,000), totaling â‚¬4,000. Self-employed workers receive the Personal Tax Credit (â‚¬2,000) and the Earned Income Credit (â‚¬2,000). Married couples receive a married tax credit of â‚¬4,000. Additional credits include the Single Person Child Carer Credit (â‚¬1,900), Home Carer Credit (â‚¬1,950), and Rent Tax Credit (up to â‚¬1,000 for single, â‚¬2,000 for married).",
           },
         },
         {
@@ -216,7 +216,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
           {/* Hero */}
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center rounded-full bg-emerald-500/10 px-3 py-1 text-sm font-medium text-emerald-600 ring-1 ring-inset ring-emerald-500/20">
-              Updated April 2026 — Budget 2026 Rates
+              Updated April 2026 â€” Budget 2026 Rates
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Income Tax Calculator{" "}
@@ -281,9 +281,9 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   Your total tax liability is comprised of three main elements:
                   Pay As You Earn (PAYE) income tax, the Universal Social Charge
                   (USC), and Pay Related Social Insurance (PRSI). Each is
-                  calculated differently, and your personal circumstances —
+                  calculated differently, and your personal circumstances â€”
                   including marital status, age, medical card status, and pension
-                  contributions — significantly affect your final take-home pay.
+                  contributions â€” significantly affect your final take-home pay.
                   This guide and calculator use the official 2026 Irish tax rates
                   and bands to give you the most accurate estimate possible.
                 </p>
@@ -313,29 +313,29 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   <tbody className="divide-y divide-slate-800 text-slate-600">
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4">Single / Widowed (no children)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-600">€44,000</td>
-                      <td className="px-6 py-4">Balance above €44,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">â‚¬44,000</td>
+                      <td className="px-6 py-4">Balance above â‚¬44,000</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Single Parent (qualifying for SPCCC)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-600">€48,000</td>
-                      <td className="px-6 py-4">Balance above €48,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">â‚¬48,000</td>
+                      <td className="px-6 py-4">Balance above â‚¬48,000</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4">Married / Civil Partner (one income)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-600">€53,000</td>
-                      <td className="px-6 py-4">Balance above €53,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">â‚¬53,000</td>
+                      <td className="px-6 py-4">Balance above â‚¬53,000</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4">Married / Civil Partner (two incomes)</td>
-                      <td className="px-6 py-4 font-medium text-emerald-600">Up to €88,000*</td>
-                      <td className="px-6 py-4">Balance above €88,000</td>
+                      <td className="px-6 py-4 font-medium text-emerald-600">Up to â‚¬88,000*</td>
+                      <td className="px-6 py-4">Balance above â‚¬88,000</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <p className="mt-3 text-xs text-slate-500">
-                *The increase is capped at the lower of €35,000 or the income of
+                *The increase is capped at the lower of â‚¬35,000 or the income of
                 the lower-earning spouse. It cannot be transferred between spouses.
               </p>
             </section>
@@ -349,9 +349,9 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 The Universal Social Charge is a tax on gross income introduced in
                 2011. Unlike PAYE, USC is calculated before most deductions and has
                 its own set of thresholds. For 2026, the 2% USC rate ceiling has
-                been increased by €1,318 to €28,700, ensuring minimum wage workers
+                been increased by â‚¬1,318 to â‚¬28,700, ensuring minimum wage workers
                 remain outside the highest USC rates following the hourly minimum
-                wage increase to €14.15.
+                wage increase to â‚¬14.15.
               </p>
               <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
                 <table className="w-full text-left text-sm">
@@ -363,19 +363,19 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   </thead>
                   <tbody className="divide-y divide-slate-800 text-slate-600">
                     <tr className="bg-slate-50">
-                      <td className="px-6 py-4">First €12,012</td>
+                      <td className="px-6 py-4">First â‚¬12,012</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">0.5%</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4">€12,013 – €28,700</td>
+                      <td className="px-6 py-4">â‚¬12,013 â€“ â‚¬28,700</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">2%</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="px-6 py-4">€28,701 – €70,044</td>
+                      <td className="px-6 py-4">â‚¬28,701 â€“ â‚¬70,044</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">3%</td>
                     </tr>
                     <tr>
-                      <td className="px-6 py-4">Above €70,044</td>
+                      <td className="px-6 py-4">Above â‚¬70,044</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">8%</td>
                     </tr>
                   </tbody>
@@ -385,14 +385,14 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 <h4 className="font-semibold text-amber-600">Reduced USC Rate</h4>
                 <p className="mt-2 text-sm text-slate-600">
                   If you are aged 70 or over, or you hold a full medical card, and
-                  your aggregate income does not exceed €60,000, you qualify for a
-                  reduced USC rate of 0.5% on the first €12,012 and 2% on the
+                  your aggregate income does not exceed â‚¬60,000, you qualify for a
+                  reduced USC rate of 0.5% on the first â‚¬12,012 and 2% on the
                   balance. This concession has been extended until 31 December 2027.
                 </p>
               </div>
               <p className="mt-4 text-slate-600 leading-relaxed">
                 Self-employed individuals face an additional 3% USC surcharge on
-                income exceeding €100,000, bringing the top USC rate to 11% for
+                income exceeding â‚¬100,000, bringing the top USC rate to 11% for
                 that portion. This is an important consideration for contractors,
                 sole traders, and company directors extracting income via salary.
               </p>
@@ -413,11 +413,11 @@ export default function IncomeTaxCalculatorIrelandPage() {
               </p>
               <p className="mt-4 text-slate-600 leading-relaxed">
                 Self-employed individuals (Class S) pay PRSI at the same rates but
-                are subject to a minimum annual contribution of €650 from 1
-                October 2024. Employees earning €352 or less per week are exempt
-                from PRSI, and a sliding-scale PRSI credit of up to €12 per week
-                applies to those earning between €352 and €424 weekly (up to
-                approximately €22,048 annually). Individuals aged 66 and over who
+                are subject to a minimum annual contribution of â‚¬650 from 1
+                October 2024. Employees earning â‚¬352 or less per week are exempt
+                from PRSI, and a sliding-scale PRSI credit of up to â‚¬12 per week
+                applies to those earning between â‚¬352 and â‚¬424 weekly (up to
+                approximately â‚¬22,048 annually). Individuals aged 66 and over who
                 are in receipt of the State Pension are generally not liable for
                 PRSI.
               </p>
@@ -434,29 +434,29 @@ export default function IncomeTaxCalculatorIrelandPage() {
               </p>
               <ul className="mt-4 list-disc space-y-2 pl-6 text-slate-600">
                 <li>
-                  <strong>Personal Tax Credit:</strong> €2,000 (single) or €4,000
+                  <strong>Personal Tax Credit:</strong> â‚¬2,000 (single) or â‚¬4,000
                   (married/civil partners).
                 </li>
                 <li>
-                  <strong>PAYE Tax Credit:</strong> €2,000 for employees.
+                  <strong>PAYE Tax Credit:</strong> â‚¬2,000 for employees.
                 </li>
                 <li>
-                  <strong>Earned Income Credit:</strong> €2,000 for self-employed
+                  <strong>Earned Income Credit:</strong> â‚¬2,000 for self-employed
                   individuals (you cannot claim both PAYE and Earned Income
                   credits).
                 </li>
                 <li>
-                  <strong>Single Person Child Carer Credit (SPCCC):</strong> €1,900
+                  <strong>Single Person Child Carer Credit (SPCCC):</strong> â‚¬1,900
                   for single parents who are the principal carers.
                 </li>
                 <li>
-                  <strong>Home Carer Tax Credit:</strong> €1,950 where one spouse
+                  <strong>Home Carer Tax Credit:</strong> â‚¬1,950 where one spouse
                   cares for dependent children or incapacitated persons, provided
-                  the carer&apos;s income is under €7,200.
+                  the carer&apos;s income is under â‚¬7,200.
                 </li>
                 <li>
-                  <strong>Rent Tax Credit:</strong> Up to €1,000 (single) or
-                  €2,000 (married/jointly assessed) for renters paying for their
+                  <strong>Rent Tax Credit:</strong> Up to â‚¬1,000 (single) or
+                  â‚¬2,000 (married/jointly assessed) for renters paying for their
                   principal private residence.
                 </li>
                 <li>
@@ -466,8 +466,8 @@ export default function IncomeTaxCalculatorIrelandPage() {
               </ul>
               <p className="mt-4 text-slate-600 leading-relaxed">
                 Pension contributions qualify for tax relief at your marginal rate
-                (20% or 40%). For example, if you pay tax at 40%, a €1,000 pension
-                contribution reduces your tax bill by €400. Our calculator factors
+                (20% or 40%). For example, if you pay tax at 40%, a â‚¬1,000 pension
+                contribution reduces your tax bill by â‚¬400. Our calculator factors
                 this relief automatically based on your highest tax rate.
               </p>
             </section>
@@ -484,41 +484,41 @@ export default function IncomeTaxCalculatorIrelandPage() {
               <div className="mt-6 space-y-6">
                 <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
                   <h3 className="text-lg font-semibold text-emerald-600">
-                    Example 1: Single Employee Earning €50,000
+                    Example 1: Single Employee Earning â‚¬50,000
                   </h3>
                   <p className="mt-2 text-slate-600">
-                    Income Tax: €8,800 (20% of €44,000) + €2,400 (40% of €6,000) = €11,200.
-                    Less tax credits of €4,000 = <strong>€7,200 PAYE</strong>.
-                    USC: €60.06 + €334.00 + €639.12 = <strong>€1,033.18</strong>.
-                    PRSI: €50,000 × 4.2375% = <strong>€2,118.75</strong>.
+                    Income Tax: â‚¬8,800 (20% of â‚¬44,000) + â‚¬2,400 (40% of â‚¬6,000) = â‚¬11,200.
+                    Less tax credits of â‚¬4,000 = <strong>â‚¬7,200 PAYE</strong>.
+                    USC: â‚¬60.06 + â‚¬334.00 + â‚¬639.12 = <strong>â‚¬1,033.18</strong>.
+                    PRSI: â‚¬50,000 Ã— 4.2375% = <strong>â‚¬2,118.75</strong>.
                     <br />
-                    <span className="text-slate-900">Net Take-Home Pay: €39,648.07 annually (€3,304.01 monthly)</span>
+                    <span className="text-slate-900">Net Take-Home Pay: â‚¬39,648.07 annually (â‚¬3,304.01 monthly)</span>
                   </p>
                 </div>
                 <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
                   <h3 className="text-lg font-semibold text-emerald-600">
-                    Example 2: Married Couple (One Income) Earning €70,000
+                    Example 2: Married Couple (One Income) Earning â‚¬70,000
                   </h3>
                   <p className="mt-2 text-slate-600">
-                    Income Tax: €10,600 (20% of €53,000) + €6,800 (40% of €17,000) = €17,400.
-                    Less married credits of €4,000 + PAYE €2,000 = <strong>€11,400 PAYE</strong>.
-                    USC: €60.06 + €334.00 + €1,240.32 = <strong>€1,634.38</strong>.
-                    PRSI: €70,000 × 4.2375% = <strong>€2,966.25</strong>.
+                    Income Tax: â‚¬10,600 (20% of â‚¬53,000) + â‚¬6,800 (40% of â‚¬17,000) = â‚¬17,400.
+                    Less married credits of â‚¬4,000 + PAYE â‚¬2,000 = <strong>â‚¬11,400 PAYE</strong>.
+                    USC: â‚¬60.06 + â‚¬334.00 + â‚¬1,240.32 = <strong>â‚¬1,634.38</strong>.
+                    PRSI: â‚¬70,000 Ã— 4.2375% = <strong>â‚¬2,966.25</strong>.
                     <br />
-                    <span className="text-slate-900">Net Take-Home Pay: €53,999.37 annually (€4,499.95 monthly)</span>
+                    <span className="text-slate-900">Net Take-Home Pay: â‚¬53,999.37 annually (â‚¬4,499.95 monthly)</span>
                   </p>
                 </div>
                 <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
                   <h3 className="text-lg font-semibold text-emerald-600">
-                    Example 3: Self-Employed Individual Earning €85,000
+                    Example 3: Self-Employed Individual Earning â‚¬85,000
                   </h3>
                   <p className="mt-2 text-slate-600">
-                    Income Tax: €8,800 (20% of €44,000) + €16,400 (40% of €41,000) = €25,200.
-                    Less credits of €4,000 = <strong>€21,200 PAYE</strong>.
-                    USC: €60.06 + €334.00 + €1,240.32 + €1,196.48 = <strong>€2,830.86</strong>.
-                    PRSI: €85,000 × 4.2375% = <strong>€3,601.88</strong> (above minimum €650).
+                    Income Tax: â‚¬8,800 (20% of â‚¬44,000) + â‚¬16,400 (40% of â‚¬41,000) = â‚¬25,200.
+                    Less credits of â‚¬4,000 = <strong>â‚¬21,200 PAYE</strong>.
+                    USC: â‚¬60.06 + â‚¬334.00 + â‚¬1,240.32 + â‚¬1,196.48 = <strong>â‚¬2,830.86</strong>.
+                    PRSI: â‚¬85,000 Ã— 4.2375% = <strong>â‚¬3,601.88</strong> (above minimum â‚¬650).
                     <br />
-                    <span className="text-slate-900">Net Take-Home Pay: €57,367.26 annually (€4,780.61 monthly)</span>
+                    <span className="text-slate-900">Net Take-Home Pay: â‚¬57,367.26 annually (â‚¬4,780.61 monthly)</span>
                   </p>
                 </div>
               </div>
@@ -632,8 +632,8 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   </h3>
                   <p className="mt-2 text-slate-600">
                     For 2026, the standard rate cut-off point for a single person
-                    is €44,000. This means you pay 20% income tax on the first
-                    €44,000 of your earnings and 40% on any income above that
+                    is â‚¬44,000. This means you pay 20% income tax on the first
+                    â‚¬44,000 of your earnings and 40% on any income above that
                     threshold.
                   </p>
                 </div>
@@ -646,7 +646,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                     services. It is calculated before tax credits are applied and
                     uses its own tiered rate structure. Unlike PAYE, USC is not
                     reduced by tax credits, though exemptions exist for income
-                    below €13,000.
+                    below â‚¬13,000.
                   </p>
                 </div>
                 <div>
@@ -656,10 +656,10 @@ export default function IncomeTaxCalculatorIrelandPage() {
                   <p className="mt-2 text-slate-600">
                     Self-employed individuals pay the same income tax rates as
                     employees but face an additional 3% USC surcharge on income
-                    over €100,000. They also pay Class S PRSI (same rate as
-                    employees but with a €650 minimum annual contribution) and
+                    over â‚¬100,000. They also pay Class S PRSI (same rate as
+                    employees but with a â‚¬650 minimum annual contribution) and
                     cannot claim the PAYE tax credit, though they can claim the
-                    Earned Income Credit of €2,000 instead.
+                    Earned Income Credit of â‚¬2,000 instead.
                   </p>
                 </div>
                 <div>
@@ -667,8 +667,8 @@ export default function IncomeTaxCalculatorIrelandPage() {
                     Can I claim tax relief on rent in Ireland?
                   </h3>
                   <p className="mt-2 text-slate-600">
-                    Yes. The Rent Tax Credit allows renters to claim up to €1,000
-                    (single) or €2,000 (married/jointly assessed) per year for
+                    Yes. The Rent Tax Credit allows renters to claim up to â‚¬1,000
+                    (single) or â‚¬2,000 (married/jointly assessed) per year for
                     rent paid on your principal private residence. This is a tax
                     credit, not a deduction, so it reduces your tax bill
                     euro-for-euro.
@@ -676,13 +676,13 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-emerald-600">
-                    What is the effective tax rate on €100,000 in Ireland?
+                    What is the effective tax rate on â‚¬100,000 in Ireland?
                   </h3>
                   <p className="mt-2 text-slate-600">
-                    A single PAYE employee earning €100,000 in 2026 will pay
-                    approximately €23,200 in income tax, €2,830 in USC, and
-                    €4,238 in PRSI, leaving a net take-home pay of roughly
-                    €69,732. This represents an effective total tax rate of
+                    A single PAYE employee earning â‚¬100,000 in 2026 will pay
+                    approximately â‚¬23,200 in income tax, â‚¬2,830 in USC, and
+                    â‚¬4,238 in PRSI, leaving a net take-home pay of roughly
+                    â‚¬69,732. This represents an effective total tax rate of
                     approximately 30.3%.
                   </p>
                 </div>

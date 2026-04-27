@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BookOpen, Briefcase, Contact2, Newspaper, Smartphone, Star, Zap } from "lucide-react";
 
 import ImageToText from "./components/ImageToText";
 import JsonLd from "@/components/seo/JsonLd";
@@ -148,11 +149,6 @@ export default function ConvertImageToTextPage() {
           </p>
         </div>
 
-        <div className="mt-6 max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
-            Private and browser-native
-          </div>
-        </div>
       </section>
 
       <ImageToText />
@@ -175,15 +171,15 @@ export default function ConvertImageToTextPage() {
                 <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2 italic">Why use an Online OCR?</h4>
                 <ul className="space-y-3 text-sm text-slate-600">
                   <li className="flex gap-3">
-                    <span className="text-primary font-bold">★</span>
+                    <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <span><strong>Save Hours:</strong> Eliminate the need for manual retyping and data entry.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="text-primary font-bold">★</span>
+                    <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <span><strong>Searchability:</strong> Turn flat images into searchable TXT or Word-ready content.</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="text-primary font-bold">★</span>
+                    <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <span><strong>Accessibility:</strong> Convert visual text into formats compatible with screen readers.</span>
                   </li>
                 </ul>
@@ -196,17 +192,19 @@ export default function ConvertImageToTextPage() {
             <h2 className="text-3xl font-black text-slate-900 mb-8 text-center">Common Use Scenarios</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 not-prose">
               {[
-                { title: "Academic & Class Notes", desc: "Students can capture whiteboard photos or book snippets and turn them into digital study guides instantly.", icon: "📚" },
-                { title: "Business Invoices", desc: "Extract line items and totals from receipts or invoices for your accounting and spreadsheet workflows.", icon: "💼" },
-                { title: "Newspaper & Archives", desc: "Digitize historical clippings or printed news into searchable digital archives for research.", icon: "🗞️" },
-                { title: "Social Media Captions", desc: "Extract text from Instagram stories, Twitter screenshots, or memes for reuse in your own content.", icon: "📱" },
-                { title: "Contact Information", desc: "Found an email or phone number on a physical banner? Snap a photo and copy the text directly.", icon: "📇" },
-                { title: "Data Entry Tasks", desc: "Accelerate your workflow by converting physical forms into editable digital data sets.", icon: "⚡" },
+                { title: "Academic & Class Notes", desc: "Students can capture whiteboard photos or book snippets and turn them into digital study guides instantly.", icon: <BookOpen className="w-8 h-8 text-primary" /> },
+                { title: "Business Invoices", desc: "Extract line items and totals from receipts or invoices for your accounting and spreadsheet workflows.", icon: <Briefcase className="w-8 h-8 text-primary" /> },
+                { title: "Newspaper & Archives", desc: "Digitize historical clippings or printed news into searchable digital archives for research.", icon: <Newspaper className="w-8 h-8 text-primary" /> },
+                { title: "Social Media Captions", desc: "Extract text from Instagram stories, Twitter screenshots, or memes for reuse in your own content.", icon: <Smartphone className="w-8 h-8 text-primary" /> },
+                { title: "Contact Information", desc: "Found an email or phone number on a physical banner? Snap a photo and copy the text directly.", icon: <Contact2 className="w-8 h-8 text-primary" /> },
+                { title: "Data Entry Tasks", desc: "Accelerate your workflow by converting physical forms into editable digital data sets.", icon: <Zap className="w-8 h-8 text-primary" /> },
               ].map((use, i) => (
-                <div key={i} className="p-6 bg-white border border-slate-100 rounded-3xl hover:border-primary/20 transition-all shadow-sm">
-                  <div className="text-3xl mb-4">{use.icon}</div>
+                <div key={i} className="p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:border-primary/20 hover:shadow-xl transition-all group text-center">
+                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-primary/5 transition-transform group-hover:scale-110">
+                    {use.icon}
+                  </div>
                   <h4 className="font-bold text-slate-900 mb-2">{use.title}</h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">{use.desc}</p>
+                  <p className="text-[11px] text-slate-500 leading-relaxed">{use.desc}</p>
                 </div>
               ))}
             </div>

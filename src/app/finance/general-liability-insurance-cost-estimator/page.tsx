@@ -222,7 +222,7 @@ export default function GeneralLiabilityEstimatorPage() {
           {/* Hero */}
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center rounded-full bg-blue-500/10 px-3 py-1 text-sm font-medium text-blue-600 ring-1 ring-inset ring-blue-500/20">
-              Updated April 2026 — Industry-Specific Rates
+              Updated April 2026 â€” Industry-Specific Rates
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               General Liability Insurance{" "}
@@ -328,55 +328,55 @@ export default function GeneralLiabilityEstimatorPage() {
                       <td className="px-6 py-4 font-medium">Consulting / IT Services</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
                       <td className="px-6 py-4 font-medium text-emerald-600">$450</td>
-                      <td className="px-6 py-4">$350 – $750</td>
+                      <td className="px-6 py-4">$350 â€“ $750</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Real Estate Agents</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-600">Low</span></td>
                       <td className="px-6 py-4 font-medium text-emerald-600">$500</td>
-                      <td className="px-6 py-4">$400 – $900</td>
+                      <td className="px-6 py-4">$400 â€“ $900</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Retail Store (Small)</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
                       <td className="px-6 py-4 font-medium text-amber-600">$750</td>
-                      <td className="px-6 py-4">$500 – $1,200</td>
+                      <td className="px-6 py-4">$500 â€“ $1,200</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Restaurant / Catering</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
                       <td className="px-6 py-4 font-medium text-amber-600">$1,200</td>
-                      <td className="px-6 py-4">$800 – $2,500</td>
+                      <td className="px-6 py-4">$800 â€“ $2,500</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Landscaping / Lawn Care</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-xs font-medium text-amber-600">Medium</span></td>
                       <td className="px-6 py-4 font-medium text-amber-600">$1,100</td>
-                      <td className="px-6 py-4">$700 – $1,800</td>
+                      <td className="px-6 py-4">$700 â€“ $1,800</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Electrical Contractor</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
                       <td className="px-6 py-4 font-medium text-rose-600">$2,000</td>
-                      <td className="px-6 py-4">$1,200 – $3,500</td>
+                      <td className="px-6 py-4">$1,200 â€“ $3,500</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Plumbing Contractor</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
                       <td className="px-6 py-4 font-medium text-rose-600">$2,200</td>
-                      <td className="px-6 py-4">$1,400 – $4,000</td>
+                      <td className="px-6 py-4">$1,400 â€“ $4,000</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Roofing Contractor</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
                       <td className="px-6 py-4 font-medium text-rose-600">$4,500</td>
-                      <td className="px-6 py-4">$2,500 – $8,000</td>
+                      <td className="px-6 py-4">$2,500 â€“ $8,000</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Manufacturing</td>
                       <td className="px-6 py-4"><span className="rounded-full bg-rose-500/10 px-2 py-0.5 text-xs font-medium text-rose-600">High</span></td>
                       <td className="px-6 py-4 font-medium text-rose-600">$1,800</td>
-                      <td className="px-6 py-4">$1,000 – $3,000</td>
+                      <td className="px-6 py-4">$1,000 â€“ $3,000</td>
                     </tr>
                   </tbody>
                 </table>
@@ -471,9 +471,9 @@ export default function GeneralLiabilityEstimatorPage() {
                 The most common limit structure for small businesses is{" "}
                 <strong>$1 million per occurrence / $2 million aggregate</strong>.
                 This is often written as "1/2" or "$1M/$2M" in insurance
-                documentation. For businesses with higher exposure — such as
+                documentation. For businesses with higher exposure â€” such as
                 general contractors working on commercial projects or
-                manufacturers with significant product liability — limits of
+                manufacturers with significant product liability â€” limits of
                 $2 million/$4 million or higher may be required by contracts or
                 prudent risk management.
               </p>
@@ -508,7 +508,7 @@ export default function GeneralLiabilityEstimatorPage() {
                 store with $50,000 in inventory might pay $1,200 for a BOP that
                 includes both general liability and property coverage, whereas
                 standalone general liability would cost $750 and standalone
-                property would cost $800 — a savings of $350 (22%) through
+                property would cost $800 â€” a savings of $350 (22%) through
                 bundling. Not all businesses qualify for BOPs; high-risk
                 industries like construction and manufacturing typically must
                 purchase general liability and property coverage separately.
