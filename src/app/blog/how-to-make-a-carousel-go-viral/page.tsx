@@ -9,7 +9,7 @@ const PAGE_PATH = "/blog/how-to-make-a-carousel-go-viral";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "How to Make a Carousel Go Viral in 2026: Engagement Tactics | FindBest Tools",
+  title: "How to Make a Carousel Go Viral in 2026: Engagement Tactics",
   description: "Learn the secret tactics to make your carousels go viral. Engineered strategy for swipe depth, dwell time, and the algorithms of Instagram and LinkedIn in 2026.",
   alternates: {
     canonical: PAGE_URL,

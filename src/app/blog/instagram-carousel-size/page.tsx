@@ -9,7 +9,7 @@ const PAGE_PATH = "/blog/instagram-carousel-size";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Instagram Carousel Size Guide for 2026: Every Dimension & Format | FindBest Tools",
+  title: "Instagram Carousel Size Guide for 2026: Every Dimension & Format",
   description: "Master Instagram carousel sizes for 2026. Complete guide to 4:5 portrait, 1:1 square, landscape, and the new 3:4 format. Safe zones, export settings, and sharp text tips.",
   alternates: {
     canonical: PAGE_URL,

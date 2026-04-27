@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/nyc-investment-property-transfer-tax";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "NYC Transfer Tax on Investment Properties (2026) | FindBest Tools",
+  title: "NYC Transfer Tax on Investment Properties (2026)",
   description: "Investing in NYC real estate? Learn about commercial RPTT rates, 1031 exchanges, controlling interest transfers, and the 4-unit threshold in our 2026 guide.",
   alternates: {
     canonical: PAGE_URL,

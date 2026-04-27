@@ -7,7 +7,7 @@ export const revalidate = 43200;
 const PAGE_PATH = "/image/free-image-background-remover-online";
 
 const baseMetadata = buildMetadata({
-  title: "free image background remover online — Remove Image Background and Download | FindBest Tools",
+  title: "free image background remover online — Remove Image Background and Download",
   description: "Perfect free Canva background removal alternative—remove image backgrounds instantly in your browser with no upload and no sign-up. Supports PNG, JPG & WEBP.",
   path: PAGE_PATH,
 });

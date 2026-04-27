@@ -14,7 +14,7 @@ const tools = [
 ];
 
 export const metadata: Metadata = {
-  title: "Design Tools | FindBest Tools",
+  title: "Design Tools",
   description: "Free browser-based design utilities for creating social media assets and visual content.",
   alternates: {
     canonical: PAGE_URL,

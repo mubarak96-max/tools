@@ -9,7 +9,7 @@ const PAGE_PATH = "/blog/how-to-make-a-linkedin-carousel";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "How to Make a LinkedIn Carousel in 2026: The Complete Guide | FindBest Tools",
+  title: "How to Make a LinkedIn Carousel in 2026: The Complete Guide",
   description: "Learn how to make high-engagement LinkedIn carousels. Complete guide to PDF document posts, dimensions, best practices, and viral slide structures for 2026.",
   alternates: {
     canonical: PAGE_URL,

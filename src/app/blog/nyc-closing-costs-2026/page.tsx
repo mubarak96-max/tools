@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/nyc-closing-costs-2026";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "NYC Closing Costs 2026: The Complete Buyer's Guide | FindBest Tools",
+  title: "NYC Closing Costs 2026: The Complete Buyer's Guide",
   description: "Budgeting for NYC real estate? Learn about Mansion Tax, Mortgage Recording Tax, RPTT, and co-op vs. condo closing fees in our 2026 NYC buyer's guide.",
   alternates: {
     canonical: PAGE_URL,

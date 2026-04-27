@@ -9,7 +9,7 @@ import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
 export const revalidate = 1800;
 
-const HOME_TITLE = "FindBest Tools | Free Professional Online utilities";
+const HOME_TITLE = "Free Professional Online utilities";
 const HOME_DESCRIPTION =
   "Access premium browser-based tools for text, images, and daily tasks. No sign-up, privacy-conscious design, and high-performance results.";
 

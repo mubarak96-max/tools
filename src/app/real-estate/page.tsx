@@ -130,6 +130,20 @@ export default function RealEstatePage() {
         </div>
       </section>
 
+      <section>
+        <div className="mb-5 flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-foreground">
+            All Real-Estate Calculators
+            <span className="ml-2 text-sm font-normal text-muted-foreground">({REAL_ESTATE_TOOLS.length})</span>
+          </h2>
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          {REAL_ESTATE_TOOLS.map((tool) => (
+            <ToolCard key={tool.href} tool={tool} />
+          ))}
+        </div>
+      </section>
+
       <section className="rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-foreground">Explore other categories</h2>
         <div className="flex flex-wrap gap-2">
@@ -137,6 +151,7 @@ export default function RealEstatePage() {
             { label: "Text Tools", href: "/text" },
             { label: "Image Tools", href: "/image" },
             { label: "Health Tools", href: "/health" },
+            { label: "Finance Tools", href: "/finance" },
             { label: "Utility Tools", href: "/utility" },
           ].map((item) => (
             <Link

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useState, useMemo } from 'react'
 import { 
@@ -203,9 +203,9 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                     onChange={(e) => setResidency(e.target.value as Residency)}
                     className="w-full rounded-lg border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-950 px-3 py-2 text-sm text-neutral-900 dark:text-slate-900 focus:border-yellow-500 outline-none"
                   >
-                    <option value="resident">🇦🇺 Australian Resident</option>
-                    <option value="non_resident">🌏 Foreign Resident</option>
-                    <option value="working_holiday">🎒 Working Holiday Maker</option>
+                    <option value="resident">???? Australian Resident</option>
+                    <option value="non_resident">?? Foreign Resident</option>
+                    <option value="working_holiday">?? Working Holiday Maker</option>
                   </select>
                 </div>
                 <div>
@@ -254,7 +254,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                     />
                     <div>
                       <span className="text-sm text-neutral-700 dark:text-neutral-300 font-medium">Include Medicare Levy (2%)</span>
-                      <p className="text-[10px] text-neutral-400">Exempt below $27,222; reduced $27,222–$34,027</p>
+                      <p className="text-[10px] text-neutral-400">Exempt below $27,222; reduced $27,222�$34,027</p>
                     </div>
                   </label>
                   <label className="flex items-center gap-3 cursor-pointer">
@@ -280,7 +280,7 @@ Marginal Rate: ${(results.marginalRate * 100).toFixed(0)}%`
                 />
                 <div>
                   <span className="text-sm text-neutral-700 dark:text-neutral-300 font-medium">Include HECS-HELP Repayment</span>
-                  <p className="text-[10px] text-neutral-400">Compulsory repayment from $54,435 (1%–10%)</p>
+                  <p className="text-[10px] text-neutral-400">Compulsory repayment from $54,435 (1%�10%)</p>
                 </div>
               </label>
             </div>

@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/hidden-costs-of-islamic-mortgages-uk";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Hidden Costs of Islamic Mortgages UK: 2026 Fee Guide | FindBest Tools",
+  title: "Hidden Costs of Islamic Mortgages UK: 2026 Fee Guide",
   description: "Uncover the true costs of halal mortgages in the UK. From arrangement fees to early settlement charges, learn what Islamic home finance really costs.",
   alternates: {
     canonical: PAGE_URL,

@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/understanding-binary-code";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Binary Basics: Understanding the Language of Computers | FindBest Tools",
+  title: "Binary Basics: Understanding the Language of Computers",
   description: "Demystify binary code! Learn what binary is, how it works, and its role as the fundamental language of all digital systems. Perfect for beginners.",
   alternates: {
     canonical: PAGE_URL,

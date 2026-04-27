@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/who-pays-transfer-tax-nyc";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Who Pays Transfer Tax in NYC? Seller Closing Costs Explained (2026) | FindBest Tools",
+  title: "Who Pays Transfer Tax in NYC? Seller Closing Costs Explained (2026)",
   description: "Selling an apartment in New York? Learn about RPTT, State transfer taxes, and why sponsor sales change the rules. A 2026 guide for NYC sellers.",
   alternates: {
     canonical: PAGE_URL,

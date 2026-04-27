@@ -9,7 +9,7 @@ const PAGE_PATH = "/blog/carousel-caption-guide";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "How to Write a Carousel Caption That Gets Engagement (2026 Guide) | FindBest Tools",
+  title: "How to Write a Carousel Caption That Gets Engagement (2026 Guide)",
   description: "Don't let a weak caption kill your reach. Learn the cross-platform formula for carousel captions on Instagram, LinkedIn, and TikTok. Patterns, hooks, and 10 templates.",
   alternates: {
     canonical: PAGE_URL,

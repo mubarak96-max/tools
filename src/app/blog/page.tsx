@@ -6,7 +6,7 @@ const PAGE_PATH = "/blog";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Blog | FindBest Tools",
+  title: "Blog",
   description: "Guides, tutorials, and practical tips on code formatting, data conversion, and developer utilities.",
   alternates: {
     canonical: PAGE_URL,

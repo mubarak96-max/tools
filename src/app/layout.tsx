@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   metadataBase: getBaseUrl(),
   title: {
     default: SITE_NAME,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s`,
   },
   description: SITE_DESCRIPTION,
   other: {

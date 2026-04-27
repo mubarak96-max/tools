@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import DuplicateWordFinder from "@/app/text/duplicate-word-finder/components/DuplicateWordFinder";

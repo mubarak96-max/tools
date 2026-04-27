@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/first-time-buyer-halal-mortgage-guide-uk";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "First-Time Buyer Guide to Halal Mortgages UK (2026) | FindBest Tools",
+  title: "First-Time Buyer Guide to Halal Mortgages UK (2026)",
   description: "A complete step-by-step guide for first-time buyers seeking Sharia-compliant home finance in the UK. Learn deposit requirements and how it works.",
   alternates: {
     canonical: PAGE_URL,

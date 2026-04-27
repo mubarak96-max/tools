@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/nyc-sponsor-sales-closing-costs";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "NYC Sponsor Sales: Why Closing Costs Are Higher (2026 Guide) | FindBest Tools",
+  title: "NYC Sponsor Sales: Why Closing Costs Are Higher (2026 Guide)",
   description: "Buying new construction in NYC? Understand why sponsor sales trigger higher closing costs, from transferred RPTT to sponsor legal fees. Updated 2026 guide.",
   alternates: {
     canonical: PAGE_URL,

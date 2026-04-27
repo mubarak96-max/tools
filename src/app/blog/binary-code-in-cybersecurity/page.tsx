@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/binary-code-in-cybersecurity";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Binary Code in Cybersecurity: Decoding Hidden Messages and CTF Challenges | FindBest Tools",
+  title: "Binary Code in Cybersecurity: Decoding Hidden Messages and CTF Challenges",
   description: "Uncover the secrets of binary in cybersecurity! Learn how binary code is used in CTF challenges, digital forensics, and for hiding messages. Essential for ethical hackers.",
   alternates: {
     canonical: PAGE_URL,

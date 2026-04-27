@@ -164,11 +164,9 @@ export default function FinancePage() {
             <li className="font-medium text-foreground">Finance Tools</li>
           </ol>
         </nav>
-        <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-          Finance - {FINANCE_TOOLS.length} tool
-        </p>
+
         <h1 className="mt-5 max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-          Finance tools for business paperwork.
+          Finance tools
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Focused browser tools for creating invoices and handling everyday finance tasks.
@@ -180,7 +178,7 @@ export default function FinancePage() {
           <Link
             key={tool.href}
             href={tool.href}
-            className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25"
+            className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25 hover:shadow-lg hover:-translate-y-1"
           >
             <div className="flex items-center justify-between gap-3">
               <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary">{tool.name}</h2>            </div>

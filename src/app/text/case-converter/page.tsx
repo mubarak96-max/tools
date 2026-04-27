@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import CaseConverter from "@/app/text/case-converter/components/CaseConverter";

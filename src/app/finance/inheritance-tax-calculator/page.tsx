@@ -1,4 +1,4 @@
-ï»¿import { Metadata } from "next";
+import { Metadata } from "next";
 import { InheritanceTaxCalculatorClient } from "./components/InheritanceTaxCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "estate tax calculator usa",
     "succession tax calculator france",
     "erbschaftsteuer rechner deutschland",
-    "impuesto sucesiones calculadora espaÃ±a",
+    "impuesto sucesiones calculadora españa",
     "imposta successione calcolatrice italia",
     "inheritance tax calculator by country",
     "death duty calculator",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Inheritance Tax Calculator 2026 | 10 Countries â€” UK, USA, Ireland & EU",
+    title: "Inheritance Tax Calculator 2026 | 10 Countries — UK, USA, Ireland & EU",
     description:
       "Calculate inheritance tax, estate tax and succession duty for UK, USA, Ireland, France, Germany, Spain, Italy, Canada, Australia & India. 2026 rates and thresholds.",
     url: "https://findbest.tools/finance/inheritance-tax-calculator",
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
         url: "https://findbest.tools/og-inheritance-tax-calculator.jpg",
         width: 1200,
         height: 630,
-        alt: "Inheritance Tax Calculator 2026 â€” 10 Countries",
+        alt: "Inheritance Tax Calculator 2026 — 10 Countries",
       },
     ],
   },
@@ -158,7 +158,7 @@ const structuredData = {
         {
           "@type": "HowToStep",
           name: "Apply Thresholds and Exemptions",
-          text: "The calculator applies country-specific nil-rate bands, allowances, and exemptions. For example, the UK offers a Â£325,000 nil-rate band plus a potential Â£175,000 residence nil-rate band.",
+          text: "The calculator applies country-specific nil-rate bands, allowances, and exemptions. For example, the UK offers a £325,000 nil-rate band plus a potential £175,000 residence nil-rate band.",
         },
         {
           "@type": "HowToStep",
@@ -183,7 +183,7 @@ const structuredData = {
           name: "How much is UK inheritance tax in 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "UK Inheritance Tax (IHT) is charged at 40% on estates above the nil-rate band of Â£325,000. An additional residence nil-rate band of Â£175,000 applies when a main residence is passed to direct descendants, giving a potential tax-free threshold of Â£500,000 per person or Â£1 million for a married couple. The rate reduces to 36% if 10% or more of the net estate is left to charity. Estates between Â£325,000 and Â£2 million receive the full residence nil-rate band; it tapers by Â£1 for every Â£2 above Â£2 million.",
+            text: "UK Inheritance Tax (IHT) is charged at 40% on estates above the nil-rate band of £325,000. An additional residence nil-rate band of £175,000 applies when a main residence is passed to direct descendants, giving a potential tax-free threshold of £500,000 per person or £1 million for a married couple. The rate reduces to 36% if 10% or more of the net estate is left to charity. Estates between £325,000 and £2 million receive the full residence nil-rate band; it tapers by £1 for every £2 above £2 million.",
           },
         },
         {
@@ -199,7 +199,7 @@ const structuredData = {
           name: "How does Irish Capital Acquisitions Tax (CAT) work?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Irish CAT applies to gifts and inheritances at a flat rate of 33%. Tax-free thresholds depend on the relationship between the disponer and beneficiary: Group A (parent to child) â€” â‚¬335,000 lifetime limit; Group B (lineal ancestor/descendant, sibling, niece/nephew) â€” â‚¬32,500 lifetime limit; Group C (all others) â€” â‚¬16,250 lifetime limit. These thresholds are aggregate lifetime amounts. The dwelling house exemption and business relief can reduce or eliminate CAT on qualifying assets.",
+            text: "Irish CAT applies to gifts and inheritances at a flat rate of 33%. Tax-free thresholds depend on the relationship between the disponer and beneficiary: Group A (parent to child) — €335,000 lifetime limit; Group B (lineal ancestor/descendant, sibling, niece/nephew) — €32,500 lifetime limit; Group C (all others) — €16,250 lifetime limit. These thresholds are aggregate lifetime amounts. The dwelling house exemption and business relief can reduce or eliminate CAT on qualifying assets.",
           },
         },
         {
@@ -207,7 +207,7 @@ const structuredData = {
           name: "Is there inheritance tax between spouses?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Most countries exempt transfers between spouses or civil partners from inheritance tax. In the UK, spouse exemption is unlimited. In the USA, the unlimited marital deduction allows tax-free transfer of any amount to a US-citizen spouse. France exempts transfers between spouses entirely. Germany exempts â‚¬500,000 for spouses. Ireland provides a limited spouse exemption but the primary benefit is that spouses can inherit up to the relevant group threshold tax-free. Always verify specific rules as non-citizen spouses may face restrictions.",
+            text: "Most countries exempt transfers between spouses or civil partners from inheritance tax. In the UK, spouse exemption is unlimited. In the USA, the unlimited marital deduction allows tax-free transfer of any amount to a US-citizen spouse. France exempts transfers between spouses entirely. Germany exempts €500,000 for spouses. Ireland provides a limited spouse exemption but the primary benefit is that spouses can inherit up to the relevant group threshold tax-free. Always verify specific rules as non-citizen spouses may face restrictions.",
           },
         },
       ],
@@ -227,7 +227,7 @@ export default function InheritanceTaxCalculatorPage() {
           {/* Hero */}
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-600 ring-1 ring-inset ring-violet-500/20">
-              Updated April 2026 â€” 10 Countries & Jurisdictions
+              Updated April 2026 — 10 Countries & Jurisdictions
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Inheritance Tax{" "}
@@ -287,70 +287,70 @@ export default function InheritanceTaxCalculatorPage() {
                   </thead>
                   <tbody className="divide-y divide-slate-800 text-slate-600">
                     <tr className="bg-slate-50">
-                      <td className="px-4 py-4 font-medium">ðŸ‡¬ðŸ‡§ UK</td>
+                      <td className="px-4 py-4 font-medium">???? UK</td>
                       <td className="px-4 py-4">Estate Tax (IHT)</td>
                       <td className="px-4 py-4 font-medium text-rose-600">40%</td>
-                      <td className="px-4 py-4">Â£325,000 NRB + Â£175,000 RNRB</td>
+                      <td className="px-4 py-4">£325,000 NRB + £175,000 RNRB</td>
                       <td className="px-4 py-4 text-emerald-600">Unlimited</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-4 font-medium">ðŸ‡ºðŸ‡¸ USA</td>
+                      <td className="px-4 py-4 font-medium">???? USA</td>
                       <td className="px-4 py-4">Federal Estate Tax</td>
                       <td className="px-4 py-4 font-medium text-rose-600">40%</td>
                       <td className="px-4 py-4">$13.99M per person (2026)</td>
                       <td className="px-4 py-4 text-emerald-600">Unlimited (US citizen)</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="px-4 py-4 font-medium">ðŸ‡®ðŸ‡ª Ireland</td>
+                      <td className="px-4 py-4 font-medium">???? Ireland</td>
                       <td className="px-4 py-4">CAT (Gift/Inheritance)</td>
                       <td className="px-4 py-4 font-medium text-rose-600">33%</td>
-                      <td className="px-4 py-4">â‚¬335,000 child; â‚¬32,500 other close</td>
+                      <td className="px-4 py-4">€335,000 child; €32,500 other close</td>
                       <td className="px-4 py-4 text-amber-600">Limited</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-4 font-medium">ðŸ‡«ðŸ‡· France</td>
+                      <td className="px-4 py-4 font-medium">???? France</td>
                       <td className="px-4 py-4">Droits de succession</td>
                       <td className="px-4 py-4 font-medium text-rose-600">45%</td>
-                      <td className="px-4 py-4">â‚¬100,000 per child; spouse exempt</td>
+                      <td className="px-4 py-4">€100,000 per child; spouse exempt</td>
                       <td className="px-4 py-4 text-emerald-600">100% exempt</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="px-4 py-4 font-medium">ðŸ‡©ðŸ‡ª Germany</td>
+                      <td className="px-4 py-4 font-medium">???? Germany</td>
                       <td className="px-4 py-4">Erbschaftsteuer</td>
                       <td className="px-4 py-4 font-medium text-rose-600">50%</td>
-                      <td className="px-4 py-4">â‚¬500,000 spouse; â‚¬400,000 children</td>
-                      <td className="px-4 py-4 text-emerald-600">â‚¬500,000 + 50% pension</td>
+                      <td className="px-4 py-4">€500,000 spouse; €400,000 children</td>
+                      <td className="px-4 py-4 text-emerald-600">€500,000 + 50% pension</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-4 font-medium">ðŸ‡ªðŸ‡¸ Spain</td>
+                      <td className="px-4 py-4 font-medium">???? Spain</td>
                       <td className="px-4 py-4">Impuesto Sucesiones</td>
                       <td className="px-4 py-4 font-medium text-rose-600">34% (state) / higher regional</td>
-                      <td className="px-4 py-4">Varies by region (â‚¬16kâ€“â‚¬250k+)</td>
+                      <td className="px-4 py-4">Varies by region (€16k–€250k+)</td>
                       <td className="px-4 py-4 text-amber-600">Varies by region</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="px-4 py-4 font-medium">ðŸ‡®ðŸ‡¹ Italy</td>
+                      <td className="px-4 py-4 font-medium">???? Italy</td>
                       <td className="px-4 py-4">Imposta di successione</td>
                       <td className="px-4 py-4 font-medium text-rose-600">8%</td>
-                      <td className="px-4 py-4">â‚¬1M exempt for spouse/children</td>
-                      <td className="px-4 py-4 text-emerald-600">â‚¬1M exempt</td>
+                      <td className="px-4 py-4">€1M exempt for spouse/children</td>
+                      <td className="px-4 py-4 text-emerald-600">€1M exempt</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-4 font-medium">ðŸ‡¨ðŸ‡¦ Canada</td>
+                      <td className="px-4 py-4 font-medium">???? Canada</td>
                       <td className="px-4 py-4">Deemed Disposition (CGT)</td>
                       <td className="px-4 py-4 font-medium text-amber-600">~27% max (incl. provincial)</td>
                       <td className="px-4 py-4">No inheritance tax; CGT on death</td>
                       <td className="px-4 py-4 text-emerald-600">Rollover to spouse</td>
                     </tr>
                     <tr className="bg-slate-50">
-                      <td className="px-4 py-4 font-medium">ðŸ‡¦ðŸ‡º Australia</td>
+                      <td className="px-4 py-4 font-medium">???? Australia</td>
                       <td className="px-4 py-4">None (CGT may apply)</td>
                       <td className="px-4 py-4 font-medium text-emerald-600">0%</td>
                       <td className="px-4 py-4">No inheritance tax nationally</td>
                       <td className="px-4 py-4 text-emerald-600">N/A</td>
                     </tr>
                     <tr>
-                      <td className="px-4 py-4 font-medium">ðŸ‡®ðŸ‡³ India</td>
+                      <td className="px-4 py-4 font-medium">???? India</td>
                       <td className="px-4 py-4">None (Stamp duty)</td>
                       <td className="px-4 py-4 font-medium text-emerald-600">0%</td>
                       <td className="px-4 py-4">No inheritance tax; stamp duty 3-8%</td>
@@ -369,19 +369,19 @@ export default function InheritanceTaxCalculatorPage() {
               <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   UK Inheritance Tax is charged at 40% on the value of an estate
-                  above the nil-rate band (NRB) of Â£325,000. This threshold has
-                  been frozen since 2009 and remains at Â£325,000 for 2026/27.
+                  above the nil-rate band (NRB) of £325,000. This threshold has
+                  been frozen since 2009 and remains at £325,000 for 2026/27.
                   The residence nil-rate band (RNRB) provides an additional
-                  Â£175,000 when a main residence is passed to direct descendants
+                  £175,000 when a main residence is passed to direct descendants
                   (children, grandchildren, step-children, and adopted children).
                 </p>
                 <p>
                   For married couples and civil partners, any unused NRB and
                   RNRB can be transferred to the surviving spouse, effectively
                   doubling the thresholds. A couple can therefore pass up to
-                  Â£1 million to their children tax-free (Â£325,000 + Â£175,000
-                  Ã— 2). The RNRB tapers by Â£1 for every Â£2 that the estate
-                  exceeds Â£2 million, meaning estates above Â£2.35 million lose
+                  £1 million to their children tax-free (£325,000 + £175,000
+                  × 2). The RNRB tapers by £1 for every £2 that the estate
+                  exceeds £2 million, meaning estates above £2.35 million lose
                   the RNRB entirely.
                 </p>
                 <p>
@@ -397,11 +397,11 @@ export default function InheritanceTaxCalculatorPage() {
               <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
                 <h4 className="font-semibold text-violet-600">UK IHT Example 2026</h4>
                 <p className="mt-2 text-sm text-slate-600">
-                  Estate value: Â£800,000 (including main residence worth Â£400,000).<br />
+                  Estate value: £800,000 (including main residence worth £400,000).<br />
                   Beneficiaries: Two adult children.<br />
-                  NRB: Â£325,000 + RNRB: Â£175,000 = Â£500,000 tax-free.<br />
-                  Taxable estate: Â£800,000 âˆ’ Â£500,000 = Â£300,000.<br />
-                  IHT payable: Â£300,000 Ã— 40% = <strong>Â£120,000</strong>.<br />
+                  NRB: £325,000 + RNRB: £175,000 = £500,000 tax-free.<br />
+                  Taxable estate: £800,000 - £500,000 = £300,000.<br />
+                  IHT payable: £300,000 × 40% = <strong>£120,000</strong>.<br />
                   Effective tax rate: 15%.
                 </p>
               </div>
@@ -427,8 +427,8 @@ export default function InheritanceTaxCalculatorPage() {
                   A critical uncertainty for 2026 is the sunset of the Tax Cuts
                   and Jobs Act (TCJA) provisions. Unless Congress extends them,
                   the estate tax exemption will revert to the 2017 level
-                  adjusted for inflation â€” approximately $7 million per person
-                  â€” beginning 1 January 2026. This would more than double the
+                  adjusted for inflation — approximately $7 million per person
+                  — beginning 1 January 2026. This would more than double the
                   number of estates subject to federal estate tax.
                 </p>
                 <p>
@@ -437,7 +437,7 @@ export default function InheritanceTaxCalculatorPage() {
                   inheritance taxes (Iowa, Kentucky, Maryland, Nebraska, New
                   Jersey, Pennsylvania). Maryland is the only state with both.
                   State exemptions are typically much lower than the federal
-                  exemption â€” for example, Oregon and Massachusetts exempt only
+                  exemption — for example, Oregon and Massachusetts exempt only
                   $1 million, while New York matches the federal exemption but
                   has a "cliff" that eliminates the exemption for estates
                   exceeding 105% of the threshold.
@@ -448,7 +448,7 @@ export default function InheritanceTaxCalculatorPage() {
                 <p className="mt-2 text-sm text-slate-600">
                   Estate value: $18,000,000. Single decedent.<br />
                   Federal exemption: $13,990,000.<br />
-                  Taxable estate: $18,000,000 âˆ’ $13,990,000 = $4,010,000.<br />
+                  Taxable estate: $18,000,000 - $13,990,000 = $4,010,000.<br />
                   Federal estate tax: ~$1,604,000 (40% on amount above $1M over exemption).<br />
                   Effective federal rate: ~8.9%.
                 </p>
@@ -468,9 +468,9 @@ export default function InheritanceTaxCalculatorPage() {
                   (person giving) and the beneficiary (person receiving), and
                   these thresholds are lifetime aggregates. For 2026, Group A
                   (parent to child, including adopted and step-children) has a
-                  threshold of â‚¬335,000. Group B (lineal ancestor/descendant,
-                  sibling, niece/nephew) has â‚¬32,500. Group C (all other
-                  relationships, including unmarried partners) has â‚¬16,250.
+                  threshold of €335,000. Group B (lineal ancestor/descendant,
+                  sibling, niece/nephew) has €32,500. Group C (all other
+                  relationships, including unmarried partners) has €16,250.
                 </p>
                 <p>
                   The dwelling house exemption allows a beneficiary to inherit a
@@ -481,17 +481,17 @@ export default function InheritanceTaxCalculatorPage() {
                   meaning CAT is effectively 3.3% on business property. Agricultural
                   Relief similarly provides 90% relief on qualifying farm
                   property. The small gift exemption allows tax-free gifts of
-                  up to â‚¬3,000 per year from any one disponer to any one
+                  up to €3,000 per year from any one disponer to any one
                   beneficiary.
                 </p>
               </div>
               <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-5">
                 <h4 className="font-semibold text-violet-600">Irish CAT Example 2026</h4>
                 <p className="mt-2 text-sm text-slate-600">
-                  Inheritance to adult child: â‚¬500,000 cash + â‚¬300,000 house = â‚¬800,000.<br />
-                  Group A threshold: â‚¬335,000.<br />
-                  Taxable: â‚¬800,000 âˆ’ â‚¬335,000 = â‚¬465,000.<br />
-                  CAT payable: â‚¬465,000 Ã— 33% = <strong>â‚¬153,450</strong>.<br />
+                  Inheritance to adult child: €500,000 cash + €300,000 house = €800,000.<br />
+                  Group A threshold: €335,000.<br />
+                  Taxable: €800,000 - €335,000 = €465,000.<br />
+                  CAT payable: €465,000 × 33% = <strong>€153,450</strong>.<br />
                   Effective rate: 19.2%.
                 </p>
               </div>
@@ -507,17 +507,17 @@ export default function InheritanceTaxCalculatorPage() {
                   French succession tax applies to worldwide assets of French
                   residents and French situs assets of non-residents. Transfers
                   between spouses and PACS partners are completely exempt.
-                  Children benefit from a â‚¬100,000 allowance each (â‚¬159,325 if
+                  Children benefit from a €100,000 allowance each (€159,325 if
                   the parent is under 70 at the time of gift). Grandchildren
-                  receive a â‚¬31,865 allowance. Siblings receive a â‚¬15,932
+                  receive a €31,865 allowance. Siblings receive a €15,932
                   allowance.
                 </p>
                 <p>
                   Tax rates are progressive from 5% to 45% for direct line
                   descendants. The top 45% rate applies to portions exceeding
-                  â‚¬1,805,677 per child. For siblings, rates range from 35% to
+                  €1,805,677 per child. For siblings, rates range from 35% to
                   45%. For unrelated beneficiaries, the flat rate is 60% with
-                  a â‚¬1,594 allowance. The family home can benefit from a 30%
+                  a €1,594 allowance. The family home can benefit from a 30%
                   reduction in value if occupied by the surviving spouse or
                   dependent children.
                 </p>
@@ -532,12 +532,12 @@ export default function InheritanceTaxCalculatorPage() {
               <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
                   German inheritance tax provides generous personal allowances
-                  based on relationship. Spouses receive â‚¬500,000 plus a
-                  pension allowance (up to â‚¬256,000 depending on age). Children
-                  and step-children receive â‚¬400,000. Grandchildren receive
-                  â‚¬200,000. Parents and grandparents receive â‚¬100,000. Siblings,
-                  nieces, and nephews receive â‚¬20,000. All others receive
-                  â‚¬20,000.
+                  based on relationship. Spouses receive €500,000 plus a
+                  pension allowance (up to €256,000 depending on age). Children
+                  and step-children receive €400,000. Grandchildren receive
+                  €200,000. Parents and grandparents receive €100,000. Siblings,
+                  nieces, and nephews receive €20,000. All others receive
+                  €20,000.
                 </p>
                 <p>
                   Tax rates are progressive within three tax classes. Tax Class
@@ -546,7 +546,7 @@ export default function InheritanceTaxCalculatorPage() {
                   step-parents) has rates from 15% to 43%. Tax Class III
                   (unrelated persons) has rates from 30% to 50%. Business
                   property can qualify for up to 85% relief (full exemption
-                  for up to â‚¬150,000, then 85% relief on the remainder) if
+                  for up to €150,000, then 85% relief on the remainder) if
                   employment levels are maintained for 5-7 years.
                 </p>
               </div>
@@ -563,16 +563,16 @@ export default function InheritanceTaxCalculatorPage() {
                   because each of Spain&apos;s 17 autonomous communities sets its own
                   allowances, reductions, and tax rates in addition to the
                   state-level framework. The state tax scale ranges from 7.65%
-                  to 34% for inheritances up to â‚¬797,555, with a flat 36.5%
+                  to 34% for inheritances up to €797,555, with a flat 36.5%
                   above that. However, regional modifications can dramatically
                   alter the effective tax.
                 </p>
                 <p>
                   Madrid completely abolished inheritance tax for spouses,
-                  descendants, and ascendants in 2016. AndalucÃ­a offers a â‚¬1
+                  descendants, and ascendants in 2016. Andalucía offers a €1
                   million allowance for close family. Catalonia has its own
                   progressive scale with significant allowances for spouses
-                  (â‚¬100,000) and children (â‚¬275,000 for under-21s). Valencia
+                  (€100,000) and children (€275,000 for under-21s). Valencia
                   and the Balearic Islands also offer substantial reductions.
                   Non-residents inheriting Spanish property are subject to the
                   state rules unless a double tax treaty provides relief.
@@ -589,9 +589,9 @@ export default function InheritanceTaxCalculatorPage() {
                 <p>
                   Italy has one of the most favorable inheritance tax regimes
                   in the EU. Transfers to spouses, children, and grandchildren
-                  are completely exempt up to â‚¬1 million per beneficiary.
-                  Transfers to siblings are exempt up to â‚¬100,000 each. Other
-                  relatives up to the fourth degree receive a â‚¬100,000
+                  are completely exempt up to €1 million per beneficiary.
+                  Transfers to siblings are exempt up to €100,000 each. Other
+                  relatives up to the fourth degree receive a €100,000
                   exemption. Above these thresholds, the tax rate is only 4%
                   for close family, 6% for siblings and other relatives, and
                   8% for unrelated persons.
@@ -708,7 +708,7 @@ export default function InheritanceTaxCalculatorPage() {
                     assets of UK-domiciled individuals regardless of residence.
                     The USA taxes worldwide assets of US citizens and
                     domiciliaries. Simply moving abroad does not eliminate
-                    liability â€” formal domicile change and asset restructuring
+                    liability — formal domicile change and asset restructuring
                     are required, often with a multi-year transition period.
                   </p>
                 </div>
@@ -718,11 +718,11 @@ export default function InheritanceTaxCalculatorPage() {
                   </h3>
                   <p className="mt-2 text-slate-600">
                     Italy offers the most favorable regime for close family,
-                    with â‚¬1 million per beneficiary completely exempt and only
+                    with €1 million per beneficiary completely exempt and only
                     4% above that. Australia and Canada have no inheritance
                     tax (though CGT may apply). Among countries with
                     significant taxes, Germany offers generous spousal
-                    allowances (â‚¬500,000 + pension), while France exempts
+                    allowances (€500,000 + pension), while France exempts
                     spouses entirely.
                   </p>
                 </div>
@@ -751,7 +751,7 @@ export default function InheritanceTaxCalculatorPage() {
                     If the donor dies within seven years, taper relief reduces
                     the tax rate: 0-3 years = 40%, 3-4 years = 32%, 4-5 years
                     = 24%, 5-6 years = 16%, 6-7 years = 8%. Gifts above the
-                    Â£3,000 annual exemption and normal expenditure out of
+                    £3,000 annual exemption and normal expenditure out of
                     income rules may be PETs.
                   </p>
                 </div>
@@ -786,7 +786,7 @@ export default function InheritanceTaxCalculatorPage() {
                 based on IRS Revenue Procedure 2025-XX (2026 inflation
                 adjustments). Irish CAT thresholds reflect Revenue
                 Commissioners CAT thresholds for 2026. French succession tax
-                rates are per Code gÃ©nÃ©ral des impÃ´ts. German rates are per
+                rates are per Code général des impôts. German rates are per
                 Erbschaftsteuer- und Schenkungsteuergesetz (ErbStG). Spanish
                 rates combine state-level Impuesto sobre Sucesiones y
                 Donaciones with representative autonomous community

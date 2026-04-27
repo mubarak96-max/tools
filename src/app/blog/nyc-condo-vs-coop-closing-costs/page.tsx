@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/nyc-condo-vs-coop-closing-costs";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Condo vs. Co-op NYC: Closing Cost & Tax Differences (2026) | FindBest Tools",
+  title: "Condo vs. Co-op NYC: Closing Cost & Tax Differences (2026)",
   description: "Budgeting for an NYC apartment? Compare condo vs. co-op closing costs, Mortgage Recording Tax exemptions, flip taxes, and Mansion Tax implications for 2026.",
   alternates: {
     canonical: PAGE_URL,

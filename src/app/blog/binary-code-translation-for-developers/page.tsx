@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/binary-code-translation-for-developers";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Binary Code Translation for Developers: Practical Use Cases | FindBest Tools",
+  title: "Binary Code Translation for Developers: Practical Use Cases",
   description: "Developers, streamline your workflow! Discover how binary code translators aid in debugging, data inspection, and understanding character encodings like ASCII, UTF-8, and UTF-16.",
   alternates: {
     canonical: PAGE_URL,

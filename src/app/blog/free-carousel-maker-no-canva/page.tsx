@@ -9,7 +9,7 @@ const PAGE_PATH = "/blog/free-carousel-maker-no-canva";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "7 Free Canva Alternatives for Social Media Carousels in 2026 | FindBest Tools",
+  title: "7 Free Canva Alternatives for Social Media Carousels in 2026",
   description: "Stop paying for Canva Pro. Explore the best free carousel makers with no watermarks, no signups, and AI features to create Instagram & LinkedIn slides faster.",
   alternates: {
     canonical: PAGE_URL,

@@ -1,4 +1,4 @@
-ï»¿import { Metadata } from "next";
+import { Metadata } from "next";
 import { EquityDilutionCalculatorClient } from "./components/EquityDilutionCalculatorClient";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -205,7 +205,7 @@ const structuredData = {
           name: "What is anti-dilution protection and how does it work?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Anti-dilution protection prevents early investors from being diluted in a down round (a future round at a lower valuation than they paid). Full ratchet anti-dilution gives investors shares as if they had invested at the new lower price, heavily diluting founders. Weighted average anti-dilution is more common and moderate â€” it considers the size of the down round relative to total shares outstanding. The formula is: CP2 = CP1 Ã— (A + B) / (A + C), where CP1 is the original conversion price, A is shares outstanding pre-round, B is what those shares would cost at the original price, and C is what they actually cost in the down round.",
+            text: "Anti-dilution protection prevents early investors from being diluted in a down round (a future round at a lower valuation than they paid). Full ratchet anti-dilution gives investors shares as if they had invested at the new lower price, heavily diluting founders. Weighted average anti-dilution is more common and moderate — it considers the size of the down round relative to total shares outstanding. The formula is: CP2 = CP1 × (A + B) / (A + C), where CP1 is the original conversion price, A is shares outstanding pre-round, B is what those shares would cost at the original price, and C is what they actually cost in the down round.",
           },
         },
       ],
@@ -225,7 +225,7 @@ export default function EquityDilutionCalculatorPage() {
           {/* Hero */}
           <div className="mb-12 text-center">
             <div className="mb-4 inline-flex items-center rounded-full bg-indigo-500/10 px-3 py-1 text-sm font-medium text-indigo-600 ring-1 ring-inset ring-indigo-500/20">
-              Updated April 2026 â€” Multi-Round Cap Table Modeling
+              Updated April 2026 — Multi-Round Cap Table Modeling
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
               Equity Dilution{" "}
@@ -272,7 +272,7 @@ export default function EquityDilutionCalculatorPage() {
                 <p>
                   Equity dilution is the reduction in ownership percentage that
                   occurs when a company issues new shares. For startup founders,
-                  understanding dilution is not optional â€” it is fundamental to
+                  understanding dilution is not optional — it is fundamental to
                   strategic decision-making, negotiation, and long-term wealth
                   creation. Every funding round, every option pool expansion,
                   every convertible instrument that converts to equity reduces
@@ -325,7 +325,7 @@ export default function EquityDilutionCalculatorPage() {
                   holders) retain 83.33% of the company. If the same company
                   were described as having a $12 million post-money valuation
                   and raising $2 million, the pre-money would be $10 million
-                  â€” the math is identical, but the framing matters enormously
+                  — the math is identical, but the framing matters enormously
                   in negotiation.
                 </p>
                 <p>
@@ -334,7 +334,7 @@ export default function EquityDilutionCalculatorPage() {
                   created pre-money (before the investment), the founders bear
                   100% of that dilution. If it is created post-money, the new
                   investors share the dilution proportionally. This is the
-                  &quot;option pool shuffle&quot; â€” a standard term sheet negotiation
+                  &quot;option pool shuffle&quot; — a standard term sheet negotiation
                   point that can shift 5-10% of ownership between founders and
                   investors.
                 </p>
@@ -389,43 +389,43 @@ export default function EquityDilutionCalculatorPage() {
                   <tbody className="divide-y divide-slate-800 text-slate-600">
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Founding</td>
-                      <td className="px-6 py-4">â€”</td>
-                      <td className="px-6 py-4">â€”</td>
+                      <td className="px-6 py-4">—</td>
+                      <td className="px-6 py-4">—</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">100%</td>
                       <td className="px-6 py-4">0%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Angel / Pre-Seed</td>
-                      <td className="px-6 py-4">$250k â€“ $1M</td>
-                      <td className="px-6 py-4">$2M â€“ $5M</td>
+                      <td className="px-6 py-4">$250k – $1M</td>
+                      <td className="px-6 py-4">$2M – $5M</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">80-90%</td>
                       <td className="px-6 py-4">10-20%</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Seed Round</td>
-                      <td className="px-6 py-4">$1M â€“ $3M</td>
-                      <td className="px-6 py-4">$5M â€“ $15M</td>
+                      <td className="px-6 py-4">$1M – $3M</td>
+                      <td className="px-6 py-4">$5M – $15M</td>
                       <td className="px-6 py-4 font-medium text-emerald-600">60-75%</td>
                       <td className="px-6 py-4">25-40%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Series A</td>
-                      <td className="px-6 py-4">$5M â€“ $20M</td>
-                      <td className="px-6 py-4">$20M â€“ $60M</td>
+                      <td className="px-6 py-4">$5M – $20M</td>
+                      <td className="px-6 py-4">$20M – $60M</td>
                       <td className="px-6 py-4 font-medium text-blue-600">40-60%</td>
                       <td className="px-6 py-4">40-60%</td>
                     </tr>
                     <tr className="bg-slate-50">
                       <td className="px-6 py-4 font-medium">Series B</td>
-                      <td className="px-6 py-4">$20M â€“ $50M</td>
-                      <td className="px-6 py-4">$80M â€“ $250M</td>
+                      <td className="px-6 py-4">$20M – $50M</td>
+                      <td className="px-6 py-4">$80M – $250M</td>
                       <td className="px-6 py-4 font-medium text-amber-600">30-45%</td>
                       <td className="px-6 py-4">55-70%</td>
                     </tr>
                     <tr>
                       <td className="px-6 py-4 font-medium">Series C</td>
-                      <td className="px-6 py-4">$50M â€“ $150M</td>
-                      <td className="px-6 py-4">$250M â€“ $1B</td>
+                      <td className="px-6 py-4">$50M – $150M</td>
+                      <td className="px-6 py-4">$250M – $1B</td>
                       <td className="px-6 py-4 font-medium text-amber-600">20-35%</td>
                       <td className="px-6 py-4">65-80%</td>
                     </tr>
@@ -458,7 +458,7 @@ export default function EquityDilutionCalculatorPage() {
                   notes are the dominant early-stage financing instruments in
                   the startup ecosystem. Both delay the valuation discussion
                   until a priced equity round, but they create a different kind
-                  of uncertainty â€” founders cannot know their exact dilution
+                  of uncertainty — founders cannot know their exact dilution
                   until the triggering round occurs.
                 </p>
                 <p>
@@ -473,7 +473,7 @@ export default function EquityDilutionCalculatorPage() {
                   follows: the cap gives an effective price of $10M (50% of
                   the round price), while the discount gives $16M (80% of
                   round price). The cap wins, so the SAFE investor gets shares
-                  as if they invested at a $10M valuation â€” twice as many
+                  as if they invested at a $10M valuation — twice as many
                   shares as the priced round investor per dollar invested.
                 </p>
                 <p>
@@ -494,7 +494,7 @@ export default function EquityDilutionCalculatorPage() {
                   Cap effective valuation: $8M (better for investor).<br />
                   SAFE ownership: $500k / $8M = 6.25% pre-money.<br />
                   Priced round investor ownership: $5M / $25M = 20%.<br />
-                  Post-money: SAFE holder owns 6.25% Ã— (20/25) = 5% of company.
+                  Post-money: SAFE holder owns 6.25% × (20/25) = 5% of company.
                 </p>
               </div>
             </section>
@@ -506,7 +506,7 @@ export default function EquityDilutionCalculatorPage() {
               </h2>
               <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
-                  Anti-dilution provisions protect investors in down rounds â€”
+                  Anti-dilution provisions protect investors in down rounds —
                   future equity financing at a valuation lower than what the
                   investor paid. There are two primary types, and the
                   difference between them is dramatic for founders.
@@ -518,7 +518,7 @@ export default function EquityDilutionCalculatorPage() {
                   in Series A and the company raises a down round at $0.50 per
                   share, the Series A investor receives additional shares to
                   make their effective price $0.50. This is extremely dilutive
-                  to founders â€” a single down round with full ratchet can
+                  to founders — a single down round with full ratchet can
                   reduce founders from 30% to under 10% ownership. Full ratchet
                   is rare in modern venture deals except in distressed
                   situations.
@@ -528,7 +528,7 @@ export default function EquityDilutionCalculatorPage() {
                   industry standard. It uses a formula that considers both the
                   lower price and the size of the down round relative to total
                   shares outstanding. The formula is: New Conversion Price =
-                  Old Conversion Price Ã— (A + B) / (A + C), where A is shares
+                  Old Conversion Price × (A + B) / (A + C), where A is shares
                   outstanding before the down round, B is what the down round
                   shares would cost at the old price, and C is what they
                   actually cost. A small down round causes minimal adjustment;
@@ -567,7 +567,7 @@ export default function EquityDilutionCalculatorPage() {
               </h2>
               <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
                 <p>
-                  The employee option pool (or ESOP â€” Employee Stock Ownership
+                  The employee option pool (or ESOP — Employee Stock Ownership
                   Plan) is a reserved block of shares used to grant equity to
                   employees, advisors, and consultants. Option pool size is
                   one of the most negotiated terms in venture financing, and
@@ -592,7 +592,7 @@ export default function EquityDilutionCalculatorPage() {
                   pre-money (15%), and then issues 2 million shares to new
                   investors, the founders go from 100% to 70% to 58.3%. If the
                   same pool were created post-money (after the 2 million
-                  investor shares), the founders would own 62.5% instead â€” a
+                  investor shares), the founders would own 62.5% instead — a
                   4.2 percentage point difference worth millions at exit.
                 </p>
               </div>
@@ -608,7 +608,7 @@ export default function EquityDilutionCalculatorPage() {
                   Ownership percentage is meaningless without considering
                   liquidation preferences, participation rights, and exit
                   valuation. A founder with 20% ownership in a company that
-                  sells for $100 million may receive $20 million â€” or far
+                  sells for $100 million may receive $20 million — or far
                   less, depending on investor terms.
                 </p>
                 <p>
@@ -730,11 +730,11 @@ export default function EquityDilutionCalculatorPage() {
                     How do I calculate my equity value as an employee?
                   </h3>
                   <p className="mt-2 text-slate-600">
-                    Employee equity value = (Number of options Ã— Exercise
-                    price per share) / (Total fully diluted shares) Ã— Company
+                    Employee equity value = (Number of options × Exercise
+                    price per share) / (Total fully diluted shares) × Company
                     valuation. For example, 10,000 options in a company with
                     10 million fully diluted shares at a $100M valuation =
-                    0.1% Ã— $100M = $100,000. However, this is pre-tax and
+                    0.1% × $100M = $100,000. However, this is pre-tax and
                     pre-exercise cost. Subtract exercise costs (typically
                     $0.10-$5.00 per share) and apply a liquidity discount
                     (20-40% for private companies).

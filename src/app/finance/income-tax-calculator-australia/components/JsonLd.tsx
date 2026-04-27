@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 export function JsonLd() {
   const structuredData = {
@@ -93,7 +93,7 @@ export function JsonLd() {
             name: "Are there state income taxes in Australia?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "No. Australia abolished state income taxes in 1942. There is only one level of income tax — federal. The ATO collects all personal income tax."
+              text: "No. Australia abolished state income taxes in 1942. There is only one level of income tax � federal. The ATO collects all personal income tax."
             }
           }
         ]

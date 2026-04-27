@@ -8,7 +8,7 @@ const PAGE_PATH = "/blog/how-to-convert-text-to-binary";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "How to Convert Text to Binary (Complete Binary Code Translator Guide) | FindBest Tools",
+  title: "How to Convert Text to Binary (Complete Binary Code Translator Guide)",
   description: "Learn how to convert text to binary and binary to text. Full guide covering ASCII, 8-bit encoding, worked examples, A–Z reference table, and how our free binary code translator works.",
   alternates: {
     canonical: PAGE_URL,
