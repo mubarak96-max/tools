@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Mail, MessageSquare, Bug, Lightbulb, Clock } from 'lucide-react';
 
