@@ -431,6 +431,20 @@ export default function BinaryBlogPage() {
           </div>
         </section>
 
+        <section className="bg-slate-50 rounded-3xl p-8 border border-slate-100 my-16 not-prose">
+          <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left">
+            <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span className="text-2xl font-black">FB</span>
+            </div>
+            <div>
+              <h4 className="text-lg font-bold text-slate-900 mb-2">FindBest Editorial Team</h4>
+              <p className="text-sm text-slate-500 leading-relaxed">
+                The FindBest Editorial team is composed of data scientists, software engineers, and digital analysts dedicated to making complex technical concepts accessible to everyone. Our mission is to build the world&apos;s most accurate and private-conscious utility suite.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <div className="mt-20 p-10 bg-[linear-gradient(135deg,_var(--tw-gradient-from),_var(--tw-gradient-to))] from-primary/10 via-primary/5 to-transparent border border-primary/20 rounded-[2rem] text-center">
           <h2 className="text-3xl font-bold mb-4">Try the Binary Code Translator</h2>
           <p className="text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">

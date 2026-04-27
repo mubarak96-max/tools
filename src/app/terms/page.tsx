@@ -2,58 +2,86 @@ import React from 'react';
 
 export default function TermsPage() {
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8 animate-fade-in">
-      <h1 className="text-4xl font-bold mb-8 text-gradient-primary">Terms of Service</h1>
+    <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-4xl font-black text-slate-900 mb-4">Terms of Service</h1>
+      <p className="text-slate-500 mb-12">Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
 
-      <div className="glass-card p-8 rounded-2xl space-y-6 text-muted-foreground leading-relaxed">
-        <p>Last Updated: March 21, 2026</p>
+      <div className="prose prose-slate max-w-none space-y-12 text-slate-600 leading-relaxed">
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">1. Acceptance of Terms</h2>
+          <p>
+            By accessing or using the website findbest.tools (the "Site"), you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+          </p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">1. Acceptable Use</h2>
-        <p>
-          By accessing and using FindBest Tools, you agree to comply with and be bound by the following
-          terms and conditions. If you do not agree to these terms, please do not use our services.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">2. Use License</h2>
+          <p>
+            Permission is granted to temporarily use the tools and utilities on FindBest Tools for personal or commercial purposes. This is the grant of a license, not a transfer of title, and under this license you may not:
+          </p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>Modify or copy the source code of the tools;</li>
+            <li>Use the materials for any automated scraping or unauthorized data collection;</li>
+            <li>Attempt to decompile or reverse engineer any software contained on the Site;</li>
+            <li>Remove any copyright or other proprietary notations from the materials; or</li>
+            <li>Transfer the materials to another person or "mirror" the materials on any other server.</li>
+          </ul>
+          <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by FindBest Tools at any time.</p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">2. Use of Tools</h2>
-        <p>
-          All tools on this website are provided for free for personal or professional use. You agree
-          not to use these tools for any illegal purposes or to attempt to disrupt the website&apos;s
-          functionality.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">3. Disclaimer of Accuracy</h2>
+          <p>
+            The tools on FindBest Tools are provided on an 'as is' basis. FindBest Tools makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+          </p>
+          <p>
+            Further, FindBest Tools does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
+          </p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">3. Ads, analytics, and consent</h2>
-        <p>
-          We may use advertising and analytics to support the site. Google services may load when you
-          visit the site and may use cookies, identifiers, and device information according to regional
-          consent requirements and Google&apos;s policies. Your use of the site also remains subject to the
-          terms and privacy policies of relevant third-party providers.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">4. Limitations of Liability</h2>
+          <p>
+            In no event shall FindBest Tools or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on FindBest Tools, even if FindBest Tools or a FindBest Tools authorized representative has been notified orally or in writing of the possibility of such damage.
+          </p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">4. Disclaimer of Warranty</h2>
-        <p>
-          The tools and generators on FindBest Tools are provided &quot;as is&quot; without warranties of any
-          kind. We aim for accuracy and uptime, but we cannot guarantee uninterrupted service or that
-          every output will be error-free for every use case.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">5. Intellectual Property</h2>
+          <p>
+            The Site and its original content, features, and functionality are and will remain the exclusive property of FindBest Tools and its licensors. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of FindBest Tools.
+          </p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">5. Intellectual Property</h2>
-        <p>
-          The design, code, and original content of FindBest Tools are the property of the site owners.
-          You may not scrape, mirror, or redistribute our tools without prior written consent.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">6. Third-Party Links</h2>
+          <p>
+            FindBest Tools has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by FindBest Tools of the site. Use of any such linked website is at the user's own risk.
+          </p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">6. Third-Party Links</h2>
-        <p>
-          Our site may contain links to third-party websites. We have no control over and assume no
-          responsibility for the content or practices of any third-party sites.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">7. Advertising and Cookie Consent</h2>
+          <p>
+            We use third-party advertising companies to serve ads when you visit our website. These companies may use information about your visits to this and other websites in order to provide advertisements about goods and services of interest to you. Consent for these services is managed according to our Privacy Policy and relevant regional regulations.
+          </p>
+        </section>
 
-        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">7. Limitations of Liability</h2>
-        <p>
-          In no event shall FindBest Tools be liable for any damages arising out of the use or inability
-          to use the tools on this website.
-        </p>
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">8. Governing Law</h2>
+          <p>
+            These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which the site owner resides, and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-2xl font-bold text-slate-900 mb-4">9. Changes to Terms</h2>
+          <p>
+            FindBest Tools may revise these terms of service for its website at any time without notice. By using this website you are agreeing to be bound by the then current version of these terms of service.
+          </p>
+        </section>
       </div>
     </div>
   );
 }
+

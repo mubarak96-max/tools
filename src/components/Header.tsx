@@ -202,6 +202,9 @@ export default function Header() {
           {[
             { label: 'Text', href: '/text' },
             { label: 'Image', href: '/image' },
+            { label: 'Finance', href: '/finance' },
+            { label: 'Real Estate', href: '/real-estate' },
+            { label: 'Health', href: '/health' },
             { label: 'Utility', href: '/utility' },
           ].map((item) => (
             <Link
