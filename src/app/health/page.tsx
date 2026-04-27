@@ -15,7 +15,6 @@ type HealthToolMeta = {
   name: string;
   href: string;
   description: string;
-  icon: string;
 };
 
 const HEALTH_TOOLS: HealthToolMeta[] = [
@@ -23,13 +22,11 @@ const HEALTH_TOOLS: HealthToolMeta[] = [
     name: "BMR Calculator",
     href: "/health/bmr-calculator",
     description: "Calculate your Basal Metabolic Rate using the Mifflin-St Jeor Equation.",
-    icon: "BMR",
   },
   {
     name: "Calorie Calculator",
     href: "/health/calorie-calculator",
     description: "Estimate TDEE and daily calorie targets for weight loss, maintenance, or muscle gain.",
-    icon: "CAL",
   },
 ];
 
@@ -43,9 +40,6 @@ function ToolCard({ tool }: { tool: HealthToolMeta }) {
         <h2 className="text-base font-semibold text-foreground transition-colors group-hover:text-primary leading-snug">
           {tool.name}
         </h2>
-        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">

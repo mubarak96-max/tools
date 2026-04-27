@@ -15,7 +15,6 @@ type TextToolMeta = {
   name: string;
   href: string;
   description: string;
-  icon: string;
 };
 
 const TEXT_TOOLS: TextToolMeta[] = [
@@ -23,49 +22,41 @@ const TEXT_TOOLS: TextToolMeta[] = [
     name: "Word Frequency Counter",
     href: "/text/word-frequency",
     description: "Analyze repeated words, filter stop words, and surface the most-used terms in any text block.",
-    icon: "FREQ",
   },
   {
     name: "Case Converter",
     href: "/text/case-converter",
     description: "Convert text between uppercase, lowercase, title case, sentence case, camelCase, and more.",
-    icon: "CASE",
   },
   {
     name: "Word Cloud Generator",
     href: "/text/word-cloud-generator",
     description: "Generate a visual word cloud from pasted text with frequency-based sizing.",
-    icon: "CLOUD",
   },
   {
     name: "Duplicate Word Finder",
     href: "/text/duplicate-word-finder",
     description: "Find repeated words and overused terms in drafts, essays, and web copy.",
-    icon: "DUP",
   },
   {
     name: "Morse Code Translator",
     href: "/text/morse-code-translator",
     description: "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",
-    icon: "MORSE",
   },
   {
     name: "Binary Code Translator",
     href: "/text/binary-code-translator",
     description: "Translate text to binary and binary back to text with 8-bit byte conversion and validation.",
-    icon: "BIN",
   },
   {
     name: "Image to Text OCR",
     href: "/text/convert-image-to-text",
     description: "Extract, clean, copy, and download editable text from JPG, PNG, WEBP, and BMP images with OCR.",
-    icon: "OCR",
   },
   {
     name: "Readability / Flesch-Kincaid Calculator",
     href: "/text/readability-flesch-kincaid-calculator",
     description: "Score pasted text for reading ease, grade level, and sentence complexity.",
-    icon: "READ",
   },
 ];
 
@@ -79,9 +70,6 @@ function ToolCard({ tool }: { tool: TextToolMeta }) {
         <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
           {tool.name}
         </h2>
-        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">

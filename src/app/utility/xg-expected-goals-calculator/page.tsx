@@ -490,19 +490,16 @@ export default function ExpectedGoalsCalculatorPage() {
               name: "QR Code Generator",
               href: "/utility/qr-code-generator",
               description: "Create and download static QR codes with custom colors.",
-              icon: "QR",
             },
             {
               name: "Barcode Generator",
               href: "/utility/barcode-generator",
               description: "Create CODE128, UPC, and EAN barcodes and download PNGs.",
-              icon: "CODE",
             },
             {
               name: "Free CV Resume Builder",
               href: "/utility/free-cv-resume-builder",
               description: "Build a resume online with editable sections and PDF export.",
-              icon: "CV",
             },
           ].map((tool) => (
             <Link
@@ -510,9 +507,6 @@ export default function ExpectedGoalsCalculatorPage() {
               href={tool.href}
               className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                {tool.icon}
-              </span>
               <div>
                 <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
                   {tool.name}

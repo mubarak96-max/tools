@@ -9,25 +9,21 @@ const CONSTRUCTION_TOOLS = [
     name: "Concrete Volume Calculator",
     href: "/construction/concrete-volume-calculator",
     description: "Estimate concrete volume for slabs, footings, columns, holes, and mixed project shapes.",
-    icon: "CON",
   },
   {
     name: "Paint Coverage Calculator",
     href: "/construction/paint-coverage-calculator",
     description: "Estimate paint, primer, coats, and wall coverage for room and renovation projects.",
-    icon: "PNT",
   },
   {
     name: "Flooring Material Calculator",
     href: "/construction/flooring-material-calculator",
     description: "Estimate flooring area, boxes, waste allowance, underlayment, and project cost.",
-    icon: "FLR",
   },
   {
     name: "Roofing Material Calculator",
     href: "/construction/roofing-material-calculator",
     description: "Estimate shingles, underlayment, nails, bundles, squares, and roof waste allowance.",
-    icon: "ROOF",
   },
 ];
 
@@ -67,11 +63,7 @@ export default function ConstructionPage() {
             className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25"
           >
             <div className="flex items-center justify-between gap-3">
-              <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary">{tool.name}</h2>
-              <span className="shrink-0 rounded-lg border border-border bg-muted p-2 text-[10px] font-black text-primary">
-                {tool.icon}
-              </span>
-            </div>
+              <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary">{tool.name}</h2>            </div>
             <p className="text-sm leading-6 text-muted-foreground">{tool.description}</p>
           </Link>
         ))}

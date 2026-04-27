@@ -8,7 +8,6 @@ const MARKETING_TOOLS = [
     name: "Marketing ROI Calculator",
     href: "/marketing/marketing-roi-calculator",
     description: "Calculate ROAS, ROMI, CAC, and LTV:CAC ratio across multiple marketing channels.",
-    icon: "ROI",
   },
 ];
 
@@ -48,11 +47,7 @@ export default function MarketingPage() {
             className="group flex flex-col gap-3 rounded-2xl border border-border/80 bg-card p-5 transition-all hover:border-primary/25"
           >
             <div className="flex items-center justify-between gap-3">
-              <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary">{tool.name}</h2>
-              <span className="shrink-0 rounded-lg border border-border bg-muted p-2 text-[10px] font-black text-primary">
-                {tool.icon}
-              </span>
-            </div>
+              <h2 className="text-base font-semibold leading-snug text-foreground group-hover:text-primary">{tool.name}</h2>            </div>
             <p className="text-sm leading-6 text-muted-foreground">{tool.description}</p>
           </Link>
         ))}

@@ -11,90 +11,91 @@ const NAV_GROUPS = [
     label: 'Design',
     href: '/design',
     tools: [
-      { name: 'Social Media Carousel', href: '/design/free-social-media-carousel-builder', icon: 'CAR' },
+      { name: 'Social Media Carousel', href: '/design/free-social-media-carousel-builder'},
     ],
   },
   {
     label: 'Text',
     href: '/text',
     tools: [
-      { name: 'Word Frequency', href: '/text/word-frequency', icon: 'FREQ' },
-      { name: 'Case Converter', href: '/text/case-converter', icon: 'CASE' },
-      { name: 'Word Cloud Generator', href: '/text/word-cloud-generator', icon: 'CLOUD' },
-      { name: 'Duplicate Word Finder', href: '/text/duplicate-word-finder', icon: 'DUP' },
-      { name: 'Morse Code Translator', href: '/text/morse-code-translator', icon: 'MORSE' },
-      { name: 'Binary Code Translator', href: '/text/binary-code-translator', icon: 'BIN' },
-      { name: 'Image to Text (OCR)', href: '/text/convert-image-to-text', icon: 'OCR' },
-      { name: 'Readability Calculator', href: '/text/readability-flesch-kincaid-calculator', icon: 'READ' },
+      { name: 'Word Frequency', href: '/text/word-frequency'},
+      { name: 'Case Converter', href: '/text/case-converter'},
+      { name: 'Word Cloud Generator', href: '/text/word-cloud-generator'},
+      { name: 'Duplicate Word Finder', href: '/text/duplicate-word-finder'},
+      { name: 'Morse Code Translator', href: '/text/morse-code-translator'},
+      { name: 'Binary Code Translator', href: '/text/binary-code-translator'},
+      { name: 'Image to Text (OCR)', href: '/text/convert-image-to-text'},
+      { name: 'Readability Calculator', href: '/text/readability-flesch-kincaid-calculator'},
     ],
   },
   {
     label: 'Image',
     href: '/image',
     tools: [
-      { name: 'AI Background Remover', href: '/image/free-image-background-remover-online', icon: 'AI' },
-      { name: 'Image to Base64', href: '/image/convert-image-to-base64', icon: 'B64' },
+      { name: 'AI Background Remover', href: '/image/free-image-background-remover-online'},
+      { name: 'Image to Base64', href: '/image/convert-image-to-base64'},
     ],
   },
   {
     label: 'AI',
     href: '/ai',
     tools: [
-      { name: 'AI Humanizer', href: '/ai/ai-humanizer', icon: 'AI' },
+      { name: 'AI Humanizer', href: '/ai/ai-humanizer'},
     ],
   },
   {
     label: 'Finance',
     href: '/finance',
     tools: [
-      { name: 'EMI Calculator', href: '/finance/emi-calculator', icon: 'EMI' },
-      { name: 'Invoice Generator', href: '/finance/invoice-generator', icon: 'INV' },
+      { name: 'EMI Calculator', href: '/finance/emi-calculator'},
+      { name: 'Invoice Generator', href: '/finance/invoice-generator'},
+      { name: 'CPP & EI Calculator', href: '/finance/cpp-ei-calculator'},
     ],
   },
   {
     label: 'Construction',
     href: '/construction',
     tools: [
-      { name: 'Concrete Volume', href: '/construction/concrete-volume-calculator', icon: 'CON' },
-      { name: 'Paint Coverage', href: '/construction/paint-coverage-calculator', icon: 'PNT' },
-      { name: 'Flooring Materials', href: '/construction/flooring-material-calculator', icon: 'FLR' },
-      { name: 'Roofing Materials', href: '/construction/roofing-material-calculator', icon: 'ROOF' },
+      { name: 'Concrete Volume', href: '/construction/concrete-volume-calculator'},
+      { name: 'Paint Coverage', href: '/construction/paint-coverage-calculator'},
+      { name: 'Flooring Materials', href: '/construction/flooring-material-calculator'},
+      { name: 'Roofing Materials', href: '/construction/roofing-material-calculator'},
     ],
   },
   {
     label: 'Health',
     href: '/health',
     tools: [
-      { name: 'BMR Calculator', href: '/health/bmr-calculator', icon: 'BMR' },
-      { name: 'Calorie Calculator', href: '/health/calorie-calculator', icon: 'CAL' },
+      { name: 'BMR Calculator', href: '/health/bmr-calculator'},
+      { name: 'Calorie Calculator', href: '/health/calorie-calculator'},
     ],
   },
   {
     label: 'Real Estate',
     href: '/real-estate',
     tools: [
-      { name: 'NYC Transfer Tax', href: '/real-estate/nyc-transfer-tax-calculator', icon: 'NYC' },
-      { name: 'Price per Sq Ft', href: '/real-estate/price-per-square-foot-calculator', icon: 'SQFT' },
-      { name: 'UK Stamp Duty', href: '/real-estate/uk-stamp-duty-calculator', icon: 'UK' },
-      { name: 'Singapore Property Stamp Duty', href: '/real-estate/singapore-property-stamp-duty-calculator', icon: 'SG' },
-      { name: 'Singapore Buyer Stamp Duty', href: '/real-estate/singapore-buyers-stamp-duty-calculator', icon: 'BSD' },
-      { name: 'Singapore Seller Stamp Duty', href: '/real-estate/singapore-sellers-stamp-duty-calculator', icon: 'SSD' },
-      { name: 'Scotland LBTT', href: '/real-estate/scotland-lbtt-calculator', icon: 'LBTT' },
-      { name: 'Wales LTT', href: '/real-estate/wales-ltt-calculator', icon: 'LTT' },
-      { name: 'Hong Kong Stamp Duty', href: '/real-estate/hong-kong-stamp-duty-calculator', icon: 'HK' },
+      { name: 'NYC Transfer Tax', href: '/real-estate/nyc-transfer-tax-calculator'},
+      { name: 'Price per Sq Ft', href: '/real-estate/price-per-square-foot-calculator'},
+      { name: 'UK Stamp Duty', href: '/real-estate/uk-stamp-duty-calculator'},
+      { name: 'Singapore Property Stamp Duty', href: '/real-estate/singapore-property-stamp-duty-calculator'},
+      { name: 'Singapore Buyer Stamp Duty', href: '/real-estate/singapore-buyers-stamp-duty-calculator'},
+      { name: 'Singapore Seller Stamp Duty', href: '/real-estate/singapore-sellers-stamp-duty-calculator'},
+      { name: 'Scotland LBTT', href: '/real-estate/scotland-lbtt-calculator'},
+      { name: 'Wales LTT', href: '/real-estate/wales-ltt-calculator'},
+      { name: 'Hong Kong Stamp Duty', href: '/real-estate/hong-kong-stamp-duty-calculator'},
     ],
   },
   {
     label: 'Utility',
     href: '/utility',
     tools: [
-      { name: 'DNS Checker', href: '/utility/dns-checker', icon: 'DNS' },
-      { name: 'Free CV Resume Builder', href: '/utility/free-cv-resume-builder', icon: 'CV' },
-      { name: 'QR Code Generator', href: '/utility/qr-code-generator', icon: 'QR' },
-      { name: 'Barcode Generator', href: '/utility/barcode-generator', icon: 'CODE' },
-      { name: 'QR Code Scanner', href: '/utility/qr-code-scanner', icon: 'CAM' },
-      { name: 'Barcode Scanner', href: '/utility/barcode-scanner', icon: 'SCAN' },
-      { name: 'xG Calculator', href: '/utility/xg-expected-goals-calculator', icon: 'XG' },
+      { name: 'DNS Checker', href: '/utility/dns-checker'},
+      { name: 'Free CV Resume Builder', href: '/utility/free-cv-resume-builder'},
+      { name: 'QR Code Generator', href: '/utility/qr-code-generator'},
+      { name: 'Barcode Generator', href: '/utility/barcode-generator'},
+      { name: 'QR Code Scanner', href: '/utility/qr-code-scanner'},
+      { name: 'Barcode Scanner', href: '/utility/barcode-scanner'},
+      { name: 'xG Calculator', href: '/utility/xg-expected-goals-calculator'},
     ],
   },
 ];
@@ -168,11 +169,7 @@ export default function Header() {
                                 <Link
                                   href={tool.href}
                                   className="flex items-center gap-2 text-[13px] text-slate-600 hover:text-primary transition-colors leading-snug"
-                                >
-                                  <span className="shrink-0 rounded-md border border-border bg-muted px-1.5 py-0.5 text-[9px] font-bold text-primary">
-                                    {tool.icon}
-                                  </span>
-                                  {tool.name}
+                                >                                  {tool.name}
                                 </Link>
                               </li>
                           ))}
@@ -247,11 +244,7 @@ export default function Header() {
                           <Link
                             href={tool.href}
                             className="flex items-center gap-1.5 text-[13px] text-slate-600 hover:text-primary transition-colors"
-                          >
-                            <span className="shrink-0 rounded border border-border bg-muted px-1 text-[8px] font-bold text-primary">
-                              {tool.icon}
-                            </span>
-                            {tool.name}
+                          >                            {tool.name}
                           </Link>
                         </li>
                     ))}

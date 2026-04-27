@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import ImageToText from "./components/ImageToText";
@@ -238,19 +238,16 @@ export default function ConvertImageToTextPage() {
               name: "Word Frequency Counter",
               href: "/text/word-frequency",
               description: "Analyze repeated words and surface the most-used terms in any text block.",
-              icon: "FREQ",
             },
             {
               name: "Readability / Flesch-Kincaid Calculator",
               href: "/text/readability-flesch-kincaid-calculator",
               description: "Score pasted text for reading ease, grade level, and sentence complexity.",
-              icon: "READ",
             },
             {
               name: "Morse Code Translator",
               href: "/text/morse-code-translator",
               description: "Translate text to Morse code and Morse code back to text.",
-              icon: "MORSE",
             },
           ].map((tool) => (
             <Link
@@ -258,9 +255,6 @@ export default function ConvertImageToTextPage() {
               href={tool.href}
               className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                {tool.icon}
-              </span>
               <div>
                 <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
                   {tool.name}

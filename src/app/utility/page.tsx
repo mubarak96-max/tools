@@ -15,43 +15,36 @@ const UTILITY_TOOLS = [
     name: "Expected Goals (xG) Calculator",
     href: "/utility/xg-expected-goals-calculator",
     description: "Interactive xG calculator for football with shot position, pressure, assist type, and match comparison.",
-    icon: "XG",
   },
   {
     name: "DNS Checker",
     href: "/utility/dns-checker",
     description: "Look up A, AAAA, MX, TXT, NS, and other DNS records for any domain.",
-    icon: "DNS",
   },
   {
     name: "Free CV Resume Builder",
     href: "/utility/free-cv-resume-builder",
     description: "Build a resume online for free with editable sections, multiple templates, browser autosave, and print-to-PDF export.",
-    icon: "CV",
   },
   {
     name: "QR Code Generator",
     href: "/utility/qr-code-generator",
     description: "Create and download static QR codes with custom colors and zero expiry limits.",
-    icon: "QR",
   },
   {
     name: "Barcode Generator",
     href: "/utility/barcode-generator",
     description: "Instantly create CODE128, UPC, and EAN barcodes and download high-quality PNGs.",
-    icon: "CODE",
   },
   {
     name: "QR Code Scanner",
     href: "/utility/qr-code-scanner",
     description: "Scan QR codes using your device camera or upload an image to decode web links instantly.",
-    icon: "CAM",
   },
   {
     name: "Barcode Scanner",
     href: "/utility/barcode-scanner",
     description: "Use your webcam or phone to scan 1D retail product barcodes and look them up online.",
-    icon: "SCAN",
   },
 ];
 
@@ -65,9 +58,6 @@ function ToolCard({ tool }: { tool: (typeof UTILITY_TOOLS)[number] }) {
         <h2 className="text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
           {tool.name}
         </h2>
-        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
       </div>
       <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">

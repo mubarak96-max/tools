@@ -46,7 +46,6 @@ type HomeToolMeta = {
   href: string;
   description: string;
   category: string;
-  icon: string;
 };
 
 const FEATURED_TOOLS: HomeToolMeta[] = [
@@ -55,140 +54,120 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     href: "/utility/xg-expected-goals-calculator",
     description: "Interactive xG calculator for football: pitch heatmap and shot parameters for expected goals modelling.",
     category: "Utility",
-    icon: "XG",
   },
   {
     name: "Free CV Resume Builder",
     href: "/utility/free-cv-resume-builder",
     description: "Build a resume online for free with editable sections, multiple templates, browser autosave, and print-to-PDF export.",
     category: "Utility",
-    icon: "CV",
   },
   {
     name: "AI Background Remover",
     href: "/image/free-image-background-remover-online",
     description: "Remove the background from any photo instantly using local WebAssembly AI.",
     category: "Image",
-    icon: "AI",
   },
   {
     name: "Word Frequency Counter",
     href: "/text/word-frequency",
     description: "Analyze repeated words, filter stop words, and surface the most-used terms in any text block.",
     category: "Text",
-    icon: "FREQ",
   },
   {
     name: "Image to Text OCR",
     href: "/text/convert-image-to-text",
     description: "Extract, clean, copy, and download editable text from JPG, PNG, WEBP, and BMP images with OCR.",
     category: "Text",
-    icon: "OCR",
   },
   {
     name: "QR Code Generator",
     href: "/utility/qr-code-generator",
     description: "Create and download static QR codes with custom colors and zero expiry limits.",
     category: "Utility",
-    icon: "QR",
   },
   {
     name: "Readability / Flesch-Kincaid Calculator",
     href: "/text/readability-flesch-kincaid-calculator",
     description: "Score pasted text for reading ease, grade level, and sentence complexity.",
     category: "Text",
-    icon: "READ",
   },
   {
     name: "BMR Calculator",
     href: "/health/bmr-calculator",
     description: "Calculate your Basal Metabolic Rate using the Mifflin-St Jeor Equation.",
     category: "Health",
-    icon: "BMR",
   },
   {
     name: "NYC Transfer Tax Calculator",
     href: "/real-estate/nyc-transfer-tax-calculator",
     description: "Estimate New York City real property transfer tax from the transfer price and property type.",
     category: "Real Estate",
-    icon: "NYC",
   },
   {
     name: "Morse Code Translator",
     href: "/text/morse-code-translator",
     description: "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",
     category: "Text",
-    icon: "MORSE",
   },
   {
     name: "Binary Code Translator",
     href: "/text/binary-code-translator",
     description: "Translate text to binary and binary back to text with 8-bit byte conversion and validation.",
     category: "Text",
-    icon: "BIN",
   },
   {
     name: "Halal Mortgage Calculator",
     href: "/finance/halal-mortgage-calculator",
     description: "Compare Sharia-compliant home finance: Musharakah, Murabaha, and Ijara structures without interest.",
     category: "Finance",
-    icon: "HLM",
   },
   {
     name: "Amazon FBA Calculator UK",
     href: "/finance/amazon-fba-calculator-uk",
     description: "Accurately model Amazon UK seller fees, referral costs, FBA fulfilment, and net profit.",
     category: "Finance",
-    icon: "FBA",
   },
   {
     name: "Amazon FBA Canada Calculator",
     href: "/finance/amazon-fba-canada-calculator",
     description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
     category: "Finance",
-    icon: "CAD",
   },
   {
     name: "Etsy Profit Calculator",
     href: "/finance/etsy-profit-calculator",
     description: "Accurately model Etsy transaction fees, payment processing, ads, and net margins for handmade sellers.",
     category: "Finance",
-    icon: "ETS",
   },
   {
     name: "US Take-Home Calculator",
     href: "/finance/us-take-home-pay-calculator",
     description: "Calculate 2026 US net pay after federal/state tax and benefits.",
     category: "Finance",
-    icon: "SAL",
   },
   {
     name: "US Self-Employment Tax Calculator",
     href: "/finance/us-self-employment-tax-calculator",
     description: "Calculate IRS self-employment tax for 2026. Social Security, Medicare, and deductions for freelancers.",
     category: "Finance",
-    icon: "SE",
   },
   {
     name: "Australia Stamp Duty Calculator",
     href: "/finance/australia-stamp-duty-calculator",
     description: "Calculate property transfer duty across all 8 states. FHB concessions, foreign surcharges, and mortgage fees.",
     category: "Finance",
-    icon: "🏠",
   },
   {
     name: "Australia GST Calculator",
     href: "/finance/australia-gst-calculator",
     description: "Add or remove 10% GST from any amount. Single amount or multi-item invoice mode with BAS reporting helper.",
     category: "Finance",
-    icon: "🇦🇺",
   },
   {
     name: "Canada HST/GST Calculator",
     href: "/finance/canada-hst-gst-calculator",
     description: "Calculate sales tax for all 13 Canadian provinces and territories. Add or reverse-calculate GST, HST, PST, and QST.",
     category: "Finance",
-    icon: "🇨🇦",
   },
 
 
@@ -200,7 +179,6 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     href: "/finance/inheritance-tax-calculator",
     description: "Calculate inheritance tax, estate tax, and succession duty across 10 major global jurisdictions.",
     category: "Finance",
-    icon: "🏛️",
   },
 
   {
@@ -208,70 +186,60 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
     href: "/finance/salary-after-tax-calculator",
     description: "State-by-state 2026 take-home pay comparison and breakdown.",
     category: "Finance",
-    icon: "TAX",
   },
   {
     name: "Bonus Tax Calculator",
     href: "/finance/bonus-tax-calculator",
     description: "Employee bonus tax withholding + business bonus depreciation tool.",
     category: "Finance",
-    icon: "BON",
   },
   {
     name: "Keyword Clustering Tool",
     href: "/seo/keyword-clustering",
     description: "Turn keyword lists into topic clusters with semantic NLP grouping.",
     category: "SEO",
-    icon: "CLU",
   },
   {
     name: "Product Pricing Calculator",
     href: "/finance/product-pricing-calculator",
     description: "Calculate selling prices across Shopify, Etsy, and Amazon with real fees and margins.",
     category: "Finance",
-    icon: "PRC",
   },
   {
     name: "YouTube Title Checker",
     href: "/seo/youtube-title-checker",
     description: "Analyze video titles for pixel width truncation, character limits, and SEO score with multi-device thumbnail previews.",
     category: "SEO",
-    icon: "YT",
   },
   {
     name: "Meta Description Checker",
     href: "/seo/meta-description-checker",
     description: "Measure title and meta description pixel width against Google limits. Real-time desktop and mobile SERP preview.",
     category: "SEO",
-    icon: "META",
   },
   {
     name: "Hreflang Tag Generator",
     href: "/seo/hreflang-generator",
     description: "Generate and validate hreflang tags for multi-language SEO.",
     category: "SEO",
-    icon: "Globe",
   },
   {
     name: "India SIP Calculator",
     href: "/finance/india-sip-calculator",
     description: "Mutual fund SIP returns with Step-Up SIP, Lumpsum, and SWP modes. Includes 2026 LTCG tax estimation.",
     category: "Finance",
-    icon: "IndianRupee",
   },
   {
     name: "India TDS Calculator",
     href: "/finance/india-tds-calculator",
     description: "Calculate TDS on salary, rent, professional fees, and more for FY 2025-26 with surcharge and cess.",
     category: "Finance",
-    icon: "Receipt",
   },
   {
     name: "Car Depreciation Calculator",
     href: "/finance/car-depreciation-calculator",
     description: "Accurate resale value and depreciation curves for 500+ makes and models.",
     category: "Finance",
-    icon: "Car",
   },
 ];
 
@@ -281,10 +249,7 @@ function ToolCard({ tool }: { tool: HomeToolMeta }) {
       href={tool.href}
       className="group relative flex flex-col items-start gap-2.5 overflow-hidden rounded-2xl border border-white/40 bg-white/40 p-4 shadow-premium backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/60 hover:shadow-hover"
     >
-      <div className="flex w-full items-center justify-between">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
+      <div className="flex w-full items-center justify-end">
         <span className="primary-chip rounded-full px-2.5 py-0.5 text-[9px] drop-shadow-sm">
           {tool.category}
         </span>

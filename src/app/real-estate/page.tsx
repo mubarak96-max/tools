@@ -15,7 +15,6 @@ type RealEstateToolMeta = {
   name: string;
   href: string;
   description: string;
-  icon: string;
 };
 
 const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
@@ -23,67 +22,56 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
     name: "NYC Transfer Tax Calculator",
     href: "/real-estate/nyc-transfer-tax-calculator",
     description: "Estimate New York City real property transfer tax from the transfer price and property type.",
-    icon: "NYC",
   },
   {
     name: "Price per Square Foot Calculator",
     href: "/real-estate/price-per-square-foot-calculator",
     description: "Compare property value or rent using price per square foot or square metre.",
-    icon: "SQFT",
   },
   {
     name: "UK Stamp Duty Calculator",
     href: "/real-estate/uk-stamp-duty-calculator",
     description: "Calculate SDLT for England and Northern Ireland purchases with surcharge options.",
-    icon: "UK",
   },
   {
     name: "Singapore Property Stamp Duty Calculator",
     href: "/real-estate/singapore-property-stamp-duty-calculator",
     description: "Estimate Singapore BSD, ABSD, and SSD for private property purchases.",
-    icon: "SG",
   },
   {
     name: "Singapore Buyer's Stamp Duty Calculator",
     href: "/real-estate/singapore-buyers-stamp-duty-calculator",
     description: "Calculate Singapore BSD and ABSD for buyers by residency and property count.",
-    icon: "BSD",
   },
   {
     name: "Singapore Seller's Stamp Duty Calculator",
     href: "/real-estate/singapore-sellers-stamp-duty-calculator",
     description: "Estimate Singapore SSD based on sale price and holding period.",
-    icon: "SSD",
   },
   {
     name: "Scotland LBTT Calculator",
     href: "/real-estate/scotland-lbtt-calculator",
     description: "Calculate Scotland Land and Buildings Transaction Tax with ADS options.",
-    icon: "LBTT",
   },
   {
     name: "Wales LTT Calculator",
     href: "/real-estate/wales-ltt-calculator",
     description: "Estimate Welsh Land Transaction Tax for residential property purchases.",
-    icon: "LTT",
   },
   {
     name: "Hong Kong Stamp Duty Calculator",
     href: "/real-estate/hong-kong-stamp-duty-calculator",
     description: "Calculate Hong Kong ad valorem stamp duty for residential property.",
-    icon: "HK",
   },
   {
     name: "Rent vs Buy Calculator",
     href: "/real-estate/rent-vs-buy-calculator",
     description: "Compare the long-term costs of renting vs buying a home, including tax savings.",
-    icon: "R/B",
   },
   {
     name: "Rental Yield Calculator",
     href: "/real-estate/rental-yield-calculator",
     description: "Calculate gross vs net rental yield for UK, US & Australia. Auto-estimates stamp duty and compares against city medians.",
-    icon: "RYC",
   },
 ];
 
@@ -97,9 +85,6 @@ function ToolCard({ tool }: { tool: RealEstateToolMeta }) {
         <h2 className="text-base font-semibold text-foreground transition-colors group-hover:text-primary leading-snug">
           {tool.name}
         </h2>
-        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">

@@ -501,16 +501,15 @@ export default function RentalYieldPage() {
           <h2 className="text-2xl font-bold text-stone-900 mb-8">Related Real Estate Tools</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {[
-              { name: "Rent vs Buy Calculator", href: "/real-estate/rent-vs-buy-calculator", desc: "Should you rent or buy? Factors in mortgage interest tax deductions, opportunity cost, and appreciation.", icon: <Home className="w-5 h-5 text-primary" /> },
-              { name: "UK Stamp Duty Calculator", href: "/real-estate/uk-stamp-duty-calculator", desc: "Calculate SDLT for residential and buy-to-let purchases in England and Northern Ireland.", icon: <PoundSterling className="w-5 h-5 text-primary" /> },
-              { name: "Price Per Square Foot", href: "/real-estate/price-per-square-foot-calculator", desc: "Compare property values using price per square foot or square metre across markets.", icon: <Building2 className="w-5 h-5 text-primary" /> },
-              { name: "Australia Stamp Duty", href: "/finance/australia-stamp-duty-calculator", desc: "Estimate stamp duty for property purchases across all Australian states and territories.", icon: <DollarSign className="w-5 h-5 text-primary" /> },
-              { name: "Compound Interest", href: "/finance/compound-interest-calculator", desc: "See how your property equity or alternative investments compound over time.", icon: <TrendingUp className="w-5 h-5 text-primary" /> },
-              { name: "Break-Even Calculator", href: "/finance/break-even-calculator", desc: "Determine how many months of rent you need to recover your initial investment costs.", icon: <Calculator className="w-5 h-5 text-primary" /> },
+              { name: "Rent vs Buy Calculator", href: "/real-estate/rent-vs-buy-calculator", desc: "Should you rent or buy? Factors in mortgage interest tax deductions, opportunity cost, and appreciation." },
+              { name: "UK Stamp Duty Calculator", href: "/real-estate/uk-stamp-duty-calculator", desc: "Calculate SDLT for residential and buy-to-let purchases in England and Northern Ireland." },
+              { name: "Price Per Square Foot", href: "/real-estate/price-per-square-foot-calculator", desc: "Compare property values using price per square foot or square metre across markets." },
+              { name: "Australia Stamp Duty", href: "/finance/australia-stamp-duty-calculator", desc: "Estimate stamp duty for property purchases across all Australian states and territories." },
+              { name: "Compound Interest", href: "/finance/compound-interest-calculator", desc: "See how your property equity or alternative investments compound over time." },
+              { name: "Break-Even Calculator", href: "/finance/break-even-calculator", desc: "Determine how many months of rent you need to recover your initial investment costs." },
             ].map((tool) => (
               <a key={tool.href} href={tool.href} className="group p-5 border border-stone-200 rounded-2xl hover:border-primary/30 hover:shadow-sm transition-all">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 bg-stone-50 rounded-lg group-hover:bg-primary/10 transition-colors">{tool.icon}</div>
                   <h3 className="font-bold text-stone-900 group-hover:text-primary transition-colors">{tool.name}</h3>
                 </div>
                 <p className="text-sm text-stone-500 leading-relaxed">{tool.desc}</p>

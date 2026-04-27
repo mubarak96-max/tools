@@ -16,19 +16,16 @@ const IMAGE_TOOLS = [
     name: "AI Background Remover",
     href: "/image/free-image-background-remover-online",
     description: "Remove the background from any photo instantly using local WebAssembly AI.",
-    icon: "AI",
   },
   {
     name: "Convert Image to Base64",
     href: "/image/convert-image-to-base64",
     description: "Convert any image into a Base64 string or data URL directly in your browser.",
-    icon: "B64",
   },
   {
     name: "Instagram Photo Resizer",
     href: "/image/resize-photo-instagram-online",
     description: "Resize any photo for Instagram Square, Portrait, Story, or Profile formats. No crop support.",
-    icon: "IG",
   },
 ];
 
@@ -42,9 +39,6 @@ function ToolCard({ tool }: { tool: (typeof IMAGE_TOOLS)[number] }) {
         <h2 className="text-base font-semibold leading-snug text-foreground transition-colors group-hover:text-primary">
           {tool.name}
         </h2>
-        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
       </div>
       <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">

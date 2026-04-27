@@ -307,18 +307,15 @@ export default function Page() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 px-4 pb-24 text-left">
           {[
-            { name: "Break Even Calculator", href: "/finance/break-even-calculator", icon: "BEP", desc: "Find your business profitability threshold." },
-            { name: "Halal Mortgage Calculator", href: "/finance/halal-mortgage-calculator", icon: "HLM", desc: "Compare Sharia-compliant home finance." },
-            { name: "BMR Calculator", href: "/health/bmr-calculator", icon: "BMR", desc: "Calculate your basal metabolic rate scientifically." }
+            { name: "Break Even Calculator", href: "/finance/break-even-calculator", desc: "Find your business profitability threshold." },
+            { name: "Halal Mortgage Calculator", href: "/finance/halal-mortgage-calculator", desc: "Compare Sharia-compliant home finance." },
+            { name: "BMR Calculator", href: "/health/bmr-calculator", desc: "Calculate your basal metabolic rate scientifically." }
           ].map((tool) => (
             <Link
               key={tool.href}
               href={tool.href}
               className="group flex flex-col gap-3 rounded-[2rem] border border-white/40 bg-white/40 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                {tool.icon}
-              </div>
               <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
                 {tool.name}
               </h3>

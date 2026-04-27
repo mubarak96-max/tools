@@ -79,13 +79,11 @@ const relatedTools = [
     name: "Convert Image to Base64",
     href: "/image/convert-image-to-base64",
     description: "Convert an image into Base64 text or a full data URL.",
-    icon: "B64",
   },
   {
     name: "Image to Text OCR",
     href: "/text/convert-image-to-text",
     description: "Extract editable text from JPG, PNG, WEBP, and BMP images.",
-    icon: "OCR",
   },
 ];
 
@@ -377,9 +375,6 @@ export default function AIBackgroundRemoverPage() {
               href={tool.href}
               className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                {tool.icon}
-              </span>
               <div>
                 <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
                   {tool.name}

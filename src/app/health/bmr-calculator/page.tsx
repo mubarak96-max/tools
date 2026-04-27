@@ -324,9 +324,6 @@ export default function BmrCalculatorPage() {
               href={tool.href}
               className="group flex flex-col gap-3 rounded-[2rem] border border-white/40 bg-white/40 p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[11px] font-black text-primary shadow-sm ring-1 ring-black/5">
-                {tool.icon}
-              </div>
               <div>
                 <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
                   {tool.name}

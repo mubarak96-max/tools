@@ -324,7 +324,6 @@ export default function StudentLoanPage() {
             ].map((tool) => (
               <a key={tool.href} href={tool.href} className="group p-5 border border-stone-200 rounded-2xl hover:border-indigo-200 hover:shadow-sm transition-all">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition-colors">{tool.icon}</div>
                   <h3 className="font-bold text-stone-900 group-hover:text-indigo-600 transition-colors">{tool.name}</h3>
                 </div>
                 <p className="text-sm text-stone-500 leading-relaxed">{tool.desc}</p>

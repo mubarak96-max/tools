@@ -14,7 +14,6 @@ type SEOToolMeta = {
   name: string;
   href: string;
   description: string;
-  icon: string;
 };
 
 const SEO_TOOLS: SEOToolMeta[] = [
@@ -22,25 +21,21 @@ const SEO_TOOLS: SEOToolMeta[] = [
     name: "Keyword Clustering Tool",
     href: "/seo/keyword-clustering",
     description: "Group thousands of keywords into topic clusters using semantic NLP and search intent logic.",
-    icon: "CLUST",
   },
   {
     name: "YouTube Title Length Checker",
     href: "/seo/youtube-title-checker",
     description: "Analyze video titles for pixel width truncation, character limits, and SEO score with multi-device thumbnail previews.",
-    icon: "YT",
   },
   {
     name: "Meta Description Checker",
     href: "/seo/meta-description-checker",
     description: "Measure title and meta description pixel width against Google limits. Real-time desktop and mobile SERP preview.",
-    icon: "META",
   },
   {
     name: "Hreflang Tag Generator",
     href: "/seo/hreflang-generator",
     description: "Generate validated hreflang tags for multilingual sites. Auto-checks ISO codes, self-referencing, and reciprocity.",
-    icon: "GLOB",
   },
 ];
 
@@ -54,9 +49,6 @@ function ToolCard({ tool }: { tool: SEOToolMeta }) {
         <h2 className="text-base font-semibold text-foreground group-hover:text-primary transition-colors leading-snug">
           {tool.name}
         </h2>
-        <div className="shrink-0 rounded-lg border border-border bg-muted p-2">
-          <span className="text-[10px] font-black text-primary">{tool.icon}</span>
-        </div>
       </div>
       <p className="text-sm leading-6 text-muted-foreground line-clamp-2">{tool.description}</p>
       <span className="mt-auto text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">

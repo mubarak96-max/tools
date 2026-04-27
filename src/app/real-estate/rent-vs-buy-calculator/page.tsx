@@ -378,19 +378,16 @@ export default function RentVsBuyPage() {
                 name: "NYC Transfer Tax",
                 href: "/real-estate/nyc-transfer-tax-calculator",
                 desc: "Estimate NYC and NYS transfer taxes for residential and commercial deals.",
-                icon: <Landmark className="w-5 h-5 text-primary" />,
               },
               {
                 name: "Price per SQFT",
                 href: "/real-estate/price-per-square-foot-calculator",
                 desc: "Quickly calculate and compare property values using square footage.",
-                icon: <TrendingUp className="w-5 h-5 text-primary" />,
               },
               {
                 name: "UK Stamp Duty",
                 href: "/real-estate/uk-stamp-duty-calculator",
                 desc: "Calculate SDLT for property purchases in England and Northern Ireland.",
-                icon: <Home className="w-5 h-5 text-primary" />,
               },
             ].map((tool) => (
               <a
@@ -399,9 +396,6 @@ export default function RentVsBuyPage() {
                 className="group p-6 border border-stone-200 rounded-2xl hover:border-primary/30 hover:shadow-sm transition-all"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2 bg-stone-50 rounded-lg group-hover:bg-primary/5 transition-colors">
-                    {tool.icon}
-                  </div>
                   <h3 className="font-bold text-stone-900 group-hover:text-primary transition-colors">
                     {tool.name}
                   </h3>
