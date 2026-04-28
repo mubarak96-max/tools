@@ -13,7 +13,7 @@ const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 const faq = [
   {
-    question: "What is the Etsy transaction fee in 2025?",
+    question: "What is the Etsy transaction fee in 2026?",
     answer: "Etsy charges a 6.5% transaction fee on the full sale price including the item price, shipping you charge, and gift wrapping. This applies globally — US, UK, Canadian, and Australian sellers all pay this rate."
   },
   {
@@ -48,20 +48,20 @@ const faq = [
 
 export const metadata: Metadata = {
   ...buildMetadata({
-    title: "Etsy Profit Calculator 2025 | Accurate Fee & Margin Tool for US, UK, AU, CA",
-    description: "Calculate your true Etsy profit instantly. Accurate 2024/2025 Etsy fee calculator covering US, UK, Canada, and Australia — transaction fees, listing fees, offsite ads, and payment processing.",
+    title: "Etsy Profit Calculator 2026 | Accurate Fee & Margin Tool for US, UK, AU, CA",
+    description: "Calculate your true Etsy profit instantly. Accurate 2024/2026 Etsy fee calculator covering US, UK, Canada, and Australia — transaction fees, listing fees, offsite ads, and payment processing.",
     path: PAGE_PATH,
   }),
   keywords: [
     "etsy profit calculator",
-    "etsy fee calculator 2025",
+    "etsy fee calculator 2026",
     "calculate etsy profit",
     "etsy margin calculator",
     "etsy seller fees uk",
-    "etsy fees uk 2025",
+    "etsy fees uk 2026",
     "etsy fees canada",
     "etsy fees australia",
-    "etsy fees us 2025",
+    "etsy fees us 2026",
     "etsy offsite ads fee calculator",
     "etsy payment processing fees",
     "etsy breakeven price calculator",
@@ -81,7 +81,7 @@ function buildApplicationJsonLd() {
     url: PAGE_URL,
     applicationCategory: "FinanceApplication",
     operatingSystem: "Any",
-    description: "Accurate Etsy profit and fee calculator for handmade sellers in the US, UK, Canada, and Australia. Supports all 2024/2025 fee structures including transaction, listing, offsite ads, and payment processing.",
+    description: "Accurate Etsy profit and fee calculator for handmade sellers in the US, UK, Canada, and Australia. Supports all 2024/2026 fee structures including transaction, listing, offsite ads, and payment processing.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" }
   };
 }
@@ -164,7 +164,7 @@ export default function EtsyCalculatorPage() {
             <section>
               <h2 className="text-3xl font-black text-stone-900 mb-6 flex items-center gap-3">
                 <Landmark className="w-8 h-8 text-orange-500" />
-                How Etsy Calculates Its Fees in 2025
+                How Etsy Calculates Its Fees in 2026
               </h2>
               <div className="prose prose-stone max-w-none text-stone-600">
                 <p className="text-lg leading-relaxed">
@@ -395,7 +395,7 @@ export default function EtsyCalculatorPage() {
                 <div>
                   <p className="font-black text-stone-900 uppercase tracking-tight">Verified by FindBest Tools</p>
                   <p className="mt-2 text-sm font-medium text-stone-500 leading-relaxed">
-                    Etsy fee structures and payment processing rates sourced from official 2024/2025 Etsy Seller Policy. Verified for US, UK, Canada, and Australia markets. Last reviewed 25 April 2026.
+                    Etsy fee structures and payment processing rates sourced from official 2024/2026 Etsy Seller Policy. Verified for US, UK, Canada, and Australia markets. Last reviewed 25 April 2026.
                   </p>
                 </div>
               </div>
@@ -406,7 +406,7 @@ export default function EtsyCalculatorPage() {
         {/* Disclaimer */}
         <div className="mt-20 p-8 bg-stone-50 rounded-3xl border border-stone-200">
           <p className="text-[11px] text-stone-400 leading-relaxed">
-            <strong className="text-stone-700">Disclaimer:</strong> This Etsy Profit Calculator uses fee data from published Etsy fee schedules as of 2024/2025. Fees may change — always verify at{" "}
+            <strong className="text-stone-700">Disclaimer:</strong> This Etsy Profit Calculator uses fee data from published Etsy fee schedules as of 2024/2026. Fees may change — always verify at{" "}
             <a href="https://www.etsy.com/seller-fees" target="_blank" rel="noopener noreferrer" className="underline hover:text-orange-500 transition-colors">
               etsy.com/seller-fees
             </a>

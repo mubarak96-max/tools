@@ -47,7 +47,7 @@ const SUGGESTED_PIXEL_CUTOFF = 390
 const POWER_WORDS = [
   'ultimate','complete','essential','proven','secret','exclusive','official',
   'guaranteed','instant','free','new','best','top','easy','quick','simple',
-  'hack','trick','guide','tutorial','review','vs','versus','update','2026','2025'
+  'hack','trick','guide','tutorial','review','vs','versus','update','2026','2026'
 ]
 
 const CLICKBAIT_PATTERNS = [

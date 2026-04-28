@@ -43,7 +43,7 @@ const FINANCE_TOOLS = [
   {
     name: "Income Tax Calculator Australia",
     href: "/finance/income-tax-calculator-australia",
-    description: "Calculate 2025-26 Australian tax with ATO brackets, Medicare levy, and HECS repayments.",
+    description: "Calculate 2026-26 Australian tax with ATO brackets, Medicare levy, and HECS repayments.",
   },
   {
     name: "Income Tax Calculator Ireland",
@@ -103,7 +103,22 @@ const FINANCE_TOOLS = [
   {
     name: "India TDS Calculator",
     href: "/finance/india-tds-calculator",
-    description: "Calculate 2025-26 TDS on salary, rent, fees, and more with surcharge & cess logic.",
+    description: "Calculate 2026-26 TDS on salary, rent, fees, and more with surcharge & cess logic.",
+  },
+  {
+    name: "India SIP Calculator",
+    href: "/finance/india-sip-calculator",
+    description: "Calculate mutual fund SIP returns and wealth creation over time in INR.",
+  },
+  {
+    name: "Income Tax Calculator India",
+    href: "/finance/income-tax-calculator-india",
+    description: "Estimate Indian income tax liability under the old and new tax regime for FY 2026-26.",
+  },
+  {
+    name: "Zakat Calculator 2026",
+    href: "/finance/zakat-calculator",
+    description: "Calculate zakat on gold, silver, savings, and investments with 2026 Nisab rates.",
   },
   {
     name: "Australia Stamp Duty",
@@ -169,6 +184,26 @@ const FINANCE_TOOLS = [
     name: "PMI Calculator 2026",
     href: "/finance/pmi-calculator",
     description: "Calculate exact monthly PMI cost, drop-off timeline, and total mortgage insurance paid with 2026 rates.",
+  },
+  {
+    name: "Amortization Chart Calculator",
+    href: "/finance/amortization-chart-calculator",
+    description: "Generate detailed loan amortization tables, visualize payment breakdowns, and download schedules.",
+  },
+  {
+    name: "CD Ladder Calculator",
+    href: "/finance/cd-ladder-calculator",
+    description: "Plan multi-rung CD ladders, track maturity dates, and project monthly interest earnings.",
+  },
+  {
+    name: "Rule of 72 Calculator",
+    href: "/finance/rule-of-72-calculator",
+    description: "Estimate investment doubling time, compare scenarios, and see step-by-step math.",
+  },
+  {
+    name: "Crypto Mining Calculator",
+    href: "/tools/crypto-mining-calculator",
+    description: "Calculate Bitcoin and GPU mining profitability with real-time network parameters and ROI timelines.",
   },
 ];
 

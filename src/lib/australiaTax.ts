@@ -1,18 +1,18 @@
 // lib/australiaTax.ts
 //
 // Australia Income Tax Calculator
-// Financial Year 2025–26 (1 July 2025 – 30 June 2025)
+// Financial Year 2026–26 (1 July 2026 – 30 June 2026)
 //
 // SOURCES:
 //   • ATO tax rates: https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents
 //   • Medicare levy: https://www.ato.gov.au/individuals-and-families/medicare-levy
 //   • LITO/LMITO: https://www.ato.gov.au/tax-rates-and-codes/tax-offsets
-//   • Stage 3 tax cuts: effective 1 July 2025
+//   • Stage 3 tax cuts: effective 1 July 2026
 //   • Super: https://www.ato.gov.au/businesses-and-organisations/super-for-employers/work-out-if-you-have-to-pay-super/super-guarantee
 //
 // ─────────────────────────────────────────────────────────────────
 //
-// 2025–26 TAX BRACKETS (after Stage 3 cuts, effective 1 July 2025):
+// 2026–26 TAX BRACKETS (after Stage 3 cuts, effective 1 July 2026):
 //   $0         – $18,200     :  0%       (tax-free threshold)
 //   $18,201    – $45,000     :  19%
 //   $45,001    – $120,000    :  32.5%
@@ -23,24 +23,24 @@
 //   2% of taxable income
 //   Exemption: income < $26,000 (singles), phases in between $26,000–$32,500
 //   Surcharge: 1% extra if no private hospital cover and income > $93,000
-//   (singles threshold 2025-26)
+//   (singles threshold 2026-26)
 //
-// LOW INCOME TAX OFFSET (LITO) 2025–26:
+// LOW INCOME TAX OFFSET (LITO) 2026–26:
 //   Income ≤ $37,500:        $700 offset
 //   $37,501 – $45,000:       $700 – 5¢ per $1 above $37,500 (phase-out 1)
 //   $45,001 – $66,667:       $325 – 1.5¢ per $1 above $45,000 (phase-out 2)
 //   Income > $66,667:        $0
 //
 // LOW AND MIDDLE INCOME TAX OFFSET (LMITO):
-//   LMITO was removed from 2022–23 onwards. Not applicable for 2025–26.
+//   LMITO was removed from 2022–23 onwards. Not applicable for 2026–26.
 //
-// HELP/HECS REPAYMENT (2025–26):
+// HELP/HECS REPAYMENT (2026–26):
 //   Minimum repayment threshold: $54,435
 //   Rates from 1% (at $54,435) up to 10% (at $159,664+)
 //
 // SUPERANNUATION GUARANTEE (SG):
-//   2025–26: 11.5% of ordinary time earnings (OTE)
-//   2025–26: 12.0%
+//   2026–26: 11.5% of ordinary time earnings (OTE)
+//   2026–26: 12.0%
 //
 // ─────────────────────────────────────────────────────────────────
 
@@ -56,7 +56,7 @@ interface TaxBracket {
   baseTax: number; // cumulative tax at bottom of bracket
 }
 
-const RESIDENT_BRACKETS_2025_25: TaxBracket[] = [
+const RESIDENT_BRACKETS_2026_25: TaxBracket[] = [
   { min: 0,       max: 18200,  rate: 0.00,  baseTax: 0       },
   { min: 18201,   max: 45000,  rate: 0.19,  baseTax: 0       },
   { min: 45001,   max: 120000, rate: 0.325, baseTax: 5092    },
@@ -65,14 +65,14 @@ const RESIDENT_BRACKETS_2025_25: TaxBracket[] = [
 ];
 
 // Non-residents pay tax from $1 (no tax-free threshold)
-const NON_RESIDENT_BRACKETS_2025_25: TaxBracket[] = [
+const NON_RESIDENT_BRACKETS_2026_25: TaxBracket[] = [
   { min: 0,       max: 120000, rate: 0.325, baseTax: 0       },
   { min: 120001,  max: 180000, rate: 0.37,  baseTax: 39000   },
   { min: 180001,  max: null,   rate: 0.45,  baseTax: 61200   },
 ];
 
 // Working holiday makers: 15% on first $45,000, then resident rates
-const WORKING_HOLIDAY_BRACKETS_2025_25: TaxBracket[] = [
+const WORKING_HOLIDAY_BRACKETS_2026_25: TaxBracket[] = [
   { min: 0,       max: 45000,  rate: 0.15,  baseTax: 0       },
   { min: 45001,   max: 120000, rate: 0.325, baseTax: 6750    },
   { min: 120001,  max: 180000, rate: 0.37,  baseTax: 31125   },
@@ -80,9 +80,9 @@ const WORKING_HOLIDAY_BRACKETS_2025_25: TaxBracket[] = [
 ];
 
 function getBrackets(status: ResidencyStatus): TaxBracket[] {
-  if (status === "non_resident") return NON_RESIDENT_BRACKETS_2025_25;
-  if (status === "working_holiday") return WORKING_HOLIDAY_BRACKETS_2025_25;
-  return RESIDENT_BRACKETS_2025_25;
+  if (status === "non_resident") return NON_RESIDENT_BRACKETS_2026_25;
+  if (status === "working_holiday") return WORKING_HOLIDAY_BRACKETS_2026_25;
+  return RESIDENT_BRACKETS_2026_25;
 }
 
 function calcIncomeTax(income: number, status: ResidencyStatus): number {
@@ -110,10 +110,10 @@ function calcLITO(income: number, status: ResidencyStatus): number {
 // ── Medicare Levy ─────────────────────────────────────────────────
 
 const MEDICARE_RATE             = 0.02;
-const MEDICARE_LOWER_THRESHOLD  = 26000;  // 2025-26 singles
+const MEDICARE_LOWER_THRESHOLD  = 26000;  // 2026-26 singles
 const MEDICARE_UPPER_THRESHOLD  = 32500;  // phase-in complete
 const MEDICARE_SURCHARGE_RATE   = 0.01;
-const MEDICARE_SURCHARGE_THRESH = 93000;  // singles 2025-26
+const MEDICARE_SURCHARGE_THRESH = 93000;  // singles 2026-26
 
 function calcMedicareLevy(
   income: number,
@@ -151,7 +151,7 @@ interface HelpBracket {
   rate: number;
 }
 
-const HELP_BRACKETS_2025_25: HelpBracket[] = [
+const HELP_BRACKETS_2026_25: HelpBracket[] = [
   { min: 0,       max: 54434,  rate: 0    },
   { min: 54435,   max: 62849,  rate: 0.01 },
   { min: 62850,   max: 66620,  rate: 0.02 },
@@ -171,7 +171,7 @@ const HELP_BRACKETS_2025_25: HelpBracket[] = [
 ];
 
 function calcHelpRepayment(income: number): number {
-  for (const b of HELP_BRACKETS_2025_25) {
+  for (const b of HELP_BRACKETS_2026_25) {
     if (income <= (b.max ?? Infinity) && income >= b.min) {
       return income * b.rate;
     }
@@ -181,7 +181,7 @@ function calcHelpRepayment(income: number): number {
 
 // ── Superannuation ────────────────────────────────────────────────
 
-const SUPER_RATE_2025_25 = 0.115; // 11.5%
+const SUPER_RATE_2026_25 = 0.115; // 11.5%
 
 // ── Main calculation ──────────────────────────────────────────────
 
@@ -268,7 +268,7 @@ export function calculateAuTax(inputs: AuTaxInputs): AuTaxResult {
   const totalDeductions = netIncomeTax + medicareLevy + medicareSurcharge + helpRepayment;
   const netAnnual = gross - totalDeductions;
 
-  const superContribution = includeSuper ? gross * SUPER_RATE_2025_25 : 0;
+  const superContribution = includeSuper ? gross * SUPER_RATE_2026_25 : 0;
 
   // Effective & marginal rates
   const effectiveTaxRate = gross > 0 ? (totalDeductions / gross) * 100 : 0;

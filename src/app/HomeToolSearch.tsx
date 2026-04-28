@@ -93,7 +93,7 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
   {
     name: "Income Tax Calculator Australia",
     href: "/finance/income-tax-calculator-australia",
-    description: "Calculate 2025-26 Australian tax with Medicare, HECS, and real ATO brackets.",
+    description: "Calculate 2026-26 Australian tax with Medicare, HECS, and real ATO brackets.",
     category: "Finance",
   },
   {

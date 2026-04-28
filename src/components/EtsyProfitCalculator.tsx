@@ -585,7 +585,7 @@ export default function EtsyProfitCalculator() {
 
           {/* Disclaimer */}
           <p className="mt-5 text-[10px] text-stone-400 leading-relaxed">
-            Fee data current as of 2025. Etsy updates fees periodically — verify at{" "}
+            Fee data current as of 2026. Etsy updates fees periodically — verify at{" "}
             <a
               href="https://www.etsy.com/seller-fees"
               target="_blank"

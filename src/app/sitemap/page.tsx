@@ -215,10 +215,10 @@ const SITEMAP_TOOLS = [
       {
         name: "Income Tax Calculator India",
         href: "/finance/income-tax-calculator-india",
-        description: "Estimate Indian income tax liability under the old and new tax regime for FY 2024-25.",
+        description: "Estimate Indian income tax liability under the old and new tax regime for FY 2026-26.",
       },
       {
-        name: "Zakat Calculator 2024",
+        name: "Zakat Calculator 2026",
         href: "/finance/zakat-calculator",
         description: "Free online zakat calculator. Calculate zakat on gold, silver, savings, and investments.",
       },
@@ -251,6 +251,26 @@ const SITEMAP_TOOLS = [
         name: "House Affordability Australia",
         href: "/finance/house-affordability-calculator-australia",
         description: "Calculate borrowing capacity, stamp duty, LMI, and monthly repayments for Australian property.",
+      },
+      {
+        name: "Amortization Chart Calculator",
+        href: "/finance/amortization-chart-calculator",
+        description: "Generate detailed loan amortization tables and visualize payment breakdowns.",
+      },
+      {
+        name: "CD Ladder Calculator",
+        href: "/finance/cd-ladder-calculator",
+        description: "Plan multi-rung CD ladders, track maturity dates, and project interest earnings.",
+      },
+      {
+        name: "Rule of 72 Calculator",
+        href: "/finance/rule-of-72-calculator",
+        description: "Estimate investment doubling time and compare scenarios side-by-side.",
+      },
+      {
+        name: "Crypto Mining Calculator",
+        href: "/tools/crypto-mining-calculator",
+        description: "Calculate Bitcoin and GPU mining profitability with real-time network parameters and ROI timelines.",
       },
     ],
   },
@@ -404,6 +424,16 @@ const SITEMAP_TOOLS = [
         name: "House Affordability Canada",
         href: "/real-estate/house-affordability-calculator-canada",
         description: "Estimate maximum home price in Canada with stress test, CMHC insurance, and provincial tax rules.",
+      },
+      {
+        name: "Toronto Land Transfer Tax Calculator",
+        href: "/real-estate/land-transfer-tax-calculator-toronto",
+        description: "Calculate Ontario LTT and Toronto Municipal LTT for property purchases with FTHB rebates.",
+      },
+      {
+        name: "Sydney Stamp Duty Calculator",
+        href: "/real-estate/stamp-duty-calculator-nsw",
+        description: "Calculate NSW transfer duty (stamp duty) for Sydney properties with FTHB concessions and NRST.",
       },
     ],
   },

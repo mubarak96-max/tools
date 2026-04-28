@@ -813,7 +813,7 @@ export default function CapRatePage() {
             </p>
             <h3>5. Prevailing Interest Rates</h3>
             <p>
-              Cap rates and interest rates are closely correlated over long periods. Historically, cap rates tend to trade 150–300 basis points above the 10-year Treasury yield. During the ultra-low-rate environment of 2020–2022, cap rates compressed dramatically as capital flooded into real estate. As rates rose through 2023–2025, cap rates expanded. In 2026, with 10-year Treasuries in the 4.0%–4.5% range, real estate cap rates have stabilized at levels that again offer meaningful spreads over risk-free alternatives — making the income math more straightforward than it was two years ago.
+              Cap rates and interest rates are closely correlated over long periods. Historically, cap rates tend to trade 150–300 basis points above the 10-year Treasury yield. During the ultra-low-rate environment of 2020–2022, cap rates compressed dramatically as capital flooded into real estate. As rates rose through 2023–2026, cap rates expanded. In 2026, with 10-year Treasuries in the 4.0%–4.5% range, real estate cap rates have stabilized at levels that again offer meaningful spreads over risk-free alternatives — making the income math more straightforward than it was two years ago.
             </p>
 
             <h2>Cap Rate <em>Limitations</em></h2>

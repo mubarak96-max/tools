@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     title: "House Affordability Calculator Australia 2024",
     description:
       "See exactly what you can afford, your stamp duty by state, LMI, upfront costs, and monthly repayments. Covers all Australian states and territories.",
-    url: "https://yourdomain.com/house-affordability-calculator-australia",
+    url: "https://findbest.tools/house-affordability-calculator-australia",
   },
   alternates: {
-    canonical: "https://yourdomain.com/house-affordability-calculator-australia",
+    canonical: "https://findbest.tools/house-affordability-calculator-australia",
   },
 };
 

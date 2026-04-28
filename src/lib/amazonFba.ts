@@ -1,5 +1,5 @@
 // lib/amazonFba.ts
-// Amazon FBA UK fee calculator — accurate as of 2024/2025.
+// Amazon FBA UK fee calculator — accurate as of 2024/2026.
 //
 // Fee sources:
 //   • Referral fees: https://sell.amazon.co.uk/pricing/referral-fees

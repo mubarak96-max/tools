@@ -23,10 +23,10 @@ export const metadata: Metadata = {
     title: "Saudi End of Service Calculator — EOSB 2024",
     description:
       "Calculate your Saudi Arabia end of service benefit (EOSB) accurately under Saudi Labor Law. Covers all departure reasons and includes the resignation reduction rules.",
-    url: "https://yourdomain.com/saudi-end-of-service-calculator",
+    url: "https://findbest.tools/saudi-end-of-service-calculator",
   },
   alternates: {
-    canonical: "https://yourdomain.com/saudi-end-of-service-calculator",
+    canonical: "https://findbest.tools/saudi-end-of-service-calculator",
   },
 };
 

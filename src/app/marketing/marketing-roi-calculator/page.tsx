@@ -244,7 +244,7 @@ export default function Page() {
 
         {/* Section 6: Industry Benchmarks Table */}
         <section className="prose prose-slate max-w-none">
-          <h2 className="text-3xl font-black text-slate-900 mb-8 uppercase tracking-tight">Market Benchmarks: Standard ROI Targets (2025/2026)</h2>
+          <h2 className="text-3xl font-black text-slate-900 mb-8 uppercase tracking-tight">Market Benchmarks: Standard ROI Targets (2026/2026)</h2>
           <div className="overflow-x-auto rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden bg-white">
             <table className="min-w-full text-[13px]">
               <thead className="bg-slate-900 text-white font-black uppercase tracking-widest text-[10px]">

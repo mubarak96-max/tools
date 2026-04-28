@@ -322,7 +322,7 @@ export default function AmazonFBACanadaCalculatorPage() {
               </div>
               <div className="rounded-xl border border-green-200 dark:border-green-900/30 bg-green-50 dark:bg-green-950/20 p-5">
                 <h4 className="font-semibold text-green-900 dark:text-green-400 mb-2">✅ New FBA Liquidations Program</h4>
-                <p className="text-sm text-green-800 dark:text-green-300">Launched November 2025: recover value from excess inventory with a 15% referral fee + per-item processing fee (CAD $0.25–$1.90 for items 0–5 kg) .</p>
+                <p className="text-sm text-green-800 dark:text-green-300">Launched November 2026: recover value from excess inventory with a 15% referral fee + per-item processing fee (CAD $0.25–$1.90 for items 0–5 kg) .</p>
               </div>
               <div className="rounded-xl border border-yellow-200 dark:border-yellow-900/30 bg-yellow-50 dark:bg-yellow-950/20 p-5">
                 <h4 className="font-semibold text-yellow-900 dark:text-yellow-400 mb-2">⚠️ MCF Fee Restructure</h4>
@@ -553,9 +553,9 @@ export default function AmazonFBACanadaCalculatorPage() {
               <li>[99] <cite>AMZ Prep</cite>. "2026 Holiday Peak FBA Fulfillment Fees for USA and Canada." March 2026. <a href="https://amzprep.com/holiday-peak-fulfillment-fees/" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://amzprep.com/...</a></li>
               <li>[100] <cite>Sal Accounting</cite>. "Amazon FBA Fees Demystified: Finding The Perfect Plan." March 2026. <a href="https://salaccounting.ca/blog/amazon-fba-plans/" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://salaccounting.ca/...</a></li>
               <li>[101] <cite>ShipBob</cite>. "Calculate Full Amazon FBA Fees & Costs for Sellers." April 2026. <a href="https://www.shipbob.com/blog/amazon-fba-fees/" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.shipbob.com/...</a></li>
-              <li>[104] <cite>Amazon Seller Central</cite>. "FBA fulfilment fees for Amazon orders (Canada)." October 2025. <a href="https://sellercentral.amazon.ca/gp/help/external/G201112670" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://sellercentral.amazon.ca/...</a></li>
-              <li>[105] <cite>Amazon Seller Central</cite>. "2026 Amazon.ca CA referral and FBA fee changes summary." October 2025. <a href="https://sellercentral.amazon.ca/help/hub/reference/external/G201411300" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://sellercentral.amazon.ca/...</a></li>
-              <li>[106] <cite>GOAT Consulting</cite>. "2026 Amazon FBA Fee Changes: Full Rate Card for Sellers." October 2025. <a href="https://www.goatconsulting.com/amazon-fulfillment/amazon-fba-fee-changes-for-2026" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.goatconsulting.com/...</a></li>
+              <li>[104] <cite>Amazon Seller Central</cite>. "FBA fulfilment fees for Amazon orders (Canada)." October 2026. <a href="https://sellercentral.amazon.ca/gp/help/external/G201112670" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://sellercentral.amazon.ca/...</a></li>
+              <li>[105] <cite>Amazon Seller Central</cite>. "2026 Amazon.ca CA referral and FBA fee changes summary." October 2026. <a href="https://sellercentral.amazon.ca/help/hub/reference/external/G201411300" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://sellercentral.amazon.ca/...</a></li>
+              <li>[106] <cite>GOAT Consulting</cite>. "2026 Amazon FBA Fee Changes: Full Rate Card for Sellers." October 2026. <a href="https://www.goatconsulting.com/amazon-fulfillment/amazon-fba-fee-changes-for-2026" className="text-orange-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.goatconsulting.com/...</a></li>
             </ul>
           </section>
 

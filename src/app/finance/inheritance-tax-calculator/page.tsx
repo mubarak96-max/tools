@@ -106,7 +106,7 @@ const structuredData = {
         "@type": "ImageObject",
         url: "https://findbest.tools/og-inheritance-tax-calculator.jpg",
       },
-      datePublished: "2025-01-15T08:00:00+00:00",
+      datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",
@@ -191,7 +191,7 @@ const structuredData = {
           name: "What is the US federal estate tax exemption for 2026?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "The US federal estate tax exemption for 2026 is $13.99 million per individual (adjusted for inflation from the 2025 figure of $13.61 million). Estates below this threshold pay no federal estate tax. Above the exemption, tax rates range from 18% to 40% on a progressive scale. The exemption is portable between spouses, meaning a married couple can shield approximately $27.98 million. Note: the Tax Cuts and Jobs Act provisions sunset after 2025, and without congressional action, the exemption will revert to approximately $7 million per person in 2026 adjusted for inflation.",
+            text: "The US federal estate tax exemption for 2026 is $13.99 million per individual (adjusted for inflation from the 2026 figure of $13.61 million). Estates below this threshold pay no federal estate tax. Above the exemption, tax rates range from 18% to 40% on a progressive scale. The exemption is portable between spouses, meaning a married couple can shield approximately $27.98 million. Note: the Tax Cuts and Jobs Act provisions sunset after 2026, and without congressional action, the exemption will revert to approximately $7 million per person in 2026 adjusted for inflation.",
           },
         },
         {
@@ -416,7 +416,7 @@ export default function InheritanceTaxCalculatorPage() {
                 <p>
                   The United States imposes a federal estate tax on estates
                   exceeding the lifetime exemption, which is $13.99 million per
-                  individual for 2026 (adjusted from $13.61 million in 2025).
+                  individual for 2026 (adjusted from $13.61 million in 2026).
                   This exemption is portable between spouses, allowing a married
                   couple to shield approximately $27.98 million from federal
                   estate tax. Tax rates on the taxable estate are progressive,
@@ -783,7 +783,7 @@ export default function InheritanceTaxCalculatorPage() {
                 This calculator uses official 2026 tax parameters from each
                 jurisdiction&apos;s revenue authority. UK rates are sourced from
                 HMRC guidance and the Finance Act 2024. US federal rates are
-                based on IRS Revenue Procedure 2025-XX (2026 inflation
+                based on IRS Revenue Procedure 2026-XX (2026 inflation
                 adjustments). Irish CAT thresholds reflect Revenue
                 Commissioners CAT thresholds for 2026. French succession tax
                 rates are per Code général des impôts. German rates are per

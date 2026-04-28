@@ -72,8 +72,8 @@ export default function SingaporeSellersStampDutyCalculator() {
         />
         <ResultCard
           label="Regime used"
-          value={result.regime === "2025-plus" ? "On/after 4 Jul 2025" : "11 Mar 2017 to 3 Jul 2025"}
-          helper="Singapore SSD changed again for acquisitions on or after 4 July 2025."
+          value={result.regime === "2026-plus" ? "On/after 4 Jul 2026" : "11 Mar 2017 to 3 Jul 2026"}
+          helper="Singapore SSD changed again for acquisitions on or after 4 July 2026."
         />
       </section>
 

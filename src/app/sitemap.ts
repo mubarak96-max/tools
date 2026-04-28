@@ -116,7 +116,22 @@ const TOOL_PATHS = [
   "/seo/youtube-title-checker",
   "/seo/meta-description-checker",
   "/seo/hreflang-generator",
-  "/seo/keyword-clustering",
+  "/finance/amortization-chart-calculator",
+  "/finance/cd-ladder-calculator",
+  "/finance/rule-of-72-calculator",
+  "/finance/401k-match-calculator",
+  "/finance/cpp-ei-calculator",
+  "/finance/house-affordability-calculator-australia",
+  "/finance/income-tax-calculator-india",
+  "/finance/pmi-calculator",
+  "/real-estate/cap-rate-calculator",
+  "/real-estate/cash-on-cash-return-calculator",
+  "/real-estate/florida-transfer-tax-calculator",
+  "/real-estate/house-affordability-calculator-canada",
+  "/real-estate/land-transfer-tax-calculator-toronto",
+  "/real-estate/mortgage-qualifier-canada",
+  "/real-estate/stamp-duty-calculator-nsw",
+  "/tools/crypto-mining-calculator",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

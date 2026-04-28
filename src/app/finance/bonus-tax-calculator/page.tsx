@@ -130,7 +130,7 @@ export default function BonusTaxCalculatorPage() {
                 <dfn>Bonus depreciation</dfn> (also called <dfn>additional first-year depreciation</dfn>) is a tax incentive that allows businesses to deduct a large percentage of the cost of qualifying property in the year it is placed in service, rather than spreading the deduction over the asset's useful life. Created under Section 168(k) of the Internal Revenue Code, bonus depreciation applies to tangible personal property, certain improvements to nonresidential real property, and specified plants.
               </p>
               <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                Under the Tax Cuts and Jobs Act (TCJA), bonus depreciation was 100% for assets placed in service between September 27, 2017 and December 31, 2022. It then phases down by 20 percentage points each year: 80% (2023), 60% (2024), 40% (2025), <strong>20% (2026)</strong>, and 0% beginning in 2027. For 2026, a business purchasing $500,000 in qualifying equipment can immediately deduct $100,000 (20%) and depreciate the remaining $400,000 under regular MACRS.
+                Under the Tax Cuts and Jobs Act (TCJA), bonus depreciation was 100% for assets placed in service between September 27, 2017 and December 31, 2022. It then phases down by 20 percentage points each year: 80% (2023), 60% (2024), 40% (2026), <strong>20% (2026)</strong>, and 0% beginning in 2027. For 2026, a business purchasing $500,000 in qualifying equipment can immediately deduct $100,000 (20%) and depreciate the remaining $400,000 under regular MACRS.
               </p>
               <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
                 Bonus depreciation differs from <strong>Section 179 expensing</strong> in two critical ways. First, Section 179 is elective and subject to annual dollar limits and business income limits, while bonus depreciation is automatic and not limited by business income. Second, Section 179 cannot create or increase a business loss, while bonus depreciation can. Many businesses use both provisions together: Section 179 first (up to the limit), then bonus depreciation on the remainder.
@@ -172,7 +172,7 @@ export default function BonusTaxCalculatorPage() {
                     <tbody className="divide-y divide-neutral-100 dark:divide-neutral-800">
                       <tr><td className="py-2 text-neutral-600 dark:text-neutral-400">2023 placed in service</td><td className="py-2 text-right font-medium text-neutral-900 dark:text-white">80%</td></tr>
                       <tr><td className="py-2 text-neutral-600 dark:text-neutral-400">2024 placed in service</td><td className="py-2 text-right font-medium text-neutral-900 dark:text-white">60%</td></tr>
-                      <tr><td className="py-2 text-neutral-600 dark:text-neutral-400">2025 placed in service</td><td className="py-2 text-right font-medium text-neutral-900 dark:text-white">40%</td></tr>
+                      <tr><td className="py-2 text-neutral-600 dark:text-neutral-400">2026 placed in service</td><td className="py-2 text-right font-medium text-neutral-900 dark:text-white">40%</td></tr>
                       <tr><td className="py-2 text-neutral-600 dark:text-neutral-400">2026 placed in service</td><td className="py-2 text-right font-medium text-violet-600">20%</td></tr>
                       <tr><td className="py-2 text-neutral-600 dark:text-neutral-400">2027+ placed in service</td><td className="py-2 text-right font-medium text-neutral-900 dark:text-white">0%</td></tr>
                     </tbody>
@@ -274,7 +274,7 @@ export default function BonusTaxCalculatorPage() {
                   <tr><td className="px-4 py-3">2018–2022</td><td className="px-4 py-3 font-medium text-green-600">100%</td><td className="px-4 py-3">0%</td></tr>
                   <tr><td className="px-4 py-3">2023</td><td className="px-4 py-3 font-medium text-green-600">80%</td><td className="px-4 py-3">20%</td></tr>
                   <tr><td className="px-4 py-3">2024</td><td className="px-4 py-3 font-medium text-yellow-600">60%</td><td className="px-4 py-3">40%</td></tr>
-                  <tr><td className="px-4 py-3">2025</td><td className="px-4 py-3 font-medium text-yellow-600">40%</td><td className="px-4 py-3">60%</td></tr>
+                  <tr><td className="px-4 py-3">2026</td><td className="px-4 py-3 font-medium text-yellow-600">40%</td><td className="px-4 py-3">60%</td></tr>
                   <tr className="bg-violet-50 dark:bg-violet-950/20"><td className="px-4 py-3 font-bold">2026</td><td className="px-4 py-3 font-bold text-violet-600">20%</td><td className="px-4 py-3 font-bold">80%</td></tr>
                   <tr><td className="px-4 py-3">2027+</td><td className="px-4 py-3 font-medium text-red-600">0%</td><td className="px-4 py-3">100%</td></tr>
                 </tbody>
@@ -409,7 +409,7 @@ export default function BonusTaxCalculatorPage() {
                   </span>
                 </summary>
                 <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                  Under current law, bonus depreciation is <strong>20%</strong> for assets placed in service in 2026. This is down from 100% (2018–2022), 80% (2023), 60% (2024), and 40% (2025). Beginning in 2027, bonus depreciation phases out completely to 0%. Businesses should plan capital expenditures accordingly.
+                  Under current law, bonus depreciation is <strong>20%</strong> for assets placed in service in 2026. This is down from 100% (2018–2022), 80% (2023), 60% (2024), and 40% (2026). Beginning in 2027, bonus depreciation phases out completely to 0%. Businesses should plan capital expenditures accordingly.
                 </div>
               </details>
 
@@ -509,8 +509,8 @@ export default function BonusTaxCalculatorPage() {
               <li>[70] <cite>IRS.gov</cite>. "Social Security and Medicare Withholding Rates." January 2026. <a href="https://www.irs.gov/taxtopics/tc751" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[84] <cite>CPCON Group</cite>. "MACRS Depreciation: Complete Guide to Schedules, Calculations, and Tax Strategies." March 2026. <a href="https://cpcongroup.com/insights/article/macrs-depreciation-guide/" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://cpcongroup.com/...</a></li>
               <li>[91] <cite>IRS.gov</cite>. "Publication 15-A (2026), Employer's Supplemental Tax Guide." 2026. <a href="https://www.irs.gov/publications/p15a" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
-              <li>[92] <cite>IRS.gov</cite>. "Publication 15 (2026), Circular E, Employer's Tax Guide." December 2025. <a href="https://www.irs.gov/pub/irs-pdf/p15.pdf" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
-              <li>[93] <cite>IRS.gov</cite>. "Publication 15-T (2026), Federal Income Tax Withholding Methods." December 2025. <a href="https://www.irs.gov/publications/p15t" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
+              <li>[92] <cite>IRS.gov</cite>. "Publication 15 (2026), Circular E, Employer's Tax Guide." December 2026. <a href="https://www.irs.gov/pub/irs-pdf/p15.pdf" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
+              <li>[93] <cite>IRS.gov</cite>. "Publication 15-T (2026), Federal Income Tax Withholding Methods." December 2026. <a href="https://www.irs.gov/publications/p15t" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[94] <cite>PaycheckCity</cite>. "2026 Federal Bonus Tax Percent Calculator." April 2026. <a href="https://www.paycheckcity.com/calculator/flatbonus" className="text-violet-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.paycheckcity.com/...</a></li>
             </ul>
           </section>

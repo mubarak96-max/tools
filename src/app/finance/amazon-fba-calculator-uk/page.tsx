@@ -7,7 +7,7 @@ import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 export const metadata: Metadata = {
   title: "Amazon FBA Calculator UK — Fees, Profit & ROI",
   description:
-    "Free Amazon FBA calculator UK. Calculate referral fees, FBA fulfilment costs, storage fees, VAT, and net profit per unit. Accurate 2024/2025 Amazon seller fees.",
+    "Free Amazon FBA calculator UK. Calculate referral fees, FBA fulfilment costs, storage fees, VAT, and net profit per unit. Accurate 2024/2026 Amazon seller fees.",
   keywords: [
     "amazon fba calculator uk",
     "amazon seller fees calculator uk",
@@ -329,7 +329,7 @@ export default function AmazonFbaCalculatorPage() {
             <div>
               <p className="font-black text-stone-900 uppercase tracking-tight">Verified by FindBest Tools</p>
               <p className="mt-2 text-sm font-medium text-stone-500 leading-relaxed">
-                Amazon UK fee schedules and FBA rate cards verified against official 2024/2025 Seller Central documentation. Built for accuracy in the UK marketplace. Last reviewed 25 April 2026.
+                Amazon UK fee schedules and FBA rate cards verified against official 2024/2026 Seller Central documentation. Built for accuracy in the UK marketplace. Last reviewed 25 April 2026.
               </p>
             </div>
           </div>
@@ -353,7 +353,7 @@ export default function AmazonFbaCalculatorPage() {
         <div className="mt-20 p-8 bg-stone-50 rounded-3xl border border-stone-200">
           <p className="text-[11px] text-stone-400 leading-relaxed">
             <strong className="text-stone-700">Disclaimer:</strong> This Amazon FBA calculator
-            UK uses fee data sourced from Amazon Seller Central as of 2024/2025. Amazon updates
+            UK uses fee data sourced from Amazon Seller Central as of 2024/2026. Amazon updates
             its fee schedules periodically — always verify current fees at{" "}
             <a 
               href="https://sellercentral.amazon.co.uk" 

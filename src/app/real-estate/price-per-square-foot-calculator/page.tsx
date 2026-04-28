@@ -45,7 +45,7 @@ const faq = [
   {
     question: "What are example price-per-square-foot ranges in Dubai?",
     answer:
-      "Dubai rates change frequently, but area averages can differ sharply. As an example reference from Bayut's H1 2025 apartment sales report, Jumeirah Lake Towers was around AED 1,561 per sq ft, Dubai Marina around AED 2,004, Business Bay around AED 2,076, Dubai Creek Harbour around AED 2,539, and Downtown Dubai around AED 3,149.",
+      "Dubai rates change frequently, but area averages can differ sharply. As an example reference from Bayut's H1 2026 apartment sales report, Jumeirah Lake Towers was around AED 1,561 per sq ft, Dubai Marina around AED 2,004, Business Bay around AED 2,076, Dubai Creek Harbour around AED 2,539, and Downtown Dubai around AED 3,149.",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function PricePerSquareFootCalculatorPage() {
             <p>
               This metric is especially useful in Dubai because buyers often compare apartments across towers and
               communities where total prices can vary dramatically. Example apartment sale benchmarks from Bayut&apos;s
-              H1 2025 Dubai market report show how different the market can be: Jumeirah Lake Towers at about AED 1,561
+              H1 2026 Dubai market report show how different the market can be: Jumeirah Lake Towers at about AED 1,561
               per sq ft, Dubai Marina around AED 2,004, Business Bay around AED 2,076, Dubai Creek Harbour around AED
               2,539, and Downtown Dubai around AED 3,149. These numbers are directional and change over time, but they
               show why a benchmark matters.

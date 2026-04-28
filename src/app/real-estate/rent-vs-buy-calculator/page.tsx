@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     title: "Rent vs Buy Calculator — Mortgage Interest Tax Deductions Included",
     description:
       "See whether renting or buying wins after tax savings, opportunity cost, and home appreciation. Includes US mortgage interest deduction and SALT cap.",
-    url: "https://yourdomain.com/rent-vs-buy-calculator",
+    url: "https://findbest.tools/rent-vs-buy-calculator",
   },
   alternates: {
-    canonical: "https://yourdomain.com/rent-vs-buy-calculator",
+    canonical: "https://findbest.tools/rent-vs-buy-calculator",
   },
 };
 

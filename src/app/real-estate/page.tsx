@@ -98,6 +98,16 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
     href: "/real-estate/mortgage-qualifier-canada",
     description: "Professional GDS/TDS mortgage qualification with the 2024 Canadian stress test.",
   },
+  {
+    name: "Toronto Land Transfer Tax Calculator",
+    href: "/real-estate/land-transfer-tax-calculator-toronto",
+    description: "Calculate Ontario LTT and Toronto Municipal LTT for property purchases with FTHB rebates.",
+  },
+  {
+    name: "Sydney Stamp Duty Calculator",
+    href: "/real-estate/stamp-duty-calculator-nsw",
+    description: "Calculate NSW transfer duty (stamp duty) for Sydney properties with FTHB concessions and NRST.",
+  },
 ];
 
 function ToolCard({ tool }: { tool: RealEstateToolMeta }) {

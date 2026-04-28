@@ -10,7 +10,7 @@ import {
 type Residency = 'resident' | 'non_resident' | 'working_holiday'
 type PayFrequency = 'annual' | 'monthly' | 'fortnightly' | 'weekly'
 
-// 2025-26 Resident brackets
+// 2026-26 Resident brackets
 const RESIDENT_BRACKETS = [
   { from: 0, to: 18200, rate: 0 },
   { from: 18201, to: 45000, rate: 0.16 },
@@ -32,7 +32,7 @@ const WHM_BRACKETS = [
   { from: 190001, to: Infinity, rate: 0.45 },
 ]
 
-// HECS 2025-26 repayment thresholds
+// HECS 2026-26 repayment thresholds
 const HECS_BRACKETS = [
   { from: 0, to: 54435, rate: 0 },
   { from: 54436, to: 62439, rate: 0.01 },
@@ -66,7 +66,7 @@ function calculateMedicareLevy(taxableIncome: number): number {
 }
 
 function calculateLITO(taxableIncome: number): number {
-  // Low Income Tax Offset 2025-26
+  // Low Income Tax Offset 2026-26
   if (taxableIncome <= 37500) return 700
   if (taxableIncome <= 45000) return 700 - ((taxableIncome - 37500) * 0.05)
   if (taxableIncome <= 66667) return 325 - ((taxableIncome - 45000) * 0.015)
@@ -146,7 +146,7 @@ export function AustraliaTaxTool() {
   }, [income, residency, deductions, hasHECS, includeMedicare, includeLITO, frequency])
 
   const handleCopy = async () => {
-    const text = `AUSTRALIAN INCOME TAX CALCULATION - 2025-26
+    const text = `AUSTRALIAN INCOME TAX CALCULATION - 2026-26
 Residency: ${residency === 'resident' ? 'Australian Resident' : residency === 'non_resident' ? 'Foreign Resident' : 'Working Holiday Maker'}
 Gross Income: ${formatCurrency(income)}
 Deductions: ${formatCurrency(deductions)}

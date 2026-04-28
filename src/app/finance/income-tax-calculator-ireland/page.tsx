@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("http://findbest.tools"),
   title: "Income Tax Calculator Ireland 2026 | PAYE, USC & PRSI Take-Home Pay",
   description:
-    "Free Ireland income tax calculator for 2025/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI. Accurate for employees, self-employed, married couples & single parents.",
+    "Free Ireland income tax calculator for 2026/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI. Accurate for employees, self-employed, married couples & single parents.",
   keywords: [
     "income tax calculator ireland",
     "irish salary calculator",
@@ -90,7 +90,7 @@ const structuredData = {
         "@type": "ImageObject",
         url: "http://findbest.tools/og-income-tax-ireland.jpg",
       },
-      datePublished: "2025-01-15T08:00:00+00:00",
+      datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",
@@ -407,7 +407,7 @@ export default function IncomeTaxCalculatorIrelandPage() {
                 Pay Related Social Insurance funds Ireland&apos;s social welfare
                 system, including the State Pension, illness benefit, and jobseeker
                 payments. For employees (Class A), the PRSI rate increased to 4.2%
-                from 1 October 2025 and will increase further to 4.35% from 1
+                from 1 October 2026 and will increase further to 4.35% from 1
                 October 2026. This creates a composite effective rate of
                 approximately 4.2375% for the full 2026 tax year.
               </p>

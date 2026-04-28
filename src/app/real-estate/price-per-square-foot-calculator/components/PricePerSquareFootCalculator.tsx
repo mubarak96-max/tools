@@ -23,34 +23,34 @@ const DUBAI_SALE_BENCHMARKS = [
     note: "Enter your own benchmark manually.",
   },
   {
-    key: "jlt-h1-2025",
+    key: "jlt-h1-2026",
     label: "Jumeirah Lake Towers",
     ratePerSqft: 1561,
-    note: "Bayut H1 2025 average apartment sale price per sq ft.",
+    note: "Bayut H1 2026 average apartment sale price per sq ft.",
   },
   {
-    key: "business-bay-h1-2025",
+    key: "business-bay-h1-2026",
     label: "Business Bay",
     ratePerSqft: 2076,
-    note: "Bayut H1 2025 average apartment sale price per sq ft.",
+    note: "Bayut H1 2026 average apartment sale price per sq ft.",
   },
   {
-    key: "dubai-marina-h1-2025",
+    key: "dubai-marina-h1-2026",
     label: "Dubai Marina",
     ratePerSqft: 2004,
-    note: "Bayut H1 2025 average apartment sale price per sq ft.",
+    note: "Bayut H1 2026 average apartment sale price per sq ft.",
   },
   {
-    key: "downtown-dubai-h1-2025",
+    key: "downtown-dubai-h1-2026",
     label: "Downtown Dubai",
     ratePerSqft: 3149,
-    note: "Bayut H1 2025 average apartment sale price per sq ft.",
+    note: "Bayut H1 2026 average apartment sale price per sq ft.",
   },
   {
-    key: "creek-harbour-h1-2025",
+    key: "creek-harbour-h1-2026",
     label: "Dubai Creek Harbour",
     ratePerSqft: 2539,
-    note: "Bayut H1 2025 average apartment sale price per sq ft.",
+    note: "Bayut H1 2026 average apartment sale price per sq ft.",
   },
 ] as const;
 
@@ -363,7 +363,7 @@ export default function PricePerSquareFootCalculator() {
                 label: item.label,
                 value: item.key,
               }))}
-              helper="Quick-fill with Dubai apartment sale benchmarks from Bayut's H1 2025 market report."
+              helper="Quick-fill with Dubai apartment sale benchmarks from Bayut's H1 2026 market report."
             />
             <div className="rounded-[1.25rem] border border-border bg-background p-4">
               <p className="text-sm font-semibold text-foreground">

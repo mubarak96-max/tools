@@ -123,7 +123,7 @@ export default function USTakeHomeCalculatorPage() {
           <section className="mb-16" id="2026-tax">
             <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">2026 US Federal Tax Brackets and Deductions</h2>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-              For tax year 2026, the IRS has released inflation-adjusted brackets under Revenue Procedure 2025-32. The standard deduction has increased, and the seven-bracket progressive structure remains in place following the One Big Beautiful Bill Act.
+              For tax year 2026, the IRS has released inflation-adjusted brackets under Revenue Procedure 2026-32. The standard deduction has increased, and the seven-bracket progressive structure remains in place following the One Big Beautiful Bill Act.
             </p>
 
             <div className="overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-800 mb-6">
@@ -164,7 +164,7 @@ export default function USTakeHomeCalculatorPage() {
               </div>
             </div>
             <p className="text-sm text-neutral-500">
-              Source: IRS Revenue Procedure 2025-32 
+              Source: IRS Revenue Procedure 2026-32 
             </p>
           </section>
 
@@ -274,7 +274,7 @@ export default function USTakeHomeCalculatorPage() {
             </div>
 
             <p className="text-sm text-neutral-500 mb-4">
-              Source: IRS Notice 2025-67 
+              Source: IRS Notice 2026-67 
             </p>
 
             <div className="rounded-xl border border-sky-100 dark:border-sky-900/30 bg-sky-50 dark:bg-sky-950/20 p-5">
@@ -475,10 +475,10 @@ export default function USTakeHomeCalculatorPage() {
           <section className="mb-16" id="methodology">
             <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Methodology and Data Sources</h2>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-              This calculator implements the official 2026 US federal income tax brackets published by the IRS in Revenue Procedure 2025-32. Federal tax is calculated using the marginal bracket method: income within each bracket is taxed at the corresponding rate, with brackets defined by filing status. FICA taxes use the 2026 rates: 6.2% Social Security (capped at $184,500), 1.45% Medicare (uncapped), and 0.9% Additional Medicare on wages exceeding $200,000.
+              This calculator implements the official 2026 US federal income tax brackets published by the IRS in Revenue Procedure 2026-32. Federal tax is calculated using the marginal bracket method: income within each bracket is taxed at the corresponding rate, with brackets defined by filing status. FICA taxes use the 2026 rates: 6.2% Social Security (capped at $184,500), 1.45% Medicare (uncapped), and 0.9% Additional Medicare on wages exceeding $200,000.
             </p>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-              State tax is modeled using either flat rates or approximate effective rates for selected states. 401(k), HSA, and FSA limits are sourced from IRS Notice 2025-67. The calculator does not account for itemized deductions, the Alternative Minimum Tax (AMT), or tax credits beyond the standard deduction. Results are estimates for educational and budgeting purposes; consult a tax professional for filing.
+              State tax is modeled using either flat rates or approximate effective rates for selected states. 401(k), HSA, and FSA limits are sourced from IRS Notice 2026-67. The calculator does not account for itemized deductions, the Alternative Minimum Tax (AMT), or tax credits beyond the standard deduction. Results are estimates for educational and budgeting purposes; consult a tax professional for filing.
             </p>
             
             <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col sm:flex-row gap-6 items-start">
@@ -529,8 +529,8 @@ export default function USTakeHomeCalculatorPage() {
               <li>[69] <cite>IRS.gov</cite>. "Federal income tax rates and brackets." February 2026. <a href="https://www.irs.gov/filing/federal-income-tax-rates-and-brackets" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[70] <cite>IRS.gov</cite>. "Social Security and Medicare Withholding Rates." January 2026. <a href="https://www.irs.gov/taxtopics/tc751" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[72] <cite>Tax Foundation</cite>. "2026 Tax Brackets and Federal Income Tax Rates." January 2026. <a href="https://taxfoundation.org/data/all/federal/2026-tax-brackets/" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://taxfoundation.org/...</a></li>
-              <li>[73] <cite>IRS.gov</cite>. "401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500." November 2025. <a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
-              <li>[74] <cite>IRS.gov</cite>. "IRS releases tax inflation adjustments for tax year 2026." October 2025. <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
+              <li>[73] <cite>IRS.gov</cite>. "401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500." November 2026. <a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
+              <li>[74] <cite>IRS.gov</cite>. "IRS releases tax inflation adjustments for tax year 2026." October 2026. <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[76] <cite>MyIRSTeam</cite>. "2026 Tax Brackets & Federal Income Tax Rates Complete Guide." April 2026. <a href="https://www.myirsteam.com/blog/2026-tax-brackets-federal-income-tax-rates-complete-guide/" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.myirsteam.com/...</a></li>
               <li>[77] <cite>Paycor</cite>. "Social Security Taxable Wage Base & Limits [2026]." March 2026. <a href="https://www.paycor.com/resource-center/articles/social-security-taxable-wage-base/" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.paycor.com/...</a></li>
               <li>[78] <cite>Expatica</cite>. "United States Income Tax/Salary Calculator 2026/2027." April 2026. <a href="https://www.expatica.com/us/salary-tax-calculator/" className="text-sky-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.expatica.com/...</a></li>

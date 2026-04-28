@@ -4,27 +4,27 @@ import IndiaTaxCalculator from "@/components/IndiaTaxCalculator";
 
 // ─── SEO metadata ──────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "India Income Tax Calculator 2025–26 — Old vs New Regime",
+  title: "India Income Tax Calculator 2026–26 — Old vs New Regime",
   description:
-    "Free India income tax calculator FY 2025–26. Compare Old vs New Tax Regime side by side. Includes Section 80C, 80D, HRA, NPS deductions, surcharge, 4% cess and Section 87A rebate. Accurate AY 2026–27 slabs.",
+    "Free India income tax calculator FY 2026–26. Compare Old vs New Tax Regime side by side. Includes Section 80C, 80D, HRA, NPS deductions, surcharge, 4% cess and Section 87A rebate. Accurate AY 2026–27 slabs.",
   keywords: [
     "india income tax calculator",
-    "income tax calculator india 2025 26",
+    "income tax calculator india 2026 26",
     "old vs new tax regime calculator",
-    "new tax regime calculator 2025",
+    "new tax regime calculator 2026",
     "old regime vs new regime which is better",
-    "income tax calculator fy 2025 26",
+    "income tax calculator fy 2026 26",
     "section 80c tax calculator india",
     "how to calculate income tax india",
-    "income tax slabs 2025 26 india",
+    "income tax slabs 2026 26 india",
     "take home salary calculator india",
     "hra exemption calculator india",
     "section 87a rebate calculator",
   ],
   openGraph: {
-    title: "India Income Tax Calculator 2025–26 — Old vs New Regime",
+    title: "India Income Tax Calculator 2026–26 — Old vs New Regime",
     description:
-      "Calculate and compare your income tax under Old and New Regimes for FY 2025–26. Includes all deductions, surcharge, cess and rebate u/s 87A.",
+      "Calculate and compare your income tax under Old and New Regimes for FY 2026–26. Includes all deductions, surcharge, cess and rebate u/s 87A.",
     url: "https://findbest.tools/finance/income-tax-calculator-india",
   },
   alternates: {
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
 const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "India Income Tax Calculator 2025–26",
+  name: "India Income Tax Calculator 2026–26",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
   description:
-    "Free India income tax calculator for FY 2025–26 (AY 2026–27). Compares Old vs New Tax Regime with all deductions, 87A rebate, surcharge and cess.",
+    "Free India income tax calculator for FY 2026–26 (AY 2026–27). Compares Old vs New Tax Regime with all deductions, 87A rebate, surcharge and cess.",
   areaServed: "IN",
 };
 
@@ -77,16 +77,16 @@ const DEDUCTIONS = [
 
 const FAQS = [
   {
-    q: "Which is better — Old Regime or New Regime for FY 2025–26?",
+    q: "Which is better — Old Regime or New Regime for FY 2026–26?",
     a: "It depends entirely on your deductions. The New Regime has lower slab rates but allows almost no deductions. The Old Regime has higher rates but allows substantial deductions under 80C, 80D, HRA, home loan interest, and more. As a rule of thumb: if your total deductions (including standard deduction) exceed approximately ₹3.75 lakh for incomes around ₹15 lakh, the Old Regime is likely better. For lower deduction claimers — especially those without HRA, home loans, or significant 80C investments — the New Regime usually wins. Use the calculator above to compare your exact numbers.",
   },
   {
-    q: "What is the Section 87A tax rebate for FY 2025–26?",
+    q: "What is the Section 87A tax rebate for FY 2026–26?",
     a: "Section 87A provides a tax rebate to individuals with modest taxable income. Under the New Regime, if your net taxable income is ₹7 lakh or below, you get a full rebate of up to ₹25,000 — meaning your tax liability becomes zero. Under the Old Regime, the rebate is up to ₹12,500 for taxable income at or below ₹5 lakh. Importantly, the rebate applies after calculating tax on the taxable income — it is not an exemption. If your taxable income is ₹7,00,001 in the new regime, the rebate does not apply and you owe the full tax on the entire amount.",
   },
   {
-    q: "What changed in the New Tax Regime after Budget 2025?",
-    a: "Budget 2025 continued the provisions of the New Tax Regime: the standard deduction for salaried employees is ₹75,000 (raised from ₹50,000 in Budget 2024); the family pension deduction is ₹25,000; and the employer NPS contribution deduction u/s 80CCD(2) is up to 14% of salary for private sector employees. The tax slabs themselves were unchanged. These additions make the New Regime very attractive for salaried taxpayers.",
+    q: "What changed in the New Tax Regime after Budget 2026?",
+    a: "Budget 2026 continued the provisions of the New Tax Regime: the standard deduction for salaried employees is ₹75,000 (raised from ₹50,000 in Budget 2024); the family pension deduction is ₹25,000; and the employer NPS contribution deduction u/s 80CCD(2) is up to 14% of salary for private sector employees. The tax slabs themselves were unchanged. These additions make the New Regime very attractive for salaried taxpayers.",
   },
   {
     q: "How is surcharge calculated on income tax in India?",
@@ -136,17 +136,17 @@ export default function IndiaTaxPage() {
         <div className="mb-8 max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-orange-50 text-orange-700 text-xs font-medium px-3 py-1.5 rounded-full mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block" />
-            FY 2025–26 (AY 2026–27) · Budget 2025 · Free
+            FY 2026–26 (AY 2026–27) · Budget 2026 · Free
           </div>
           <h1 className="text-4xl font-bold text-stone-900 leading-tight mb-3">
             India Income Tax Calculator
-            <span className="block text-2xl font-normal text-stone-400 mt-1">Old Regime vs New Regime — FY 2025–26</span>
+            <span className="block text-2xl font-normal text-stone-400 mt-1">Old Regime vs New Regime — FY 2026–26</span>
           </h1>
           <p className="text-lg text-stone-500 leading-relaxed">
             Calculate your income tax under both regimes and instantly see which saves
             you more money. Includes all deductions — Section 80C, 80D, HRA, NPS,
             home loan interest — plus surcharge, 4% cess, and Section 87A rebate.
-            Accurate Finance Act 2025 rates.
+            Accurate Finance Act 2026 rates.
           </p>
         </div>
 
@@ -155,7 +155,7 @@ export default function IndiaTaxPage() {
 
         {/* ── CONTENT ── */}
 
-        <H2>Income tax slabs FY 2025–26 (AY 2026–27)</H2>
+        <H2>Income tax slabs FY 2026–26 (AY 2026–27)</H2>
         <P>
           India operates two parallel income tax systems that coexist: the New Tax Regime
           (introduced in FY 2020–21 under Section 115BAC and made the default from
@@ -276,7 +276,7 @@ export default function IndiaTaxPage() {
 
         <H3>New Regime advantages</H3>
         <P>
-          Budget 2024 and 2025 made the New Regime more attractive in three ways. First, the standard
+          Budget 2024 and 2026 made the New Regime more attractive in three ways. First, the standard
           deduction for salaried employees was raised from ₹50,000 to ₹75,000 — reducing the
           effective taxable income for all salaried taxpayers by an additional ₹25,000.
           Second, the employer's NPS contribution deduction under Section 80CCD(2) was
@@ -317,7 +317,7 @@ export default function IndiaTaxPage() {
         <div className="mt-10 p-4 bg-stone-50 rounded-xl border border-stone-200">
           <p className="text-xs text-stone-500 leading-relaxed">
             <strong className="text-stone-700">Disclaimer:</strong> This calculator uses
-            income tax slabs and provisions as per the Finance Act 2025 for FY 2025–26
+            income tax slabs and provisions as per the Finance Act 2026 for FY 2026–26
             (Assessment Year 2026–27). It is provided for general informational purposes
             only and does not constitute tax advice. Individual circumstances — including
             capital gains, agricultural income, special incomes, and state-specific levies —

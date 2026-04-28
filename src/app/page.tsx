@@ -232,7 +232,7 @@ const FEATURED_TOOLS: HomeToolMeta[] = [
   {
     name: "India TDS Calculator",
     href: "/finance/india-tds-calculator",
-    description: "Calculate TDS on salary, rent, professional fees, and more for FY 2025-26 with surcharge and cess.",
+    description: "Calculate TDS on salary, rent, professional fees, and more for FY 2026-26 with surcharge and cess.",
     category: "Finance",
   },
   {

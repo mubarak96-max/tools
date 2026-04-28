@@ -1,5 +1,5 @@
 // lib/etsyCalculator.ts
-// Etsy Profit Calculator — accurate fee structure as of 2024/2025.
+// Etsy Profit Calculator — accurate fee structure as of 2024/2026.
 //
 // Fee sources:
 //   • Etsy Transaction Fee: 6.5% of sale price + shipping + gift wrap

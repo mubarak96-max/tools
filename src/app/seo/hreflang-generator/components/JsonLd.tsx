@@ -26,7 +26,7 @@ export function JsonLd() {
           name: "Mubarak",
           url: "https://github.com/mubarak96-max"
         },
-        datePublished: "2025-03-01",
+        datePublished: "2026-03-01",
         dateModified: "2026-04-24"
       },
       {

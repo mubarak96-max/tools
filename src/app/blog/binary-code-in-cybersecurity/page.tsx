@@ -190,7 +190,7 @@ export default function BinaryCybersecurityBlogPage() {
         <section className="mt-20 p-8 bg-muted/30 rounded-2xl border border-border">
           <h4 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-4">References & Resources</h4>
           <ul className="text-xs space-y-2 list-none p-0 text-muted-foreground">
-            <li>[1] Huntress. (2025). <em>What is Binary Code?</em> Practical cybersecurity guide.</li>
+            <li>[1] Huntress. (2026). <em>What is Binary Code?</em> Practical cybersecurity guide.</li>
             <li>[2] Infosec Institute. (2023). <em>Binary exploitation techniques</em>. Resources for researchers.</li>
             <li>[3] MetaCTF. (2022). <em>CTF 101 Series: What is Binary Exploitation?</em></li>
             <li>[4] The Problem Site. <em>Binary Code: Codes and Secret Messages</em>.</li>

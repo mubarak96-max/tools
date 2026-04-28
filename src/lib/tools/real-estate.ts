@@ -377,7 +377,7 @@ export function calculateUkSdlt(input: {
 export function calculateSingaporePropertyStampDuty(input: {
   purchasePrice: number;
   buyerProfile: "sc-first" | "sc-second" | "sc-third-plus" | "spr-first" | "spr-second" | "spr-third-plus" | "foreigner" | "entity";
-  ssdRegime: "2025-plus" | "2017-2025";
+  ssdRegime: "2026-plus" | "2017-2026";
   yearsHeld: number;
 }) {
   const purchasePrice = Math.max(0, input.purchasePrice);
@@ -408,7 +408,7 @@ export function calculateSingaporePropertyStampDuty(input: {
   const yearsHeld = Math.max(0, input.yearsHeld);
   let ssdRate = 0;
 
-  if (input.ssdRegime === "2025-plus") {
+  if (input.ssdRegime === "2026-plus") {
     if (yearsHeld <= 1) ssdRate = 16;
     else if (yearsHeld <= 2) ssdRate = 12;
     else if (yearsHeld <= 3) ssdRate = 8;
@@ -438,7 +438,7 @@ export function calculateSingaporeBuyerStampDuty(input: {
   const result = calculateSingaporePropertyStampDuty({
     purchasePrice: input.purchasePrice,
     buyerProfile: input.buyerProfile,
-    ssdRegime: "2025-plus",
+    ssdRegime: "2026-plus",
     yearsHeld: 5,
   });
 
@@ -464,17 +464,17 @@ export function calculateSingaporeSellerStampDuty(input: {
       holdingPeriodYears: 0,
       ssdRate: 0,
       ssd: 0,
-      regime: "2025-plus" as const,
+      regime: "2026-plus" as const,
     };
   }
 
   const holdingPeriodYears =
     (disposalDate.getTime() - acquisitionDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-  const cutover = new Date("2025-07-04T00:00:00");
-  const regime = acquisitionDate >= cutover ? "2025-plus" : "2017-2025";
+  const cutover = new Date("2026-07-04T00:00:00");
+  const regime = acquisitionDate >= cutover ? "2026-plus" : "2017-2026";
 
   let ssdRate = 0;
-  if (regime === "2025-plus") {
+  if (regime === "2026-plus") {
     if (holdingPeriodYears <= 1) ssdRate = 16;
     else if (holdingPeriodYears <= 2) ssdRate = 12;
     else if (holdingPeriodYears <= 3) ssdRate = 8;

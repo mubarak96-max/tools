@@ -545,7 +545,7 @@ function interpolateValue(vehicle: VehicleProfile, years: number): number {
 export function CarDepreciationCalculatorClient() {
   const [selectedVehicle, setSelectedVehicle] = useState<VehicleProfile>(VEHICLE_DB[0]);
   const [state, setState] = useState<CalculatorState>({
-    selectedYear: 2025,
+    selectedYear: 2026,
     purchasePrice: VEHICLE_DB[0].msrp,
     currentMileage: 15000,
     annualMiles: 12000,

@@ -441,7 +441,7 @@ export default function YouTubeTitleCheckerPage() {
               This tool was built using a combination of official platform documentation, large-scale empirical analysis, and front-end rendering science. Title pixel widths are calculated using the HTML5 Canvas API with the Roboto font family at 14px and 16px weights to match YouTube's Android and desktop rendering engines. Truncation points are derived from viewport analysis of iPhone 14 Pro, Samsung Galaxy S23, and 1920×1080 desktop Chrome environments.
             </p>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-              Thumbnail specifications are verified against the YouTube Help Center and cross-referenced with creator economy research from 2025–2026 . The SEO scoring algorithm weights character length (25%), keyword positioning (20%), power word inclusion (15%), structural formatting like brackets and numbers (15%), readability metrics (15%), and thumbnail alignment (10%).
+              Thumbnail specifications are verified against the YouTube Help Center and cross-referenced with creator economy research from 2026–2026 . The SEO scoring algorithm weights character length (25%), keyword positioning (20%), power word inclusion (15%), structural formatting like brackets and numbers (15%), readability metrics (15%), and thumbnail alignment (10%).
             </p>
 
             <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col sm:flex-row gap-6 items-start">

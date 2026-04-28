@@ -24,10 +24,10 @@ export const metadata: Metadata = {
     title: "Compound Interest Calculator with Monthly Contributions",
     description:
       "See exactly how your money grows with compound interest and regular monthly contributions. Yearly schedule, inflation adjustment, and rate comparison included.",
-    url: "https://yourdomain.com/compound-interest-calculator",
+    url: "https://findbest.tools/compound-interest-calculator",
   },
   alternates: {
-    canonical: "https://yourdomain.com/compound-interest-calculator",
+    canonical: "https://findbest.tools/compound-interest-calculator",
   },
 };
 

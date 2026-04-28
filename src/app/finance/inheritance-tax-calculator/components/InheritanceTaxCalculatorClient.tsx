@@ -183,7 +183,7 @@ export function InheritanceTaxCalculatorClient() {
       }
 
       case "usa": {
-        // 2026 exemption (estimated inflation-adjusted from 2025 $13.61M)
+        // 2026 exemption (estimated inflation-adjusted from 2026 $13.61M)
         const exemption = 13990000;
         const spouseExemption = state.relationship === "spouse" ? netEstate : 0;
         exempt = Math.min(netEstate, exemption + spouseExemption);

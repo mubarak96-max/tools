@@ -237,7 +237,7 @@ export default function AuTaxCalculator() {
           <SectionLabel>Superannuation</SectionLabel>
           <Toggle checked={inclSuper} onChange={setInclSuper}
             label="Show employer super (11.5% on top)"
-            hint="Superannuation Guarantee 2025–26 is 11.5% of OTE" />
+            hint="Superannuation Guarantee 2026–26 is 11.5% of OTE" />
 
           {inclSuper && (
             <div className="mt-3 bg-stone-50 rounded-xl p-3 text-xs text-stone-500 leading-relaxed">
@@ -265,7 +265,7 @@ export default function AuTaxCalculator() {
               {/* Multi-frequency table */}
               <div className="rounded-2xl border border-stone-200 overflow-hidden">
                 <div className="bg-stone-50 px-4 py-2.5 border-b border-stone-200">
-                  <p className="text-xs font-medium text-stone-500">Income breakdown — FY 2025–26</p>
+                  <p className="text-xs font-medium text-stone-500">Income breakdown — FY 2026–26</p>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
@@ -419,7 +419,7 @@ export default function AuTaxCalculator() {
                   </tbody>
                 </table>
               </div>
-              <p className="text-xs text-stone-400">★ = your current salary. All figures annual, FY 2025–26.</p>
+              <p className="text-xs text-stone-400">★ = your current salary. All figures annual, FY 2026–26.</p>
             </div>
           )}
         </div>

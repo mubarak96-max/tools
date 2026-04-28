@@ -161,7 +161,7 @@ export default function InstagramResizePage() {
           <section className="prose prose-slate dark:prose-invert max-w-none">
             <h2 className="text-3xl font-black text-slate-900 dark:text-white flex items-center gap-3">
               <Smartphone className="w-8 h-8 text-indigo-500" />
-              Instagram Image Size Guide (2025)
+              Instagram Image Size Guide (2026)
             </h2>
             <p className="text-lg">
               Getting the right image size for Instagram matters more than most people realize. 
@@ -172,7 +172,7 @@ export default function InstagramResizePage() {
               frustration of re-posting.
             </p>
             <p>
-              Below is the complete breakdown of every format Instagram supports in 2025, including 
+              Below is the complete breakdown of every format Instagram supports in 2026, including 
               the exact pixel dimensions, aspect ratios, and the maximum file size Instagram will accept.
             </p>
 

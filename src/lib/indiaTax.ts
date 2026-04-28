@@ -1,13 +1,13 @@
 // lib/indiaTax.ts
 //
-// India Income Tax Calculator — FY 2025–26 (AY 2026–27)
+// India Income Tax Calculator — FY 2026–26 (AY 2026–27)
 //
 // SOURCES:
-//   • Income Tax Act, 1961 (as amended by Finance Act 2025)
+//   • Income Tax Act, 1961 (as amended by Finance Act 2026)
 //   • New Tax Regime: Section 115BAC (default from FY 2023–24)
 //   • Old Tax Regime: Legacy slabs with deductions
-//   • Budget 2025 changes: Standard deduction ₹75,000 (new regime)
-//   • Surcharge: Finance Act 2025
+//   • Budget 2026 changes: Standard deduction ₹75,000 (new regime)
+//   • Surcharge: Finance Act 2026
 //   • Health & Education Cess: 4% on income tax + surcharge
 //
 // ─────────────────────────────────────────────────────────────────
@@ -20,7 +20,7 @@
 //   ₹12,00,001– ₹15,00,000  :  20%
 //   ₹15,00,001+             :  30%
 //
-//   Standard deduction: ₹75,000 (for salaried; Budget 2025)
+//   Standard deduction: ₹75,000 (for salaried; Budget 2026)
 //   Rebate u/s 87A: Up to ₹25,000 if net taxable income ≤ ₹7,00,000
 //   No deductions allowed (80C, 80D, HRA, LTA etc.)
 //
@@ -151,7 +151,7 @@ function calcSurcharge(income: number, incomeTax: number, regime: TaxRegime): nu
 const CESS_RATE = 0.04; // 4% Health & Education Cess
 
 // ── Standard Deduction ────────────────────────────────────────────
-const STANDARD_DEDUCTION_NEW = 75000;  // Budget 2025
+const STANDARD_DEDUCTION_NEW = 75000;  // Budget 2026
 const STANDARD_DEDUCTION_OLD = 50000;
 
 // ── Inputs & Result ───────────────────────────────────────────────

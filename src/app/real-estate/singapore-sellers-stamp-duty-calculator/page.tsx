@@ -23,9 +23,9 @@ const faq = [
       "Singapore SSD depends on both the holding period and the regime triggered by when the property was acquired. That is why the calculator needs both dates instead of using only a sale price.",
   },
   {
-    question: "Does this page use the post-4 July 2025 SSD rules?",
+    question: "Does this page use the post-4 July 2026 SSD rules?",
     answer:
-      "Yes. It distinguishes between the 11 March 2017 to 3 July 2025 regime and the regime for acquisitions on or after 4 July 2025.",
+      "Yes. It distinguishes between the 11 March 2017 to 3 July 2026 regime and the regime for acquisitions on or after 4 July 2026.",
   },
   {
     question: "Can this replace formal tax or conveyancing advice?",
@@ -106,10 +106,10 @@ export default function SingaporeSellersStampDutyCalculatorPage() {
 
             <h2>The two SSD regimes</h2>
             <p>
-              Properties acquired between 11 March 2017 and 3 July 2025 fall under one regime, while properties acquired on or after 4 July 2025 fall under a revised regime. This calculator distinguishes between both based on your acquisition date, ensuring the correct rates are applied.
+              Properties acquired between 11 March 2017 and 3 July 2026 fall under one regime, while properties acquired on or after 4 July 2026 fall under a revised regime. This calculator distinguishes between both based on your acquisition date, ensuring the correct rates are applied.
             </p>
             <p>
-              Under the 2017–2025 regime, SSD applies to properties sold within 3 years of acquisition. Under the post-July 2025 regime, the holding period and rate structure may differ. Always verify the current rates with IRAS (Inland Revenue Authority of Singapore) or your conveyancing solicitor before completing a transaction.
+              Under the 2017–2026 regime, SSD applies to properties sold within 3 years of acquisition. Under the post-July 2026 regime, the holding period and rate structure may differ. Always verify the current rates with IRAS (Inland Revenue Authority of Singapore) or your conveyancing solicitor before completing a transaction.
             </p>
 
             <h2>How SSD is calculated</h2>

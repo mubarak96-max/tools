@@ -95,7 +95,7 @@ const structuredData = {
         "@type": "ImageObject",
         url: "http://findbest.tools/og-workers-comp-calculator.jpg",
       },
-      datePublished: "2025-01-15T08:00:00+00:00",
+      datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",

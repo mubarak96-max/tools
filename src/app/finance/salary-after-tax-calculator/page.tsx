@@ -128,7 +128,7 @@ export default function SalaryAfterTaxCalculatorPage() {
           <section className="mb-16" id="state-tax-landscape">
             <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">State Income Tax Landscape for 2026</h2>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-              As of January 1, 2026, 42 states levy individual income taxes on wage and salary income. Eight states — Alaska, Florida, Nevada, South Dakota, Tennessee, Texas, Washington, and Wyoming — impose no individual income tax at all. New Hampshire repealed its interest and dividends tax as of 2025, joining the zero-income-tax club.
+              As of January 1, 2026, 42 states levy individual income taxes on wage and salary income. Eight states — Alaska, Florida, Nevada, South Dakota, Tennessee, Texas, Washington, and Wyoming — impose no individual income tax at all. New Hampshire repealed its interest and dividends tax as of 2026, joining the zero-income-tax club.
             </p>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
               Among states that do tax wages, the structures vary enormously. Fifteen states use a <strong>flat tax</strong> — one rate applies to all taxable income. Twenty-six states plus the District of Columbia use <strong>graduated brackets</strong>, with Hawaii leading at 12 brackets and California imposing a top marginal rate of 13.3% (plus a 1.1% payroll tax on high earners, bringing the all-in top rate to 14.4%).
@@ -188,7 +188,7 @@ export default function SalaryAfterTaxCalculatorPage() {
               </div>
               <div className="rounded-xl border border-green-200 dark:border-green-900/30 bg-green-50 dark:bg-green-950/20 p-5">
                 <h4 className="font-semibold text-green-900 dark:text-green-400 mb-2">North Carolina: Final Step to 3.99%</h4>
-                <p className="text-sm text-green-800 dark:text-green-300">North Carolina completed its phasedown to a flat <strong>3.99%</strong> rate, down from 4.25% in 2025.</p>
+                <p className="text-sm text-green-800 dark:text-green-300">North Carolina completed its phasedown to a flat <strong>3.99%</strong> rate, down from 4.25% in 2026.</p>
               </div>
               <div className="rounded-xl border border-green-200 dark:border-green-900/30 bg-green-50 dark:bg-green-950/20 p-5">
                 <h4 className="font-semibold text-green-900 dark:text-green-400 mb-2">Montana: Top Rate Cut to 5.65%</h4>
@@ -204,7 +204,7 @@ export default function SalaryAfterTaxCalculatorPage() {
               </div>
               <div className="rounded-xl border border-red-200 dark:border-red-900/30 bg-red-50 dark:bg-red-950/20 p-5">
                 <h4 className="font-semibold text-red-900 dark:text-red-400 mb-2">Maryland: Two New High Brackets</h4>
-                <p className="text-sm text-red-800 dark:text-red-300">Maryland added two new upper-income brackets at <strong>6.25%</strong> and <strong>6.50%</strong>, retroactively effective January 1, 2025.</p>
+                <p className="text-sm text-red-800 dark:text-red-300">Maryland added two new upper-income brackets at <strong>6.25%</strong> and <strong>6.50%</strong>, retroactively effective January 1, 2026.</p>
               </div>
             </div>
           </section>
@@ -334,7 +334,7 @@ export default function SalaryAfterTaxCalculatorPage() {
                 <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-semibold text-red-900 dark:text-red-400 mb-1">4. Not Updating for Tax Law Changes</h3>
-                  <p className="text-sm text-red-800 dark:text-red-300">State tax rates change every year. Kentucky dropped to 3.5%, North Carolina to 3.99%, and Maryland added new brackets in 2026. Using 2025 rates produces inaccurate results.</p>
+                  <p className="text-sm text-red-800 dark:text-red-300">State tax rates change every year. Kentucky dropped to 3.5%, North Carolina to 3.99%, and Maryland added new brackets in 2026. Using 2026 rates produces inaccurate results.</p>
                 </div>
               </div>
             </div>
@@ -442,7 +442,7 @@ export default function SalaryAfterTaxCalculatorPage() {
                   </span>
                 </summary>
                 <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                  Federal tax calculations use the official 2026 IRS brackets from Revenue Procedure 2025-32. State tax calculations use the Tax Foundation's 2026 State Individual Income Tax Rates and Brackets publication. FICA uses the 2026 Social Security wage base of $184,500. Results are estimates for planning purposes; actual withholding may vary based on your W-4, employer payroll system, and specific state filing rules.
+                  Federal tax calculations use the official 2026 IRS brackets from Revenue Procedure 2026-32. State tax calculations use the Tax Foundation's 2026 State Individual Income Tax Rates and Brackets publication. FICA uses the 2026 Social Security wage base of $184,500. Results are estimates for planning purposes; actual withholding may vary based on your W-4, employer payroll system, and specific state filing rules.
                 </div>
               </details>
 
@@ -464,7 +464,7 @@ export default function SalaryAfterTaxCalculatorPage() {
           <section className="mb-16" id="methodology">
             <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Methodology and Data Sources</h2>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-              This calculator implements the official 2026 US federal income tax brackets published by the IRS in Revenue Procedure 2025-32. Federal tax is calculated using the marginal bracket method. FICA taxes use the 2026 rates: 6.2% Social Security (capped at $184,500), 1.45% Medicare (uncapped), and 0.9% Additional Medicare on wages exceeding $200,000.
+              This calculator implements the official 2026 US federal income tax brackets published by the IRS in Revenue Procedure 2026-32. Federal tax is calculated using the marginal bracket method. FICA taxes use the 2026 rates: 6.2% Social Security (capped at $184,500), 1.45% Medicare (uncapped), and 0.9% Additional Medicare on wages exceeding $200,000.
             </p>
             <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
               State tax calculations are based on the Tax Foundation's "State Individual Income Tax Rates and Brackets, 2026", which compiles official state tax authority data as of January 1, 2026. The calculator implements simplified progressive brackets for states with graduated systems and flat rates for single-bracket states. Local taxes are not included. All calculations occur client-side with no data transmitted to servers.
@@ -506,8 +506,8 @@ export default function SalaryAfterTaxCalculatorPage() {
               <li>[69] <cite>IRS.gov</cite>. "Federal income tax rates and brackets." February 2026. <a href="https://www.irs.gov/filing/federal-income-tax-rates-and-brackets" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[70] <cite>IRS.gov</cite>. "Social Security and Medicare Withholding Rates." January 2026. <a href="https://www.irs.gov/taxtopics/tc751" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[72] <cite>Tax Foundation</cite>. "2026 Tax Brackets and Federal Income Tax Rates." January 2026. <a href="https://taxfoundation.org/data/all/federal/2026-tax-brackets/" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://taxfoundation.org/...</a></li>
-              <li>[73] <cite>IRS.gov</cite>. "401(k) limit increases to $24,500 for 2026." November 2025. <a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
-              <li>[74] <cite>IRS.gov</cite>. "IRS releases tax inflation adjustments for tax year 2026." October 2025. <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
+              <li>[73] <cite>IRS.gov</cite>. "401(k) limit increases to $24,500 for 2026." November 2026. <a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
+              <li>[74] <cite>IRS.gov</cite>. "IRS releases tax inflation adjustments for tax year 2026." October 2026. <a href="https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.irs.gov/...</a></li>
               <li>[76] <cite>MyIRSTeam</cite>. "2026 Tax Brackets & Federal Income Tax Rates Complete Guide." April 2026. <a href="https://www.myirsteam.com/blog/2026-tax-brackets-federal-income-tax-rates-complete-guide/" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.myirsteam.com/...</a></li>
               <li>[95] <cite>Tax Foundation</cite>. "State Individual Income Tax Rates and Brackets, 2026." February 2026. <a href="https://taxfoundation.org/data/all/state/state-income-tax-rates-2026/" className="text-cyan-600 hover:underline" target="_blank" rel="noopener noreferrer">https://taxfoundation.org/...</a></li>
             </ul>

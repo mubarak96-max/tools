@@ -10,7 +10,7 @@ const SGD_MARKET = { key: "SG", label: "Singapore", currency: "SGD", locale: "en
 export default function SingaporePropertyStampDutyCalculator() {
   const [purchasePrice, setPurchasePrice] = useState("");
   const [buyerProfile, setBuyerProfile] = useState("sc-first");
-  const [ssdRegime, setSsdRegime] = useState("2025-plus");
+  const [ssdRegime, setSsdRegime] = useState("2026-plus");
   const [yearsHeld, setYearsHeld] = useState("5");
 
   const result = useMemo(
@@ -26,7 +26,7 @@ export default function SingaporePropertyStampDutyCalculator() {
           | "spr-third-plus"
           | "foreigner"
           | "entity",
-        ssdRegime: ssdRegime as "2025-plus" | "2017-2025",
+        ssdRegime: ssdRegime as "2026-plus" | "2017-2026",
         yearsHeld: Number(yearsHeld) || 0,
       }),
     [buyerProfile, purchasePrice, ssdRegime, yearsHeld],
@@ -62,8 +62,8 @@ export default function SingaporePropertyStampDutyCalculator() {
             value={ssdRegime}
             onChange={setSsdime => setSsdRegime(setSsdime)}
             options={[
-              { label: "Purchased on or after 4 Jul 2025", value: "2025-plus" },
-              { label: "Purchased between 11 Mar 2017 and 3 Jul 2025", value: "2017-2025" },
+              { label: "Purchased on or after 4 Jul 2026", value: "2026-plus" },
+              { label: "Purchased between 11 Mar 2017 and 3 Jul 2026", value: "2017-2026" },
             ]}
             helper="This only affects seller's stamp duty for later disposal."
           />

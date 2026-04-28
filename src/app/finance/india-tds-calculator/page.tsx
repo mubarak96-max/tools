@@ -3,12 +3,12 @@ import { IndiaTDSCalculatorClient } from "./components/IndiaTDSCalculatorClient"
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 export const metadata: Metadata = {
-  title: "TDS Calculator India 2025-26 | Section-wise TDS Deduction",
+  title: "TDS Calculator India 2026-26 | Section-wise TDS Deduction",
   description:
-    "Free India TDS calculator for FY 2025-26 (AY 2026-27). Calculate TDS on salary, rent, professional fees, contractor payments, interest & commission. Includes surcharge, cess & threshold limits.",
+    "Free India TDS calculator for FY 2026-26 (AY 2026-27). Calculate TDS on salary, rent, professional fees, contractor payments, interest & commission. Includes surcharge, cess & threshold limits.",
   keywords: [
     "TDS calculator India",
-    "TDS calculator 2025-26",
+    "TDS calculator 2026-26",
     "TDS on salary calculator",
     "TDS on rent calculator",
     "TDS on professional fees",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "section 194I TDS calculator",
     "section 194H TDS calculator",
     "section 194A TDS calculator",
-    "TDS rate chart 2025-26",
+    "TDS rate chart 2026-26",
     "TDS threshold limit",
     "TDS on contractor payment",
     "TDS on commission",
@@ -56,9 +56,9 @@ export const metadata: Metadata = {
     canonical: "https://findbest.tools/finance/india-tds-calculator",
   },
   openGraph: {
-    title: "TDS Calculator India 2025-26 | Section-wise TDS on Salary, Rent, Fees",
+    title: "TDS Calculator India 2026-26 | Section-wise TDS on Salary, Rent, Fees",
     description:
-      "Calculate TDS deductions for FY 2025-26. Salary, rent, professional fees, contractor payments, interest & commission with surcharge and cess.",
+      "Calculate TDS deductions for FY 2026-26. Salary, rent, professional fees, contractor payments, interest & commission with surcharge and cess.",
     url: "https://findbest.tools/finance/india-tds-calculator",
     siteName: "FindBest Tools",
     locale: "en_IN",
@@ -68,13 +68,13 @@ export const metadata: Metadata = {
         url: "https://findbest.tools/og-india-tds-calculator.jpg",
         width: 1200,
         height: 630,
-        alt: "India TDS Calculator 2025-26",
+        alt: "India TDS Calculator 2026-26",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TDS Calculator India 2025-26",
+    title: "TDS Calculator India 2026-26",
     description:
       "Free section-wise TDS calculator for salary, rent, professional fees, contractor payments & more.",
     images: ["https://findbest.tools/og-india-tds-calculator.jpg"],
@@ -88,13 +88,13 @@ const structuredData = {
       "@type": "WebPage",
       "@id": "https://findbest.tools/finance/india-tds-calculator",
       url: "https://findbest.tools/finance/india-tds-calculator",
-      name: "TDS Calculator India 2025-26",
+      name: "TDS Calculator India 2026-26",
       isPartOf: { "@id": "https://findbest.tools/#website" },
       primaryImageOfPage: {
         "@type": "ImageObject",
         url: "https://findbest.tools/og-india-tds-calculator.jpg",
       },
-      datePublished: "2025-01-15T08:00:00+00:00",
+      datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",
@@ -165,10 +165,10 @@ const structuredData = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "What is the TDS rate on salary in India for FY 2025-26?",
+          name: "What is the TDS rate on salary in India for FY 2026-26?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "TDS on salary (Section 192) is deducted at the average rate of income tax applicable to the employee. For FY 2025-26, under the new tax regime: 0% up to ₹4,00,000, 5% on ₹4,00,001-₹8,00,000, 10% on ₹8,00,001-₹12,00,000, 15% on ₹12,00,001-₹16,00,000, 20% on ₹16,00,001-₹20,00,000, 25% on ₹20,00,001-₹24,00,000, and 30% above ₹24,00,000. Under the old tax regime, rates are 0% up to ₹3,00,000, 5% on ₹3,00,001-₹5,00,000, 20% on ₹5,00,001-₹10,00,000, and 30% above ₹10,00,000, with various deductions available.",
+            text: "TDS on salary (Section 192) is deducted at the average rate of income tax applicable to the employee. For FY 2026-26, under the new tax regime: 0% up to ₹4,00,000, 5% on ₹4,00,001-₹8,00,000, 10% on ₹8,00,001-₹12,00,000, 15% on ₹12,00,001-₹16,00,000, 20% on ₹16,00,001-₹20,00,000, 25% on ₹20,00,001-₹24,00,000, and 30% above ₹24,00,000. Under the old tax regime, rates are 0% up to ₹3,00,000, 5% on ₹3,00,001-₹5,00,000, 20% on ₹5,00,001-₹10,00,000, and 30% above ₹10,00,000, with various deductions available.",
           },
         },
         {
@@ -220,13 +220,13 @@ export default function IndiaTDSCalculatorPage() {
           {/* Hero */}
           <div className="mb-16 text-center">
             <div className="mb-6 inline-flex items-center rounded-full bg-cyan-50 px-4 py-1.5 text-[10px] font-black uppercase tracking-widest text-cyan-600 ring-1 ring-inset ring-cyan-500/20">
-              Updated April 2026 — FY 2025-26 (AY 2026-27)
+              Updated April 2026 — FY 2026-26 (AY 2026-27)
             </div>
             <h1 className="text-4xl font-black tracking-tight text-slate-900 sm:text-5xl lg:text-7xl uppercase italic">
               India <span className="text-cyan-600">TDS Calculator</span>
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg font-medium text-slate-500 leading-relaxed">
-              Calculate section-wise Tax Deducted at Source (TDS) for FY 2025-26. 
+              Calculate section-wise Tax Deducted at Source (TDS) for FY 2026-26. 
               Comprehensive tool for salary, rent, professional fees, contractor 
               payments, interest, and commission with surcharge and cess.
             </p>
@@ -256,7 +256,7 @@ export default function IndiaTDSCalculatorPage() {
                   transactions.
                 </p>
                 <p>
-                  For FY 2025-26 (Assessment Year 2026-27), TDS remains one
+                  For FY 2026-26 (Assessment Year 2026-27), TDS remains one
                   of the most significant compliance requirements for
                   businesses, employers, and individuals making specified
                   payments. The deductor must obtain a Tax Deduction and
@@ -279,7 +279,7 @@ export default function IndiaTDSCalculatorPage() {
             {/* Section 2: Rate Chart */}
             <section>
               <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight italic">
-                TDS Rate Chart for FY 2025-26 (AY 2026-27)
+                TDS Rate Chart for FY 2026-26 (AY 2026-27)
               </h2>
               <div className="mt-8 overflow-hidden rounded-[2rem] border border-slate-100 shadow-sm bg-white">
                 <table className="w-full text-left text-sm">
@@ -327,7 +327,7 @@ export default function IndiaTDSCalculatorPage() {
             {/* Section 3: Salary TDS */}
             <section>
               <h2 className="text-3xl font-black text-slate-900 uppercase tracking-tight italic">
-                TDS on Salary (Section 192): FY 2025-26
+                TDS on Salary (Section 192): FY 2026-26
               </h2>
               <div className="mt-8 space-y-6 text-slate-600 font-medium leading-relaxed">
                 <p>
@@ -505,8 +505,8 @@ export default function IndiaTDSCalculatorPage() {
               <div className="mt-8 space-y-6 text-sm font-medium text-slate-500 leading-relaxed">
                 <p>
                   This calculator uses TDS rates prescribed under the Income
-                  Tax Act, 1961 as amended by the Finance Act 2025 for FY
-                  2025-26 (AY 2026-27). Section-wise rates are sourced from
+                  Tax Act, 1961 as amended by the Finance Act 2026 for FY
+                  2026-26 (AY 2026-27). Section-wise rates are sourced from
                   CBDT notifications and official Income Tax Department
                   publications. Surcharge rates follow Section 2 of the
                   Finance Act. Health and Education Cess is applied at 4%
@@ -516,7 +516,7 @@ export default function IndiaTDSCalculatorPage() {
                   For salary TDS (Section 192), the calculator implements
                   both the new tax regime (default) and old tax regime slab
                   structures with standard deductions. The new regime slabs
-                  for FY 2025-26 start at ₹4,00,000 with a rebate under
+                  for FY 2026-26 start at ₹4,00,000 with a rebate under
                   Section 87A up to ₹60,000 for income up to ₹12,00,000.
                 </p>
               </div>
@@ -537,7 +537,7 @@ export default function IndiaTDSCalculatorPage() {
                   <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
                   <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
                     TDS rates and thresholds sourced from Income Tax Act, 1961
-                    and Finance Act 2025 as amended for FY 2025-26 (AY
+                    and Finance Act 2026 as amended for FY 2026-26 (AY
                     2026-27). Surcharge and cess rates reflect current CBDT
                     notifications. Last verified 25 April 2026. Consult a CA for complex matters.
                   </p>
