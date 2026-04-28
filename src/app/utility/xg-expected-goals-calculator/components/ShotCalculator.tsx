@@ -14,6 +14,16 @@ import { calculateShotXG, createShotWithXG } from '../lib/xg-calculation';
 import PitchVisualization from './PitchVisualization';
 import ShotParameterInputs from './ShotParameterInputs';
 import XGResultsDisplay from './XGResultsDisplay';
+import { 
+  Crosshair, 
+  Info, 
+  Settings2, 
+  Undo2, 
+  Plus, 
+  CheckCircle2, 
+  ArrowUp,
+  MousePointer2
+} from "lucide-react";
 
 export default function ShotCalculator() {
     const [shotPosition, setShotPosition] = useState<ShotPosition | undefined>();
@@ -139,10 +149,9 @@ export default function ShotCalculator() {
         <div className="space-y-8">
             {/* Toast notification */}
             {toast && (
-                <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all ${
-                    toast.team === 'A' ? 'bg-blue-600' : 'bg-emerald-600'
-                }`}>
-                    <span>✓</span> {toast.msg}
+                <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all ${toast.team === 'A' ? 'bg-blue-600' : 'bg-emerald-600'
+                    }`}>
+                    <CheckCircle2 className="w-4 h-4" /> {toast.msg}
                 </div>
             )}
 
@@ -185,8 +194,8 @@ export default function ShotCalculator() {
                 <button
                     onClick={() => setShowHeatmap(!showHeatmap)}
                     className={`px-4 py-2 text-sm border rounded-lg transition-colors ${showHeatmap
-                            ? 'border-primary bg-primary text-primary-foreground'
-                            : 'border-border hover:bg-muted'
+                        ? 'border-primary bg-primary text-primary-foreground'
+                        : 'border-border hover:bg-muted'
                         }`}
                 >
                     {showHeatmap ? 'Hide' : 'Show'} xG Heatmap
@@ -259,34 +268,32 @@ export default function ShotCalculator() {
                     <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">How to use this section</p>
                     <ol className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
                         <li className={`flex items-center gap-1.5 ${shotPosition ? 'text-green-600 font-medium' : ''}`}>
-                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                                shotPosition ? 'bg-green-600 text-white' : 'bg-border text-foreground'
-                            }`}>1</span>
+                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${shotPosition ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                                }`}>1</span>
                             Click the pitch to place a shot
                         </li>
                         <li className={`flex items-center gap-1.5 ${calculation ? 'text-green-600 font-medium' : ''}`}>
-                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                                calculation ? 'bg-green-600 text-white' : 'bg-border text-foreground'
-                            }`}>2</span>
+                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${calculation ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                                }`}>2</span>
                             Click &ldquo;Add shot to Team A/B&rdquo; above
                         </li>
                         <li className={`flex items-center gap-1.5 ${totalShots > 0 ? 'text-green-600 font-medium' : ''}`}>
-                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
-                                totalShots > 0 ? 'bg-green-600 text-white' : 'bg-border text-foreground'
-                            }`}>3</span>
+                            <span className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${totalShots > 0 ? 'bg-green-600 text-white' : 'bg-border text-foreground'
+                                }`}>3</span>
                             Results update here instantly
                         </li>
                     </ol>
                 </div>
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <div className="flex items-center gap-2">
-                            <h2 className="text-xl font-semibold">Match xG Comparison</h2>
-                            {totalShots > 0 && (
-                                <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
-                                    {totalShots} shot{totalShots !== 1 ? 's' : ''}
-                                </span>
-                            )}
+                        <div className="flex flex-col items-center justify-center p-12 text-center">
+                            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/5 text-primary">
+                                <MousePointer2 className="h-6 w-6" />
+                            </div>
+                            <h3 className="text-lg font-bold text-slate-900">Pitch interactive unlocked</h3>
+                            <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-500">
+                                Click anywhere on the pitch above to set a shot location and start calculating xG.
+                            </p>
                         </div>
                         <p className="text-sm text-muted-foreground">
                             {totalShots === 0

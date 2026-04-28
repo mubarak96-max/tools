@@ -521,7 +521,7 @@ export default function CarDepreciationCalculatorPage() {
             </div>
 
             {/* Disclaimer */}
-            <div className="mt-10 p-8 bg-slate-50 rounded-3xl border border-slate-100">
+            <div className="mt-4 p-6 bg-slate-50 rounded-3xl border border-slate-100">
               <p className="text-xs font-bold text-slate-400 leading-relaxed uppercase tracking-widest italic">
                 Disclaimer: Vehicle values are estimates based on historical market trends. Actual resale value depends on regional demand, individual vehicle history, and real-time market fluctuations.
               </p>

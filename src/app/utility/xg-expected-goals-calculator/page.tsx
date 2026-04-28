@@ -209,11 +209,7 @@ export default function ExpectedGoalsCalculatorPage() {
 
         </div>
 
-        <div className="mt-6 max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
-            Private and browser-native
-          </div>
-        </div>
+
       </section>
 
       <div className="mt-2">

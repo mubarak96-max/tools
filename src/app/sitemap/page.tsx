@@ -208,9 +208,49 @@ const SITEMAP_TOOLS = [
         description: "Calculate your Saudi Arabia end of service benefit (EOSB) accurately under Saudi Labor Law.",
       },
       {
+        name: "CPP & EI Calculator Canada",
+        href: "/finance/cpp-ei-calculator",
+        description: "Calculate Canadian Pension Plan contributions and Employment Insurance premiums.",
+      },
+      {
+        name: "Income Tax Calculator India",
+        href: "/finance/income-tax-calculator-india",
+        description: "Estimate Indian income tax liability under the old and new tax regime for FY 2024-25.",
+      },
+      {
         name: "Zakat Calculator 2024",
         href: "/finance/zakat-calculator",
         description: "Free online zakat calculator. Calculate zakat on gold, silver, savings, and investments.",
+      },
+      {
+        name: "401k Match Calculator",
+        href: "/finance/401k-match-calculator",
+        description: "Calculate how much your employer's 401k matching contribution is worth and how it affects your retirement savings.",
+      },
+      {
+        name: "Canada Income Tax Calculator",
+        href: "/finance/canada-income-tax-calculator",
+        description: "Calculate your net pay after federal and provincial taxes in Canada.",
+      },
+      {
+        name: "Capital Gains Tax Canada Calculator",
+        href: "/finance/capital-gains-tax-canada-calculator",
+        description: "Estimate your capital gains tax liability for property or stock sales in Canada.",
+      },
+      {
+        name: "PMI Calculator",
+        href: "/finance/pmi-calculator",
+        description: "Calculate your monthly Private Mortgage Insurance (PMI) based on your down payment and credit score.",
+      },
+      {
+        name: "UK Student Loan Repayment Calculator",
+        href: "/finance/uk-student-loan-repayment-calculator",
+        description: "Estimate your monthly student loan repayments in the UK based on your plan type.",
+      },
+      {
+        name: "House Affordability Australia",
+        href: "/finance/house-affordability-calculator-australia",
+        description: "Calculate borrowing capacity, stamp duty, LMI, and monthly repayments for Australian property.",
       },
     ],
   },
@@ -334,6 +374,36 @@ const SITEMAP_TOOLS = [
         name: "Rent vs Buy Calculator",
         href: "/real-estate/rent-vs-buy-calculator",
         description: "Compare the long-term financial costs of renting versus buying a home.",
+      },
+      {
+        name: "Cap Rate Calculator 2026",
+        href: "/real-estate/cap-rate-calculator",
+        description: "Professional NOI and property yield analysis with 2026 US market benchmarks.",
+      },
+      {
+        name: "Cash on Cash Return Calculator",
+        href: "/real-estate/cash-on-cash-return-calculator",
+        description: "Analyze rental property returns including CoC, NOI, and multi-year projections.",
+      },
+      {
+        name: "Florida Transfer Tax Calculator",
+        href: "/real-estate/florida-transfer-tax-calculator",
+        description: "Estimate documentary stamp taxes for Florida real estate transactions.",
+      },
+      {
+        name: "Mortgage Qualifier Canada",
+        href: "/real-estate/mortgage-qualifier-canada",
+        description: "Professional GDS/TDS mortgage qualification with the 2024 Canadian stress test.",
+      },
+      {
+        name: "Rental Yield Calculator",
+        href: "/real-estate/rental-yield-calculator",
+        description: "Calculate gross and net rental yield for UK, US and Australia with stamp duty and city medians.",
+      },
+      {
+        name: "House Affordability Canada",
+        href: "/real-estate/house-affordability-calculator-canada",
+        description: "Estimate maximum home price in Canada with stress test, CMHC insurance, and provincial tax rules.",
       },
     ],
   },

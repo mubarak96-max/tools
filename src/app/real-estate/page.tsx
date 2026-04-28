@@ -73,6 +73,31 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
     href: "/real-estate/rental-yield-calculator",
     description: "Calculate gross vs net rental yield for UK, US & Australia. Auto-estimates stamp duty and compares against city medians.",
   },
+  {
+    name: "House Affordability Australia",
+    href: "/finance/house-affordability-calculator-australia",
+    description: "Calculate borrowing capacity, stamp duty, LMI, and monthly repayments for Australian property.",
+  },
+  {
+    name: "House Affordability Canada",
+    href: "/real-estate/house-affordability-calculator-canada",
+    description: "Estimate maximum home price in Canada with stress test, CMHC, and provincial tax rules.",
+  },
+  {
+    name: "Cap (Capitalization) Rate Calculator 2026",
+    href: "/real-estate/cap-rate-calculator",
+    description: "Calculate property Net Operating Income (NOI), cap rate, and cash-on-cash return with 2026 US market benchmarks.",
+  },
+  {
+    name: "Cash on Cash Return Calculator",
+    href: "/real-estate/cash-on-cash-return-calculator",
+    description: "Professional real estate investment analysis. Calculate CoC return, NOI, DSCR, and multi-year cash flow projections.",
+  },
+  {
+    name: "Mortgage Qualifier Canada",
+    href: "/real-estate/mortgage-qualifier-canada",
+    description: "Professional GDS/TDS mortgage qualification with the 2024 Canadian stress test.",
+  },
 ];
 
 function ToolCard({ tool }: { tool: RealEstateToolMeta }) {
@@ -130,19 +155,7 @@ export default function RealEstatePage() {
         </div>
       </section>
 
-      <section>
-        <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-foreground">
-            All Real-Estate Calculators
-            <span className="ml-2 text-sm font-normal text-muted-foreground">({REAL_ESTATE_TOOLS.length})</span>
-          </h2>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {REAL_ESTATE_TOOLS.map((tool) => (
-            <ToolCard key={tool.href} tool={tool} />
-          ))}
-        </div>
-      </section>
+
 
       <section className="rounded-[1.75rem] border border-border/80 bg-card p-6 sm:p-8">
         <h2 className="mb-4 text-lg font-semibold text-foreground">Explore other categories</h2>

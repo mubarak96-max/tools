@@ -137,12 +137,8 @@ export default function WordFrequencyCounterPage() {
             Find what you repeat, what matters, and how to improve your content. Paste text to see word counts, keyword density, dominant terms, rare words, visual charts, and overuse warnings.
           </p>
         </div>
-      
-        <div className="mt-6 max-w-2xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
-            Private and browser-native
-          </div>
-        </div>
+
+
       </section>
 
       <WordFrequency />

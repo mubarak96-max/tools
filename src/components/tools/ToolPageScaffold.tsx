@@ -152,6 +152,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/finance/amazon-fba-canada-calculator",
       description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
     },
+    {
+      name: "House Affordability Canada",
+      href: "/real-estate/house-affordability-calculator-canada",
+      description: "Estimate maximum home price in Canada with stress test, CMHC, and provincial tax rules.",
+    },
   ],
   SEO: [
     {
@@ -207,6 +212,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "Rent vs Buy Calculator",
       href: "/real-estate/rent-vs-buy-calculator",
       description: "Compare the long-term cost of renting versus buying a home, including tax benefits and ROI.",
+    },
+    {
+      name: "House Affordability Canada",
+      href: "/real-estate/house-affordability-calculator-canada",
+      description: "Estimate maximum home price in Canada with stress test, CMHC, and provincial tax rules.",
     },
   ],
   Text: [

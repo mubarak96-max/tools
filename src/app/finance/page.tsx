@@ -111,6 +111,21 @@ const FINANCE_TOOLS = [
     description: "Calculate property transfer duty for all Australian states with 2026 rates & concessions.",
   },
   {
+    name: "House Affordability Australia",
+    href: "/finance/house-affordability-calculator-australia",
+    description: "Calculate borrowing capacity, stamp duty, LMI, and monthly repayments for Australian property.",
+  },
+  {
+    name: "House Affordability Canada",
+    href: "/real-estate/house-affordability-calculator-canada",
+    description: "Estimate maximum home price in Canada with stress test, CMHC, and provincial tax rules.",
+  },
+  {
+    name: "Mortgage Qualifier Canada",
+    href: "/real-estate/mortgage-qualifier-canada",
+    description: "Professional GDS/TDS mortgage qualification with the 2024 Canadian stress test.",
+  },
+  {
     name: "Car Depreciation Calculator",
     href: "/finance/car-depreciation-calculator",
     description: "Model vehicle value decay over 15 years for 120+ models with condition & mileage adjustments.",
@@ -144,6 +159,16 @@ const FINANCE_TOOLS = [
     name: "CPP & EI Calculator",
     href: "/finance/cpp-ei-calculator",
     description: "Calculate your CPP retirement pension at any age from 60 to 70, your annual CPP and EI contributions, OAS entitlement, and EI benefit amount.",
+  },
+  {
+    name: "401(k) Match Calculator",
+    href: "/finance/401k-match-calculator",
+    description: "Calculate your 401(k) employer match, annual savings, and projected retirement balance with 2024 IRS limits.",
+  },
+  {
+    name: "PMI Calculator 2026",
+    href: "/finance/pmi-calculator",
+    description: "Calculate exact monthly PMI cost, drop-off timeline, and total mortgage insurance paid with 2026 rates.",
   },
 ];
 

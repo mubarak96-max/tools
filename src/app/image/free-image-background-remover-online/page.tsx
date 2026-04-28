@@ -131,9 +131,7 @@ export default function AIBackgroundRemoverPage() {
             <Link href="/image" className="primary-chip rounded-full px-3 py-1 shadow-sm drop-shadow-sm">
               Image
             </Link>
-            <div className="inline-flex items-center gap-2 rounded-full border border-success/20 bg-success/5 px-4 py-1.5 text-[11px] font-bold uppercase tracking-tight text-success">
-              Private and browser-native
-            </div>
+
           </div>
 
           <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
