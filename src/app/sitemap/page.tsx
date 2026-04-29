@@ -203,6 +203,11 @@ const SITEMAP_TOOLS = [
         description: "See how regular deposits grow over time with daily, monthly, or annual compounding.",
       },
       {
+        name: "Dividend Reinvestment Calculator (DRIP)",
+        href: "/finance/dividend-reinvestment-calculator",
+        description: "Model DRIP compound growth, share accumulation, yield on cost, and portfolio value.",
+      },
+      {
         name: "Saudi End of Service Calculator",
         href: "/finance/saudi-end-of-service-calculator",
         description: "Calculate your Saudi Arabia end of service benefit (EOSB) accurately under Saudi Labor Law.",
@@ -216,6 +221,16 @@ const SITEMAP_TOOLS = [
         name: "Income Tax Calculator India",
         href: "/finance/income-tax-calculator-india",
         description: "Estimate Indian income tax liability under the old and new tax regime for FY 2026-26.",
+      },
+      {
+        name: "California Sales Tax",
+        href: "/finance/sales-tax-california-calculator",
+        description: "Calculate sales tax by city and county in California with the latest 2026 rates.",
+      },
+      {
+        name: "Canada Sales Tax (2026)",
+        href: "/finance/sales-tax-canada-calculator",
+        description: "Calculate GST, HST, PST, and QST across all Canadian provinces with 2026 rate updates.",
       },
       {
         name: "Zakat Calculator 2026",

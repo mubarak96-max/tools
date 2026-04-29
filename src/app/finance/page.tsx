@@ -116,6 +116,11 @@ const FINANCE_TOOLS = [
     description: "Estimate Indian income tax liability under the old and new tax regime for FY 2026-26.",
   },
   {
+    name: "California Sales Tax Calculator",
+    href: "/finance/sales-tax-california-calculator",
+    description: "Calculate sales tax by city and county in California with the latest 2025 rates.",
+  },
+  {
     name: "Zakat Calculator 2026",
     href: "/finance/zakat-calculator",
     description: "Calculate zakat on gold, silver, savings, and investments with 2026 Nisab rates.",
@@ -151,14 +156,14 @@ const FINANCE_TOOLS = [
     description: "Calculate GST, add/remove GST, and see total price for Australian business transactions.",
   },
   {
-    name: "Canada HST/GST Calculator",
-    href: "/finance/canada-hst-gst-calculator",
-    description: "Calculate sales tax across all Canadian provinces including HST, GST, and PST/QST.",
+    name: "Canada Sales Tax Calculator (2026)",
+    href: "/finance/sales-tax-canada-calculator",
+    description: "Calculate sales tax across all Canadian provinces including HST, GST, and PST/QST with 2026 rates.",
   },
   {
     name: "Canada Income Tax Calculator",
     href: "/finance/canada-income-tax-calculator",
-    description: "Estimate 2024 Canadian federal and provincial tax, CPP, EI, and exact take-home pay.",
+    description: "Estimate 2026 Canadian federal and provincial tax, CPP, EI, and exact take-home pay.",
   },
   {
     name: "UK Student Loan Repayment Calculator",
@@ -189,6 +194,11 @@ const FINANCE_TOOLS = [
     name: "Amortization Chart Calculator",
     href: "/finance/amortization-chart-calculator",
     description: "Generate detailed loan amortization tables, visualize payment breakdowns, and download schedules.",
+  },
+  {
+    name: "Dividend Reinvestment Calculator (DRIP)",
+    href: "/finance/dividend-reinvestment-calculator",
+    description: "Model DRIP compound growth, share accumulation, yield on cost, and portfolio value.",
   },
   {
     name: "CD Ladder Calculator",

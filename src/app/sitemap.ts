@@ -116,6 +116,7 @@ const TOOL_PATHS = [
   "/seo/youtube-title-checker",
   "/seo/meta-description-checker",
   "/seo/hreflang-generator",
+  "/seo/keyword-clustering",
   "/finance/amortization-chart-calculator",
   "/finance/cd-ladder-calculator",
   "/finance/rule-of-72-calculator",
@@ -132,6 +133,9 @@ const TOOL_PATHS = [
   "/real-estate/mortgage-qualifier-canada",
   "/real-estate/stamp-duty-calculator-nsw",
   "/tools/crypto-mining-calculator",
+  "/finance/sales-tax-california-calculator",
+  "/finance/sales-tax-canada-calculator",
+  "/finance/dividend-reinvestment-calculator",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
