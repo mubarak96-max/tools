@@ -233,11 +233,10 @@ export default function BinaryCodeTranslator() {
                     setLoadedFileName("");
                     resetTransientStates();
                   }}
-                  className={`rounded-[1rem] border px-4 py-4 text-left transition-colors ${
-                    mode === item.value
+                  className={`rounded-[1rem] border px-4 py-4 text-left transition-colors ${mode === item.value
                       ? "border-primary bg-primary-soft text-primary"
                       : "border-border bg-card text-foreground hover:border-primary/20"
-                  }`}
+                    }`}
                 >
                   <div className="text-sm font-semibold">{item.label}</div>
                   <div className="mt-2 text-xs text-muted-foreground">{item.hint}</div>
@@ -355,9 +354,8 @@ export default function BinaryCodeTranslator() {
                   }
                   setDragActive(false);
                 }}
-                className={`rounded-[1.35rem] border border-dashed p-2 transition-colors ${
-                  dragActive ? "border-primary bg-primary-soft/40" : "border-border bg-background"
-                }`}
+                className={`rounded-[1.35rem] border border-dashed p-2 transition-colors ${dragActive ? "border-primary bg-primary-soft/40" : "border-border bg-background"
+                  }`}
               >
                 <textarea
                   value={text}
@@ -370,7 +368,7 @@ export default function BinaryCodeTranslator() {
                   className={textareaClass}
                 />
                 <div className="flex flex-wrap items-center justify-between gap-3 px-2 pb-1 pt-3">
-                  <p className="text-xs leading-5 text-muted-foreground">{modeHelpText}</p>
+
                   <p className="text-xs font-medium text-muted-foreground">
                     Drag and drop a local text file here
                   </p>
@@ -393,11 +391,10 @@ export default function BinaryCodeTranslator() {
 
           {loadState !== "idle" ? (
             <div
-              className={`rounded-[1rem] border px-4 py-3 text-sm ${
-                loadState === "loaded"
+              className={`rounded-[1rem] border px-4 py-3 text-sm ${loadState === "loaded"
                   ? "border-emerald-200 bg-emerald-50 text-emerald-900"
                   : "border-red-200 bg-red-50 text-red-900"
-              }`}
+                }`}
             >
               {loadState === "loaded"
                 ? "Input file loaded into the translator."

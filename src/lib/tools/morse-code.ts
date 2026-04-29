@@ -8,6 +8,11 @@ export interface MorseTranslationResult {
   unsupportedCount: number;
 }
 
+export interface MorseReferenceItem {
+  character: string;
+  morse: string;
+}
+
 const TEXT_TO_MORSE: Record<string, string> = {
   a: ".-",
   b: "-...",
@@ -69,6 +74,23 @@ const MORSE_TO_TEXT = Object.fromEntries(
   Object.entries(TEXT_TO_MORSE).map(([character, morse]) => [morse, character.toUpperCase()]),
 ) as Record<string, string>;
 
+export const MORSE_REFERENCE: MorseReferenceItem[] = Object.entries(TEXT_TO_MORSE).map(([character, morse]) => ({
+  character: character.toUpperCase(),
+  morse,
+}));
+
+export const MORSE_PROSIGNS_REFERENCE: Array<{ prosign: string; meaning: string; morse: string }> = [
+  { prosign: "AR", meaning: "End of message", morse: ".-.-." },
+  { prosign: "AS", meaning: "Wait", morse: ".-..." },
+  { prosign: "BT", meaning: "New section or separator", morse: "-...-" },
+  { prosign: "KN", meaning: "Specific station only", morse: "-.--." },
+  { prosign: "SK", meaning: "End of contact", morse: "...-.-" },
+];
+
+export function normalizeMorseInput(text: string) {
+  return text.trim().replace(/\s*\/\s*/g, " / ");
+}
+
 export function translateTextToMorse(text: string): MorseTranslationResult {
   const words = text.toLowerCase().split(/\s+/).filter(Boolean);
   const outputWords: string[] = [];
@@ -106,7 +128,7 @@ export function translateTextToMorse(text: string): MorseTranslationResult {
 }
 
 export function translateMorseToText(text: string): MorseTranslationResult {
-  const normalized = text.trim().replace(/\s*\/\s*/g, " / ");
+  const normalized = normalizeMorseInput(text);
 
   if (!normalized) {
     return {
