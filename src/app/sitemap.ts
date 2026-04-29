@@ -127,7 +127,6 @@ const TOOL_PATHS = [
   "/finance/pmi-calculator",
   "/real-estate/cap-rate-calculator",
   "/real-estate/cash-on-cash-return-calculator",
-  "/real-estate/florida-transfer-tax-calculator",
   "/real-estate/house-affordability-calculator-canada",
   "/real-estate/land-transfer-tax-calculator-toronto",
   "/real-estate/mortgage-qualifier-canada",

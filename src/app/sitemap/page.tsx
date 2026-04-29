@@ -421,11 +421,7 @@ const SITEMAP_TOOLS = [
         description: "Analyze rental property returns including CoC, NOI, and multi-year projections.",
       },
       {
-        name: "Florida Transfer Tax Calculator",
-        href: "/real-estate/florida-transfer-tax-calculator",
-        description: "Estimate documentary stamp taxes for Florida real estate transactions.",
-      },
-      {
+
         name: "Mortgage Qualifier Canada",
         href: "/real-estate/mortgage-qualifier-canada",
         description: "Professional GDS/TDS mortgage qualification with the 2024 Canadian stress test.",

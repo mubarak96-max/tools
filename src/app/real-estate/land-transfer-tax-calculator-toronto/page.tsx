@@ -365,7 +365,6 @@ export default function LttPage() {
               { name: "Mortgage Qualifier Canada", href: "/real-estate/mortgage-qualifier-canada", desc: "See if you qualify for a mortgage based on your GDS and TDS ratios." },
               { name: "Rent vs Buy Calculator", href: "/real-estate/rent-vs-buy-calculator", desc: "Analyze the long-term financial benefits of owning vs. renting in Toronto." },
               { name: "NYC Transfer Tax Calculator", href: "/real-estate/nyc-transfer-tax-calculator", desc: "Compare Toronto's tax rates with major US markets like New York City." },
-              { name: "Florida Transfer Tax Calculator", href: "/real-estate/florida-transfer-tax-calculator", desc: "Understand closing costs for vacation properties in Florida." },
               { name: "Cap Rate Calculator 2026", href: "/real-estate/cap-rate-calculator", desc: "Analyze the yield and performance of Toronto investment properties." },
             ].map((tool) => (
               <a key={tool.href} href={tool.href} className="group p-5 rounded-2xl border border-stone-200 bg-white hover:border-red-200 hover:shadow-md transition-all">
