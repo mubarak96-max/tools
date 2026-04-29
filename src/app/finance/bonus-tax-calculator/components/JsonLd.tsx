@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "3124"
         },
         description: "Free bonus tax calculator for 2026. Calculate employee bonus paycheck withholding with 22% supplemental rate, FICA, and state tax. Or calculate business bonus depreciation under Section 168(k).",
-        url: "http://findbest.tools/finance/bonus-tax-calculator",
+        url: "https://findbest.tools/finance/bonus-tax-calculator",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Finance Tools",
-            item: "http://findbest.tools/finance"
+            item: "https://findbest.tools/finance"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Bonus Tax Calculator",
-            item: "http://findbest.tools/finance/bonus-tax-calculator"
+            item: "https://findbest.tools/finance/bonus-tax-calculator"
           }
         ]
       }

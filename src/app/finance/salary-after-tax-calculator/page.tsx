@@ -11,7 +11,7 @@ import {
 const PAGE_PATH = '/finance/salary-after-tax-calculator';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Salary After Tax Calculator 2026 | State-by-State Take Home Pay',
   description: 'Calculate your exact salary after federal and state tax for all 50 US states. Compare take-home pay across states, see marginal vs effective rates, and plan your move or raise with real 2026 tax brackets.',
   keywords: [
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/finance/salary-after-tax-calculator',
+    url: 'https://findbest.tools/finance/salary-after-tax-calculator',
     siteName: 'Creator Tools by Mubarak',
     title: 'Salary After Tax Calculator 2026 | State-by-State Take Home Pay',
     description: 'Calculate your exact salary after federal and state tax for all 50 US states. Compare take-home pay across states with real 2026 tax brackets.',
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     images: ['/og-salary-after-tax-calculator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/salary-after-tax-calculator',
+    canonical: 'https://findbest.tools/finance/salary-after-tax-calculator',
   },
   category: 'Technology',
 }

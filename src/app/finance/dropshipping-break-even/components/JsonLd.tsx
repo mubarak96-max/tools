@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "1847"
         },
         description: "Free dropshipping calculator for break-even units, revenue, ROAS, CPA, and profit margin. Input product cost, selling price, ad spend, and fixed costs.",
-        url: "http://findbest.tools/finance/dropshipping-break-even",
+        url: "https://findbest.tools/finance/dropshipping-break-even",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Finance Tools",
-            item: "http://findbest.tools/finance"
+            item: "https://findbest.tools/finance"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Dropshipping Break-even Calculator",
-            item: "http://findbest.tools/finance/dropshipping-break-even"
+            item: "https://findbest.tools/finance/dropshipping-break-even"
           }
         ]
       }

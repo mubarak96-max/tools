@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "856"
         },
         description: "Free hreflang tag generator that validates ISO codes, enforces self-referencing and reciprocity, and exports HTML head tags or XML sitemap format for multilingual SEO.",
-        url: "http://findbest.tools/seo/hreflang-generator",
+        url: "https://findbest.tools/seo/hreflang-generator",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "SEO Tools",
-            item: "http://findbest.tools/seo"
+            item: "https://findbest.tools/seo"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Hreflang Generator",
-            item: "http://findbest.tools/seo/hreflang-generator"
+            item: "https://findbest.tools/seo/hreflang-generator"
           }
         ]
       }

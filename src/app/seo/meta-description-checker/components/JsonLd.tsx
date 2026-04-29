@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "987"
         },
         description: "Free meta description checker that measures pixel width and character count. Preview Google desktop and mobile SERP snippets in real time.",
-        url: "http://findbest.tools/seo/meta-description-checker",
+        url: "https://findbest.tools/seo/meta-description-checker",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "SEO Tools",
-            item: "http://findbest.tools/seo"
+            item: "https://findbest.tools/seo"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Meta Description Checker",
-            item: "http://findbest.tools/seo/meta-description-checker"
+            item: "https://findbest.tools/seo/meta-description-checker"
           }
         ]
       }

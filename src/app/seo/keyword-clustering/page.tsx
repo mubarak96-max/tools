@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Best Free Keyword Clustering Tool for SEO — Semantic, SERP & Hybrid Grouping',
   description: 'Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.',
   keywords: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/seo/keyword-clustering',
+    url: 'https://findbest.tools/seo/keyword-clustering',
     siteName: 'Creator Tools by Mubarak',
     title: 'Free Keyword Clustering Tool (2026) — Semantic, SERP & Hybrid Grouping',
     description: 'Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.',
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     images: ['/og-keyword-clustering.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/seo/keyword-clustering',
+    canonical: 'https://findbest.tools/seo/keyword-clustering',
   },
   category: 'Technology',
 }

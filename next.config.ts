@@ -30,6 +30,21 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/text/image-to-text",
+        destination: "/text/convert-image-to-text",
+        permanent: true,
+      },
+      {
+        source: "/finance/salary-calculator",
+        destination: "/finance/salary-after-tax-calculator",
+        permanent: true,
+      },
+      {
+        source: "/finance/us-take-home-calculator",
+        destination: "/finance/us-take-home-pay-calculator",
+        permanent: true,
+      },
+      {
         source: "/free-tools/word-frequency-counter",
         destination: "/text/word-frequency",
         permanent: true,

@@ -5,7 +5,7 @@ import { JsonLd } from './components/JsonLd'
 import { Clock, Shield, Award, BookOpen, Users, BarChart3, CheckCircle, AlertTriangle, Smartphone, Monitor, Tv } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'YouTube Title Length Checker + Thumbnail Preview | Free SEO Tool',
   description: 'Optimize your YouTube titles and thumbnails with precision. Check character count, pixel width, mobile truncation, and preview thumbnails in search results, home feed, and mobile. Built by creators, for creators.',
   keywords: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/seo/youtube-title-checker',
+    url: 'https://findbest.tools/seo/youtube-title-checker',
     siteName: 'Creator Tools by Mubarak',
     title: 'YouTube Title Length Checker + Thumbnail Preview | Free SEO Tool',
     description: 'The most accurate YouTube title analyzer. Check character limits, pixel width truncation, and preview thumbnails across all devices.',
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     images: ['/og-youtube-title-checker.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/seo/youtube-title-checker',
+    canonical: 'https://findbest.tools/seo/youtube-title-checker',
   },
   category: 'Technology',
 }

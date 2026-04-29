@@ -3,7 +3,7 @@ import { WorkersCompCalculatorClient } from "./components/WorkersCompCalculatorC
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://findbest.tools"),
+  metadataBase: new URL("https://findbest.tools"),
   title: "Workers Comp Premium Calculator by Industry 2026 | Free Estimate",
   description:
     "Free workers compensation insurance premium calculator by industry and state. Estimate costs using class codes, payroll, experience mods, and state rates. Updated for 2026.",
@@ -54,13 +54,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "http://findbest.tools/finance/workers-comp-premium-calculator",
+    canonical: "https://findbest.tools/finance/workers-comp-premium-calculator",
   },
   openGraph: {
     title: "Workers Comp Premium Calculator by Industry 2026",
     description:
       "Calculate workers compensation insurance premiums by industry class code, state, payroll, and experience modification rate. Free 2026 estimator.",
-    url: "http://findbest.tools/finance/workers-comp-premium-calculator",
+    url: "https://findbest.tools/finance/workers-comp-premium-calculator",
     siteName: "FindBest Tools",
     locale: "en_US",
     type: "website",
@@ -87,27 +87,27 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "http://findbest.tools/finance/workers-comp-premium-calculator",
-      url: "http://findbest.tools/finance/workers-comp-premium-calculator",
+      "@id": "https://findbest.tools/finance/workers-comp-premium-calculator",
+      url: "https://findbest.tools/finance/workers-comp-premium-calculator",
       name: "Workers Comp Premium Calculator by Industry 2026",
-      isPartOf: { "@id": "http://findbest.tools/#website" },
+      isPartOf: { "@id": "https://findbest.tools/#website" },
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: "http://findbest.tools/og-workers-comp-calculator.jpg",
+        url: "https://findbest.tools/og-workers-comp-calculator.jpg",
       },
       datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",
         name: "FindBest Tools",
-        url: "http://findbest.tools",
+        url: "https://findbest.tools",
       },
       publisher: {
         "@type": "Organization",
         name: "FindBest Tools",
         logo: {
           "@type": "ImageObject",
-          url: "http://findbest.tools/logo.png",
+          url: "https://findbest.tools/logo.png",
         },
       },
       inLanguage: "en-US",

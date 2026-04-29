@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Dropshipping Break-even Calculator | Ad Spend + Conversion Rate + ROAS 2026',
   description: 'Calculate your exact dropshipping break-even point, break-even ROAS, required conversion rate, and profit per unit. Input your product cost, selling price, ad spend, and fixed costs to see precisely how many sales you need to stop losing money.',
   keywords: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/finance/dropshipping-break-even',
+    url: 'https://findbest.tools/finance/dropshipping-break-even',
     siteName: 'Creator Tools by Mubarak',
     title: 'Dropshipping Break-even Calculator | Ad Spend + ROAS + Profit 2026',
     description: 'Know exactly how many sales you need to break even. Calculate break-even ROAS, CPA, conversion rate requirements, and net profit per unit in real time.',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     images: ['/og-dropshipping-break-even.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/dropshipping-break-even',
+    canonical: 'https://findbest.tools/finance/dropshipping-break-even',
   },
   category: 'Technology',
 }

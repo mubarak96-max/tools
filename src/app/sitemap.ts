@@ -40,6 +40,11 @@ const STATIC_PATHS = [
   { path: "/blog/halal-mortgage-structure-comparison", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/hidden-costs-of-islamic-mortgages-uk", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/first-time-buyer-halal-mortgage-guide-uk", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/uk-stamp-duty-second-home-guide", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/what-is-sdlt-vs-stamp-duty", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/residential-stamp-duty-rates-uk", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/buy-to-let-stamp-duty-guide-uk", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/first-time-buyer-stamp-duty-relief-uk", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [

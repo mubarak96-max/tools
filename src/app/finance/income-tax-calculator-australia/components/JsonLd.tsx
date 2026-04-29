@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "4523"
         },
         description: "Free Australian income tax calculator for 2026-26. Calculate tax, Medicare levy, HECS/HELP repayments, and take-home pay for residents, non-residents, and working holiday makers.",
-        url: "http://findbest.tools/finance/income-tax-calculator-australia",
+        url: "https://findbest.tools/finance/income-tax-calculator-australia",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -137,19 +137,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Finance",
-            item: "http://findbest.tools/finance"
+            item: "https://findbest.tools/finance"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Income Tax Calculator Australia",
-            item: "http://findbest.tools/finance/income-tax-calculator-australia"
+            item: "https://findbest.tools/finance/income-tax-calculator-australia"
           }
         ]
       }

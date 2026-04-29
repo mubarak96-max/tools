@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Meta Description Pixel Width Checker | SERP Preview Tool 2026',
   description: 'The only meta description checker that measures pixel width, not just characters. Preview exactly how your title and description render on Google desktop and mobile. Avoid truncation, boost CTR, and stop Google from rewriting your snippets.',
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/seo/meta-description-checker',
+    url: 'https://findbest.tools/seo/meta-description-checker',
     siteName: 'Creator Tools by Mubarak',
     title: 'Meta Description Pixel Width Checker | SERP Preview Tool 2026',
     description: 'Measure meta description pixel width in real time. Preview desktop and mobile SERP snippets. Stop truncation before it kills your CTR.',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     images: ['/og-meta-description-checker.png'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/seo/meta-description-checker',
+    canonical: 'https://findbest.tools/seo/meta-description-checker',
   },
   category: 'Technology',
 }

@@ -20,7 +20,7 @@ export function JsonLd() {
           "ratingCount": "9240"
         },
         "description": "Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.",
-        "url": "http://findbest.tools/seo/keyword-clustering",
+        "url": "https://findbest.tools/seo/keyword-clustering",
         "author": {
           "@type": "Person",
           "name": "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "http://findbest.tools"
+            "item": "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "SEO Tools",
-            "item": "http://findbest.tools/seo"
+            "item": "https://findbest.tools/seo"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Keyword Clustering Tool",
-            "item": "http://findbest.tools/seo/keyword-clustering"
+            "item": "https://findbest.tools/seo/keyword-clustering"
           }
         ]
       }

@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'US Take-Home Salary Calculator 2026 | Federal, FICA, 401k, Healthcare & State Tax',
   description: 'Calculate your exact 2026 US take-home pay with real IRS tax brackets, FICA (Social Security & Medicare), 401(k), HSA, health insurance premiums, and state tax. See federal withholding, net pay per paycheck, and annual breakdown.',
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/finance/us-take-home-pay-calculator',
+    url: 'https://findbest.tools/finance/us-take-home-pay-calculator',
     siteName: 'Creator Tools by Mubarak',
     title: 'US Take-Home Salary Calculator 2026 | Federal, FICA, 401k & Healthcare',
     description: 'Know exactly what lands in your bank account. Real 2026 IRS brackets, FICA, 401(k), HSA, health insurance, and state tax — all in one calculator.',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     images: ['/og-us-take-home-calculator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/us-take-home-pay-calculator',
+    canonical: 'https://findbest.tools/finance/us-take-home-pay-calculator',
   },
   category: 'Finance',
 }

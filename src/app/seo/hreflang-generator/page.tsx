@@ -8,7 +8,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Hreflang Tag Generator | Free Multi-Country & Multi-Language SEO Tool',
   description: 'Generate correct hreflang tags for multilingual and multi-regional websites in seconds. Validates ISO codes, enforces self-referencing, checks reciprocity, and outputs HTML head tags or XML sitemap format. Built for international SEO teams.',
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/seo/hreflang-generator',
+    url: 'https://findbest.tools/seo/hreflang-generator',
     siteName: 'Creator Tools by Mubarak',
     title: 'Hreflang Tag Generator | Free Multi-Country & Multi-Language SEO Tool',
     description: 'Generate validated hreflang tags for multilingual sites. Auto-checks ISO codes, self-referencing, reciprocity, and outputs HTML or XML sitemap format.',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     images: ['/og-hreflang-generator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/seo/hreflang-generator',
+    canonical: 'https://findbest.tools/seo/hreflang-generator',
   },
   category: 'Technology',
 }

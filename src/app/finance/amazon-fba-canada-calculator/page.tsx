@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Amazon FBA Fee Calculator Canada 2026 | CAD Referral + Fulfillment + Storage',
   description: 'Free Amazon FBA fee calculator for Amazon.ca sellers. Calculate referral fees, FBA fulfillment fees, monthly storage, and aged inventory surcharges in Canadian Dollars. Real 2026 Amazon.ca rate cards.',
   keywords: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_CA',
-    url: 'http://findbest.tools/finance/amazon-fba-canada-calculator',
+    url: 'https://findbest.tools/finance/amazon-fba-canada-calculator',
     siteName: 'Creator Tools by Mubarak',
     title: 'Amazon FBA Fee Calculator Canada 2026 | CAD Fees & Profit',
     description: 'Calculate Amazon.ca FBA fees in Canadian Dollars. Referral, fulfillment, storage, and profit margins for Canadian sellers.',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     images: ['/og-amazon-fba-canada-calculator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/amazon-fba-canada-calculator',
+    canonical: 'https://findbest.tools/finance/amazon-fba-canada-calculator',
   },
   category: 'Technology',
 }

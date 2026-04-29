@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "3245"
         },
         description: "Free salary after tax calculator for all 50 US states. Calculate take-home pay with real 2026 federal and state tax brackets. Compare states side-by-side.",
-        url: "http://findbest.tools/finance/salary-after-tax-calculator",
+        url: "https://findbest.tools/finance/salary-after-tax-calculator",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Finance Tools",
-            item: "http://findbest.tools/finance"
+            item: "https://findbest.tools/finance"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Salary After Tax Calculator",
-            item: "http://findbest.tools/finance/salary-after-tax-calculator"
+            item: "https://findbest.tools/finance/salary-after-tax-calculator"
           }
         ]
       }

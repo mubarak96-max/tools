@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "1247"
         },
         description: "Free YouTube title analyzer that checks character count, pixel width, mobile truncation, and thumbnail preview across search results, home feed, and mobile devices.",
-        url: "http://findbest.tools/seo/youtube-title-checker",
+        url: "https://findbest.tools/seo/youtube-title-checker",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "SEO",
-            item: "http://findbest.tools/seo"
+            item: "https://findbest.tools/seo"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "YouTube Title Checker",
-            item: "http://findbest.tools/seo/youtube-title-checker"
+            item: "https://findbest.tools/seo/youtube-title-checker"
           }
         ]
       }

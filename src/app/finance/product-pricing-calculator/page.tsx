@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Product Pricing Calculator | Shopify, Etsy, Amazon Fees + Margin & Multi-Currency',
   description: 'Calculate your true selling price across Shopify, Etsy, and Amazon with real platform fees, payment processing, and shipping. Reverse-calculate from target margin, convert currencies, and never underprice again.',
   keywords: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/finance/product-pricing-calculator',
+    url: 'https://findbest.tools/finance/product-pricing-calculator',
     siteName: 'FindBest Tools',
     title: 'Product Pricing Calculator | Shopify, Etsy, Amazon Fees + Margin & Multi-Currency',
     description: 'True profit calculator for Shopify, Etsy, and Amazon with real 2026 fees, target margin mode, and multi-currency support.',
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     images: ['/og-product-pricing-calculator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/product-pricing-calculator',
+    canonical: 'https://findbest.tools/finance/product-pricing-calculator',
   },
   category: 'Technology',
 }

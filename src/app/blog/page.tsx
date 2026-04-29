@@ -15,6 +15,46 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "Second Home Stamp Duty in England: Higher Rates Explained (2026)",
+    description: "Understand when the additional dwelling surcharge applies, when a replacement main residence avoids it, and how to model the true SDLT bill.",
+    href: "/blog/uk-stamp-duty-second-home-guide",
+    tag: "UK Real Estate",
+    readTime: "8 min read",
+    date: "April 2026",
+  },
+  {
+    title: "What Is SDLT? Stamp Duty vs SDLT Explained for Home Buyers",
+    description: "Clarify the difference between stamp duty and SDLT, and why England and Northern Ireland use a different system from Scotland and Wales.",
+    href: "/blog/what-is-sdlt-vs-stamp-duty",
+    tag: "SDLT Basics",
+    readTime: "6 min read",
+    date: "April 2026",
+  },
+  {
+    title: "Residential Stamp Duty Rates in England: How the SDLT Bands Work",
+    description: "Learn the standard residential SDLT structure before first-time buyer relief or second home surcharges change the final amount.",
+    href: "/blog/residential-stamp-duty-rates-uk",
+    tag: "Residential SDLT",
+    readTime: "7 min read",
+    date: "April 2026",
+  },
+  {
+    title: "Buy-to-Let Stamp Duty in England: SDLT Guide for Landlords",
+    description: "A landlord-focused guide to buy-to-let SDLT, additional dwelling surcharges, and how to model the real upfront acquisition cost.",
+    href: "/blog/buy-to-let-stamp-duty-guide-uk",
+    tag: "Landlord Guide",
+    readTime: "8 min read",
+    date: "April 2026",
+  },
+  {
+    title: "First-Time Buyer Stamp Duty Relief in England: Who Qualifies?",
+    description: "Understand how first-time buyer relief works, when it applies, and when the calculation falls back to the standard residential SDLT bands.",
+    href: "/blog/first-time-buyer-stamp-duty-relief-uk",
+    tag: "First-Time Buyer",
+    readTime: "7 min read",
+    date: "April 2026",
+  },
+  {
     title: "First-Time Buyer's Guide to Halal Mortgages in the UK (2026)",
     description: "Navigate the journey from deposit to ownership without riba. Our complete step-by-step guide for Sharia-compliant home finance.",
     href: "/blog/first-time-buyer-halal-mortgage-guide-uk",

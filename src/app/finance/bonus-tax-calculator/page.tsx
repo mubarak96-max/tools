@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('http://findbest.tools'),
+  metadataBase: new URL('https://findbest.tools'),
   title: 'Bonus Tax Calculator 2026 | Bonus Paycheck + Bonus Depreciation (Section 168k)',
   description: 'Free bonus tax calculator for 2026. Calculate employee bonus withholding with 22% supplemental rate, FICA, and state tax. OR calculate business bonus depreciation under Section 168(k) with MACRS schedules. Two tools, one page.',
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://findbest.tools/finance/bonus-tax-calculator',
+    url: 'https://findbest.tools/finance/bonus-tax-calculator',
     siteName: 'Creator Tools by Mubarak',
     title: 'Bonus Tax Calculator 2026 | Employee Bonus + Business Depreciation',
     description: 'Calculate bonus paycheck tax withholding OR business bonus depreciation. Two calculators, one page. Real 2026 IRS rates.',
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     images: ['/og-bonus-tax-calculator.jpg'],
   },
   alternates: {
-    canonical: 'http://findbest.tools/finance/bonus-tax-calculator',
+    canonical: 'https://findbest.tools/finance/bonus-tax-calculator',
   },
   category: 'Finance',
 }

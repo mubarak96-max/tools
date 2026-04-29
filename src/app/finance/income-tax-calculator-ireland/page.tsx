@@ -3,7 +3,7 @@ import { IncomeTaxCalculatorClient } from "./components/IncomeTaxCalculatorClien
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://findbest.tools"),
+  metadataBase: new URL("https://findbest.tools"),
   title: "Income Tax Calculator Ireland 2026 | PAYE, USC & PRSI Take-Home Pay",
   description:
     "Free Ireland income tax calculator for 2026/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI. Accurate for employees, self-employed, married couples & single parents.",
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "http://findbest.tools/finance/income-tax-calculator-ireland",
+    canonical: "https://findbest.tools/finance/income-tax-calculator-ireland",
   },
   openGraph: {
     title: "Income Tax Calculator Ireland 2026 | Exact Take-Home Pay",
     description:
       "Calculate your 2026 Irish take-home pay with official Revenue rates. Includes PAYE, USC, PRSI, pension relief & tax credits.",
-    url: "http://findbest.tools/finance/income-tax-calculator-ireland",
+    url: "https://findbest.tools/finance/income-tax-calculator-ireland",
     siteName: "Creator Tools by Mubarak",
     locale: "en_IE",
     type: "website",
@@ -82,27 +82,27 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "http://findbest.tools/finance/income-tax-calculator-ireland",
-      url: "http://findbest.tools/finance/income-tax-calculator-ireland",
+      "@id": "https://findbest.tools/finance/income-tax-calculator-ireland",
+      url: "https://findbest.tools/finance/income-tax-calculator-ireland",
       name: "Income Tax Calculator Ireland 2026",
-      isPartOf: { "@id": "http://findbest.tools/#website" },
+      isPartOf: { "@id": "https://findbest.tools/#website" },
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: "http://findbest.tools/og-income-tax-ireland.jpg",
+        url: "https://findbest.tools/og-income-tax-ireland.jpg",
       },
       datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",
         name: "Tools by Mubarak",
-        url: "http://findbest.tools",
+        url: "https://findbest.tools",
       },
       publisher: {
         "@type": "Organization",
         name: "Tools by Mubarak",
         logo: {
           "@type": "ImageObject",
-          url: "http://findbest.tools/logo.png",
+          url: "https://findbest.tools/logo.png",
         },
       },
       inLanguage: "en-IE",

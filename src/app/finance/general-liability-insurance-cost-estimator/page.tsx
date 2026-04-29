@@ -3,7 +3,7 @@ import { GeneralLiabilityCalculatorClient } from "./components/GeneralLiabilityC
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://findbest.tools"),
+  metadataBase: new URL("https://findbest.tools"),
   title: "General Liability Insurance Cost Estimator 2026 | Free Business Quote Calculator",
   description:
     "Free general liability insurance cost estimator for small businesses. Calculate premiums by industry, revenue, location, employees, and coverage limits. Get instant estimates for 2026.",
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "http://findbest.tools/finance/general-liability-insurance-cost-estimator",
+    canonical: "https://findbest.tools/finance/general-liability-insurance-cost-estimator",
   },
   openGraph: {
     title: "General Liability Insurance Cost Estimator 2026 | Free Business Quote",
     description:
       "Calculate general liability insurance premiums for your small business. Industry-specific estimates based on revenue, location, employees, and coverage limits.",
-    url: "http://findbest.tools/finance/general-liability-insurance-cost-estimator",
+    url: "https://findbest.tools/finance/general-liability-insurance-cost-estimator",
     siteName: "Creator Tools by Mubarak",
     locale: "en_US",
     type: "website",
@@ -88,27 +88,27 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "http://findbest.tools/finance/general-liability-insurance-cost-estimator",
-      url: "http://findbest.tools/finance/general-liability-insurance-cost-estimator",
+      "@id": "https://findbest.tools/finance/general-liability-insurance-cost-estimator",
+      url: "https://findbest.tools/finance/general-liability-insurance-cost-estimator",
       name: "General Liability Insurance Cost Estimator 2026",
-      isPartOf: { "@id": "http://findbest.tools/#website" },
+      isPartOf: { "@id": "https://findbest.tools/#website" },
       primaryImageOfPage: {
         "@type": "ImageObject",
-        url: "http://findbest.tools/og-general-liability-insurance.jpg",
+        url: "https://findbest.tools/og-general-liability-insurance.jpg",
       },
       datePublished: "2026-01-15T08:00:00+00:00",
       dateModified: "2026-04-25T08:00:00+00:00",
       author: {
         "@type": "Organization",
         name: "Tools by Mubarak",
-        url: "http://findbest.tools",
+        url: "https://findbest.tools",
       },
       publisher: {
         "@type": "Organization",
         name: "Tools by Mubarak",
         logo: {
           "@type": "ImageObject",
-          url: "http://findbest.tools/logo.png",
+          url: "https://findbest.tools/logo.png",
         },
       },
       inLanguage: "en-US",

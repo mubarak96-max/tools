@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "1876"
         },
         description: "Free Amazon FBA fee calculator for Amazon.ca sellers. Calculate referral fees, FBA fulfillment fees, storage, and profit margins in Canadian Dollars with real 2026 rate cards.",
-        url: "http://findbest.tools/finance/amazon-fba-canada-calculator",
+        url: "https://findbest.tools/finance/amazon-fba-canada-calculator",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Finance",
-            item: "http://findbest.tools/finance"
+            item: "https://findbest.tools/finance"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "Amazon FBA Canada Calculator",
-            item: "http://findbest.tools/finance/amazon-fba-canada-calculator"
+            item: "https://findbest.tools/finance/amazon-fba-canada-calculator"
           }
         ]
       }

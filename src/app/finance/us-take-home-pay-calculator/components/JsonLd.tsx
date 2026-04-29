@@ -20,7 +20,7 @@ export function JsonLd() {
           ratingCount: "2847"
         },
         description: "Free US take-home pay calculator for 2026 with real IRS federal tax brackets, FICA taxes, 401(k), HSA, health insurance, and state tax deductions.",
-        url: "http://findbest.tools/finance/us-take-home-pay-calculator",
+        url: "https://findbest.tools/finance/us-take-home-pay-calculator",
         author: {
           "@type": "Person",
           name: "Mubarak",
@@ -100,19 +100,19 @@ export function JsonLd() {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "http://findbest.tools"
+            item: "https://findbest.tools"
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Finance Tools",
-            item: "http://findbest.tools/finance"
+            item: "https://findbest.tools/finance"
           },
           {
             "@type": "ListItem",
             position: 3,
             name: "US Take-Home Calculator",
-            item: "http://findbest.tools/finance/us-take-home-pay-calculator"
+            item: "https://findbest.tools/finance/us-take-home-pay-calculator"
           }
         ]
       }
