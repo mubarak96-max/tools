@@ -247,7 +247,7 @@ function ToolCard({ tool }: { tool: HomeToolMeta }) {
   return (
     <Link
       href={tool.href}
-      className="group relative flex flex-col items-start gap-2.5 overflow-hidden rounded-2xl border border-white/40 bg-white/40 p-4 shadow-premium backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/60 hover:shadow-hover"
+      className="group relative flex flex-col items-start gap-2.5 overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
     >
       <div className="flex w-full items-center justify-end">
         <span className="primary-chip rounded-full px-2.5 py-0.5 text-[9px] drop-shadow-sm">
@@ -256,7 +256,7 @@ function ToolCard({ tool }: { tool: HomeToolMeta }) {
       </div>
 
       <div className="space-y-1.5">
-        <h3 className="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">
+        <h3 className="text-base font-bold text-slate-900 group-hover:text-primary transition-colors duration-150">
           {tool.name}
         </h3>
         <p className="text-[14px] leading-relaxed text-slate-500 line-clamp-2">
@@ -265,7 +265,7 @@ function ToolCard({ tool }: { tool: HomeToolMeta }) {
       </div>
 
       <div className="mt-3 flex w-full items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+        <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-primary opacity-0 -translate-x-2 transition-[opacity,transform] duration-200 group-hover:opacity-100 group-hover:translate-x-0">
           Launch Tool <ArrowRight className="h-3 w-3" />
         </span>
       </div>
@@ -307,7 +307,7 @@ export default function Home() {
       </section>
 
       {/* Grid Section */}
-      <section className="relative bg-white/30 py-12 backdrop-blur-sm">
+      <section className="relative bg-slate-50/80 py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-10 flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
             <div className="text-center md:text-left">
@@ -323,10 +323,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:gap-6">
-            {FEATURED_TOOLS.map((tool, idx) => (
-              <div key={tool.href} className="animate-slide-up" style={{ animationDelay: `${idx * 50}ms` }}>
-                <ToolCard tool={tool} />
-              </div>
+            {FEATURED_TOOLS.map((tool) => (
+              <ToolCard key={tool.href} tool={tool} />
             ))}
           </div>
         </div>
