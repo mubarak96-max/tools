@@ -136,10 +136,12 @@ const TOOL_PATHS = [
   "/real-estate/land-transfer-tax-calculator-toronto",
   "/real-estate/mortgage-qualifier-canada",
   "/real-estate/stamp-duty-calculator-nsw",
-  "/tools/crypto-mining-calculator",
+  "/finance/crypto-mining-calculator",
   "/finance/sales-tax-california-calculator",
   "/finance/sales-tax-canada-calculator",
   "/finance/dividend-reinvestment-calculator",
+  "/finance/net-salary-calculator",
+  "/health/us-navy-body-fat-calculator",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -155,7 +157,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}${path}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: path.startsWith("/text/") ? 0.9 : 0.8,
+      priority: path.startsWith("/text/") || path === "/finance/net-salary-calculator" || path === "/health/us-navy-body-fat-calculator" ? 0.9 : 0.8,
     })),
   ];
 

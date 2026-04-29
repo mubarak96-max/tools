@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description:
       "Calculate exact mining profits for Bitcoin, Ethereum, and GPU rigs. Factor electricity, hardware, pool fees, and difficulty adjustments.",
     type: "website",
-    url: "https://findbest.tools/tools/crypto-mining-calculator",
+    url: "https://findbest.tools/finance/crypto-mining-calculator",
   },
   twitter: {
     card: "summary_large_image",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
       "Accurate Bitcoin & GPU mining calculator with ROI projections, electricity costs, and difficulty adjustments.",
   },
   alternates: {
-    canonical: "https://findbest.tools/tools/crypto-mining-calculator",
+    canonical: "https://findbest.tools/finance/crypto-mining-calculator",
   },
   robots: {
     index: true,
@@ -61,8 +61,8 @@ export default function CryptoMiningCalculatorPage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://findbest.tools/tools/crypto-mining-calculator",
-        url: "https://findbest.tools/tools/crypto-mining-calculator",
+        "@id": "https://findbest.tools/finance/crypto-mining-calculator",
+        url: "https://findbest.tools/finance/crypto-mining-calculator",
         name: "Crypto Mining Calculator 2026 | Bitcoin & GPU Mining Profitability Calculator",
         description:
           "Free crypto mining calculator for Bitcoin, Ethereum, and altcoins. Calculate GPU mining profitability, ASIC mining ROI, and electricity costs.",
@@ -175,9 +175,7 @@ export default function CryptoMiningCalculatorPage() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-900/40 via-slate-950 to-slate-950" />
           <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <div className="mx-auto max-w-3xl text-center">
-              <div className="inline-flex items-center rounded-full bg-emerald-500/10 px-4 py-1.5 text-sm font-medium text-emerald-400 ring-1 ring-inset ring-emerald-500/20 mb-6">
-                Updated for 2026 Network Difficulty
-              </div>
+
               <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
                   Crypto Mining

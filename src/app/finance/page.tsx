@@ -212,7 +212,7 @@ const FINANCE_TOOLS = [
   },
   {
     name: "Crypto Mining Calculator",
-    href: "/tools/crypto-mining-calculator",
+    href: "/finance/crypto-mining-calculator",
     description: "Calculate Bitcoin and GPU mining profitability with real-time network parameters and ROI timelines.",
   },
 ];

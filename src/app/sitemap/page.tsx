@@ -283,8 +283,13 @@ const SITEMAP_TOOLS = [
         description: "Estimate investment doubling time and compare scenarios side-by-side.",
       },
       {
+        name: "Net Salary Calculator",
+        href: "/finance/net-salary-calculator",
+        description: "Calculate your exact take-home pay with our free gross to net salary calculator.",
+      },
+      {
         name: "Crypto Mining Calculator",
-        href: "/tools/crypto-mining-calculator",
+        href: "/finance/crypto-mining-calculator",
         description: "Calculate Bitcoin and GPU mining profitability with real-time network parameters and ROI timelines.",
       },
     ],
@@ -330,6 +335,11 @@ const SITEMAP_TOOLS = [
         name: "Calorie Calculator",
         href: "/health/calorie-calculator",
         description: "Estimate TDEE and daily calorie targets for weight loss, maintenance, or muscle gain.",
+      },
+      {
+        name: "US Navy Body Fat Calculator",
+        href: "/health/us-navy-body-fat-calculator",
+        description: "Calculate Navy PRT body fat percentage using official tape measurements.",
       },
     ],
   },

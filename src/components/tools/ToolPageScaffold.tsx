@@ -157,6 +157,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/real-estate/house-affordability-calculator-canada",
       description: "Estimate maximum home price in Canada with stress test, CMHC, and provincial tax rules.",
     },
+    {
+      name: "Net Salary Calculator",
+      href: "/finance/net-salary-calculator",
+      description: "Calculate your exact take-home pay with our free gross to net salary calculator.",
+    },
   ],
   SEO: [
     {
@@ -190,6 +195,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "Calorie Calculator",
       href: "/health/calorie-calculator",
       description: "Estimate TDEE and calorie targets from activity level.",
+    },
+    {
+      name: "US Navy Body Fat Calculator",
+      href: "/health/us-navy-body-fat-calculator",
+      description: "Calculate Navy PRT body fat percentage using official tape measurements.",
     },
   ],
   "Real Estate": [
