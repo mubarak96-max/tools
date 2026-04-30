@@ -33,6 +33,36 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
   ],
   Finance: [
     {
+      name: "Tip Calculator",
+      href: "/finance/tip-calculator",
+      description: "Calculate restaurant tips, split bills, and estimate gratuity with a vintage receipt aesthetic.",
+    },
+    {
+      name: "Invoice Generator",
+      href: "/finance/invoice-generator",
+      description: "Create printable invoices with line items, taxes, discounts, and totals.",
+    },
+    {
+      name: "Net Salary Calculator",
+      href: "/finance/net-salary-calculator",
+      description: "Calculate your exact take-home pay with our free gross to net salary calculator.",
+    },
+    {
+      name: "US Take-Home Calculator",
+      href: "/finance/us-take-home-pay-calculator",
+      description: "Calculate US net pay with benefits.",
+    },
+    {
+      name: "EMI Calculator",
+      href: "/finance/emi-calculator",
+      description: "Estimate monthly loan payment, total interest, and affordability.",
+    },
+    {
+      name: "Salary After Tax Calculator",
+      href: "/finance/salary-after-tax-calculator",
+      description: "Calculate take-home pay with 2026 tax brackets.",
+    },
+    {
       name: "Australia Stamp Duty Calculator",
       href: "/finance/australia-stamp-duty-calculator",
       description: "Calculate property transfer duty across all 8 states with 2026 rates and concessions.",
@@ -55,7 +85,7 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
     {
       name: "Car Depreciation Calculator",
       href: "/finance/car-depreciation-calculator",
-      description: "Accurate resale value and depreciation curves for 500+ makes and models.",
+      description: "Resale value and depreciation curves for 500+ makes and models.",
     },
     {
       name: "Canada HST/GST Calculator",
@@ -68,16 +98,6 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Estimate 2026 IRS self-employment tax for freelancers and contractors.",
     },
     {
-      name: "EMI Calculator",
-      href: "/finance/emi-calculator",
-      description: "Estimate monthly loan payment, total interest, and affordability.",
-    },
-    {
-      name: "Invoice Generator",
-      href: "/finance/invoice-generator",
-      description: "Create printable invoices with line items, taxes, discounts, and totals.",
-    },
-    {
       name: "Break Even Point (BEP) Calculator",
       href: "/finance/break-even-calculator",
       description: "Calculate your break even point in units or revenue.",
@@ -86,11 +106,6 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "Dropshipping Break-even Calculator",
       href: "/finance/dropshipping-break-even",
       description: "Calculate break-even ROAS, CPA, and required sales.",
-    },
-    {
-      name: "US Take-Home Calculator",
-      href: "/finance/us-take-home-pay-calculator",
-      description: "Calculate US net pay with benefits.",
     },
     {
       name: "Income Tax Calculator Australia",
@@ -133,11 +148,6 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Employee bonus & business depreciation tool.",
     },
     {
-      name: "Salary After Tax Calculator",
-      href: "/finance/salary-after-tax-calculator",
-      description: "Calculate take-home pay with 2026 tax brackets.",
-    },
-    {
       name: "Product Pricing Calculator",
       href: "/finance/product-pricing-calculator",
       description: "Optimize selling prices across Shopify, Etsy, and Amazon.",
@@ -151,16 +161,6 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "Amazon FBA Calculator Canada",
       href: "/finance/amazon-fba-canada-calculator",
       description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
-    },
-    {
-      name: "House Affordability Canada",
-      href: "/real-estate/house-affordability-calculator-canada",
-      description: "Estimate maximum home price in Canada with stress test, CMHC, and provincial tax rules.",
-    },
-    {
-      name: "Net Salary Calculator",
-      href: "/finance/net-salary-calculator",
-      description: "Calculate your exact take-home pay with our free gross to net salary calculator.",
     },
   ],
   SEO: [
@@ -266,6 +266,31 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "Barcode Generator",
       href: "/utility/barcode-generator",
       description: "Create CODE128, UPC, and EAN barcodes as PNG files.",
+    },
+    {
+      name: "Fuel Cost Calculator",
+      href: "/utility/fuel-cost-calculator",
+      description: "Calculate exact fuel costs for any trip or commute. Compare vehicles, estimate annual expenses, and optimize your driving budget.",
+    },
+    {
+      name: "Gas Mileage Calculator",
+      href: "/utility/gas-mileage-calculator",
+      description: "Diagnostic HUD to calculate MPG, trip fuel costs, and annual savings. Supports US and Metric units.",
+    },
+    {
+      name: "GPA Calculator",
+      href: "/utility/gpa-calculator",
+      description: "Calculate high school and college GPA (weighted & unweighted), convert grades, and find your target GPA.",
+    },
+    {
+      name: "Social Media Image Resizer",
+      href: "/utility/social-media-image-resizer",
+      description: "Resize images to exact dimensions for Instagram, Twitter, Facebook, LinkedIn, YouTube, and TikTok.",
+    },
+    {
+      name: "Aspect Ratio Calculator",
+      href: "/utility/aspect-ratio-calculator",
+      description: "Calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios. Live preview and image upload detection.",
     },
   ],
 };

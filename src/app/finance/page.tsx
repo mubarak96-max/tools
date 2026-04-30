@@ -215,6 +215,11 @@ const FINANCE_TOOLS = [
     href: "/finance/crypto-mining-calculator",
     description: "Calculate Bitcoin and GPU mining profitability with real-time network parameters and ROI timelines.",
   },
+  {
+    name: "Tip Calculator",
+    href: "/finance/tip-calculator",
+    description: "Calculate restaurant tips, split bills, convert amounts to percentages, and estimate gratuity for 16+ service types.",
+  },
 ];
 
 export const metadata = buildMetadata({

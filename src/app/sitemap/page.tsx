@@ -292,6 +292,11 @@ const SITEMAP_TOOLS = [
         href: "/finance/crypto-mining-calculator",
         description: "Calculate Bitcoin and GPU mining profitability with real-time network parameters and ROI timelines.",
       },
+      {
+        name: "Tip Calculator",
+        href: "/finance/tip-calculator",
+        description: "Calculate restaurant tips, split bills, convert amounts to percentages, and estimate gratuity for 16+ service types.",
+      },
     ],
   },
   {
@@ -556,6 +561,31 @@ const SITEMAP_TOOLS = [
         name: "Barcode Scanner",
         href: "/utility/barcode-scanner",
         description: "Use your webcam or phone to scan 1D retail product barcodes.",
+      },
+      {
+        name: "Fuel Cost Calculator",
+        href: "/utility/fuel-cost-calculator",
+        description: "Calculate exact fuel costs for any trip or commute. Compare vehicles, estimate annual expenses, and optimize your driving budget.",
+      },
+      {
+        name: "Gas Mileage Calculator",
+        href: "/utility/gas-mileage-calculator",
+        description: "Diagnostic HUD to calculate MPG, trip fuel costs, and annual savings. Supports US and Metric units.",
+      },
+      {
+        name: "GPA Calculator",
+        href: "/utility/gpa-calculator",
+        description: "Calculate high school and college GPA (weighted & unweighted), convert grades, and find your target GPA.",
+      },
+      {
+        name: "Social Media Image Resizer",
+        href: "/utility/social-media-image-resizer",
+        description: "Resize images to exact dimensions for Instagram, Twitter, Facebook, LinkedIn, YouTube, and TikTok.",
+      },
+      {
+        name: "Aspect Ratio Calculator",
+        href: "/utility/aspect-ratio-calculator",
+        description: "Calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios. Live preview and image upload detection.",
       },
     ],
   },
