@@ -71,6 +71,11 @@ const UTILITY_TOOLS = [
     href: "/utility/aspect-ratio-calculator",
     description: "Calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios. Live preview and image upload detection.",
   },
+  {
+    name: "What Is My IP Address?",
+    href: "/utility/what-is-my-ip",
+    description: "Instantly find your public and private IP addresses, geolocation, ISP, and proxy/VPN status.",
+  },
 ];
 
 function ToolCard({ tool }: { tool: (typeof UTILITY_TOOLS)[number] }) {
