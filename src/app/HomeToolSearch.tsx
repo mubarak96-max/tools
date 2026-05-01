@@ -312,6 +312,54 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     description: "Calculate your CPP retirement pension at any age from 60 to 70, your annual CPP and EI contributions, OAS entitlement, and EI benefit amount.",
     category: "Finance",
   },
+  {
+    name: "Fuel Cost Calculator",
+    href: "/utility/fuel-cost-calculator",
+    description: "Calculate exact fuel costs for any trip or commute. Compare vehicles and estimate annual expenses.",
+    category: "Utility",
+  },
+  {
+    name: "Gas Mileage Calculator",
+    href: "/utility/gas-mileage-calculator",
+    description: "Calculate MPG, trip fuel costs, and annual savings. Supports US and Metric units.",
+    category: "Utility",
+  },
+  {
+    name: "GPA Calculator",
+    href: "/utility/gpa-calculator",
+    description: "Calculate high school and college GPA (weighted & unweighted), convert grades, and find your target GPA.",
+    category: "Utility",
+  },
+  {
+    name: "Social Media Image Resizer",
+    href: "/utility/social-media-image-resizer",
+    description: "Resize images to exact dimensions for Instagram, Twitter, Facebook, LinkedIn, YouTube, and TikTok.",
+    category: "Utility",
+  },
+  {
+    name: "Aspect Ratio Calculator",
+    href: "/utility/aspect-ratio-calculator",
+    description: "Calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios with live preview.",
+    category: "Utility",
+  },
+  {
+    name: "What Is My IP Address?",
+    href: "/utility/what-is-my-ip",
+    description: "Instantly find your public and private IP addresses, geolocation, ISP, and proxy/VPN status.",
+    category: "Utility",
+  },
+  {
+    name: "UTM Builder",
+    href: "/utility/utm-builder",
+    description: "Generate Google Analytics tracking URLs with source, medium, and campaign parameters. Supports bulk mode.",
+    category: "Utility",
+  },
+  {
+    name: "Password Strength Checker",
+    href: "/utility/password-strength-checker",
+    description: "Analyze password security with entropy calculation, crack time estimation, and pattern detection.",
+    category: "Utility",
+  },
 ];
 
 export default function HomeToolSearch() {
