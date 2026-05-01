@@ -5,7 +5,7 @@ import CaseConverter from "@/app/text/case-converter/components/CaseConverter";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
+import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 export const revalidate = 43200;
 
@@ -150,9 +150,6 @@ export default function CaseConverterPage() {
           </p>
         </div>
       
-        <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
-        </div>
       </section>
 
       <CaseConverter />

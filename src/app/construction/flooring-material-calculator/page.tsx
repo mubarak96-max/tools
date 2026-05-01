@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import { FlooringMaterialCalculator } from "./components/FlooringMaterialCalculator";
 import JsonLd from "@/components/seo/JsonLd";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
+import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 

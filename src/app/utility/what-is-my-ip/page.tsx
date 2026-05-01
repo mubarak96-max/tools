@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ChevronDown } from 'lucide-react';
 import IpChecker from './components/IpChecker';
 import ToolPageScaffold from '@/components/tools/ToolPageScaffold';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'What Is My IP Address? — Free Public & Private IP Lookup Tool (2026)',
@@ -332,6 +333,41 @@ export default function WhatIsMyIpPage() {
                     {faq.a}
                   </div>
                 </details>
+              ))}
+            </div>
+          </section>
+
+          {/* RELATED TOOLS */}
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Related Security & Network Tools</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  name: "DNS Checker",
+                  href: "/utility/dns-checker",
+                  description: "Look up A, MX, TXT, and NS records for any domain or IP.",
+                },
+                {
+                  name: "UTM Builder",
+                  href: "/utility/utm-builder",
+                  description: "Generate trackable campaign URLs for marketing and attribution.",
+                },
+                {
+                  name: "QR Code Scanner",
+                  href: "/utility/qr-code-scanner",
+                  description: "Scan and decode QR codes to check destination URLs safely.",
+                },
+              ].map((tool) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  className="group flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:border-indigo-300 hover:shadow-lg"
+                >
+                  <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-indigo-600">
+                    {tool.name}
+                  </h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{tool.description}</p>
+                </Link>
               ))}
             </div>
           </section>

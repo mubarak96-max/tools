@@ -592,6 +592,11 @@ const SITEMAP_TOOLS = [
         href: "/utility/what-is-my-ip",
         description: "Instantly find your public and private IP addresses, geolocation, ISP, and proxy/VPN status.",
       },
+      {
+        name: "UTM Builder",
+        href: "/utility/utm-builder",
+        description: "Generate Google Analytics tracking URLs with source, medium, and campaign parameters.",
+      },
     ],
   },
 ];

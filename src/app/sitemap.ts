@@ -149,6 +149,7 @@ const TOOL_PATHS = [
   "/utility/social-media-image-resizer",
   "/utility/aspect-ratio-calculator",
   "/utility/what-is-my-ip",
+  "/utility/utm-builder",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -164,7 +165,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${BASE_URL}${path}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
-      priority: path.startsWith("/text/") || path === "/finance/net-salary-calculator" || path === "/finance/tip-calculator" || path === "/health/us-navy-body-fat-calculator" || path === "/utility/fuel-cost-calculator" || path === "/utility/gas-mileage-calculator" || path === "/utility/gpa-calculator" || path === "/utility/social-media-image-resizer" || path === "/utility/aspect-ratio-calculator" || path === "/utility/what-is-my-ip" ? 0.9 : 0.8,
+      priority: path.startsWith("/text/") || path === "/finance/net-salary-calculator" || path === "/finance/tip-calculator" || path === "/health/us-navy-body-fat-calculator" || path === "/utility/fuel-cost-calculator" || path === "/utility/gas-mileage-calculator" || path === "/utility/gpa-calculator" || path === "/utility/social-media-image-resizer" || path === "/utility/aspect-ratio-calculator" || path === "/utility/what-is-my-ip" || path === "/utility/utm-builder" ? 0.9 : 0.8,
     })),
   ];
 

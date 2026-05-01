@@ -297,16 +297,13 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/utility/what-is-my-ip",
       description: "Instantly find your public and private IP addresses, geolocation, ISP, and proxy/VPN status.",
     },
+    {
+      name: "UTM Builder",
+      href: "/utility/utm-builder",
+      description: "Generate Google Analytics tracking URLs with source, medium, and campaign parameters.",
+    },
   ],
 };
-
-export function PrivacyNote() {
-  return (
-    <p className="rounded-[1.25rem] border border-border bg-card px-4 py-3 text-sm leading-6 text-muted-foreground">
-      Inputs are processed in your browser unless a tool explicitly needs a server lookup.
-    </p>
-  );
-}
 
 export default function ToolPageScaffold({
   path,
@@ -317,7 +314,6 @@ export default function ToolPageScaffold({
   children,
   learn,
   faqs,
-  showPrivacyNote = true,
 }: {
   path: string;
   category: string;
@@ -327,7 +323,6 @@ export default function ToolPageScaffold({
   children: ReactNode;
   learn?: ReactNode;
   faqs?: Array<{ question: string; answer: string }>;
-  showPrivacyNote?: boolean;
 }) {
   return (
     <div className="space-y-8">
@@ -353,12 +348,6 @@ export default function ToolPageScaffold({
             {description}
           </p>
         </div>
-
-        {showPrivacyNote ? (
-          <div className="mt-6 max-w-2xl">
-            <PrivacyNote />
-          </div>
-        ) : null}
       </section>
 
       {children}

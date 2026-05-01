@@ -4,7 +4,7 @@ import { CalendarDays, Calculator, Landmark, ShieldCheck, TrendingUp } from "luc
 
 import EMICalculator from "@/app/finance/emi-calculator/components/EMICalculator";
 import JsonLd from "@/components/seo/JsonLd";
-import { PrivacyNote, RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
+import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import {
   buildBreadcrumbJsonLd,
@@ -162,9 +162,6 @@ export default function EMICalculatorPage() {
           </p>
         </div>
 
-        <div className="mt-6 max-w-2xl">
-          <PrivacyNote />
-        </div>
       </section>
 
       <EMICalculator />
