@@ -247,9 +247,9 @@ export default function CharacterCounter() {
   return (
     <div className="max-w-7xl mx-auto">
 
-      <div className="grid lg:grid-cols-[450px_1fr] gap-8 items-start">
-        {/* Editor Panel */}
-        <div className="space-y-6 lg:sticky lg:top-8">
+      <div className="grid lg:grid-cols-[1fr_450px] gap-8 items-start">
+        {/* Left: Editor */}
+        <div className="space-y-6">
           {/* Platform Selector */}
           <div className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm">
             <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-4">Select Platform</h3>
@@ -306,7 +306,7 @@ export default function CharacterCounter() {
               value={text}
               onChange={e => setText(e.target.value)}
               placeholder={`Write your ${platform.name} ${limit.label.toLowerCase()} here...`}
-              className="w-full min-h-[250px] p-6 text-slate-800 placeholder-slate-400 focus:outline-none text-base leading-relaxed resize-none"
+              className="w-full min-h-[400px] p-6 text-slate-800 placeholder-slate-400 focus:outline-none text-base leading-relaxed resize-none"
             />
 
             {/* Progress Bar */}
@@ -327,11 +327,6 @@ export default function CharacterCounter() {
                   {count.toLocaleString()}
                 </span>
                 <span className="text-xs font-bold text-slate-400">/ {limit.max.toLocaleString()} chars</span>
-                {remaining < 0 && (
-                  <span className="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-100">
-                    {Math.abs(remaining)} over
-                  </span>
-                )}
               </div>
               <div className="flex gap-2">
                 <button 
@@ -349,9 +344,12 @@ export default function CharacterCounter() {
               </div>
             </div>
           </div>
+        </div>
 
+        {/* Right: Stats & Status */}
+        <div className="space-y-6 lg:sticky lg:top-8">
           {/* Counters Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             {[
               { val: count, lbl: "Characters", icon: Type },
               { val: words, lbl: "Words", icon: AlignLeft },
@@ -383,17 +381,13 @@ export default function CharacterCounter() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Selected Platform Detail */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between mb-4">
+          {/* Selected Platform Detail */}
+          <div className="space-y-4 pt-4 border-t border-slate-200">
             <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
               Selected Platform Status
             </h3>
-          </div>
-          
-          <div className="max-w-xl">
+            
             {[platform].map(p => {
               const primaryKey = Object.keys(p.limits)[0] as keyof typeof p.limits;
               const primaryLimit = p.limits[primaryKey] as { max: number; warn: number; label: string };
@@ -403,14 +397,8 @@ export default function CharacterCounter() {
               return (
                 <div 
                   key={p.id}
-                  onClick={() => {
-                    setActivePlatform(p.id);
-                    setActiveField(primaryKey);
-                  }}
-                  className={`group relative bg-white p-6 rounded-3xl border transition-all cursor-pointer hover:shadow-lg ${
-                    isActive 
-                      ? "ring-2 ring-indigo-500 border-transparent" 
-                      : "border-slate-200 hover:border-slate-300"
+                  className={`relative bg-white p-6 rounded-3xl border transition-all ${
+                    pStatus === "over" ? "border-rose-200 bg-rose-50/10" : "border-slate-200 shadow-sm"
                   }`}
                 >
                   <div className="flex items-start gap-4 mb-6">
@@ -444,7 +432,6 @@ export default function CharacterCounter() {
                     </div>
                   </div>
 
-                  {/* Sub-limits Mini-Grid */}
                   <div className="space-y-3">
                     {Object.entries(p.limits).slice(0, 4).map(([key, lim]) => {
                       const st = getStatus(count, lim as { max: number; warn: number });
