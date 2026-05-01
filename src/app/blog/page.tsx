@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "How to Track Every Email Campaign with UTM Links (+ Free Template)",
+    description: "Email ROI is invisible without proper tracking. Learn how to tag every link to turn 'Direct' traffic into actionable insights and prove your email marketing impact.",
+    href: "/blog/track-email-campaigns-utm",
+    tag: "Email Marketing",
+    readTime: "10 min read",
+    date: "May 2026",
+  },
+  {
     title: "5 UTM Mistakes That Are Ruining Your Campaign Data (And How to Fix Them)",
     description: "Are you making these common tracking errors? Learn how to fix inconsistent naming, internal link tagging, and manual typos to restore your analytics accuracy.",
     href: "/blog/5-utm-mistakes",
