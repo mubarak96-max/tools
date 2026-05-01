@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "What Are UTM Parameters? A Beginner's Guide to Campaign Tracking (2026)",
+    description: "Master the basics of UTM tracking. Learn to use source, medium, and campaign tags to measure ROI accurately and stop guessing where your traffic comes from.",
+    href: "/blog/what-are-utm-parameters",
+    tag: "Marketing",
+    readTime: "8 min read",
+    date: "May 2026",
+  },
+  {
     title: "Second Home Stamp Duty in England: Higher Rates Explained (2026)",
     description: "Understand when the additional dwelling surcharge applies, when a replacement main residence avoids it, and how to model the true SDLT bill.",
     href: "/blog/uk-stamp-duty-second-home-guide",
