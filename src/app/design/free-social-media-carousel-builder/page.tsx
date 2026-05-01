@@ -119,6 +119,9 @@ export default function CarouselBuilderPage() {
                 Design stunning, high-converting carousels for Instagram, LinkedIn, and TikTok in minutes. 
                 Use premium templates and continuous backgrounds that flow across slides.
             </p>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-gray-500 leading-relaxed">
+                After the slides are ready, validate the caption and document intro with our <Link href="/utility/social-media-character-counter" className="font-semibold text-blue-600 hover:underline">Social Media Character Counter</Link> so the hook fits each platform&apos;s preview window.
+            </p>
           </div>
         </div>
       </div>
@@ -173,7 +176,7 @@ export default function CarouselBuilderPage() {
              <div className="max-w-2xl">
                 <h2 className="text-3xl font-bold text-white mb-4">Optimized for LinkedIn Carousels</h2>
                 <p className="text-blue-100 mb-6 leading-relaxed">
-                    LinkedIn professional carousels are one of the most effective ways to build authority. Our tool specifically optimizes for LinkedIn by providing a <strong>Direct PDF Export</strong>. On LinkedIn, PDF documents are treated as interactive carousels with smooth transitions and high visibility in the feed.
+                    LinkedIn professional carousels are one of the most effective ways to build authority. Our tool specifically optimizes for LinkedIn by providing a <strong>Direct PDF Export</strong>. On LinkedIn, PDF documents are treated as interactive carousels with smooth transitions and high visibility in the feed. Pair the finished asset with a stronger opening hook by checking your post text in the <Link href="/utility/social-media-character-counter" className="font-semibold text-white underline decoration-white/40 underline-offset-4">character counter</Link> before publishing.
                 </p>
                 <div className="flex flex-wrap gap-4">
                     <div className="flex items-center gap-2 text-sm bg-white/10 px-3 py-1.5 rounded-lg border border-white/10">

@@ -91,7 +91,7 @@ export default function CarouselCaptionBlogPage() {
 
         <section className="my-16">
           <h2 className="text-3xl font-bold mb-8">Platform Limitations: The Truncation Point</h2>
-          <p>Before writing, you must understand where your text gets cut off. If your hook isn't in the visible area, your post is dead in the water.</p>
+          <p>Before writing, you must understand where your text gets cut off. If your hook isn't in the visible area, your post is dead in the water. Our <Link href="/utility/social-media-character-counter" className="font-semibold text-primary hover:underline">Social Media Character Counter</Link> is built for exactly this workflow.</p>
           
           <div className="grid gap-6 sm:grid-cols-2 my-12">
              <div className="p-8 bg-card border border-border rounded-3xl">
@@ -142,7 +142,7 @@ export default function CarouselCaptionBlogPage() {
                     <MessageSquare className="h-10 w-10 text-amber-400 mb-6" />
                     <h3 className="text-3xl font-bold text-white mb-6">Designed for Better Engagement.</h3>
                     <p className="text-amber-100/80 mb-8 leading-relaxed max-w-lg">
-                        Our free tool builds carousels that are naturally easy to caption. Choose your platform, select a template, and export slides that deliver exactly what your hook promises.
+                        Our free tool builds carousels that are naturally easy to caption. Choose your platform, select a template, and export slides that deliver exactly what your hook promises. Then check the caption against the <Link href="/utility/social-media-character-counter" className="font-semibold text-white underline decoration-white/40 underline-offset-4">character counter</Link> before posting.
                     </p>
                     <Link 
                         href="/design/free-social-media-carousel-builder" 

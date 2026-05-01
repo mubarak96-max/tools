@@ -28,6 +28,8 @@ const STATIC_PATHS = [
   { path: "/blog/carousel-caption-guide", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/free-carousel-maker-no-canva", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/how-to-convert-text-to-binary", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/instagram-caption-character-limit", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/linkedin-post-character-limit", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/how-to-make-a-carousel-go-viral", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/how-to-make-a-linkedin-carousel", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/instagram-carousel-size", changeFrequency: "monthly" as const, priority: 0.5 },
@@ -50,7 +52,9 @@ const STATIC_PATHS = [
   { path: "/blog/5-utm-mistakes", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/track-email-campaigns-utm", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/social-media-utm-tracking", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/threads-bluesky-character-limits", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/how-to-read-utm-reports-ga4", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/x-character-limit-with-links", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [

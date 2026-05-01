@@ -15,6 +15,38 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "Instagram Caption Character Limit: Best Length, Preview Cutoff, and Hashtag Rules",
+    description: "Learn the real Instagram caption constraint: the 125-character preview. Plus hashtag rules, ideal caption lengths, and a cleaner writing structure.",
+    href: "/blog/instagram-caption-character-limit",
+    tag: "Instagram",
+    readTime: "9 min read",
+    date: "May 2026",
+  },
+  {
+    title: "X Character Limit With Links: Why a URL Still Costs 23 Characters",
+    description: "Most X counters get link-heavy posts wrong. Learn how weighted URLs affect the 280-character limit and how to budget space for launches and promos.",
+    href: "/blog/x-character-limit-with-links",
+    tag: "X / Twitter",
+    readTime: "8 min read",
+    date: "May 2026",
+  },
+  {
+    title: "LinkedIn Post Character Limit: Best Length, Preview Cutoff, and Writing Strategy",
+    description: "The challenge on LinkedIn is not 3,000 characters. It is making the first 210 work hard enough to earn the see-more click.",
+    href: "/blog/linkedin-post-character-limit",
+    tag: "LinkedIn",
+    readTime: "9 min read",
+    date: "May 2026",
+  },
+  {
+    title: "Threads and Bluesky Character Limits: How to Write for Both Without Guessing",
+    description: "Compare Threads and Bluesky limits, practical post lengths, and a safer cross-posting workflow for short-form social writing.",
+    href: "/blog/threads-bluesky-character-limits",
+    tag: "Social Media",
+    readTime: "8 min read",
+    date: "May 2026",
+  },
+  {
     title: "How to Read UTM Reports in Google Analytics 4 (Step-by-Step)",
     description: "Stop guessing and start measuring. Learn exactly where to find your UTM campaign data in GA4, how to interpret metrics, and how to build custom reports.",
     href: "/blog/how-to-read-utm-reports-ga4",

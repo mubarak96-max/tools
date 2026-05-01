@@ -205,6 +205,9 @@ export default function LinkedInCarouselBlogPage() {
 
         <section className="my-16">
           <h2 className="text-3xl font-bold mb-8 text-center text-muted-foreground uppercase tracking-widest text-sm">How to Post Step-by-Step</h2>
+          <p className="text-slate-600 leading-relaxed mb-6">
+            Before you upload the PDF, test the opening text in our <Link href="/utility/social-media-character-counter" className="font-semibold text-primary hover:underline">Social Media Character Counter</Link>. LinkedIn posts often win or lose on the first three visible lines.
+          </p>
           <div className="space-y-4">
              {[
                 { title: "Design & Export", desc: "Create your slides at 1080px width and export as a PDF document (standard resolution 150-300 DPI)." },

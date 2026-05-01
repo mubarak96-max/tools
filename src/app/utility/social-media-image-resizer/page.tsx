@@ -176,7 +176,7 @@ export default function SocialMediaImageResizerPage() {
               Our free tool is engineered for content creators, social media managers, and growth marketers who publish across multiple channels daily. Instead of memorizing conflicting dimension tables or wrestling with heavy design software, you upload once and export perfectly sized assets for Instagram, Twitter/X, Facebook, LinkedIn, YouTube, TikTok, and Pinterest in seconds. Every preset is verified against official platform documentation and updated for 2026 standards.
             </p>
             <p>
-              Once the creative is sized correctly, pair it with a tagged campaign URL from our <Link href="/utility/utm-builder" className="font-medium text-primary hover:underline">UTM Builder</Link> so your social posts and paid creatives report cleanly in GA4.
+              Once the creative is sized correctly, check the copy against our <Link href="/utility/social-media-character-counter" className="font-medium text-primary hover:underline">Social Media Character Counter</Link> so captions, post text, and hashtags fit each network before you publish. Then pair the asset with a tagged campaign URL from our <Link href="/utility/utm-builder" className="font-medium text-primary hover:underline">UTM Builder</Link> so your social posts and paid creatives report cleanly in GA4.
             </p>
           </div>
         </section>
@@ -323,7 +323,7 @@ export default function SocialMediaImageResizerPage() {
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
               <h3 className="font-bold text-slate-900 mb-2">Design for Mobile First</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Over 80% of social media consumption happens on mobile devices. Always preview your resized image on a phone screen. If text is unreadable at thumbnail size, redesign it. Our preview canvas simulates the final cropped result.
+                Over 80% of social media consumption happens on mobile devices. Always preview your resized image on a phone screen. If text is unreadable at thumbnail size, redesign it. Our preview canvas simulates the final cropped result, and our <Link href="/utility/social-media-character-counter" className="font-medium text-primary hover:underline">character counter</Link> helps you keep the matching caption inside each platform&apos;s visible range.
               </p>
             </div>
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">

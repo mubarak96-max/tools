@@ -110,7 +110,7 @@ export default function YouTubeTitleCheckerPage() {
                 The <strong>YouTube Title Length Checker</strong> is a free, browser-based SEO utility that measures your video title against real-world display constraints. Unlike simple character counters, this tool simulates how your title renders across devices—accounting for <dfn>pixel width</dfn>, <dfn>character truncation</dfn>, and <dfn>mobile viewport limitations</dfn>. It pairs with a <strong>Thumbnail Preview</strong> engine that renders your custom thumbnail inside authentic YouTube UI shells: search results, the home feed, suggested videos sidebar, and mobile interfaces.
               </p>
               <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                YouTube allows a maximum of <data value="100">100 characters</data> in a video title, but that is a ceiling, not a target. On mobile devices, titles truncate after roughly 35–40 characters depending on the device width and character choice . On desktop search results, the cutoff occurs closer to 60 characters . Wider characters like uppercase "W" or emojis consume significantly more pixel space than lowercase "i" or "l", meaning a 50-character title can still truncate early if it uses bold typography or symbols.
+                YouTube allows a maximum of <data value="100">100 characters</data> in a video title, but that is a ceiling, not a target. On mobile devices, titles truncate after roughly 35–40 characters depending on the device width and character choice . On desktop search results, the cutoff occurs closer to 60 characters . Wider characters like uppercase "W" or emojis consume significantly more pixel space than lowercase "i" or "l", meaning a 50-character title can still truncate early if it uses bold typography or symbols. If you repurpose the same idea into creator posts on other networks, our <Link href="/utility/social-media-character-counter" className="font-semibold text-red-600 hover:underline">Social Media Character Counter</Link> helps adapt the copy to Instagram, X, LinkedIn, Threads, and Bluesky.
               </p>
             </div>
           </section>
@@ -486,7 +486,7 @@ export default function YouTubeTitleCheckerPage() {
           {/* Related Tools */}
           <section className="mb-16 border-t border-neutral-200 dark:border-neutral-800 pt-16">
             <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-8 text-center">Related Search & Video Tools</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
               <Link href="/seo/meta-description-checker" className="group rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-red-500/50 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-8 w-8 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 font-bold text-xs">META</div>
@@ -514,6 +514,13 @@ export default function YouTubeTitleCheckerPage() {
                   <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-red-600 transition-colors">Keyword Clustering Tool</h3>
                 </div>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">Map out your YouTube channel's topical authority with semantic keyword grouping.</p>
+              </Link>
+              <Link href="/utility/social-media-character-counter" className="group rounded-2xl border border-neutral-200 dark:border-neutral-800 p-5 hover:border-red-500/50 hover:bg-red-50/50 dark:hover:bg-red-900/10 transition-all">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-8 w-8 rounded-lg bg-red-100 dark:bg-red-900/30 flex items-center justify-center text-red-600 font-bold text-xs">SOC</div>
+                  <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-red-600 transition-colors">Social Media Character Counter</h3>
+                </div>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">Adapt your title ideas into platform-safe captions and posts for Instagram, X, LinkedIn, and Threads.</p>
               </Link>
             </div>
           </section>
