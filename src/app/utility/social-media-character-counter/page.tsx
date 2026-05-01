@@ -1,3 +1,7 @@
+/**
+ * Social Media Character Counter Page
+ * The main entry point for the character counting utility.
+ */
 import type { Metadata } from 'next';
 import { 
   Instagram, 

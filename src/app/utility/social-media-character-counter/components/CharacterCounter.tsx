@@ -1,5 +1,10 @@
 'use client';
 
+/**
+ * Social Media Character Counter Component
+ * Provides real-time character counting and limit validation for multiple platforms.
+ */
+
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { 
   Instagram, 
