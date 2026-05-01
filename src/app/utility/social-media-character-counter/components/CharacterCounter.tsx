@@ -227,7 +227,6 @@ export default function CharacterCounter() {
   const [text, setText] = useState("");
   const [activePlatform, setActivePlatform] = useState("instagram");
   const [activeField, setActiveField] = useState("caption");
-  const [filterStatus, setFilterStatus] = useState("all");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const platform = PLATFORMS.find(p => p.id === activePlatform) || PLATFORMS[0];
@@ -245,40 +244,8 @@ export default function CharacterCounter() {
   const emojis = (text.match(/\p{Emoji}/gu) || []).length;
   const urls = (text.match(/https?:\/\/[^\s]+/g) || []).length;
 
-  const filteredPlatforms = PLATFORMS.filter(p => {
-    if (filterStatus === "all") return true;
-    const pField = Object.values(p.limits)[0] as { max: number; warn: number };
-    return getStatus(count, pField) === filterStatus;
-  });
-
-  const overCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0] as { max: number; warn: number }) === "over").length;
-  const warnCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0] as { max: number; warn: number }) === "warn").length;
-  const okCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0] as { max: number; warn: number }) === "ok").length;
-
   return (
     <div className="max-w-7xl mx-auto">
-      {/* Header Stat Bar */}
-      <div className="flex flex-wrap gap-3 mb-8">
-        {[
-          { label: `All (${PLATFORMS.length})`, status: "all", color: "bg-slate-500" },
-          { label: `OK (${okCount})`, status: "ok", color: "bg-emerald-500" },
-          { label: `Near Limit (${warnCount})`, status: "warn", color: "bg-amber-500" },
-          { label: `Over Limit (${overCount})`, status: "over", color: "bg-rose-500" },
-        ].map(f => (
-          <button
-            key={f.status}
-            onClick={() => setFilterStatus(f.status)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-semibold transition-all ${
-              filterStatus === f.status 
-                ? "bg-white border-slate-300 shadow-sm text-slate-900" 
-                : "bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-300"
-            }`}
-          >
-            <span className={`w-2 h-2 rounded-full ${f.color}`} />
-            {f.label}
-          </button>
-        ))}
-      </div>
 
       <div className="grid lg:grid-cols-[450px_1fr] gap-8 items-start">
         {/* Editor Panel */}
@@ -418,16 +385,16 @@ export default function CharacterCounter() {
           </div>
         </div>
 
-        {/* Platforms Grid */}
+        {/* Selected Platform Detail */}
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
-              {filteredPlatforms.length} Platform Comparison
+              Selected Platform Status
             </h3>
           </div>
           
-          <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-4">
-            {filteredPlatforms.map(p => {
+          <div className="max-w-xl">
+            {[platform].map(p => {
               const primaryKey = Object.keys(p.limits)[0] as keyof typeof p.limits;
               const primaryLimit = p.limits[primaryKey] as { max: number; warn: number; label: string };
               const pStatus = getStatus(count, primaryLimit);
