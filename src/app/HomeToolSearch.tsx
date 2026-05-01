@@ -360,6 +360,12 @@ const SEARCH_TOOLS: HomeSearchTool[] = [
     description: "Analyze password security with entropy calculation, crack time estimation, and pattern detection.",
     category: "Utility",
   },
+  {
+    name: "Social Media Character Counter",
+    href: "/utility/social-media-character-counter",
+    description: "Check character limits for Instagram, X, LinkedIn, TikTok, and more in real-time.",
+    category: "Utility",
+  },
 ];
 
 export default function HomeToolSearch() {

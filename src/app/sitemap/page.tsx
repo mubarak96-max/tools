@@ -602,6 +602,11 @@ const SITEMAP_TOOLS = [
         href: "/utility/password-strength-checker",
         description: "Analyze password security with entropy calculation, crack time estimation, and pattern detection.",
       },
+      {
+        name: "Social Media Character Counter",
+        href: "/utility/social-media-character-counter",
+        description: "Check character limits for Instagram, X, LinkedIn, TikTok, and more in real-time.",
+      },
     ],
   },
 ];

@@ -86,6 +86,11 @@ const UTILITY_TOOLS = [
     href: "/utility/password-strength-checker",
     description: "Analyze password security with entropy calculation, crack time estimation, and pattern detection.",
   },
+  {
+    name: "Social Media Character Counter",
+    href: "/utility/social-media-character-counter",
+    description: "Real-time character limits for Instagram, X, LinkedIn, TikTok, and more.",
+  },
 ];
 
 function ToolCard({ tool }: { tool: (typeof UTILITY_TOOLS)[number] }) {

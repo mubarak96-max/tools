@@ -156,6 +156,8 @@ const TOOL_PATHS = [
   "/utility/aspect-ratio-calculator",
   "/utility/what-is-my-ip",
   "/utility/utm-builder",
+  "/utility/password-strength-checker",
+  "/utility/social-media-character-counter",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
