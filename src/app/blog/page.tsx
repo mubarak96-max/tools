@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "5 UTM Mistakes That Are Ruining Your Campaign Data (And How to Fix Them)",
+    description: "Are you making these common tracking errors? Learn how to fix inconsistent naming, internal link tagging, and manual typos to restore your analytics accuracy.",
+    href: "/blog/5-utm-mistakes",
+    tag: "Data Quality",
+    readTime: "12 min read",
+    date: "May 2026",
+  },
+  {
     title: "UTM Naming Conventions: The One Rule That Keeps Your Analytics Clean (2026)",
     description: "Messy UTM data ruins reports. Learn the simple naming convention rules that ensure your campaign data is always clean, accurate, and actionable.",
     href: "/blog/utm-naming-conventions",
