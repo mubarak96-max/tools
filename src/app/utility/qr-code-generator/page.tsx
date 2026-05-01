@@ -196,7 +196,7 @@ export default function QRCodeGeneratorPage() {
           <h2 className="text-2xl font-semibold tracking-tight text-foreground">QR code generator use cases</h2>
           <h3 className="mt-6 text-xl font-semibold tracking-tight text-foreground">Website URLs and landing pages</h3>
           <p className="mt-2 text-base leading-7 text-muted-foreground">
-            The most common use is sharing a website URL. Keep links short and test the final code after styling. For print campaigns, add a clear call to action near the code, like "Scan to visit".
+            The most common use is sharing a website URL. Keep links short and test the final code after styling. For print campaigns, add a clear call to action near the code, like "Scan to visit". If you need campaign attribution, build the destination first with our <Link href="/utility/utm-builder" className="font-medium text-primary hover:underline">UTM Builder</Link> so the QR code points to a fully tagged GA4 landing URL.
           </p>
 
           <h3 className="mt-6 text-xl font-semibold tracking-tight text-foreground">Business cards and vCard sharing</h3>

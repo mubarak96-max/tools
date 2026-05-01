@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import SocialImageResizer from './SocialImageResizer';
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
@@ -173,6 +174,9 @@ export default function SocialMediaImageResizerPage() {
             </p>
             <p>
               Our free tool is engineered for content creators, social media managers, and growth marketers who publish across multiple channels daily. Instead of memorizing conflicting dimension tables or wrestling with heavy design software, you upload once and export perfectly sized assets for Instagram, Twitter/X, Facebook, LinkedIn, YouTube, TikTok, and Pinterest in seconds. Every preset is verified against official platform documentation and updated for 2026 standards.
+            </p>
+            <p>
+              Once the creative is sized correctly, pair it with a tagged campaign URL from our <Link href="/utility/utm-builder" className="font-medium text-primary hover:underline">UTM Builder</Link> so your social posts and paid creatives report cleanly in GA4.
             </p>
           </div>
         </section>

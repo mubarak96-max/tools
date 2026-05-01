@@ -120,7 +120,7 @@ export default function UtilityPage() {
           Utility tools for productivity and specialized data.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
-          Focused utilities for building professional CVs, generating codes, and scanning codes in your browser.
+          Focused utilities for building professional CVs, generating codes, and scanning codes in your browser. For campaign tracking workflows, start with our <Link href="/utility/utm-builder" className="font-medium text-primary hover:underline">UTM Builder</Link> to create GA4-ready links before you publish email, QR, or social campaigns.
         </p>
       </section>
 

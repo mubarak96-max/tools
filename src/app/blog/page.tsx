@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "UTM Naming Conventions: The One Rule That Keeps Your Analytics Clean (2026)",
+    description: "Messy UTM data ruins reports. Learn the simple naming convention rules that ensure your campaign data is always clean, accurate, and actionable.",
+    href: "/blog/utm-naming-conventions",
+    tag: "Strategy",
+    readTime: "10 min read",
+    date: "May 2026",
+  },
+  {
     title: "What Are UTM Parameters? A Beginner's Guide to Campaign Tracking (2026)",
     description: "Master the basics of UTM tracking. Learn to use source, medium, and campaign tags to measure ROI accurately and stop guessing where your traffic comes from.",
     href: "/blog/what-are-utm-parameters",

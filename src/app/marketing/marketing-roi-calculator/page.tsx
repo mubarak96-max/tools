@@ -159,7 +159,7 @@ export default function Page() {
           <div className="relative z-10 max-w-3xl">
             <h2 className="text-3xl sm:text-4xl font-black mb-8 leading-tight tracking-tight uppercase">The Attribution Myth: Why Calculators Are Only Part of the Story</h2>
             <p className="text-slate-400 text-lg leading-relaxed mb-10 font-medium">
-              Calculators provide perfect math, but your marketing data is often flawed. <strong>Attribution</strong> is the science of assigning credit to different touchpoints in a customer journey. Most platforms default to "Last-Click," which unfairly rewards Retargeting while ignoring the "top-of-funnel" awareness work done by Brand or Content marketing.
+              Calculators provide perfect math, but your marketing data is often flawed. <strong>Attribution</strong> is the science of assigning credit to different touchpoints in a customer journey. Most platforms default to "Last-Click," which unfairly rewards Retargeting while ignoring the "top-of-funnel" awareness work done by Brand or Content marketing. Before you trust ROI outputs, make sure your campaign links are consistently tagged with a disciplined <Link href="/utility/utm-builder" className="text-white underline decoration-primary/60 underline-offset-4 hover:text-primary-soft">UTM Builder workflow</Link>.
             </p>
             
             <div className="grid sm:grid-cols-2 gap-8 text-left">
