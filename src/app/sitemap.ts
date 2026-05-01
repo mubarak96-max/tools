@@ -49,6 +49,7 @@ const STATIC_PATHS = [
   { path: "/blog/utm-naming-conventions", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/5-utm-mistakes", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/track-email-campaigns-utm", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/social-media-utm-tracking", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [

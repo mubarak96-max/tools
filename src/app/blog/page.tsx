@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "UTM Tracking for Social Media: Facebook, Instagram, LinkedIn & X",
+    description: "Social media attribution is complex. Learn how to structure UTM parameters for every platform to distinguish paid from organic and stories from feed posts.",
+    href: "/blog/social-media-utm-tracking",
+    tag: "Social Media",
+    readTime: "15 min read",
+    date: "May 2026",
+  },
+  {
     title: "How to Track Every Email Campaign with UTM Links (+ Free Template)",
     description: "Email ROI is invisible without proper tracking. Learn how to tag every link to turn 'Direct' traffic into actionable insights and prove your email marketing impact.",
     href: "/blog/track-email-campaigns-utm",
