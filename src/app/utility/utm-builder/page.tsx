@@ -512,6 +512,43 @@ export default function UtmBuilderPage() {
           </section>
 
           <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">Related UTM and GA4 Guides</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {[
+                {
+                  name: "What Are UTM Parameters?",
+                  href: "/blog/what-are-utm-parameters",
+                  description: "Start with the basics if you need a clean explanation of source, medium, campaign, term, and content.",
+                },
+                {
+                  name: "UTM Naming Conventions",
+                  href: "/blog/utm-naming-conventions",
+                  description: "Build one naming system that keeps GA4 reports clean as your team scales.",
+                },
+                {
+                  name: "How to Read UTM Reports in GA4",
+                  href: "/blog/how-to-read-utm-reports-ga4",
+                  description: "See where tagged traffic appears in GA4 and how to inspect campaign performance after launch.",
+                },
+                {
+                  name: "UTM Builder for Shopify",
+                  href: "/blog/utm-builder-for-shopify",
+                  description: "Learn how to tag product, collection, and campaign URLs for Shopify stores without breaking attribution.",
+                },
+              ].map((guide) => (
+                <Link
+                  key={guide.href}
+                  href={guide.href}
+                  className="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:border-indigo-300 hover:shadow-sm"
+                >
+                  <h3 className="text-base font-bold text-slate-900">{guide.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{guide.description}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+
+          <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-6">Related Marketing and Utility Tools</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[

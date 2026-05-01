@@ -246,6 +246,17 @@ export default function FinancePage() {
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Focused browser tools for creating invoices and handling everyday finance tasks.
         </p>
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Popular seller calculators:{" "}
+          <Link href="/finance/amazon-fba-calculator-uk" className="font-medium text-primary hover:underline">
+            Amazon FBA Calculator UK
+          </Link>{" "}
+          and{" "}
+          <Link href="/finance/amazon-fba-canada-calculator" className="font-medium text-primary hover:underline">
+            Amazon FBA Calculator Canada
+          </Link>
+          . They model referral fees, fulfilment, storage, and margin before you source inventory.
+        </p>
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

@@ -53,6 +53,17 @@ export default function ConstructionPage() {
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Estimate concrete, paint, and roofing materials before you order supplies or plan a job.
         </p>
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Start with the{" "}
+          <Link href="/construction/concrete-volume-calculator" className="font-medium text-primary hover:underline">
+            Concrete Volume Calculator
+          </Link>{" "}
+          for slabs, steps, and footings, or the{" "}
+          <Link href="/construction/paint-coverage-calculator" className="font-medium text-primary hover:underline">
+            Paint Coverage Calculator
+          </Link>{" "}
+          for walls, ceilings, primer, and finish coats.
+        </p>
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">

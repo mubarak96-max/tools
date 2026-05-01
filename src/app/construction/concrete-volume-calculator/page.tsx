@@ -9,11 +9,12 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 const PAGE_PATH = "/construction/concrete-volume-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
+const LAST_UPDATED_ISO = "2026-05-01T00:00:00.000Z";
 
 export const metadata: Metadata = {
-  title: "Professional Concrete Volume Calculator | Yards & Bags Estimate",
+  title: "Concrete Volume Calculator | Cubic Yards, Bags, and Cost Estimate",
   description:
-    "Calculate cubic yards of concrete needed for slabs, footings, stairs, and columns. Includes 10% waste factor, cost estimation, and multiple project sections.",
+    "Calculate concrete volume for slabs, footings, columns, holes, and stairs. Estimate cubic yards, bag counts, waste factor, and project cost before you pour.",
   keywords: [
     "concrete calculator",
     "concrete volume calculator",
@@ -27,6 +28,16 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: PAGE_URL,
+  },
+  openGraph: {
+    title: "Concrete Volume Calculator",
+    description:
+      "Estimate cubic yards, bags of concrete, waste allowance, and project cost for slabs, footings, and stairs.",
+    url: PAGE_URL,
+    type: "website",
+  },
+  other: {
+    "article:modified_time": LAST_UPDATED_ISO,
   },
 };
 
@@ -102,13 +113,14 @@ export default function ConcreteVolumeCalculatorPage() {
 
         <div className="max-w-4xl">
           <p className="primary-chip inline-flex rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] bg-primary/10 text-primary">
-            Engineering & Construction
+            Updated May 2026
           </p>
           <h1 className="mt-6 text-5xl font-black tracking-tighter text-foreground sm:text-7xl">
-            Ultimate Concrete Volume Calculator
+            Concrete Volume Calculator
           </h1>
           <p className="mt-8 text-lg leading-relaxed text-muted-foreground sm:text-2xl font-light">
-            Plan your entire project in one place. Calculate slabs, footings, and stairs using multiple sections, adjustable waste factors, and instant cost estimation.
+            Calculate cubic yards, bag counts, waste factor, and cost for slabs, footings, stairs,
+            columns, and mixed pours before you order concrete.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <div className="flex items-center gap-2 text-sm font-bold text-success capitalize">
@@ -232,6 +244,39 @@ export default function ConcreteVolumeCalculatorPage() {
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.answer}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="rounded-[2rem] border border-border/80 bg-card p-8 sm:p-10">
+        <h2 className="text-2xl font-bold tracking-tight text-foreground">Related planning guides</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <Link
+            href="/construction/paint-coverage-calculator"
+            className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/30"
+          >
+            <h3 className="text-base font-semibold text-foreground">Paint Coverage Calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Estimate paint, primer, coats, and room coverage for the finishing stage after the pour.
+            </p>
+          </Link>
+          <Link
+            href="/construction/roofing-material-calculator"
+            className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/30"
+          >
+            <h3 className="text-base font-semibold text-foreground">Roofing Material Calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Plan shingles, underlayment, and waste allowance for larger exterior projects.
+            </p>
+          </Link>
+          <Link
+            href="/construction"
+            className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/30"
+          >
+            <h3 className="text-base font-semibold text-foreground">Construction Tools Hub</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Browse more calculators for concrete, paint, flooring, and roofing project planning.
+            </p>
+          </Link>
         </div>
       </section>
 

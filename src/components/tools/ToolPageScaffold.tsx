@@ -162,6 +162,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/finance/amazon-fba-canada-calculator",
       description: "Calculate Amazon.ca fees in CAD: referral, fulfillment, and storage.",
     },
+    {
+      name: "Amazon FBA Calculator UK",
+      href: "/finance/amazon-fba-calculator-uk",
+      description: "Estimate Amazon UK referral fees, fulfillment, storage, and unit profit.",
+    },
   ],
   SEO: [
     {
@@ -203,6 +208,31 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
     },
   ],
   "Real Estate": [
+    {
+      name: "Singapore Buyer's Stamp Duty Calculator",
+      href: "/real-estate/singapore-buyers-stamp-duty-calculator",
+      description: "Estimate Singapore BSD and ABSD for residential buyers by profile and property count.",
+    },
+    {
+      name: "Hong Kong Stamp Duty Calculator",
+      href: "/real-estate/hong-kong-stamp-duty-calculator",
+      description: "Calculate Hong Kong residential ad valorem stamp duty using the current Scale 2 schedule.",
+    },
+    {
+      name: "Wales LTT Calculator",
+      href: "/real-estate/wales-ltt-calculator",
+      description: "Estimate Welsh Land Transaction Tax with standard and higher residential rates.",
+    },
+    {
+      name: "Scotland LBTT Calculator",
+      href: "/real-estate/scotland-lbtt-calculator",
+      description: "Calculate Scottish LBTT with first-time buyer relief and Additional Dwelling Supplement.",
+    },
+    {
+      name: "Toronto Land Transfer Tax Calculator",
+      href: "/real-estate/land-transfer-tax-calculator-toronto",
+      description: "Estimate Ontario LTT, Toronto MLTT, rebates, and NRST for Toronto purchases.",
+    },
     {
       name: "NYC Transfer Tax Calculator",
       href: "/real-estate/nyc-transfer-tax-calculator",

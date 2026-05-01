@@ -9,11 +9,12 @@ import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/se
 
 const PAGE_PATH = "/construction/paint-coverage-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
+const LAST_UPDATED_ISO = "2026-05-01T00:00:00.000Z";
 
 export const metadata: Metadata = {
-  title: "Professional Paint Coverage Calculator | Room & Ceiling Estimator",
+  title: "Paint Coverage Calculator | Estimate Gallons for Walls and Ceilings",
   description:
-    "Calculate exactly how much paint you need for any room. Includes surface texture modifiers, primer estimates, and multi-coat planning. Get gallons or liters instantly.",
+    "Calculate how much paint you need for rooms, walls, ceilings, and primer coats. Estimate gallons, liters, and project coverage before you buy paint.",
   keywords: [
     "paint coverage calculator",
     "how much paint for a room",
@@ -26,6 +27,16 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: PAGE_URL,
+  },
+  openGraph: {
+    title: "Paint Coverage Calculator",
+    description:
+      "Estimate paint, primer, coats, and room coverage before you buy supplies.",
+    url: PAGE_URL,
+    type: "website",
+  },
+  other: {
+    "article:modified_time": LAST_UPDATED_ISO,
   },
 };
 
@@ -99,13 +110,14 @@ export default function PaintCoverageCalculatorPage() {
 
         <div className="max-w-4xl">
           <p className="primary-chip inline-flex rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] bg-primary/10 text-primary">
-            Smart Estimation Tool
+            Updated May 2026
           </p>
           <h1 className="mt-6 text-5xl font-black tracking-tighter text-foreground sm:text-7xl">
-            Professional Paint Calculator
+            Paint Coverage Calculator
           </h1>
           <p className="mt-8 text-lg leading-relaxed text-muted-foreground sm:text-2xl font-light">
-            Don't guess how much paint you need. Plan your room transformation with precision using our visual estimator, taking into account surface types, deductions, and primer needs.
+            Estimate paint, primer, coats, and room coverage before you buy supplies. Use it for
+            walls, ceilings, touch-ups, and full-room refreshes without guessing at the store.
           </p>
         </div>
       </section>
@@ -203,6 +215,39 @@ export default function PaintCoverageCalculatorPage() {
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.answer}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="rounded-[2rem] border border-border/80 bg-card p-8 sm:p-10">
+        <h2 className="text-2xl font-bold tracking-tight text-foreground">Related planning guides</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <Link
+            href="/construction/concrete-volume-calculator"
+            className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/30"
+          >
+            <h3 className="text-base font-semibold text-foreground">Concrete Volume Calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Estimate slabs, footings, steps, and ready-mix quantities for the next phase of a renovation.
+            </p>
+          </Link>
+          <Link
+            href="/construction/flooring-material-calculator"
+            className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/30"
+          >
+            <h3 className="text-base font-semibold text-foreground">Flooring Material Calculator</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Plan flooring boxes, waste allowance, and underlayment for full-room remodels.
+            </p>
+          </Link>
+          <Link
+            href="/construction"
+            className="rounded-2xl border border-border bg-background p-5 transition-colors hover:border-primary/30"
+          >
+            <h3 className="text-base font-semibold text-foreground">Construction Tools Hub</h3>
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
+              Browse the rest of our material planning tools for paint, roofing, flooring, and concrete jobs.
+            </p>
+          </Link>
         </div>
       </section>
 

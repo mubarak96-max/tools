@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import WalesLttCalculator from "@/app/real-estate/wales-ltt-calculator/components/WalesLttCalculator";
@@ -10,35 +11,36 @@ export const revalidate = 43200;
 
 const PAGE_PATH = "/real-estate/wales-ltt-calculator";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
+const LAST_UPDATED_ISO = "2026-05-01T00:00:00.000Z";
 
 const faq = [
   {
     question: "Does this calculator use current Welsh LTT bands?",
     answer:
-      "Yes. It uses the current residential Land Transaction Tax bands for Wales and lets you switch between the standard rates and the higher residential rates.",
+      "Yes. It uses the current residential Land Transaction Tax bands for Wales and lets you compare the standard and higher residential rates.",
   },
   {
     question: "What does the higher-rates option mean?",
     answer:
-      "It is there for purchases that fall into the higher residential rate rules rather than the normal main-residence bands. The higher rates are much steeper, so that switch matters.",
+      "It is for purchases that fall under the higher residential rates rather than the standard main-residence bands.",
   },
   {
     question: "Can I use this for England, Northern Ireland, or Scotland?",
     answer:
-      "No. Those jurisdictions use different property transaction tax systems. This page is only for Welsh residential LTT.",
+      "No. Those jurisdictions use different property transaction tax systems, so this page is only for Welsh residential LTT.",
   },
   {
     question: "Is this enough for final completion figures?",
     answer:
-      "It is a planning calculator rather than a legal completion statement. Use it to budget and compare scenarios, then confirm the final figure with your conveyancer.",
+      "It is a planning calculator. Use it to budget and compare scenarios, then confirm the final figure with your conveyancer.",
   },
 ];
 
 export const metadata: Metadata = {
   ...buildMetadata({
-    title: "Wales LTT Calculator | Welsh Land Transaction Tax Calculator",
+    title: "Wales LTT Calculator | Land Transaction Tax for Wales",
     description:
-      "Calculate Welsh residential Land Transaction Tax with the current standard and higher residential rates.",
+      "Calculate Wales Land Transaction Tax with current residential bands and higher rates. Estimate your Welsh property tax before exchange and completion.",
     path: PAGE_PATH,
   }),
   keywords: [
@@ -47,6 +49,16 @@ export const metadata: Metadata = {
     "wales stamp duty calculator",
     "higher rates ltt calculator wales",
   ],
+  openGraph: {
+    title: "Wales LTT Calculator",
+    description:
+      "Estimate Welsh Land Transaction Tax using current residential and higher-rate bands.",
+    url: PAGE_URL,
+    type: "website",
+  },
+  other: {
+    "article:modified_time": LAST_UPDATED_ISO,
+  },
 };
 
 function buildApplicationJsonLd() {
@@ -94,16 +106,35 @@ export default function WalesLttCalculatorPage() {
         faqs={faq}
         learn={
           <div className="prose prose-slate max-w-none">
+            <p className="text-sm font-medium text-slate-500">Last updated: May 2026</p>
+
             <h2>Why this page focuses only on Wales</h2>
             <p>
-              Wales has its own residential transaction tax system, and the bands are different from Scotland and from
-              England and Northern Ireland. A dedicated LTT calculator is the only way to keep the estimate aligned with
-              the Welsh structure people actually pay under.
+              Wales has its own Land Transaction Tax system. The bands are different from Scotland
+              and from England and Northern Ireland, so a dedicated Wales LTT calculator is the only
+              way to produce a realistic estimate.
             </p>
+
             <h2>Where this calculator is most useful</h2>
             <p>
-              It is useful when you want to compare normal main-residence purchases with higher-rate scenarios and see
-              the tax effect before you start adding solicitor fees, deposit cash, or mortgage costs to the wider budget.
+              Use it when you want to compare a standard main-residence purchase with a higher-rate
+              scenario before layering in deposit, legal fees, and mortgage costs.
+            </p>
+
+            <h2>Worked example</h2>
+            <p>
+              If you are deciding between a normal residential move and a purchase that triggers the
+              higher rates, this calculator shows the tax gap immediately. That makes it easier to
+              budget your total cash required before exchange.
+            </p>
+
+            <h2>Related guides and calculators</h2>
+            <p>
+              Read our{" "}
+              <Link href="/blog/wales-ltt-guide">Wales LTT guide</Link> for a plain-English
+              walkthrough. You can also compare Welsh property tax with the{" "}
+              <Link href="/real-estate/scotland-lbtt-calculator">Scotland LBTT calculator</Link> or
+              the <Link href="/real-estate/uk-stamp-duty-calculator">UK stamp duty calculator</Link>.
             </p>
           </div>
         }

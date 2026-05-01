@@ -149,6 +149,29 @@ export default function RealEstatePage() {
         <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
           Estimate transfer taxes, stamp duty, and price-per-area metrics across major real estate markets.
         </p>
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
+          Most-used pages right now:{" "}
+          <Link href="/real-estate/singapore-buyers-stamp-duty-calculator" className="font-medium text-primary hover:underline">
+            Singapore Buyer's Stamp Duty Calculator
+          </Link>
+          ,{" "}
+          <Link href="/real-estate/hong-kong-stamp-duty-calculator" className="font-medium text-primary hover:underline">
+            Hong Kong Stamp Duty Calculator
+          </Link>
+          ,{" "}
+          <Link href="/real-estate/wales-ltt-calculator" className="font-medium text-primary hover:underline">
+            Wales LTT Calculator
+          </Link>
+          ,{" "}
+          <Link href="/real-estate/scotland-lbtt-calculator" className="font-medium text-primary hover:underline">
+            Scotland LBTT Calculator
+          </Link>
+          , and{" "}
+          <Link href="/real-estate/land-transfer-tax-calculator-toronto" className="font-medium text-primary hover:underline">
+            Toronto Land Transfer Tax Calculator
+          </Link>
+          .
+        </p>
       </section>
 
       <section>
