@@ -247,13 +247,13 @@ export default function CharacterCounter() {
 
   const filteredPlatforms = PLATFORMS.filter(p => {
     if (filterStatus === "all") return true;
-    const pField = Object.values(p.limits)[0];
+    const pField = Object.values(p.limits)[0] as { max: number; warn: number };
     return getStatus(count, pField) === filterStatus;
   });
 
-  const overCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0]) === "over").length;
-  const warnCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0]) === "warn").length;
-  const okCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0]) === "ok").length;
+  const overCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0] as { max: number; warn: number }) === "over").length;
+  const warnCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0] as { max: number; warn: number }) === "warn").length;
+  const okCount = PLATFORMS.filter(p => getStatus(count, Object.values(p.limits)[0] as { max: number; warn: number }) === "ok").length;
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -428,8 +428,8 @@ export default function CharacterCounter() {
           
           <div className="grid md:grid-cols-2 xl:grid-cols-2 gap-4">
             {filteredPlatforms.map(p => {
-              const primaryKey = Object.keys(p.limits)[0];
-              const primaryLimit = p.limits[primaryKey as keyof typeof p.limits];
+              const primaryKey = Object.keys(p.limits)[0] as keyof typeof p.limits;
+              const primaryLimit = p.limits[primaryKey] as { max: number; warn: number; label: string };
               const pStatus = getStatus(count, primaryLimit);
               const isActive = activePlatform === p.id;
 
@@ -480,7 +480,7 @@ export default function CharacterCounter() {
                   {/* Sub-limits Mini-Grid */}
                   <div className="space-y-3">
                     {Object.entries(p.limits).slice(0, 4).map(([key, lim]) => {
-                      const st = getStatus(count, lim);
+                      const st = getStatus(count, lim as { max: number; warn: number });
                       const currentPct = Math.min(count / lim.max * 100, 100);
                       return (
                         <div key={key} className="space-y-1.5">
