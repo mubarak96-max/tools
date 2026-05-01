@@ -45,6 +45,7 @@ const STATIC_PATHS = [
   { path: "/blog/residential-stamp-duty-rates-uk", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/buy-to-let-stamp-duty-guide-uk", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/first-time-buyer-stamp-duty-relief-uk", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/what-are-utm-parameters", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [
