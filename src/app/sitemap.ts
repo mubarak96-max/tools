@@ -50,6 +50,7 @@ const STATIC_PATHS = [
   { path: "/blog/5-utm-mistakes", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/track-email-campaigns-utm", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/social-media-utm-tracking", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/how-to-read-utm-reports-ga4", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [

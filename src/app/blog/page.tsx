@@ -15,6 +15,14 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    title: "How to Read UTM Reports in Google Analytics 4 (Step-by-Step)",
+    description: "Stop guessing and start measuring. Learn exactly where to find your UTM campaign data in GA4, how to interpret metrics, and how to build custom reports.",
+    href: "/blog/how-to-read-utm-reports-ga4",
+    tag: "Analytics",
+    readTime: "12 min read",
+    date: "May 2026",
+  },
+  {
     title: "UTM Tracking for Social Media: Facebook, Instagram, LinkedIn & X",
     description: "Social media attribution is complex. Learn how to structure UTM parameters for every platform to distinguish paid from organic and stories from feed posts.",
     href: "/blog/social-media-utm-tracking",
