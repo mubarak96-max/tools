@@ -81,6 +81,11 @@ const UTILITY_TOOLS = [
     href: "/utility/utm-builder",
     description: "Generate Google Analytics tracking URLs with source, medium, and campaign parameters. Supports bulk mode and presets.",
   },
+  {
+    name: "Password Strength Checker",
+    href: "/utility/password-strength-checker",
+    description: "Analyze password security with entropy calculation, crack time estimation, and pattern detection.",
+  },
 ];
 
 function ToolCard({ tool }: { tool: (typeof UTILITY_TOOLS)[number] }) {
