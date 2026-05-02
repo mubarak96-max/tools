@@ -289,7 +289,7 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
     },
     {
       name: "QR Code Generator",
-      href: "/utility/qr-code-generator",
+      href: "/utility/create-qr-code-online",
       description: "Create static QR codes with custom colors and download options.",
     },
     {

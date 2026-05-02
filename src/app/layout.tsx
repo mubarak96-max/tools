@@ -4,6 +4,7 @@ import {
   DM_Serif_Display,
   Inter,
   JetBrains_Mono,
+  Sora,
   Space_Grotesk,
   Syne,
 } from "next/font/google";
@@ -14,11 +15,17 @@ import Script from "next/script";
 import { getBaseUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo/metadata";
 import { ADSENSE_CLIENT_ID } from "@/lib/consent";
 
-const sansFont = Inter({
+const soraFont = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
+});
+
+const sansFont = Sora({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
 const displayFont = Space_Grotesk({
   subsets: ["latin"],
@@ -63,7 +70,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body
-        className={`${sansFont.variable} ${displayFont.variable} ${monoFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
+        className={`${soraFont.variable} ${sansFont.variable} ${displayFont.variable} ${monoFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
       >
         <div className="site-backdrop pointer-events-none fixed inset-0 z-[-1]" />
         <Header />

@@ -215,7 +215,7 @@ export default function DnsCheckerPage() {
                         <h3 className="text-sm font-bold uppercase tracking-wider text-foreground">Technical Utilities</h3>
                         <div className="grid gap-2">
                              {[
-                                { name: "QR Code Generator", href: "/utility/qr-code-generator" },
+                                { name: "QR Code Generator", href: "/utility/create-qr-code-online" },
                                 { name: "Barcode Generator", href: "/utility/barcode-generator" },
                                 { name: "Word Frequency Counter", href: "/text/word-frequency" },
                                 { name: "Binary Code Translator", href: "/text/binary-code-translator" },

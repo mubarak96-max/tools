@@ -19,7 +19,7 @@ const tools = [
     name: "QR Code Generator",
     description: "Create custom QR codes for free",
     icon: <QrCode className="w-5 h-5" />,
-    href: "/utility/qr-code-generator",
+    href: "/utility/create-qr-code-online",
     category: "Utility",
   },
   {

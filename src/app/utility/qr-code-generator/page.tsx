@@ -1,18 +1,18 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
-import QRCodeGenerator from "@/app/utility/qr-code-generator/components/QRCodeGenerator";
+import QRCodeGenerator from "@/app/utility/create-qr-code-online/components/QRCodeGenerator";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 
 export const revalidate = 43200;
 
-const PAGE_PATH = "/utility/qr-code-generator";
+const PAGE_PATH = "/utility/create-qr-code-online";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Free QR Code Generator - Static, No Expiry, Instant Download",
+  title: "Create QR Code Online - Static, No Expiry, Instant Download",
   description:
     "Create static QR codes for URLs, Wi-Fi, WhatsApp, business cards, and more. No expiry, no scan limits, instant PNG download, and no sign-up required.",
   keywords: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: PAGE_URL,
-    title: "Free QR Code Generator – Unlimited Scans, No Expiry",
+    title: "Create QR Code Online – Unlimited Scans, No Expiry",
     description:
       "Generate custom QR codes that never expire. Instantly download high-quality PNGs with zero limits.",
   },
@@ -169,7 +169,7 @@ export default function QRCodeGeneratorPage() {
             Web Utility
           </p>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Free QR Code Generator
+            Create QR Code Online
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
             Create high-quality static QR codes that never expire. Customize colors, adjust error correction, and download a high-resolution PNG instantly. No sign-up, no logos, and no limits. Already have a code? Use our <Link href="/utility/qr-code-scanner" className="text-primary hover:underline font-medium">Online QR Code Scanner</Link>.

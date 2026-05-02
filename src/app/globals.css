@@ -1,58 +1,55 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Outfit', var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Sora', 'Inter', var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Sora', 'Outfit', var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono);
 
-  --color-border: #E2E8F0;
+  --color-border: #E5E5E5;
   --color-border-soft: #F1F5F9;
   --color-input: #F1F5F9;
-  --color-ring: #6366F1;
-  --color-background: #F8FAFC;
-  --color-foreground: #0F172A;
+  --color-ring: #0070f3;
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
 
-  --color-primary: #6366F1;
-  --color-primary-hover: #4F46E5;
+  --color-primary: #0070f3;
+  --color-primary-hover: #0060d9;
   --color-primary-foreground: #FFFFFF;
-  --color-primary-soft: #EEF2FF;
-  --color-primary-soft-foreground: #4338CA;
+  --color-primary-soft: #eff6ff;
+  --color-primary-soft-foreground: #0070f3;
 
-  --color-secondary: #64748B;
+  --color-secondary: #525252;
   --color-secondary-foreground: #FFFFFF;
 
-  --color-destructive: #EF4444;
+  --color-destructive: #dc2626;
   --color-destructive-foreground: #FFFFFF;
-  --color-danger-soft: #FEF2F2;
-  --color-danger-soft-foreground: #B91C1C;
+  --color-danger-soft: #fef2f2;
+  --color-danger-soft-foreground: #dc2626;
 
-  --color-muted: #F1F5F9;
-  --color-muted-foreground: #64748B;
+  --color-muted: #fafafa;
+  --color-muted-foreground: #a3a3a3;
 
-  --color-accent: #818CF8;
-  --color-accent-foreground: #312E81;
+  --color-accent: #0070f3;
+  --color-accent-foreground: #ffffff;
 
-  --color-success: #10B981;
+  --color-success: #16a34a;
   --color-success-foreground: #FFFFFF;
-  --color-success-soft: #ECFDF5;
-  --color-success-soft-foreground: #047857;
+  --color-success-soft: #f0fdf4;
+  --color-success-soft-foreground: #16a34a;
 
-  --color-warning: #F59E0B;
+  --color-warning: #ea580c;
   --color-warning-foreground: #FFFFFF;
-  --color-warning-soft: #FFFBEB;
-  --color-warning-soft-foreground: #B45309;
+  --color-warning-soft: #fff7ed;
+  --color-warning-soft-foreground: #ea580c;
 
-  --color-card: #FFFFFF;
-  --color-card-foreground: #0F172A;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 6px;
 
-  --radius-xl: 1.5rem;
-  --radius-2xl: 2rem;
-  --radius-lg: 1rem;
-  --radius-md: 0.75rem;
-  --radius-sm: 0.5rem;
-
-  --shadow-premium: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
-  --shadow-hover: 0 20px 50px -12px rgba(99, 102, 241, 0.15);
+  --shadow-premium: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.08);
 
   --animate-fade-in: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-slide-up: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -63,7 +60,7 @@
     100% { opacity: 1; }
   }
   @keyframes slideUp {
-    0% { opacity: 0; transform: translateY(30px); }
+    0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
   @keyframes float {
@@ -88,8 +85,8 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.04em;
+    font-weight: 600;
+    letter-spacing: -0.03em;
   }
   ::selection {
     background: color-mix(in srgb, var(--color-primary) 30%, transparent);
@@ -97,69 +94,66 @@
   }
 }
 
-@utility glass-card {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: var(--shadow-premium);
-}
-
-@utility glass-card-dark {
-  background: rgba(15, 23, 42, 0.03);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(15, 23, 42, 0.05);
-}
-
-@utility section-gradient {
-  background: radial-gradient(circle at top left, var(--color-primary-soft), transparent 40%),
-              radial-gradient(circle at bottom right, #F0FDFA, transparent 40%);
-}
-
-@utility primary-chip {
-  background: var(--color-primary-soft);
-  border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
-  color: var(--color-primary-soft-foreground);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.7rem;
-}
-
-@utility hero-text {
-  background: linear-gradient(to bottom right, var(--color-foreground), var(--color-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@utility premium-button {
-  background: var(--color-primary);
-  color: white;
-  font-weight: 600;
-  border-radius: var(--radius-full);
-  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
-  transition: all 0.2s ease;
-  &:hover {
-    background: var(--color-primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.23);
-  }
-  &:active {
-    transform: translateY(0);
-  }
-}
-
-@utility secondary-button {
-  background: white;
-  color: var(--color-foreground);
-  font-weight: 600;
+/* Custom Styles for Stripe-inspired Design */
+@utility stripe-card {
+  padding: 20px;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  transition: all 0.2s ease;
+  border-radius: var(--radius-lg);
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   &:hover {
-    background: var(--color-muted);
-    border-color: var(--color-primary-soft);
-    transform: translateY(-2px);
+    border-color: #999;
+    box-shadow: var(--shadow-premium);
   }
+}
+
+@utility stripe-mini-card {
+  padding: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: white;
+}
+
+@utility stripe-tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+@utility stripe-chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  color: var(--color-secondary);
+  background: white;
+  transition: all 0.15s;
+  &:hover {
+    border-color: #999;
+    color: var(--color-foreground);
+  }
+  &.on {
+    background: var(--color-foreground);
+    color: white;
+    border-color: var(--color-foreground);
+  }
+}
+
+@utility section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+  margin-bottom: 16px;
 }

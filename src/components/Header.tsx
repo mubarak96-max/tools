@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Menu, X, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
@@ -91,7 +90,7 @@ const NAV_GROUPS = [
     tools: [
       { name: 'DNS Checker', href: '/utility/dns-checker'},
       { name: 'Free CV Resume Builder', href: '/utility/free-cv-resume-builder'},
-      { name: 'QR Code Generator', href: '/utility/qr-code-generator'},
+      { name: 'QR Code Generator', href: '/utility/create-qr-code-online'},
       { name: 'Barcode Generator', href: '/utility/barcode-generator'},
       { name: 'QR Code Scanner', href: '/utility/qr-code-scanner'},
       { name: 'Barcode Scanner', href: '/utility/barcode-scanner'},
@@ -118,144 +117,109 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  const isActive = (href: string) =>
-    href === '/' ? pathname === '/' : pathname.startsWith(href);
+  useEffect(() => {
+    setMobileOpenPath(null);
+    setDropdownOpenPath(null);
+  }, [pathname]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/20 bg-white/70 backdrop-blur-xl transition-all duration-300">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-white/92 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6 lg:px-8">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0">
-          <Image
-            src="/images/logo.svg"
-            alt="FindBest Tools"
-            width={182}
-            height={42}
-            priority
-            className="h-9 w-auto sm:h-10"
-          />
+        <Link href="/" className="text-[15px] font-semibold tracking-tight hover:opacity-80 transition-opacity">
+          findbest<span className="text-primary">.</span>tools
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-0.5">
-
-          {/* Tools mega-dropdown */}
-          <div ref={dropdownRef} className="relative">
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+           <div ref={dropdownRef} className="relative">
             <button
               onClick={() => setDropdownOpenPath(dropdownOpen ? null : pathname)}
-              aria-expanded={dropdownOpen}
-              className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-primary/5 ${dropdownOpen ? 'text-primary bg-primary/10' : 'text-slate-700'}`}
+              className={`text-[13px] font-medium transition-colors flex items-center gap-1 ${dropdownOpen ? 'text-primary' : 'text-secondary hover:text-foreground'}`}
             >
-              All Tools
-              <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} />
+              Tools
+              <ChevronDown className={`h-3.5 w-3.5 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
             </button>
 
             {dropdownOpen && (
-              <div className="absolute left-0 top-full mt-4 w-[720px] origin-top-left animate-fade-in rounded-3xl border border-white/40 bg-white/95 p-8 shadow-premium backdrop-blur-2xl">
-                <div className="grid grid-cols-4 gap-8">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[800px] animate-fade-in rounded-[24px] border border-border bg-white p-8 shadow-premium">
+                <div className="grid grid-cols-4 gap-x-8 gap-y-10">
                   {NAV_GROUPS.map((group) => (
                     <div key={group.label}>
-                      <Link
-                        href={group.href}
-                        className="mb-4 block text-[10px] font-bold uppercase tracking-widest text-primary/80"
-                      >
+                      <div className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-4">
                         {group.label}
-                      </Link>
-                      {group.tools.length > 0 ? (
-                        <ul className="space-y-1.5">
-                          {group.tools.map((tool) => (
-                              <li key={tool.href}>
-                                <Link
-                                  href={tool.href}
-                                  className="flex items-center gap-2 text-[13px] text-slate-600 hover:text-primary transition-colors leading-snug"
-                                >                                  {tool.name}
-                                </Link>
-                              </li>
-                          ))}
-                          <li>
-                            <Link
-                              href={group.href}
-                              className="inline-flex items-center text-xs font-semibold text-primary/60 hover:text-primary transition-colors mt-2"
-                            >
-                              Explore all
-                              <ArrowRight className="ml-1 h-3 w-3" />
+                      </div>
+                      <ul className="space-y-2">
+                        {group.tools.slice(0, 5).map((tool) => (
+                          <li key={tool.href}>
+                            <Link href={tool.href} className="text-[13px] text-secondary hover:text-primary transition-colors block">
+                              {tool.name}
                             </Link>
                           </li>
-                        </ul>
-                      ) : (
-                        <Link href={group.href} className="block text-[13px] text-slate-600 hover:text-primary transition-colors">
-                          Browse {group.label} →
-                        </Link>
-                      )}
+                        ))}
+                        <li>
+                          <Link href={group.href} className="text-[12px] font-semibold text-primary hover:opacity-80 transition-opacity inline-flex items-center gap-1 mt-1">
+                            Explore all <ArrowRight className="h-3 w-3" />
+                          </Link>
+                        </li>
+                      </ul>
                     </div>
                   ))}
-                </div>
-                <div className="mt-5 border-t border-border/60 pt-4">
-                  <p className="text-xs text-muted-foreground">Browser-based · No uploads · Free forever</p>
                 </div>
               </div>
             )}
           </div>
-
-          {/* Quick links */}
-          {[
-            { label: 'Text', href: '/text' },
-            { label: 'Image', href: '/image' },
-            { label: 'Finance', href: '/finance' },
-            { label: 'Real Estate', href: '/real-estate' },
-            { label: 'Health', href: '/health' },
-            { label: 'Utility', href: '/utility' },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`rounded-full px-4 py-2 text-sm font-semibold transition-all hover:bg-primary/5 ${isActive(item.href) ? 'text-primary bg-primary/5 shadow-inner' : 'text-slate-600 hover:text-primary'}`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link href="/blog" className="text-[13px] font-medium text-secondary hover:text-foreground transition-colors">
+            Blog
+          </Link>
+          <Link href="/about" className="text-[13px] font-medium text-secondary hover:text-foreground transition-colors">
+            About
+          </Link>
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* CTA */}
+        <div className="hidden md:block">
+          <Link
+            href="/contact"
+            className="bg-foreground text-white text-[13px] font-medium px-[18px] py-[8px] rounded-[8px] hover:bg-black transition-colors"
+          >
+            Request a tool →
+          </Link>
+        </div>
+
+        {/* Mobile toggle */}
         <button
-          className="flex md:hidden h-12 w-12 items-center justify-center rounded-2xl border border-white/40 bg-white/50 text-slate-700 shadow-sm backdrop-blur-md transition-all active:scale-95"
+          className="md:hidden text-secondary"
           onClick={() => setMobileOpenPath(mobileOpen ? null : pathname)}
-          aria-expanded={mobileOpen}
-          aria-label="Toggle menu"
         >
-          {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-border/60 bg-card px-4 pb-6 pt-4 max-h-[80vh] overflow-y-auto">
-          <div className="space-y-5">
+        <div className="md:hidden border-t border-border bg-white px-6 py-8 animate-fade-in max-h-[80vh] overflow-y-auto">
+          <div className="space-y-8">
             {NAV_GROUPS.map((group) => (
               <div key={group.label}>
-                <Link
-                  href={group.href}
-                  className={`block text-[11px] font-bold uppercase tracking-[0.14em] mb-1.5 ${isActive(group.href) ? 'text-primary' : 'text-slate-500'}`}
-                >
+                <Link href={group.href} className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-4 block">
                   {group.label}
                 </Link>
-                {group.tools.length > 0 && (
-                  <ul className="flex flex-wrap gap-x-4 gap-y-1.5">
-                    {group.tools.map((tool) => (
-                        <li key={tool.href}>
-                          <Link
-                            href={tool.href}
-                            className="flex items-center gap-1.5 text-[13px] text-slate-600 hover:text-primary transition-colors"
-                          >                            {tool.name}
-                          </Link>
-                        </li>
-                    ))}
-                  </ul>
-                )}
+                <div className="grid grid-cols-1 gap-3">
+                  {group.tools.map((tool) => (
+                    <Link key={tool.href} href={tool.href} className="text-[14px] text-secondary hover:text-primary">
+                      {tool.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             ))}
-
+            <div className="pt-4 border-t border-border">
+              <Link href="/contact" className="block text-center bg-foreground text-white font-medium py-3 rounded-[8px]">
+                Request a tool →
+              </Link>
+            </div>
           </div>
         </div>
       )}

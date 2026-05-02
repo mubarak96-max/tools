@@ -28,7 +28,7 @@ const UTILITY_TOOLS = [
   },
   {
     name: "QR Code Generator",
-    href: "/utility/qr-code-generator",
+    href: "/utility/create-qr-code-online",
     description: "Create and download static QR codes with custom colors and zero expiry limits.",
   },
   {

@@ -141,7 +141,7 @@ export default function QRCodeScannerPage() {
             Free Online QR Code Scanner
           </h1>
           <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Use your phone or webcam to scan QR codes instantly—no app installation required. You can also upload a photo or screenshot of a QR code to decode URLs, text, and Wi-Fi credentials. Need to create one? Use our <Link href="/utility/qr-code-generator" className="text-primary hover:underline font-medium">QR Code Generator</Link>.
+            Use your phone or webcam to scan QR codes instantly—no app installation required. You can also upload a photo or screenshot of a QR code to decode URLs, text, and Wi-Fi credentials. Need to create one? Use our <Link href="/utility/create-qr-code-online" className="text-primary hover:underline font-medium">QR Code Generator</Link>.
           </p>
         </div>
       </section>

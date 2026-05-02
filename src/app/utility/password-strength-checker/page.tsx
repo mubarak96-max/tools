@@ -406,7 +406,7 @@ export default function PasswordStrengthCheckerPage() {
                 },
                 {
                   name: 'QR Code Generator',
-                  href: '/utility/qr-code-generator',
+                  href: '/utility/create-qr-code-online',
                   description: 'Create trackable QR codes for your physical marketing materials.',
                 },
                 {
