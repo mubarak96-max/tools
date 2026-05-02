@@ -128,11 +128,9 @@ export default function WalesLttCalculatorPage() {
               budget your total cash required before exchange.
             </p>
 
-            <h2>Related guides and calculators</h2>
+            <h2>Related calculators</h2>
             <p>
-              Read our{" "}
-              <Link href="/blog/wales-ltt-guide">Wales LTT guide</Link> for a plain-English
-              walkthrough. You can also compare Welsh property tax with the{" "}
+              You can also compare Welsh property tax with the{" "}
               <Link href="/real-estate/scotland-lbtt-calculator">Scotland LBTT calculator</Link> or
               the <Link href="/real-estate/uk-stamp-duty-calculator">UK stamp duty calculator</Link>.
             </p>

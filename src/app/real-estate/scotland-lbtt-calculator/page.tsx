@@ -129,10 +129,9 @@ export default function ScotlandLbttCalculatorPage() {
               to make that difference visible immediately.
             </p>
 
-            <h2>Related guides and calculators</h2>
+            <h2>Related calculators</h2>
             <p>
-              For a detailed walkthrough, read our{" "}
-              <Link href="/blog/scotland-lbtt-guide">Scotland LBTT guide</Link>. You can also compare
+              You can also compare
               the Welsh system with the{" "}
               <Link href="/real-estate/wales-ltt-calculator">Wales LTT calculator</Link> or review
               England and Northern Ireland using the{" "}

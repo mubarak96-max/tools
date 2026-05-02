@@ -130,11 +130,9 @@ export default function HongKongStampDutyCalculatorPage() {
               the tool more useful than a flat-rate estimate.
             </p>
 
-            <h2>Related property tax guides</h2>
+            <h2>Related calculators</h2>
             <p>
-              For a plain-English walkthrough, read our{" "}
-              <Link href="/blog/hong-kong-stamp-duty-guide">Hong Kong stamp duty guide</Link>. You
-              can also compare other location-specific property tax tools such as the{" "}
+              You can also compare other location-specific property tax tools such as the{" "}
               <Link href="/real-estate/singapore-buyers-stamp-duty-calculator">
                 Singapore buyer's stamp duty calculator
               </Link>{" "}

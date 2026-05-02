@@ -409,16 +409,23 @@ export default function NYCTransferTaxCalculatorPage() {
             </div>
 
             <div className="mt-24 p-12 bg-slate-50 rounded-[3rem] border border-slate-100">
-                <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">Beyond Transfer Taxes: The Full Picture</h3>
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 text-center">Related Guides</h3>
                 <p className="text-slate-600 text-center mb-8 max-w-2xl mx-auto">
-                    Closing costs are just the beginning. Before committing to a New York purchase, determine if the numbers truly beat renting in the long run.
+                    Go deeper on NYC closing costs and how transfer taxes fit into the full picture.
                 </p>
-                <div className="flex justify-center">
-                    <Link href="/real-estate/rent-vs-buy-calculator" className="group flex items-center gap-4 p-6 bg-white rounded-3xl border border-slate-200 hover:border-primary/30 transition-all shadow-sm">
-                        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold">R/B</div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link href="/blog/nyc-closing-costs-2026" className="group flex items-start gap-4 p-6 bg-white rounded-3xl border border-slate-200 hover:border-primary/30 transition-all shadow-sm flex-1">
+                        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold flex-none">NYC</div>
+                        <div>
+                            <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">NYC Closing Costs 2026 — Full Guide</h4>
+                            <p className="text-sm text-slate-500 mt-1">Everything a buyer or seller needs to know about NYC closing costs, including RPTT, Mansion Tax, and title insurance.</p>
+                        </div>
+                    </Link>
+                    <Link href="/real-estate/rent-vs-buy-calculator" className="group flex items-start gap-4 p-6 bg-white rounded-3xl border border-slate-200 hover:border-primary/30 transition-all shadow-sm flex-1">
+                        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold flex-none">R/B</div>
                         <div>
                             <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">Rent vs Buy Calculator</h4>
-                            <p className="text-sm text-slate-500">Includes NYC-specific tax deduction modelling</p>
+                            <p className="text-sm text-slate-500 mt-1">Includes NYC-specific tax deduction modelling.</p>
                         </div>
                     </Link>
                 </div>

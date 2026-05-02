@@ -137,23 +137,6 @@ export default function SingaporeBuyersStampDutyCalculatorPage() {
               <li>Checking whether ABSD is the main driver of your closing budget.</li>
               <li>Pressure-testing affordability before legal fees and mortgage costs are added.</li>
             </ul>
-
-            <h2>Related Singapore property guides</h2>
-            <p>
-              For a worked walkthrough, read our{" "}
-              <Link href="/blog/singapore-buyers-stamp-duty-guide">
-                Singapore buyer's stamp duty guide
-              </Link>
-              . You can also compare seller-side duty with the{" "}
-              <Link href="/real-estate/singapore-sellers-stamp-duty-calculator">
-                Singapore seller's stamp duty calculator
-              </Link>{" "}
-              or review the broader{" "}
-              <Link href="/real-estate/singapore-property-stamp-duty-calculator">
-                Singapore property stamp duty calculator
-              </Link>
-              .
-            </p>
           </div>
         }
       >

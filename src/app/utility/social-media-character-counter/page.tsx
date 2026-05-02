@@ -208,6 +208,7 @@ export default function SocialMediaCharacterCounterPage() {
         categoryHref="/utility"
         title="Social Media Character Counter for Instagram Captions, X Posts, LinkedIn and More"
         description="Write once and instantly check whether your caption, post, bio, title, or hashtag set fits Instagram, X, LinkedIn, TikTok, Threads, Bluesky, YouTube, and other major platform limits."
+        relatedGuides={guideCards}
       >
         <CharacterCounter />
 
@@ -463,40 +464,6 @@ export default function SocialMediaCharacterCounterPage() {
                   </div>
                 ))}
               </div>
-            </div>
-          </section>
-
-          <section>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 shadow-sm border border-emerald-100">
-                <BookOpen size={20} />
-              </div>
-              <h2 className="text-3xl font-black text-slate-900 tracking-tight">In-Depth Social Writing Guides</h2>
-            </div>
-
-            <p className="text-slate-600 leading-7 max-w-3xl mb-8">
-              Use the tool for live validation, then go deeper with these supporting guides. They are written to capture specific search intent around Instagram captions, X link counting, LinkedIn preview limits, and newer short-form platforms.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {guideCards.map((guide) => (
-                <Link
-                  key={guide.href}
-                  href={guide.href}
-                  className="group rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm hover:shadow-md hover:border-indigo-200 transition-all"
-                >
-                  <span className="inline-flex rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                    {guide.label}
-                  </span>
-                  <h3 className="mt-4 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                    {guide.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{guide.description}</p>
-                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-indigo-600">
-                    Open guide <ArrowRight size={16} />
-                  </div>
-                </Link>
-              ))}
             </div>
           </section>
 

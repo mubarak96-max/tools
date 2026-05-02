@@ -11,23 +11,19 @@ import {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://findbest.tools'),
-  title: 'Best Free Keyword Clustering Tool for SEO — Semantic, SERP & Hybrid Grouping',
-  description: 'Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.',
+  title: 'Free Keyword Clustering Tool (Group Keywords in Seconds)',
+  description: 'Group up to 5,000 keywords into structured clusters in seconds. Free browser-based tool for semantic grouping and content planning — no signup required.',
   keywords: [
     'free keyword clustering tool',
     'keyword grouping tool',
     'semantic keyword clustering',
-    'serp based keyword clustering',
-    'topic cluster generator',
-    'keyword cluster analysis',
-    'content cluster tool',
+    'keyword cluster generator',
+    'topic cluster tool',
     'keyword cannibalization checker',
-    'pillar page keyword clusters',
+    'content planning tool',
     'seo keyword grouping',
-    'keyword intent clustering',
     'bulk keyword clustering',
-    'keyword clustering algorithm',
-    'free seo clustering tool 2026'
+    'free seo tools 2026'
   ],
   authors: [{ name: 'Mubarak', url: 'https://github.com/mubarak96-max' }],
   creator: 'Mubarak',
@@ -48,21 +44,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://findbest.tools/seo/keyword-clustering',
     siteName: 'Creator Tools by Mubarak',
-    title: 'Free Keyword Clustering Tool (2026) — Semantic, SERP & Hybrid Grouping',
-    description: 'Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.',
+    title: 'Free Keyword Clustering Tool (Group Keywords in Seconds)',
+    description: 'Group up to 5,000 keywords into structured clusters in seconds. Free browser-based tool for semantic grouping and content planning — no signup required.',
     images: [
       {
         url: '/og-keyword-clustering.jpg',
         width: 1200,
         height: 630,
-        alt: 'Keyword Clustering Tool interface showing grouped topic clusters',
+        alt: 'Free Keyword Clustering Tool Interface',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Keyword Clustering Tool (2026) — Semantic, SERP & Hybrid Grouping',
-    description: 'Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.',
+    title: 'Free Keyword Clustering Tool (Group Keywords in Seconds)',
+    description: 'Group up to 5,000 keywords into structured clusters in seconds. Free browser-based tool for semantic grouping and content planning — no signup required.',
     creator: '@mubarak96max',
     images: ['/og-keyword-clustering.jpg'],
   },
@@ -90,476 +86,566 @@ export default function KeywordClusteringPage() {
             <div className="mx-auto max-w-3xl text-center mb-10">
               <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 dark:bg-emerald-950/30 px-4 py-1.5 text-sm font-medium text-emerald-600 dark:text-emerald-400 mb-4 ring-1 ring-emerald-600/10">
                 <Sparkles className="h-4 w-4" />
-                <span>Used by 9,000+ SEOs and content strategists</span>
+                <span>Process up to 5,000 keywords locally in your browser</span>
               </div>
               <h1 className="text-4xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-5xl lg:text-6xl">
-                Free Keyword <span className="text-emerald-600">Clustering Tool (2026)</span>
+                Free Keyword <span className="text-emerald-600">Clustering Tool</span>
               </h1>
-              <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
-                Turn messy keyword lists into organized topic clusters in seconds with this <strong>browser-native tool</strong> — no server uploads or signups required. In 2026, efficient semantic grouping, search intent matching, and word overlap analysis are essential for building authoritative pillar pages. Used by 9,000+ SEOs to scale content strategy without limits.
+              <p className="mt-4 text-xl font-semibold text-neutral-800 dark:text-neutral-100">
+                Group Keywords in Seconds
               </p>
+              <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
+                Group your keywords into clear, usable clusters in seconds. Paste your list and organize up to <strong>5,000 keywords</strong> into structured groups based on shared terms and semantic similarity.
+              </p>
+              <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-neutral-500 dark:text-neutral-400">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-emerald-500" />
+                  <span>Free to use</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-emerald-500" />
+                  <span>No signup required</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-emerald-500" />
+                  <span>Runs entirely in your browser</span>
+                </div>
+              </div>
             </div>
 
             <ClusteringToolWrapper />
           </div>
         </section>
 
-        {/* Content Sections for SEO & LLM Citation */}
+        {/* Content Sections */}
         <article className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
 
-          {/* What Is Keyword Clustering */}
-          <section className="mb-16" id="what-is">
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">What Is Keyword Clustering and Why Does It Matter?</h2>
-            <div className="prose dark:prose-invert max-w-none">
-              <p className="text-lg font-medium text-neutral-900 dark:text-white leading-relaxed mb-6 border-l-4 border-emerald-500 pl-4 bg-emerald-50/50 dark:bg-emerald-950/20 py-4 rounded-r-xl">
-                Keyword clustering is the SEO practice of grouping related search queries into logical clusters based on search intent and semantic meaning. By targeting a cluster of keywords on a single page instead of individual terms, you improve topical authority, prevent cannibalization, and align your content with modern AI-driven search algorithms.
-              </p>
-              <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                <dfn>Keyword clustering</dfn> is the process of organizing a list of search queries into logical groups based on shared meaning, search intent, or SERP similarity. Instead of targeting one keyword per page — an outdated approach that fragments your content strategy — clustering allows you to target multiple related keywords within a single, comprehensive article. This method aligns with how modern search engines understand topics: through semantic relationships and topical authority, not isolated keyword matches.
-              </p>
-              <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                The strategic value is immense. A well-clustered keyword list prevents <strong>keyword cannibalization</strong> (where your own pages compete against each other), reduces content production waste, and signals to search engines that your domain owns the entire conversation around a subject . In 2026, with generative search engines and AI Overviews prioritizing comprehensive sources, keyword clustering has evolved from a nice-to-have tactic into a foundational SEO strategy .
-              </p>
-              <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                There are three primary clustering methodologies. <strong>Semantic clustering</strong> uses Natural Language Processing (NLP) to group keywords that share conceptual meaning, even when they use different words . <strong>SERP-based clustering</strong> groups keywords that trigger the same set of ranking URLs in Google — if two keywords share 40% or more of the same top-10 results, they likely belong on the same page . <strong>Word-matching clustering</strong> groups keywords that share common terms or phrases, useful for quick organization of large lists .
-              </p>
-            </div>
-          </section>
-
-          {/* Why It Matters in 2026 */}
-          <section className="mb-16" id="why-2026">
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Why Keyword Clustering Is Essential for 2026 SEO</h2>
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <Target className="h-8 w-8 text-emerald-600 mb-3" />
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Generative Search & AI Overviews</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">AI search engines prioritize sources that demonstrate comprehensive topical coverage. A cluster of 10 interlinked pages covering every nuance of a topic signals authority far more than 50 unrelated articles .</p>
+          {/* See How It Works */}
+          <section className="mb-20">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8 text-center">See How Keyword Clustering Works</h2>
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div className="rounded-2xl bg-neutral-100 dark:bg-neutral-900 p-6 border border-neutral-200 dark:border-neutral-800">
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-neutral-500" />
+                  Input Keywords
+                </h3>
+                <ul className="space-y-2 text-neutral-600 dark:text-neutral-400 font-mono text-sm">
+                  <li>- keyword clustering tool</li>
+                  <li>- free keyword clustering tool</li>
+                  <li>- keyword grouping tool</li>
+                  <li>- best keyword clustering tool</li>
+                  <li>- keyword grouper</li>
+                </ul>
               </div>
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <Layers className="h-8 w-8 text-emerald-600 mb-3" />
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Topical Authority Over Keyword Density</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Google's algorithms now evaluate semantic density — how thoroughly you cover a topic's ecosystem. Clustering ensures your content map is complete, not just keyword-dense .</p>
-              </div>
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <Search className="h-8 w-8 text-emerald-600 mb-3" />
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Intent-First Content Strategy</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Clustering by search intent separates informational queries from transactional ones. This prevents the common mistake of creating the wrong content format for a keyword group .</p>
-              </div>
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <BarChart3 className="h-8 w-8 text-emerald-600 mb-3" />
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Efficiency at Scale</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">Manually grouping 1,000 keywords takes 8–12 hours. A clustering tool reduces this to seconds, with higher accuracy and consistent logic .</p>
+              <div className="rounded-2xl bg-emerald-50 dark:bg-emerald-950/20 p-6 border border-emerald-100 dark:border-emerald-900/30">
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-emerald-700 dark:text-emerald-400">
+                  <Zap className="h-5 w-5" />
+                  Output Clusters
+                </h3>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="font-bold text-sm text-emerald-800 dark:text-emerald-300 mb-2">Cluster: keyword clustering tool</h4>
+                    <ul className="space-y-1 text-neutral-600 dark:text-neutral-400 text-sm">
+                      <li>- free keyword clustering tool</li>
+                      <li>- best keyword clustering tool</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm text-emerald-800 dark:text-emerald-300 mb-2">Cluster: keyword grouping</h4>
+                    <ul className="space-y-1 text-neutral-600 dark:text-neutral-400 text-sm">
+                      <li>- keyword grouping tool</li>
+                      <li>- keyword grouper</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-          </section>
-
-          {/* Clustering Methods */}
-          <section className="mb-16" id="methods">
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">The Three Keyword Clustering Methods Explained</h2>
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-              Not all clustering is created equal. The method you choose determines the accuracy of your clusters and the quality of your resulting content strategy .
+            <p className="mt-6 text-neutral-600 dark:text-neutral-300 text-center italic">
+              The tool groups keywords that share similar wording or intent. Instead of treating each keyword as a separate page, you organize them into clusters and target each cluster with one page.
             </p>
+          </section>
 
-            <div className="space-y-6 mb-6">
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2 flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-emerald-600" />
-                  1. Semantic Similarity Clustering (NLP-Based)
-                </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
-                  This method uses Natural Language Processing to convert keywords into mathematical vectors and measure their conceptual distance. Keywords like "espresso machine budget under $500" and "beginner espresso techniques" may share no common words but belong to the same beginner's journey cluster .
-                </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  <strong>Best for:</strong> Niche industries where context matters more than keyword overlap. <strong>Limitation:</strong> May miss intent mismatches if not validated against SERP data .
-                </p>
+          {/* Why This Tool Exists */}
+          <section className="mb-20 p-8 rounded-3xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 shadow-sm">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Why This Keyword Clustering Tool Exists</h2>
+            <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
+              Most keyword clustering tools fall into two categories:
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              <div className="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50">
+                <p className="font-medium text-neutral-900 dark:text-white">1. SERP-based Tools</p>
+                <p className="text-sm text-neutral-500">Accurate but slow, often requires a paid subscription or API keys.</p>
               </div>
-
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2 flex items-center gap-2">
-                  <Search className="h-5 w-5 text-emerald-600" />
-                  2. SERP Overlap Clustering (Intent-Based)
-                </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
-                  The gold standard for accuracy. This method groups keywords based on how many of the same URLs rank in Google's top 10 for each query. If two keywords share 40%+ of the same ranking pages, they should be targeted on the same page .
-                </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  <strong>Best for:</strong> Preventing cannibalization and ensuring each cluster maps to a single, rankable page. <strong>Limitation:</strong> Requires live SERP data access, which can be rate-limited or expensive .
-                </p>
+              <div className="p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800/50">
+                <p className="font-medium text-neutral-900 dark:text-white">2. Basic Word Matchers</p>
+                <p className="text-sm text-neutral-500">Fast but often too basic for complex semantic relationships.</p>
               </div>
+            </div>
+            <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
+              This tool is built for a different use case. It groups keywords using <strong>shared terms and simple semantic similarity</strong>. This approach processes large keyword lists in seconds without relying on external APIs.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              {['No account needed', 'No API access required', 'No waiting in queues', 'Immediate results'].map((item) => (
+                <span key={item} className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/30 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+                  <CheckCircle className="h-3 w-3" /> {item}
+                </span>
+              ))}
+            </div>
+          </section>
 
-              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
-                <h3 className="font-semibold text-neutral-900 dark:text-white mb-2 flex items-center gap-2">
-                  <GitBranch className="h-5 w-5 text-emerald-600" />
-                  3. Word-Matching / Lemma-Based Clustering
-                </h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-2">
-                  The simplest and fastest method. Keywords are grouped by shared words, stems, or phrases. "Best running shoes for men" and "best running shoes for women" share the stem "best running shoes" and would cluster together .
-                </p>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                  <strong>Best for:</strong> Quick organization of large lists and initial content brainstorming. <strong>Limitation:</strong> Can create false positives by grouping keywords with shared words but different intents .
+          {/* What is Keyword Clustering */}
+          <section className="mb-20" id="what-is">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">What Is Keyword Clustering?</h2>
+            <div className="prose dark:prose-invert max-w-none">
+              <p className="text-lg leading-relaxed text-neutral-600 dark:text-neutral-300">
+                Keyword clustering is the process of grouping keywords that target the same search intent. Instead of writing one page for each keyword, you combine related keywords into a single page.
+              </p>
+              <div className="my-8 p-6 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+                <p className="font-bold text-neutral-900 dark:text-white mb-2">Example Cluster:</p>
+                <ul className="list-disc list-inside space-y-1 text-neutral-600 dark:text-neutral-400">
+                  <li>best running shoes</li>
+                  <li>top running shoes</li>
+                  <li>running shoe reviews</li>
+                </ul>
+                <p className="mt-4 text-sm text-neutral-500">
+                  These keywords belong to the same intent. They should be covered on one page, not split across multiple articles. Search engines group similar queries together and rank pages that cover the topic completely.
                 </p>
               </div>
             </div>
+          </section>
+
+          {/* Why Keyword Clustering Matters in 2026 */}
+          <section className="mb-20" id="why-2026">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8">Why Keyword Clustering Is Essential for 2026 SEO</h2>
+            <p className="text-neutral-600 dark:text-neutral-300 mb-8">Search engines now evaluate pages based on topic coverage, not exact keyword matches.</p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+                <Target className="h-8 w-8 text-emerald-600 mb-4" />
+                <h3 className="font-bold text-neutral-900 dark:text-white mb-2">1. Covers Multiple Keywords with One Page</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">A single well-structured page can rank for dozens of related keywords. Without clustering, you end up creating multiple weak pages instead.</p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+                <AlertTriangle className="h-8 w-8 text-emerald-600 mb-4" />
+                <h3 className="font-bold text-neutral-900 dark:text-white mb-2">2. Prevents Keyword Cannibalization</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">If you create separate pages for similar keywords, they compete against each other. Clustering concentrates ranking signals into one powerful page.</p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+                <Layers className="h-8 w-8 text-emerald-600 mb-4" />
+                <h3 className="font-bold text-neutral-900 dark:text-white mb-2">3. Improves Content Structure</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">A clustered keyword list gives you a clear list of pages to create. Each cluster becomes one page with a defined topic and structure.</p>
+              </div>
+              <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 shadow-sm">
+                <Clock className="h-8 w-8 text-emerald-600 mb-4" />
+                <h3 className="font-bold text-neutral-900 dark:text-white mb-2">4. Saves Time</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">Manually grouping 1,000 keywords takes several hours. Clustering reduces that to a few seconds, letting you focus on writing.</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Types of Methods */}
+          <section className="mb-20" id="methods">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8 text-center">The Three Keyword Clustering Methods Explained</h2>
+            <div className="space-y-8">
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/30 flex items-center justify-center text-emerald-600">
+                  <Sparkles className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Semantic Clustering</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-2">Groups keywords based on meaning. Even if words are different (e.g., "cheap espresso machine" and "budget coffee maker"), they target the same intent.</p>
+                  <p className="text-sm text-neutral-500 italic">Best for: Long-tail keywords and topics where wording varies.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/30 flex items-center justify-center text-blue-600">
+                  <Search className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">SERP-Based Clustering</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-2">Compares search results. If two keywords return similar pages in Google, they belong in the same cluster. This is the most accurate method.</p>
+                  <p className="text-sm text-neutral-500 italic">Best for: High-accuracy clustering and avoiding keyword overlap.</p>
+                </div>
+              </div>
+              <div className="flex gap-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/30 flex items-center justify-center text-purple-600">
+                  <GitBranch className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Word Matching</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-2">Groups keywords based on shared words (e.g., "best running shoes for men" and "best running shoes for women").</p>
+                  <p className="text-sm text-neutral-500 italic">Best for: Quick grouping of extremely large datasets.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Real Example */}
+          <section className="mb-20 p-8 rounded-3xl bg-neutral-900 text-white">
+            <h2 className="text-3xl font-bold mb-8">Real Example: Clustering 1,000 Keywords</h2>
+            <div className="grid sm:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-emerald-400 font-bold mb-4 flex items-center gap-2">
+                  <AlertTriangle className="h-5 w-5" />
+                  Before Clustering
+                </h3>
+                <ul className="space-y-3 text-neutral-400 text-sm">
+                  <li>- 1,000 keywords in a messy spreadsheet</li>
+                  <li>- Duplicates and variations mixed together</li>
+                  <li>- No clear structure for content production</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-emerald-400 font-bold mb-4 flex items-center gap-2">
+                  <CheckCircle className="h-5 w-5" />
+                  After Clustering
+                </h3>
+                <ul className="space-y-3 text-neutral-400 text-sm">
+                  <li>- 60–120 structured clusters</li>
+                  <li>- Each cluster represents one high-quality page</li>
+                  <li>- Keywords grouped by clear search intent</li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-10 pt-8 border-t border-neutral-800 text-center">
+              <p className="text-lg font-medium text-emerald-400">Result: 1,000 keywords → 60–120 pages</p>
+              <p className="text-sm text-neutral-500 mt-2">Reduces content duplication and makes your site much easier to manage.</p>
+            </div>
+          </section>
+
+          {/* How to Use */}
+          <section className="mb-20" id="how-to-use">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8">How to Use This Free Keyword Clustering Tool</h2>
+            <div className="space-y-6">
+              {[
+                { title: '1. Paste Your Keywords', desc: 'Paste up to 5,000 keywords into the input field.' },
+                { title: '2. Select a Clustering Method', desc: 'Choose between semantic, word match, or hybrid grouping.' },
+                { title: '3. Generate Clusters', desc: 'Click "Generate Clusters" to process your list locally in seconds.' },
+                { title: '4. Review Clusters', desc: 'Check for mismatches. Split or merge clusters to refine your plan.' },
+                { title: '5. Export Results', desc: 'Download your clusters or copy them directly into your content calendar.' }
+              ].map((step, i) => (
+                <div key={i} className="flex gap-4 p-4 rounded-2xl hover:bg-white dark:hover:bg-neutral-900 hover:shadow-sm transition-all border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
+                    {i + 1}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-neutral-900 dark:text-white">{step.title}</h3>
+                    <p className="text-neutral-600 dark:text-neutral-400">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Turn Clusters into Content */}
+          <section className="mb-20">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">How to Turn Keyword Clusters Into Content</h2>
+            <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
+              Each cluster becomes one page. For a cluster about "running shoes", your structure would look like this:
+            </p>
+            <div className="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="px-2 py-1 bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 text-xs font-bold rounded">H1</span>
+                  <span className="font-bold">Main Keyword (e.g., Best Running Shoes)</span>
+                </div>
+                <div className="flex items-center gap-3 ml-6">
+                  <span className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 text-xs font-bold rounded">H2</span>
+                  <span className="text-neutral-700 dark:text-neutral-300">Related Keywords (e.g., Top Rated Models)</span>
+                </div>
+                <div className="flex items-center gap-3 ml-12">
+                  <span className="px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-600 text-xs font-bold rounded">H3</span>
+                  <span className="text-neutral-500">Supporting Variations (e.g., Budget vs Premium)</span>
+                </div>
+              </div>
+            </div>
+            <p className="mt-6 text-neutral-600 dark:text-neutral-300 italic">
+              Result: One page targets multiple keywords instead of splitting them into separate articles.
+            </p>
           </section>
 
           {/* Keyword vs Topic Clusters */}
-          <section className="mb-16" id="keyword-vs-topic">
-            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Keyword Clusters vs. Topic Clusters: The Critical Difference</h2>
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-              These terms are often used interchangeably, but they represent different layers of your content architecture .
+          <section className="mb-20" id="keyword-vs-topic">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6 text-center">Keyword Clusters vs Topic Clusters</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+                <h3 className="text-xl font-bold mb-4">Keyword Cluster</h3>
+                <p className="text-neutral-600 dark:text-neutral-400 mb-4">A group of keywords targeting <strong>one single page</strong>.</p>
+                <div className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-xl text-sm">
+                  <p className="font-bold mb-2">Example:</p>
+                  <ul className="space-y-1">
+                    <li>- best espresso machine</li>
+                    <li>- espresso machine reviews</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="p-6 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
+                <h3 className="text-xl font-bold mb-4">Topic Cluster</h3>
+                <p className="text-neutral-600 dark:text-neutral-400 mb-4">A group of <strong>pages</strong> around a broader topic.</p>
+                <div className="bg-neutral-50 dark:bg-neutral-800 p-4 rounded-xl text-sm">
+                  <p className="font-bold mb-2">Example: Espresso Machines</p>
+                  <ul className="space-y-1">
+                    <li>- Budget machines guide</li>
+                    <li>- Cleaning & maintenance</li>
+                    <li>- Essential accessories</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <p className="mt-6 text-center text-neutral-500">
+              Keyword clusters define individual pages. Topic clusters define your site structure.
             </p>
+          </section>
 
-            <div className="overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-800 mb-6">
+          {/* Best Tools Table */}
+          <section className="mb-20">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8 text-center">Best Keyword Clustering Tools</h2>
+            <div className="overflow-x-auto rounded-2xl border border-neutral-200 dark:border-neutral-800">
               <table className="w-full text-sm text-left">
-                <caption className="sr-only">Comparison of keyword clusters and topic clusters</caption>
-                <thead className="bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white font-semibold">
+                <thead className="bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white font-bold">
                   <tr>
-                    <th className="px-4 py-3">Attribute</th>
-                    <th className="px-4 py-3">Keyword Clusters</th>
-                    <th className="px-4 py-3">Topic Clusters</th>
+                    <th className="px-6 py-4">Tool</th>
+                    <th className="px-6 py-4">Free</th>
+                    <th className="px-6 py-4">SERP-Based</th>
+                    <th className="px-6 py-4">Speed</th>
+                    <th className="px-6 py-4">Best For</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-neutral-700 dark:text-neutral-300">
+                <tbody className="divide-y divide-neutral-200 dark:divide-neutral-800 text-neutral-600 dark:text-neutral-300">
                   <tr>
-                    <td className="px-4 py-3 font-medium">Definition</td>
-                    <td className="px-4 py-3">Group of keywords targeting the same page</td>
-                    <td className="px-4 py-3">Network of pages around a central pillar</td>
+                    <td className="px-6 py-4 font-bold">This Tool</td>
+                    <td className="px-6 py-4">Yes</td>
+                    <td className="px-6 py-4">No</td>
+                    <td className="px-6 py-4">Fast</td>
+                    <td className="px-6 py-4">Quick clustering</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-medium">Scope</td>
-                    <td className="px-4 py-3">Page-level optimization</td>
-                    <td className="px-4 py-3">Site-level architecture</td>
+                    <td className="px-6 py-4 font-bold">Keyword Cupid</td>
+                    <td className="px-6 py-4">No</td>
+                    <td className="px-6 py-4">Yes</td>
+                    <td className="px-6 py-4">Medium</td>
+                    <td className="px-6 py-4">SERP-based</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-medium">Purpose</td>
-                    <td className="px-4 py-3">Maximize keyword coverage per article</td>
-                    <td className="px-4 py-3">Build topical authority and internal link equity</td>
+                    <td className="px-6 py-4 font-bold">ClusterAI</td>
+                    <td className="px-6 py-4">No</td>
+                    <td className="px-6 py-4">Yes</td>
+                    <td className="px-6 py-4">Medium</td>
+                    <td className="px-6 py-4">Large sets</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-medium">Example</td>
-                    <td className="px-4 py-3">"best espresso machine," "top espresso makers," "espresso machine reviews"</td>
-                    <td className="px-4 py-3">Pillar: "Espresso Machines" → Clusters: "Budget," "Commercial," "Cleaning," "Beans"</td>
+                    <td className="px-6 py-4 font-bold">KeyClusters</td>
+                    <td className="px-6 py-4">Limited</td>
+                    <td className="px-6 py-4">Yes</td>
+                    <td className="px-6 py-4">Medium</td>
+                    <td className="px-6 py-4">Testing</td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 font-bold">SEO Scout</td>
+                    <td className="px-6 py-4">Yes</td>
+                    <td className="px-6 py-4">No</td>
+                    <td className="px-6 py-4">Fast</td>
+                    <td className="px-6 py-4">Simple grouping</td>
                   </tr>
                 </tbody>
               </table>
             </div>
+          </section>
 
-            <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              The two concepts complement each other. Use <strong>keyword clusters</strong> to optimize individual pages. Then organize those pages into <strong>topic clusters</strong> linked to a central pillar page. This dual-layer approach maximizes both page-level relevance and domain-level authority.
-            </p>
-
-            {/* Internal Linking - Contextual */}
-            <div className="mt-8 p-6 rounded-2xl bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800">
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-3 flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-emerald-600" />
-                Maximize Your Content Quality
-              </h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
-                Clustering is only the first step. To ensure your clusters rank, you need to optimize the actual content. Use our <Link href="/seo/meta-description-checker" className="text-emerald-600 hover:underline">Meta Description Checker</Link> to craft high-CTR snippets, and check your <Link href="/text/word-frequency" className="text-emerald-600 hover:underline">Word Frequency</Link> to ensure you aren't over-optimizing or missing key secondary terms.
-              </p>
+          {/* Mistakes */}
+          <section className="mb-20" id="mistakes">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8">Common Keyword Clustering Mistakes That Kill Rankings</h2>
+            <div className="grid sm:grid-cols-2 gap-6">
+              <div className="p-6 rounded-2xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
+                <h3 className="font-bold text-red-900 dark:text-red-400 mb-2">Creating One Page Per Keyword</h3>
+                <p className="text-sm text-red-800 dark:text-red-300">This creates thin content and weak pages that fail to rank.</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
+                <h3 className="font-bold text-red-900 dark:text-red-400 mb-2">Mixing Different Search Intents</h3>
+                <p className="text-sm text-red-800 dark:text-red-300">Keywords may look similar but require different types of content (informational vs transactional).</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
+                <h3 className="font-bold text-red-900 dark:text-red-400 mb-2">Clusters That Are Too Large</h3>
+                <p className="text-sm text-red-800 dark:text-red-300">Clusters with 50+ keywords usually cover multiple topics and should be split.</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
+                <h3 className="font-bold text-red-900 dark:text-red-400 mb-2">Not Linking Related Pages</h3>
+                <p className="text-sm text-red-800 dark:text-red-300">Clusters only provide value when your pages are interconnected via internal links.</p>
+              </div>
             </div>
           </section>
 
-        {/* Best Practices */}
-        <section className="mb-16" id="best-practices">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Keyword Clustering Best Practices for 2026</h2>
-          <ul className="space-y-3 mb-6">
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>Start with 500+ keywords:</strong> Clustering works best with sufficient data density. Small lists (under 100) may produce too many single-keyword clusters to be useful .</span>
-            </li>
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>Clean your list first:</strong> Remove duplicates, brand names, and irrelevant queries before clustering. Noise degrades cluster quality significantly .</span>
-            </li>
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>Validate with SERP checks:</strong> For clusters you plan to target, manually verify the top 3 results. If Google shows different page types, split the cluster .</span>
-            </li>
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>One cluster = one page:</strong> Resist the urge to split clusters into multiple articles. If keywords belong together, target them on one comprehensive page to avoid cannibalization .</span>
-            </li>
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>Label clusters by intent:</strong> Tag each cluster as Informational, Commercial, Transactional, or Navigational. This determines content format: blog post, comparison page, product page, or category page .</span>
-            </li>
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>Interlink cluster pages:</strong> Every cluster article should link to its pillar page with descriptive anchor text. This passes authority and helps search engines understand your site architecture .</span>
-            </li>
-            <li className="flex gap-3">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span className="text-neutral-700 dark:text-neutral-300"><strong>Revisit quarterly:</strong> SERPs evolve. A cluster that made sense in January may need splitting by June as search intent shifts .</span>
-            </li>
-          </ul>
-        </section>
+          {/* Best Practices */}
+          <section className="mb-20" id="best-practices">
+            <div className="p-8 rounded-3xl bg-emerald-600 text-white">
+              <h2 className="text-3xl font-bold mb-8">Keyword Clustering Best Practices for 2026</h2>
+              <div className="grid sm:grid-cols-2 gap-x-12 gap-y-6">
+                <div className="flex gap-3">
+                  <CheckCircle className="h-6 w-6 text-emerald-200 flex-shrink-0" />
+                  <p>Start with at least 300 keywords for better density.</p>
+                </div>
+                <div className="flex gap-3">
+                  <CheckCircle className="h-6 w-6 text-emerald-200 flex-shrink-0" />
+                  <p>Remove duplicates before starting the process.</p>
+                </div>
+                <div className="flex gap-3">
+                  <CheckCircle className="h-6 w-6 text-emerald-200 flex-shrink-0" />
+                  <p>Validate clusters manually to ensure intent match.</p>
+                </div>
+                <div className="flex gap-3">
+                  <CheckCircle className="h-6 w-6 text-emerald-200 flex-shrink-0" />
+                  <p>Assign exactly one page per cluster.</p>
+                </div>
+                <div className="flex gap-3">
+                  <CheckCircle className="h-6 w-6 text-emerald-200 flex-shrink-0" />
+                  <p>Review and update clusters every 2–3 months.</p>
+                </div>
+              </div>
+            </div>
+          </section>
 
-        {/* Common Mistakes */}
-        <section className="mb-16" id="mistakes">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Common Keyword Clustering Mistakes That Kill Rankings</h2>
-          <div className="space-y-4">
-            <div className="flex gap-4 p-5 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
-              <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
+          {/* When Not Necessary */}
+          <section className="mb-20">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6 text-center">When Keyword Clustering Is Not Necessary</h2>
+            <div className="max-w-2xl mx-auto space-y-4">
+              <p className="text-center text-neutral-600 dark:text-neutral-400">You don’t need clustering in these specific cases:</p>
+              <div className="grid sm:grid-cols-3 gap-4 text-sm text-center">
+                <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800">Fewer than 50 keywords</div>
+                <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800">Single, narrow topic</div>
+                <div className="p-4 rounded-xl border border-neutral-200 dark:border-neutral-800">Small site (few pages)</div>
+              </div>
+              <p className="text-center text-sm text-neutral-500">Clustering becomes useful when your keyword list grows beyond simple management.</p>
+            </div>
+          </section>
+
+          {/* FAQ */}
+          <section className="mb-20" id="faq">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8 text-center">Keyword Clustering FAQ</h2>
+            <div className="space-y-4 max-w-3xl mx-auto">
+              {[
+                { q: 'What is keyword clustering?', a: 'Keyword clustering groups keywords that share the same intent so they can be targeted on a single page.' },
+                { q: 'How many keywords should be in a cluster?', a: 'Most clusters contain between 5 and 25 keywords. Larger clusters should be split into sub-topics.' },
+                { q: 'Does keyword clustering improve rankings?', a: 'Yes. It improves content structure and topical authority, helping pages rank for multiple related keywords.' },
+                { q: 'What is the most accurate clustering method?', a: 'SERP-based clustering is the most accurate because it uses actual search results to determine intent.' },
+                { q: 'Can clustering cause keyword cannibalization?', a: 'No. In fact, clustering prevents cannibalization by grouping similar keywords into one page.' },
+                { q: 'Do I still need keyword research?', a: 'Yes. Clustering organizes keywords, but you still need to find them first using tools like Semrush or Ahrefs.' },
+                { q: 'How often should I update clusters?', a: 'Review clusters every 2–3 months to account for new search trends and changing behavior.' }
+              ].map((faq, i) => (
+                <details key={i} className="group rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900">
+                  <summary className="flex cursor-pointer items-center justify-between p-5 font-bold text-neutral-900 dark:text-white">
+                    {faq.q}
+                    <span className="transition group-open:rotate-180">
+                      <svg fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                  </summary>
+                  <div className="px-5 pb-5 text-neutral-600 dark:text-neutral-300">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
+
+          {/* Workflow */}
+          <section className="mb-20 p-8 rounded-3xl border-2 border-dashed border-emerald-200 dark:border-emerald-800/50">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8 text-center">Build Your SEO Workflow</h2>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+              {['Find Keywords', 'Group into Clusters', 'Create Content', 'Optimize', 'Internal Linking'].map((step, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className="font-bold text-emerald-600 dark:text-emerald-400">{step}</div>
+                  {i < 4 && <ArrowRightLeft className="h-4 w-4 text-neutral-300 hidden md:block" />}
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 text-center text-sm text-neutral-500">This process scales content production without creating duplicate pages.</p>
+          </section>
+
+          {/* How This Tool Works */}
+          <section className="mb-20" id="methodology">
+            <h2 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">How This Tool Works</h2>
+            <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+              This tool groups keywords using shared terms, basic semantic similarity, and lightweight clustering logic. All processing happens entirely in your browser using client-side JavaScript. <strong>No data is ever uploaded or stored</strong>, ensuring your private keyword research stays private.
+            </p>
+          </section>
+
+          {/* About This Tool */}
+          <section className="mb-20">
+            <div className="rounded-3xl bg-neutral-100 dark:bg-neutral-900 p-8 flex flex-col md:flex-row gap-8 items-center border border-neutral-200 dark:border-neutral-800">
+              <div className="h-20 w-20 rounded-full bg-emerald-600 flex items-center justify-center text-white text-3xl font-bold">
+                FB
+              </div>
               <div>
-                <h3 className="font-semibold text-red-900 dark:text-red-400 mb-1">1. Creating One Page Per Keyword</h3>
-                <p className="text-sm text-red-800 dark:text-red-300">The "one page, one keyword" era is over . Creating separate articles for "best running shoes," "top running shoes," and "running shoes reviews" cannibalizes your own rankings and signals thin content to search engines.</p>
+                <h2 className="text-2xl font-bold text-neutral-900 dark:text-white">About This Tool</h2>
+                <p className="text-neutral-600 dark:text-neutral-400 mt-2">
+                  This tool was built to simplify keyword clustering for content creators and SEOs. It removes the need for expensive accounts, API keys, and external services. Paste your keywords, generate clusters, and build your content plan instantly.
+                </p>
               </div>
             </div>
-            <div className="flex gap-4 p-5 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
-              <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-red-900 dark:text-red-400 mb-1">2. Ignoring Search Intent Mismatches</h3>
-                <p className="text-sm text-red-800 dark:text-red-300">"Espresso machine" (informational) and "buy espresso machine" (transactional) share words but serve different intents. Clustering them together creates a page that satisfies neither user nor algorithm .</p>
-              </div>
+          </section>
+
+          {/* Related Tools */}
+          <section className="mb-20 border-t border-neutral-100 dark:border-neutral-800 pt-16" id="related">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-8 text-center">Related SEO Tools</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { href: '/seo/hreflang-generator', icon: Globe, title: 'Hreflang Generator', desc: 'Generate correct hreflang tags for international SEO.' },
+                { href: '/seo/meta-description-checker', icon: Search, title: 'Meta Tag Checker', desc: 'Optimize your snippets for maximum SERP click-through rate.' },
+                { href: '/seo/youtube-title-checker', icon: BarChart3, title: 'YouTube SEO', desc: 'Check titles for pixel length and CTR score.' },
+                { href: '/text/duplicate-word-finder', icon: FileText, title: 'Duplicate Finder', desc: 'Remove repetitive words to improve readability.' },
+                { href: '/text/word-frequency', icon: Zap, title: 'Word Frequency', desc: 'Analyze keyword density across your clusters.' },
+                { href: '/text/readability-flesch-kincaid-calculator', icon: BookOpen, title: 'Readability', desc: 'Ensure your content matches your audience level.' }
+              ].map((tool) => (
+                <Link key={tool.href} href={tool.href} className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-all hover:shadow-md">
+                  <tool.icon className="h-6 w-6 text-emerald-600 mb-3" />
+                  <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">{tool.title}</h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2">{tool.desc}</p>
+                </Link>
+              ))}
             </div>
-            <div className="flex gap-4 p-5 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
-              <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-red-900 dark:text-red-400 mb-1">3. Over-Reliance on Word Matching</h3>
-                <p className="text-sm text-red-800 dark:text-red-300">Basic word-matching tools group "java programming" with "java coffee" because they share the word "java." Semantic clustering catches this; word-matching does not .</p>
-              </div>
+          </section>
+
+          {/* Deep Dives: Blog Guides */}
+          <section className="mb-20 border-t border-neutral-100 dark:border-neutral-800 pt-16">
+            <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4 text-center">Deep Dives & Guides</h2>
+            <p className="text-center text-neutral-500 dark:text-neutral-400 mb-10 max-w-2xl mx-auto">
+              Go further with these guides on keyword grouping, clustering methods, and building content strategy.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { href: '/blog/how-to-group-keywords-without-spreadsheet', title: 'How to Group Keywords Without a Spreadsheet', desc: 'A step-by-step guide to scalable keyword grouping — no Excel required.' },
+                { href: '/blog/keyword-clustering-vs-grouping-difference', title: 'Keyword Clustering vs. Grouping: What\'s the Difference?', desc: 'Understand the distinction and when to use each approach.' },
+                { href: '/blog/serp-vs-semantic-keyword-clustering', title: 'SERP-Based vs. Semantic Clustering', desc: 'Which methodology to choose and when to combine them.' },
+                { href: '/blog/how-to-build-content-strategy-from-keyword-cluster', title: 'Build a Content Strategy From a Keyword Cluster', desc: 'Turn raw clusters into a full pillar-and-spoke content plan.' },
+                { href: '/blog/free-vs-paid-keyword-clustering-tools', title: 'Free vs. Paid Keyword Clustering Tools', desc: 'An honest comparison to help you pick the right tier.' },
+              ].map((guide) => (
+                <Link key={guide.href} href={guide.href} className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-all hover:shadow-md flex flex-col">
+                  <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">{guide.title}</h3>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mt-2 flex-1">{guide.desc}</p>
+                  <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-emerald-600">
+                    Read guide <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
+                  </div>
+                </Link>
+              ))}
             </div>
-            <div className="flex gap-4 p-5 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
-              <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-red-900 dark:text-red-400 mb-1">4. Clusters That Are Too Large</h3>
-                <p className="text-sm text-red-800 dark:text-red-300">A cluster with 100+ keywords is usually a sub-pillar in disguise. Break it into 3–5 focused clusters of 5–25 keywords each for better page targeting and clearer content briefs .</p>
-              </div>
-            </div>
-            <div className="flex gap-4 p-5 rounded-xl bg-red-50 dark:bg-red-950/20 border border-red-100 dark:border-red-900/30">
-              <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-red-900 dark:text-red-400 mb-1">5. Not Interlinking Cluster Content</h3>
-                <p className="text-sm text-red-800 dark:text-red-300">Clusters without internal linking are just keyword groups in a spreadsheet. The SEO value comes from the interconnected web of content that passes authority and keeps users engaged .</p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        {/* How to Use */}
-        <section className="mb-16" id="how-to-use">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">How to Use This Free Keyword Clustering Tool</h2>
-          <ol className="relative border-l border-neutral-200 dark:border-neutral-700 ml-3 space-y-8 mb-6">
-            <li className="mb-2 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full -left-4 ring-4 ring-white dark:ring-neutral-950">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold text-sm">1</span>
-              </span>
-              <h3 className="font-semibold text-neutral-900 dark:text-white">Paste or Upload Your Keywords</h3>
-              <p className="text-neutral-700 dark:text-neutral-300">Copy your keyword list from Ahrefs, Semrush, Google Keyword Planner, or any research tool. Paste directly into the input field or upload a CSV/TXT file. This tool is built to handle <strong>up to 5,000 keywords</strong> in a single run with browser-native speed.</p>
-            </li>
-            <li className="mb-2 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full -left-4 ring-4 ring-white dark:ring-neutral-950">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold text-sm">2</span>
-              </span>
-              <h3 className="font-semibold text-neutral-900 dark:text-white">Choose Your Clustering Method</h3>
-              <p className="text-neutral-700 dark:text-neutral-300">Select <strong>Semantic</strong> for NLP-based conceptual grouping, <strong>Word Match</strong> for shared-term grouping, or <strong>Hybrid</strong> for a balanced approach. Adjust the similarity threshold to control cluster tightness.</p>
-            </li>
-            <li className="mb-2 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full -left-4 ring-4 ring-white dark:ring-neutral-950">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold text-sm">3</span>
-              </span>
-              <h3 className="font-semibold text-neutral-900 dark:text-white">Run the Cluster Analysis</h3>
-              <p className="text-neutral-700 dark:text-neutral-300">Click "Generate Clusters." The tool processes your list in-browser using client-side algorithms — no data is sent to any server. Results appear in seconds with cluster names, keyword counts, and suggested primary keywords.</p>
-            </li>
-            <li className="mb-2 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full -left-4 ring-4 ring-white dark:ring-neutral-950">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold text-sm">4</span>
-              </span>
-              <h3 className="font-semibold text-neutral-900 dark:text-white">Review and Refine</h3>
-              <p className="text-neutral-700 dark:text-neutral-300">Manually review clusters for intent mismatches. Merge clusters that are too similar, split clusters with mixed intent, and rename clusters to reflect their core topic. Drag and drop keywords between clusters as needed.</p>
-            </li>
-            <li className="mb-2 ml-6">
-              <span className="absolute flex items-center justify-center w-8 h-8 bg-emerald-100 dark:bg-emerald-900 rounded-full -left-4 ring-4 ring-white dark:ring-neutral-950">
-                <span className="text-emerald-600 dark:text-emerald-400 font-bold text-sm">5</span>
-              </span>
-              <h3 className="font-semibold text-neutral-900 dark:text-white">Export and Build Content</h3>
-              <p className="text-neutral-700 dark:text-neutral-300">Export your clusters as CSV or copy them as a structured content map. Each cluster becomes one article. Use the primary keyword as your H1 and the secondary keywords as H2s and H3s.</p>
-            </li>
-          </ol>
-        </section>
+          {/* Final CTA */}
+          <section className="rounded-3xl bg-emerald-600 p-12 text-center text-white shadow-xl shadow-emerald-600/20">
+            <GitBranch className="h-12 w-12 mx-auto mb-6 opacity-90" />
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Start Clustering Your Keywords Now</h2>
+            <p className="text-emerald-100 max-w-xl mx-auto mb-8 text-lg">
+              Paste your list, choose your method, and organize up to 5,000 keywords into content-ready clusters in seconds.
+            </p>
+            <a
+              href="#clustering-tool"
+              className="inline-flex items-center gap-2 rounded-full bg-white text-emerald-600 px-8 py-4 font-bold hover:bg-emerald-50 transition-all shadow-lg hover:scale-105 active:scale-95"
+            >
+              Launch Clustering Tool
+            </a>
+          </section>
 
-        {/* FAQ */}
-        <section className="mb-16" id="faq">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            <details className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 open:ring-1 open:ring-emerald-600/20">
-              <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-neutral-900 dark:text-white">
-                What is the best free keyword clustering tool in 2026?
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                In 2026, the best free keyword clustering tool for SEOs is this browser-native clustering tool. It offers semantic NLP grouping, word-matching, and hybrid analysis for up to 5,000 keywords without signups or server uploads, ensuring maximum privacy and speed.
-              </div>
-            </details>
-
-            <details className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 open:ring-1 open:ring-emerald-600/20">
-              <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-neutral-900 dark:text-white">
-                How many keywords should be in a single cluster?
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                A healthy cluster typically contains <strong>5 to 25 keywords</strong> that share the same search intent . Clusters with fewer than 5 keywords may not justify a dedicated page. Clusters with 100+ keywords are usually sub-pillars that should be broken into smaller, more focused groups .
-              </div>
-            </details>
-
-            <details className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 open:ring-1 open:ring-emerald-600/20">
-              <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-neutral-900 dark:text-white">
-                Can keyword clustering cause cannibalization?
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                Poor clustering can cause cannibalization, but proper clustering prevents it. If two keywords share 40%+ of the same ranking URLs (SERP overlap), they belong on one page — targeting them separately creates self-competition . SERP-based clustering is the most reliable way to avoid this.
-              </div>
-            </details>
-
-            <details className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 open:ring-1 open:ring-emerald-600/20">
-              <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-neutral-900 dark:text-white">
-                What is the difference between keyword clusters and topic clusters?
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                Keyword clusters are page-level groups of related search terms that should be targeted in a single article. Topic clusters are site-level architectures where multiple related articles (cluster pages) link to a central pillar page . You create keyword clusters first, then organize them into topic clusters.
-              </div>
-            </details>
-
-            <details className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 open:ring-1 open:ring-emerald-600/20">
-              <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-neutral-900 dark:text-white">
-                Do I still need to do manual keyword research?
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                Yes. AI and clustering tools provide the framework, but human oversight is essential to verify commercial viability and industry context . Use tools to find and group keywords, but use your expertise to decide which topics will actually drive revenue and which clusters need manual refinement.
-              </div>
-            </details>
-
-            <details className="group rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 open:ring-1 open:ring-emerald-600/20">
-              <summary className="flex cursor-pointer items-center justify-between p-4 font-medium text-neutral-900 dark:text-white">
-                How do I turn clusters into content?
-                <span className="transition group-open:rotate-180">
-                  <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                </span>
-              </summary>
-              <div className="px-4 pb-4 text-neutral-700 dark:text-neutral-300">
-                Each cluster becomes one article. Use the highest-volume keyword as your H1/title. Use secondary keywords as H2s and H3s. Include latent semantic keywords (related concepts) to make the content semantically complete . Link each cluster article back to its pillar page with descriptive anchor text.
-              </div>
-            </details>
-          </div>
-        </section>
-
-        {/* Methodology & E-E-A-T */}
-        <section className="mb-16" id="methodology">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">Methodology and Data Sources</h2>
-          <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-4">
-            This tool implements three clustering algorithms client-side in the browser. The <strong>Semantic</strong> method uses a simplified NLP approach based on word embedding similarity and shared contextual terms. The <strong>Word Match</strong> method uses n-gram overlap and stem matching. The <strong>Hybrid</strong> method combines both approaches with configurable weighting.
-          </p>
-          <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-            Implementation guidance is synthesized from industry research on SERP-based clustering methodologies , semantic NLP approaches , and practical workflows from SEO agencies managing enterprise content programs . The tool does not access live SERP data (which requires API keys and rate-limited scraping) but simulates SERP-logic through semantic and word-overlap validation.
-          </p>
-
-          <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col sm:flex-row gap-6 items-start">
-            <div className="h-16 w-16 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-2xl font-bold text-neutral-900 dark:text-white">
-              M
-            </div>
-            <div>
-              <h3 className="font-semibold text-neutral-900 dark:text-white">About the Creator</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
-                Built by <address className="inline not-italic font-medium">Mubarak</address>, an independent developer and SEO strategist. This tool was created to solve the frustration of spending hours manually grouping keywords in spreadsheets. All processing happens in your browser — no data is uploaded to any server.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                  <Shield className="h-3 w-3" /> Open Source
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                  <Clock className="h-3 w-3" /> Updated April 2026
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                  <Users className="h-3 w-3" /> 9,000+ Monthly Users
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Related Tools */}
-        <section className="mb-16 border-t border-neutral-100 dark:border-neutral-800 pt-16" id="related">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-6">Related SEO Tools</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link href="/seo/hreflang-generator" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-colors">
-              <Globe className="h-6 w-6 text-emerald-600 mb-3" />
-              <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">Hreflang Tag Generator</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Generate correct hreflang tags for international SEO scaling.</p>
-            </Link>
-            <Link href="/seo/meta-description-checker" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-colors">
-              <Search className="h-6 w-6 text-emerald-600 mb-3" />
-              <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">Meta Description Checker</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Preview and optimize your meta tags for maximum SERP click-through rate.</p>
-            </Link>
-            <Link href="/seo/youtube-title-checker" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-colors">
-              <BarChart3 className="h-6 w-6 text-emerald-600 mb-3" />
-              <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">YouTube Title Checker</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Check titles for pixel length and CTR score for maximum video reach.</p>
-            </Link>
-            <Link href="/text/duplicate-word-finder" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-colors">
-              <FileText className="h-6 w-6 text-emerald-600 mb-3" />
-              <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">Duplicate Word Finder</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Identify and remove repetitive words to improve your content's readability.</p>
-            </Link>
-            <Link href="/text/word-frequency" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-colors">
-              <Zap className="h-6 w-6 text-emerald-600 mb-3" />
-              <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">Word Frequency Counter</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Analyze keyword density and distribution across your content clusters.</p>
-            </Link>
-            <Link href="/text/readability-flesch-kincaid-calculator" className="group p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-emerald-500 transition-colors">
-              <BookOpen className="h-6 w-6 text-emerald-600 mb-3" />
-              <h3 className="font-bold text-neutral-900 dark:text-white group-hover:text-emerald-600 transition-colors">Readability Calculator</h3>
-              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-2">Ensure your content is accessible to your target audience's reading level.</p>
-            </Link>
-          </div>
-        </section>
-
-        {/* References */}
-        <section className="mb-16" id="references">
-          <h2 className="text-3xl font-bold text-neutral-900 dark:text-white mb-4">References and Citations</h2>
-          <ul className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
-            <li>[60] <cite>SEOcluster.ai</cite>. "Best Keyword Clustering Tools 2026." January 2026. <a href="https://seocluster.ai/blog/best-keyword-clustering-tools-2026" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://seocluster.ai/...</a></li>
-            <li>[61] <cite>Rebel Growth</cite>. "Best Keyword Clustering Tools for 2026: A Practical Listicle Guide." January 2026. <a href="https://rebelgrowth.com/blog/best-keyword-clustering-tools-for-2026-a-practical-listicle-guide" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://rebelgrowth.com/...</a></li>
-            <li>[63] <cite>CausalFunnel</cite>. "Best Keyword Clustering Tools 2026: Tried And Tested Picks." February 2026. <a href="https://www.causalfunnel.com/blog/best-keyword-clustering-tools-for-seo-in-2026-tried-and-tested-picks/" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.causalfunnel.com/...</a></li>
-            <li>[64] <cite>NoSugarStudios</cite>. "Topic Clusters vs Keywords for Modern SEO Strategy." March 2026. <a href="https://nosugarstudios.com/topic-clusters-vs-keywords-modern-content-strategy-explained/" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://nosugarstudios.com/...</a></li>
-            <li>[65] <cite>ClickRank</cite>. "AI Tools for Topic Clustering: The 2026 SEO Master List." March 2026. <a href="https://www.clickrank.ai/best-ai-tools-for-topic-clustering/" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.clickrank.ai/...</a></li>
-            <li>[66] <cite>Topical Map AI</cite>. "Keyword Clustering Tools Comparison 2026." March 2026. <a href="https://topicalmap.ai/blog/auto/keyword-clustering-tools-comparison-2026" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://topicalmap.ai/...</a></li>
-            <li>[67] <cite>Link-Assistant</cite>. "7 Free Keyword Clustering Tools for Your Website (2026)." February 2026. <a href="https://www.link-assistant.com/rankdots/blog/keyword-clustering-tools.html" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.link-assistant.com/...</a></li>
-            <li>[68] <cite>Single Grain</cite>. "Best Keyword Clustering Tools in 2026." February 2026. <a href="https://www.singlegrain.com/artificial-intelligence/best-keyword-clustering-tools-in-2026/" className="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">https://www.singlegrain.com/...</a></li>
-          </ul>
-        </section>
-
-        {/* Final CTA */}
-        <section className="rounded-3xl bg-emerald-600 p-8 sm:p-12 text-center text-white">
-          <GitBranch className="h-10 w-10 mx-auto mb-4 opacity-90" />
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Turn Keyword Chaos Into Content Strategy.</h2>
-          <p className="text-emerald-100 max-w-xl mx-auto mb-6">
-            Scroll up to cluster your keywords. Paste your list, choose your method, and export topic-ready clusters in seconds.
-          </p>
-          <a
-            href="#clustering-tool"
-            className="inline-flex items-center gap-2 rounded-full bg-white text-emerald-600 px-6 py-3 font-semibold hover:bg-emerald-50 transition-colors"
-          >
-            Launch Clustering Tool
-          </a>
-        </section>
-
-      </article>
-    </main >
+        </article>
+      </main >
     </>
   )
 }
+

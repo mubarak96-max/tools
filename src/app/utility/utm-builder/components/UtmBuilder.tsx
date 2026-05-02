@@ -112,11 +112,13 @@ export default function UtmBuilder() {
 
     return {
       errors: newErrors,
+      previewUrl: baseUrl.trim() && !newErrors.baseUrl ? build() : '',
       url: isValid ? build() : '',
       isValid: !!isValid
     };
   }, [baseUrl, params]);
 
+  const previewUrl = validation.previewUrl;
   const finalUrl = validation.url;
 
   const saveToHistory = useCallback((url: string) => {
@@ -439,18 +441,22 @@ export default function UtmBuilder() {
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em]">Live URL Preview</h3>
                   <span className={`px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-lg ${
-                    finalUrl ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'
+                    finalUrl
+                      ? 'bg-emerald-100 text-emerald-700'
+                      : previewUrl
+                        ? 'bg-amber-100 text-amber-700'
+                        : 'bg-slate-100 text-slate-500'
                   }`}>
-                    {finalUrl ? 'Production Ready' : 'Incomplete'}
+                    {finalUrl ? 'Production Ready' : previewUrl ? 'Draft Preview' : 'Incomplete'}
                   </span>
                 </div>
                 
-                {finalUrl ? (
+                {previewUrl ? (
                   <div className="space-y-4">
                     <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 break-all font-mono text-sm text-slate-800 leading-relaxed shadow-inner">
                       <span className="text-slate-400">{baseUrl.split('?')[0]}</span>
                       <span className="text-indigo-600 font-black">?</span>
-                      {new URL(finalUrl).searchParams.toString().split('&').map((param, i, arr) => (
+                      {new URL(previewUrl).searchParams.toString().split('&').map((param, i, arr) => (
                         <span key={i}>
                           <span className="text-emerald-700 font-bold">{param.split('=')[0]}</span>
                           <span className="text-slate-400">=</span>
@@ -463,12 +469,13 @@ export default function UtmBuilder() {
                     <div className="flex gap-3">
                       <button
                         onClick={() => handleCopy(finalUrl)}
-                        className="flex-1 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-100 flex items-center justify-center gap-2"
+                        disabled={!finalUrl}
+                        className="flex-1 py-3.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-100 flex items-center justify-center gap-2"
                       >
                         <Copy size={16} /> Copy
                       </button>
                       <a
-                        href={finalUrl}
+                        href={finalUrl || previewUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-xl border border-slate-200 transition-all flex items-center justify-center gap-2"
@@ -476,6 +483,11 @@ export default function UtmBuilder() {
                         <ExternalLink size={16} /> Test Link
                       </a>
                     </div>
+                    {!finalUrl && (
+                      <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3">
+                        Preview updates live, but copy and production-safe use still require URL, source, medium, and campaign.
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <div className="text-center py-12 px-8">
@@ -489,7 +501,7 @@ export default function UtmBuilder() {
               </div>
 
               {/* Parameter Breakdown */}
-              {finalUrl && (
+              {previewUrl && (
                 <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                   <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mb-5">Parameter Analysis</h3>
                   <div className="grid gap-3">

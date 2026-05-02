@@ -133,11 +133,9 @@ export default function AmazonFbaCalculatorUkPage() {
               calculator to test those scenarios before committing to a purchase order.
             </p>
 
-            <h2>Related Amazon seller guides</h2>
+            <h2>Related calculators</h2>
             <p>
-              Read our{" "}
-              <Link href="/blog/amazon-fba-fees-uk-guide">Amazon FBA fees UK guide</Link> for a
-              cleaner walkthrough of fees, VAT, and break-even pricing. If you also sell on
+              If you also sell on
               Amazon.ca, compare with the{" "}
               <Link href="/finance/amazon-fba-canada-calculator">
                 Amazon FBA calculator Canada

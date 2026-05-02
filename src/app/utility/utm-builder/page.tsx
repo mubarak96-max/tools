@@ -530,11 +530,6 @@ export default function UtmBuilderPage() {
                   href: "/blog/how-to-read-utm-reports-ga4",
                   description: "See where tagged traffic appears in GA4 and how to inspect campaign performance after launch.",
                 },
-                {
-                  name: "UTM Builder for Shopify",
-                  href: "/blog/utm-builder-for-shopify",
-                  description: "Learn how to tag product, collection, and campaign URLs for Shopify stores without breaking attribution.",
-                },
               ].map((guide) => (
                 <Link
                   key={guide.href}

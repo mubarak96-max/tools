@@ -132,13 +132,9 @@ export default function TorontoLandTransferTaxPage() {
               comparisons as well as first-time buyer budgeting.
             </p>
 
-            <h2>Related Toronto and Ontario guides</h2>
+            <h2>Related calculators</h2>
             <p>
-              Read our{" "}
-              <Link href="/blog/toronto-land-transfer-tax-guide">
-                Toronto land transfer tax guide
-              </Link>{" "}
-              for examples and rebate rules. You can also compare broader affordability with{" "}
+              You can also compare broader affordability with{" "}
               <Link href="/real-estate/mortgage-qualifier-canada">Mortgage Qualifier Canada</Link>{" "}
               or review other property tax pages in{" "}
               <Link href="/real-estate">our real estate tools hub</Link>.

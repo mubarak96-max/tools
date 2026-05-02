@@ -132,13 +132,9 @@ export default function AmazonFbaCanadaCalculatorPage() {
               specific calculator matters before you commit to inventory.
             </p>
 
-            <h2>Related Amazon seller guides</h2>
+            <h2>Related calculators</h2>
             <p>
-              Read our{" "}
-              <Link href="/blog/amazon-fba-fees-canada-guide">
-                Amazon FBA fees Canada guide
-              </Link>{" "}
-              for a plain-English explanation of fee layers and metric size tiers. You can also
+              You can also
               compare it with the{" "}
               <Link href="/finance/amazon-fba-calculator-uk">Amazon FBA calculator UK</Link>.
             </p>

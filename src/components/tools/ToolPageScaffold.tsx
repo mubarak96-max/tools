@@ -344,6 +344,7 @@ export default function ToolPageScaffold({
   children,
   learn,
   faqs,
+  relatedGuides,
 }: {
   path: string;
   category: string;
@@ -353,6 +354,7 @@ export default function ToolPageScaffold({
   children: ReactNode;
   learn?: ReactNode;
   faqs?: Array<{ question: string; answer: string }>;
+  relatedGuides?: Array<{ title: string; href: string; description?: string }>;
 }) {
   return (
     <div className="space-y-8">
@@ -397,6 +399,29 @@ export default function ToolPageScaffold({
                 <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
               </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {relatedGuides && relatedGuides.length > 0 ? (
+        <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground">Related Guides</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {relatedGuides.map((guide) => (
+              <Link
+                key={guide.href}
+                href={guide.href}
+                className="group rounded-[1.25rem] border border-border bg-background p-5 transition-all hover:border-primary/40 hover:shadow-sm flex flex-col"
+              >
+                <h3 className="text-base font-semibold text-foreground group-hover:text-primary">{guide.title}</h3>
+                {guide.description && (
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{guide.description}</p>
+                )}
+                <div className="mt-auto pt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  Read guide <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </div>
+              </Link>
             ))}
           </div>
         </section>
