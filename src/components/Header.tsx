@@ -49,6 +49,7 @@ const NAV_GROUPS = [
       { name: 'EMI Calculator', href: '/finance/emi-calculator'},
       { name: 'Invoice Generator', href: '/finance/invoice-generator'},
       { name: 'CPP & EI Calculator', href: '/finance/cpp-ei-calculator'},
+      { name: 'UAE Gratuity', href: '/finance/uae-gratuity-calculator'},
     ],
   },
   {

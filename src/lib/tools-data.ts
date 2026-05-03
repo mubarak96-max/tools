@@ -547,6 +547,12 @@ export const ALL_TOOLS: Tool[] = [
     category: "Real Estate",
   },
   {
+    name: "UAE Gratuity Calculator 2026",
+    href: "/finance/uae-gratuity-calculator",
+    description: "Calculate your UAE end of service gratuity instantly. MOHRE-compliant calculator based on Federal Decree-Law No. 33 of 2021. Accurate for Dubai, Abu Dhabi & all Emirates.",
+    category: "Finance",
+  },
+  {
     name: "UAE Visa Cost Calculator 2026",
     href: "/utility/uae-visa-cost-calculator",
     description: "Calculate exact UAE visa costs for 2026. Includes government fees, medical tests, Emirates ID, and mandatory health insurance for tourist, employment, and Golden Visas.",

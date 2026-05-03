@@ -172,6 +172,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/finance/amazon-fba-calculator-uk",
       description: "Estimate Amazon UK referral fees, fulfillment, storage, and unit profit.",
     },
+    {
+      name: "UAE Gratuity Calculator",
+      href: "/finance/uae-gratuity-calculator",
+      description: "Calculate your UAE end of service benefits (EOSB) with the latest 2026 labor law formula.",
+    },
   ],
   SEO: [
     {

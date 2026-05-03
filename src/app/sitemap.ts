@@ -139,6 +139,7 @@ const TOOL_PATHS = [
   "/utility/qr-code-scanner",
   "/utility/xg-expected-goals-calculator",
   "/utility/uae-visa-cost-calculator",
+  "/finance/uae-gratuity-calculator",
   "/seo/youtube-title-checker",
   "/seo/meta-description-checker",
   "/seo/hreflang-generator",
