@@ -59,8 +59,7 @@ function calcScale1(price: number): number {
   for (const b of SCALE_1_BRACKETS) {
     if (price <= b.max) {
       if (b.rate !== null) return Math.ceil(price * b.rate)
-      if (b.perBand) return Math.ceil(b.perBand.add + (price - b.perBand.over))
-      return b.flat!
+      return Math.ceil(b.perBand.add + (price - b.perBand.over))
     }
   }
   return 0

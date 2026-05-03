@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AlertCircle, CheckCircle2, Info } from "lucide-react";
 import LBTTCalculator from "@/components/scotland-lbtt/LBTTCalculator";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
