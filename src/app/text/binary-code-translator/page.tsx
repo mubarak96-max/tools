@@ -387,7 +387,7 @@ export default function BinaryCodeTranslatorPage() {
             <li>Lightweight encoding tasks: copy, download, share, or load a local text file without installing anything.</li>
           </ul>
           <p className="mt-4 text-base leading-7 text-muted-foreground">
-            If you also work with other text formats, try the <Link href="/text/morse-code-translator" className="font-medium text-primary hover:underline">Morse code translator</Link>, the <Link href="/text/word-frequency" className="font-medium text-primary hover:underline">word frequency counter</Link>, the <Link href="/text/readability-flesch-kincaid-calculator" className="font-medium text-primary hover:underline">readability calculator</Link>, or the <Link href="/text/convert-image-to-text" className="font-medium text-primary hover:underline">image to text OCR tool</Link>.
+            If you also work with other text formats, try the <Link href="/text/morse-code-translator" className="font-medium text-primary hover:underline">Morse code translator</Link>, the <Link href="/text/word-frequency" className="font-medium text-primary hover:underline">word frequency counter</Link>, the <Link href="/text/readability-flesch-kincaid-calculator" className="font-medium text-primary hover:underline">readability calculator</Link>, or the <Link href="/text/scan-text-from-image" className="font-medium text-primary hover:underline">image to text OCR tool</Link>.
           </p>
 
           <h2 className="mt-8 text-2xl font-semibold tracking-tight text-foreground">Binary Reference Table: A-Z and 0-9</h2>

@@ -50,7 +50,7 @@ const TEXT_TOOLS: TextToolMeta[] = [
   },
   {
     name: "Image to Text OCR",
-    href: "/text/convert-image-to-text",
+    href: "/text/scan-text-from-image",
     description: "Extract, clean, copy, and download editable text from JPG, PNG, WEBP, and BMP images with OCR.",
   },
   {

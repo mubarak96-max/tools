@@ -512,7 +512,7 @@ const SITEMAP_TOOLS = [
       },
       {
         name: "Image to Text OCR",
-        href: "/text/convert-image-to-text",
+        href: "/text/scan-text-from-image",
         description: "Extract, clean, copy, and download editable text from images with OCR.",
       },
       {

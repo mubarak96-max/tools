@@ -12,7 +12,7 @@ const tools = [
     name: "Image to Text OCR",
     description: "Extract text from images instantly",
     icon: <FileText className="w-5 h-5" />,
-    href: "/text/convert-image-to-text",
+    href: "/text/scan-text-from-image",
     category: "Text",
   },
   {

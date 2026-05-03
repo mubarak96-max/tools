@@ -82,7 +82,7 @@ const relatedTools = [
   },
   {
     name: "Image to Text OCR",
-    href: "/text/convert-image-to-text",
+    href: "/text/scan-text-from-image",
     description: "Extract editable text from JPG, PNG, WEBP, and BMP images.",
   },
 ];

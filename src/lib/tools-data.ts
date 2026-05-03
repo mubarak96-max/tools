@@ -326,7 +326,7 @@ export const ALL_TOOLS: Tool[] = [
   },
   {
     name: "Image to Text OCR Converter",
-    href: "/text/convert-image-to-text",
+    href: "/text/scan-text-from-image",
     description: "Extract text from images with a free OCR converter. Convert JPG, PNG, WEBP, and BMP images into editable text, clean the output, and copy or download it.",
     category: "Text",
   },
@@ -545,6 +545,12 @@ export const ALL_TOOLS: Tool[] = [
     href: "/real-estate/land-transfer-tax-calculator-toronto",
     description: "Calculate Ontario land transfer tax and Toronto municipal land transfer tax with first-time buyer rebates and NRST scenarios for 2026 budgeting.",
     category: "Real Estate",
+  },
+  {
+    name: "UAE Visa Cost Calculator 2026",
+    href: "/utility/uae-visa-cost-calculator",
+    description: "Calculate exact UAE visa costs for 2026. Includes government fees, medical tests, Emirates ID, and mandatory health insurance for tourist, employment, and Golden Visas.",
+    category: "Utility",
   },
   {
     name: "UK Stamp Duty Calculator",

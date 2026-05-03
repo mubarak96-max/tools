@@ -258,7 +258,7 @@ export default function QRCodeGeneratorPage() {
           <p>Direct people to your Instagram, LinkedIn, TikTok, or YouTube channel by encoding the profile URL. Add the QR code square to packaging, receipts, or event materials to grow your following from offline touchpoints.</p>
 
           <h3 className="text-xl font-bold mt-10">Email and Phone Actions</h3>
-          <p>Use <code>mailto:hello@yourdomain.com</code> to open the email app with your address pre-filled. Use <code>tel:+971501234567</code> to open the dialer. These are especially useful on printed materials like brochures or packaging where a tap or scan is easier than typing.</p>
+          <p>Use <code>mailto:hello@findbest.tools</code> to open the email app with your address pre-filled. Use <code>tel:+971501234567</code> to open the dialer. These are especially useful on printed materials like brochures or packaging where a tap or scan is easier than typing.</p>
         </section>
 
         <hr className="border-border/60" />

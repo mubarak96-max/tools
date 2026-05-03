@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     title: "Scan Text from Image — Free Photo to Text Converter",
     description:
       "Extract text from any image instantly. Photo to text, JPG to text, screenshot to text — 100% free, no sign-up, works in your browser.",
-    url: "https://yourdomain.com/scan-text-from-image",
+    url: "https://findbest.tools/text/scan-text-from-image",
   },
   alternates: {
-    canonical: "https://yourdomain.com/scan-text-from-image",
+    canonical: "https://findbest.tools/text/scan-text-from-image",
   },
 };
 
@@ -43,6 +43,7 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Scan Text from Image",
+  url: "https://findbest.tools/text/scan-text-from-image",
   applicationCategory: "UtilitiesApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },

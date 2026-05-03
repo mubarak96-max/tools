@@ -23,7 +23,7 @@ const NAV_GROUPS = [
       { name: 'Duplicate Word Finder', href: '/text/duplicate-word-finder'},
       { name: 'Morse Code Translator', href: '/text/morse-code-translator'},
       { name: 'Binary Code Translator', href: '/text/binary-code-translator'},
-      { name: 'Image to Text (OCR)', href: '/text/convert-image-to-text'},
+      { name: 'Image to Text (OCR)', href: '/text/scan-text-from-image'},
       { name: 'Readability Calculator', href: '/text/readability-flesch-kincaid-calculator'},
     ],
   },
@@ -93,6 +93,7 @@ const NAV_GROUPS = [
       { name: 'QR Code Scanner', href: '/utility/qr-code-scanner'},
       { name: 'Barcode Scanner', href: '/utility/barcode-scanner'},
       { name: 'xG Calculator', href: '/utility/xg-expected-goals-calculator'},
+      { name: 'UAE Visa Cost', href: '/utility/uae-visa-cost-calculator'},
     ],
   },
 ];
