@@ -1,9 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Sora', 'Inter', var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Sora', 'Outfit', var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-dm-serif), serif;
+  --font-display: var(--font-dm-serif), var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono);
+
+  --color-ivory: #F9F6F0;
+  --color-cream: #F2EDE4;
+  --color-gold: #B8973A;
+  --color-gold-light: #D4AF5A;
+  --color-gold-dark: #8A6E28;
+  --color-ink: #1A1612;
+  --color-ink-mid: #3D3530;
+  --color-ink-light: #6B5E56;
+  --color-border-hk: #DDD5C8;
+  --color-shadow-hk: rgba(26,22,18,0.08);
 
   --color-border: #E5E5E5;
   --color-border-soft: #F1F5F9;
