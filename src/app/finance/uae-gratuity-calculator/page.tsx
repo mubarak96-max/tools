@@ -5,7 +5,8 @@ import ComparisonTable from "./components/ComparisonTable";
 import SchemaMarkup from "./components/SchemaMarkup";
 import TrustSignals from "./components/TrustSignals";
 import AuthorBio from "./components/AuthorBio";
-import { Calculator, Shield, Clock, FileText, Users, Scale, AlertTriangle, BookOpen, Landmark, Briefcase, Info, TrendingUp, Handshake, HeartHandshake } from "lucide-react";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import { Calculator, Shield, Clock, FileText, Users, Scale, AlertTriangle, BookOpen, Landmark, Briefcase, Info, TrendingUp, Handshake, HeartHandshake, Check } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "UAE Gratuity Calculator 2026 | Free End of Service Benefits (Official)",
@@ -119,7 +120,7 @@ export default function UAEGratuityPage() {
           </p>
           <ul className="space-y-4 my-8">
             <li className="flex items-start gap-4">
-              <div className="mt-1 bg-blue-100 p-1.5 rounded-lg text-blue-600"><CheckCircle className="h-5 w-5" /></div>
+              <div className="mt-1 bg-blue-100 p-1.5 rounded-lg text-blue-600"><Check className="h-5 w-5" /></div>
               <div>
                 <strong>Minimum Service:</strong> You must complete at least <strong>one year (365 days)</strong> of 
                 continuous service with the same employer. If you leave before the 12-month mark, you are entitled 
@@ -127,7 +128,7 @@ export default function UAEGratuityPage() {
               </div>
             </li>
             <li className="flex items-start gap-4">
-              <div className="mt-1 bg-blue-100 p-1.5 rounded-lg text-blue-600"><CheckCircle className="h-5 w-5" /></div>
+              <div className="mt-1 bg-blue-100 p-1.5 rounded-lg text-blue-600"><Check className="h-5 w-5" /></div>
               <div>
                 <strong>Employment Type:</strong> The law applies to all private-sector employees on 
                 <strong> Limited Term (Fixed) Contracts</strong>. Note that as of February 2023, all 
@@ -416,12 +417,7 @@ export default function UAEGratuityPage() {
                  to make informed financial decisions.
                </p>
                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                 <button 
-                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                   className="bg-white text-blue-900 font-bold px-10 py-4 rounded-2xl hover:bg-cyan-50 transition-all shadow-xl shadow-blue-950/50"
-                 >
-                   Re-Calculate Now
-                 </button>
+                 <ScrollToTopButton />
                  <button className="bg-blue-700 text-white font-bold px-10 py-4 rounded-2xl hover:bg-blue-600 transition-all border border-blue-500/50">
                    Download PDF Guide
                  </button>
