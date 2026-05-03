@@ -11,6 +11,11 @@ const FINANCE_TOOLS = [
     description: "Estimate monthly loan EMI, total interest, repayment, affordability, and amortization.",
   },
   {
+    name: "Car Loan EMI Calculator 2026",
+    href: "/finance/car-loan-emi-calculator",
+    description: "Calculate your exact monthly car payment, interest by credit score, and full amortization schedule with 2026 rates.",
+  },
+  {
     name: "Invoice Generator",
     href: "/finance/invoice-generator",
     description: "Create printable invoices with line items, taxes, discounts, business details, and totals.",

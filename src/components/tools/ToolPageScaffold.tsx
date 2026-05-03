@@ -58,6 +58,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       description: "Estimate monthly loan payment, total interest, and affordability.",
     },
     {
+      name: "Car Loan EMI Calculator 2026",
+      href: "/finance/car-loan-emi-calculator",
+      description: "Calculate exact car EMI, interest by credit score, and 2026 amortization.",
+    },
+    {
       name: "Salary After Tax Calculator",
       href: "/finance/salary-after-tax-calculator",
       description: "Calculate take-home pay with 2026 tax brackets.",
@@ -209,9 +214,9 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
   ],
   "Real Estate": [
     {
-      name: "Singapore Buyer's Stamp Duty Calculator",
-      href: "/real-estate/singapore-buyers-stamp-duty-calculator",
-      description: "Estimate Singapore BSD and ABSD for residential buyers by profile and property count.",
+      name: "Singapore Property Stamp Duty Calculator",
+      href: "/real-estate/singapore-property-stamp-duty-calculator",
+      description: "Calculate Singapore residential BSD, ABSD, and SSD using current buyer profiles and 2025 regimes.",
     },
     {
       name: "Hong Kong Stamp Duty Calculator",
@@ -446,22 +451,62 @@ export function RelatedToolsSection({
   if (related.length === 0) return null;
 
   return (
-    <section className="space-y-5 border-t border-border/60 pt-8">
-      <div className="flex items-center justify-between gap-4">
-        <h2 className="text-xl font-semibold tracking-tight text-foreground">More {category.toLowerCase()} tools</h2>
-        <Link href={categoryHref} className="text-sm font-medium text-primary hover:underline">
-          All {category.toLowerCase()} tools
+    <section className="mt-16 space-y-8 border-t border-border/40 pt-12">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">
+            Explore more {category.toLowerCase()} tools
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            High-performance tools to help you with {category.toLowerCase()} calculations.
+          </p>
+        </div>
+        <Link 
+          href={categoryHref} 
+          className="group inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+        >
+          View all {category.toLowerCase()} tools
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="16" height="16" 
+            viewBox="0 0 24 24" 
+            fill="none" stroke="currentColor" 
+            strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            className="transition-transform group-hover:translate-x-0.5"
+          >
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
         </Link>
       </div>
+
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {related.map((tool) => (
           <Link
             key={tool.href}
             href={tool.href}
-            className="group rounded-[1.25rem] border border-border bg-card p-4 transition-colors hover:border-primary/30"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border/60 bg-card p-4 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/5 active:scale-[0.98]"
           >
-            <h3 className="text-sm font-semibold text-foreground group-hover:text-primary">{tool.name}</h3>
-            <p className="mt-2 text-xs leading-5 text-muted-foreground">{tool.description}</p>
+            {/* Subtle background glow on hover */}
+            <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-primary/5 blur-2xl transition-opacity opacity-0 group-hover:opacity-100" />
+            
+            <div className="relative">
+              <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border/60 bg-muted/30 text-muted-foreground transition-colors group-hover:border-primary/20 group-hover:bg-primary/5 group-hover:text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+              </div>
+              <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
+                {tool.name}
+              </h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                {tool.description}
+              </p>
+            </div>
+
+            <div className="relative mt-4 flex items-center justify-between border-t border-border/40 pt-3 opacity-0 transition-all translate-y-2 group-hover:opacity-100 group-hover:translate-y-0">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-primary">Open Tool</span>
+              <div className="rounded-full bg-primary/10 p-1 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+            </div>
           </Link>
         ))}
       </div>

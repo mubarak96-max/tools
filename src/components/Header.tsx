@@ -77,8 +77,6 @@ const NAV_GROUPS = [
       { name: 'Price per Sq Ft', href: '/real-estate/price-per-square-foot-calculator'},
       { name: 'UK Stamp Duty', href: '/real-estate/uk-stamp-duty-calculator'},
       { name: 'Singapore Property Stamp Duty', href: '/real-estate/singapore-property-stamp-duty-calculator'},
-      { name: 'Singapore Buyer Stamp Duty', href: '/real-estate/singapore-buyers-stamp-duty-calculator'},
-      { name: 'Singapore Seller Stamp Duty', href: '/real-estate/singapore-sellers-stamp-duty-calculator'},
       { name: 'Scotland LBTT', href: '/real-estate/scotland-lbtt-calculator'},
       { name: 'Wales LTT', href: '/real-estate/wales-ltt-calculator'},
       { name: 'Hong Kong Stamp Duty', href: '/real-estate/hong-kong-stamp-duty-calculator'},

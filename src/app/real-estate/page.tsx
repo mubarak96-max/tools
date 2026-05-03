@@ -31,12 +31,12 @@ const REAL_ESTATE_TOOLS: RealEstateToolMeta[] = [
   {
     name: "UK Stamp Duty Calculator",
     href: "/real-estate/uk-stamp-duty-calculator",
-    description: "Calculate SDLT for England and Northern Ireland purchases with surcharge options.",
+    description: "Calculate SDLT, LBTT, and LTT for 2025–2026 with April 2026 threshold changes.",
   },
   {
     name: "Singapore Property Stamp Duty Calculator",
     href: "/real-estate/singapore-property-stamp-duty-calculator",
-    description: "Estimate Singapore BSD, ABSD, and SSD for private property purchases.",
+    description: "Calculate Singapore residential BSD, ABSD, and SSD with 2025-2026 rates and buyer profiles.",
   },
   {
     name: "Singapore Buyer's Stamp Duty Calculator",
@@ -151,8 +151,8 @@ export default function RealEstatePage() {
         </p>
         <p className="mt-4 max-w-3xl text-sm leading-6 text-muted-foreground">
           Most-used pages right now:{" "}
-          <Link href="/real-estate/singapore-buyers-stamp-duty-calculator" className="font-medium text-primary hover:underline">
-            Singapore Buyer's Stamp Duty Calculator
+          <Link href="/real-estate/singapore-property-stamp-duty-calculator" className="font-medium text-primary hover:underline">
+            Singapore Property Stamp Duty Calculator
           </Link>
           ,{" "}
           <Link href="/real-estate/hong-kong-stamp-duty-calculator" className="font-medium text-primary hover:underline">
@@ -186,6 +186,53 @@ export default function RealEstatePage() {
             <ToolCard key={tool.href} tool={tool} />
           ))}
         </div>
+      </section>
+
+      <section className="space-y-6">
+        <h2 className="text-lg font-semibold text-foreground">Recent Property Guides & Deep Dives</h2>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              title: "UK Stamp Duty Rates 2025",
+              href: "/blog/residential-stamp-duty-rates-uk",
+              desc: "Complete guide to the new April 2025 thresholds.",
+            },
+            {
+              title: "Singapore ABSD Guide",
+              href: "/blog/singapore-buyers-stamp-duty-guide",
+              desc: "Understanding ABSD for foreigners and citizens.",
+            },
+            {
+              title: "NYC Closing Costs Guide",
+              href: "/blog/nyc-closing-costs-2025",
+              desc: "Total costs for buying a home in New York City.",
+            },
+            {
+              title: "First-Time Buyer Relief UK",
+              href: "/blog/first-time-buyer-stamp-duty-relief-uk",
+              desc: "How to claim the £300,000 SDLT exemption.",
+            },
+          ].map((guide) => (
+            <Link
+              key={guide.href}
+              href={guide.href}
+              className="group rounded-2xl border border-border bg-card p-5 transition-all hover:border-primary/30 hover:shadow-sm"
+            >
+              <h3 className="text-sm font-bold text-foreground group-hover:text-primary">
+                {guide.title}
+              </h3>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                {guide.desc}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <Link href="/blog" className="inline-flex items-center text-sm font-medium text-primary hover:underline">
+          View all real estate guides
+          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
       </section>
 
 

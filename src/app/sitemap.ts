@@ -81,6 +81,7 @@ const TOOL_PATHS = [
   "/finance/salary-after-tax-calculator",
   "/finance/bonus-tax-calculator",
   "/finance/emi-calculator",
+  "/finance/car-loan-emi-calculator",
   "/finance/invoice-generator",
   "/finance/amazon-fba-calculator-uk",
   "/finance/amazon-fba-canada-calculator",

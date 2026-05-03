@@ -127,6 +127,12 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
+    name: "Car Loan EMI Calculator 2026",
+    href: "/finance/car-loan-emi-calculator",
+    description: "Free car loan EMI calculator with 2026 interest rates by credit score. Calculate your exact monthly payment, total interest paid, and full amortization schedule. Includes sales tax, dealer fees, and trade-in. No sign-up.",
+    category: "Finance",
+  },
+  {
     name: "Case Converter for Writing, SEO, and Developer Formats",
     href: "/text/case-converter",
     description: "Convert text into uppercase, lowercase, smart title case, sentence case, camelCase, PascalCase, kebab-case, snake_case, CONSTANT_CASE, and more.",
@@ -543,7 +549,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "UK Stamp Duty Calculator",
     href: "/real-estate/uk-stamp-duty-calculator",
-    description: "Calculate current residential SDLT for England and Northern Ireland, including second home surcharge, buy-to-let rates, and first-time buyer relief.",
+    description: "Calculate SDLT, LBTT, and LTT for 2025–2026. Includes April 2025 threshold changes, first-time buyer relief, and 5% second home surcharge.",
     category: "Real Estate",
   },
   {

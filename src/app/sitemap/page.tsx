@@ -388,7 +388,7 @@ const SITEMAP_TOOLS = [
       {
         name: "UK Stamp Duty Calculator",
         href: "/real-estate/uk-stamp-duty-calculator",
-        description: "Calculate SDLT for England and Northern Ireland purchases.",
+        description: "Calculate UK stamp duty (SDLT, LBTT, LTT) with April 2025 rates.",
       },
       {
         name: "Singapore Property Stamp Duty Calculator",

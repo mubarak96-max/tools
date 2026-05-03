@@ -1,366 +1,326 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { BookOpen, Briefcase, Contact2, Newspaper, Smartphone, Star, Zap } from "lucide-react";
-
-import ImageToText from "./components/ImageToText";
-import JsonLd from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
-import { absoluteUrl } from "@/lib/seo/metadata";
-
-export const revalidate = 43200;
-
-const PAGE_PATH = "/text/convert-image-to-text";
-const PAGE_URL = absoluteUrl(PAGE_PATH);
-
-const faq = [
-  {
-    question: "How do I extract text from an image?",
-    answer:
-      "Upload or drag in a JPG, PNG, WEBP, or BMP image, choose the OCR language, and run extraction. The tool scans the image for readable characters and returns editable text you can copy or download.",
-  },
-  {
-    question: "What is OCR?",
-    answer:
-      "OCR stands for optical character recognition. It uses pattern recognition and machine-learning models to detect letters, words, and lines inside an image and convert them into machine-readable text.",
-  },
-  {
-    question: "Can OCR read handwriting?",
-    answer:
-      "It can sometimes read clear handwriting, but printed text is usually more accurate. Handwriting varies by person, so names, numbers, and punctuation should always be reviewed manually.",
-  },
-  {
-    question: "Why is OCR inaccurate sometimes?",
-    answer:
-      "OCR accuracy depends on image resolution, lighting, contrast, rotation, font clarity, background noise, and language selection. A sharper, straighter image usually produces cleaner text.",
-  },
-  {
-    question: "What image formats are supported?",
-    answer:
-      "The tool accepts common image formats including JPG, PNG, WEBP, and BMP. For best results, use a clear image where the text is not blurred, warped, or hidden by glare.",
-  },
-  {
-    question: "Can I use the extracted text in other tools?",
-    answer:
-      "Yes. After extraction, copy the text, download it as a TXT file, clean spacing, or continue with related text tools such as the word counter, character counter, and readability calculator.",
-  },
-];
+import Link from "next/link";
+import ScanTextTool from "@/components/ScanTextTool";
+import { 
+  FileText, 
+  Camera, 
+  Navigation, 
+  BookOpen, 
+  Receipt, 
+  PenTool 
+} from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Image to Text OCR Converter | Extract Text from Image Online",
+  title: "Scan Text from Image — Free Photo to Text Converter Online",
   description:
-    "Extract text from images with a free OCR converter. Convert JPG, PNG, WEBP, and BMP images into editable text, clean the output, and copy or download it.",
+    "Free scan text from image tool. Upload any photo and extract text instantly with our JPG to text converter. Get text from image, screenshot, or scanned document — no upload, 100% private.",
   keywords: [
-    "convert image to text",
-    "ocr converter",
-    "ocr",
-    "image to text",
-    "image to text ocr",
-    "ocr text extractor",
-    "extract text from image online",
+    "scan text from image",
     "photo to text converter",
-    "convert image to editable text",
-    "copy text from image",
     "jpg to text",
-    "png to text",
+    "get text from image",
+    "image to text converter",
+    "extract text from image",
+    "ocr online free",
+    "picture to text",
+    "screenshot to text",
+    "convert image to text",
+    "free ocr",
+    "text recognition online",
   ],
-  alternates: {
-    canonical: PAGE_URL,
-  },
   openGraph: {
-    type: "website",
-    url: PAGE_URL,
-    title: "Image to Text OCR Converter",
+    title: "Scan Text from Image — Free Photo to Text Converter",
     description:
-      "Extract text from images online with OCR, clean the output, and continue into writing and analysis workflows.",
+      "Extract text from any image instantly. Photo to text, JPG to text, screenshot to text — 100% free, no sign-up, works in your browser.",
+    url: "https://yourdomain.com/scan-text-from-image",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Image to Text OCR Converter",
-    description:
-      "Convert images into editable text with OCR, confidence feedback, cleanup actions, and TXT download.",
+  alternates: {
+    canonical: "https://yourdomain.com/scan-text-from-image",
   },
 };
 
-function buildImageToTextJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: "Convert Image to Text",
-    url: PAGE_URL,
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "All",
-    browserRequirements: "Requires JavaScript",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    description:
-      "Free OCR converter that extracts editable text from images, supports multiple image uploads, shows confidence feedback, and provides cleanup and copy actions.",
-    featureList: [
-      "Extract text from image with OCR",
-      "JPG, PNG, WEBP, and BMP support",
-      "OCR progress status and staged feedback",
-      "Confidence score",
-      "Language selection",
-      "Batch image upload",
-      "Rotate and contrast preprocessing",
-      "Copy extracted text",
-      "Download TXT output",
-      "Image preview",
-    ],
-  };
-}
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Scan Text from Image",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description:
+    "Free online tool to scan and extract text from images. Works as a photo to text converter, JPG to text extractor, and image to text converter — all locally in your browser.",
+};
 
-export default function ConvertImageToTextPage() {
-  const breadcrumbs = buildBreadcrumbJsonLd([
-    { name: "Home", path: "/" },
-    { name: "Text", path: "/text" },
-    { name: "Convert Image to Text", path: PAGE_PATH },
-  ]);
-  const faqJsonLd = buildFaqJsonLd(faq);
+const FAQS = [
+  {
+    q: "How does the scan text from image tool work?",
+    a: "This tool uses Tesseract.js, a JavaScript port of the industry-standard Tesseract OCR (Optical Character Recognition) engine originally developed at HP Labs and now maintained by Google. When you upload an image, the OCR engine analyses pixel patterns and identifies characters by comparing them against trained language models. Everything runs directly in your browser — no image data is ever sent to a server. The result is extracted text you can copy, edit, or download.",
+  },
+  {
+    q: "What image formats does the photo to text converter support?",
+    a: "The image to text converter supports all common image formats including JPG/JPEG, PNG, WebP, BMP, GIF, and TIFF. For best results, use high-resolution images with clear, high-contrast text. Blurry, low-resolution, or heavily compressed images (like small thumbnails) will produce less accurate results. If you have a scanned PDF, convert it to an image first using any PDF viewer's screenshot feature or a PDF-to-image converter.",
+  },
+  {
+    q: "How accurate is the JPG to text extraction?",
+    a: "Accuracy depends heavily on the quality of the source image. For clean, printed text on a contrasting background (like a typed document, book page, or printed sign), accuracy is typically very high — often 95–99%. Accuracy decreases for handwritten text, stylised fonts, text on complex backgrounds, very small text, or images with glare and shadows. To improve accuracy: use the highest resolution image available, ensure good lighting, avoid heavy rotation, and crop to the text area if possible.",
+  },
+  {
+    q: "Is it safe to use? Does my image get uploaded anywhere?",
+    a: "Yes, it is completely safe. This tool runs 100% locally in your browser using WebAssembly — the OCR engine executes entirely on your device. Your images are never uploaded to any server, never stored anywhere outside your browser session, and never seen by anyone else. This makes it safe to use with sensitive documents, confidential files, personal photos, and private correspondence. When you close the browser tab, everything is gone.",
+  },
+  {
+    q: "Can I get text from image files with multiple columns or complex layouts?",
+    a: "Yes. The OCR engine handles multi-column layouts, though with complex formatting, the order of extracted text may follow a left-to-right, top-to-bottom reading pattern rather than perfectly preserving the visual column structure. For structured documents, use the 'Markdown' output format which attempts to preserve headings and list structures. For tables and forms, the 'Lines' format often gives the cleanest output for copying into a spreadsheet.",
+  },
+  {
+    q: "What languages does the image to text converter support?",
+    a: "The default language model is English (trained on the English alphabet and common words). Tesseract.js supports over 100 languages, but loading multiple language packs increases the download size. The current tool is optimised for English text. For other languages, the tool may still work for languages that share the Latin alphabet (French, Spanish, German, etc.), though accuracy may be lower than with a dedicated language model.",
+  },
+  {
+    q: "How can I get better text extraction results?",
+    a: "Several techniques improve OCR accuracy significantly. Use a high-resolution image — at least 300 DPI (dots per inch) for scanned documents. Ensure good contrast between text and background (black text on white is ideal). Straighten the image before uploading — even a few degrees of rotation can reduce accuracy. Crop tightly to the text area to reduce noise. Avoid images with heavy JPEG compression artefacts. If working from a physical document, ensure even lighting without glare or shadows.",
+  },
+  {
+    q: "What is the difference between the output format options?",
+    a: "Plain text extracts all recognised characters exactly as they appear, with original line breaks preserved. This is best for simple documents, single paragraphs, or when you want to process the text further. Markdown format attempts to detect structural elements — lines that appear to be headings are formatted with ## prefixes, and list-like lines get bullet point formatting. This is useful for structured documents like articles or reports. Lines format removes blank lines and ensures each non-empty line is preserved separately — useful for addresses, lists, and tabular data.",
+  },
+];
 
+const USE_CASES = [
+  {
+    icon: <FileText size={24} color="#3D6B4F" />,
+    title: "Extract text from scanned documents",
+    desc: "Convert scanned PDFs or paper documents into editable digital text. Perfect for archiving physical documents, extracting information from old records, or digitising printed forms.",
+  },
+  {
+    icon: <Camera size={24} color="#3D6B4F" />,
+    title: "Get text from screenshots",
+    desc: "Extract text from screenshots of websites, apps, error messages, or any on-screen content. Useful when you can't select and copy text directly from the source.",
+  },
+  {
+    icon: <Navigation size={24} color="#3D6B4F" />,
+    title: "Read text from photos of signs",
+    desc: "Capture and extract text from photos of road signs, menus, business cards, whiteboards, or presentation slides taken with your camera.",
+  },
+  {
+    icon: <BookOpen size={24} color="#3D6B4F" />,
+    title: "Convert book pages to text",
+    desc: "Photograph pages from books, magazines, or printed articles and convert them to searchable, copyable digital text using this photo to text converter.",
+  },
+  {
+    icon: <Receipt size={24} color="#3D6B4F" />,
+    title: "Extract data from receipts and invoices",
+    desc: "Pull text from photos of receipts, invoices, or bills for expense tracking, accounting, or record-keeping purposes.",
+  },
+  {
+    icon: <PenTool size={24} color="#3D6B4F" />,
+    title: "Digitise handwritten notes",
+    desc: "Convert photos of handwritten notes, letters, or notebooks into digital text — useful for organising notes taken during meetings, classes, or personal journaling.",
+  },
+];
+
+function H2({ children }: { children: React.ReactNode }) {
   return (
-    <div className="space-y-8">
-      <JsonLd data={serializeJsonLd(buildImageToTextJsonLd())} />
-      <JsonLd data={serializeJsonLd(breadcrumbs)} />
-      {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
-
-      <section className="space-y-4 py-2 sm:py-4">
-        <nav aria-label="Breadcrumb" className="mb-6">
-          <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-            <li><Link href="/" className="hover:text-primary">Home</Link></li>
-            <li>/</li>
-            <li><Link href="/text" className="hover:text-primary">Text</Link></li>
-            <li>/</li>
-            <li className="text-foreground">Convert Image to Text</li>
-          </ol>
-        </nav>
-
-        <div className="max-w-3xl">
-          <p className="primary-chip inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]">
-            OCR utility
-          </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-            Image to Text OCR Converter
-          </h1>
-          <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
-            Extract, clean, and use text from images instantly. Upload screenshots, notes, receipts, or document photos, run OCR, then copy, download, or continue the text into editing and analysis tools.
-          </p>
-        </div>
-
-      </section>
-
-      <ImageToText />
-
-      <section className="glass-card rounded-[2.5rem] border border-border/80 p-8 sm:p-12">
-        <div className="prose prose-slate max-w-none space-y-16">
-          {/* Section 1: Authority Overview */}
-          <section>
-            <h2 className="text-3xl font-black text-slate-900 mb-6">What is Image to Text (OCR)?</h2>
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="text-slate-600 leading-relaxed space-y-4">
-                <p>
-                  <strong>Image to Text</strong> is an online utility that uses Optical Character Recognition (OCR) technology to extract textual data trapped inside images. Whether it&apos;s a photo of a printed document, a screenshot of a social media post, or a snapshot of hand-written notes, our converter scans the visual patterns of characters and translates them into editable, machine-readable text.
-                </p>
-                <p>
-                  At FindBest Tools, we have optimized our OCR engine to provide 100% accuracy for clear digital images while maintaining a <strong>privacy-first workflow</strong>. Unlike cloud-based converters that upload your files to their servers, our tool processes your images locally in your browser using WebAssembly. Your data never leaves your device.
-                </p>
-              </div>
-              <div className="bg-primary/5 border border-primary/10 rounded-3xl p-8">
-                <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2 italic">Why use an Online OCR?</h4>
-                <ul className="space-y-3 text-sm text-slate-600">
-                  <li className="flex gap-3">
-                    <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    <span><strong>Save Hours:</strong> Eliminate the need for manual retyping and data entry.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    <span><strong>Searchability:</strong> Turn flat images into searchable TXT or Word-ready content.</span>
-                  </li>
-                  <li className="flex gap-3">
-                    <Star className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                    <span><strong>Accessibility:</strong> Convert visual text into formats compatible with screen readers.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 2: Scenario Use Cases */}
-          <section>
-            <h2 className="text-3xl font-black text-slate-900 mb-8 text-center">Common Use Scenarios</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 not-prose">
-              {[
-                { title: "Academic & Class Notes", desc: "Students can capture whiteboard photos or book snippets and turn them into digital study guides instantly.", icon: <BookOpen className="w-8 h-8 text-primary" /> },
-                { title: "Business Invoices", desc: "Extract line items and totals from receipts or invoices for your accounting and spreadsheet workflows.", icon: <Briefcase className="w-8 h-8 text-primary" /> },
-                { title: "Newspaper & Archives", desc: "Digitize historical clippings or printed news into searchable digital archives for research.", icon: <Newspaper className="w-8 h-8 text-primary" /> },
-                { title: "Social Media Captions", desc: "Extract text from Instagram stories, Twitter screenshots, or memes for reuse in your own content.", icon: <Smartphone className="w-8 h-8 text-primary" /> },
-                { title: "Contact Information", desc: "Found an email or phone number on a physical banner? Snap a photo and copy the text directly.", icon: <Contact2 className="w-8 h-8 text-primary" /> },
-                { title: "Data Entry Tasks", desc: "Accelerate your workflow by converting physical forms into editable digital data sets.", icon: <Zap className="w-8 h-8 text-primary" /> },
-              ].map((use, i) => (
-                <div key={i} className="p-8 bg-white border border-slate-100 rounded-[2.5rem] hover:border-primary/20 hover:shadow-xl transition-all group text-center">
-                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-primary/5 transition-transform group-hover:scale-110">
-                    {use.icon}
-                  </div>
-                  <h4 className="font-bold text-slate-900 mb-2">{use.title}</h4>
-                  <p className="text-[11px] text-slate-500 leading-relaxed">{use.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Section 3: Technical Specs & DPI */}
-          <section className="bg-slate-900 text-white rounded-[3rem] p-10 sm:p-16 overflow-hidden relative">
-            <div className="relative z-10">
-              <h2 className="text-3xl font-bold mb-8 text-white">How to Get 100% OCR Accuracy</h2>
-              <p className="text-slate-400 mb-12 max-w-2xl">
-                OCR accuracy isn&apos;t just about the software; it&apos;s about the quality of the input. Follow these industry-standard best practices to ensure perfect text extraction.
-              </p>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">1</div>
-                    <div>
-                      <h4 className="font-bold text-white uppercase tracking-wider text-xs mb-2">Resolution Matters</h4>
-                      <p className="text-sm text-slate-400">Aim for a minimum of <strong>300 DPI</strong>. Images that are too small or pixelated will lead to "character confusion" in the neural network.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">2</div>
-                    <div>
-                      <h4 className="font-bold text-white uppercase tracking-wider text-xs mb-2">Lighting & Contrast</h4>
-                      <p className="text-sm text-slate-400">Ensure text is dark and the background is light. Avoid shadows, glares, or warped paper surfaces.</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="space-y-6">
-                  <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">3</div>
-                    <div>
-                      <h4 className="font-bold text-white uppercase tracking-wider text-xs mb-2">The "Horizontal Rule"</h4>
-                      <p className="text-sm text-slate-400">Always rotate your image so the text lines are horizontal. Even a 5-degree tilt can significantly drop the extraction success rate.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">4</div>
-                    <div>
-                      <h4 className="font-bold text-white uppercase tracking-wider text-xs mb-2">Correct Language</h4>
-                      <p className="text-sm text-slate-400">Select the correct source language in the settings. OCR models use dictionary-based correction to fix minor scanning errors.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 4: Formats & Compatibility */}
-          <section>
-            <h2 className="text-3xl font-black text-slate-900 mb-6">Wide Format Compatibility</h2>
-            <p className="text-slate-600 mb-8">
-              Our online OCR converter is designed to be universal. We support all modern image extensions to ensure you can extract text regardless of your device.
-            </p>
-            <div className="flex flex-wrap gap-3 not-prose">
-              {[".JPG", ".JPEG", ".PNG", ".WEBP", ".BMP", ".TIFF", ".HEIC"].map((ext) => (
-                <span key={ext} className="px-5 py-2 bg-slate-100 rounded-xl text-slate-600 font-mono text-sm font-bold">{ext}</span>
-              ))}
-            </div>
-            <div className="mt-8 grid md:grid-cols-2 gap-8">
-              <div className="p-6 border border-slate-100 rounded-3xl">
-                <h4 className="font-bold text-slate-900 mb-2">JPG to Text</h4>
-                <p className="text-xs text-slate-500">The most common choice for photos taken with mobile phones. Ideal for receipts and documents.</p>
-              </div>
-              <div className="p-6 border border-slate-100 rounded-3xl">
-                <h4 className="font-bold text-slate-900 mb-2">PNG to Text</h4>
-                <p className="text-xs text-slate-500">Best for digital screenshots from computers or social media. Provides the highest clarity for OCR engines.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Section 5: Step-by-Step */}
-          <section className="border-t border-slate-100 pt-16">
-            <h2 className="text-3xl font-black text-slate-900 mb-10 text-center">How to Convert Image to Text</h2>
-            <div className="grid md:grid-cols-4 gap-8">
-              {[
-                { step: "01", title: "Upload", text: "Drag your images into the drop zone or click to select files." },
-                { step: "02", title: "Select Language", text: "Choose the language used in the image for better accuracy." },
-                { step: "03", title: "Extract", text: "Wait a few seconds while the OCR neural network scans the pixels." },
-                { step: "04", title: "Copy & Use", text: "Copy the editable text or download it as a professional TXT file." },
-              ].map((item, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-4xl font-black text-primary/10 mb-4 tracking-tighter">{item.step}</div>
-                  <h4 className="font-bold text-slate-900 mb-2">{item.title}</h4>
-                  <p className="text-xs text-slate-500 leading-relaxed">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Section 6: Local-First Technology */}
-          <section className="bg-primary/5 rounded-3xl p-10 border border-primary/10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">A Note on Privacy and Technology</h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              FindBest Tools uses <strong>Tesseract.js</strong>, a powerful JavaScript port of the legendary Tesseract OCR engine originally developed by HP and maintained by Google. By running this technology via WebAssembly in your browser, we eliminate the security risks associated with uploading sensitive documents to cloud servers. Your private data, invoices, and personal notes stay on your machine — guaranteed.
-            </p>
-          </section>
-        </div>
-      </section>
-
-
-      <section className="glass-card rounded-[1.75rem] border border-border/80 p-6 sm:p-8">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Frequently asked questions</h2>
-        <div className="mt-6 space-y-4">
-          {faq.map((item) => (
-            <article key={item.question} className="rounded-[1.25rem] border border-border bg-background p-5">
-              <h3 className="text-lg font-semibold text-foreground">{item.question}</h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.answer}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-16 space-y-8 border-t border-slate-100 pt-16">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900">More Text Tools</h2>
-            <p className="mt-1 text-sm text-slate-500">Other utilities you might find helpful</p>
-          </div>
-          <Link href="/text" className="secondary-button px-4 py-2 text-xs">View All</Link>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              name: "Word Frequency Counter",
-              href: "/text/word-frequency",
-              description: "Analyze repeated words and surface the most-used terms in any text block.",
-            },
-            {
-              name: "Readability / Flesch-Kincaid Calculator",
-              href: "/text/readability-flesch-kincaid-calculator",
-              description: "Score pasted text for reading ease, grade level, and sentence complexity.",
-            },
-            {
-              name: "Morse Code Translator",
-              href: "/text/morse-code-translator",
-              description: "Translate text to Morse code and Morse code back to text.",
-            },
-          ].map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="group flex flex-col gap-3 rounded-2xl border border-white/40 bg-white/40 p-5 shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:bg-white/60 hover:shadow-hover"
-            >
-              <div>
-                <h3 className="text-[15px] font-bold text-slate-900 transition-colors group-hover:text-primary">
-                  {tool.name}
-                </h3>
-                <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-500">{tool.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
+    <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: "clamp(22px, 3vw, 30px)", fontWeight: 400, color: "#111", marginBottom: 16, marginTop: 64, letterSpacing: "-0.01em" }}>
+      {children}
+    </h2>
   );
 }
+function H3({ children }: { children: React.ReactNode }) {
+  return <h3 style={{ fontSize: 17, fontWeight: 600, color: "#111", marginBottom: 8, marginTop: 32 }}>{children}</h3>;
+}
+function P({ children }: { children: React.ReactNode }) {
+  return <p style={{ fontSize: 15, color: "#555", lineHeight: 1.75, marginBottom: 16 }}>{children}</p>;
+}
 
+export default function ScanTextPage() {
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+        body { font-family: 'DM Sans', sans-serif; background: #FAFAF8; }
+      `}</style>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+
+      {/* Tool lives at top of page */}
+      <ScanTextTool />
+
+      {/* SEO content */}
+      <main style={{ maxWidth: 800, margin: "0 auto", padding: "0 24px 80px", fontFamily: "'DM Sans', sans-serif" }}>
+
+        <H2>What is scan text from image?</H2>
+        <P>
+          Scan text from image — also called OCR (Optical Character Recognition) — is
+          the technology that reads the visual shapes of letters and numbers in an image
+          and converts them into machine-readable, editable text. Our free image to text
+          converter runs this process entirely inside your browser, without sending your
+          images to any external server.
+        </P>
+        <P>
+          Whether you need a quick photo to text converter for a single screenshot or a
+          reliable JPG to text tool for regular document digitisation, this tool handles
+          it all. Upload any image — a photograph, screenshot, scan, or camera shot —
+          and extract the text in seconds.
+        </P>
+
+        <H2>How to use this photo to text converter</H2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 16, margin: "0 0 24px" }}>
+          {[
+            { step: "1", title: "Upload your image", desc: "Drag and drop any image file, or click to browse. JPG, PNG, WebP, BMP, GIF, and TIFF are all supported." },
+            { step: "2", title: "Choose output format", desc: "Select plain text, Markdown for structured documents, or clean line format for lists and tables." },
+            { step: "3", title: "Click 'Get text from image'", desc: "The OCR engine analyses your image locally and extracts all readable text." },
+            { step: "4", title: "Copy or download", desc: "Edit the result if needed, then copy to clipboard or download as a .txt file." },
+          ].map(s => (
+            <div key={s.step} style={{ background: "#fff", border: "1.5px solid #E8E8E4", borderRadius: 14, padding: 20 }}>
+              <div style={{ width: 32, height: 32, borderRadius: 8, background: "#111", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 14, marginBottom: 12 }}>{s.step}</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "#111", marginBottom: 6 }}>{s.title}</div>
+              <div style={{ fontSize: 13, color: "#888", lineHeight: 1.6 }}>{s.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <H2>Common uses for image to text conversion</H2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))", gap: 14, margin: "0 0 24px" }}>
+          {USE_CASES.map(uc => (
+            <div key={uc.title} style={{ background: "#fff", border: "1.5px solid #E8E8E4", borderRadius: 14, padding: 18 }}>
+              <div style={{ marginBottom: 10 }}>{uc.icon}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#111", marginBottom: 6 }}>{uc.title}</div>
+              <div style={{ fontSize: 12, color: "#888", lineHeight: 1.6 }}>{uc.desc}</div>
+            </div>
+          ))}
+        </div>
+
+        <H2>Getting the best results from JPG to text extraction</H2>
+        <P>
+          The quality of text extraction from any image to text converter depends directly
+          on the quality of the source image. OCR engines read text by analysing visual
+          contrast, letter shapes, and spacing. Here are the most important factors for
+          accurate extraction:
+        </P>
+
+        <H3>Image resolution</H3>
+        <P>
+          Higher resolution means more pixel data per character, giving the OCR engine
+          more information to work with. For scanned documents, 300 DPI (dots per inch)
+          is the standard recommended minimum — 600 DPI is better for small text. For
+          photos taken with a phone camera, make sure to photograph from close enough
+          that text fills a significant portion of the frame.
+        </P>
+
+        <H3>Contrast and lighting</H3>
+        <P>
+          Black text on a white background is the easiest scenario for any photo to text
+          converter. Coloured text, text on textured backgrounds, or low-contrast
+          combinations (grey text on white, yellow on cream) significantly reduce accuracy.
+          When photographing documents, use even lighting — flash reflections, shadows,
+          and hot spots all introduce noise that confuses the OCR engine.
+        </P>
+
+        <H3>Image straightness</H3>
+        <P>
+          Even a 5–10 degree rotation can noticeably reduce OCR accuracy. Most OCR
+          engines have some tolerance for skew, but straightening the image first
+          always produces better results. If your image is rotated, use your device's
+          photo editor to straighten it before uploading to get text from image more
+          accurately.
+        </P>
+
+        <H3>Font and text type</H3>
+        <P>
+          Clear, standard printed fonts produce the most reliable results. Decorative,
+          script, or heavily stylised fonts are harder to recognise. Handwritten text
+          is the most challenging scenario for any image to text converter — accuracy
+          varies greatly depending on how neat and consistent the handwriting is.
+          Printed block capitals are the easiest handwriting style for OCR engines to read.
+        </P>
+
+        <H2>Privacy — why local OCR matters</H2>
+        <P>
+          Many online OCR tools upload your images to a server for processing. This
+          means your documents, photos, and any sensitive information they contain
+          are transmitted over the internet and may be stored, processed, or accessed
+          by the service provider. For documents containing personal data, financial
+          information, medical records, confidential business documents, or private
+          communications, this represents a real privacy risk.
+        </P>
+        <P>
+          This tool is different. The OCR engine — powered by Tesseract.js and compiled
+          to WebAssembly — runs entirely inside your browser. Your images are processed
+          on your own device, never transmitted anywhere. There is no server receiving
+          your uploads, no storage, and no logging. It is genuinely private by design,
+          not just by policy.
+        </P>
+
+        <H2>Frequently asked questions</H2>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          {FAQS.map((faq) => (
+            <details
+              key={faq.q}
+              style={{ border: "1.5px solid #E8E8E4", borderRadius: 12, overflow: "hidden" }}
+            >
+              <summary style={{
+                padding: "14px 18px", fontSize: 14, fontWeight: 500, color: "#111",
+                listStyle: "none", cursor: "pointer", userSelect: "none",
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+              }}
+                className="group"
+              >
+                {faq.q}
+                <span style={{ color: "#AAA", marginLeft: 12, flexShrink: 0, fontSize: 18 }}>+</span>
+              </summary>
+              <div style={{ padding: "4px 18px 16px", fontSize: 14, color: "#555", lineHeight: 1.75, borderTop: "1px solid #F0F0EB" }}>
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div style={{ marginTop: 64, padding: 20, background: "#F5F5F2", borderRadius: 14, fontSize: 12, color: "#888", lineHeight: 1.7 }}>
+          <strong style={{ color: "#555" }}>About this tool:</strong> Built with Tesseract.js, an open-source OCR engine.
+          All processing is local — no image data leaves your device. Accuracy may vary
+          based on image quality, font type, and language. This tool is intended for
+          personal and commercial use under the standard terms of the Tesseract OCR
+          library (Apache 2.0 licence).
+        </div>
+
+        {/* Related Tools */}
+        <div style={{ marginTop: 80, borderTop: "1.5px solid #E8E8E4", paddingTop: 48 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 24 }}>
+            <h2 style={{ fontFamily: "'DM Serif Display', serif", fontSize: 24, color: "#111", margin: 0, flex: 1 }}>
+              Related Text Utilities
+            </h2>
+            <Link href="/text" style={{ fontSize: 13, color: "#3D6B4F", fontWeight: 600, textDecoration: "none", display: "flex", alignItems: "center", gap: 4 }}>
+              View all tools
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: 16 }}>
+            {[
+              { name: "Word Frequency Counter", href: "/text/word-frequency", desc: "Analyze repeated words and most-used terms in any text block." },
+              { name: "Case Converter", href: "/text/case-converter", desc: "Convert text between uppercase, lowercase, title case, and more." },
+              { name: "Duplicate Word Finder", href: "/text/duplicate-word-finder", desc: "Find repeated words and overused terms in your drafts." },
+            ].map(tool => (
+              <Link key={tool.href} href={tool.href} style={{ textDecoration: "none", display: "block" }}>
+                <div style={{
+                  padding: 20, background: "#fff", border: "1.5px solid #E8E8E4", borderRadius: 16,
+                  height: "100%", transition: "all .2s", cursor: "pointer",
+                }}
+                  className="hover:border-[#3D6B4F] hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)]"
+                >
+                  <div style={{ fontSize: 14, fontWeight: 700, color: "#111", marginBottom: 8 }}>{tool.name}</div>
+                  <div style={{ fontSize: 12, color: "#888", lineHeight: 1.6 }}>{tool.desc}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </main>
+    </>
+  );
+}
