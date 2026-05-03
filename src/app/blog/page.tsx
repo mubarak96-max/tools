@@ -151,6 +151,14 @@ const posts = [
     date: "May 2026",
   },
   {
+    title: "Shopify UTM Tracking: Complete Setup Guide for 2026",
+    description: "A complete Shopify merchant guide to UTM parameters, GA4 setup, channel templates, and reducing attribution gaps between Shopify and GA4.",
+    href: "/blog/shopify-utm-tracking",
+    tag: "Shopify",
+    readTime: "15 min read",
+    date: "May 2026",
+  },
+  {
     title: "UTM Tracking for Social Media: Facebook, Instagram, LinkedIn & X",
     description: "Social media attribution is complex. Learn how to structure UTM parameters for every platform to distinguish paid from organic and stories from feed posts.",
     href: "/blog/social-media-utm-tracking",

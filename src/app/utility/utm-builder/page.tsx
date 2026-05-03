@@ -545,6 +545,16 @@ export default function UtmBuilderPage() {
                   href: "/blog/read-utm-reports-ga4",
                   description: "A step-by-step walkthrough for finding and interpreting campaign data in Google Analytics 4.",
                 },
+                {
+                  name: "UTM Ads Guide",
+                  href: "/blog/utm-ads",
+                  description: "How to track Google, Meta, TikTok, and LinkedIn ads with dynamic parameters.",
+                },
+                {
+                  name: "Shopify UTM Tracking",
+                  href: "/blog/shopify-utm-tracking",
+                  description: "The complete setup guide for tracking Shopify store campaigns and fixing attribution gaps.",
+                },
               ].map((guide) => (
                 <Link
                   key={guide.href}
