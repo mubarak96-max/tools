@@ -60,7 +60,7 @@ const STATIC_PATHS = [
   { path: "/blog/track-email-campaigns-utm", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/social-media-utm-tracking", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/threads-bluesky-character-limits", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/how-to-read-utm-reports-ga4", changeFrequency: "monthly" as const, priority: 0.5 },
+  { path: "/blog/read-utm-reports-ga4", changeFrequency: "monthly" as const, priority: 0.5 },
   { path: "/blog/x-character-limit-with-links", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 

@@ -513,31 +513,46 @@ export default function UtmBuilderPage() {
 
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-6">Related UTM and GA4 Guides</h2>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   name: "What Are UTM Parameters?",
                   href: "/blog/what-are-utm-parameters",
-                  description: "Start with the basics if you need a clean explanation of source, medium, campaign, term, and content.",
+                  description: "Master the basics of source, medium, and campaign tags to measure ROI accurately.",
                 },
                 {
                   name: "UTM Naming Conventions",
                   href: "/blog/utm-naming-conventions",
-                  description: "Build one naming system that keeps GA4 reports clean as your team scales.",
+                  description: "Build a bulletproof naming system that keeps your marketing reports clean and consistent.",
                 },
                 {
-                  name: "How to Read UTM Reports in GA4",
-                  href: "/blog/how-to-read-utm-reports-ga4",
-                  description: "See where tagged traffic appears in GA4 and how to inspect campaign performance after launch.",
+                  name: "5 UTM Mistakes",
+                  href: "/blog/5-utm-mistakes",
+                  description: "Learn how to fix inconsistent naming, internal tagging, and typos to restore data accuracy.",
+                },
+                {
+                  name: "Track Email Campaigns",
+                  href: "/blog/track-email-campaigns-utm",
+                  description: "A complete system for tracking every email with UTM parameters, including a naming template.",
+                },
+                {
+                  name: "Social Media UTM Tracking",
+                  href: "/blog/social-media-utm-tracking",
+                  description: "Platform-specific strategies for Facebook, Instagram, LinkedIn, and Twitter/X tracking.",
+                },
+                {
+                  name: "Read UTM Reports in GA4",
+                  href: "/blog/read-utm-reports-ga4",
+                  description: "A step-by-step walkthrough for finding and interpreting campaign data in Google Analytics 4.",
                 },
               ].map((guide) => (
                 <Link
                   key={guide.href}
                   href={guide.href}
-                  className="rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:border-indigo-300 hover:shadow-sm"
+                  className="group flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-5 transition-all hover:border-indigo-300 hover:shadow-lg"
                 >
-                  <h3 className="text-base font-bold text-slate-900">{guide.name}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{guide.description}</p>
+                  <h3 className="text-[15px] font-bold text-slate-900 group-hover:text-indigo-600">{guide.name}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{guide.description}</p>
                 </Link>
               ))}
             </div>
