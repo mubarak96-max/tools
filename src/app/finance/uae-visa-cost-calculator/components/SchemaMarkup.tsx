@@ -4,8 +4,8 @@ export default function SchemaMarkup() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://findbest.tools/utility/uae-visa-cost-calculator/#webpage",
-        "url": "https://findbest.tools/utility/uae-visa-cost-calculator",
+        "@id": "https://findbest.tools/finance/uae-visa-cost-calculator/#webpage",
+        "url": "https://findbest.tools/finance/uae-visa-cost-calculator",
         "name": "UAE Visa Cost Calculator 2026 | Dubai & Abu Dhabi Fees",
         "description": "Calculate exact UAE visa costs for 2026. Tourist, employment, Golden Visa, Green Visa fees with hidden charges breakdown.",
         "isPartOf": { "@id": "https://findbest.tools/#website" },
@@ -16,7 +16,7 @@ export default function SchemaMarkup() {
         "inLanguage": "en-US",
         "potentialAction": {
           "@type": "UseAction",
-          "target": "https://findbest.tools/utility/uae-visa-cost-calculator#calculator"
+          "target": "https://findbest.tools/finance/uae-visa-cost-calculator#calculator"
         }
       },
       {
@@ -107,19 +107,19 @@ export default function SchemaMarkup() {
             "@type": "HowToStep",
             "name": "Select Your Visa Type",
             "text": "Choose from tourist, employment, Golden Visa, Green Visa, family, or student visa categories based on your purpose of travel or residency.",
-            "url": "https://findbest.tools/utility/uae-visa-cost-calculator#step1"
+            "url": "https://findbest.tools/finance/uae-visa-cost-calculator#step1"
           },
           {
             "@type": "HowToStep",
             "name": "Add Mandatory Fees",
             "text": "Include government base fees, medical fitness tests, Emirates ID costs, and mandatory health insurance in your calculation.",
-            "url": "https://findbest.tools/utility/uae-visa-cost-calculator#step2"
+            "url": "https://findbest.tools/finance/uae-visa-cost-calculator#step2"
           },
           {
             "@type": "HowToStep",
             "name": "Account for Hidden Costs",
             "text": "Factor in document attestation, express processing, typing center fees, and optional PRO services for accurate budgeting.",
-            "url": "https://findbest.tools/utility/uae-visa-cost-calculator#step3"
+            "url": "https://findbest.tools/finance/uae-visa-cost-calculator#step3"
           }
         ]
       }

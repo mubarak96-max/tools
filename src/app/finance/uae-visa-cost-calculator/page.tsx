@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://findbest.tools/utility/uae-visa-cost-calculator',
+    url: 'https://findbest.tools/finance/uae-visa-cost-calculator',
     siteName: 'findbest.tools',
     title: 'UAE Visa Cost Calculator 2026 | Exact Dubai & Abu Dhabi Fees',
     description: 'Calculate precise UAE visa costs including hidden fees. Tourist, employment, Golden Visa & Green Visa pricing updated for 2026.',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     images: ['https://findbest.tools/og-uae-visa-calculator.jpg'],
   },
   alternates: {
-    canonical: 'https://findbest.tools/utility/uae-visa-cost-calculator',
+    canonical: 'https://findbest.tools/finance/uae-visa-cost-calculator',
   },
 };
 

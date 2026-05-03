@@ -50,6 +50,7 @@ const NAV_GROUPS = [
       { name: 'Invoice Generator', href: '/finance/invoice-generator'},
       { name: 'CPP & EI Calculator', href: '/finance/cpp-ei-calculator'},
       { name: 'UAE Gratuity', href: '/finance/uae-gratuity-calculator'},
+      { name: 'UAE Visa Cost', href: '/finance/uae-visa-cost-calculator'},
     ],
   },
   {
@@ -94,7 +95,6 @@ const NAV_GROUPS = [
       { name: 'QR Code Scanner', href: '/utility/qr-code-scanner'},
       { name: 'Barcode Scanner', href: '/utility/barcode-scanner'},
       { name: 'xG Calculator', href: '/utility/xg-expected-goals-calculator'},
-      { name: 'UAE Visa Cost', href: '/utility/uae-visa-cost-calculator'},
     ],
   },
 ];

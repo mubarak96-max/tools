@@ -554,9 +554,9 @@ export const ALL_TOOLS: Tool[] = [
   },
   {
     name: "UAE Visa Cost Calculator 2026",
-    href: "/utility/uae-visa-cost-calculator",
+    href: "/finance/uae-visa-cost-calculator",
     description: "Calculate exact UAE visa costs for 2026. Includes government fees, medical tests, Emirates ID, and mandatory health insurance for tourist, employment, and Golden Visas.",
-    category: "Utility",
+    category: "Finance",
   },
   {
     name: "UK Stamp Duty Calculator",

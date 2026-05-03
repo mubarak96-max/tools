@@ -177,6 +177,11 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       href: "/finance/uae-gratuity-calculator",
       description: "Calculate your UAE end of service benefits (EOSB) with the latest 2026 labor law formula.",
     },
+    {
+      name: "UAE Visa Cost Calculator",
+      href: "/finance/uae-visa-cost-calculator",
+      description: "Calculate UAE visa costs including government fees, Emirates ID, insurance, and medical charges.",
+    },
   ],
   SEO: [
     {
@@ -341,11 +346,6 @@ const RELATED_BY_CATEGORY: Record<string, Array<{ name: string; href: string; de
       name: "UTM Builder",
       href: "/utility/utm-builder",
       description: "Generate Google Analytics tracking URLs with source, medium, and campaign parameters.",
-    },
-    {
-      name: "UAE Visa Cost Calculator",
-      href: "/utility/uae-visa-cost-calculator",
-      description: "Calculate exact UAE visa costs for 2026 including hidden fees and government charges.",
     },
   ],
 };
