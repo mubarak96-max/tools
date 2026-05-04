@@ -136,7 +136,7 @@ export function calculateStampDuty(
     });
     notes.push("Scale 1 applies because this scenario assumes a Hong Kong permanent resident buying a sole residential property.");
     notes.push("Buyer's Stamp Duty does not apply to this first-home Hong Kong permanent resident scenario.");
-    notes.push("Special Stamp Duty on residential property was abolished on 26 February 2024.");
+    notes.push("Special Stamp Duty on residential property is currently abolished.");
   } else if (buyerType === "hk_resident_additional") {
     avd = calcScale2(price);
     const rate = price > 0 ? ((avd / price) * 100).toFixed(3) : "0";
@@ -153,9 +153,9 @@ export function calculateStampDuty(
       rate: "7.5%",
       description: "An additional 7.5% surcharge applies to a second or additional residential property purchase.",
     });
-    notes.push("Additional AVD was reduced from 15% to 7.5% on 26 February 2024.");
+    notes.push("Additional AVD is currently 7.5% (previously 15% before policy changes).");
     notes.push("This route models a second-plus residential purchase by a Hong Kong permanent resident.");
-    notes.push("Special Stamp Duty on residential property was abolished on 26 February 2024.");
+    notes.push("Special Stamp Duty on residential property is currently abolished.");
   } else {
     avd = calcScale2(price);
     const rate = price > 0 ? ((avd / price) * 100).toFixed(3) : "0";
@@ -172,9 +172,9 @@ export function calculateStampDuty(
       rate: "7.5%",
       description: "BSD at 7.5% applies to non-Hong Kong permanent residents and companies buying residential property.",
     });
-    notes.push("BSD was reduced from 15% to 7.5% effective 26 February 2024.");
+    notes.push("BSD is currently 7.5% (previously 15% before policy changes).");
     notes.push("If the buyer later becomes a Hong Kong permanent resident and the property remains the only residential holding, a BSD refund may be available.");
-    notes.push("Special Stamp Duty on residential property was abolished on 26 February 2024.");
+    notes.push("Special Stamp Duty on residential property is currently abolished.");
   }
 
   const total = avd + bsd + avdAdditional;

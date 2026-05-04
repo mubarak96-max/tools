@@ -92,7 +92,7 @@ export default function Calculator() {
             </div>
             <div>
               <h2 className="font-semibold tracking-tight">Stamp Duty Calculator</h2>
-              <p className="text-sm text-white/65">Updated for 2024 and 2025 post-policy changes</p>
+              <p className="text-sm text-white/65">Updated for 2025 and 2026 post-policy changes</p>
             </div>
           </div>
         </div>
@@ -218,7 +218,7 @@ export default function Calculator() {
                     <div className="rounded-[1.25rem] border border-emerald-200 bg-emerald-50 p-4">
                       <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-900">
                         <Check className="h-4 w-4" />
-                        Notes and 2024 changes
+                        Notes and current 2025/2026 rates
                       </div>
                       <div className="space-y-2">
                         {result.notes.map((note) => (

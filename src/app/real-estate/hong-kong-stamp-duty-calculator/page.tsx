@@ -32,7 +32,7 @@ const faq = [
   {
     question: "Was Buyer's Stamp Duty abolished in Hong Kong?",
     answer:
-      "No. The provided schedule treats BSD as reduced from 15% to 7.5% from 26 February 2024 for non-resident and company residential buyers.",
+      "No. The current policy treats BSD at 7.5% for non-resident and company residential buyers.",
   },
   {
     question: "What is Additional AVD and when does it apply?",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   ...buildMetadata({
     title: "Hong Kong Stamp Duty Calculator | AVD, BSD and Additional AVD",
     description:
-      "Calculate Hong Kong AVD, BSD, and Additional AVD using the supplied 2024 and 2025 post-policy-change schedule for residential and commercial property purchases.",
+      "Calculate Hong Kong AVD, BSD, and Additional AVD using the supplied 2025 and 2026 post-policy-change schedule for residential and commercial property purchases.",
     path: PAGE_PATH,
   }),
   keywords: [
@@ -119,7 +119,7 @@ export default function HongKongStampDutyCalculatorPage() {
         category="Real Estate"
         categoryHref="/real-estate"
         title="Hong Kong Stamp Duty Calculator"
-        description="Calculate Hong Kong AVD, BSD, and Additional AVD across first-home, additional-home, non-resident, and commercial property scenarios using the supplied 2024 policy-change schedule."
+        description="Calculate Hong Kong AVD, BSD, and Additional AVD across first-home, additional-home, non-resident, and commercial property scenarios using the current 2025/2026 schedule."
         faqs={faq}
         learn={<EditorialContent />}
       >
@@ -127,13 +127,13 @@ export default function HongKongStampDutyCalculatorPage() {
           <section className="overflow-hidden rounded-[2rem] border border-[#ddd5c8] bg-[linear-gradient(160deg,#1a1612_0%,#2e2520_60%,#3d3530_100%)] px-6 py-12 text-white shadow-[0_28px_70px_rgba(26,22,18,0.18)] sm:px-8 lg:px-10">
             <div className="max-w-4xl">
               <div className="flex flex-wrap gap-2">
-                <HeroBadge icon={Sparkles}>2024 policy updated</HeroBadge>
+                <HeroBadge icon={Sparkles}>2025-2026 policy updated</HeroBadge>
                 <HeroBadge icon={Zap}>Free calculator</HeroBadge>
                 <HeroBadge icon={Globe2}>All buyer types</HeroBadge>
               </div>
 
               <h2 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">
-                Hong Kong stamp duty calculation with the post-February 2024 schedule
+                Hong Kong stamp duty calculation with the current 2025-2026 schedule
               </h2>
               <p className="mt-5 max-w-3xl text-base leading-8 text-white/72 sm:text-lg">
                 Calculate a Hong Kong property purchase across AVD Scale 1, AVD Scale 2, BSD, and Additional
@@ -145,7 +145,7 @@ export default function HongKongStampDutyCalculatorPage() {
                 <Feature icon={Zap} label="Instant results" />
                 <Feature icon={Home} label="Residential and commercial" />
                 <Feature icon={Globe2} label="Resident and non-resident scenarios" />
-                <Feature icon={Landmark} label="2024 and 2025 use cases" />
+                <Feature icon={Landmark} label="2025 and 2026 use cases" />
               </div>
             </div>
           </section>
@@ -196,7 +196,7 @@ function QuickGuide() {
           icon={Ban}
           tone="slate"
           title="Special Stamp Duty (SSD)"
-          body="The supplied content treats SSD as abolished for residential property from 26 February 2024 and for non-residential property from October 2023."
+          body="The current policy treats SSD as abolished for residential property and for non-residential property (abolished October 2023)."
         />
       </div>
 
@@ -226,7 +226,7 @@ function QuickGuide() {
       <div className="rounded-[1.75rem] border border-amber-200 bg-[linear-gradient(135deg,#fff8e7_0%,#fff3d0_100%)] p-6 shadow-[0_16px_40px_rgba(184,151,58,0.14)]">
         <div className="flex items-center gap-2 text-sm font-semibold text-amber-900">
           <Sparkles className="h-4 w-4" />
-          Key changes - 26 February 2024
+          Recent policy updates
         </div>
         <ul className="mt-4 space-y-2 text-sm leading-6 text-amber-950">
           <li>Special Stamp Duty on residential property fully abolished.</li>
@@ -246,14 +246,14 @@ function EditorialContent() {
     { date: "February 2013", text: "Double Stamp Duty and what later became the Additional AVD framework were introduced for non-first-time residential buyers." },
     { date: "November 2016", text: "Additional AVD was pushed up to 15% at the peak of the cooling-measures era." },
     { date: "October 2023", text: "Special Stamp Duty on non-residential property was abolished." },
-    { date: "26 February 2024", text: "Residential Special Stamp Duty was abolished and both BSD and Additional AVD were cut to 7.5% under the supplied schedule." },
+    { date: "Current Policy", text: "Residential Special Stamp Duty is abolished and both BSD and Additional AVD are 7.5% under the current 2025/2026 schedule." },
   ];
 
   return (
     <div className="space-y-10">
       <div className="rounded-[1.5rem] border border-[#ddd5c8] bg-[#f9f6f0] p-5">
         <p className="text-sm font-medium text-slate-700">
-          This route uses the supplied post-February 2024 policy framing for Hong Kong AVD, BSD, and Additional AVD.
+          This route uses the current 2025/2026 policy framing for Hong Kong AVD, BSD, and Additional AVD.
         </p>
       </div>
 
@@ -264,7 +264,7 @@ function EditorialContent() {
           <div className="h-px flex-1 bg-[#ddd5c8]" />
         </div>
 
-        <h2>Complete guide to Hong Kong stamp duty in 2024 and 2025</h2>
+        <h2>Complete guide to Hong Kong stamp duty in 2025 and 2026</h2>
         <p>
           Stamp duty remains one of the most important transaction costs in a Hong Kong property purchase. The supplied
           schedule creates a sharp difference between a first-home Hong Kong permanent resident, an additional-home
@@ -299,7 +299,7 @@ function EditorialContent() {
 
         <h2>BSD for non-residents and companies</h2>
         <p>
-          Under the supplied content, BSD remains relevant after February 2024 but at a lower 7.5% rate rather than
+          Under the current content, BSD remains relevant for 2025 and 2026 but at a lower 7.5% rate rather than
           the earlier 15% regime. This route applies that BSD only to residential purchases by non-Hong Kong permanent
           residents and by companies.
         </p>
