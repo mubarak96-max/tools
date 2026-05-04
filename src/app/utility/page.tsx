@@ -67,6 +67,11 @@ const UTILITY_TOOLS = [
     description: "Resize images to exact dimensions for Instagram, Twitter, Facebook, LinkedIn, YouTube, and TikTok.",
   },
   {
+    name: "Quote Image Generator Online",
+    href: "/utility/quote-image-generator-online",
+    description: "Create elegant quote images with Unsplash backgrounds, custom quotes, style controls, and PNG download.",
+  },
+  {
     name: "Aspect Ratio Calculator",
     href: "/utility/aspect-ratio-calculator",
     description: "Calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios. Live preview and image upload detection.",

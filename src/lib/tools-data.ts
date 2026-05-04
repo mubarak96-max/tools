@@ -517,6 +517,12 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utility",
   },
   {
+    name: "Quote Image Generator Online",
+    href: "/utility/quote-image-generator-online",
+    description: "Create elegant quote images with Unsplash backgrounds, custom quotes, typography controls, and one-click PNG download.",
+    category: "Utility",
+  },
+  {
     name: "Stocks & Investments",
     href: "/finance/capital-gains-tax-canada-calculator",
     description: "No description available.",

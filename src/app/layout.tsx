@@ -1,48 +1,10 @@
 import type { Metadata } from "next";
-import {
-  DM_Sans,
-  DM_Serif_Display,
-  Inter,
-  JetBrains_Mono,
-  Sora,
-  Space_Grotesk,
-  Syne,
-} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import { getBaseUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo/metadata";
 import { ADSENSE_CLIENT_ID } from "@/lib/consent";
-
-const soraFont = Sora({
-  subsets: ["latin"],
-  variable: "--font-sora",
-  display: "swap",
-  weight: ["300", "400", "500", "600", "700", "800"],
-});
-
-const sansFont = Sora({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-const displayFont = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-const monoFont = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-const serifFont = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable: "--font-serif" });
-const syneFont = Syne({ subsets: ["latin"], weight: ["400", "700", "800"], variable: "--font-syne" });
-const dmSansFont = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-dm-sans" });
-const dmSerifFont = DM_Serif_Display({ subsets: ["latin"], weight: ["400"], variable: "--font-dm-serif" });
 
 export const metadata: Metadata = {
   metadataBase: getBaseUrl(),
@@ -70,7 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body
-        className={`${soraFont.variable} ${sansFont.variable} ${displayFont.variable} ${monoFont.variable} ${serifFont.variable} ${syneFont.variable} ${dmSansFont.variable} ${dmSerifFont.variable} font-sans antialiased min-h-screen flex flex-col bg-background text-foreground`}
+        className="font-sans antialiased min-h-screen flex flex-col bg-background text-foreground"
       >
         <div className="site-backdrop pointer-events-none fixed inset-0 z-[-1]" />
         <Header />

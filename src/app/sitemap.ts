@@ -169,6 +169,7 @@ const TOOL_PATHS = [
   "/utility/gpa-calculator",
   "/finance/tip-calculator",
   "/utility/social-media-image-resizer",
+  "/utility/quote-image-generator-online",
   "/utility/aspect-ratio-calculator",
   "/utility/what-is-my-ip",
   "/utility/utm-builder",
