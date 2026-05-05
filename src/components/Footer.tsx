@@ -48,7 +48,7 @@ export default function Footer() {
                 alt="FindBest Tools"
                 width={160}
                 height={36}
-                className="h-8 w-auto opacity-90 transition-opacity hover:opacity-100"
+                className="h-9 w-auto opacity-90 transition-opacity hover:opacity-100"
               />
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-7 text-slate-500">

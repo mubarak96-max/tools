@@ -127,7 +127,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6 lg:px-8">
 
         {/* Logo */}
-        <Link href="/" className="text-[15px] font-semibold tracking-tight hover:opacity-80 transition-opacity">
+        <Link href="/" className="text-[18px] font-semibold tracking-tight hover:opacity-80 transition-opacity">
           findbest<span className="text-primary">.</span>tools
         </Link>
 
