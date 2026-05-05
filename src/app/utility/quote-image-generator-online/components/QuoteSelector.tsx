@@ -76,7 +76,7 @@ export default function QuoteSelector({
       </div>
 
       <div className="space-y-2 rounded-lg bg-slate-50 p-4">
-        <h4 className="font-semibold text-slate-900">Custom Quote</h4>
+        <h4 className="font-semibold text-slate-900">Enter your own quote</h4>
         <textarea
           value={customQuote}
           onChange={(event) => setCustomQuote(event.target.value)}
