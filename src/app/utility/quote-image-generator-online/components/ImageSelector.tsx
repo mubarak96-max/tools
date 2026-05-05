@@ -72,7 +72,7 @@ export default function ImageSelector({
           type="text"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search Pixabay..."
+          placeholder="Search Image..."
           className="flex-1 rounded-lg border border-slate-300 p-2 text-sm"
         />
         <button
@@ -101,11 +101,10 @@ export default function ImageSelector({
               <button
                 key={image.id}
                 type="button"
-                className={`group relative ${previewClass} overflow-hidden rounded-lg border-2 transition ${
-                  isSelected
+                className={`group relative ${previewClass} overflow-hidden rounded-lg border-2 transition ${isSelected
                     ? "border-blue-600 ring-2 ring-blue-200"
                     : "border-transparent hover:border-slate-300"
-                }`}
+                  }`}
                 onClick={() => onSelect(image.largeImageURL)}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}

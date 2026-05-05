@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-dm-mono: 'DM Mono', monospace;
+
+  --ink: #0f0e0c;
+  --parchment: #f5f0e8;
+  --gold: #c9a84c;
+  --gold-light: #e8c97a;
+  --gold-dark: #9a7a2e;
+  --smoke: #2a2825;
+  --ash: #6b6560;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-dm-sans);
+  background-color: #0f0e0c;
+  color: var(--parchment);
+  min-height: 100vh;
+}
+
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1917;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3730;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* Gold divider */
+.gold-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    #1e1c19 25%,
+    #2a2825 50%,
+    #1e1c19 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Fade up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease forwards;
+}
+
+/* Staggered children */
+.stagger > *:nth-child(1) { animation-delay: 0.05s; opacity: 0; }
+.stagger > *:nth-child(2) { animation-delay: 0.1s; opacity: 0; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; opacity: 0; }
+.stagger > *:nth-child(4) { animation-delay: 0.2s; opacity: 0; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; opacity: 0; }
+.stagger > *:nth-child(6) { animation-delay: 0.3s; opacity: 0; }
+
+/* Gold button */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+  background-size: 200% 200%;
+  transition: all 0.3s ease;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.btn-gold:hover {
+  background-position: right center;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+}
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* Input styles */
+.input-dark {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--parchment);
+  transition: all 0.2s ease;
+}
+.input-dark:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(201,168,76,0.06);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+}
+.input-dark::placeholder {
+  color: var(--ash);
+}
+
+/* Tab active state */
+.tab-active {
+  color: var(--gold);
+  border-bottom: 2px solid var(--gold);
+}
+
+/* Card hover */
+.card-hover {
+  transition: all 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Selected state */
+.selected-ring {
+  ring: 2px;
+  ring-color: var(--gold);
+  box-shadow: 0 0 0 2px var(--gold), 0 0 16px rgba(201,168,76,0.3);
+}
