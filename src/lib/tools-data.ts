@@ -463,6 +463,12 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
+    name: "Roth IRA Calculator 2026",
+    href: "/finance/roth-ira-calculator",
+    description: "Calculate Roth IRA growth, 2026 direct contribution eligibility, and Roth versus traditional IRA outcomes using current IRS limits.",
+    category: "Finance",
+  },
+  {
     name: "SIP Calculator India 2026",
     href: "/finance/india-sip-calculator",
     description: "Free India SIP calculator with step-up SIP, lumpsum and SWP modes. Calculate mutual fund returns, wealth gained, and maturity value with inflation adjustment...",
@@ -577,6 +583,12 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
+    name: "UK Severance Pay Calculator",
+    href: "/finance/uk-severance-pay-calculator",
+    description: "Estimate statutory redundancy pay, notice entitlement, PILON treatment, and approximate tax using current UK statutory inputs.",
+    category: "Finance",
+  },
+  {
     name: "US Navy Body Fat Calculator 2026",
     href: "/health/us-navy-body-fat-calculator",
     description: "Official US Navy body fat calculator using OPNAVINST 6110.1J tape measurement standards. Calculate Navy PRT body fat percentage for males and females. Accura...",
@@ -586,6 +598,12 @@ export const ALL_TOOLS: Tool[] = [
     name: "US Self-Employment Tax Calculator 2026",
     href: "/finance/us-self-employment-tax-calculator",
     description: "Free US self-employment tax calculator for 2026. Calculate Social Security and Medicare taxes for freelancers, contractors, and sole proprietors. Includes de...",
+    category: "Finance",
+  },
+  {
+    name: "US Severance Pay Calculator",
+    href: "/finance/us-severance-pay-calculator",
+    description: "Estimate a US severance package with base pay, PTO payout, COBRA value, and approximate net take-home after federal and state taxes.",
     category: "Finance",
   },
   {

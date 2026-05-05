@@ -46,6 +46,21 @@ const FINANCE_TOOLS = [
     description: "Calculate 2026 US net pay with federal/state tax, FICA, 401(k), and health benefits.",
   },
   {
+    name: "Roth IRA Calculator",
+    href: "/finance/roth-ira-calculator",
+    description: "Project Roth IRA growth, check 2026 income eligibility, and compare Roth versus traditional IRA outcomes.",
+  },
+  {
+    name: "UK Severance Pay Calculator",
+    href: "/finance/uk-severance-pay-calculator",
+    description: "Estimate statutory redundancy pay, notice entitlement, PILON treatment, and approximate UK tax.",
+  },
+  {
+    name: "US Severance Pay Calculator",
+    href: "/finance/us-severance-pay-calculator",
+    description: "Estimate severance cash, PTO payout, COBRA value, and after-tax take-home across all 50 states.",
+  },
+  {
     name: "Income Tax Calculator Australia",
     href: "/finance/income-tax-calculator-australia",
     description: "Calculate 2026-26 Australian tax with ATO brackets, Medicare levy, and HECS repayments.",
