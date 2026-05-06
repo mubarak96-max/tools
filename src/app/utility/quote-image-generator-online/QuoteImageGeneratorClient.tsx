@@ -21,7 +21,7 @@ export default function QuoteImageGeneratorClient() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-100 py-8">
+    <div className="min-h-screen bg-slate-100 py-8">
       <div className="mx-auto max-w-6xl px-4">
         <h1 className="mb-8 text-center text-4xl font-bold text-slate-900">Quote Image Generator</h1>
 
@@ -121,6 +121,6 @@ export default function QuoteImageGeneratorClient() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
