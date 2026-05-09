@@ -123,11 +123,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "AUD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "3421",
-      },
       featureList:
         "GST inclusive calculation, GST exclusive calculation, GST component extraction, multiple item GST summation, GST-free item handling, BAS reporting helper, invoice GST line item calculation",
     },
@@ -244,26 +239,26 @@ export default function AustraliaGSTCalculatorPage() {
               <div className="mt-8 space-y-6 text-slate-600 leading-relaxed text-lg font-medium">
                 <p>
                   The Goods and Services Tax (GST) is a 10% tax applied to most
-                  goods and services sold or consumed in Australia. Introduced 
-                  in 2000, it transformed the Australian tax landscape, 
-                  replacing old wholesale sales taxes with a value-added 
-                  model. While businesses collect GST from their customers, 
+                  goods and services sold or consumed in Australia. Introduced
+                  in 2000, it transformed the Australian tax landscape,
+                  replacing old wholesale sales taxes with a value-added
+                  model. While businesses collect GST from their customers,
                   it is the final consumer who ultimately bears the cost.
                 </p>
                 <div className="p-8 bg-amber-500 rounded-[2rem] text-white shadow-2xl shadow-amber-200">
                   <h3 className="text-2xl font-black uppercase mb-4 tracking-tight leading-none italic">The $75k Threshold</h3>
                   <p className="opacity-95 leading-relaxed font-bold italic">
-                    If your GST turnover is $75,000 or more, registration is mandatory. 
-                    Ride-sourcing drivers (Uber/Didi) must register from dollar one, 
+                    If your GST turnover is $75,000 or more, registration is mandatory.
+                    Ride-sourcing drivers (Uber/Didi) must register from dollar one,
                     regardless of total turnover.
                   </p>
                 </div>
                 <p>
-                  For small businesses, freelancers, and sole traders, GST 
-                  compliance involves charging 10% on sales, claiming credits 
-                  on business purchases, and lodging a Business Activity 
-                  Statement (BAS) — usually every quarter. This tool simplifies 
-                  that process by providing instant, accurate breakdowns 
+                  For small businesses, freelancers, and sole traders, GST
+                  compliance involves charging 10% on sales, claiming credits
+                  on business purchases, and lodging a Business Activity
+                  Statement (BAS) — usually every quarter. This tool simplifies
+                  that process by providing instant, accurate breakdowns
                   for both single transactions and complex invoices.
                 </p>
               </div>
@@ -297,9 +292,9 @@ export default function AustraliaGSTCalculatorPage() {
                 </div>
               </div>
               <p className="mt-8 text-slate-600 font-medium text-lg leading-relaxed italic">
-                The &quot;divide by 11&quot; rule is the secret weapon of Australian 
-                accountants. Because 10% is one-eleventh of the final 110% 
-                price, it provides the exact tax amount without needing 
+                The &quot;divide by 11&quot; rule is the secret weapon of Australian
+                accountants. Because 10% is one-eleventh of the final 110%
+                price, it provides the exact tax amount without needing
                 multiple calculation steps.
               </p>
             </section>
@@ -415,9 +410,9 @@ export default function AustraliaGSTCalculatorPage() {
                     When must I register for GST?
                   </h3>
                   <p className="text-slate-600 font-medium leading-relaxed">
-                    You must register if your GST turnover is $75,000 or more 
-                    ($150,000 for non-profits). Ride-sourcing drivers must 
-                    register regardless of turnover. You can also register 
+                    You must register if your GST turnover is $75,000 or more
+                    ($150,000 for non-profits). Ride-sourcing drivers must
+                    register regardless of turnover. You can also register
                     voluntarily to claim input tax credits.
                   </p>
                 </div>
@@ -426,8 +421,8 @@ export default function AustraliaGSTCalculatorPage() {
                     What is a Tax Invoice?
                   </h3>
                   <p className="text-slate-600 font-medium leading-relaxed">
-                    For taxable supplies over $82.50 (incl. GST), you must 
-                    issue a valid Tax Invoice. It must include your ABN, 
+                    For taxable supplies over $82.50 (incl. GST), you must
+                    issue a valid Tax Invoice. It must include your ABN,
                     the GST amount, and the words &quot;Tax Invoice&quot; clearly.
                   </p>
                 </div>
@@ -436,9 +431,9 @@ export default function AustraliaGSTCalculatorPage() {
                     Is GST charged on delivery?
                   </h3>
                   <p className="text-slate-600 font-medium leading-relaxed">
-                    Generally, yes. Delivery fees follow the GST status of the 
-                    goods. If the goods are taxable, the delivery is taxable. 
-                    If the goods are GST-free (like basic food), the 
+                    Generally, yes. Delivery fees follow the GST status of the
+                    goods. If the goods are taxable, the delivery is taxable.
+                    If the goods are GST-free (like basic food), the
                     delivery may also be GST-free.
                   </p>
                 </div>
@@ -447,32 +442,32 @@ export default function AustraliaGSTCalculatorPage() {
                     How do I claim GST credits?
                   </h3>
                   <p className="text-slate-600 font-medium leading-relaxed">
-                    You can claim back the GST you paid on business purchases 
-                    if you are registered and hold a valid tax invoice. This 
+                    You can claim back the GST you paid on business purchases
+                    if you are registered and hold a valid tax invoice. This
                     is reported as G11 on your BAS.
                   </p>
                 </div>
               </div>
             </section>
           </article>
-            {/* Trust Signal */}
-            <div className="mt-24 rounded-3xl border border-slate-100 bg-slate-50/50 p-8">
-              <div className="flex items-start gap-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 text-xl font-black text-amber-500 italic">
-                  FB
-                </div>
-                <div>
-                  <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
-                  <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
-                    Calculations based on A New Tax System (Goods and Services Tax) Act 1999 
-                    and latest ATO guidance. Verified for the 2026 financial year. 
-                    Last reviewed: 25 April 2026.
-                  </p>
-                </div>
+          {/* Trust Signal */}
+          <div className="mt-24 rounded-3xl border border-slate-100 bg-slate-50/50 p-8">
+            <div className="flex items-start gap-6">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 text-xl font-black text-amber-500 italic">
+                FB
+              </div>
+              <div>
+                <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
+                <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
+                  Calculations based on A New Tax System (Goods and Services Tax) Act 1999
+                  and latest ATO guidance. Verified for the 2026 financial year.
+                  Last reviewed: 25 April 2026.
+                </p>
               </div>
             </div>
+          </div>
 
-            {/* Related Tools */}
+          {/* Related Tools */}
           <div className="mt-20 border-t border-slate-100 pt-12">
             <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath="/finance/australia-gst-calculator" />
           </div>

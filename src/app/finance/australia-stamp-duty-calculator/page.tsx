@@ -113,11 +113,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "AUD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "5821",
-      },
       featureList:
         "NSW stamp duty calculation, VIC stamp duty calculation, QLD stamp duty calculation, WA stamp duty calculation, SA stamp duty calculation, TAS stamp duty calculation, ACT stamp duty calculation, NT stamp duty calculation, First Home Buyer concessions, Foreign Purchaser Surcharges, Mortgage Registration Fees, Land Transfer Fees",
     },

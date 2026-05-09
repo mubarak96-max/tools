@@ -123,11 +123,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        ratingCount: "892",
-      },
       featureList:
         "Industry-specific premium estimation, coverage limit selection, deductible adjustment, location-based pricing, employee count factor, claims history modifier, revenue-based rating",
     },

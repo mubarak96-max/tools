@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "USD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "1847"
-        },
         description: "Free dropshipping calculator for break-even units, revenue, ROAS, CPA, and profit margin. Input product cost, selling price, ad spend, and fixed costs.",
         url: "https://findbest.tools/finance/dropshipping-break-even",
         author: {

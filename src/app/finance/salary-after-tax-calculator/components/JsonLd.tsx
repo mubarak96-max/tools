@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "USD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "3245"
-        },
         description: "Free salary after tax calculator for all 50 US states. Calculate take-home pay with real 2026 federal and state tax brackets. Compare states side-by-side.",
         url: "https://findbest.tools/finance/salary-after-tax-calculator",
         author: {

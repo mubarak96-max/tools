@@ -122,11 +122,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "1056",
-      },
       featureList:
         "Class code premium estimation, state rate modifiers, experience modification rate (EMR) calculation, payroll-based rating, monopolistic state detection, safety program discounts",
     },

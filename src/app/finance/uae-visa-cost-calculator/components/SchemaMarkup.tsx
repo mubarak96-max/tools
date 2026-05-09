@@ -56,11 +56,6 @@ export default function SchemaMarkup() {
           "price": "0",
           "priceCurrency": "AED"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "2847"
-        }
       },
       {
         "@type": "FAQPage",

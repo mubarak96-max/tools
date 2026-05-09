@@ -126,11 +126,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "1873",
-      },
       featureList:
         "Multi-round dilution modeling, option pool expansion, SAFE and convertible note conversion, pre-money and post-money valuation calculation, anti-dilution protection modeling, founder vesting schedule, employee equity pool management, waterfall exit analysis",
     },

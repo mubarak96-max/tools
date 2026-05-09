@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "gas prices 2026",
     "trip planner fuel estimator",
   ],
-  authors: [{ name: "FindBest Tools Automotive Division" }],
+  authors: [{ name: "Mubarak Mutesasira" }],
   openGraph: {
     title: "Fuel Cost Calculator 2026 | Trip & Commute Gas Expenses",
     description:
@@ -86,11 +86,6 @@ export default function FuelCostCalculatorPage() {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "6234",
         },
         featureList: [
           "Trip fuel cost calculation",
@@ -184,9 +179,9 @@ export default function FuelCostCalculatorPage() {
                 <span className="block">Calculator</span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-slate-300 sm:text-xl">
-                The most accurate <strong className="text-white">fuel cost calculator</strong> for road trips, 
-                daily commutes, and vehicle comparison. Calculate gas expenses by mileage, MPG, and fuel price. 
-                Plan your driving budget with our comprehensive <strong className="text-white">trip fuel cost calculator</strong> 
+                The most accurate <strong className="text-white">fuel cost calculator</strong> for road trips,
+                daily commutes, and vehicle comparison. Calculate gas expenses by mileage, MPG, and fuel price.
+                Plan your driving budget with our comprehensive <strong className="text-white">trip fuel cost calculator</strong>
                 and <strong className="text-white">fuel cost estimator</strong>.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-400">

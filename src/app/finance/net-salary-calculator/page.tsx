@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "salary tax calculator 2026",
     "how to calculate net pay",
   ],
-  authors: [{ name: "FindBest Tools Tax Division" }],
+  authors: [{ name: "Mubarak Mutesasira" }],
   openGraph: {
     title: "Net Salary Calculator 2026 | Gross to Net & Net to Gross",
     description:
@@ -78,11 +78,6 @@ export default function NetSalaryCalculatorPage() {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "4156",
         },
         featureList: [
           "Gross to net salary calculation",

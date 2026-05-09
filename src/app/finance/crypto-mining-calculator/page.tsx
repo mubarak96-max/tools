@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "cryptocurrency mining return calculator",
     "best mining calculator 2026",
   ],
-  authors: [{ name: "FindBest Tools Mining Division" }],
+  authors: [{ name: "Mubarak Mutesasira" }],
   openGraph: {
     title: "Crypto Mining Calculator 2026 | BTC & GPU Profitability",
     description:
@@ -78,11 +78,6 @@ export default function CryptoMiningCalculatorPage() {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          ratingCount: "3421",
         },
         featureList: [
           "Bitcoin mining profitability calculation",

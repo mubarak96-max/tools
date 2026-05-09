@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "USD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "1247"
-        },
         description: "Free YouTube title analyzer that checks character count, pixel width, mobile truncation, and thumbnail preview across search results, home feed, and mobile devices.",
         url: "https://findbest.tools/seo/youtube-title-checker",
         author: {

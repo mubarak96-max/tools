@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Script from "next/script";
 import { getBaseUrl, SITE_DESCRIPTION, SITE_NAME } from "@/lib/seo/metadata";
 import { ADSENSE_CLIENT_ID } from "@/lib/consent";
+import GoogleServices from "@/components/consent/GoogleServices";
+import CookieConsentBanner from "@/components/consent/CookieConsentBanner";
 
 export const metadata: Metadata = {
   metadataBase: getBaseUrl(),
@@ -41,25 +42,9 @@ export default function RootLayout({
         </main>
         <Footer />
 
-        <Script
-          id="google-adsense"
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-056PHFBMP3"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-056PHFBMP3');
-          `}
-        </Script>
+        {/* Google services only load after the user accepts the consent banner */}
+        <GoogleServices />
+        <CookieConsentBanner />
       </body>
     </html>
   );

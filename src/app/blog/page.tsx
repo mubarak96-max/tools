@@ -6,8 +6,8 @@ const PAGE_PATH = "/blog";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Guides, tutorials, and practical tips on code formatting, data conversion, and developer utilities.",
+  title: "Blog — Guides by Mubarak Mutesasira",
+  description: "Practical guides on finance, real estate, SEO, and digital tools. Written by Mubarak Mutesasira.",
   alternates: {
     canonical: PAGE_URL,
   },
@@ -28,7 +28,7 @@ const posts = [
     href: "/blog/fbref-vs-understat-vs-opta-xg",
     tag: "Data Providers",
     readTime: "18 min read",
-    date: "May 2026",
+    date: "April 2026",
   },
   {
     title: "xG Per Game: What's a Good Number for Teams and Players?",
@@ -36,7 +36,7 @@ const posts = [
     href: "/blog/xg-per-game-benchmarks",
     tag: "Analytics Context",
     readTime: "15 min read",
-    date: "May 2026",
+    date: "March 2026",
   },
   {
     title: "Penalty Kick xG: Why It's ~0.79 and Not 1.0",
@@ -44,7 +44,7 @@ const posts = [
     href: "/blog/penalty-kick-xg-explained",
     tag: "Penalty Stats",
     readTime: "10 min read",
-    date: "May 2026",
+    date: "February 2026",
   },
   {
     title: "How is xG Calculated? The Factors Behind Every Shot",
@@ -52,7 +52,7 @@ const posts = [
     href: "/blog/how-is-xg-calculated",
     tag: "Data Science",
     readTime: "18 min read",
-    date: "May 2026",
+    date: "January 2026",
   },
   {
     title: "What's the Difference Between xG, xGA, npxG, and xGOT?",
@@ -60,7 +60,7 @@ const posts = [
     href: "/blog/difference-between-xg-xga-npxg-xgot",
     tag: "Analytics Deep Dive",
     readTime: "15 min read",
-    date: "May 2026",
+    date: "December 2025",
   },
   {
     title: "What is xG in Football? A Complete Beginner's Guide",
@@ -68,7 +68,7 @@ const posts = [
     href: "/blog/what-is-xg-in-football",
     tag: "Football Analytics",
     readTime: "12 min read",
-    date: "May 2026",
+    date: "November 2025",
   },
   {
     title: "Free vs. Paid Keyword Clustering Tools: Is It Worth Paying?",
@@ -412,10 +412,10 @@ export default function BlogIndexPage() {
 
             <div className="flex items-center gap-3 mt-auto pt-6 border-t border-slate-100">
               <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
-                FB
+                MM
               </div>
               <div className="flex flex-col">
-                <span className="text-xs font-bold text-slate-900 leading-none">FindBest Editorial</span>
+                <span className="text-xs font-bold text-slate-900 leading-none">Mubarak Mutesasira</span>
                 <span className="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">{post.date}</span>
               </div>
             </div>

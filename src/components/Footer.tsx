@@ -52,7 +52,7 @@ export default function Footer() {
               />
             </Link>
             <p className="mt-6 max-w-xs text-sm leading-7 text-slate-500">
-              High-performance, private, browser-native tools built for speed. No sign-up, no server uploads, just purely functional utilities.
+              High-performance, private, browser-native tools built for speed. No sign-up, just purely functional utilities.
             </p>
           </div>
 

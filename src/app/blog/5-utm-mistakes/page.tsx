@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     url: PAGE_URL,
     type: "article",
   },
+  authors: [{ name: "Mubarak Mutesasira" }],
 };
 
 export default function UtmMistakesBlogPage() {
@@ -47,6 +48,14 @@ export default function UtmMistakesBlogPage() {
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
             5 UTM Mistakes That Are Ruining Your Campaign Data (And How to Fix Them)
           </h1>
+          <div className="flex items-center gap-3 pt-2">
+            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">MM</div>
+            <div>
+              <span className="text-sm font-semibold text-slate-900">Mubarak Mutesasira</span>
+              <span className="text-slate-400 mx-2">·</span>
+              <span className="text-sm text-slate-500">January 2026</span>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -67,7 +76,7 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mb-16">
           <h2 className="text-3xl font-black text-rose-600 mb-12 tracking-tight">Mistake #1: Inconsistent Naming (The Silent Data Killer)</h2>
-          
+
           <div className="space-y-8">
             <div className="p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800">
               <p className="font-black text-slate-900 dark:text-white mb-4 uppercase tracking-widest text-[10px]">What it looks like:</p>
@@ -107,7 +116,7 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mb-16">
           <h2 className="text-3xl font-black text-rose-600 mb-12 tracking-tight">Mistake #2: Tagging Internal Links (Session Hijacking)</h2>
-          
+
           <div className="space-y-8">
             <div className="p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800">
               <p className="font-black text-slate-900 dark:text-white mb-4 uppercase tracking-widest text-[10px]">What it looks like:</p>
@@ -143,7 +152,7 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mb-16">
           <h2 className="text-3xl font-black text-rose-600 mb-12 tracking-tight">Mistake #3: Not Tagging Everything (Partial Tracking = Useless Tracking)</h2>
-          
+
           <div className="space-y-8">
             <div className="p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800">
               <p className="font-black text-slate-900 dark:text-white mb-4 uppercase tracking-widest text-[10px]">What it looks like:</p>
@@ -166,7 +175,7 @@ export default function UtmMistakesBlogPage() {
             <div className="p-8 bg-emerald-600 rounded-3xl text-white shadow-xl shadow-emerald-500/20">
               <p className="font-black mb-4 uppercase tracking-[0.3em] text-[10px]">The Fix</p>
               <p className="text-xl font-bold leading-relaxed mb-8">Build a comprehensive tagging checklist that covers every channel you use — not just paid campaigns. For every piece of content you create that includes a link to your website, ask: <em>does this link have UTM parameters?</em></p>
-              
+
               <p className="font-black uppercase tracking-widest text-[10px] mb-6">Channels to always tag:</p>
               <div className="grid grid-cols-2 gap-3 mb-10 text-[11px] font-bold">
                 {[
@@ -178,7 +187,7 @@ export default function UtmMistakesBlogPage() {
                   <div key={ch} className="px-3 py-2 bg-white/10 rounded-lg border border-white/20">{ch}</div>
                 ))}
               </div>
-              
+
               <p className="mb-6 opacity-90 leading-relaxed italic">For channels where you don&apos;t run &quot;campaigns&quot; per se (like your Instagram bio), use a consistent evergreen tag like:</p>
               <div className="bg-white p-6 rounded-2xl border border-white/20 text-emerald-950 font-mono text-xs overflow-x-auto shadow-sm mb-10">
                 utm_source=instagram&utm_medium=social&utm_campaign=bio_link_evergreen
@@ -195,7 +204,7 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mb-16">
           <h2 className="text-3xl font-black text-rose-600 mb-12 tracking-tight">Mistake #4: Using Vague Campaign Names (Making Future-You&apos;s Life Miserable)</h2>
-          
+
           <div className="space-y-8">
             <div className="p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800">
               <p className="font-black text-slate-900 dark:text-white mb-4 uppercase tracking-widest text-[10px]">What it looks like:</p>
@@ -216,7 +225,7 @@ export default function UtmMistakesBlogPage() {
             <div className="p-8 bg-emerald-600 rounded-3xl text-white shadow-xl shadow-emerald-500/20">
               <p className="font-black mb-4 uppercase tracking-[0.3em] text-[10px]">The Fix</p>
               <p className="text-xl font-bold leading-relaxed mb-10">Enforce a campaign naming format that includes enough context to be self-explanatory later. A good format includes:</p>
-              
+
               <ol className="grid gap-3 list-none p-0 mb-10 text-sm font-bold opacity-90">
                 <li className="flex gap-4 items-center"><span className="w-6 h-6 rounded-lg bg-white text-emerald-600 flex items-center justify-center text-[10px] font-black">1</span> The channel or type — email, paid, social, etc.</li>
                 <li className="flex gap-4 items-center"><span className="w-6 h-6 rounded-lg bg-white text-emerald-600 flex items-center justify-center text-[10px] font-black">2</span> A description of the initiative — product launch, seasonal promo, brand awareness</li>
@@ -238,7 +247,7 @@ export default function UtmMistakesBlogPage() {
                   <div className="p-4 bg-rose-500/20 rounded-xl border border-rose-500/30 text-sm font-mono opacity-60">promo2 ❌</div>
                 </div>
               </div>
-              
+
               <p className="mt-10 m-0 opacity-90 leading-relaxed text-sm">This naming format means that when you look at your data in six months, every entry in your reports is immediately understandable without needing to consult anyone.</p>
             </div>
           </div>
@@ -248,7 +257,7 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mb-16">
           <h2 className="text-3xl font-black text-rose-600 mb-12 tracking-tight">Mistake #5: Building UTM URLs Manually (Inviting Human Error)</h2>
-          
+
           <div className="space-y-8">
             <div className="p-8 bg-slate-50 dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800">
               <p className="font-black text-slate-900 dark:text-white mb-4 uppercase tracking-widest text-[10px]">What it looks like:</p>
@@ -272,11 +281,11 @@ export default function UtmMistakesBlogPage() {
             <div className="p-8 bg-emerald-600 rounded-3xl text-white shadow-xl shadow-emerald-500/20">
               <p className="font-black mb-4 uppercase tracking-[0.3em] text-[10px]">The Fix</p>
               <p className="text-xl font-bold leading-relaxed mb-10">Stop building UTM URLs by hand. Use a dedicated UTM builder tool that generates the URL for you — with correct parameter names, proper formatting, and no risk of typos in the parameter keys.</p>
-              
+
               <p className="mb-8 opacity-90 leading-relaxed">
                 <strong><Link href="/utility/utm-builder" className="underline underline-offset-4 decoration-2">findbest.tools/utility/utm-builder</Link></strong> is built specifically for this. You enter your URL and fill in the fields — the tool handles the rest. The parameter names are pre-filled correctly. The formatting is handled automatically. All you need to do is copy the output.
               </p>
-              
+
               <p className="m-0 leading-relaxed italic text-sm opacity-90 font-medium">This should be the only way your team builds UTM URLs. Add it to your team&apos;s bookmarks, your onboarding docs, and your campaign checklist.</p>
             </div>
           </div>
@@ -289,7 +298,7 @@ export default function UtmMistakesBlogPage() {
           <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-12">
             Each of these mistakes on its own causes problems. Together, they make your analytics fundamentally unreliable.
           </p>
-          
+
           <div className="bg-slate-50 dark:bg-slate-900/50 p-10 rounded-[3rem] border border-slate-200 dark:border-slate-800 mb-12 shadow-sm">
             <p className="font-black uppercase tracking-widest text-[10px] text-rose-600 mb-6">Consider this scenario:</p>
             <ul className="grid gap-3 list-none p-0 m-0 text-sm font-medium text-slate-600 dark:text-slate-400">
@@ -300,9 +309,9 @@ export default function UtmMistakesBlogPage() {
               <li className="flex gap-4 items-center"><span className="w-2 h-2 rounded-full bg-rose-500" /> Manual typos broke 3 campaign tags last month → 3 weeks of data is untracked</li>
             </ul>
           </div>
-          
+
           <p className="text-lg leading-relaxed mb-8">You open your dashboard and see a mix of inflated direct traffic, fragmented channel data, and missing campaign performance. You make a budget decision based on this data — reallocating spend away from channels that look underperforming, but are actually performing well and just not tracked correctly.</p>
-          
+
           <div className="p-8 bg-rose-600 rounded-3xl text-white text-center shadow-xl shadow-rose-500/20">
             <p className="text-2xl font-black m-0 tracking-tight leading-tight uppercase">This is the real cost of bad UTM hygiene: **misdirected marketing spend based on faulty data**.</p>
           </div>
@@ -313,7 +322,7 @@ export default function UtmMistakesBlogPage() {
         <section className="mb-16">
           <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-12 tracking-tight">UTM Health Audit: A 15-Minute Checkup</h2>
           <p className="mb-10">Here&apos;s a quick audit you can run right now to diagnose your UTM data quality:</p>
-          
+
           <div className="grid gap-6">
             {[
               { t: "1. Check for capitalization inconsistencies", d: "In GA4, go to Traffic Acquisition. Sort by source. Look for the same platform listed multiple ways (e.g., <code>facebook</code>, <code>Facebook</code>, <code>FB</code>)." },
@@ -323,7 +332,7 @@ export default function UtmMistakesBlogPage() {
               { t: "5. Review your most recent campaign names", d: "Look at the last 10 campaign names in your reports. Can you tell what each one was, just from the name? If not, your naming convention needs work." }
             ].map((item, i) => (
               <div key={i} className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 flex gap-6 items-start">
-                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black">{i+1}</span>
+                <span className="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black">{i + 1}</span>
                 <div>
                   <p className="font-black text-slate-900 dark:text-white mb-2 leading-tight">{item.t}</p>
                   <p className="text-sm text-slate-600 dark:text-slate-400 m-0 leading-relaxed" dangerouslySetInnerHTML={{ __html: item.d }} />
@@ -338,7 +347,7 @@ export default function UtmMistakesBlogPage() {
         <section className="mb-16">
           <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-12 tracking-tight">Your Action Plan</h2>
           <p className="mb-10 font-bold uppercase tracking-widest text-xs text-rose-600">Fix these mistakes in order of impact:</p>
-          
+
           <ol className="grid gap-4 list-none p-0 m-0">
             {[
               "Stop building URLs manually. Start using <strong>[findbest.tools/utility/utm-builder](https://findbest.tools/utility/utm-builder)</strong> today.",
@@ -348,14 +357,14 @@ export default function UtmMistakesBlogPage() {
               "Run a monthly data audit to catch inconsistencies before they accumulate."
             ].map((item, i) => (
               <li key={i} className="p-6 bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-slate-200 dark:border-slate-800 flex gap-6 items-center">
-                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-black">{i+1}</span>
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-black">{i + 1}</span>
                 <p className="m-0 font-black text-slate-900 dark:text-white leading-tight">
                   {item.split("**").map((part, idx) => idx % 2 === 1 ? <Link key={idx} href="/utility/utm-builder" className="underline decoration-emerald-200 decoration-2 underline-offset-4">{part}</Link> : part)}
                 </p>
               </li>
             ))}
           </ol>
-          
+
           <p className="mt-12 text-center text-slate-500 font-medium leading-relaxed italic">None of this requires a technical background. It requires discipline, documentation, and the right tool.</p>
         </section>
 
@@ -363,7 +372,7 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mb-16">
           <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-12 tracking-tight">Summary</h2>
-          
+
           <div className="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-3xl shadow-xl">
             <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
               <thead className="bg-slate-50 dark:bg-slate-900">
@@ -394,11 +403,11 @@ export default function UtmMistakesBlogPage() {
 
         <section className="mt-16 text-center">
           <p className="text-lg leading-relaxed font-bold text-slate-900 dark:text-white mb-12">Fix these five mistakes and your analytics data becomes something you can actually trust — and make decisions from.</p>
-          
+
           <div className="pt-12 border-t border-slate-100 dark:border-slate-800 flex flex-col items-center gap-4">
             <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">Next read</p>
-            <Link 
-              href="/blog/social-media-utm-tracking" 
+            <Link
+              href="/blog/social-media-utm-tracking"
               className="text-rose-600 font-black hover:text-rose-500 transition-colors underline underline-offset-8 decoration-2"
             >
               UTM Tracking for Social Media: Facebook, Instagram, LinkedIn & Twitter &rarr;

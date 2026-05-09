@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "navy bca calculator",
     "navy body fat chart",
   ],
-  authors: [{ name: "FindBest Tools Military Fitness Division" }],
+  authors: [{ name: "Mubarak Mutesasira" }],
   openGraph: {
     title: "US Navy Body Fat Calculator | Official PRT Standards",
     description:
@@ -78,11 +78,6 @@ export default function NavyBodyFatCalculatorPage() {
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "3876",
         },
         featureList: [
           "Official Navy tape measurement protocol",
@@ -181,9 +176,9 @@ export default function NavyBodyFatCalculatorPage() {
                 <span className="block">Body Fat Calculator</span>
               </h1>
               <p className="mt-6 text-lg leading-8 text-slate-300 sm:text-xl">
-                The official <strong className="text-white">US Navy body fat calculator</strong> using 
-                OPNAVINST 6110.1J tape measurement standards. Calculate your Navy PRT body composition 
-                percentage with accurate male and female circumference protocols. Know your status before 
+                The official <strong className="text-white">US Navy body fat calculator</strong> using
+                OPNAVINST 6110.1J tape measurement standards. Calculate your Navy PRT body composition
+                percentage with accurate male and female circumference protocols. Know your status before
                 the Physical Readiness Test.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-400">

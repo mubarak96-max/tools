@@ -62,11 +62,7 @@ const structuredData = [
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '847',
-    },
+
     featureList: [
       'Real-time password strength scoring (0-5 scale)',
       'Entropy calculation in bits',
@@ -351,7 +347,7 @@ export default function PasswordStrengthCheckerPage() {
                 Leading password managers like Bitwarden, 1Password, and Proton Pass use AES-256 or equivalent encryption with zero-knowledge architecture — meaning the provider cannot access your vault even under legal compulsion. They also alert you when a password appears in known data breaches, a feature that complements our <strong>password strength test</strong> by monitoring your credentials over time. If you are still reusing passwords across sites or writing them in notes apps, you are one breach away from total account compromise.
               </p>
             </div>
-            
+
             <div className="mt-6 bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
               <p className="font-semibold text-indigo-900 m-0">Security Best Practice</p>
               <p className="text-indigo-800 m-0 mt-1 text-sm leading-relaxed text-slate-700">

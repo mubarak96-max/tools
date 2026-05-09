@@ -127,11 +127,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        ratingCount: "743",
-      },
       featureList:
         "Operational risk scoring, financial risk scoring, cyber risk scoring, legal compliance risk scoring, market risk scoring, physical safety risk scoring, reputational risk scoring, composite risk index, mitigation recommendations",
     },

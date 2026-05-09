@@ -13,7 +13,7 @@ export const revalidate = 1800;
 
 const HOME_TITLE = "Free Professional Online Utilities";
 const HOME_DESCRIPTION =
-  "Access 100+  tools for finance, text, images, and SEO. No account, no uploads—everything runs privately on your device.";
+  "Free tools for finance, text, images, and SEO. Most tools run entirely in your browser — no account required.";
 
 const baseMetadata = buildMetadata({
   title: "Free Professional Online Tools",
@@ -44,7 +44,7 @@ export default function Home() {
               <span className="text-primary">Free forever.</span>
             </h1>
             <p className="text-[15px] leading-[1.75] text-secondary max-w-[400px]">
-              100+ tools for finance, text, seo, images, and more.
+              Tools for finance, text, SEO, images, and more. Most run entirely in your browser.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
@@ -60,7 +60,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 gap-3">
-            <Link 
+            <Link
               href="/image/free-image-background-remover-online"
               className="stripe-mini-card col-span-2 bg-primary-soft border-primary/20 hover:border-primary/40 transition-colors"
             >
@@ -68,7 +68,7 @@ export default function Home() {
               <div className="text-[13px] font-semibold text-foreground">AI Background Remover</div>
               <div className="text-[12px] text-muted-foreground mt-1 leading-relaxed">Remove image backgrounds instantly using on-device AI.</div>
             </Link>
-            <Link 
+            <Link
               href="/utility/create-qr-code-online"
               className="stripe-mini-card hover:border-border-hover transition-colors"
             >
@@ -76,7 +76,7 @@ export default function Home() {
               <div className="text-[13px] font-semibold text-foreground">QR Code Generator</div>
               <div className="text-[12px] text-muted-foreground mt-1 leading-relaxed">Custom colors, no expiry.</div>
             </Link>
-            <Link 
+            <Link
               href="/finance/etsy-profit-calculator"
               className="stripe-mini-card hover:border-border-hover transition-colors"
             >
@@ -84,7 +84,7 @@ export default function Home() {
               <div className="text-[13px] font-semibold text-foreground">Etsy Profit Calculator</div>
               <div className="text-[12px] text-muted-foreground mt-1 leading-relaxed">Model fees and net margins.</div>
             </Link>
-            <Link 
+            <Link
               href="/seo/keyword-clustering"
               className="stripe-mini-card hover:border-border-hover transition-colors"
             >
@@ -92,7 +92,7 @@ export default function Home() {
               <div className="text-[13px] font-semibold text-foreground">Keyword Clustering</div>
               <div className="text-[12px] text-muted-foreground mt-1 leading-relaxed">Group keywords by topic.</div>
             </Link>
-            <Link 
+            <Link
               href="/text/readability-flesch-kincaid-calculator"
               className="stripe-mini-card hover:border-border-hover transition-colors"
             >

@@ -14,11 +14,6 @@ export function JsonLd() {
           "price": "0",
           "priceCurrency": "USD"
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "9240"
-        },
         "description": "Group 5,000+ keywords into topic clusters in seconds. Semantic, SERP-based & hybrid clustering — no signup, no limits. Used by 9,000+ SEOs.",
         "url": "https://findbest.tools/seo/keyword-clustering",
         "author": {

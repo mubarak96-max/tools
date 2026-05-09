@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "USD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "2156"
-        },
         description: "Free product pricing calculator for Shopify, Etsy, and Amazon with real 2026 platform fees, target margin mode, and multi-currency support.",
         url: "https://findbest.tools/finance/product-pricing-calculator",
         author: {

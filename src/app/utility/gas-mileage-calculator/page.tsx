@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "gas savings calculator",
     "fuel diagnostic tool",
   ],
-  authors: [{ name: "FindBest Tools Automotive Division" }],
+  authors: [{ name: "Mubarak Mutesasira" }],
   openGraph: {
     title: "Gas Mileage Calculator | MPG & Trip Cost Diagnostic",
     description:
@@ -56,16 +56,16 @@ export default function GasMileageCalculatorPage() {
       <main className="bg-slate-50 min-h-screen">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
           <GasMileageCalculator />
-          
+
           <div className="mt-20 border-t border-slate-200 pt-20">
             <AuthorBio />
           </div>
 
           <div className="mt-20 border-t border-slate-200 py-20 pb-32">
-            <RelatedToolsSection 
-              category="Utility" 
-              categoryHref="/utility" 
-              currentPath="/utility/gas-mileage-calculator" 
+            <RelatedToolsSection
+              category="Utility"
+              categoryHref="/utility"
+              currentPath="/utility/gas-mileage-calculator"
             />
           </div>
         </div>

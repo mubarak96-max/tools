@@ -35,7 +35,7 @@ export default function AboutPage() {
           </div>
           <h3 className="text-xl font-bold text-slate-900 mb-3">Privacy First</h3>
           <p className="text-slate-500 text-sm leading-relaxed">
-            Most of our tools process data entirely in your browser using Client-Side JS and WebAssembly. Your data never leaves your machine.
+            Most tools process data entirely in your browser using client-side JavaScript or WebAssembly. A small number of tools (like DNS lookup and IP detection) make server-side requests by design.
           </p>
         </div>
         <div className="glass-card p-8 rounded-3xl border border-white/40 shadow-sm">
@@ -112,7 +112,7 @@ export default function AboutPage() {
         <section className="bg-primary/5 rounded-[3rem] p-10 sm:p-16 text-center border border-primary/10">
           <h2 className="text-3xl font-bold text-slate-900 mb-6">Built by Professionals, for Everyone</h2>
           <p className="max-w-3xl mx-auto text-slate-600 mb-10">
-            FindBest Tools is maintained by a dedicated team of developers and data analysts who believe in the democratizing power of the web. We build the tools we wanted to use in our own daily workflows. 
+            FindBest Tools is maintained by a dedicated team of developers and data analysts who believe in the democratizing power of the web. We build the tools we wanted to use in our own daily workflows.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="primary-button px-8 py-3 rounded-full">
@@ -121,6 +121,22 @@ export default function AboutPage() {
             <Link href="/blog" className="secondary-button px-8 py-3 rounded-full">
               Read Our Guides
             </Link>
+          </div>
+        </section>
+
+        <section className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8 sm:p-10">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6">Meet the Author</h2>
+          <div className="flex items-start gap-6">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-2xl font-black text-primary">
+              MM
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-slate-900">Mubarak Mutesasira</h3>
+              <p className="text-sm text-slate-500 mt-1 mb-3">Developer &amp; Content Lead, FindBest Tools</p>
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Mubarak builds and maintains the tools and guides on FindBest Tools. With a background in software development and digital marketing, he focuses on creating accurate, practical calculators and guides for finance, real estate, SEO, and productivity. All blog posts and tool documentation are written and reviewed by Mubarak.
+              </p>
+            </div>
           </div>
         </section>
 

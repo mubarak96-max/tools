@@ -4,7 +4,7 @@ export default function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-black text-slate-900 mb-4">Terms of Service</h1>
-      <p className="text-slate-500 mb-12">Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+      <p className="text-slate-500 mb-12">Last Updated: May 10, 2026</p>
 
       <div className="prose prose-slate max-w-none space-y-12 text-slate-600 leading-relaxed">
         <section>
@@ -70,7 +70,7 @@ export default function TermsPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mb-4">8. Governing Law</h2>
           <p>
-            These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which the site owner resides, and you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.
+            These terms and conditions are governed by and construed in accordance with the laws of Uganda, where the site owner is based. You irrevocably submit to the jurisdiction of the courts in that location for any disputes arising from use of this site.
           </p>
         </section>
 

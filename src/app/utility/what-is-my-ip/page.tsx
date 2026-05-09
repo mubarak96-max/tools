@@ -5,26 +5,10 @@ import ToolPageScaffold from '@/components/tools/ToolPageScaffold';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'What Is My IP Address? — Free Public & Private IP Lookup Tool (2026)',
+  title: 'What Is My IP Address? — Free Public & Private IP Lookup Tool ',
   description:
     'Instantly find what is my ip address, what is my public ip, what is my private ip, and what is my ip location. Check IPv4/IPv6, ISP, proxy detection, and map location. No signup.',
-  keywords: [
-    'what is my ip address',
-    'what is my private ip',
-    'what is my ip location',
-    'what is my public ip',
-    'what is my ipv4',
-    'what is my ipv4 address',
-    'what is my public ip address',
-    'what is my ip address on my phone',
-    'what is my ip address location',
-    'what is my proxy server address',
-    'what is my ip address com',
-    'what is my ip address on my computer',
-    'ip address lookup',
-    'check my ip',
-    'find my ip',
-  ],
+  keywords: ['what is my ip address', 'ip address lookup', 'check my ip', 'find my ip'],
   alternates: {
     canonical: 'https://findbest.tools/utility/what-is-my-ip',
   },
@@ -53,11 +37,6 @@ const structuredData = [
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '342',
     },
     featureList: [
       'Public IP address detection',
@@ -197,7 +176,7 @@ export default function WhatIsMyIpPage() {
                 If you are asking <strong>&quot;what is my ip address on my computer&quot;</strong>, you likely need the private IP to configure port forwarding, set up a local development server, or troubleshoot printer connectivity. If you are asking <strong>&quot;what is my public ip,&quot;</strong> you likely need to whitelist remote access, verify a VPN connection, or provide access logs to a security team. Our tool displays both, with your public IP fetched from independent geo-IP databases and your private IP detected via WebRTC local candidate enumeration.
               </p>
             </div>
-            
+
             <div className="mt-6 bg-white border border-slate-200 rounded-xl overflow-hidden">
               <table className="w-full text-sm text-left">
                 <thead className="bg-slate-100 text-slate-900 font-bold uppercase text-xs">

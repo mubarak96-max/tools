@@ -22,23 +22,6 @@ const baseMetadata = buildMetadata({
 
 export const metadata: Metadata = {
   ...baseMetadata,
-  keywords: [
-    'social media character counter',
-    'instagram caption character counter',
-    'instagram caption character limit',
-    'x character limit with links',
-    'instagram character limit',
-    'twitter character count',
-    'linkedin character limit',
-    'linkedin post character limit',
-    'tiktok character counter',
-    'threads character limit',
-    'bluesky character limit',
-    'facebook character limit',
-    'character count for social media',
-    'caption length checker',
-    'social media manager tools',
-  ],
   other: {
     'article:modified_time': LAST_UPDATED_ISO,
   },

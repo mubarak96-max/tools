@@ -125,11 +125,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "12473",
-      },
       featureList:
         "Make-model-specific depreciation curves, year-by-year value projection, mileage adjustment, condition adjustment, side-by-side vehicle comparison, total cost of ownership calculation, EV vs ICE depreciation modeling, luxury vs economy depreciation, depreciation tax deduction calculator",
     },

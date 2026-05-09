@@ -122,11 +122,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "INR",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "8932",
-      },
       featureList:
         "SIP return calculation, step-up SIP calculation, lumpsum investment calculation, SWP calculation, inflation-adjusted returns, LTCG tax estimation, equity fund return projection, debt fund return projection, hybrid fund return projection, goal-based SIP planning",
     },
@@ -309,7 +304,7 @@ export default function IndiaSIPCalculatorPage() {
               <div className="mt-8 rounded-3xl border border-slate-100 bg-slate-50 p-6">
                 <h4 className="font-black text-orange-600 uppercase tracking-widest text-[10px] mb-2">Example Calculation</h4>
                 <p className="text-sm font-medium text-slate-600 leading-relaxed italic">
-                  ₹10,000/month at 12% for 10 years (120 months) yields <strong>₹23,23,391</strong>. 
+                  ₹10,000/month at 12% for 10 years (120 months) yields <strong>₹23,23,391</strong>.
                   You invest ₹12,00,000 and earn ₹11,23,391 in pure returns.
                 </p>
               </div>
@@ -367,25 +362,25 @@ export default function IndiaSIPCalculatorPage() {
                   can nearly double your wealth over long horizons.
                 </p>
                 <div className="rounded-3xl border-2 border-orange-100 bg-orange-50/30 p-8">
-                   <p className="font-black text-orange-900 uppercase tracking-tight italic">20-Year Strategy Comparison</p>
-                   <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                      <div className="p-4 rounded-2xl bg-white border border-slate-100">
-                         <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Flat SIP</p>
-                         <p className="text-lg font-black text-slate-900 mt-1 italic tracking-tighter">₹99.9 L</p>
-                      </div>
-                      <div className="p-4 rounded-2xl bg-white border border-emerald-100">
-                         <p className="text-[9px] font-black text-emerald-500 uppercase tracking-widest">5% Step-Up</p>
-                         <p className="text-lg font-black text-emerald-600 mt-1 italic tracking-tighter">₹1.39 Cr</p>
-                      </div>
-                      <div className="p-4 rounded-2xl bg-white border border-orange-200">
-                         <p className="text-[9px] font-black text-orange-500 uppercase tracking-widest">10% Step-Up</p>
-                         <p className="text-lg font-black text-orange-600 mt-1 italic tracking-tighter">₹1.98 Cr</p>
-                      </div>
-                      <div className="p-4 rounded-2xl bg-white border border-violet-200">
-                         <p className="text-[9px] font-black text-violet-500 uppercase tracking-widest">15% Step-Up</p>
-                         <p className="text-lg font-black text-violet-600 mt-1 italic tracking-tighter">₹2.89 Cr</p>
-                      </div>
-                   </div>
+                  <p className="font-black text-orange-900 uppercase tracking-tight italic">20-Year Strategy Comparison</p>
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="p-4 rounded-2xl bg-white border border-slate-100">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Flat SIP</p>
+                      <p className="text-lg font-black text-slate-900 mt-1 italic tracking-tighter">₹99.9 L</p>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white border border-emerald-100">
+                      <p className="text-[9px] font-black text-emerald-500 uppercase tracking-widest">5% Step-Up</p>
+                      <p className="text-lg font-black text-emerald-600 mt-1 italic tracking-tighter">₹1.39 Cr</p>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white border border-orange-200">
+                      <p className="text-[9px] font-black text-orange-500 uppercase tracking-widest">10% Step-Up</p>
+                      <p className="text-lg font-black text-orange-600 mt-1 italic tracking-tighter">₹1.98 Cr</p>
+                    </div>
+                    <div className="p-4 rounded-2xl bg-white border border-violet-200">
+                      <p className="text-[9px] font-black text-violet-500 uppercase tracking-widest">15% Step-Up</p>
+                      <p className="text-lg font-black text-violet-600 mt-1 italic tracking-tighter">₹2.89 Cr</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>

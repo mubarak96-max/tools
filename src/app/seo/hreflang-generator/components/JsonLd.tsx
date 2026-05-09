@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "USD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "856"
-        },
         description: "Free hreflang tag generator that validates ISO codes, enforces self-referencing and reciprocity, and exports HTML head tags or XML sitemap format for multilingual SEO.",
         url: "https://findbest.tools/seo/hreflang-generator",
         author: {

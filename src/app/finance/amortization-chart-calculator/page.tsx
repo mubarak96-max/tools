@@ -79,11 +79,6 @@ export default function AmortizationCalculatorPage() {
           price: "0",
           priceCurrency: "USD",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "2847",
-        },
         featureList: [
           "Interactive amortization chart",
           "Detailed payment schedule table",
@@ -153,8 +148,8 @@ export default function AmortizationCalculatorPage() {
               <p className="mt-6 text-lg leading-8 text-slate-300 sm:text-xl">
                 The most accurate free{" "}
                 <strong className="text-white">amortization schedule maker</strong> and{" "}
-                <strong className="text-white">amortization table generator</strong>. 
-                Calculate your loan payments, visualize principal vs interest, and 
+                <strong className="text-white">amortization table generator</strong>.
+                Calculate your loan payments, visualize principal vs interest, and
                 download professional amortization schedules in seconds.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-slate-400">

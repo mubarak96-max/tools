@@ -26,8 +26,8 @@ export default function TrustSignals() {
           <Award className="h-6 w-6" />
         </div>
         <div>
-          <h4 className="font-bold text-slate-900">Expert Reviewed</h4>
-          <p className="text-sm text-slate-500">Content reviewed by UAE labor law specialists.</p>
+          <h4 className="font-bold text-slate-900">MOHRE Formula</h4>
+          <p className="text-sm text-slate-500">Based on Federal Decree-Law No. 33 of 2021.</p>
         </div>
       </div>
     </div>

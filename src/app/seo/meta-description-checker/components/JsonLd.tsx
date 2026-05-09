@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "USD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "987"
-        },
         description: "Free meta description checker that measures pixel width and character count. Preview Google desktop and mobile SERP snippets in real time.",
         url: "https://findbest.tools/seo/meta-description-checker",
         author: {

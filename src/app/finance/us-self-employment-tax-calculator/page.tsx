@@ -96,11 +96,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "2156",
-      },
       featureList:
         "Self-employment tax calculation, Social Security wage base tracking, Medicare tax calculation, Additional Medicare Tax estimation, employer-equivalent deduction, quarterly estimated tax projection, W-2 FICA comparison, net earnings from self-employment computation",
     },
@@ -445,24 +440,24 @@ export default function SelfEmploymentTaxCalculatorPage() {
             </section>
           </article>
 
-            {/* Trust Signal */}
-            <div className="mt-24 rounded-3xl border border-slate-100 bg-slate-50/50 p-8">
-              <div className="flex items-start gap-6">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 text-xl font-black text-blue-500 italic">
-                  FB
-                </div>
-                <div>
-                  <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
-                  <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
-                    Calculations based on IRS Schedule SE instructions, 2026
-                    Social Security wage base projections, and Medicare tax
-                    regulations under IRC §§ 1401, 1402, and 3101. Verified 25 April 2026.
-                  </p>
-                </div>
+          {/* Trust Signal */}
+          <div className="mt-24 rounded-3xl border border-slate-100 bg-slate-50/50 p-8">
+            <div className="flex items-start gap-6">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-slate-100 text-xl font-black text-blue-500 italic">
+                FB
+              </div>
+              <div>
+                <p className="font-black text-slate-900 uppercase tracking-tight">Verified by FindBest Tools</p>
+                <p className="mt-2 text-sm font-medium text-slate-500 leading-relaxed">
+                  Calculations based on IRS Schedule SE instructions, 2026
+                  Social Security wage base projections, and Medicare tax
+                  regulations under IRC §§ 1401, 1402, and 3101. Verified 25 April 2026.
+                </p>
               </div>
             </div>
+          </div>
 
-            {/* Related Tools */}
+          {/* Related Tools */}
           <div className="mt-20 border-t border-slate-100 pt-12">
             <RelatedToolsSection category="Finance" categoryHref="/finance" currentPath="/finance/us-self-employment-tax-calculator" />
           </div>

@@ -50,11 +50,7 @@ const structuredData = [
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '128',
-    },
+
     featureList: [
       'Instagram image sizing presets',
       'Twitter / X image sizing presets',

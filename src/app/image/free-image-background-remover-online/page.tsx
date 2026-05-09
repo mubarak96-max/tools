@@ -103,11 +103,6 @@ export default function AIBackgroundRemoverPage() {
               operatingSystem: "Any",
               url: absoluteUrl(PAGE_PATH),
               offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                reviewCount: "1250",
-              },
             },
             {
               "@context": "https://schema.org",

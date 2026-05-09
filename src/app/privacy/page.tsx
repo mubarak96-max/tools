@@ -5,7 +5,7 @@ export default function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-black text-slate-900 mb-4">Privacy Policy</h1>
-      <p className="text-slate-500 mb-12">Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+      <p className="text-slate-500 mb-12">Last Updated: May 10, 2026</p>
 
       <div className="prose prose-slate max-w-none space-y-12 text-slate-600 leading-relaxed">
         <section>
@@ -13,19 +13,19 @@ export default function PrivacyPage() {
             At <strong>FindBest Tools</strong> (accessible from findbest.tools), your privacy is one of our core values. This Privacy Policy document contains types of information that is collected and recorded by FindBest Tools and how we use it.
           </p>
           <p>
-            If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at <a href="mailto:mubarakmmm5@gmail.com" className="text-primary hover:underline">mubarakmmm5@gmail.com</a>.
+            If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through the <a href="/contact" className="text-primary hover:underline">contact page</a>.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mb-4">1. General Data Handling Philosophy</h2>
           <p>
-            FindBest Tools is designed as a "local-first" platform. This means that for the vast majority of our utilities (including text converters, financial calculators, and image tools), the data you input stays entirely within your browser's local memory. 
+            FindBest Tools is designed as a local-first platform where possible. Many utilities — including text converters, financial calculators, and image tools — process data entirely within your browser. However, some tools make server-side or third-party API requests by design. These include the DNS checker (which queries DNS servers), the IP address lookup (which calls geo-IP APIs), and any tool that fetches live external data. The specific data handling for each tool is described in its methodology section.
           </p>
           <ul className="list-disc pl-6 space-y-2">
-            <li>We do not store your tool inputs on our servers.</li>
-            <li>We do not log the specific numbers, text, or files you process.</li>
-            <li>Processing happens via client-side JavaScript or WebAssembly (WASM).</li>
+            <li>We do not store your tool inputs on our servers for browser-based tools.</li>
+            <li>We do not log the specific numbers, text, or files you process in local tools.</li>
+            <li>Processing for most tools happens via client-side JavaScript or WebAssembly (WASM).</li>
           </ul>
         </section>
 

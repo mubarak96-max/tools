@@ -8,38 +8,6 @@ import { HowToSection } from "./components/HowToSection";
 export const metadata: Metadata = {
   title: "Aspect Ratio Calculator | Free 16:9, 4:3, 21:9 & Custom Ratio Tool",
   description: "Free online aspect ratio calculator. Calculate 16:9, 4:3, 21:9, 1:1, 3:2 and custom aspect ratios instantly. Convert image and video dimensions with live preview. Perfect for YouTube, Instagram, web design, and photography.",
-  keywords: [
-    "aspect ratio calculator",
-    "aspect ratio converter",
-    "16 9 aspect ratio calculator",
-    "16x9 aspect ratio calculator",
-    "4 3 aspect ratio calculator",
-    "aspect ratio cal",
-    "aspect ratio calculator for images",
-    "aspect ratio calculator online",
-    "image aspect ratio",
-    "video aspect ratio",
-    "screen ratio calculator",
-    "resolution calculator",
-    "dimension calculator",
-    "image resize calculator",
-    "video dimension calculator",
-    "social media aspect ratio",
-    "YouTube aspect ratio",
-    "Instagram aspect ratio",
-    "TikTok aspect ratio",
-    "widescreen calculator",
-    "ultrawide aspect ratio",
-    "pixel ratio calculator",
-    "print aspect ratio",
-    "photo ratio calculator",
-    "monitor aspect ratio",
-    "display ratio",
-    "responsive design calculator",
-    "CSS aspect ratio",
-    "image proportion calculator",
-    "scaling calculator"
-  ].join(", "),
   alternates: {
     canonical: "https://findbest.tools/utility/aspect-ratio-calculator",
   },
@@ -133,13 +101,6 @@ const structuredData = {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "2847",
-        bestRating: "5",
-        worstRating: "1",
       },
       featureList: [
         "16:9 aspect ratio calculation",
@@ -261,7 +222,7 @@ export default function AspectRatioCalculatorPage() {
   return (
     <>
       <JsonLd data={JSON.stringify(structuredData)} />
-      
+
       <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-slate-900 text-white py-12 md:py-24">
@@ -274,7 +235,7 @@ export default function AspectRatioCalculatorPage() {
                 </span>
               </h1>
               <p className="text-xl md:text-2xl text-slate-300 mb-4 max-w-3xl mx-auto leading-relaxed">
-                Free online tool to calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios. 
+                Free online tool to calculate 16:9, 4:3, 1:1, 21:9 and custom aspect ratios.
                 Perfect for images, videos, web design, and social media content.
               </p>
               <div className="flex flex-wrap justify-center gap-3 text-sm text-slate-400 mt-6">
@@ -304,11 +265,11 @@ export default function AspectRatioCalculatorPage() {
               <h2 className="text-3xl font-bold text-slate-900 mb-6">
                 Complete Guide to Aspect Ratios: Everything You Need to Know
               </h2>
-              
+
               <p className="text-slate-600 leading-relaxed mb-6">
-                Understanding aspect ratios is fundamental for anyone working with digital media, web design, photography, or video production. 
-                An <strong>aspect ratio calculator</strong> is an essential tool that helps you maintain perfect proportions across all your creative projects. 
-                Whether you are a professional designer, a content creator, or simply someone who wants their images to look right on every screen, 
+                Understanding aspect ratios is fundamental for anyone working with digital media, web design, photography, or video production.
+                An <strong>aspect ratio calculator</strong> is an essential tool that helps you maintain perfect proportions across all your creative projects.
+                Whether you are a professional designer, a content creator, or simply someone who wants their images to look right on every screen,
                 mastering aspect ratios will save you countless hours of manual calculation and prevent costly resizing mistakes.
               </p>
 
@@ -316,68 +277,68 @@ export default function AspectRatioCalculatorPage() {
                 What Is Aspect Ratio and Why Does It Matter?
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Aspect ratio is the proportional relationship between the width and height of an image, video, or display screen. 
-                Expressed as two numbers separated by a colon (like 16:9 or 4:3), it describes how wide something is compared to how tall it is. 
+                Aspect ratio is the proportional relationship between the width and height of an image, video, or display screen.
+                Expressed as two numbers separated by a colon (like 16:9 or 4:3), it describes how wide something is compared to how tall it is.
                 The first number represents the width, and the second represents the height. For example, a 16:9 aspect ratio means that for every 16 units of width, there are 9 units of height.
               </p>
               <p className="text-slate-600 leading-relaxed mb-6">
-                When aspect ratios are mismatched, content becomes distorted. You have probably seen videos where people look unnaturally stretched or squished, 
-                or images with black bars on the sides (letterboxing) or top and bottom (pillarboxing). These issues occur when content created in one aspect ratio 
+                When aspect ratios are mismatched, content becomes distorted. You have probably seen videos where people look unnaturally stretched or squished,
+                or images with black bars on the sides (letterboxing) or top and bottom (pillarboxing). These issues occur when content created in one aspect ratio
                 is displayed in another without proper conversion. Using an <strong>aspect ratio converter</strong> ensures your content maintains its intended appearance across all platforms and devices.
               </p>
 
               <h3 className="text-2xl font-semibold text-slate-900 mt-10 mb-4">
                 Common Aspect Ratios Explained
               </h3>
-              
+
               <div className="grid md:grid-cols-2 gap-6 my-8 not-prose">
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h4 className="font-bold text-slate-900 text-lg mb-2">16:9 - Widescreen Standard</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    The <strong>16:9 aspect ratio</strong> is the global standard for modern televisions, computer monitors, and online video platforms. 
-                    It replaced the older 4:3 format in the early 2000s and is used by YouTube, Netflix, and most streaming services. 
-                    Common resolutions include 1920×1080 (Full HD), 2560×1440 (QHD), 3840×2160 (4K UHD), and 7680×4320 (8K UHD). 
+                    The <strong>16:9 aspect ratio</strong> is the global standard for modern televisions, computer monitors, and online video platforms.
+                    It replaced the older 4:3 format in the early 2000s and is used by YouTube, Netflix, and most streaming services.
+                    Common resolutions include 1920×1080 (Full HD), 2560×1440 (QHD), 3840×2160 (4K UHD), and 7680×4320 (8K UHD).
                     Our <strong>16 9 aspect ratio calculator</strong> makes it easy to find the correct dimensions for any width or height you need.
                   </p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h4 className="font-bold text-slate-900 text-lg mb-2">4:3 - Classic Standard</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    The <strong>4:3 aspect ratio</strong> was the television and computer monitor standard for decades before widescreen took over. 
-                    It is still widely used in photography (especially medium format), iPad displays, presentation slides, and retro gaming. 
-                    Common resolutions include 1024×768 (XGA), 1600×1200 (UXGA), and 2048×1536. 
+                    The <strong>4:3 aspect ratio</strong> was the television and computer monitor standard for decades before widescreen took over.
+                    It is still widely used in photography (especially medium format), iPad displays, presentation slides, and retro gaming.
+                    Common resolutions include 1024×768 (XGA), 1600×1200 (UXGA), and 2048×1536.
                     Use our <strong>4 3 aspect ratio calculator</strong> when working with classic content or devices that require this format.
                   </p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h4 className="font-bold text-slate-900 text-lg mb-2">1:1 - Square Format</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    The 1:1 square aspect ratio is iconic on Instagram and is used for profile pictures, album covers, and some print formats. 
-                    It creates a balanced, symmetrical composition that works well for products, portraits, and graphic design elements. 
+                    The 1:1 square aspect ratio is iconic on Instagram and is used for profile pictures, album covers, and some print formats.
+                    It creates a balanced, symmetrical composition that works well for products, portraits, and graphic design elements.
                     Instagram originally popularized this format, and it remains essential for social media marketers and brand designers.
                   </p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h4 className="font-bold text-slate-900 text-lg mb-2">21:9 - Ultrawide Cinema</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    The 21:9 ultrawide aspect ratio is used in cinematic films, premium gaming monitors, and immersive display setups. 
-                    It provides an expansive field of view that enhances gaming, video editing, and multitasking workflows. 
+                    The 21:9 ultrawide aspect ratio is used in cinematic films, premium gaming monitors, and immersive display setups.
+                    It provides an expansive field of view that enhances gaming, video editing, and multitasking workflows.
                     Common resolutions include 2560×1080, 3440×1440, and 5120×2160. This ratio is also known as 2.35:1 or 2.39:1 in film production.
                   </p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h4 className="font-bold text-slate-900 text-lg mb-2">9:16 - Vertical Mobile</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    The 9:16 vertical aspect ratio is the standard for mobile-first content including TikTok videos, Instagram Reels, 
-                    YouTube Shorts, and Snapchat stories. With the rise of mobile consumption, this ratio has become crucial for content creators 
+                    The 9:16 vertical aspect ratio is the standard for mobile-first content including TikTok videos, Instagram Reels,
+                    YouTube Shorts, and Snapchat stories. With the rise of mobile consumption, this ratio has become crucial for content creators
                     targeting smartphone users. The standard resolution is 1080×1920 pixels.
                   </p>
                 </div>
                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                   <h4 className="font-bold text-slate-900 text-lg mb-2">3:2 - Photography Standard</h4>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    The 3:2 aspect ratio is the standard for 35mm film photography and most DSLR and mirrorless cameras. 
-                    It matches the dimensions of a 35mm film frame (36mm × 24mm). Common digital resolutions include 6000×4000, 5472×3648, and 5184×3456. 
+                    The 3:2 aspect ratio is the standard for 35mm film photography and most DSLR and mirrorless cameras.
+                    It matches the dimensions of a 35mm film frame (36mm × 24mm). Common digital resolutions include 6000×4000, 5472×3648, and 5184×3456.
                     This ratio provides a natural field of view similar to human vision.
                   </p>
                 </div>
@@ -401,13 +362,13 @@ export default function AspectRatioCalculatorPage() {
                 Aspect Ratio Calculator for Images: A Photographer's Essential Tool
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Photographers rely on our <strong>aspect ratio calculator for images</strong> to ensure their work displays correctly across print and digital mediums. 
-                When preparing images for different outputs - whether it is a large canvas print, a social media post, or a website hero image - 
+                Photographers rely on our <strong>aspect ratio calculator for images</strong> to ensure their work displays correctly across print and digital mediums.
+                When preparing images for different outputs - whether it is a large canvas print, a social media post, or a website hero image -
                 maintaining the correct proportions is critical. Cropping an image to the wrong ratio can cut off important elements or leave unwanted empty space.
               </p>
               <p className="text-slate-600 leading-relaxed mb-6">
-                For print photography, common ratios include 5:4 (8×10 prints), 3:2 (4×6 prints), and 7:5 (5×7 prints). 
-                For digital displays, 16:9 and 4:3 dominate, while social media requires platform-specific ratios. 
+                For print photography, common ratios include 5:4 (8×10 prints), 3:2 (4×6 prints), and 7:5 (5×7 prints).
+                For digital displays, 16:9 and 4:3 dominate, while social media requires platform-specific ratios.
                 Our calculator helps you plan your shots and post-processing workflow by showing exactly how your images will appear in any format before you commit to a crop.
               </p>
 
@@ -415,13 +376,13 @@ export default function AspectRatioCalculatorPage() {
                 16x9 Aspect Ratio Calculator: The Video Creator's Best Friend
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Video creators need precise dimensions for every platform. Our <strong>16x9 aspect ratio calculator</strong> helps you determine the exact pixel dimensions 
-                for YouTube videos, Twitch streams, presentation slides, and widescreen displays. Whether you are exporting in 720p, 1080p, 1440p, or 4K, 
+                Video creators need precise dimensions for every platform. Our <strong>16x9 aspect ratio calculator</strong> helps you determine the exact pixel dimensions
+                for YouTube videos, Twitch streams, presentation slides, and widescreen displays. Whether you are exporting in 720p, 1080p, 1440p, or 4K,
                 entering your desired width automatically calculates the correct height to maintain that perfect 16:9 cinematic look.
               </p>
               <p className="text-slate-600 leading-relaxed mb-6">
-                For content creators working across multiple platforms, understanding how 16:9 content appears on different devices is essential. 
-                A 16:9 video will display with black bars on older 4:3 screens, while a 4:3 video on a 16:9 screen will have bars on the sides. 
+                For content creators working across multiple platforms, understanding how 16:9 content appears on different devices is essential.
+                A 16:9 video will display with black bars on older 4:3 screens, while a 4:3 video on a 16:9 screen will have bars on the sides.
                 Our calculator includes scaling modes to preview how content adapts to different container sizes.
               </p>
 
@@ -429,10 +390,10 @@ export default function AspectRatioCalculatorPage() {
                 Social Media Aspect Ratios: Platform-by-Platform Guide
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Each social media platform has its own preferred aspect ratios. Using the wrong ratio can result in awkward cropping, 
+                Each social media platform has its own preferred aspect ratios. Using the wrong ratio can result in awkward cropping,
                 reduced engagement, or content that simply does not look professional. Here is what you need to know:
               </p>
-              
+
               <div className="overflow-x-auto my-6 not-prose">
                 <table className="w-full text-sm text-left border-collapse">
                   <thead>
@@ -461,13 +422,13 @@ export default function AspectRatioCalculatorPage() {
                 Web Design and CSS Aspect Ratio
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Modern CSS includes an <code>aspect-ratio</code> property that makes maintaining proportions in web design easier than ever. 
-                However, knowing the correct values to use is still essential. Our <strong>aspect ratio cal</strong> (calculator) helps web developers 
+                Modern CSS includes an <code>aspect-ratio</code> property that makes maintaining proportions in web design easier than ever.
+                However, knowing the correct values to use is still essential. Our <strong>aspect ratio cal</strong> (calculator) helps web developers
                 quickly determine the right dimensions for responsive images, video embeds, containers, and grid layouts.
               </p>
               <p className="text-slate-600 leading-relaxed mb-6">
-                For responsive images, using the correct aspect ratio prevents layout shift (CLS), which is a Core Web Vital that affects SEO rankings. 
-                By specifying width and height attributes that match your image&apos;s actual aspect ratio, browsers can reserve the correct space before the image loads, 
+                For responsive images, using the correct aspect ratio prevents layout shift (CLS), which is a Core Web Vital that affects SEO rankings.
+                By specifying width and height attributes that match your image&apos;s actual aspect ratio, browsers can reserve the correct space before the image loads,
                 improving both user experience and search engine performance.
               </p>
 
@@ -530,7 +491,7 @@ export default function AspectRatioCalculatorPage() {
                 <p className="text-cyan-400">simplified = (W ÷ GCD) : (H ÷ GCD)</p>
               </div>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Our calculator uses the Euclidean algorithm to efficiently compute the greatest common divisor (GCD), ensuring accurate simplification even for very large numbers. 
+                Our calculator uses the Euclidean algorithm to efficiently compute the greatest common divisor (GCD), ensuring accurate simplification even for very large numbers.
                 This means whether you are working with a 7680×4320 8K display or a 320×240 retro game sprite, the simplified ratio will be mathematically precise.
               </p>
 
@@ -552,13 +513,13 @@ export default function AspectRatioCalculatorPage() {
                 Aspect Ratio in Modern Video Production
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Professional video production involves multiple aspect ratios throughout the workflow. Raw footage might be captured in 16:9, 
-                edited in a timeline with 2.39:1 cinematic bars, and then exported in multiple formats for different platforms. 
+                Professional video production involves multiple aspect ratios throughout the workflow. Raw footage might be captured in 16:9,
+                edited in a timeline with 2.39:1 cinematic bars, and then exported in multiple formats for different platforms.
                 Understanding how these ratios interact is crucial for maintaining visual quality.
               </p>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Anamorphic lenses capture footage that is later de-squeezed to wider ratios, while letterboxing and pillarboxing techniques 
-                are used to fit content into different frame sizes without distortion. Our calculator helps you plan these conversions 
+                Anamorphic lenses capture footage that is later de-squeezed to wider ratios, while letterboxing and pillarboxing techniques
+                are used to fit content into different frame sizes without distortion. Our calculator helps you plan these conversions
                 by showing exactly how much padding or cropping will be required for any given conversion.
               </p>
 
@@ -566,9 +527,9 @@ export default function AspectRatioCalculatorPage() {
                 Gaming and Streaming Aspect Ratios
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Gamers and streamers have specific aspect ratio needs. Competitive gamers often prefer 4:3 stretched in games like CS2 and Valorant 
-                for larger player models, while content creators stream in 16:9 for standard compatibility. Ultrawide 21:9 and 32:9 monitors 
-                provide immersive experiences but require specific game support. Our calculator helps streamers create overlays, alerts, 
+                Gamers and streamers have specific aspect ratio needs. Competitive gamers often prefer 4:3 stretched in games like CS2 and Valorant
+                for larger player models, while content creators stream in 16:9 for standard compatibility. Ultrawide 21:9 and 32:9 monitors
+                provide immersive experiences but require specific game support. Our calculator helps streamers create overlays, alerts,
                 and scenes that fit perfectly within their chosen output resolution.
               </p>
 
@@ -576,9 +537,9 @@ export default function AspectRatioCalculatorPage() {
                 Mobile App Design and Development
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Mobile app designers must consider multiple device aspect ratios. iPhones have moved from 16:9 (iPhone 8 and earlier) 
-                to 19.5:9 (iPhone X and later), while Android devices vary widely. Designing with flexible aspect ratios and using 
-                constraint-based layouts ensures your app looks great on any screen. Our calculator helps you test how UI elements 
+                Mobile app designers must consider multiple device aspect ratios. iPhones have moved from 16:9 (iPhone 8 and earlier)
+                to 19.5:9 (iPhone X and later), while Android devices vary widely. Designing with flexible aspect ratios and using
+                constraint-based layouts ensures your app looks great on any screen. Our calculator helps you test how UI elements
                 will appear across different device proportions.
               </p>
 
@@ -586,9 +547,9 @@ export default function AspectRatioCalculatorPage() {
                 Conclusion: Master Aspect Ratios with Confidence
               </h3>
               <p className="text-slate-600 leading-relaxed mb-6">
-                Whether you are resizing a photo for Instagram, exporting a 4K video for YouTube, designing a responsive website, 
-                or setting up a multi-monitor workstation, understanding and calculating aspect ratios correctly is non-negotiable. 
-                Our free <strong>aspect ratio calculator</strong> eliminates guesswork, prevents costly mistakes, and speeds up your creative workflow. 
+                Whether you are resizing a photo for Instagram, exporting a 4K video for YouTube, designing a responsive website,
+                or setting up a multi-monitor workstation, understanding and calculating aspect ratios correctly is non-negotiable.
+                Our free <strong>aspect ratio calculator</strong> eliminates guesswork, prevents costly mistakes, and speeds up your creative workflow.
                 Bookmark this page and use it every time you need to ensure your content looks perfect, everywhere.
               </p>
             </article>

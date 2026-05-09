@@ -41,7 +41,6 @@ const softwareSchema = {
   name: "Rental Yield Calculator", applicationCategory: "FinanceApplication", operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   description: "Free rental yield calculator supporting UK, US, and Australian property markets. Calculates gross yield, net yield, cash-on-cash return, and cap rate with auto-estimated stamp duty and operating expenses.",
-  aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", ratingCount: "1250" },
   featureList: [
     "Gross rental yield calculation", "Net rental yield calculation", "Cash-on-cash return",
     "Cap rate calculator", "UK stamp duty auto-estimate", "US property tax estimation",
@@ -52,26 +51,46 @@ const softwareSchema = {
 const faqSchema = {
   "@context": "https://schema.org", "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "What is rental yield and how do you calculate it?",
-      acceptedAnswer: { "@type": "Answer", text: "Rental yield is the annual return on an investment property expressed as a percentage of the property's value. Gross rental yield is calculated by dividing annual rental income by the property purchase price and multiplying by 100. Net rental yield deducts all annual operating expenses from the rental income before dividing by the total property cost including purchase fees." } },
-    { "@type": "Question", name: "What is the difference between gross and net rental yield?",
-      acceptedAnswer: { "@type": "Answer", text: "Gross rental yield only considers rental income vs property price. Net rental yield deducts expenses (council rates, strata, insurance, management fees, maintenance) giving a more accurate picture of actual returns. Net yield is typically 1-3% lower than gross yield." } },
-    { "@type": "Question", name: "What is a good rental yield in the UK in 2026?",
-      acceptedAnswer: { "@type": "Answer", text: "In the UK, a gross rental yield of 4-6% is generally considered good for buy-to-let investments. London typically offers 3-4.5% due to high property prices, while northern cities like Leeds, Liverpool, and Newcastle can achieve 6-8%. Net yields are typically 1-1.5 percentage points lower." } },
-    { "@type": "Question", name: "What is a good rental yield in the US?",
-      acceptedAnswer: { "@type": "Answer", text: "In the US, coastal cities like New York and Los Angeles typically offer 4-5% gross yields, while Midwest and Sun Belt markets like Houston, Detroit, and Cleveland can deliver 7-10%. The national average is approximately 6-7% gross. A net yield above 5% is generally considered strong." } },
-    { "@type": "Question", name: "What is a good rental yield in Australia?",
-      acceptedAnswer: { "@type": "Answer", text: "Australian rental yields vary by city. Sydney and Melbourne typically offer 3-4% gross yields. Brisbane and Adelaide average 4.5-5%, while Perth and Darwin can achieve 5-7%. Regional areas may exceed 7%. A gross yield above 5% is considered good." } },
-    { "@type": "Question", name: "How does stamp duty affect rental yield in the UK?",
-      acceptedAnswer: { "@type": "Answer", text: "Stamp Duty Land Tax significantly impacts rental yield because it increases total capital invested. For buy-to-let and second homes, the UK applies a 3% surcharge on top of standard SDLT rates. On a £250,000 property, this adds approximately £10,000 to the purchase cost, reducing both gross and net yield." } },
-    { "@type": "Question", name: "Should I use gross or net yield to compare properties?",
-      acceptedAnswer: { "@type": "Answer", text: "Use gross yield for initial screening and quick comparisons. Always use net yield before making a purchase decision. Two properties with identical gross yields can have vastly different net yields depending on their expense profiles." } },
-    { "@type": "Question", name: "What expenses should be included in net rental yield?",
-      acceptedAnswer: { "@type": "Answer", text: "Net rental yield should include all recurring annual expenses: property management fees, council tax or property tax, landlord insurance, maintenance and repairs, vacancy allowance, letting fees, ground rent, service charges, strata fees, and mortgage interest. Capital repayments should NOT be included." } },
-    { "@type": "Question", name: "What is cash-on-cash return vs rental yield?",
-      acceptedAnswer: { "@type": "Answer", text: "Rental yield measures return against total property cost, while cash-on-cash return measures return against your actual cash invested (deposit plus purchase costs). If you buy a £200,000 property with a £50,000 deposit and earn £8,000 net income annually, your net yield is 4% but your cash-on-cash return is 16%." } },
-    { "@type": "Question", name: "What is cap rate and how is it different from rental yield?",
-      acceptedAnswer: { "@type": "Answer", text: "Cap rate uses property value as the denominator and excludes mortgage interest from expenses. Cap Rate = Net Operating Income / Property Value. It is the standard metric used by commercial real estate investors to compare properties independently of financing." } },
+    {
+      "@type": "Question", name: "What is rental yield and how do you calculate it?",
+      acceptedAnswer: { "@type": "Answer", text: "Rental yield is the annual return on an investment property expressed as a percentage of the property's value. Gross rental yield is calculated by dividing annual rental income by the property purchase price and multiplying by 100. Net rental yield deducts all annual operating expenses from the rental income before dividing by the total property cost including purchase fees." }
+    },
+    {
+      "@type": "Question", name: "What is the difference between gross and net rental yield?",
+      acceptedAnswer: { "@type": "Answer", text: "Gross rental yield only considers rental income vs property price. Net rental yield deducts expenses (council rates, strata, insurance, management fees, maintenance) giving a more accurate picture of actual returns. Net yield is typically 1-3% lower than gross yield." }
+    },
+    {
+      "@type": "Question", name: "What is a good rental yield in the UK in 2026?",
+      acceptedAnswer: { "@type": "Answer", text: "In the UK, a gross rental yield of 4-6% is generally considered good for buy-to-let investments. London typically offers 3-4.5% due to high property prices, while northern cities like Leeds, Liverpool, and Newcastle can achieve 6-8%. Net yields are typically 1-1.5 percentage points lower." }
+    },
+    {
+      "@type": "Question", name: "What is a good rental yield in the US?",
+      acceptedAnswer: { "@type": "Answer", text: "In the US, coastal cities like New York and Los Angeles typically offer 4-5% gross yields, while Midwest and Sun Belt markets like Houston, Detroit, and Cleveland can deliver 7-10%. The national average is approximately 6-7% gross. A net yield above 5% is generally considered strong." }
+    },
+    {
+      "@type": "Question", name: "What is a good rental yield in Australia?",
+      acceptedAnswer: { "@type": "Answer", text: "Australian rental yields vary by city. Sydney and Melbourne typically offer 3-4% gross yields. Brisbane and Adelaide average 4.5-5%, while Perth and Darwin can achieve 5-7%. Regional areas may exceed 7%. A gross yield above 5% is considered good." }
+    },
+    {
+      "@type": "Question", name: "How does stamp duty affect rental yield in the UK?",
+      acceptedAnswer: { "@type": "Answer", text: "Stamp Duty Land Tax significantly impacts rental yield because it increases total capital invested. For buy-to-let and second homes, the UK applies a 3% surcharge on top of standard SDLT rates. On a £250,000 property, this adds approximately £10,000 to the purchase cost, reducing both gross and net yield." }
+    },
+    {
+      "@type": "Question", name: "Should I use gross or net yield to compare properties?",
+      acceptedAnswer: { "@type": "Answer", text: "Use gross yield for initial screening and quick comparisons. Always use net yield before making a purchase decision. Two properties with identical gross yields can have vastly different net yields depending on their expense profiles." }
+    },
+    {
+      "@type": "Question", name: "What expenses should be included in net rental yield?",
+      acceptedAnswer: { "@type": "Answer", text: "Net rental yield should include all recurring annual expenses: property management fees, council tax or property tax, landlord insurance, maintenance and repairs, vacancy allowance, letting fees, ground rent, service charges, strata fees, and mortgage interest. Capital repayments should NOT be included." }
+    },
+    {
+      "@type": "Question", name: "What is cash-on-cash return vs rental yield?",
+      acceptedAnswer: { "@type": "Answer", text: "Rental yield measures return against total property cost, while cash-on-cash return measures return against your actual cash invested (deposit plus purchase costs). If you buy a £200,000 property with a £50,000 deposit and earn £8,000 net income annually, your net yield is 4% but your cash-on-cash return is 16%." }
+    },
+    {
+      "@type": "Question", name: "What is cap rate and how is it different from rental yield?",
+      acceptedAnswer: { "@type": "Answer", text: "Cap rate uses property value as the denominator and excludes mortgage interest from expenses. Cap Rate = Net Operating Income / Property Value. It is the standard metric used by commercial real estate investors to compare properties independently of financing." }
+    },
   ],
 };
 
@@ -224,8 +243,8 @@ export default function RentalYieldPage() {
             Rental Yield Calculator — Gross vs Net for UK, US & Australia
           </h1>
           <p className="text-lg text-stone-500 leading-relaxed">
-            The most comprehensive free rental yield calculator for property investors. Calculate gross yield, 
-            net yield, cash-on-cash return, and cap rate with auto-estimated stamp duty, property taxes, and 
+            The most comprehensive free rental yield calculator for property investors. Calculate gross yield,
+            net yield, cash-on-cash return, and cap rate with auto-estimated stamp duty, property taxes, and
             operating expenses. Compare your returns against city benchmarks across the UK, US, and Australia.
           </p>
         </div>
@@ -238,23 +257,23 @@ export default function RentalYieldPage() {
           What Is Rental Yield? The Complete Guide for Property Investors
         </SectionHeading>
         <Prose>
-          Rental yield is the single most important metric for comparing buy-to-let investment properties. 
-          It measures the annual return your property generates as a percentage of its total cost. Whether 
-          you are evaluating a two-bedroom flat in Manchester, a single-family home in Houston, or an 
+          Rental yield is the single most important metric for comparing buy-to-let investment properties.
+          It measures the annual return your property generates as a percentage of its total cost. Whether
+          you are evaluating a two-bedroom flat in Manchester, a single-family home in Houston, or an
           apartment in Brisbane, rental yield tells you whether the numbers stack up.
         </Prose>
         <Prose>
-          There are two types of rental yield every serious investor must understand: <strong>gross rental yield</strong> and <strong>net rental yield</strong>. 
-          Gross yield is a quick comparison tool that divides annual rent by property price. Net yield is the 
-          true profitability measure that deducts all operating costs — property management, taxes, insurance, 
-          maintenance, vacancy allowances, and mortgage interest — before calculating the return. The gap between 
-          gross and net yield typically ranges from 1 to 2.5 percentage points, and in some cases (high-rise 
+          There are two types of rental yield every serious investor must understand: <strong>gross rental yield</strong> and <strong>net rental yield</strong>.
+          Gross yield is a quick comparison tool that divides annual rent by property price. Net yield is the
+          true profitability measure that deducts all operating costs — property management, taxes, insurance,
+          maintenance, vacancy allowances, and mortgage interest — before calculating the return. The gap between
+          gross and net yield typically ranges from 1 to 2.5 percentage points, and in some cases (high-rise
           apartments with steep strata fees) it can exceed 3 percentage points.
         </Prose>
         <Prose>
-          This rental yield calculator supports three major English-speaking property markets: the <strong>United Kingdom</strong>, 
-          the <strong>United States</strong>, and <strong>Australia</strong>. Each market has distinct tax structures, expense profiles, and yield 
-          benchmarks. Our tool auto-estimates stamp duty and transfer taxes, applies country-specific expense 
+          This rental yield calculator supports three major English-speaking property markets: the <strong>United Kingdom</strong>,
+          the <strong>United States</strong>, and <strong>Australia</strong>. Each market has distinct tax structures, expense profiles, and yield
+          benchmarks. Our tool auto-estimates stamp duty and transfer taxes, applies country-specific expense
           categories, and benchmarks your results against median yields for major cities in each jurisdiction.
         </Prose>
 
@@ -297,10 +316,10 @@ export default function RentalYieldPage() {
         </div>
 
         <Prose>
-          The critical insight is that <strong>two properties with identical gross yields can have wildly different net yields</strong>. 
-          Consider two £200,000 properties both renting for £1,000/month (6% gross). Property A is a freehold house 
-          in Leeds with £2,000 annual expenses. Property B is a leasehold flat in London with £5,500 annual expenses 
-          including service charges and ground rent. Property A delivers 4.9% net yield. Property B delivers only 3.7%. 
+          The critical insight is that <strong>two properties with identical gross yields can have wildly different net yields</strong>.
+          Consider two £200,000 properties both renting for £1,000/month (6% gross). Property A is a freehold house
+          in Leeds with £2,000 annual expenses. Property B is a leasehold flat in London with £5,500 annual expenses
+          including service charges and ground rent. Property A delivers 4.9% net yield. Property B delivers only 3.7%.
           Without calculating net yield, you would incorrectly view these as equivalent investments.
         </Prose>
 
@@ -308,8 +327,8 @@ export default function RentalYieldPage() {
           Rental Yield Benchmarks: What Is a Good Return in 2026?
         </SectionHeading>
         <Prose>
-          What is a good rental yield? The answer depends on your market, strategy, and risk tolerance. Below 
-          is our 2026 yield quality framework used across all three supported markets. These benchmarks account 
+          What is a good rental yield? The answer depends on your market, strategy, and risk tolerance. Below
+          is our 2026 yield quality framework used across all three supported markets. These benchmarks account
           for current interest rate environments, inflation, and median property values.
         </Prose>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
@@ -328,9 +347,9 @@ export default function RentalYieldPage() {
           Rental Yield by Country: UK, US, and Australia Market Guides
         </SectionHeading>
         <Prose>
-          Property investment landscapes differ dramatically across the UK, US, and Australia. Tax structures, 
-          tenant laws, financing norms, and expense profiles all vary. Our calculator is built with these 
-          differences in mind — from UK stamp duty surcharges to Australian strata levies to US property tax 
+          Property investment landscapes differ dramatically across the UK, US, and Australia. Tax structures,
+          tenant laws, financing norms, and expense profiles all vary. Our calculator is built with these
+          differences in mind — from UK stamp duty surcharges to Australian strata levies to US property tax
           variation by county.
         </Prose>
 
@@ -385,7 +404,7 @@ export default function RentalYieldPage() {
                   <span className="text-sm font-semibold text-stone-800">{guide.taxName} Note:</span>
                   <span className="text-sm text-stone-600 ml-1">{guide.taxNote}</span>
                   <p className="text-xs text-stone-400 mt-1">
-                    National median gross yield: <strong>{guide.medianYield}%</strong>. Net yields typically 
+                    National median gross yield: <strong>{guide.medianYield}%</strong>. Net yields typically
                     range {guide.medianYield - 2}% – {guide.medianYield - 0.5}% after expenses.
                   </p>
                 </div>
@@ -398,8 +417,8 @@ export default function RentalYieldPage() {
           5 Critical Mistakes Investors Make When Calculating Rental Yield
         </SectionHeading>
         <Prose>
-          Even experienced landlords make errors that distort their yield calculations. These five mistakes 
-          are responsible for more poor investment decisions than any other factor. Avoiding them will put 
+          Even experienced landlords make errors that distort their yield calculations. These five mistakes
+          are responsible for more poor investment decisions than any other factor. Avoiding them will put
           you ahead of 90% of buy-to-let investors.
         </Prose>
         <div className="space-y-4 mb-6">
@@ -420,7 +439,7 @@ export default function RentalYieldPage() {
           How to Use This Rental Yield Calculator
         </SectionHeading>
         <Prose>
-          Our calculator is designed to give you accurate gross and net rental yields in under 60 seconds. 
+          Our calculator is designed to give you accurate gross and net rental yields in under 60 seconds.
           Follow these steps to get the most reliable results:
         </Prose>
         <div className="bg-white rounded-2xl border border-stone-200 p-6 shadow-sm mb-6">
@@ -520,13 +539,13 @@ export default function RentalYieldPage() {
 
         <div className="mt-12 p-5 bg-stone-50 rounded-2xl border border-stone-200">
           <p className="text-xs text-stone-500 leading-relaxed">
-            <strong className="text-stone-700">Disclaimer:</strong> This rental yield calculator is for 
-            illustrative and educational purposes only and does not constitute financial, tax, or investment 
-            advice. Stamp duty estimates are based on 2026 tax rates and may not reflect all exemptions, 
-            reliefs, or regional variations. Property values, rental income, and expenses can fluctuate. 
-            Past yield performance does not guarantee future returns. Always consult a licensed financial 
-            adviser, mortgage broker, or tax professional before making property investment decisions. 
-            Mortgage interest calculations assume interest-only or standard amortisation estimates and 
+            <strong className="text-stone-700">Disclaimer:</strong> This rental yield calculator is for
+            illustrative and educational purposes only and does not constitute financial, tax, or investment
+            advice. Stamp duty estimates are based on 2026 tax rates and may not reflect all exemptions,
+            reliefs, or regional variations. Property values, rental income, and expenses can fluctuate.
+            Past yield performance does not guarantee future returns. Always consult a licensed financial
+            adviser, mortgage broker, or tax professional before making property investment decisions.
+            Mortgage interest calculations assume interest-only or standard amortisation estimates and
             may not match your lender's exact terms.
           </p>
         </div>

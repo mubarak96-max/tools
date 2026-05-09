@@ -67,11 +67,7 @@ const structuredData = [
       price: '0',
       priceCurrency: 'USD',
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      ratingCount: '512',
-    },
+
     featureList: [
       'Google Analytics URL builder',
       'Campaign URL builder with validation',

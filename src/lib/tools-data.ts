@@ -63,7 +63,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Bonus Tax Calculator",
     href: "/finance/bonus-tax-calculator",
-    description: "No description available.",
+    description: "Calculate your employee bonus tax withholding or business bonus depreciation under Section 168(k).",
     category: "Finance",
   },
   {
@@ -157,9 +157,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Construction",
   },
   {
-    name: "Confirm Your Start Date",
+    name: "Canada CPP & EI Calculator",
     href: "/finance/cpp-ei-calculator",
-    description: "No description available.",
+    description: "Calculate your Canada Pension Plan (CPP) and Employment Insurance (EI) benefits and contributions.",
     category: "Finance",
   },
   {
@@ -177,7 +177,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Dropshipping Break Even",
     href: "/finance/dropshipping-break-even",
-    description: "No description available.",
+    description: "Calculate your exact dropshipping break-even point, ROAS, required conversion rate, and profit per unit.",
     category: "Finance",
   },
   {
@@ -205,7 +205,7 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
-    name: "First-Time Buyers Evaluating Down Payments",
+    name: "PMI Calculator",
     href: "/finance/pmi-calculator",
     description: "Free PMI insurance calculator using 2026 rate tables. Calculate your monthly private mortgage insurance cost, see when PMI drops off, and find out how much y...",
     category: "Finance",
@@ -321,7 +321,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Hreflang Generator",
     href: "/seo/hreflang-generator",
-    description: "No description available.",
+    description: "Generate accurate hreflang tags for your multilingual website to improve international SEO.",
     category: "Seo",
   },
   {
@@ -351,7 +351,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Keyword Clustering",
     href: "/seo/keyword-clustering",
-    description: "No description available.",
+    description: "Group and cluster your SEO keywords by topic and search intent to build topical authority.",
     category: "Seo",
   },
   {
@@ -363,7 +363,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Meta Description Checker",
     href: "/seo/meta-description-checker",
-    description: "No description available.",
+    description: "Test and optimize your meta descriptions for optimal length and SERP preview visibility.",
     category: "Seo",
   },
   {
@@ -399,7 +399,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Password Strength Checker",
     href: "/utility/password-strength-checker",
-    description: "No description available.",
+    description: "Test password security with entropy calculation, crack time estimation, and complexity analysis.",
     category: "Utility",
   },
   {
@@ -417,13 +417,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Product Pricing Calculator",
     href: "/finance/product-pricing-calculator",
-    description: "No description available.",
+    description: "Calculate optimal product pricing, profit margins, and markups to ensure profitability.",
     category: "Finance",
   },
   {
-    name: "RRSP Contributions",
+    name: "Canada Income Tax Calculator",
     href: "/finance/canada-income-tax-calculator",
-    description: "No description available.",
+    description: "Calculate your Canada income tax, including RRSP contributions and marginal tax rates.",
     category: "Finance",
   },
   {
@@ -477,7 +477,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Salary After Tax Calculator",
     href: "/finance/salary-after-tax-calculator",
-    description: "No description available.",
+    description: "Calculate your net salary and take-home pay after federal, state, and local taxes.",
     category: "Finance",
   },
   {
@@ -513,13 +513,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Social Media Character Counter",
     href: "/utility/social-media-character-counter",
-    description: "No description available.",
+    description: "Count characters, words, and hashtags for Twitter, Instagram, LinkedIn, and Facebook posts.",
     category: "Utility",
   },
   {
     name: "Social Media Image Resizer",
     href: "/utility/social-media-image-resizer",
-    description: "No description available.",
+    description: "Resize and crop images to exact dimensions for all major social media platforms.",
     category: "Utility",
   },
   {
@@ -529,9 +529,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Utility",
   },
   {
-    name: "Stocks & Investments",
+    name: "Canada Capital Gains Tax Calculator",
     href: "/finance/capital-gains-tax-canada-calculator",
-    description: "No description available.",
+    description: "Calculate your capital gains tax in Canada for stocks, investments, and real estate.",
     category: "Finance",
   },
   {
@@ -607,9 +607,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
-    name: "Us Take Home Pay Calculator",
+    name: "US Take Home Pay Calculator",
     href: "/finance/us-take-home-pay-calculator",
-    description: "No description available.",
+    description: "Calculate your US take-home pay after taxes, benefits, and retirement contributions.",
     category: "Finance",
   },
   {
@@ -625,9 +625,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Real Estate",
   },
   {
-    name: "What Is My Ip",
+    name: "What Is My IP Address",
     href: "/utility/what-is-my-ip",
-    description: "Look up A, MX, TXT, and NS records for any domain or IP.",
+    description: "Look up your public IP address, location, ISP, and other network details instantly.",
     category: "Utility",
   },
   {
@@ -643,17 +643,17 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
-    name: "Young Investors with Long Horizons",
+    name: "Dividend Reinvestment Calculator",
     href: "/finance/dividend-reinvestment-calculator",
-    description: "No description available.",
+    description: "Calculate the long-term compounding growth of dividend reinvestment (DRIP) for your portfolio.",
     category: "Finance",
   },
   {
-    name: "Youtube Title Checker",
+    name: "YouTube Title Checker",
     href: "/seo/youtube-title-checker",
-    description: "No description available.",
+    description: "Optimize your YouTube video titles for CTR, length, and visibility in search results.",
     category: "Seo",
-  },
+  }
   {
     name: "Zakat Calculator 2024",
     href: "/finance/zakat-calculator",

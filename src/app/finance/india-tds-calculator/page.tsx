@@ -121,11 +121,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "INR",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "5621",
-      },
       featureList:
         "Section 192 salary TDS, Section 194J professional fees TDS, Section 194C contractor TDS, Section 194I rent TDS, Section 194H commission TDS, Section 194A interest TDS, Section 195 NRI TDS, surcharge and cess calculation, threshold limit checking, new vs old tax regime salary TDS",
     },
@@ -226,8 +221,8 @@ export default function IndiaTDSCalculatorPage() {
               India <span className="text-cyan-600">TDS Calculator</span>
             </h1>
             <p className="mx-auto mt-6 max-w-3xl text-lg font-medium text-slate-500 leading-relaxed">
-              Calculate section-wise Tax Deducted at Source (TDS) for FY 2026-26. 
-              Comprehensive tool for salary, rent, professional fees, contractor 
+              Calculate section-wise Tax Deducted at Source (TDS) for FY 2026-26.
+              Comprehensive tool for salary, rent, professional fees, contractor
               payments, interest, and commission with surcharge and cess.
             </p>
           </div>
@@ -340,27 +335,27 @@ export default function IndiaTDSCalculatorPage() {
                   or the old tax regime (higher rates, with deductions).
                 </p>
                 <div className="grid gap-6 sm:grid-cols-2">
-                   <div className="rounded-[2.5rem] bg-cyan-50/50 border border-cyan-100 p-8 shadow-sm">
-                      <h4 className="text-sm font-black text-cyan-600 uppercase tracking-widest mb-6 italic">New Tax Regime (Default)</h4>
-                      <div className="space-y-4 text-xs font-bold text-slate-600">
-                         <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>Up to ₹4 Lakh</span><span className="text-emerald-600">Nil</span></div>
-                         <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹4L – ₹8L</span><span>5%</span></div>
-                         <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹8L – ₹12L</span><span>10%</span></div>
-                         <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹12L – ₹16L</span><span>15%</span></div>
-                         <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹16L – ₹20L</span><span>20%</span></div>
-                         <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹20L – ₹24L</span><span>25%</span></div>
-                         <div className="flex justify-between"><span>Above ₹24 Lakh</span><span>30%</span></div>
-                      </div>
-                   </div>
-                   <div className="rounded-[2.5rem] bg-slate-50 border border-slate-100 p-8 shadow-sm">
-                      <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 italic">Old Tax Regime</h4>
-                      <div className="space-y-4 text-xs font-bold text-slate-600">
-                         <div className="flex justify-between border-b border-slate-200 pb-2"><span>Up to ₹3 Lakh</span><span className="text-emerald-600">Nil</span></div>
-                         <div className="flex justify-between border-b border-slate-200 pb-2"><span>₹3L – ₹5L</span><span>5%</span></div>
-                         <div className="flex justify-between border-b border-slate-200 pb-2"><span>₹5L – ₹10L</span><span>20%</span></div>
-                         <div className="flex justify-between"><span>Above ₹10 Lakh</span><span>30%</span></div>
-                      </div>
-                   </div>
+                  <div className="rounded-[2.5rem] bg-cyan-50/50 border border-cyan-100 p-8 shadow-sm">
+                    <h4 className="text-sm font-black text-cyan-600 uppercase tracking-widest mb-6 italic">New Tax Regime (Default)</h4>
+                    <div className="space-y-4 text-xs font-bold text-slate-600">
+                      <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>Up to ₹4 Lakh</span><span className="text-emerald-600">Nil</span></div>
+                      <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹4L – ₹8L</span><span>5%</span></div>
+                      <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹8L – ₹12L</span><span>10%</span></div>
+                      <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹12L – ₹16L</span><span>15%</span></div>
+                      <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹16L – ₹20L</span><span>20%</span></div>
+                      <div className="flex justify-between border-b border-cyan-100/50 pb-2"><span>₹20L – ₹24L</span><span>25%</span></div>
+                      <div className="flex justify-between"><span>Above ₹24 Lakh</span><span>30%</span></div>
+                    </div>
+                  </div>
+                  <div className="rounded-[2.5rem] bg-slate-50 border border-slate-100 p-8 shadow-sm">
+                    <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-6 italic">Old Tax Regime</h4>
+                    <div className="space-y-4 text-xs font-bold text-slate-600">
+                      <div className="flex justify-between border-b border-slate-200 pb-2"><span>Up to ₹3 Lakh</span><span className="text-emerald-600">Nil</span></div>
+                      <div className="flex justify-between border-b border-slate-200 pb-2"><span>₹3L – ₹5L</span><span>5%</span></div>
+                      <div className="flex justify-between border-b border-slate-200 pb-2"><span>₹5L – ₹10L</span><span>20%</span></div>
+                      <div className="flex justify-between"><span>Above ₹10 Lakh</span><span>30%</span></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
@@ -397,7 +392,7 @@ export default function IndiaTDSCalculatorPage() {
                   </table>
                 </div>
                 <p className="p-6 rounded-3xl bg-amber-50 text-amber-700 font-bold italic text-sm">
-                   * A 4% Health and Education Cess is applied on the total of (TDS + Surcharge).
+                  * A 4% Health and Education Cess is applied on the total of (TDS + Surcharge).
                 </p>
               </div>
             </section>
@@ -411,20 +406,20 @@ export default function IndiaTDSCalculatorPage() {
                 <div className="group rounded-[2.5rem] border border-slate-100 bg-white p-8 shadow-premium transition-all hover:shadow-xl">
                   <h3 className="text-base font-black text-cyan-600 uppercase tracking-tight italic">Example 1: Professional Fees (194J)</h3>
                   <div className="mt-4 space-y-2 text-sm font-medium text-slate-600">
-                     <p>Payment: ₹5,00,000</p>
-                     <p>TDS Rate: 10% (Base ₹50,000)</p>
-                     <p>Cess: ₹2,000 (4% of ₹50k)</p>
-                     <p className="text-slate-900 font-black pt-2">Total TDS: ₹52,000</p>
+                    <p>Payment: ₹5,00,000</p>
+                    <p>TDS Rate: 10% (Base ₹50,000)</p>
+                    <p>Cess: ₹2,000 (4% of ₹50k)</p>
+                    <p className="text-slate-900 font-black pt-2">Total TDS: ₹52,000</p>
                   </div>
                 </div>
                 <div className="group rounded-[2.5rem] border border-slate-100 bg-white p-8 shadow-premium transition-all hover:shadow-xl">
                   <h3 className="text-base font-black text-cyan-600 uppercase tracking-tight italic">Example 2: Contractor (194C)</h3>
                   <div className="mt-4 space-y-2 text-sm font-medium text-slate-600">
-                     <p>Payment: ₹60,00,000 (Individual Contractor)</p>
-                     <p>TDS Rate: 1% (Base ₹60,000)</p>
-                     <p>Surcharge: ₹6,000 (10% as &gt; ₹50L)</p>
-                     <p>Cess: ₹2,640 (4% of ₹66k)</p>
-                     <p className="text-slate-900 font-black pt-2">Total TDS: ₹68,640</p>
+                    <p>Payment: ₹60,00,000 (Individual Contractor)</p>
+                    <p>TDS Rate: 1% (Base ₹60,000)</p>
+                    <p>Surcharge: ₹6,000 (10% as &gt; ₹50L)</p>
+                    <p>Cess: ₹2,640 (4% of ₹66k)</p>
+                    <p className="text-slate-900 font-black pt-2">Total TDS: ₹68,640</p>
                   </div>
                 </div>
               </div>
@@ -466,11 +461,11 @@ export default function IndiaTDSCalculatorPage() {
                   { t: "Expense Disallowance", d: "30% of expenditure disallowed if TDS not deducted/paid." },
                 ].map((p, i) => (
                   <div key={i} className="flex gap-6 items-start">
-                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-rose-50 font-black text-rose-600 italic shadow-sm border border-rose-100">!</div>
-                     <div>
-                        <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight italic">{p.t}</h4>
-                        <p className="mt-1 text-sm font-medium text-slate-500 leading-relaxed">{p.d}</p>
-                     </div>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-rose-50 font-black text-rose-600 italic shadow-sm border border-rose-100">!</div>
+                    <div>
+                      <h4 className="text-sm font-black text-slate-900 uppercase tracking-tight italic">{p.t}</h4>
+                      <p className="mt-1 text-sm font-medium text-slate-500 leading-relaxed">{p.d}</p>
+                    </div>
                   </div>
                 ))}
               </div>

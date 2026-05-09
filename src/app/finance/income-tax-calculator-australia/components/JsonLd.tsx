@@ -14,11 +14,6 @@ export function JsonLd() {
           price: "0",
           priceCurrency: "AUD"
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "4523"
-        },
         description: "Free Australian income tax calculator for 2026-26. Calculate tax, Medicare levy, HECS/HELP repayments, and take-home pay for residents, non-residents, and working holiday makers.",
         url: "https://findbest.tools/finance/income-tax-calculator-australia",
         author: {

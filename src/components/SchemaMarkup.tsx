@@ -45,13 +45,6 @@ export default function SchemaMarkup() {
           price: "0",
           priceCurrency: "USD",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          ratingCount: "2847",
-          bestRating: "5",
-          worstRating: "1",
-        },
         featureList:
           "Real-time price per square foot calculation, property comparison mode, construction cost estimation, flooring cost calculator, rent per square foot analysis, historical price tracking",
         softwareVersion: "2.0",

@@ -12,12 +12,7 @@ export default function SchemaMarkup() {
       "price": "0",
       "priceCurrency": "AED"
     },
-    "description": "Calculate your UAE end of service gratuity instantly with our free MOHRE-compliant calculator based on Federal Decree-Law No. 33 of 2021.",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "1240"
-    }
+    "description": "Calculate your UAE end of service gratuity instantly with our free MOHRE-compliant calculator based on Federal Decree-Law No. 33 of 2021."
   };
 
   const faqSchema = {

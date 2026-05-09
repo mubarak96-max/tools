@@ -117,11 +117,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "EUR",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "1247",
-      },
       featureList:
         "PAYE tax calculation, USC calculation, PRSI calculation, pension relief, rent tax credit, home carer credit, married couples tax, self-employed tax",
     },

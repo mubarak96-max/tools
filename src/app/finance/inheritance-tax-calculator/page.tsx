@@ -133,11 +133,6 @@ const structuredData = {
         price: "0",
         priceCurrency: "USD",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        ratingCount: "2156",
-      },
       featureList:
         "UK Inheritance Tax calculation, US Federal Estate Tax calculation, Irish Capital Acquisitions Tax, French Succession Tax, German Erbschaftsteuer, Spanish Impuesto sobre Sucesiones, Italian Imposta di successione, Canadian deemed disposition, Australian CGT on death, Indian stamp duty",
     },
