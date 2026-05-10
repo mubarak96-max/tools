@@ -62,7 +62,7 @@ export default function AboutPage() {
                 What started as a small collection of text analysis utilities has grown into a comprehensive ecosystem of over <strong>100+ specialized tools</strong> spanning finance, real estate, health, design, and developer productivity.
               </p>
               <p>
-                Our technical foundation relies on modern web technologies like Next.js, Tailwind CSS, and local-first processing. This allows us to deliver a premium "app-like" experience directly in your browser, regardless of your device or location.
+                Built and maintained by Mubarak Mutesasira, the site runs on Next.js with a local-first architecture — most tools process data entirely in your browser, with no account required.
               </p>
             </div>
             <div className="bg-slate-50 rounded-3xl p-8 border border-slate-100">
@@ -110,9 +110,9 @@ export default function AboutPage() {
         </section>
 
         <section className="bg-primary/5 rounded-[3rem] p-10 sm:p-16 text-center border border-primary/10">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">Built by Professionals, for Everyone</h2>
+          <h2 className="text-3xl font-bold text-slate-900 mb-6">Built by Mubarak Mutesasira</h2>
           <p className="max-w-3xl mx-auto text-slate-600 mb-10">
-            FindBest Tools is maintained by a dedicated team of developers and data analysts who believe in the democratizing power of the web. We build the tools we wanted to use in our own daily workflows.
+            FindBest Tools is an independent project built and maintained by Mubarak Mutesasira — a developer and digital analyst who builds the tools he actually uses in his own workflows.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/contact" className="primary-button px-8 py-3 rounded-full">

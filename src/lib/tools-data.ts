@@ -333,7 +333,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Income Tax Calculator Ireland 2026",
     href: "/finance/income-tax-calculator-ireland",
-    description: "Free Ireland income tax calculator for 2026/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI. Accurate for employe...",
+    description: "Free Ireland income tax calculator for 2025/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI. Accurate for employe...",
     category: "Finance",
   },
   {
@@ -367,13 +367,13 @@ export const ALL_TOOLS: Tool[] = [
     category: "Seo",
   },
   {
-    name: "Morse Code Translator",
+    name: "Binary Code Translator",
     href: "/text/binary-code-translator",
-    description: "Translate text to Morse code and Morse code back to text with support for letters, numbers, and punctuation.",
+    description: "Translate text to binary and binary back to text with byte validation and ASCII reference.",
     category: "Text",
   },
   {
-    name: "Morse Code Translator - Text to Morse Code, Morse to Text, and Audio",
+    name: "Morse Code Translator",
     href: "/text/morse-code-translator",
     description: "Translate text to Morse code, decode Morse to text, play Morse audio, and use a full alphabet chart with letters, numbers, punctuation, and SOS examples.",
     category: "Text",
@@ -541,9 +541,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Real Estate",
   },
   {
-    name: "TDS Calculator India 2026-26",
+    name: "TDS Calculator India 2025-26",
     href: "/finance/india-tds-calculator",
-    description: "Free India TDS calculator for FY 2026-26 (AY 2026-27). Calculate TDS on salary, rent, professional fees, contractor payments, interest & commission. Includes...",
+    description: "Free India TDS calculator for FY 2025-26 (AY 2026-27). Calculate TDS on salary, rent, professional fees, contractor payments, interest & commission. Includes...",
     category: "Finance",
   },
   {
@@ -613,9 +613,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
-    name: "Utm Builder",
+    name: "UTM Builder",
     href: "/utility/utm-builder",
-    description: "Start with the basics if you need a clean explanation of source, medium, campaign, term, and content.",
+    description: "Build Google Analytics campaign URLs with utm_source, utm_medium, utm_campaign, utm_term, and utm_content. Includes bulk generator, presets, and validation.",
     category: "Utility",
   },
   {
@@ -653,17 +653,17 @@ export const ALL_TOOLS: Tool[] = [
     href: "/seo/youtube-title-checker",
     description: "Optimize your YouTube video titles for CTR, length, and visibility in search results.",
     category: "Seo",
-  }
+  },
   {
-    name: "Zakat Calculator 2024",
+    name: "Zakat Calculator 2026",
     href: "/finance/zakat-calculator",
     description: "Free online zakat calculator. Calculate zakat on gold, silver, savings, salary, business inventory and investments. Up-to-date nisab threshold. Trusted by Mu...",
     category: "Finance",
   },
   {
-    name: "free image background remover online",
+    name: "AI Background Remover",
     href: "/image/free-image-background-remover-online",
-    description: "Perfect free Canva background removal alternative\u2014remove image backgrounds instantly in your browser with no upload and no sign-up. Supports PNG, JPG & WEBP.",
+    description: "Remove image backgrounds instantly in your browser using on-device AI. No upload, no sign-up. Supports PNG, JPG & WEBP.",
     category: "Image",
   },
   {

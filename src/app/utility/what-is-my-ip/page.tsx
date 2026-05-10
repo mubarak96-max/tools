@@ -5,9 +5,9 @@ import ToolPageScaffold from '@/components/tools/ToolPageScaffold';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'What Is My IP Address? — Free Public & Private IP Lookup Tool ',
+  title: 'What Is My IP Address? — Free IP Lookup Tool',
   description:
-    'Instantly find what is my ip address, what is my public ip, what is my private ip, and what is my ip location. Check IPv4/IPv6, ISP, proxy detection, and map location. No signup.',
+    'Find your public IP address, IPv4/IPv6, ISP, approximate location, and proxy/VPN status. Runs in your browser — no sign-up required.',
   keywords: ['what is my ip address', 'ip address lookup', 'check my ip', 'find my ip'],
   alternates: {
     canonical: 'https://findbest.tools/utility/what-is-my-ip',
@@ -154,10 +154,10 @@ export default function WhatIsMyIpPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">The Definitive Guide to Finding Your IP Address in 2026</h2>
             <div className="prose prose-slate max-w-none text-slate-700 leading-7">
               <p>
-                Every device connected to the internet carries a digital fingerprint known as an Internet Protocol address. Whether you are troubleshooting a network issue, configuring a server whitelist, verifying your VPN is working, or simply curious about your digital footprint, knowing the answer to <strong>&quot;what is my ip address&quot;</strong> is fundamental digital literacy. This page does more than display a string of numbers — it provides a comprehensive network identity report covering your public exposure, local network configuration, geographic approximation, and potential privacy leaks.
+                Every device connected to the internet has an IP address — a numerical label assigned by your ISP that identifies your connection. This tool shows your public IP, your approximate location, your ISP, and whether your connection appears to route through a proxy or VPN. It also attempts to detect your private (local network) IP via the browser WebRTC API.
               </p>
               <p>
-                Unlike simplistic &quot;what is my ip address com&quot; sites that only show a number and an ad, our tool differentiates between <strong>what is my public ip address</strong> and <strong>what is my private ip</strong>, detects whether you are routing through a proxy or VPN, and warns you about WebRTC leaks that could expose your true identity even behind encryption. If you have ever asked <strong>&quot;what is my ip address on my computer&quot;</strong> or <strong>&quot;what is my ip address on my phone,&quot;</strong> this guide and tool combination gives you authoritative, real-time answers.
+                The tool differentiates between your public IP (visible to websites) and your private IP (used only inside your local network), detects proxy and VPN routing, and checks for WebRTC leaks that can expose your real IP even when a VPN is active.
               </p>
             </div>
           </section>
@@ -351,21 +351,18 @@ export default function WhatIsMyIpPage() {
             </div>
           </section>
 
-          {/* EEAT */}
+          {/* Methodology */}
           <section className="bg-slate-900 text-slate-300 rounded-2xl p-8 lg:p-10">
-            <h2 className="text-xl font-bold text-white mb-4">About This Tool & Data Methodology</h2>
+            <h2 className="text-xl font-bold text-white mb-4">About This Tool & Data Sources</h2>
             <div className="space-y-4 text-sm leading-7">
               <p>
-                This <strong>what is my ip address</strong> lookup tool is developed and maintained by the network engineering team at FindBest Tools. Public IP data is sourced from multiple tier-1 geo-IP providers including ipapi.co and GeoJS, with automatic failover to ensure 99.9% uptime. Private IP detection uses the standard WebRTC API as defined by W3C specifications.
+                Built by Mubarak Mutesasira. Public IP data is fetched from ipapi.co and GeoJS — both are publicly available geo-IP APIs. Private IP detection uses the browser WebRTC API (W3C standard). No IP addresses are logged or stored by this site.
               </p>
               <p>
-                <strong>Privacy Guarantee:</strong> We do not log, store, or transmit your IP address to any third-party analytics or advertising platforms. All lookups occur directly between your browser and the geo-IP API. We do not use cookies for this tool. This makes our lookup suitable for security researchers, journalists, and privacy advocates who need to verify their network configuration without generating a data trail.
+                <strong>Accuracy:</strong> IP geolocation is city-level at best (roughly 70–85% accurate depending on ISP and country). It is not a precise location. Proxy and VPN detection is heuristic — it checks ASN ownership against known data-centre ranges and is a useful indicator, not a forensic guarantee.
               </p>
               <p>
-                <strong>Accuracy:</strong> IP geolocation is inherently probabilistic. City-level accuracy is approximately 70-85% depending on the ISP and country. Proxy detection is heuristic-based and analyzes ASN ownership and organization names. It is not a forensic guarantee but provides a high-confidence indicator of VPN or data-center routing.
-              </p>
-              <p>
-                <strong>Last Updated:</strong> April 2026. IP allocation databases are refreshed weekly. If you believe your location or ISP data is incorrect, contact our editorial team with your IP and expected correction.
+                <strong>Last updated:</strong> May 2026. If your location or ISP data looks wrong, the geo-IP database may not have caught up with a recent IP reassignment — this is a known limitation of all IP geolocation services.
               </p>
             </div>
           </section>

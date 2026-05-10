@@ -12,7 +12,7 @@ const LAST_UPDATED_ISO = '2026-05-01T00:00:00.000Z';
 export const metadata: Metadata = {
   title: 'UTM Builder - Free Campaign URL Generator for GA4 (2026)',
   description:
-    'The best free UTM builder and Google Analytics URL builder. Generate campaign URLs with utm_source, utm_medium, utm_campaign, utm_term, and utm_content. Bulk generator, presets, and validation included.',
+    'Free UTM builder for Google Analytics 4. Generate campaign tracking URLs with utm_source, utm_medium, utm_campaign, utm_term, and utm_content. Bulk generator, presets, and validation included.',
   keywords: [
     'campaign url builder',
     'url builder',
@@ -291,7 +291,7 @@ export default function UtmBuilderPage() {
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Complete UTM Parameter Reference Table</h2>
             <p className="text-slate-700 mb-6 leading-7">
-              Master these five parameters and your <strong>URL builder</strong> output will be indistinguishable from that of a Fortune 500 analytics team.
+              Master these five parameters and your <strong>URL builder</strong> output will be correctly structured for GA4 attribution.
             </p>
             <div className="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
               <table className="w-full text-sm text-left">
@@ -370,7 +370,7 @@ export default function UtmBuilderPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">UTM Naming Conventions That Scale</h2>
             <div className="prose prose-slate max-w-none text-slate-700 leading-7">
               <p>
-                The difference between a usable analytics report and a chaotic spreadsheet often comes down to naming discipline. A <strong>UTM campaign builder</strong> is only as good as the taxonomy its users follow. We recommend establishing a UTM style guide before your first campaign goes live. Here are the non-negotiable rules used by elite growth teams.
+                The difference between a usable analytics report and a chaotic spreadsheet often comes down to naming discipline. A <strong>UTM campaign builder</strong> is only as good as the taxonomy its users follow. We recommend establishing a UTM style guide before your first campaign goes live. Here are the standard rules used by marketing teams.
               </p>
               <p>
                 <strong>Use lowercase exclusively.</strong> GA4 is case-sensitive. &quot;Facebook,&quot; &quot;facebook,&quot; and &quot;FACEBOOK&quot; appear as three separate sources. Standardize on lowercase to prevent data fragmentation. <strong>Use underscores or hyphens, never spaces.</strong> Spaces in URLs become %20, making reports unreadable and complicating filter logic. <strong>Never include personally identifiable information.</strong> Embedding email addresses or user IDs in UTM parameters violates Google&apos;s Terms of Service and can result in account suspension.
@@ -612,19 +612,16 @@ export default function UtmBuilderPage() {
           </section>
 
           <section className="bg-slate-900 text-slate-300 rounded-2xl p-8 lg:p-10">
-            <h2 className="text-xl font-bold text-white mb-4">About This UTM Campaign Builder and Editorial Standards</h2>
+            <h2 className="text-xl font-bold text-white mb-4">About This UTM Builder</h2>
             <div className="space-y-4 text-sm leading-7">
               <p>
-                This <strong>Google Analytics URL builder</strong> is maintained by the analytics engineering team at FindBest Tools. All UTM parameter logic, validation rules, and naming conventions are derived from official Google Analytics 4 documentation, Google Marketing Platform best practices, and the Urchin Tracking Module specification. We review platform updates quarterly and adjust presets when channels like TikTok or new ad formats emerge.
+                Built by Mubarak Mutesasira. UTM parameter logic and naming conventions follow official Google Analytics 4 documentation and the Urchin Tracking Module specification.
               </p>
               <p>
-                <strong>Privacy and Security:</strong> This tool operates entirely client-side. Your destination URLs, campaign names, and UTM parameters are processed in your browser and stored only in your localStorage. No data is transmitted to our servers, logged in analytics, or shared with third parties. This makes our <strong>UTM campaign builder</strong> safe for pre-launch campaigns, competitive intelligence, and confidential client work.
+                <strong>Privacy:</strong> This tool runs entirely in your browser. Your URLs and campaign names are processed locally and stored only in localStorage. Nothing is sent to any server.
               </p>
               <p>
-                <strong>Accuracy Guarantee:</strong> We test every generated URL against GA4&apos;s real-time reporting to confirm parameters are parsed correctly. If you encounter a platform where our UTM tags are not registering, contact our editorial team with the URL and platform details for immediate investigation.
-              </p>
-              <p>
-                <strong>Last Updated:</strong> May 1, 2026. Compatible with Google Analytics 4, Universal Analytics (legacy), Adobe Analytics (via s.campaign), and Mixpanel (via super properties).
+                <strong>Last Updated:</strong> May 2026. Compatible with Google Analytics 4, Universal Analytics (legacy), Adobe Analytics, and Mixpanel.
               </p>
             </div>
           </section>
