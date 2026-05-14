@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/halal-mortgage-structure-comparison";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -75,10 +76,13 @@ export default function HalalMortgageComparisonBlogPage() {
           <p className="text-xl text-muted-foreground leading-relaxed">
             Compare Sharia-compliant mortgage structures side-by-side to find the most cost-effective path to home ownership in 2026.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>Last updated: April 25, 2026</span>
-            <span>•</span>
-            <span>9 min read</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>9 min read</span>
+              <span>•</span>
+              <span>Published April 2026</span>
+            </div>
           </div>
         </div>
       </header>

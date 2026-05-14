@@ -1,13 +1,11 @@
+import { AuthorSection } from "@/components/blog/AuthorSection";
+
 export function AuthorBio() {
   return (
     <div className="rounded-xl bg-slate-800/50 border border-slate-700 p-4">
-      <div className="flex items-start gap-4">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500/20 text-sm font-black text-emerald-400">
-          MM
-        </div>
+      <div className="flex flex-col gap-4">
+        <AuthorSection variant="dark" />
         <div>
-          <h3 className="text-sm font-bold text-white">Mubarak Mutesasira</h3>
-          <p className="text-xs text-slate-400 mb-3">Developer, FindBest Tools</p>
           <p className="text-slate-400 text-xs leading-relaxed">
             Mining profitability estimates use publicly available network difficulty and block reward data.
             Electricity costs and hardware specs are user-supplied. Results are estimates only — actual

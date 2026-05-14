@@ -12,6 +12,7 @@ import {
   Check, 
   X 
 } from "lucide-react";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const styles = `
   .utm-ads-blog {
@@ -491,6 +492,9 @@ export default function UtmAdsBlogClient() {
         <div className="hero-eyebrow">Complete Guide · 2026</div>
         <h1>UTM Ads: Track <span className="hl">Every Click</span>,<br/>Across <span className="hl2">Every Platform</span></h1>
         <p className="hero-desc">You&apos;re spending on Google, Meta, TikTok, LinkedIn. But without UTM parameters on every ad, you can&apos;t prove which platform is actually driving conversions — or cut the ones that aren&apos;t. This guide covers everything: what UTMs are, how to set them up on each ad platform, dynamic parameter templates, and how to read the data.</p>
+        <div className="mb-8">
+          <AuthorSection variant="light" />
+        </div>
         <div className="hero-btns">
           <a href="https://findbest.tools/utility/utm-builder" className="btn-primary">
             <LinkIcon className="w-4 h-4" />

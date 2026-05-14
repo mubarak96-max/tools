@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -47,6 +48,12 @@ export default function UtmNamingConventionsBlogPage() {
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
             UTM Naming Conventions: The One Rule That Keeps Your Analytics Clean
           </h1>
+          <div className="pt-4">
+            <AuthorSection />
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-2 ml-1">
+              Published March 2026
+            </div>
+          </div>
         </div>
       </header>
 

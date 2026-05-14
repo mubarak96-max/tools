@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AuthorSection } from '@/components/blog/AuthorSection';
 import type { Metadata } from 'next';
 
 import JsonLd from '@/components/seo/JsonLd';
@@ -112,10 +113,13 @@ export default function ThreadsAndBlueskyCharacterLimitsPage() {
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
             Threads gives you more room to talk. Bluesky rewards tighter phrasing. A draft that fits one does not automatically fit the other.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>8 min read</span>
-            <span>-</span>
-            <span>Updated May 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>8 min read</span>
+              <span>-</span>
+              <span>Published April 2026</span>
+            </div>
           </div>
         </div>
       </header>

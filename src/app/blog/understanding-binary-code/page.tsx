@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -79,10 +80,13 @@ export default function BinaryBasicsBlogPage() {
           <p className="text-xl text-muted-foreground leading-relaxed">
             Unlocking the digital world: a simple guide to what binary is, how it functions, and why it powers every device you own.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>5 min read</span>
-            <span>•</span>
-            <span>Published April 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>5 min read</span>
+              <span>•</span>
+              <span>Published April 2026</span>
+            </div>
           </div>
         </div>
       </header>

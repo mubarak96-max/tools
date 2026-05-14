@@ -1,13 +1,11 @@
+import { AuthorSection } from "@/components/blog/AuthorSection";
+
 export function AuthorBio() {
   return (
     <div className="rounded-2xl bg-slate-50 border border-slate-200 p-8">
-      <div className="flex items-start gap-5">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg font-black text-primary">
-          MM
-        </div>
+      <div className="flex flex-col gap-6">
+        <AuthorSection />
         <div>
-          <h3 className="text-lg font-bold text-slate-900">Mubarak Mutesasira</h3>
-          <p className="text-sm text-slate-500 mb-3">Developer, FindBest Tools</p>
           <p className="text-slate-600 text-sm leading-relaxed">
             This calculator implements the official US Navy body fat formula from OPNAVINST 6110.1J.
             Calculations are based on the circumference-based method used in Navy Physical Readiness Tests.

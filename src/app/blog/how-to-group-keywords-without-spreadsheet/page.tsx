@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/how-to-group-keywords-without-spreadsheet";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -92,6 +93,14 @@ export default function KeywordGroupingGuidePage() {
         <p className="text-xl leading-relaxed text-muted-foreground">
           If you've ever tried to organize a list of 500 keywords in a spreadsheet, you already know how painful it is. There is a faster, more accurate way to build your content map.
         </p>
+        <div className="pt-2">
+          <AuthorSection />
+          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+            <span>8 min read</span>
+            <span>-</span>
+            <span>Published January 2026</span>
+          </div>
+        </div>
       </header>
 
       <div className="prose prose-emerald dark:prose-invert max-w-none">

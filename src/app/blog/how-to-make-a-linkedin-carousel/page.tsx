@@ -4,6 +4,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { Check, Info, MousePointer2, TrendingUp, Presentation } from "lucide-react";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/how-to-make-a-linkedin-carousel";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -76,10 +77,13 @@ export default function LinkedInCarouselBlogPage() {
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
             LinkedIn carousels consistently outperform every other format for reach and dwell time. Here is exactly how to build them.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>12 min read</span>
-            <span>•</span>
-            <span>Published April 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>12 min read</span>
+              <span>•</span>
+              <span>Published April 2026</span>
+            </div>
           </div>
         </div>
       </header>

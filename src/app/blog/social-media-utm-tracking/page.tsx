@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/social-media-utm-tracking";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -47,6 +48,12 @@ export default function SocialMediaUtmTrackingBlogPage() {
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
             UTM Tracking for Social Media: Facebook, Instagram, LinkedIn & Twitter
           </h1>
+          <div className="pt-4">
+            <AuthorSection />
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-2 ml-1">
+              Published May 2026
+            </div>
+          </div>
         </div>
       </header>
 

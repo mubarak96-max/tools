@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import { ChevronDown } from 'lucide-react';
 import IpChecker from './components/IpChecker';
 import ToolPageScaffold from '@/components/tools/ToolPageScaffold';
@@ -352,18 +353,22 @@ export default function WhatIsMyIpPage() {
           </section>
 
           {/* Methodology */}
-          <section className="bg-slate-900 text-slate-300 rounded-2xl p-8 lg:p-10">
-            <h2 className="text-xl font-bold text-white mb-4">About This Tool & Data Sources</h2>
-            <div className="space-y-4 text-sm leading-7">
-              <p>
-                Built by Mubarak Mutesasira. Public IP data is fetched from ipapi.co and GeoJS — both are publicly available geo-IP APIs. Private IP detection uses the browser WebRTC API (W3C standard). No IP addresses are logged or stored by this site.
-              </p>
-              <p>
-                <strong>Accuracy:</strong> IP geolocation is city-level at best (roughly 70–85% accurate depending on ISP and country). It is not a precise location. Proxy and VPN detection is heuristic — it checks ASN ownership against known data-centre ranges and is a useful indicator, not a forensic guarantee.
-              </p>
-              <p>
-                <strong>Last updated:</strong> May 2026. If your location or ISP data looks wrong, the geo-IP database may not have caught up with a recent IP reassignment — this is a known limitation of all IP geolocation services.
-              </p>
+          <section className="bg-slate-900 text-slate-300 rounded-3xl p-8 lg:p-10">
+            <h2 className="text-xl font-bold text-white mb-6">About This Tool & Data Sources</h2>
+            <div className="space-y-6">
+              <AuthorSection variant="dark" showBio={true} />
+              
+              <div className="space-y-4 text-sm leading-7 border-t border-slate-800 pt-6">
+                <p>
+                  Public IP data is fetched from ipapi.co and GeoJS — both are publicly available geo-IP APIs. Private IP detection uses the browser WebRTC API (W3C standard). No IP addresses are logged or stored by this site.
+                </p>
+                <p>
+                  <strong className="text-white">Accuracy:</strong> IP geolocation is city-level at best (roughly 70–85% accurate depending on ISP and country). It is not a precise location. Proxy and VPN detection is heuristic — it checks ASN ownership against known data-centre ranges and is a useful indicator, not a forensic guarantee.
+                </p>
+                <p>
+                  <strong className="text-white">Last updated:</strong> May 2026. If your location or ISP data looks wrong, the geo-IP database may not have caught up with a recent IP reassignment — this is a known limitation of all IP geolocation services.
+                </p>
+              </div>
             </div>
           </section>
         </div>

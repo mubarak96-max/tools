@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/how-is-xg-calculated";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -73,10 +74,13 @@ export default function XGCalculationPage() {
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground leading-tight">
             How is xG Calculated? The Factors Behind Every Shot
           </h1>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>18 min read</span>
-            <span>•</span>
-            <span>Updated May 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>18 min read</span>
+              <span>•</span>
+              <span>Published January 2026</span>
+            </div>
           </div>
         </div>
       </header>

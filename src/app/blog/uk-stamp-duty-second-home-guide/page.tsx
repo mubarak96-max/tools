@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
@@ -71,6 +72,14 @@ export default function UKStampDutySecondHomeGuidePage() {
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Second Home Stamp Duty in England: Higher Rates Explained
         </h1>
+        <div className="pt-2">
+          <AuthorSection />
+          <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest mt-4 ml-1">
+            <span>8 min read</span>
+            <span>•</span>
+            <span>Published April 2026</span>
+          </div>
+        </div>
         <p className="text-lg leading-8 text-muted-foreground">
           If you already own a residential property, your next purchase may trigger the higher rates for additional
           dwellings. This is the rule many people mean when they search for second home stamp duty.

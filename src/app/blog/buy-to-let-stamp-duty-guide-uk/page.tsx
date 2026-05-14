@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
@@ -66,6 +67,14 @@ export default function BuyToLetStampDutyGuideUkPage() {
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Buy-to-Let Stamp Duty in England: SDLT Guide for Landlords
         </h1>
+        <div className="pt-2">
+          <AuthorSection />
+          <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest mt-4 ml-1">
+            <span>8 min read</span>
+            <span>•</span>
+            <span>Published April 2026</span>
+          </div>
+        </div>
         <p className="text-lg leading-8 text-muted-foreground">
           Buy-to-let deals are often judged on yield, rent, and financing, but the SDLT bill is one of the first major
           cash drains in the whole investment stack.

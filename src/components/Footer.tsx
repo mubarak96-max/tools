@@ -104,7 +104,10 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 items-center border-t border-slate-100 pt-8 sm:flex sm:justify-between">
           <p className="text-xs text-slate-400">
-            &copy; {new Date().getFullYear()} FindBest Tools. All rights reserved. Built for speed and privacy.
+            &copy; {new Date().getFullYear()} FindBest Tools. All rights reserved. 
+            <span className="ml-2">
+              Built by <a href="http://mmtechspot.site/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors underline underline-offset-4">MM Techspot</a>
+            </span>
           </p>
           <div className="mt-4 flex gap-6 sm:mt-0">
             {["Privacy", "Terms", "Sitemap", "Contact"].map((label) => (

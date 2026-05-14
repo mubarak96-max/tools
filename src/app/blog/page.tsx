@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -84,7 +85,7 @@ const posts = [
     href: "/blog/how-to-build-content-strategy-from-keyword-cluster",
     tag: "Content Strategy",
     readTime: "8 min read",
-    date: "May 2026",
+    date: "April 2026",
   },
   {
     title: "SERP-Based vs. Semantic Keyword Clustering: Which Method Should You Use?",
@@ -92,7 +93,7 @@ const posts = [
     href: "/blog/serp-vs-semantic-keyword-clustering",
     tag: "Keyword Research",
     readTime: "9 min read",
-    date: "May 2026",
+    date: "March 2026",
   },
   {
     title: "Keyword Clustering vs. Keyword Grouping: What's the Difference?",
@@ -100,7 +101,7 @@ const posts = [
     href: "/blog/keyword-clustering-vs-grouping-difference",
     tag: "SEO Strategy",
     readTime: "7 min read",
-    date: "May 2026",
+    date: "February 2026",
   },
   {
     title: "How to Group Keywords Without a Spreadsheet (Step-by-Step Guide)",
@@ -108,7 +109,7 @@ const posts = [
     href: "/blog/how-to-group-keywords-without-spreadsheet",
     tag: "SEO Strategy",
     readTime: "8 min read",
-    date: "May 2026",
+    date: "January 2026",
   },
   {
     title: "Instagram Caption Character Limit: Best Length, Preview Cutoff, and Hashtag Rules",
@@ -116,7 +117,7 @@ const posts = [
     href: "/blog/instagram-caption-character-limit",
     tag: "Instagram",
     readTime: "9 min read",
-    date: "May 2026",
+    date: "January 2026",
   },
   {
     title: "X Character Limit With Links: Why a URL Still Costs 23 Characters",
@@ -124,7 +125,7 @@ const posts = [
     href: "/blog/x-character-limit-with-links",
     tag: "X / Twitter",
     readTime: "8 min read",
-    date: "May 2026",
+    date: "February 2026",
   },
   {
     title: "LinkedIn Post Character Limit: Best Length, Preview Cutoff, and Writing Strategy",
@@ -132,7 +133,7 @@ const posts = [
     href: "/blog/linkedin-post-character-limit",
     tag: "LinkedIn",
     readTime: "9 min read",
-    date: "May 2026",
+    date: "March 2026",
   },
   {
     title: "Threads and Bluesky Character Limits: How to Write for Both Without Guessing",
@@ -140,7 +141,7 @@ const posts = [
     href: "/blog/threads-bluesky-character-limits",
     tag: "Social Media",
     readTime: "8 min read",
-    date: "May 2026",
+    date: "April 2026",
   },
   {
     title: "How to Read UTM Reports in Google Analytics 4 (Step-by-Step)",
@@ -172,7 +173,7 @@ const posts = [
     href: "/blog/track-email-campaigns-utm",
     tag: "Email Marketing",
     readTime: "10 min read",
-    date: "May 2026",
+    date: "April 2026",
   },
   {
     title: "5 UTM Mistakes That Are Ruining Your Campaign Data (And How to Fix Them)",
@@ -180,7 +181,7 @@ const posts = [
     href: "/blog/5-utm-mistakes",
     tag: "Data Quality",
     readTime: "12 min read",
-    date: "May 2026",
+    date: "April 2026",
   },
   {
     title: "UTM Naming Conventions: The One Rule That Keeps Your Analytics Clean (2026)",
@@ -188,7 +189,7 @@ const posts = [
     href: "/blog/utm-naming-conventions",
     tag: "Strategy",
     readTime: "10 min read",
-    date: "May 2026",
+    date: "March 2026",
   },
   {
     title: "What Are UTM Parameters? A Beginner's Guide to Campaign Tracking (2026)",
@@ -196,7 +197,7 @@ const posts = [
     href: "/blog/what-are-utm-parameters",
     tag: "Marketing",
     readTime: "8 min read",
-    date: "May 2026",
+    date: "March 2026",
   },
   {
     title: "Second Home Stamp Duty in England: Higher Rates Explained (2026)",
@@ -410,14 +411,8 @@ export default function BlogIndexPage() {
               {post.description}
             </p>
 
-            <div className="flex items-center gap-3 mt-auto pt-6 border-t border-slate-100">
-              <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500 uppercase tracking-tighter">
-                MM
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xs font-bold text-slate-900 leading-none">Mubarak Mutesasira</span>
-                <span className="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">{post.date}</span>
-              </div>
+            <div className="mt-auto pt-6 border-t border-slate-100">
+              <AuthorSection />
             </div>
           </Link>
         ))}

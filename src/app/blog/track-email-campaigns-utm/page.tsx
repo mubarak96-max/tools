@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/track-email-campaigns-utm";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -47,6 +48,12 @@ export default function EmailUtmTrackingBlogPage() {
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
             How to Track Every Email Campaign with UTM Links (+ Free Template)
           </h1>
+          <div className="pt-4">
+            <AuthorSection />
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-2 ml-1">
+              Published April 2026
+            </div>
+          </div>
         </div>
       </header>
 

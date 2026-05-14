@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import JsonLd from '@/components/seo/JsonLd';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from '@/lib/seo/jsonld';
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = '/blog/x-character-limit-with-links';
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -112,10 +113,13 @@ export default function XCharacterLimitWithLinksPage() {
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
             The 280-character cap is simple. The way links are counted is not. That is where most generic counters fail.
           </p>
+          
+          <AuthorSection className="pt-4" showBio={true} />
+
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
             <span>8 min read</span>
             <span>-</span>
-            <span>Updated May 2026</span>
+            <span>Published February 2026</span>
           </div>
         </div>
       </header>

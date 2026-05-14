@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/5-utm-mistakes";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -48,12 +49,10 @@ export default function UtmMistakesBlogPage() {
           <h1 className="text-4xl sm:text-6xl font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight">
             5 UTM Mistakes That Are Ruining Your Campaign Data (And How to Fix Them)
           </h1>
-          <div className="flex items-center gap-3 pt-2">
-            <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">MM</div>
-            <div>
-              <span className="text-sm font-semibold text-slate-900">Mubarak Mutesasira</span>
-              <span className="text-slate-400 mx-2">·</span>
-              <span className="text-sm text-slate-500">January 2026</span>
+          <div className="flex flex-col gap-2 pt-2">
+            <AuthorSection />
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-2 ml-1">
+              Published April 2026
             </div>
           </div>
         </div>

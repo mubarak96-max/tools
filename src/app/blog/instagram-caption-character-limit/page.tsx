@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { AuthorSection } from '@/components/blog/AuthorSection';
 import type { Metadata } from 'next';
 
 import JsonLd from '@/components/seo/JsonLd';
@@ -112,10 +113,13 @@ export default function InstagramCaptionCharacterLimitPage() {
           <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
             The real Instagram caption limit is not just 2,200 characters. The first 125 characters decide whether anyone taps "more."
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>9 min read</span>
-            <span>-</span>
-            <span>Updated May 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>9 min read</span>
+              <span>-</span>
+              <span>Published January 2026</span>
+            </div>
           </div>
         </div>
       </header>

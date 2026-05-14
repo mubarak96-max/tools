@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -73,10 +74,13 @@ export default function XGBlogPage() {
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground leading-tight">
             What is xG in Football? A Complete Beginner&apos;s Guide
           </h1>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>12 min read</span>
-            <span>•</span>
-            <span>Updated May 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>12 min read</span>
+              <span>•</span>
+              <span>Published November 2025</span>
+            </div>
           </div>
         </div>
       </header>

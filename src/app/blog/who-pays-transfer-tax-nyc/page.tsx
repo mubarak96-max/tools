@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -64,7 +65,7 @@ export default function WhoPaysTransferTaxBlogPage() {
             <li className="text-foreground font-medium">NYC Seller Guide</li>
           </ol>
         </nav>
-        
+
         <div className="space-y-4">
           <span className="inline-block px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-xs font-bold uppercase tracking-wider">
             Finance · Seller Strategy
@@ -75,10 +76,13 @@ export default function WhoPaysTransferTaxBlogPage() {
           <p className="text-xl text-muted-foreground leading-relaxed">
             Customary rules vs. technical reality: A comprehensive breakdown of what NYC sellers actually pay when the keys change hands.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>Last updated: April 2026</span>
-            <span>•</span>
-            <span>10 min read</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>10 min read</span>
+              <span>•</span>
+              <span>Published February 2026</span>
+            </div>
           </div>
         </div>
       </header>
@@ -134,11 +138,11 @@ export default function WhoPaysTransferTaxBlogPage() {
             The fastest way to get exact figures is our interactive calculator.
           </p>
           <div className="p-8 bg-slate-900 text-white rounded-[2rem] text-center shadow-xl">
-              <h4 className="text-xl font-bold mb-4">Free NYC Transfer Tax Calculator</h4>
-              <p className="text-slate-400 mb-6 text-sm">Estimate NYC RPTT and NYS transfer tax for 2026 instantly.</p>
-              <Link href="/real-estate/nyc-transfer-tax-calculator" className="inline-block px-6 py-3 bg-primary text-white font-bold rounded-lg hover:scale-105 transition-transform">
-                Open Calculator →
-              </Link>
+            <h4 className="text-xl font-bold mb-4">Free NYC Transfer Tax Calculator</h4>
+            <p className="text-slate-400 mb-6 text-sm">Estimate NYC RPTT and NYS transfer tax for 2026 instantly.</p>
+            <Link href="/real-estate/nyc-transfer-tax-calculator" className="inline-block px-6 py-3 bg-primary text-white font-bold rounded-lg hover:scale-105 transition-transform">
+              Open Calculator →
+            </Link>
           </div>
         </section>
 
@@ -148,10 +152,10 @@ export default function WhoPaysTransferTaxBlogPage() {
             In new development buildings, the seller is typically the <strong>sponsor</strong> (the developer). Sponsors routinely include a clause in their purchase agreements requiring the <strong>buyer</strong> to pay the NYC and NYS transfer taxes.
           </p>
           <div className="mt-6 p-6 bg-red-50 dark:bg-red-950/20 border border-red-100 rounded-2xl">
-              <h4 className="text-lg font-bold text-red-900 dark:text-red-400 mb-2">The New Construction Penalty</h4>
-              <p className="text-sm leading-relaxed text-red-800 dark:text-red-300">
-                On a $1,500,000 new construction condo, the 1.825% total transfer taxes (~$27,375) are flipped to the buyer. This is one reason new construction closing costs frequently hit 6% rather than 2-3%.
-              </p>
+            <h4 className="text-lg font-bold text-red-900 dark:text-red-400 mb-2">The New Construction Penalty</h4>
+            <p className="text-sm leading-relaxed text-red-800 dark:text-red-300">
+              On a $1,500,000 new construction condo, the 1.825% total transfer taxes (~$27,375) are flipped to the buyer. This is one reason new construction closing costs frequently hit 6% rather than 2-3%.
+            </p>
           </div>
         </section>
 
@@ -159,19 +163,19 @@ export default function WhoPaysTransferTaxBlogPage() {
           <h2 className="text-3xl font-bold mb-6 text-center">Net Proceeds Breakdown: Sample Case</h2>
           <p className="mb-8 text-center text-muted-foreground italic text-sm">Selling a $1,100,000 NYC co-op with $600k mortgage payoff.</p>
           <div className="max-w-md mx-auto rounded-3xl border border-border bg-card overflow-hidden">
-             <div className="bg-slate-50 dark:bg-slate-900 px-6 py-4 border-b border-border font-bold">Seller Net Proceeds</div>
-             <div className="p-6 space-y-3 text-sm">
-                <div className="flex justify-between"><span>Sale Price</span> <span className="font-bold">$1,100,000</span></div>
-                <div className="flex justify-between text-red-500"><span>Mortgage Payoff</span> <span>($600,000)</span></div>
-                <div className="flex justify-between text-red-500"><span>Broker Fee (5.5%)</span> <span>($60,500)</span></div>
-                <div className="flex justify-between text-red-500"><span>NYC/NYS Taxes</span> <span>($20,075)</span></div>
-                <div className="flex justify-between text-red-500"><span>Flip Tax (2%)</span> <span>($22,000)</span></div>
-                <div className="flex justify-between text-red-500"><span>Attorney/Misc</span> <span>($4,000)</span></div>
-                <div className="pt-4 border-t border-border flex justify-between font-black text-lg">
-                    <span>Estimated Net</span>
-                    <span className="text-primary">~$393,425</span>
-                </div>
-             </div>
+            <div className="bg-slate-50 dark:bg-slate-900 px-6 py-4 border-b border-border font-bold">Seller Net Proceeds</div>
+            <div className="p-6 space-y-3 text-sm">
+              <div className="flex justify-between"><span>Sale Price</span> <span className="font-bold">$1,100,000</span></div>
+              <div className="flex justify-between text-red-500"><span>Mortgage Payoff</span> <span>($600,000)</span></div>
+              <div className="flex justify-between text-red-500"><span>Broker Fee (5.5%)</span> <span>($60,500)</span></div>
+              <div className="flex justify-between text-red-500"><span>NYC/NYS Taxes</span> <span>($20,075)</span></div>
+              <div className="flex justify-between text-red-500"><span>Flip Tax (2%)</span> <span>($22,000)</span></div>
+              <div className="flex justify-between text-red-500"><span>Attorney/Misc</span> <span>($4,000)</span></div>
+              <div className="pt-4 border-t border-border flex justify-between font-black text-lg">
+                <span>Estimated Net</span>
+                <span className="text-primary">~$393,425</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -201,8 +205,8 @@ export default function WhoPaysTransferTaxBlogPage() {
           <p className="text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">
             Planning your next move? Get exact NYC RPTT and state tax figures for your sale price instantly.
           </p>
-          <Link 
-            href="/real-estate/nyc-transfer-tax-calculator" 
+          <Link
+            href="/real-estate/nyc-transfer-tax-calculator"
             className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white font-bold rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-emerald-500/20"
           >
             Access Seller Tax Calculator →

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const styles = `
 .shopify-utm-blog {
@@ -763,7 +764,7 @@ const styles = `
 }
 `;
 
-const articleHtml = `
+const heroHtml = `
 <section class="hero">
   <div class="hero-badge">Shopify Guide 2026</div>
   <h1>Shopify UTM Tracking:<br><em>The Complete Setup Guide</em></h1>
@@ -775,12 +776,17 @@ const articleHtml = `
     </a>
     <a href="#what-is-utm" class="btn-secondary">Read the guide ↓</a>
   </div>
-  <div class="hero-meta">
+</section>
+`;
+
+const bodyHtml = `
+<div class="hero" style="padding-top: 0; padding-bottom: 30px;">
+  <div class="hero-meta" style="margin-top: 0;">
     <div class="hero-meta-item"><span class="meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path></svg></span><span>~15 min read</span></div>
-    <div class="hero-meta-item"><span class="meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M3 10h18"></path></svg></span><span>Updated May 2026</span></div>
+    <div class="hero-meta-item"><span class="meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M3 10h18"></path></svg></span><span>Published May 2026</span></div>
     <div class="hero-meta-item"><span class="meta-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77 5.82 21l1.18-6.86-5-4.87 6.91-1.01L12 2Z"></path></svg></span><span>Beginner to advanced</span></div>
   </div>
-</section>
+</div>
 
 <div class="toc-box" style="padding: 28px 32px; margin: 0 40px 60px; position:relative; z-index:1;">
   <h2 style="margin:0 0 16px; border:none; padding:0; font-size:13px;">In This Guide</h2>
@@ -1295,7 +1301,13 @@ export default function ShopifyUtmTrackingBlogClient() {
   return (
     <article className="shopify-utm-blog" ref={rootRef}>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
-      <div dangerouslySetInnerHTML={{ __html: articleHtml }} />
+      <div dangerouslySetInnerHTML={{ __html: heroHtml }} />
+      <div className="hero" style={{ padding: '0 40px' }}>
+        <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+          <AuthorSection />
+        </div>
+      </div>
+      <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />
     </article>
   );
 }

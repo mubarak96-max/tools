@@ -1,5 +1,5 @@
-
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
@@ -70,10 +70,13 @@ export default function XGBlogPositionPage() {
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground leading-tight">
             xG by Position: Comparing Strikers, Midfielders & Defenders
           </h1>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>20 min read</span>
-            <span>•</span>
-            <span>Updated May 2026</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>20 min read</span>
+              <span>•</span>
+              <span>Published May 2026</span>
+            </div>
           </div>
         </div>
       </header>

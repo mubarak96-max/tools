@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/serp-vs-semantic-keyword-clustering";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -92,6 +93,14 @@ export default function SerpVsSemanticClusteringPage() {
         <p className="text-xl leading-relaxed text-muted-foreground">
           Both methodologies will organize your keywords. Both will tell you which terms belong on the same page. But they work differently and produce different results.
         </p>
+        <div className="pt-2">
+          <AuthorSection />
+          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+            <span>9 min read</span>
+            <span>-</span>
+            <span>Published March 2026</span>
+          </div>
+        </div>
       </header>
 
       <div className="prose prose-amber dark:prose-invert max-w-none">

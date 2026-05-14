@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 
@@ -265,7 +266,7 @@ export default function UtmBuilderPage() {
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Why Every Data-Driven Marketer Needs a Campaign URL Builder</h2>
             <div className="prose prose-slate max-w-none text-slate-700 leading-7">
               <p>
-                Attribution is the currency of modern marketing. If you cannot prove which channel, campaign, or creative drove a conversion, you are flying blind. A <strong>campaign URL builder</strong> solves this by embedding tracking metadata directly into every link you share. When a user clicks a UTM-tagged link and lands on your site, Google Analytics reads those parameters and attributes the session to the exact source, medium, and campaign you specified. Without this <strong>Google Analytics URL builder</strong> discipline, your acquisition reports become a meaningless soup of &quot;(direct) / none&quot; and unclassified referrals.
+                Attribution is the currency of modern marketing. If you cannot prove which channel, campaign, or creative drove a conversion, you are flying blind. A <a href="http://utmbuilder.click/" target="_blank" rel="noopener" className="font-bold text-slate-900 underline underline-offset-4 decoration-slate-300 hover:decoration-slate-900 transition-all">campaign URL builder</a> solves this by embedding tracking metadata directly into every link you share. When a user clicks a UTM-tagged link and lands on your site, Google Analytics reads those parameters and attributes the session to the exact source, medium, and campaign you specified. Without this <strong>Google Analytics URL builder</strong> discipline, your acquisition reports become a meaningless soup of &quot;(direct) / none&quot; and unclassified referrals.
               </p>
               <p>
                 Our <strong>UTM code generator</strong> goes beyond the basic Google Campaign URL tool. We built it for teams that scale. It validates your URLs in real time, enforces consistent naming through preset dropdowns, stores your campaign history locally for reuse, and offers a bulk mode for tagging entire email newsletters or product catalogs in seconds. Whether you are a solo founder running Meta ads or an enterprise demand generation team managing millions in spend, this <strong>UTM campaign builder</strong> ensures your attribution data is clean, consistent, and actionable.
@@ -611,18 +612,22 @@ export default function UtmBuilderPage() {
             </div>
           </section>
 
-          <section className="bg-slate-900 text-slate-300 rounded-2xl p-8 lg:p-10">
-            <h2 className="text-xl font-bold text-white mb-4">About This UTM Builder</h2>
-            <div className="space-y-4 text-sm leading-7">
-              <p>
-                Built by Mubarak Mutesasira. UTM parameter logic and naming conventions follow official Google Analytics 4 documentation and the Urchin Tracking Module specification.
-              </p>
-              <p>
-                <strong>Privacy:</strong> This tool runs entirely in your browser. Your URLs and campaign names are processed locally and stored only in localStorage. Nothing is sent to any server.
-              </p>
-              <p>
-                <strong>Last Updated:</strong> May 2026. Compatible with Google Analytics 4, Universal Analytics (legacy), Adobe Analytics, and Mixpanel.
-              </p>
+          <section className="bg-slate-900 text-slate-300 rounded-3xl p-8 lg:p-10">
+            <h2 className="text-xl font-bold text-white mb-6">About This UTM Builder</h2>
+            <div className="space-y-6">
+              <AuthorSection variant="dark" showBio={true} />
+              
+              <div className="space-y-4 text-sm leading-7 border-t border-slate-800 pt-6">
+                <p>
+                  UTM parameter logic and naming conventions follow official Google Analytics 4 documentation and the Urchin Tracking Module specification.
+                </p>
+                <p>
+                  <strong className="text-white">Privacy:</strong> This tool runs entirely in your browser. Your URLs and campaign names are processed locally and stored only in localStorage. Nothing is sent to any server.
+                </p>
+                <p>
+                  <strong className="text-white">Last Updated:</strong> May 2026. Compatible with Google Analytics 4, Universal Analytics (legacy), Adobe Analytics, and Mixpanel.
+                </p>
+              </div>
             </div>
           </section>
         </div>

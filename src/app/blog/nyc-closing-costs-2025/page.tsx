@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/nyc-closing-costs-2026";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -75,10 +76,13 @@ export default function NycClosingCostsBlogPage() {
           <p className="text-xl text-muted-foreground leading-relaxed">
             From the Mansion Tax to Mortgage Recording fees, discover the true cost of buying an apartment in New York City.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>Last updated: April 2026</span>
-            <span>•</span>
-            <span>12 min read</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>12 min read</span>
+              <span>•</span>
+              <span>Published April 2026</span>
+            </div>
           </div>
         </div>
       </header>

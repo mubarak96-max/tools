@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/nyc-sponsor-sales-closing-costs";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
@@ -64,7 +65,7 @@ export default function NycSponsorSalesBlogPage() {
             <li className="text-foreground font-medium">New Construction</li>
           </ol>
         </nav>
-        
+
         <div className="space-y-4">
           <span className="inline-block px-3 py-1 rounded-full bg-orange-500/10 text-orange-600 text-xs font-bold uppercase tracking-wider">
             Finance · New Development
@@ -75,10 +76,13 @@ export default function NycSponsorSalesBlogPage() {
           <p className="text-xl text-muted-foreground leading-relaxed">
             The &quot;Transfer Tax Flip&quot; and beyond: Understanding the real price of being the first to live in a New York City apartment.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
-            <span>Last updated: April 2026</span>
-            <span>•</span>
-            <span>12 min read</span>
+          <div className="pt-2">
+            <AuthorSection />
+            <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
+              <span>12 min read</span>
+              <span>•</span>
+              <span>Published July 2025</span>
+            </div>
           </div>
         </div>
       </header>
@@ -117,18 +121,18 @@ export default function NycSponsorSalesBlogPage() {
             </table>
           </div>
           <p className="leading-relaxed mb-0 font-medium">
-             This shift alone can add 1.825% to your closing bill overnight.
+            This shift alone can add 1.825% to your closing bill overnight.
           </p>
         </section>
 
         <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Model Your Closing Budget</h2>
-            <p className="mb-8 text-muted-foreground">Don&apos;t get surprised at the closing table. Use our calculator to see exactly what those transfer taxes look like at your price point.</p>
-            <div className="p-8 border border-border rounded-[2rem] bg-slate-50 dark:bg-slate-900 text-center">
-                <Link href="/real-estate/nyc-transfer-tax-calculator" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:scale-105 transition-transform shadow-lg shadow-primary/20">
-                    Use Transfer Tax Calculator →
-                </Link>
-            </div>
+          <h2 className="text-3xl font-bold mb-6">Model Your Closing Budget</h2>
+          <p className="mb-8 text-muted-foreground">Don&apos;t get surprised at the closing table. Use our calculator to see exactly what those transfer taxes look like at your price point.</p>
+          <div className="p-8 border border-border rounded-[2rem] bg-slate-50 dark:bg-slate-900 text-center">
+            <Link href="/real-estate/nyc-transfer-tax-calculator" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:scale-105 transition-transform shadow-lg shadow-primary/20">
+              Use Transfer Tax Calculator →
+            </Link>
+          </div>
         </section>
 
         <section className="mb-12">
@@ -142,37 +146,37 @@ export default function NycSponsorSalesBlogPage() {
           <h2 className="text-3xl font-bold mb-6">New Construction vs. Resale: A Real Cost Comparison</h2>
           <p className="mb-8 font-medium">Buying the same priced $1.8M condo? Here is the gap:</p>
           <div className="grid gap-6 md:grid-cols-2">
-             <div className="p-6 rounded-2xl border border-border bg-card">
-                <h4 className="font-bold mb-4">Standard Resale</h4>
-                <p className="text-sm text-muted-foreground">Buyer pays Mansion & Bank fees.</p>
-                <div className="mt-4 pt-4 border-t flex justify-between font-black text-xl">
-                    <span>Total</span>
-                    <span className="text-success">~$68,220</span>
-                </div>
-             </div>
-             <div className="p-6 rounded-2xl border border-primary/20 bg-primary/5">
-                <h4 className="font-bold mb-4">Sponsor Sale</h4>
-                <p className="text-sm text-muted-foreground">Buyer pays Mansion, Bank AND Sponsor&apos;s Taxes.</p>
-                <div className="mt-4 pt-4 border-t flex justify-between font-black text-xl">
-                    <span>Total</span>
-                    <span className="text-red-500">~$103,570</span>
-                </div>
-             </div>
+            <div className="p-6 rounded-2xl border border-border bg-card">
+              <h4 className="font-bold mb-4">Standard Resale</h4>
+              <p className="text-sm text-muted-foreground">Buyer pays Mansion & Bank fees.</p>
+              <div className="mt-4 pt-4 border-t flex justify-between font-black text-xl">
+                <span>Total</span>
+                <span className="text-success">~$68,220</span>
+              </div>
+            </div>
+            <div className="p-6 rounded-2xl border border-primary/20 bg-primary/5">
+              <h4 className="font-bold mb-4">Sponsor Sale</h4>
+              <p className="text-sm text-muted-foreground">Buyer pays Mansion, Bank AND Sponsor&apos;s Taxes.</p>
+              <div className="mt-4 pt-4 border-t flex justify-between font-black text-xl">
+                <span>Total</span>
+                <span className="text-red-500">~$103,570</span>
+              </div>
+            </div>
           </div>
         </section>
 
         <section className="mb-12">
-            <h2 className="text-3xl font-bold mb-6">Negotiating Sponsor Terms</h2>
-            <p className="leading-relaxed">
-                In softer markets, sponsors may offer &quot;closing credits&quot; or price reductions to offset these fees without changing the official building pricing. Leverage is highest <strong>before the term sheet is signed</strong>.
-            </p>
+          <h2 className="text-3xl font-bold mb-6">Negotiating Sponsor Terms</h2>
+          <p className="leading-relaxed">
+            In softer markets, sponsors may offer &quot;closing credits&quot; or price reductions to offset these fees without changing the official building pricing. Leverage is highest <strong>before the term sheet is signed</strong>.
+          </p>
         </section>
 
         <section className="mb-12 p-8 bg-blue-500/5 rounded-[2rem] border border-blue-500/10">
-            <h2 className="text-2xl font-bold mb-4">The 421-a Tax Abatement</h2>
-            <p className="leading-relaxed text-sm m-0">
-                One offset to high closing costs is the 421-a tax abatement found in many new buildings. This can drastically lower your monthly carrying costs for 10-25 years. Always verify the expiration date and phase-out schedule before buying.
-            </p>
+          <h2 className="text-2xl font-bold mb-4">The 421-a Tax Abatement</h2>
+          <p className="leading-relaxed text-sm m-0">
+            One offset to high closing costs is the 421-a tax abatement found in many new buildings. This can drastically lower your monthly carrying costs for 10-25 years. Always verify the expiration date and phase-out schedule before buying.
+          </p>
         </section>
 
         <hr className="my-16 border-border" />
@@ -194,8 +198,8 @@ export default function NycSponsorSalesBlogPage() {
           <p className="text-muted-foreground mb-8 max-w-lg mx-auto leading-relaxed">
             Buying from a developer? Get your exact transfer tax projection today.
           </p>
-          <Link 
-            href="/real-estate/nyc-transfer-tax-calculator" 
+          <Link
+            href="/real-estate/nyc-transfer-tax-calculator"
             className="inline-flex items-center gap-2 px-8 py-4 bg-orange-600 text-white font-bold rounded-xl hover:scale-105 active:scale-95 transition-all shadow-xl shadow-orange-500/20"
           >
             Start Your Projection →

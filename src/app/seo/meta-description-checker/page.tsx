@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import Link from 'next/link'
 import { MetaDescriptionTool } from './components/MetaDescriptionTool'
 import { JsonLd } from './components/JsonLd'
@@ -465,26 +466,22 @@ export default function MetaDescriptionCheckerPage() {
               Limit values are cross-referenced from Safari Digital , Spotibo , Conductor , Scalenut , and The SM Collective . The SEO scoring algorithm weights pixel compliance (30%), keyword placement (20%), CTA inclusion (15%), intent matching (15%), uniqueness signals (10%), and mobile safety (10%).
             </p>
             
-            <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6 flex flex-col sm:flex-row gap-6 items-start">
-              <div className="h-16 w-16 rounded-full bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center text-2xl font-bold text-neutral-900 dark:text-white">
-                M
-              </div>
-              <div>
-                <h3 className="font-semibold text-neutral-900 dark:text-white">About the Creator</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1">
-                  Built by <address className="inline not-italic font-medium">Mubarak</address>, an independent developer and technical SEO specialist. This tool is maintained actively and updated quarterly to reflect changes in Google's SERP rendering behavior, font stacks, and display limits.
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                    <Shield className="h-3 w-3" /> Open Source
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                    <Clock className="h-3 w-3" /> Updated April 2026
-                  </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
-                    <Users className="h-3 w-3" /> 8,500+ Monthly Users
-                  </span>
-                </div>
+            <div className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
+              <h3 className="font-semibold text-neutral-900 dark:text-white mb-4">About the Creator</h3>
+              <AuthorSection showBio={true} />
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed">
+                Independent developer and technical SEO specialist. This tool is maintained actively and updated quarterly to reflect changes in Google's SERP rendering behavior, font stacks, and display limits.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
+                  <Shield className="h-3 w-3" /> Open Source
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
+                  <Clock className="h-3 w-3" /> Updated April 2026
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-700 dark:text-neutral-300">
+                  <Users className="h-3 w-3" /> 8,500+ Monthly Users
+                </span>
               </div>
             </div>
           </section>

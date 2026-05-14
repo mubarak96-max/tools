@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
@@ -66,6 +67,14 @@ export default function WhatIsSdltVsStampDutyPage() {
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           What Is SDLT? Stamp Duty vs SDLT Explained for Home Buyers
         </h1>
+        <div className="pt-2">
+          <AuthorSection />
+          <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest mt-4 ml-1">
+            <span>6 min read</span>
+            <span>•</span>
+            <span>Published January 2026</span>
+          </div>
+        </div>
         <p className="text-lg leading-8 text-muted-foreground">
           Buyers still search for stamp duty because it is the familiar label, but in England and Northern Ireland the
           tax is formally called Stamp Duty Land Tax, or SDLT.

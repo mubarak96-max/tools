@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Zap, Target, Code2, Users, Heart } from 'lucide-react';
 import Link from 'next/link';
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 export default function AboutPage() {
   return (
@@ -126,17 +127,11 @@ export default function AboutPage() {
 
         <section className="rounded-[2rem] border border-slate-100 bg-slate-50 p-8 sm:p-10">
           <h2 className="text-2xl font-bold text-slate-900 mb-6">Meet the Author</h2>
-          <div className="flex items-start gap-6">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-2xl font-black text-primary">
-              MM
-            </div>
-            <div>
-              <h3 className="text-lg font-bold text-slate-900">Mubarak Mutesasira</h3>
-              <p className="text-sm text-slate-500 mt-1 mb-3">Developer &amp; Content Lead, FindBest Tools</p>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Mubarak builds and maintains the tools and guides on FindBest Tools. With a background in software development and digital marketing, he focuses on creating accurate, practical calculators and guides for finance, real estate, SEO, and productivity. All blog posts and tool documentation are written and reviewed by Mubarak.
-              </p>
-            </div>
+          <div className="flex flex-col gap-6">
+            <AuthorSection />
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Mubarak builds and maintains the tools and guides on FindBest Tools. With a background in software development and digital marketing, he focuses on creating accurate, practical calculators and guides for finance, real estate, SEO, and productivity. All blog posts and tool documentation are written and reviewed by Mubarak.
+            </p>
           </div>
         </section>
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { AuthorSection } from "@/components/blog/AuthorSection";
 
 import JsonLd from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/seo/metadata";
@@ -51,6 +52,14 @@ export default function ResidentialStampDutyRatesUkPage() {
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Residential Stamp Duty Rates in England: How the SDLT Bands Work
         </h1>
+        <div className="pt-2">
+          <AuthorSection />
+          <div className="flex items-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest mt-4 ml-1">
+            <span>7 min read</span>
+            <span>•</span>
+            <span>Published April 2026</span>
+          </div>
+        </div>
         <p className="text-lg leading-8 text-muted-foreground">
           Before you model first-time buyer relief or a second home surcharge, you need the baseline residential SDLT
           structure. This is the core rate framework buyers build on.
