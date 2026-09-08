@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   other: {
     "google-adsense-account": ADSENSE_CLIENT_ID,
+    "google-site-verification": "dsGHaZluOdjwxRs_XS3w7w6wkXoOlNG0qiXPQHk8iso",
     "yandex-verification": "fefe84d52df8498c",
   },
   icons: {
