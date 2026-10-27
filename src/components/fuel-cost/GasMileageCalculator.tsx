@@ -291,14 +291,14 @@ export default function GasMileageCalculator() {
           text-transform: uppercase; padding: 4px 11px; border-radius: 4px;
           margin-bottom: 16px; font-family: var(--font-b);
         }
-        .hero-hud h2 {
+        .hero-hud h1 {
           font-family: var(--font-d);
           font-size: clamp(2.2rem, 5vw, 3.5rem);
           font-weight: 800; line-height: 1.0;
           color: var(--text); text-transform: uppercase;
           letter-spacing: -0.01em; margin-bottom: 14px;
         }
-        .hero-hud h2 em { color: var(--green); font-style: normal; }
+        .hero-hud h1 em { color: var(--green); font-style: normal; }
         .hero-sub { font-size: 0.9rem; color: var(--muted2); max-width: 500px; line-height: 1.7; }
 
         /* Mode buttons */
@@ -554,7 +554,7 @@ export default function GasMileageCalculator() {
         <header className="hero-hud anim">
           <div>
             <div className="hud-badge"><Fuel className="w-3 h-3" /> HUD Calculator · US & Metric</div>
-            <h2>Gas Mileage<br /><em>Calculator</em></h2>
+            <h1>Gas Mileage<br /><em>Calculator</em></h1>
             <p className="hero-sub">
               Calculate MPG, fuel cost for any trip, and compare fuel economy between vehicles.
               Instant results in US or metric units.

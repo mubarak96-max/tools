@@ -1,5 +1,13 @@
 import React from 'react';
 
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Terms of Service | FindBest Tools',
+  description: 'The terms that apply when you use the free calculators and tools on FindBest Tools.',
+  path: '/terms',
+});
+
 export default function TermsPage() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">

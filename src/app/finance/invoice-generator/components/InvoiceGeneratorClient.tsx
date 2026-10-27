@@ -951,7 +951,7 @@ export default function InvoiceGeneratorClient() {
               {/* ── What This Tool Does ── */}
               <section className="section" id="about">
                 <div className="sec-badge">Free Tool</div>
-                <h2 className="sec-title">Professional <em>Invoice Generator</em><br />with Automatic Tax Calculation</h2>
+                <h1 className="sec-title">Professional <em>Invoice Generator</em><br />with Automatic Tax Calculation</h1>
                 <p className="sec-lead">
                   Create, customise, and download professional invoices with correct VAT, GST, or HST
                   calculations for the UK, Australia, Canada, New Zealand, Singapore, UAE, and more —

@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+import { BLOG_POSTS } from "@/lib/blog/posts";
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://findbest.tools";
 
 export const revalidate = 14400;
@@ -23,46 +25,6 @@ const STATIC_PATHS = [
   { path: "/marketing", changeFrequency: "weekly" as const, priority: 0.6 },
   { path: "/seo", changeFrequency: "weekly" as const, priority: 0.8 },
   { path: "/blog", changeFrequency: "weekly" as const, priority: 0.5 },
-  { path: "/blog/xg-by-position-benchmarks", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/fbref-vs-understat-vs-opta-xg", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/xg-per-game-benchmarks", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/penalty-kick-xg-explained", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/how-is-xg-calculated", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/difference-between-xg-xga-npxg-xgot", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/what-is-xg-in-football", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/binary-code-in-cybersecurity", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/binary-code-translation-for-developers", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/carousel-caption-guide", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/free-carousel-maker-no-canva", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/how-to-convert-text-to-binary", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/instagram-caption-character-limit", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/linkedin-post-character-limit", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/how-to-make-a-carousel-go-viral", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/how-to-make-a-linkedin-carousel", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/instagram-carousel-size", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/nyc-closing-costs-2025", changeFrequency: "monthly" as const, priority: 0.5 }, { path: "/blog/who-pays-transfer-tax-nyc", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/nyc-investment-property-transfer-tax", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/nyc-sponsor-sales-closing-costs", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/nyc-condo-vs-coop-closing-costs", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/understanding-binary-code", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/halal-mortgage-structure-comparison", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/hidden-costs-of-islamic-mortgages-uk", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/first-time-buyer-halal-mortgage-guide-uk", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/uk-stamp-duty-second-home-guide", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/what-is-sdlt-vs-stamp-duty", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/residential-stamp-duty-rates-uk", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/buy-to-let-stamp-duty-guide-uk", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/first-time-buyer-stamp-duty-relief-uk", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/what-are-utm-parameters", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/utm-naming-conventions", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/5-utm-mistakes", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/track-email-campaigns-utm", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/social-media-utm-tracking", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/shopify-utm-tracking", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/threads-bluesky-character-limits", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/read-utm-reports-ga4", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/x-character-limit-with-links", changeFrequency: "monthly" as const, priority: 0.5 },
-  { path: "/blog/utm-ads", changeFrequency: "monthly" as const, priority: 0.5 },
 ];
 
 const TOOL_PATHS = [
@@ -174,22 +136,28 @@ const TOOL_PATHS = [
   "/utility/utm-builder",
   "/utility/password-strength-checker",
   "/utility/social-media-character-counter",
+  "/finance/roth-ira-calculator",
+  "/finance/uk-severance-pay-calculator",
+  "/finance/us-severance-pay-calculator",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
   const entries: MetadataRoute.Sitemap = [
     ...STATIC_PATHS.map((entry) => ({
       url: `${BASE_URL}${entry.path === "/" ? "" : entry.path}`,
-      lastModified: now,
       changeFrequency: entry.changeFrequency,
       priority: entry.priority,
     })),
     ...TOOL_PATHS.map((path) => ({
       url: `${BASE_URL}${path}`,
-      lastModified: now,
       changeFrequency: "monthly" as const,
       priority: path.startsWith("/text/") || path === "/finance/net-salary-calculator" || path === "/finance/tip-calculator" || path === "/health/us-navy-body-fat-calculator" || path === "/utility/fuel-cost-calculator" || path === "/utility/gas-mileage-calculator" || path === "/utility/gpa-calculator" || path === "/utility/social-media-image-resizer" || path === "/utility/aspect-ratio-calculator" || path === "/utility/what-is-my-ip" || path === "/utility/utm-builder" ? 0.9 : 0.8,
+    })),
+    ...BLOG_POSTS.map((post) => ({
+      url: `${BASE_URL}/blog/${post.slug}`,
+      lastModified: new Date(post.dateModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
     })),
   ];
 

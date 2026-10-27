@@ -2,13 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
+import { getBlogPost } from "@/lib/blog/posts";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/free-vs-paid-keyword-clustering-tools";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
-const LAST_UPDATED_ISO = "2026-05-02T00:00:00.000Z";
+const LAST_UPDATED_ISO = getBlogPost("free-vs-paid-keyword-clustering-tools").dateModified;
 
 const faq = [
   {
@@ -55,23 +57,10 @@ export default function FreeVsPaidClusteringPage() {
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Free vs. Paid Keyword Clustering Tools: Is It Worth Paying?",
-    description:
-      "An honest comparison of free vs. paid keyword clustering tools. Learn what you get for your money and when a free tool is actually all you need.",
-    datePublished: LAST_UPDATED_ISO,
-    dateModified: LAST_UPDATED_ISO,
-    mainEntityOfPage: PAGE_URL,
-    author: { "@type": "Organization", name: "FindBest Tools" },
-    publisher: { "@type": "Organization", name: "FindBest Tools" },
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <JsonLd data={serializeJsonLd(articleJsonLd)} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="free-vs-paid-keyword-clustering-tools" />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12 space-y-4">
@@ -98,7 +87,7 @@ export default function FreeVsPaidClusteringPage() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
             <span>7 min read</span>
             <span>-</span>
-            <span>Published May 2026</span>
+            <PostDates slug="free-vs-paid-keyword-clustering-tools" />
           </div>
         </div>
       </header>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
@@ -120,6 +121,7 @@ export default function BinaryBlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="how-to-convert-text-to-binary" />
       <JsonLd data={serializeJsonLd(howTo)} />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
@@ -147,7 +149,7 @@ export default function BinaryBlogPage() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
             <span>8 min read</span>
             <span>•</span>
-            <span>Updated April 2026</span>
+            <PostDates slug="how-to-convert-text-to-binary" />
           </div>
         </div>
       </header>

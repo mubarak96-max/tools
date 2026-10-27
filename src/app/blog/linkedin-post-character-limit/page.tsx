@@ -3,12 +3,14 @@ import { AuthorSection } from '@/components/blog/AuthorSection';
 import type { Metadata } from 'next';
 
 import JsonLd from '@/components/seo/JsonLd';
+import { BlogPostSchema, PostDates } from '@/components/blog/BlogPostMeta';
+import { getBlogPost } from '@/lib/blog/posts';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from '@/lib/seo/jsonld';
 
 const PAGE_PATH = '/blog/linkedin-post-character-limit';
 const PAGE_URL = absoluteUrl(PAGE_PATH);
-const LAST_UPDATED_ISO = '2026-05-01T00:00:00.000Z';
+const LAST_UPDATED_ISO = getBlogPost('linkedin-post-character-limit').dateModified;
 
 export const metadata: Metadata = {
   title: 'LinkedIn Post Character Limit: Best Length Guide (2026)',
@@ -57,27 +59,6 @@ const faq = [
   },
 ];
 
-function buildArticleJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: 'LinkedIn Post Character Limit: Best Length Guide (2026)',
-    description:
-      'Learn the LinkedIn post character limit, the practical 210-character preview cutoff, and how to write stronger hooks for B2B posts and document promotions.',
-    dateModified: LAST_UPDATED_ISO,
-    datePublished: LAST_UPDATED_ISO,
-    author: {
-      '@type': 'Organization',
-      name: 'FindBest Tools',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'FindBest Tools',
-    },
-    mainEntityOfPage: PAGE_URL,
-  };
-}
-
 export default function LinkedInPostCharacterLimitPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -88,8 +69,8 @@ export default function LinkedInPostCharacterLimitPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <JsonLd data={serializeJsonLd(buildArticleJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug='linkedin-post-character-limit' />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -118,7 +99,7 @@ export default function LinkedInPostCharacterLimitPage() {
             <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
               <span>9 min read</span>
               <span>-</span>
-              <span>Published March 2026</span>
+              <PostDates slug='linkedin-post-character-limit' />
             </div>
           </div>
         </div>

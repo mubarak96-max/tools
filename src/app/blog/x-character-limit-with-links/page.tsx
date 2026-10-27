@@ -2,13 +2,15 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 
 import JsonLd from '@/components/seo/JsonLd';
+import { BlogPostSchema, PostDates } from '@/components/blog/BlogPostMeta';
+import { getBlogPost } from '@/lib/blog/posts';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from '@/lib/seo/jsonld';
 import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = '/blog/x-character-limit-with-links';
 const PAGE_URL = absoluteUrl(PAGE_PATH);
-const LAST_UPDATED_ISO = '2026-05-01T00:00:00.000Z';
+const LAST_UPDATED_ISO = getBlogPost('x-character-limit-with-links').dateModified;
 
 export const metadata: Metadata = {
   title: 'X Character Limit With Links: 280 Characters Explained',
@@ -57,27 +59,6 @@ const faq = [
   },
 ];
 
-function buildArticleJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: 'X Character Limit With Links: 280 Characters Explained',
-    description:
-      'Understand the X character limit, why every URL still counts as 23 characters, and how to write shorter launch posts, replies, and link-driven tweets.',
-    dateModified: LAST_UPDATED_ISO,
-    datePublished: LAST_UPDATED_ISO,
-    author: {
-      '@type': 'Organization',
-      name: 'FindBest Tools',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'FindBest Tools',
-    },
-    mainEntityOfPage: PAGE_URL,
-  };
-}
-
 export default function XCharacterLimitWithLinksPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -88,8 +69,8 @@ export default function XCharacterLimitWithLinksPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <JsonLd data={serializeJsonLd(buildArticleJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug='x-character-limit-with-links' />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -119,7 +100,7 @@ export default function XCharacterLimitWithLinksPage() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
             <span>8 min read</span>
             <span>-</span>
-            <span>Published February 2026</span>
+            <PostDates slug='x-character-limit-with-links' />
           </div>
         </div>
       </header>

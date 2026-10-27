@@ -5,7 +5,7 @@ export interface PlanDefinition {
   name: string;
   shortName: string;
   who: string;
-  threshold2024: number;       // annual repayment threshold £
+  threshold2024: number;       // annual repayment threshold £ — 2026/27 tax year (6 Apr 2026 – 5 Apr 2027)
   repaymentRate: number;       // fraction e.g. 0.09
   baseInterestNote: string;
   writeOffYears: number;
@@ -19,23 +19,23 @@ export const PLANS: Record<LoanPlan, PlanDefinition> = {
     name: "Plan 1",
     shortName: "Plan 1",
     who: "England/Wales before Sept 2012 · Northern Ireland",
-    threshold2024: 24990,
+    threshold2024: 26900,
     repaymentRate: 0.09,
     baseInterestNote: "Lower of RPI or Bank of England base rate + 1%",
     writeOffYears: 25,
-    writeOffNote: "25 years after first repayment due date (or age 65)",
+    writeOffNote: "25 years after the April you were first due to repay (age 65 if your first loan was paid before Sept 2006)",
     colour: "blue",
   },
   plan2: {
     id: "plan2",
     name: "Plan 2",
     shortName: "Plan 2",
-    who: "England/Wales Sept 2012 – July 2023",
-    threshold2024: 27295,
+    who: "England Sept 2012 – July 2023 · Wales from Sept 2012",
+    threshold2024: 29385,
     repaymentRate: 0.09,
-    baseInterestNote: "RPI + up to 3% (sliding scale by income)",
+    baseInterestNote: "RPI + up to 3% (sliding scale by income), capped at 6% from 1 Sept 2026 to 31 Aug 2027",
     writeOffYears: 30,
-    writeOffNote: "30 years after first repayment due date",
+    writeOffNote: "30 years after the April you were first due to repay",
     colour: "purple",
   },
   plan4: {
@@ -43,11 +43,11 @@ export const PLANS: Record<LoanPlan, PlanDefinition> = {
     name: "Plan 4",
     shortName: "Plan 4",
     who: "Scotland (post-1998 entrants)",
-    threshold2024: 31395,
+    threshold2024: 33795,
     repaymentRate: 0.09,
-    baseInterestNote: "RPI only (no addition)",
+    baseInterestNote: "Lower of RPI or Bank of England base rate + 1%",
     writeOffYears: 30,
-    writeOffNote: "30 years after first repayment due date (or age 65)",
+    writeOffNote: "30 years after the April you were first due to repay (or age 65 if sooner, for loans first paid before Aug 2007)",
     colour: "emerald",
   },
   plan5: {
@@ -59,7 +59,7 @@ export const PLANS: Record<LoanPlan, PlanDefinition> = {
     repaymentRate: 0.09,
     baseInterestNote: "RPI only (no addition)",
     writeOffYears: 40,
-    writeOffNote: "40 years after first repayment due date",
+    writeOffNote: "40 years after the April you were first due to repay",
     colour: "orange",
   },
   postgrad: {
@@ -69,9 +69,9 @@ export const PLANS: Record<LoanPlan, PlanDefinition> = {
     who: "Postgraduate Master's or Doctoral loan (England/Wales)",
     threshold2024: 21000,
     repaymentRate: 0.06,
-    baseInterestNote: "RPI + 3% always",
+    baseInterestNote: "RPI + 3%, capped at 6% from 1 Sept 2026 to 31 Aug 2027",
     writeOffYears: 30,
-    writeOffNote: "30 years after first repayment due date",
+    writeOffNote: "30 years after the April you were first due to repay",
     colour: "rose",
   },
 };

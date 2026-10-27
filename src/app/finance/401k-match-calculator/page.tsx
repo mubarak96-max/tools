@@ -21,8 +21,8 @@ const faqs = [
     a: "The formula is: Employer Match = (Your Contribution % up to Cap) × Match Rate × Salary. Example: $70,000 salary, 50% match on up to 6% of pay = 6% × 50% × $70,000 = $2,100/year employer match.",
   },
   {
-    q: "What is the 401(k) contribution limit for 2024?",
-    a: "The IRS limit for employee 401(k) contributions in 2024 is $23,000. Workers aged 50+ can add a $7,500 catch-up contribution, bringing their total to $30,500. Our calculator automatically caps your employee contribution at the $23,000 limit.",
+    q: "What is the 401(k) contribution limit for 2026?",
+    a: "The IRS limit for employee 401(k) deferrals in 2026 is $24,500. Workers aged 50 and over can add an $8,000 catch-up contribution ($32,500 total), and workers aged 60–63 get a higher $11,250 catch-up instead ($35,750 total). The calculator caps your contribution at the limit for the age you enter.",
   },
   {
     q: "What does vesting mean in a 401(k)?",
@@ -32,13 +32,13 @@ const faqs = [
 
 export const metadata: Metadata = {
   ...buildMetadata({
-    title: "401(k) Match Calculator 2024 — Free Employer Match Tool",
-    description: "Calculate your exact 401(k) employer match, annual savings, and projected retirement balance. Applies 2024 IRS $23,000 limit automatically. Free, no sign-up required.",
+    title: "401(k) Match Calculator 2026 — Employer Match Tool",
+    description: "Calculate your 401(k) employer match, annual savings and projected balance. Applies the 2026 IRS limits: $24,500 deferral, $8,000 and $11,250 catch-ups.",
     path: PAGE_PATH,
   }),
   keywords: [
     "401k employer match calculator",
-    "401k match calculator 2024",
+    "401k match calculator 2026",
     "how much does my employer match 401k",
     "401k contribution calculator with employer match",
     "how is 401k match calculated",
@@ -62,9 +62,10 @@ function buildSchema() {
         "operatingSystem": "All",
         "browserRequirements": "Requires JavaScript",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "description": "Free 401(k) match calculator with 2024 IRS limits and compound growth projections.",
+        "description": "Free 401(k) match calculator with 2026 IRS limits and compound growth projections.",
         "featureList": [
-          "2024 IRS $23,000 limit protection",
+          "2026 IRS limits: $24,500 deferral plus age 50+ and age 60–63 catch-ups",
+          "$72,000 annual additions and $360,000 compensation caps",
           "Employer match rate and cap logic",
           "Vesting schedule warnings",
           "Compound growth retirement projection",
@@ -105,13 +106,20 @@ export default function Page() {
         </ol>
       </nav>
 
+      <header className="mb-10 max-w-3xl">
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">401(k) Employer Match Calculator</h1>
+        <p className="mt-4 text-lg leading-relaxed text-slate-600">
+          See how much your employer adds to your 401(k), whether you&apos;re contributing enough to get the full match, and how your balance could grow by retirement.
+        </p>
+      </header>
+
       <MatchCalculator />
 
       <footer className="mt-20 border-t border-slate-100 pt-12 text-center text-[13px] leading-relaxed text-slate-400">
         <p>
           This calculator is for educational and informational purposes only and does not constitute financial, tax, or investment advice.<br />
           Consult a qualified financial advisor for advice tailored to your specific situation.<br />
-          2024 IRS contribution limits used: $23,000 employee limit, $69,000 combined limit.
+          2026 IRS limits used: $24,500 employee deferral, $8,000 catch-up (50+), $11,250 catch-up (60–63), $72,000 combined limit, $360,000 compensation limit.
         </p>
       </footer>
     </div>

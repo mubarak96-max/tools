@@ -131,9 +131,9 @@ export default function MarketingROICalculator() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100/50 text-[10px] font-bold uppercase tracking-widest text-primary mb-6">
             <Zap className="w-3 h-3" /> Free Marketing Utility
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 mb-4 leading-[1.1]">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 mb-4 leading-[1.1]">
             Marketing ROI <span className="text-primary">Calculator</span>
-          </h1>
+          </h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium mb-10">
             Calculate ROAS, ROMI, CAC, and LTV across every channel. Know exactly what your marketing budget is earning in under a minute.
           </p>

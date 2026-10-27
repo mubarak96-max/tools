@@ -3,12 +3,14 @@ import { AuthorSection } from '@/components/blog/AuthorSection';
 import type { Metadata } from 'next';
 
 import JsonLd from '@/components/seo/JsonLd';
+import { BlogPostSchema, PostDates } from '@/components/blog/BlogPostMeta';
+import { getBlogPost } from '@/lib/blog/posts';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from '@/lib/seo/jsonld';
 
 const PAGE_PATH = '/blog/threads-bluesky-character-limits';
 const PAGE_URL = absoluteUrl(PAGE_PATH);
-const LAST_UPDATED_ISO = '2026-05-01T00:00:00.000Z';
+const LAST_UPDATED_ISO = getBlogPost('threads-bluesky-character-limits').dateModified;
 
 export const metadata: Metadata = {
   title: 'Threads and Bluesky Character Limits: Practical Guide',
@@ -57,27 +59,6 @@ const faq = [
   },
 ];
 
-function buildArticleJsonLd() {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: 'Threads and Bluesky Character Limits: Practical Guide',
-    description:
-      'Compare Threads and Bluesky character limits, practical writing lengths, and when a cross-platform draft needs trimming before you publish.',
-    dateModified: LAST_UPDATED_ISO,
-    datePublished: LAST_UPDATED_ISO,
-    author: {
-      '@type': 'Organization',
-      name: 'FindBest Tools',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'FindBest Tools',
-    },
-    mainEntityOfPage: PAGE_URL,
-  };
-}
-
 export default function ThreadsAndBlueskyCharacterLimitsPage() {
   const breadcrumbs = buildBreadcrumbJsonLd([
     { name: 'Home', path: '/' },
@@ -88,8 +69,8 @@ export default function ThreadsAndBlueskyCharacterLimitsPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <JsonLd data={serializeJsonLd(buildArticleJsonLd())} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug='threads-bluesky-character-limits' />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -118,7 +99,7 @@ export default function ThreadsAndBlueskyCharacterLimitsPage() {
             <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
               <span>8 min read</span>
               <span>-</span>
-              <span>Published April 2026</span>
+              <PostDates slug='threads-bluesky-character-limits' />
             </div>
           </div>
         </div>

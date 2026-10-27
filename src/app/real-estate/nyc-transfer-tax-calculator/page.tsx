@@ -374,7 +374,7 @@ export default function NYCTransferTaxCalculatorPage() {
                         Never rely on a "back-of-the-napkin" estimate for NYC closing costs. A 0.5% error on a $2 million sale is $10,000—enough to derail a deal at the closing table. Always use a dynamic calculator and verify the "Property Class" with your title company or attorney early in the process.
                     </p>
                     <div className="flex flex-wrap gap-4">
-                        <Link href="/blog/nyc-closing-costs-2026" className="px-8 py-4 bg-primary rounded-2xl font-bold hover:scale-105 transition-transform text-white">Full 2026 Closing Guide</Link>
+                        <Link href="/blog/nyc-closing-costs-2025" className="px-8 py-4 bg-primary rounded-2xl font-bold hover:scale-105 transition-transform text-white">Full 2026 Closing Guide</Link>
                         <Link href="/real-estate" className="px-8 py-4 bg-white/10 rounded-2xl font-bold hover:bg-white/20 transition-colors">More Tools</Link>
                     </div>
                 </div>
@@ -414,7 +414,7 @@ export default function NYCTransferTaxCalculatorPage() {
                     Go deeper on NYC closing costs and how transfer taxes fit into the full picture.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Link href="/blog/nyc-closing-costs-2026" className="group flex items-start gap-4 p-6 bg-white rounded-3xl border border-slate-200 hover:border-primary/30 transition-all shadow-sm flex-1">
+                    <Link href="/blog/nyc-closing-costs-2025" className="group flex items-start gap-4 p-6 bg-white rounded-3xl border border-slate-200 hover:border-primary/30 transition-all shadow-sm flex-1">
                         <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-bold flex-none">NYC</div>
                         <div>
                             <h4 className="font-bold text-slate-900 group-hover:text-primary transition-colors">NYC Closing Costs 2026 — Full Guide</h4>

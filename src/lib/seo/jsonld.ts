@@ -100,3 +100,45 @@ export function getUseCasePath(slugOrLabel: string) {
   const slug = slugify(slugOrLabel);
   return `/tools-for-${slug}`;
 }
+
+export const BLOG_AUTHOR = {
+  name: "Mubarak Mutesasira",
+  url: "https://www.linkedin.com/in/mubarak-mutesa-43a21095/",
+};
+
+export function buildBlogPostingJsonLd(post: {
+  path: string;
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  const url = absoluteUrl(post.path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.datePublished,
+    dateModified: post.dateModified,
+    inLanguage: "en",
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
+    author: {
+      "@type": "Person",
+      name: BLOG_AUTHOR.name,
+      url: BLOG_AUTHOR.url,
+      sameAs: [BLOG_AUTHOR.url],
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: absoluteUrl("/"),
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/images/favicon.svg"),
+      },
+    },
+  };
+}

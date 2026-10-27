@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { AuthorSection } from "@/components/blog/AuthorSection";
@@ -53,6 +54,7 @@ export default function FirstTimeBuyerHalalMortgageBlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="first-time-buyer-halal-mortgage-guide-uk" />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -81,7 +83,7 @@ export default function FirstTimeBuyerHalalMortgageBlogPage() {
             <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
               <span>12 min read</span>
               <span>•</span>
-              <span>Published April 2026</span>
+              <PostDates slug="first-time-buyer-halal-mortgage-guide-uk" />
             </div>
           </div>
         </div>

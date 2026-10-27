@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema } from "@/components/blog/BlogPostMeta";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import UtmAdsBlogClient from "./UtmAdsBlogClient";
@@ -65,18 +66,6 @@ export default function UtmAdsBlogPage() {
     { name: "UTM Ads", path: PAGE_PATH },
   ]);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "UTM Ads: How to Track Every Ad Campaign Across Every Platform (2026)",
-    description: "The complete guide to UTM tracking for ads — setup, dynamic parameters, naming conventions, and platform templates for Google, Meta, TikTok, LinkedIn and more.",
-    author: { "@type": "Organization", name: "FindBest.Tools" },
-    publisher: { "@type": "Organization", name: "FindBest.Tools" },
-    datePublished: "2026-05-01",
-    dateModified: "2026-05-01",
-    mainEntityOfPage: PAGE_URL,
-  };
-
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -93,7 +82,7 @@ export default function UtmAdsBlogPage() {
   return (
     <div className="-mx-4 sm:-mx-6 lg:-mx-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
-      <JsonLd data={serializeJsonLd(articleJsonLd)} />
+      <BlogPostSchema slug="utm-ads" />
       <JsonLd data={serializeJsonLd(faqJsonLd)} />
       <UtmAdsBlogClient />
     </div>

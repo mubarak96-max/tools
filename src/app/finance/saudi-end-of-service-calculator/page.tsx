@@ -4,9 +4,9 @@ import { RelatedToolsSection } from "@/components/tools/ToolPageScaffold";
 
 // ─── SEO metadata ──────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "Saudi End of Service Calculator — EOSB 2024 (مكافأة نهاية الخدمة)",
+  title: "Saudi End of Service Calculator 2026 — EOSB (مكافأة نهاية الخدمة)",
   description:
-    "Free Saudi Arabia end of service benefit calculator. Accurate EOSB calculation per Saudi Labor Law Articles 84–88. Covers resignation, termination, and contract expiry for Saudi and non-Saudi employees.",
+    "Free Saudi end of service (EOSB) calculator under Labor Law Articles 84–88, as amended in 2025. Covers resignation, termination, contract expiry and Art. 87 exceptions.",
   keywords: [
     "saudi end of service calculator",
     "saudi end of service benefit calculator",
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     "article 84 saudi labor law calculator",
   ],
   openGraph: {
-    title: "Saudi End of Service Calculator — EOSB 2024",
+    title: "Saudi End of Service Calculator 2026 — EOSB",
     description:
-      "Calculate your Saudi Arabia end of service benefit (EOSB) accurately under Saudi Labor Law. Covers all departure reasons and includes the resignation reduction rules.",
-    url: "https://findbest.tools/saudi-end-of-service-calculator",
+      "Calculate your Saudi Arabia end of service benefit (EOSB) under the Saudi Labor Law as amended in 2025, including the Article 85 resignation rules.",
+    url: "https://findbest.tools/finance/saudi-end-of-service-calculator",
   },
   alternates: {
-    canonical: "https://findbest.tools/saudi-end-of-service-calculator",
+    canonical: "https://findbest.tools/finance/saudi-end-of-service-calculator",
   },
 };
 
@@ -38,61 +38,74 @@ const schema = {
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "SAR" },
   description:
-    "Free Saudi Arabia end of service benefit (EOSB / مكافأة نهاية الخدمة) calculator under Saudi Labor Law Articles 84–88.",
+    "Free Saudi Arabia end of service benefit (EOSB / مكافأة نهاية الخدمة) calculator under Saudi Labor Law Articles 84–88, as amended by Royal Decree M/44 (in force from 19 February 2025).",
   areaServed: "SA",
 };
 
 // ─── Content data ──────────────────────────────────────────────────
 
 const RESIGNATION_TABLE = [
-  { years: "Less than 2 years", entitlement: "No entitlement", factor: "0%", article: "Art. 84" },
-  { years: "2 to less than 5", entitlement: "One-third (1/3)", factor: "33%", article: "Art. 84" },
-  { years: "5 to less than 10", entitlement: "Two-thirds (2/3)", factor: "67%", article: "Art. 84" },
-  { years: "10 years or more", entitlement: "Full benefit", factor: "100%", article: "Art. 84" },
+  { years: "Less than 2 years", entitlement: "No entitlement", factor: "0%", article: "Art. 85" },
+  { years: "2 to 5 years", entitlement: "One-third (1/3)", factor: "33%", article: "Art. 85" },
+  { years: "More than 5, less than 10", entitlement: "Two-thirds (2/3)", factor: "67%", article: "Art. 85" },
+  { years: "10 years or more", entitlement: "Full benefit", factor: "100%", article: "Art. 85" },
 ];
 
 const TERMINATION_TABLE = [
-  { scenario: "Termination by employer (without cause)", entitlement: "Full benefit", factor: "100%", article: "Art. 85" },
-  { scenario: "Fixed-term contract not renewed", entitlement: "Full benefit", factor: "100%", article: "Art. 85" },
-  { scenario: "Retirement", entitlement: "Full benefit", factor: "100%", article: "Art. 85" },
-  { scenario: "Death or permanent disability", entitlement: "Full benefit", factor: "100%", article: "Art. 85" },
-  { scenario: "Termination for gross misconduct (Art. 80)", entitlement: "No entitlement", factor: "0%", article: "Art. 80" },
-  { scenario: "Woman — resignation within 6 months of marriage", entitlement: "Full benefit", factor: "100%", article: "Art. 84 (exception)" },
-  { scenario: "Woman — resignation within 3 months of childbirth", entitlement: "Full benefit", factor: "100%", article: "Art. 84 (exception)" },
+  { scenario: "Termination by employer (not under Art. 80)", entitlement: "Full benefit", factor: "100%", article: "Art. 84" },
+  { scenario: "Fixed-term contract not renewed", entitlement: "Full benefit", factor: "100%", article: "Art. 84" },
+  { scenario: "Retirement age reached", entitlement: "Full benefit", factor: "100%", article: "Art. 84" },
+  { scenario: "Death or inability to work", entitlement: "Full benefit", factor: "100%", article: "Art. 84" },
+  { scenario: "Worker leaves due to employer breach", entitlement: "Full benefit", factor: "100%", article: "Art. 81" },
+  { scenario: "Leaving due to force majeure", entitlement: "Full benefit", factor: "100%", article: "Art. 87" },
+  { scenario: "Woman — ends contract within 6 months of marriage", entitlement: "Full benefit", factor: "100%", article: "Art. 87" },
+  { scenario: "Woman — ends contract within 3 months of childbirth", entitlement: "Full benefit", factor: "100%", article: "Art. 87" },
+  { scenario: "Dismissal for misconduct grounds in Art. 80", entitlement: "No entitlement", factor: "0%", article: "Art. 80" },
+  { scenario: "Contract ended during probation", entitlement: "No entitlement", factor: "0%", article: "Art. 54" },
+];
+
+const SOURCES = [
+  { label: "HRSD — Labor Relations (current text of Articles 74–88, incl. 79 bis)", href: "https://www.hrsd.gov.sa/en/%D8%B9%D9%84%D8%A7%D9%82%D8%A7%D8%AA-%D8%A7%D9%84%D8%B9%D9%85%D9%84" },
+  { label: "HRSD — Awareness Guide on the Rights and Duties of Employers and Workers (2025)", href: "https://www.hrsd.gov.sa/sites/default/files/2025-12/awareness-guide-on-the-rights-and-duties-of-employers-and-workers---1-.pdf" },
+  { label: "HRSD — Saudi Labor Law, English translation (Article 2 wage definitions)", href: "https://www.hrsd.gov.sa/sites/default/files/2023-02/Labor.pdf" },
 ];
 
 const FAQS = [
   {
     q: "How is the end of service benefit calculated in Saudi Arabia?",
-    a: "The Saudi end of service benefit (EOSB) is calculated based on the employee's last drawn basic salary and their total length of service. The accrual rate is half a month's salary per year for the first five years, and one full month's salary per year for each year beyond five. For example, an employee earning SAR 10,000 per month who served exactly 7 years would receive: (5 × 5,000) + (2 × 10,000) = SAR 45,000 gross. If they resigned voluntarily after 7 years (between 5 and 10 years), two-thirds of SAR 45,000 = SAR 30,000 would be payable. Partial years are prorated based on the number of days in the incomplete year.",
+    a: "Under Article 84 of the Saudi Labor Law, the end of service award is half a month's wage for each of the first five years of service and one month's wage for each year after that, calculated on the last wage. Parts of a year count in proportion. For example, an employee whose last monthly wage is SAR 10,000 and who served exactly 7 years would have a full award of (5 × 5,000) + (2 × 10,000) = SAR 45,000. If they resigned after 7 years (more than 5 but under 10), Article 85 gives two-thirds: SAR 30,000.",
   },
   {
     q: "What is the end of service benefit for resignation in Saudi Arabia?",
-    a: "Employees who voluntarily resign receive a reduced end of service benefit under Article 84 of the Saudi Labor Law. The reduction depends on total years of service: less than 2 years — no entitlement; 2 to 5 years — one-third of the calculated benefit; 5 to 10 years — two-thirds of the calculated benefit; 10 or more years — full benefit. There are two important exceptions: a woman who resigns within 6 months of her marriage, or within 3 months of childbirth, is entitled to the full benefit regardless of how many years she has served.",
+    a: "Article 85 reduces the award when the employee resigns: less than 2 years of service — no award; 2 to 5 years — one-third; more than 5 but less than 10 years — two-thirds; 10 years or more — the full award. Article 87 makes the full award payable regardless of service if the worker leaves due to force majeure beyond their control, or if a female worker ends her contract within 6 months of her marriage contract or within 3 months of giving birth.",
   },
   {
     q: "Does end of service include housing and transport allowances?",
-    a: "Under the standard provisions of the Saudi Labor Law, the EOSB is calculated on the basic salary only — not on the total package. Housing allowances, transport allowances, commission, bonuses, and other benefits are excluded from the calculation base unless the employment contract or company policy explicitly states that these components should be included. Always refer to your employment contract. If your contract states that EOSB is based on your 'total salary' or lists specific allowances as part of the calculation base, those amounts should be added.",
+    a: "Article 84 calculates the award on the 'last wage', and Article 2 of the Labor Law defines 'wage' as the actual wage: the basic wage plus allowances and other increments due under the contract. In practice that means fixed allowances such as housing and transport normally form part of the calculation base. Article 86 lets the parties agree to exclude commissions, sales percentages and similar pay that naturally goes up and down. Check your contract and, if in doubt, ask HRSD or a Saudi labour lawyer.",
+  },
+  {
+    q: "What did the 2025 Labor Law amendments change for end of service?",
+    a: "Royal Decree M/44, in force from 19 February 2025, did not change the end of service formula in Article 84 or the resignation scale in Article 85. It did change how resignation works: resignation is now defined as a written, unconditional request by the worker, Article 79 bis treats it as accepted if the employer does not reply within 30 days (the employer may postpone acceptance by up to 60 days in writing), and the worker can withdraw it within 7 days if not yet accepted. Article 75 notice for indefinite contracts is now at least 30 days from the worker and 60 days from the employer.",
   },
   {
     q: "What is the difference between Article 84 and Article 85 of the Saudi Labor Law?",
-    a: "Article 84 governs situations where the employee chooses to leave — voluntary resignation and mutual agreement. It applies a sliding reduction scale based on years of service. Article 85 governs situations where the employment ends due to the employer's action or circumstances outside the employee's choice — termination by the employer, expiry of a fixed-term contract, retirement, and death or disability. Under Article 85, the employee receives the full calculated benefit with no reduction, regardless of how many years they have served.",
+    a: "Article 84 sets the end of service award itself: half a month's wage per year for the first five years and one month's wage per year after that, on the last wage. Article 85 applies only when the employment ends through the worker's resignation and pays a fraction of that award depending on years of service. When the employer terminates the contract (other than under Article 80), a fixed-term contract expires, or the worker reaches retirement age, the full Article 84 award is due.",
   },
   {
-    q: "What happens to my end of service if I am a Saudi national enrolled in GOSI?",
-    a: "Saudi nationals who are enrolled in GOSI (General Organisation for Social Insurance) have their end of service benefit handled through the Muʿāwadha (معاوضة) programme, introduced as part of the Vision 2030 labour reforms. Rather than the employer maintaining a provision for EOSB, contributions are made to GOSI on the employee's behalf. Upon leaving employment, the EOSB is paid through GOSI rather than directly by the employer. The statutory calculation formula remains the same — the mechanism of collection and payment changes. Non-Saudi (expatriate) employees remain under the traditional direct employer obligation.",
+    q: "Do Saudi nationals and expatriates get the same end of service benefit?",
+    a: "Yes. The Labor Law's end of service provisions (Articles 84–88) apply to workers covered by the law regardless of nationality, and the award is paid by the employer as part of the final settlement. GOSI social insurance is a separate system and does not replace the employer's end of service obligation under the Labor Law.",
   },
   {
-    q: "Can my employer deduct money from my end of service benefit?",
-    a: "Saudi Labor Law limits what can be deducted from an EOSB. Employers may deduct amounts owed by the employee such as outstanding salary advances, documented loans provided by the employer, damages established by a court or official body, and certain other specific amounts. An employer cannot unilaterally reduce the EOSB for reasons such as performance, notice period violations, or general 'damages' without legal basis. If an employee believes their EOSB has been wrongfully reduced, they can file a complaint with the Ministry of Human Resources and Social Development.",
+    q: "When must my employer pay the end of service benefit, and can it be reduced?",
+    a: "Article 88 requires the employer to pay wages and settle all entitlements within one week of the end of the employment relationship, or within two weeks if the worker ended the contract. The employer may deduct work-related debts owed to it from the worker's entitlements. If you believe your award has been withheld or reduced without a legal basis, you can raise a labour complaint with the Ministry of Human Resources and Social Development (HRSD).",
   },
   {
     q: "Is end of service benefit taxable in Saudi Arabia?",
-    a: "Saudi Arabia does not levy personal income tax on wages or employment benefits for individuals. End of service benefits are therefore not subject to income tax for employees working in Saudi Arabia, whether Saudi nationals or expatriates. The EOSB is paid gross with no tax deductions at source. However, expatriates should check whether their home country taxes foreign-sourced income on their return — some countries tax worldwide income regardless of where it was earned.",
+    a: "Saudi Arabia does not levy personal income tax on individuals' employment income, so end of service benefits are not taxed in Saudi Arabia for Saudi nationals or expatriates. Expatriates should check whether their home country taxes foreign employment income when they return.",
   },
   {
-    q: "What is the end of service benefit for an employee terminated without cause?",
-    a: "An employee who is dismissed by their employer without cause (i.e., not under Article 80 for gross misconduct) is entitled to the full calculated EOSB under Article 85, regardless of how long they have served — even if they served less than 2 years. In addition, they are entitled to a notice period payment (or payment in lieu of notice), which is at least 60 days' salary for indefinite contracts. The employer must also pay all outstanding wages, accrued vacation pay, and any other contractual entitlements.",
+    q: "What do I get if my employer terminates me without a valid reason?",
+    a: "An employee dismissed other than under Article 80 receives the full Article 84 award, even with less than 2 years of service (the Article 85 reduction applies only to resignation). For an indefinite contract the employer must also give at least 60 days' written notice (Article 75). If the termination is for no legitimate reason and the contract does not set compensation, Article 77 provides 15 days' wage for each year of service for indefinite contracts, or the wage for the remaining term of a fixed-term contract, and not less than two months' wage. Outstanding wages and accrued leave must also be paid.",
   },
 ];
 
@@ -130,9 +143,9 @@ export default function SaudiEosPage() {
           <p className="text-lg text-stone-400 font-medium mb-3">مكافأة نهاية الخدمة</p>
           <p className="text-lg text-stone-500 leading-relaxed">
             Calculate your Saudi Arabia end of service benefit (EOSB) accurately under the
-            Saudi Labor Law. Covers all departure reasons — resignation, termination, and
-            contract expiry — with the correct reduction rules applied automatically.
-            Accurate for both Saudi nationals and expatriate employees.
+            Saudi Labor Law, including the 2025 amendments. Covers resignation, termination,
+            contract expiry and the Article 87 exceptions, with the Article 85 resignation
+            rules applied automatically.
           </p>
         </div>
 
@@ -146,17 +159,16 @@ export default function SaudiEosPage() {
           The end of service benefit (EOSB), known in Arabic as مكافأة نهاية الخدمة
           (mukāfaʾat nihāyat al-khidmah), is a statutory payment that every employer in
           Saudi Arabia is legally required to make to an employee upon the termination
-          of their employment. It is governed by the Saudi Labor Law under Royal Decree
-          No. M/51 and its amendments, specifically Articles 84 to 88.
+          of their employment. It is governed by the Saudi Labor Law (Royal Decree
+          No. M/51) and its amendments — including Royal Decree M/44, in force from
+          19 February 2025 — specifically Articles 84 to 88.
         </P>
         <P>
-          Unlike a pension or savings scheme, the EOSB is a lump sum payment calculated
-          purely on the length of service and the employee's last basic salary. It applies
-          to all private sector employees in Saudi Arabia regardless of nationality —
-          Saudi nationals, Gulf Cooperation Council (GCC) nationals, and third-country
-          nationals (expatriates) are all entitled to EOSB under the same statutory formula.
-          The mechanism of payment differs for Saudi nationals enrolled in the GOSI
-          Muʿāwadha programme, but the underlying calculation is identical.
+          Unlike a pension or savings scheme, the EOSB is a lump sum paid by the employer,
+          calculated on the length of service and the employee&apos;s last wage. The same
+          statutory formula applies to workers covered by the Labor Law regardless of
+          nationality — Saudi nationals and expatriates alike. GOSI social insurance is a
+          separate system and does not replace the employer&apos;s end of service obligation.
         </P>
 
         <H2>EOSB calculation formula</H2>
@@ -165,14 +177,14 @@ export default function SaudiEosPage() {
           <div className="bg-stone-50 border border-stone-200 rounded-2xl p-5">
             <p className="text-sm font-semibold text-stone-800 mb-3">First 5 years of service</p>
             <code className="block text-sm bg-white rounded-lg px-4 py-3 border border-stone-200 text-stone-700 font-mono mb-3">
-              EOSB = Years × (Basic Salary ÷ 2)
+              EOSB = Years × (Last Wage ÷ 2)
             </code>
             <p className="text-xs text-stone-500">½ month's salary for each completed year. Example: 4 years at SAR 8,000/month = SAR 16,000.</p>
           </div>
           <div className="bg-stone-50 border border-stone-200 rounded-2xl p-5">
             <p className="text-sm font-semibold text-stone-800 mb-3">After 5 years of service</p>
             <code className="block text-sm bg-white rounded-lg px-4 py-3 border border-stone-200 text-stone-700 font-mono mb-3">
-              EOSB = (5 × Salary/2) + (Extra Years × Salary)
+              EOSB = (5 × Wage/2) + (Extra Years × Wage)
             </code>
             <p className="text-xs text-stone-500">1 full month's salary per year beyond 5. Example: 8 years at SAR 10,000 = SAR 25,000 + SAR 30,000 = SAR 55,000.</p>
           </div>
@@ -182,9 +194,10 @@ export default function SaudiEosPage() {
           Partial years are prorated based on the actual number of days in the incomplete
           year. The accrual rate for the partial year follows the same rule — half a month
           per year if total service is under 5 years, or a full month per year if total
-          service exceeds 5 years. The calculation base is the last drawn basic salary —
-          not the total compensation package — unless the employment contract explicitly
-          states otherwise.
+          service exceeds 5 years. The calculation base is the last wage, which Article 2
+          of the Labor Law defines as the actual wage — basic pay plus allowances such as
+          housing and transport. Under Article 86, commissions and similar variable pay may
+          be excluded from the base by agreement.
         </P>
 
         <H2>Resignation vs termination — the critical difference</H2>
@@ -194,7 +207,7 @@ export default function SaudiEosPage() {
           whether the employee chose to leave or was required to leave.
         </P>
 
-        <H3>Resignation (Article 84) — entitlement by years served</H3>
+        <H3>Resignation (Article 85) — entitlement by years served</H3>
         <P>
           When an employee voluntarily resigns, the EOSB entitlement is scaled based on total
           years of service. This is one of the most frequently misunderstood aspects of Saudi
@@ -230,14 +243,16 @@ export default function SaudiEosPage() {
           </table>
         </div>
 
-        <H3>Termination and other departure scenarios (Article 85)</H3>
+        <H3>Termination and other departure scenarios (Articles 84, 81 and 87)</H3>
         <P>
-          When employment ends for reasons other than voluntary resignation, the employee
-          generally receives the full calculated benefit. This includes dismissal by the
-          employer without cause, expiry of a fixed-term contract that is not renewed, and
-          retirement. The only exception is termination for gross misconduct under Article 80
-          — the specific grounds listed in that article (such as assault, theft, or
-          abandonment of work for 20+ days) — which can result in forfeiture of the EOSB.
+          When employment ends for reasons other than resignation, the employee receives the
+          full Article 84 award. This includes dismissal by the employer, expiry of a
+          fixed-term contract that is not renewed, and reaching retirement age. A worker who
+          leaves without notice under Article 81 because the employer breached its
+          obligations keeps all statutory rights. No award is due on dismissal under
+          Article 80 — for grounds such as assault, forgery, or absence of more than 30 days
+          in a contract year or 15 consecutive days without a valid reason after a written
+          warning — or when the contract ends during probation (Article 54).
         </P>
 
         <div className="overflow-x-auto mb-6">
@@ -267,23 +282,27 @@ export default function SaudiEosPage() {
           </table>
         </div>
 
-        <H2>Important notes for expatriate employees</H2>
+        <H2>What changed with the 2025 Labor Law amendments</H2>
         <P>
-          Expatriate (non-Saudi) employees make up a large portion of the Saudi private
-          sector workforce. Their EOSB rights are identical to those of Saudi nationals
-          under the Labor Law — the same calculation formula, the same resignation
-          reduction rules, and the same termination protections apply. The key practical
-          difference is that expatriate employees must receive their EOSB directly from
-          their employer, rather than through GOSI.
+          Royal Decree M/44 amended the Labor Law with effect from 19 February 2025. The end
+          of service formula (Article 84), the resignation scale (Article 85) and the
+          Article 87 exceptions were not changed. The amendments did change the resignation
+          process: resignation is now defined as a written request by the worker, made
+          without coercion or conditions. Under Article 79 bis it is treated as accepted if
+          the employer does not respond within 30 days; the employer may postpone acceptance
+          by up to 60 days with a written reason, and the worker may withdraw it within 7
+          days if it has not been accepted. For indefinite contracts, Article 75 notice is now
+          at least 30 days when the worker ends the contract and 60 days when the employer
+          does.
         </P>
+
+        <H2>Getting paid</H2>
         <P>
-          Employers are required by law to maintain sufficient reserves to cover EOSB
-          obligations to expatriate staff. If an employer fails to pay the EOSB on
-          termination of employment, the employee can file a labour complaint with the
-          Ministry of Human Resources and Social Development (MHRSD) through the Musaned
-          portal or directly at a labour office. Saudi Arabia has significantly strengthened
-          enforcement of wage and EOSB obligations in recent years, including through the
-          Wage Protection System (WPS).
+          The employer must settle wages and all entitlements, including the end of service
+          award, within one week of the contract ending — or within two weeks if the worker
+          ended the contract (Article 88). The employer may deduct work-related debts owed to
+          it. If your award is not paid, you can raise a labour complaint with the Ministry
+          of Human Resources and Social Development (HRSD).
         </P>
 
         <H2>Frequently asked questions</H2>
@@ -304,15 +323,29 @@ export default function SaudiEosPage() {
         {/* Disclaimer */}
         <div className="mt-10 p-4 bg-stone-50 rounded-xl border border-stone-200">
           <p className="text-xs text-stone-500 leading-relaxed">
-            <strong className="text-stone-700">Disclaimer:</strong> This calculator is based
-            on the Saudi Labor Law as amended and publicly available interpretations as of
-            2024. It is provided for informational purposes only and does not constitute
-            legal advice. Individual employment contracts, company policies, collective
-            agreements, and GOSI programme rules may alter the calculation. The GOSI
-            Muʿāwadha programme rules for Saudi nationals are subject to change. For
-            disputes or complex cases, consult a licensed Saudi labour lawyer or contact
-            the Ministry of Human Resources and Social Development (MHRSD).
+            <strong className="text-stone-700">Disclaimer:</strong> This calculator follows
+            the Saudi Labor Law as amended, including Royal Decree M/44 (in force from
+            19 February 2025). It is provided for informational purposes only and does not
+            constitute legal advice. Contract terms more favourable to the worker, company
+            policies and court rulings on specific facts (for example, how a mutual-agreement
+            termination is treated) can change the result. For disputes or complex cases,
+            consult a licensed Saudi labour lawyer or contact the Ministry of Human Resources
+            and Social Development (HRSD).
           </p>
+        </div>
+
+        <div className="mt-6 p-4 bg-white rounded-xl border border-stone-200">
+          <p className="text-sm font-semibold text-stone-800 mb-2">Sources &amp; last checked</p>
+          <ul className="space-y-1.5 mb-3">
+            {SOURCES.map((src) => (
+              <li key={src.href} className="text-xs leading-relaxed">
+                <a href={src.href} target="_blank" rel="noopener noreferrer" className="text-green-700 underline hover:text-green-800">
+                  {src.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-stone-500">Last checked: October 2026</p>
         </div>
 
         {/* Related Tools */}

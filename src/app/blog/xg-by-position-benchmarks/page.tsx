@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
@@ -53,6 +54,7 @@ export default function XGBlogPositionPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="xg-by-position-benchmarks" />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -75,7 +77,7 @@ export default function XGBlogPositionPage() {
             <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
               <span>20 min read</span>
               <span>•</span>
-              <span>Published May 2026</span>
+              <PostDates slug="xg-by-position-benchmarks" />
             </div>
           </div>
         </div>

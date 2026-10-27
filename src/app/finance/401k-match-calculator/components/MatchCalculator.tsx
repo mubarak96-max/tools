@@ -38,6 +38,21 @@ interface Results {
   monthlyMatch: number;
 }
 
+// IRS 2026 limits (IR-2025-111 / Notice 2025-67)
+const IRS_2026 = {
+  deferral: 24500,
+  catchUp50: 8000,
+  catchUp60to63: 11250,
+  annualAdditions: 72000,
+  compensation: 360000,
+};
+
+function deferralLimit(age: number) {
+  if (age >= 60 && age <= 63) return IRS_2026.deferral + IRS_2026.catchUp60to63;
+  if (age >= 50) return IRS_2026.deferral + IRS_2026.catchUp50;
+  return IRS_2026.deferral;
+}
+
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function fmt(n: number, decimals = 0) {
   return n.toLocaleString("en-US", {
@@ -70,13 +85,15 @@ function calculate(f: FormState): Results | null {
     matchRate < 0 || matchCap < 0 || currentAge >= retirementAge
   ) return null;
 
-  const IRS_BASE_LIMIT = 23000;
-  const IRS_CATCH_UP = 7500;
-  const limit = currentAge >= 50 ? IRS_BASE_LIMIT + IRS_CATCH_UP : IRS_BASE_LIMIT;
-
-  const yourAnnualContrib = Math.min((contribPct / 100) * salary, limit);
+  const yourAnnualContrib = Math.min((contribPct / 100) * salary, deferralLimit(currentAge));
+  // Match can only be based on pay up to the 401(a)(17) limit; catch-up deferrals don't count toward 415(c).
+  const eligiblePay = Math.min(salary, IRS_2026.compensation);
   const eligibleContrib = Math.min(contribPct, matchCap);
-  const employerAnnualMatch = (eligibleContrib / 100) * salary * matchRate;
+  const nonCatchUpDeferral = Math.min(yourAnnualContrib, IRS_2026.deferral);
+  const employerAnnualMatch = Math.min(
+    (eligibleContrib / 100) * eligiblePay * matchRate,
+    Math.max(0, IRS_2026.annualAdditions - nonCatchUpDeferral),
+  );
   const totalAnnualSavings = yourAnnualContrib + employerAnnualMatch;
   const years = retirementAge - currentAge;
   const monthlyRate = annualReturn / 12;
@@ -166,8 +183,8 @@ const faqs = [
     a: "The formula is: Employer Match = (Your Contribution % up to Cap) × Match Rate × Salary. Example: $70,000 salary, 50% match on up to 6% of pay = 6% × 50% × $70,000 = $2,100/year employer match.",
   },
   {
-    q: "What is the 401(k) contribution limit for 2024?",
-    a: "The IRS limit for employee 401(k) contributions in 2024 is $23,000. Workers aged 50+ can add a $7,500 catch-up contribution, bringing their total to $30,500. Our calculator automatically caps your employee contribution at the $23,000 limit.",
+    q: "What is the 401(k) contribution limit for 2026?",
+    a: "The IRS limit for employee 401(k) deferrals in 2026 is $24,500. Workers aged 50 and over can add an $8,000 catch-up contribution ($32,500 total), and workers aged 60–63 get a higher $11,250 catch-up instead ($35,750 total). The calculator caps your contribution at the limit for the age you enter.",
   },
   {
     q: "What does vesting mean in a 401(k)?",
@@ -179,11 +196,11 @@ const faqs = [
   },
   {
     q: "What if my employer doesn't match 401(k) contributions?",
-    a: "A 401(k) still offers valuable pre-tax (traditional) or after-tax (Roth) growth. Consider maxing out an IRA ($7,000 limit in 2024) first if there's no employer match, as IRAs sometimes offer more investment flexibility.",
+    a: "A 401(k) still offers valuable pre-tax (traditional) or after-tax (Roth) growth. Consider maxing out an IRA ($7,500 limit in 2026) first if there's no employer match, as IRAs sometimes offer more investment flexibility.",
   },
   {
-    q: "How does the 2024 IRS 401(k) limit affect my match?",
-    a: "The $23,000 employee limit only caps what you put in — your employer's match is separate and not counted against that limit. The combined employee + employer limit is $69,000 in 2024.",
+    q: "How do the 2026 IRS 401(k) limits affect my match?",
+    a: "The $24,500 employee limit only caps what you put in — your employer's match is not counted against it. Employee and employer contributions together are capped at $72,000 in 2026 (catch-up contributions are on top of that), and a match can only be calculated on up to $360,000 of pay.",
   },
   {
     q: "Can I lose my employer 401(k) match?",
@@ -618,7 +635,7 @@ export default function MatchCalculator() {
                   <div className="bar-track">
                     <div
                       className="bar-fill bar-you"
-                      style={{ width: `${Math.min(100, (results.yourAnnualContrib / (parseInt(form.currentAge) >= 50 ? 30500 : 23000)) * 100)}%` }}
+                      style={{ width: `${Math.min(100, (results.yourAnnualContrib / deferralLimit(parseInt(form.currentAge))) * 100)}%` }}
                     />
                   </div>
                 </div>
@@ -630,7 +647,7 @@ export default function MatchCalculator() {
                   <div className="bar-track">
                     <div
                       className="bar-fill bar-employer"
-                      style={{ width: `${Math.min(100, (results.employerAnnualMatch / (parseInt(form.currentAge) >= 50 ? 30500 : 23000)) * 100)}%` }}
+                      style={{ width: `${Math.min(100, (results.employerAnnualMatch / deferralLimit(parseInt(form.currentAge))) * 100)}%` }}
                     />
                   </div>
                 </div>
@@ -730,12 +747,12 @@ export default function MatchCalculator() {
           Notice that the first two examples produce the same $2,400 annual match despite having different stated rates. This is why comparing plans purely by the match rate percentage is misleading — always look at both the rate and the cap together.
         </p>
 
-        <h3>The 2024 IRS 401(k) Contribution Limits</h3>
+        <h3>The 2026 IRS 401(k) Contribution Limits</h3>
         <p>
-          The IRS sets annual limits on how much employees can contribute to a 401(k). For <strong>2024</strong>, the employee contribution limit is <strong>$23,000</strong>. Workers aged 50 and over can contribute an additional <strong>$7,500</strong> in "catch-up contributions," bringing their total to $30,500.
+          The IRS sets annual limits on how much employees can contribute to a 401(k). For <strong>2026</strong>, the employee contribution limit is <strong>$24,500</strong>. Workers aged 50 and over can contribute an additional <strong>$8,000</strong> in "catch-up contributions," bringing their total to $32,500. Workers who are 60, 61, 62 or 63 during the year get a higher catch-up of <strong>$11,250</strong> instead, for a total of $35,750.
         </p>
         <p>
-          Importantly, the employer match does <em>not</em> count toward the employee limit. The <strong>combined</strong> limit (employee + employer) is $69,000 in 2024, or $76,500 for those 50+. Our calculator automatically caps your employee contribution at $23,000 to reflect this IRS rule.
+          Importantly, the employer match does <em>not</em> count toward the employee limit. The <strong>combined</strong> limit (employee + employer) is $72,000 in 2026, plus any catch-up contributions — $80,000 at age 50+, or $83,250 at ages 60–63. Employers can also only count up to <strong>$360,000</strong> of pay when calculating contributions. The calculator applies all of these limits for the age and salary you enter.
         </p>
       </section>
 
@@ -847,6 +864,17 @@ export default function MatchCalculator() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ─── Sources ─── */}
+      <section className="prose-section" aria-labelledby="sources">
+        <h2 id="sources">Sources &amp; Last Checked</h2>
+        <p>The 2026 contribution limits used in this calculator come from the IRS:</p>
+        <ul className="list-disc pl-6 space-y-2 text-[15px] text-slate-600">
+          <li><a className="text-primary underline" href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" target="_blank" rel="noopener noreferrer">IRS: 401(k) limit increases to $24,500 for 2026, IRA limit increases to $7,500</a></li>
+          <li><a className="text-primary underline" href="https://www.irs.gov/retirement-plans/cola-increases-for-dollar-limitations-on-benefits-and-contributions" target="_blank" rel="noopener noreferrer">IRS: COLA increases for dollar limitations on benefits and contributions</a></li>
+        </ul>
+        <p className="mt-4 text-sm text-slate-500">Last checked: October 2026</p>
       </section>
     </div>
   );

@@ -1,15 +1,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { fmtSAR } from "@/lib/saudiEos";
 import {
   calculateEos,
-  fmtSAR,
-  fmtYears,
+  fmtService,
   DEPARTURE_LABELS,
   type EosInputs,
   type DepartureReason,
-  type Nationality,
-} from "@/lib/saudiEos";
+} from "@/app/finance/saudi-end-of-service-calculator/eosCalculation";
 
 // ─── Primitives ────────────────────────────────────────────────────
 
@@ -70,39 +69,41 @@ function InfoBox({ children, colour = "amber" }: {
 
 export default function SaudiEosCalculator() {
   const today = new Date().toISOString().split("T")[0];
-  const fiveYearsAgo = new Date(Date.now() - 5 * 365.25 * 24 * 60 * 60 * 1000)
-    .toISOString().split("T")[0];
+  const fiveYearsAgoDate = new Date();
+  fiveYearsAgoDate.setFullYear(fiveYearsAgoDate.getFullYear() - 5);
+  const fiveYearsAgo = fiveYearsAgoDate.toISOString().split("T")[0];
 
   const [startDate,    setStartDate]    = useState(fiveYearsAgo);
   const [endDate,      setEndDate]      = useState(today);
   const [basicSalary,  setBasicSalary]  = useState(8000);
   const [departure,    setDeparture]    = useState<DepartureReason>("resignation");
-  const [nationality,  setNationality]  = useState<Nationality>("non_saudi");
 
-  const [inclHousing,  setInclHousing]  = useState(false);
+  const [inclHousing,  setInclHousing]  = useState(true);
   const [housing,      setHousing]      = useState(2000);
-  const [inclTransport,setInclTransport]= useState(false);
+  const [inclTransport,setInclTransport]= useState(true);
   const [transport,    setTransport]    = useState(500);
 
   const [womanMarriage,  setWomanMarriage]  = useState(false);
   const [womanChildbirth,setWomanChildbirth]= useState(false);
+  const [forceMajeure,   setForceMajeure]   = useState(false);
 
   const [tab, setTab] = useState<"summary" | "breakdown" | "schedule">("summary");
 
   const inputs: EosInputs = {
-    startDate, endDate, basicSalary, departureReason: departure, nationality,
+    startDate, endDate, basicSalary, departureReason: departure,
     includeHousingAllowance: inclHousing, housingAllowance: housing,
     includeTransportAllowance: inclTransport, transportAllowance: transport,
     womanMarriageResignation: womanMarriage,
     womanChildbirthResignation: womanChildbirth,
+    forceMajeure,
   };
 
   const result = useMemo(() => {
     if (!startDate || !endDate || new Date(endDate) <= new Date(startDate)) return null;
     return calculateEos(inputs);
-  }, [startDate, endDate, basicSalary, departure, nationality,
+  }, [startDate, endDate, basicSalary, departure,
       inclHousing, housing, inclTransport, transport,
-      womanMarriage, womanChildbirth]);
+      womanMarriage, womanChildbirth, forceMajeure]);
 
   const b = result?.breakdown;
   const isValid = !!result;
@@ -128,7 +129,7 @@ export default function SaudiEosCalculator() {
               <div className="h-10 w-px bg-green-200 hidden sm:block" />
               <div>
                 <p className="text-xs text-stone-400 mb-0.5">Service period</p>
-                <p className="text-xl font-semibold text-stone-700">{fmtYears(b.totalDays)}</p>
+                <p className="text-xl font-semibold text-stone-700">{fmtService(b.fullYears, b.remainingDays)}</p>
               </div>
               <div>
                 <p className="text-xs text-stone-400 mb-0.5">Gross benefit</p>
@@ -165,7 +166,7 @@ export default function SaudiEosCalculator() {
 
           <SectionLabel>Salary</SectionLabel>
           <div className="space-y-3">
-            <Field label="Monthly basic salary (SAR)" hint="Basic salary only — not total package">
+            <Field label="Monthly basic salary (SAR)" hint="Your last basic wage; add allowances below">
               <div className="relative">
                 <input type="number" value={basicSalary} min={0} step={100}
                   onChange={e => setBasicSalary(Number(e.target.value))}
@@ -175,7 +176,7 @@ export default function SaudiEosCalculator() {
             </Field>
 
             <div className="space-y-2 p-3 bg-stone-50 rounded-xl border border-stone-100">
-              <p className="text-xs font-medium text-stone-500 mb-2">Include in calculation base?</p>
+              <p className="text-xs font-medium text-stone-500 mb-2">Allowances in your last wage</p>
               <Toggle checked={inclHousing} onChange={setInclHousing} label="Housing allowance" />
               {inclHousing && (
                 <div className="relative mt-2">
@@ -195,7 +196,7 @@ export default function SaudiEosCalculator() {
                 </div>
               )}
               <p className="text-[10px] text-stone-400 mt-1 leading-relaxed">
-                By default, EOSB is calculated on basic salary only. Include allowances only if your employment contract explicitly states they form part of the EOSB base.
+                Article 84 uses your last wage, which the Labor Law (Art. 2) defines as the actual wage: basic pay plus allowances such as housing and transport. Untick an allowance only if you do not receive it as part of your wage. Commissions and other variable pay can be excluded by agreement (Art. 86).
               </p>
             </div>
           </div>
@@ -212,7 +213,9 @@ export default function SaudiEosCalculator() {
 
           {(departure === "resignation" || departure === "mutual_agreement") && (
             <div className="space-y-2 p-3 bg-amber-50 rounded-xl border border-amber-100 mt-2">
-              <p className="text-xs font-medium text-amber-700 mb-2">Special cases (full entitlement)</p>
+              <p className="text-xs font-medium text-amber-700 mb-2">Special cases (full award, Art. 87)</p>
+              <Toggle checked={forceMajeure} onChange={setForceMajeure}
+                label="Leaving due to force majeure beyond your control" />
               <Toggle checked={womanMarriage} onChange={v => { setWomanMarriage(v); if (v) setWomanChildbirth(false); }}
                 label="Woman resigning within 6 months of marriage" />
               <Toggle checked={womanChildbirth} onChange={v => { setWomanChildbirth(v); if (v) setWomanMarriage(false); }}
@@ -220,18 +223,6 @@ export default function SaudiEosCalculator() {
             </div>
           )}
 
-          <SectionLabel>Nationality</SectionLabel>
-          <div className="flex gap-2">
-            {([
-              { v: "saudi" as Nationality, l: "Saudi national" },
-              { v: "non_saudi" as Nationality, l: "Non-Saudi (expatriate)" },
-            ]).map(o => (
-              <button key={o.v} onClick={() => setNationality(o.v)}
-                className={`flex-1 py-2 text-xs rounded-lg border transition-colors ${nationality === o.v ? "bg-green-50 border-green-300 text-green-700 font-medium" : "border-stone-200 text-stone-500 hover:bg-stone-50"}`}>
-                {o.l}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* ── Results ──────────────────────────────────────────── */}
@@ -258,7 +249,7 @@ export default function SaudiEosCalculator() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { label: "Service period",      value: fmtYears(b.totalDays),           bg: "bg-stone-50" },
+                      { label: "Service period",      value: fmtService(b.fullYears, b.remainingDays), bg: "bg-stone-50" },
                       { label: "Calculation base",    value: fmtSAR(b.monthlySalaryBase) + "/mo", bg: "bg-stone-50" },
                       { label: "Gross benefit",       value: fmtSAR(b.grossBenefit),          bg: "bg-stone-50" },
                       { label: "Entitlement",         value: b.reductionLabel,                bg: b.isFullEntitlement ? "bg-green-50" : b.reductionFactor === 0 ? "bg-red-50" : "bg-amber-50" },
@@ -302,20 +293,19 @@ export default function SaudiEosCalculator() {
                     </div>
                   )}
 
-                  {/* GOSI note */}
-                  <InfoBox colour={nationality === "saudi" ? "blue" : "green"}>
-                    <strong>GOSI / Payment note:</strong> {b.gosiNote}
+                  <InfoBox colour="green">
+                    <strong>Payment:</strong> {b.paymentNote}
                   </InfoBox>
 
                   {b.reductionFactor === 0 && (
                     <InfoBox colour="red">
-                      <strong>No entitlement:</strong> Under Saudi Labor Law Article 84, employees who resign voluntarily with less than 2 years of service are not entitled to an end of service benefit.
+                      <strong>No entitlement:</strong> {b.reductionLabel}. Under the Saudi Labor Law, no award is due on resignation with less than 2 years of service (Art. 85), on dismissal under Article 80, or when the contract ends during probation (Art. 54).
                     </InfoBox>
                   )}
 
                   {b.reductionFactor > 0 && b.reductionFactor < 1 && (
                     <InfoBox colour="amber">
-                      <strong>Partial entitlement:</strong> {b.reductionLabel}. Under Article 84 of the Saudi Labor Law, voluntary resignation results in a reduced EOSB. Your gross calculated benefit of {fmtSAR(b.grossBenefit)} is reduced to {fmtSAR(b.netBenefit)}.
+                      <strong>Partial entitlement:</strong> {b.reductionLabel}. Under Article 85 of the Saudi Labor Law, resignation results in a reduced EOSB. Your gross calculated benefit of {fmtSAR(b.grossBenefit)} is reduced to {fmtSAR(b.netBenefit)}.
                     </InfoBox>
                   )}
                 </div>
@@ -326,13 +316,13 @@ export default function SaudiEosCalculator() {
                 <div className="space-y-4">
                   <div className="rounded-2xl border border-stone-200 overflow-hidden">
                     <div className="bg-stone-50 px-4 py-2.5 border-b border-stone-200">
-                      <p className="text-xs font-medium text-stone-500">Calculation breakdown — Saudi Labor Law Arts. 84–85</p>
+                      <p className="text-xs font-medium text-stone-500">Calculation breakdown — Saudi Labor Law Arts. 84–87</p>
                     </div>
                     <div className="divide-y divide-stone-100">
                       {[
                         { label: "Employment start",          value: new Date(startDate).toLocaleDateString("en-GB", { day:"2-digit", month:"long", year:"numeric" }) },
                         { label: "Employment end",            value: new Date(endDate).toLocaleDateString("en-GB", { day:"2-digit", month:"long", year:"numeric" }) },
-                        { label: "Total service",             value: fmtYears(b.totalDays) + ` (${b.totalDays} days)` },
+                        { label: "Total service",             value: fmtService(b.fullYears, b.remainingDays) + ` (${b.totalDays} days)` },
                         { label: "Complete years",            value: `${b.fullYears} year${b.fullYears !== 1 ? "s" : ""}` },
                         { label: "Remaining days",            value: `${b.remainingDays} days` },
                         { label: "Monthly calculation base",  value: fmtSAR(b.monthlySalaryBase) },
@@ -352,9 +342,9 @@ export default function SaudiEosCalculator() {
                   </div>
 
                   <InfoBox colour="blue">
-                    <strong>Article 84 — Resignation reduction rules:</strong><br/>
-                    &lt; 2 years: No entitlement · 2–5 years: 1/3 · 5–10 years: 2/3 · 10+ years: Full.<br/>
-                    Women resigning within 6 months of marriage or 3 months of childbirth receive full benefit.
+                    <strong>Article 85 — Resignation rules:</strong><br/>
+                    &lt; 2 years: No award · 2–5 years: 1/3 · over 5 and under 10 years: 2/3 · 10+ years: Full.<br/>
+                    Article 87: full award if leaving due to force majeure, or for a woman ending the contract within 6 months of her marriage contract or 3 months of giving birth.
                   </InfoBox>
                 </div>
               )}

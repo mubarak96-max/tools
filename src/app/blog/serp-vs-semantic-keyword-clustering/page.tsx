@@ -2,13 +2,15 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
+import { getBlogPost } from "@/lib/blog/posts";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 
 const PAGE_PATH = "/blog/serp-vs-semantic-keyword-clustering";
 const PAGE_URL = absoluteUrl(PAGE_PATH);
-const LAST_UPDATED_ISO = "2026-05-02T00:00:00.000Z";
+const LAST_UPDATED_ISO = getBlogPost("serp-vs-semantic-keyword-clustering").dateModified;
 
 const faq = [
   {
@@ -55,23 +57,10 @@ export default function SerpVsSemanticClusteringPage() {
   ]);
   const faqJsonLd = buildFaqJsonLd(faq);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "SERP-Based vs. Semantic Keyword Clustering: Which Method Should You Use?",
-    description:
-      "Compare SERP-based and semantic keyword clustering. Learn the pros and cons of each method and how to use a hybrid approach for the best SEO results.",
-    datePublished: LAST_UPDATED_ISO,
-    dateModified: LAST_UPDATED_ISO,
-    mainEntityOfPage: PAGE_URL,
-    author: { "@type": "Organization", name: "FindBest Tools" },
-    publisher: { "@type": "Organization", name: "FindBest Tools" },
-  };
-
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <JsonLd data={serializeJsonLd(articleJsonLd)} />
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="serp-vs-semantic-keyword-clustering" />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12 space-y-4">
@@ -98,7 +87,7 @@ export default function SerpVsSemanticClusteringPage() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium mt-3">
             <span>9 min read</span>
             <span>-</span>
-            <span>Published March 2026</span>
+            <PostDates slug="serp-vs-semantic-keyword-clustering" />
           </div>
         </div>
       </header>

@@ -5,7 +5,7 @@ import HouseAffordabilityCalculator from "@/components/HouseAffordabilityCalcula
 export const metadata: Metadata = {
   title: "House Affordability Calculator Australia — How Much Can I Borrow?",
   description:
-    "Free house affordability calculator for Australia. Calculate stamp duty by state, LMI, FHOG, monthly repayments and borrowing capacity with the APRA 3% serviceability buffer. Accurate 2024 rates for all states.",
+    "Free Australian house affordability calculator for 2026. Stamp duty by state, LMI, first home grants, repayments and borrowing power with APRA's 3% buffer.",
   keywords: [
     "house affordability calculator australia",
     "how much can i borrow australia",
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     "fhog calculator australia",
   ],
   openGraph: {
-    title: "House Affordability Calculator Australia 2024",
+    title: "House Affordability Calculator Australia 2026",
     description:
       "See exactly what you can afford, your stamp duty by state, LMI, upfront costs, and monthly repayments. Covers all Australian states and territories.",
-    url: "https://findbest.tools/house-affordability-calculator-australia",
+    url: "https://findbest.tools/finance/house-affordability-calculator-australia",
   },
   alternates: {
-    canonical: "https://findbest.tools/house-affordability-calculator-australia",
+    canonical: "https://findbest.tools/finance/house-affordability-calculator-australia",
   },
 };
 
@@ -39,21 +39,22 @@ const schema = {
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   description:
-    "Free Australian house affordability calculator with stamp duty, LMI, FHOG, APRA borrowing capacity and monthly repayment estimates for all states.",
+    "Free Australian house affordability calculator with October 2026 stamp duty rates, LMI, first home grants, APRA serviceability buffer and monthly repayment estimates for all states.",
+  dateModified: "2026-10-27",
   areaServed: "AU",
 };
 
 // ─── Content data ──────────────────────────────────────────────────
 
 const STAMP_DUTY_SUMMARY = [
-  { state: "NSW",  name: "New South Wales",         fhbExemption: "Full exemption ≤ $800k",    maxRate: "7%",    rate: "$10,530 + 4.5% over $351k" },
-  { state: "VIC",  name: "Victoria",                fhbExemption: "Full exemption ≤ $600k",    maxRate: "5.5%",  rate: "$2,870 + 6% over $130k" },
-  { state: "QLD",  name: "Queensland",              fhbExemption: "Full concession ≤ $500k",   maxRate: "5.75%", rate: "$1,050 + 3.5% over $75k" },
-  { state: "WA",   name: "Western Australia",       fhbExemption: "Full exemption ≤ $430k",    maxRate: "5.1%",  rate: "$9,435 + 5% over $360k" },
-  { state: "SA",   name: "South Australia",         fhbExemption: "Exemption new homes ≤ $650k",maxRate: "5.5%", rate: "$21,330 + 5.5% over $500k" },
-  { state: "TAS",  name: "Tasmania",                fhbExemption: "50% concession ≤ $600k",    maxRate: "4.5%",  rate: "$12,860 + 4.25% over $375k" },
-  { state: "ACT",  name: "Australian Capital Territory", fhbExemption: "Full exemption ≤ $1M", maxRate: "5.4%",  rate: "$31,697 + 5.1% over $1M" },
-  { state: "NT",   name: "Northern Territory",      fhbExemption: "$10k discount on new homes", maxRate: "4.95%","rate": "Formula-based below $525k" },
+  { state: "NSW",  name: "New South Wales",         fhbExemption: "No duty ≤ $800k; concession to $1M",          maxRate: "7%",    rate: "$11,602 + 4.5% over $387k" },
+  { state: "VIC",  name: "Victoria",                fhbExemption: "No duty ≤ $600k; concession to $750k",        maxRate: "6.5%",  rate: "$2,870 + 6% over $130k" },
+  { state: "QLD",  name: "Queensland",              fhbExemption: "New homes: no duty, no cap. Established: no duty ≤ $700k, phased out by $800k", maxRate: "5.75%", rate: "$10,150 + 4.5% over $540k (home rate)" },
+  { state: "WA",   name: "Western Australia",       fhbExemption: "No duty ≤ $600k; reduced rate to $800k",      maxRate: "5.15%", rate: "$11,115 + 4.75% over $360k" },
+  { state: "SA",   name: "South Australia",         fhbExemption: "New homes only: no duty, no cap",             maxRate: "5.5%",  rate: "$21,330 + 5.5% over $500k" },
+  { state: "TAS",  name: "Tasmania",                fhbExemption: "Established-home exemption ended 30 June 2026", maxRate: "4.5%", rate: "$12,935 + 4.25% over $375k" },
+  { state: "ACT",  name: "Australian Capital Territory", fhbExemption: "Nil duty (Home Buyer Concession Scheme), no cap", maxRate: "6.4%", rate: "$19,208 + 5.9% over $750k (owner-occupier)" },
+  { state: "NT",   name: "Northern Territory",      fhbExemption: "No general concession",                       maxRate: "5.95%", rate: "Formula to $525k, then 4.95% of full value" },
 ];
 
 const UPFRONT_COSTS = [
@@ -70,23 +71,23 @@ const UPFRONT_COSTS = [
 const FAQS = [
   {
     q: "How much can I borrow to buy a house in Australia?",
-    a: "Your borrowing capacity in Australia is assessed by lenders under APRA (Australian Prudential Regulation Authority) guidelines. Since October 2021, banks must test that you can afford repayments at your actual interest rate plus a 3% buffer. So if the current rate is 6.25%, the bank assesses you at 9.25%. Beyond the buffer, lenders look at your gross income, existing debts, number of dependants, and living expenses (often compared to the Household Expenditure Measure). As a rough guide, most lenders will approve loans of 5–7 times your annual gross income, but the actual figure depends heavily on your expenses and debt situation.",
+    a: "Your borrowing capacity in Australia is assessed by lenders under APRA (Australian Prudential Regulation Authority) guidelines. Since October 2021, banks must test that you can afford repayments at your actual interest rate plus a buffer of at least 3 percentage points — APRA kept the buffer at 3 points in its May 2026 review. So if your rate is 6.25%, the bank assesses you at 9.25%. Beyond the buffer, lenders look at your gross income, existing debts, number of dependants, and living expenses (often compared to the Household Expenditure Measure). APRA also limits loans at a debt-to-income ratio of six times or more to 20% of each bank's new lending, so borrowing above six times your gross income is harder to get approved.",
   },
   {
     q: "How much deposit do I need to buy a house in Australia?",
-    a: "The minimum deposit required is 5% of the property price, but there are important nuances. With less than 20% (LVR above 80%), you must pay Lenders Mortgage Insurance (LMI), which can add tens of thousands to your upfront costs. With exactly 5%, you may qualify for the First Home Guarantee (FHBG), where the government guarantees 15% of the loan so you can avoid LMI without a 20% deposit. In practice, saving 10–20% gives you more lender choice, avoids LMI, and gives you buffer against market fluctuation. You also need to set aside money for stamp duty and other upfront costs on top of your deposit.",
+    a: "The minimum deposit required is 5% of the property price, but there are important nuances. With less than 20% (LVR above 80%), you must pay Lenders Mortgage Insurance (LMI), which can add tens of thousands to your upfront costs. With a 5% deposit, first home buyers may qualify for the Australian Government 5% Deposit Scheme, which lets you avoid LMI without a 20% deposit. Since 1 October 2025 the scheme has no income caps and unlimited places, though property price caps still apply by location (single parents can buy with 2%). In practice, saving 10–20% gives you more lender choice, avoids LMI, and gives you buffer against market fluctuation. You also need to set aside money for stamp duty and other upfront costs on top of your deposit.",
   },
   {
     q: "How is stamp duty calculated in Australia?",
-    a: "Stamp duty (also called transfer duty or land transfer duty) is a state government tax on property purchases. Each state and territory has its own rate structure — there is no national rate. It is generally calculated as a percentage of the purchase price or property value, using a tiered system where higher-value properties attract higher rates. Stamp duty on a $750,000 property ranges from approximately $20,000 in QLD to over $30,000 in NSW. Most states offer substantial concessions or full exemptions for first home buyers, typically up to a purchase price threshold of $500,000–$1,000,000 depending on the state.",
+    a: "Stamp duty (also called transfer duty or land transfer duty) is a state government tax on property purchases. Each state and territory has its own rate structure — there is no national rate. It is generally calculated as a percentage of the purchase price or property value, using a tiered system where higher-value properties attract higher rates. For an owner-occupier buying a $750,000 home, standard duty ranges from about $19,200 in the ACT and $19,600 in Queensland to about $40,000 in Victoria. Most states offer concessions or full exemptions for first home buyers — for example up to $800,000 in NSW and $700,000 for established homes in Queensland, with no price cap on new homes in Queensland and South Australia or under the ACT Home Buyer Concession Scheme.",
   },
   {
     q: "What is LMI and how much does it cost?",
-    a: "Lenders Mortgage Insurance (LMI) is insurance that protects the bank — not you — if you default on the loan when the LVR is above 80%. Despite protecting only the lender, the borrower pays the premium. The cost varies by lender, LMI provider (primarily Genworth and QBE), loan amount, and LVR. As a rough guide: at 85% LVR you might pay 0.5–0.7% of the loan; at 90% LVR around 1.2–1.5%; at 95% LVR around 2.5–3%. On an $800,000 loan at 90% LVR, LMI could be $12,000–$15,000. LMI can usually be capitalised into the loan, but this increases your total debt and repayments.",
+    a: "Lenders Mortgage Insurance (LMI) is insurance that protects the bank — not you — if you default on the loan when the LVR is above 80%. Despite protecting only the lender, the borrower pays the premium. The cost varies by lender, LMI provider (mainly Helia, formerly Genworth, and QBE), loan amount, and LVR. As a rough guide: at 85% LVR you might pay 0.5–0.7% of the loan; at 90% LVR around 1.2–1.5%; at 95% LVR around 2.5–3%. On an $800,000 loan at 90% LVR, LMI could be $12,000–$15,000. LMI can usually be capitalised into the loan, but this increases your total debt and repayments.",
   },
   {
     q: "What is the First Home Owner Grant (FHOG) in Australia?",
-    a: "The First Home Owner Grant (FHOG) is a state government grant for eligible first home buyers purchasing or building a new home. The amount and eligibility criteria vary by state: Queensland currently offers $30,000; Tasmania $30,000; South Australia $15,000; and most other states $10,000. The grant typically applies only to new homes (not established homes in most states) and has a property price cap. The grant is separate from the federal First Home Guarantee (FHBG) scheme, which allows eligible buyers to purchase with a 5% deposit without paying LMI.",
+    a: "The First Home Owner Grant (FHOG) is a state government grant for eligible first home buyers purchasing or building a new home — established homes do not qualify in any state. As of October 2026: Queensland offers $30,000 (new homes under $750,000); Tasmania $20,000 (transactions from 1 July 2026 to 30 June 2027); South Australia $15,000 with no price cap; NSW, Victoria and Western Australia $10,000 (price caps of $600,000, $750,000 and $800,000 respectively for buying a new home). The Northern Territory replaced its FHOG with the $50,000 HomeGrown Territory Grant, and the ACT no longer offers a grant, using its Home Buyer Concession Scheme instead. Grants are separate from the federal 5% Deposit Scheme, which lets eligible buyers purchase with a 5% deposit without paying LMI.",
   },
   {
     q: "What percentage of income should my mortgage be in Australia?",
@@ -128,7 +129,7 @@ export default function HouseAffordabilityPage() {
         <div className="mb-8 max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 text-xs font-medium px-3 py-1.5 rounded-full mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
-            All 8 states & territories · 2024 stamp duty rates · Free
+            All 8 states & territories · Rates checked October 2026 · Free
           </div>
           <h1 className="text-4xl font-bold text-stone-900 leading-tight mb-3">
             House Affordability Calculator Australia
@@ -157,10 +158,10 @@ export default function HouseAffordabilityPage() {
         </P>
         <P>
           Under APRA guidelines, Australian banks must assess mortgage applications using
-          an interest rate at least 3 percentage points above the actual loan rate. In
-          2024, with variable rates around 6.0–6.5%, this means banks stress-test your
-          application at 9.0–9.5%. This buffer was introduced to ensure borrowers can
-          handle rate rises. The result is that many buyers are approved for less than
+          an interest rate at least 3 percentage points above the actual loan rate — a
+          setting APRA reconfirmed in May 2026. A loan at 6.25% is therefore stress-tested
+          at 9.25% or more. This buffer was introduced in October 2021 to ensure borrowers
+          can handle rate rises. The result is that many buyers are approved for less than
           they might expect — and that the approval limit represents a genuine stress test,
           not a comfortable spending ceiling.
         </P>
@@ -169,18 +170,17 @@ export default function HouseAffordabilityPage() {
         <P>
           Australian policymakers and financial counsellors generally define housing stress
           as spending more than 30% of gross household income on mortgage repayments or
-          rent. At current rates, a household earning $150,000 combined should ideally keep
-          their monthly mortgage repayment below $3,750. On a 30-year loan at 6.25%, that
-          corresponds to a loan of approximately $600,000 — well below median property
-          prices in Sydney ($1.4M) and Melbourne ($900k), and closer to affordability in
-          Brisbane ($800k), Adelaide ($700k), and Perth ($650k).
+          rent. A household earning $150,000 combined should ideally keep its monthly mortgage
+          repayment below $3,750. On a 30-year loan at 6.25%, that corresponds to a loan of
+          approximately $609,000 — well below typical house prices in Sydney and Melbourne,
+          which is why many buyers in the larger capitals end up above the 30% line.
         </P>
 
-        <H2>Stamp duty in Australia — all states compared (2024)</H2>
+        <H2>Stamp duty in Australia — all states compared (October 2026)</H2>
         <P>
           Stamp duty is the single largest variable upfront cost when buying property in
-          Australia, and it varies dramatically by state. On a $750,000 property, stamp
-          duty ranges from around $20,000 in Queensland to over $30,000 in New South Wales.
+          Australia, and it varies dramatically by state. On a $750,000 home bought to live
+          in, standard duty ranges from about $19,200 in the ACT to about $40,000 in Victoria.
           First home buyers receive significant concessions in most states, with full
           exemptions available below certain price thresholds.
         </P>
@@ -267,6 +267,23 @@ export default function HouseAffordabilityPage() {
           ))}
         </div>
 
+        <div className="mt-12 p-4 bg-stone-50 rounded-xl border border-stone-200">
+          <p className="text-sm font-semibold text-stone-800 mb-2">Sources &amp; last checked</p>
+          <ul className="space-y-1 text-xs text-stone-600 leading-relaxed list-disc pl-4">
+            {[
+              { label: "APRA — macroprudential settings review (3 percentage point serviceability buffer), May 2026", href: "https://www.apra.gov.au/news-and-publications/apra-maintains-current-macroprudential-policy-settings-highly-uncertain" },
+              { label: "Australian Government 5% Deposit Scheme — firsthomebuyers.gov.au", href: "https://firsthomebuyers.gov.au/" },
+              { label: "Revenue NSW — current transfer duty thresholds and rates", href: "https://www.revenue.nsw.gov.au/_resources/duties-links/current-thresholds-and-rates" },
+              { label: "Queensland Revenue Office — home and first home concession rates", href: "https://qro.qld.gov.au/duties/transfer-duty/calculate/concession-rates/" },
+            ].map((src) => (
+              <li key={src.href}>
+                <a href={src.href} target="_blank" rel="noopener noreferrer" className="text-green-700 hover:underline">{src.label}</a>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-stone-500 mt-2">Rates for the other states and territories were checked against each revenue office. Last checked: October 2026.</p>
+        </div>
+
         <H2>Related Finance & Real Estate Tools</H2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
           {[
@@ -310,7 +327,7 @@ export default function HouseAffordabilityPage() {
           <p className="text-xs text-stone-500 leading-relaxed">
             <strong className="text-stone-700">Disclaimer:</strong> This calculator provides
             estimates for informational purposes only. Stamp duty rates, first home buyer
-            concessions, FHOG amounts, and LMI premiums change frequently — always verify
+            concessions, first home grant amounts, and LMI premiums change frequently — always verify
             current figures with your state revenue office and lender before making decisions.
             Borrowing capacity estimates are indicative only; actual approval depends on your
             lender's credit policy, credit history, employment status, and full financial

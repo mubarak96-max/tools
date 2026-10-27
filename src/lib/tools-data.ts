@@ -7,15 +7,15 @@ export type Tool = {
 
 export const ALL_TOOLS: Tool[] = [
   {
-    name: "401(k) Match Calculator 2024",
+    name: "401(k) Match Calculator 2026",
     href: "/finance/401k-match-calculator",
-    description: "Calculate your exact 401(k) employer match, annual savings, and projected retirement balance. Applies 2024 IRS $23,000 limit automatically. Free, no sign-up ...",
+    description: "Calculate your 401(k) employer match and projected balance with 2026 IRS limits: $24,500 deferral, $8,000 and $11,250 catch-ups.",
     category: "Finance",
   },
   {
     name: "Amazon FBA Calculator Canada",
     href: "/finance/amazon-fba-canada-calculator",
-    description: "Calculate Amazon.ca referral fees, FBA fulfilment, storage, and net profit in CAD. Model Amazon Canada size tiers, tax impact, and inventory costs before you...",
+    description: "Calculate Amazon.ca referral fees, FBA fulfilment, storage, and net profit in CAD.",
     category: "Finance",
   },
   {
@@ -27,37 +27,37 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Amortization Chart Calculator",
     href: "/finance/amortization-chart-calculator",
-    description: "Free amortization chart calculator and amortization schedule maker. Generate detailed loan amortization tables, visualize payment breakdowns, and download yo...",
+    description: "Free amortization chart calculator and amortization schedule maker.",
     category: "Finance",
   },
   {
     name: "Aspect Ratio Calculator",
     href: "/utility/aspect-ratio-calculator",
-    description: "Free online aspect ratio calculator. Calculate 16:9, 4:3, 21:9, 1:1, 3:2 and custom aspect ratios instantly. Convert image and video dimensions with live pre...",
+    description: "Free online aspect ratio calculator. Calculate 16:9, 4:3, 21:9, 1:1, 3:2 and custom aspect ratios instantly.",
     category: "Utility",
   },
   {
     name: "Australia GST Calculator 2026",
     href: "/finance/australia-gst-calculator",
-    description: "Free Australia GST calculator for 2026. Add or remove 10% GST from any amount. Calculate GST-inclusive and GST-exclusive prices instantly. Perfect for small ...",
+    description: "Free Australia GST calculator for 2026. Add or remove 10% GST from any amount. Calculate GST-inclusive and GST-exclusive prices instantly.",
     category: "Finance",
   },
   {
     name: "Australia Income Tax Calculator 2026\u201326",
     href: "/finance/income-tax-calculator-australia",
-    description: "Free Australia income tax calculator for FY 2026\u201326. Includes Stage 3 tax cuts, Medicare levy, LITO offset, HECS-HELP repayment, and superannuation. Accurate...",
+    description: "Free Australia income tax calculator for FY 2026\u201326. Includes Stage 3 tax cuts, Medicare levy, LITO offset, HECS-HELP repayment, and superannuation.",
     category: "Finance",
   },
   {
     name: "Australia Stamp Duty Calculator 2026",
     href: "/finance/australia-stamp-duty-calculator",
-    description: "Free Australia stamp duty calculator for NSW, VIC, QLD, WA, SA, TAS, ACT & NT. Calculate transfer duty with 2026 rates, first home buyer concessions, foreign...",
+    description: "Free Australia stamp duty calculator for NSW, VIC, QLD, WA, SA, TAS, ACT & NT.",
     category: "Finance",
   },
   {
     name: "BMR Calculator",
     href: "/health/bmr-calculator",
-    description: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor formula. Find out how many calories your body burns at rest and use it to set your calori...",
+    description: "Calculate your Basal Metabolic Rate (BMR) using the Mifflin-St Jeor formula.",
     category: "Health",
   },
   {
@@ -75,55 +75,55 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Business Risk Exposure Score Calculator",
     href: "/finance/business-risk-exposure-score-calculator",
-    description: "Free business risk exposure score calculator. Assess operational, financial, cyber, legal, market, physical, and reputational risk across 35+ data points. Ge...",
+    description: "Free business risk exposure score calculator. Assess operational, financial, cyber, legal, market, physical, and reputational risk across 35+ data points.",
     category: "Finance",
   },
   {
     name: "CD Ladder Calculator",
     href: "/finance/cd-ladder-calculator",
-    description: "Free CD ladder calculator: plan multi-rung certificate of deposit ladders, use our cd maturity calculator to track maturity dates, and our monthly cd interes...",
+    description: "Free CD ladder calculator: plan multi-rung certificate of deposit ladders and track each rung's maturity date and interest.",
     category: "Finance",
   },
   {
     name: "California Sales Tax Calculator 2026",
     href: "/finance/sales-tax-california-calculator",
-    description: "Free California sales tax calculator for 2026. Look up sales tax rates for any CA city or county \u2014 from Los Angeles (10.25%) to San Francisco (8.625%) to San...",
+    description: "Free California sales tax calculator for 2026.",
     category: "Finance",
   },
   {
     name: "Calorie Calculator (TDEE)",
     href: "/health/calorie-calculator",
-    description: "Calculate your Total Daily Energy Expenditure (TDEE) and daily calorie needs based on your age, weight, height, and activity level using the Mifflin-St Jeor ...",
+    description: "Calculate your Total Daily Energy Expenditure (TDEE) and daily calorie needs based on your age, weight, height, and activity level using the Mifflin-St Jeor equation.",
     category: "Health",
   },
   {
     name: "Canada HST/GST Calculator",
     href: "/finance/canada-hst-gst-calculator",
-    description: "Free Canada HST GST PST QST calculator for all provinces and territories. Add tax or reverse calculate. Accurate 2026 rates for Ontario, BC, Quebec, Alberta ...",
+    description: "Free Canada HST GST PST QST calculator for all provinces and territories. Add tax or reverse calculate.",
     category: "Finance",
   },
   {
     name: "Canada Sales Tax Calculator 2026",
     href: "/finance/sales-tax-canada-calculator",
-    description: "Free Canada sales tax calculator for 2026. Calculate GST, HST, and PST for all 13 provinces and territories \u2014 Ontario (13% HST), Quebec (14.975% GST+QST), BC...",
+    description: "Free Canada sales tax calculator for 2026.",
     category: "Finance",
   },
   {
     name: "Canadian Mortgage Qualifier Calculator 2026",
     href: "/real-estate/mortgage-qualifier-canada",
-    description: "Find out exactly how much mortgage you qualify for in Canada. Includes 2026 mortgage stress test (contract rate +2%, min 5.25%), CMHC insurance premiums, GDS...",
+    description: "Find out exactly how much mortgage you qualify for in Canada.",
     category: "Real Estate",
   },
   {
     name: "Cap Rate Calculator 2026",
     href: "/real-estate/cap-rate-calculator",
-    description: "Free cap rate calculator for real estate investors. Calculate Net Operating Income (NOI), capitalization rate, and cash-on-cash return. Includes 2026 market ...",
+    description: "Free cap rate calculator for real estate investors. Calculate Net Operating Income (NOI), capitalization rate, and cash-on-cash return.",
     category: "Real Estate",
   },
   {
     name: "Car Depreciation Calculator by Model 2026",
     href: "/finance/car-depreciation-calculator",
-    description: "Free car depreciation calculator by make and model. Calculate accurate resale value, depreciation curves, and total cost of ownership for 500+ vehicles. Comp...",
+    description: "Free car depreciation calculator by make and model. Calculate accurate resale value, depreciation curves, and total cost of ownership for 500+ vehicles.",
     category: "Finance",
   },
   {
@@ -141,13 +141,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Cash on Cash Return Calculator",
     href: "/real-estate/cash-on-cash-return-calculator",
-    description: "Free cash on cash return calculator for real estate investors. Calculate CoC return, cap rate, NOI, DSCR, GRM, and break-even ratio. Includes full income sta...",
+    description: "Free cash on cash return calculator for real estate investors. Calculate CoC return, cap rate, NOI, DSCR, GRM, and break-even ratio.",
     category: "Real Estate",
   },
   {
     name: "Compound Interest Calculator with Monthly Contributions",
     href: "/finance/compound-interest-calculator",
-    description: "Free compound interest calculator with monthly contributions. See how regular deposits grow over time with daily, monthly, or annual compounding. Includes in...",
+    description: "Free compound interest calculator with monthly contributions. See how regular deposits grow over time with daily, monthly, or annual compounding.",
     category: "Finance",
   },
   {
@@ -171,7 +171,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Crypto Mining Calculator 2026",
     href: "/finance/crypto-mining-calculator",
-    description: "Free crypto mining calculator for Bitcoin, Ethereum, and altcoins. Calculate GPU mining profitability, ASIC mining ROI, electricity costs, and daily/monthly ...",
+    description: "Free crypto mining calculator for Bitcoin, Ethereum, and altcoins.",
     category: "Finance",
   },
   {
@@ -189,25 +189,25 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "EMI Calculator",
     href: "/finance/emi-calculator",
-    description: "Use this free EMI calculator to estimate monthly loan payments, total interest, total repayment, affordability, and maximum loan size for home, car, and pers...",
+    description: "Use this free EMI calculator to estimate monthly loan payments, total interest, total repayment, affordability, and maximum loan size for home, car, and personal loans.",
     category: "Finance",
   },
   {
     name: "Equity Dilution Calculator 2026",
     href: "/finance/equity-dilution-calculator",
-    description: "Free equity dilution calculator for startup founders. Calculate ownership percentage after seed, Series A/B/C funding, option pool expansion, convertible not...",
+    description: "Free equity dilution calculator for startup founders.",
     category: "Finance",
   },
   {
     name: "Etsy Profit Calculator 2026",
     href: "/finance/etsy-profit-calculator",
-    description: "Calculate your true Etsy profit instantly. Accurate 2024/2026 Etsy fee calculator covering US, UK, Canada, and Australia \u2014 transaction fees, listing fees, of...",
+    description: "Calculate your true Etsy profit instantly.",
     category: "Finance",
   },
   {
     name: "PMI Calculator",
     href: "/finance/pmi-calculator",
-    description: "Free PMI insurance calculator using 2026 rate tables. Calculate your monthly private mortgage insurance cost, see when PMI drops off, and find out how much y...",
+    description: "Free PMI insurance calculator using 2026 rate tables.",
     category: "Finance",
   },
   {
@@ -219,13 +219,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Free Barcode Generator \u2013 Create UPC, EAN-13 & CODE128 Barcodes Online",
     href: "/utility/barcode-generator",
-    description: "Generate free barcodes online instantly. Supports CODE128, UPC, EAN-13, EAN-8, ITF-14 and more. Customize colors and size, then download as a high-resolution...",
+    description: "Generate free barcodes online instantly. Supports CODE128, UPC, EAN-13, EAN-8, ITF-14 and more.",
     category: "Utility",
   },
   {
     name: "Free Barcode Scanner Online \u2013 Scan UPC & EAN Codes (No App Needed)",
     href: "/utility/barcode-scanner",
-    description: "Scan barcodes online free using your camera or by uploading a photo. Reads UPC, EAN-13, EAN-8, CODE-128 and more. Works on iPhone, Android, and laptop \u2014 no a...",
+    description: "Scan barcodes online free using your camera or by uploading a photo. Reads UPC, EAN-13, EAN-8, CODE-128 and more.",
     category: "Utility",
   },
   {
@@ -243,7 +243,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Free Invoice Generator with VAT, GST & HST",
     href: "/finance/invoice-generator",
-    description: "Free online invoice generator with automatic VAT, GST and HST calculation. Create professional invoices for UK, Australia, Canada, USA and more. Download as ...",
+    description: "Free online invoice generator with automatic VAT, GST and HST calculation. Create professional invoices for UK, Australia, Canada, USA and more.",
     category: "Finance",
   },
   {
@@ -261,7 +261,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Free Social Media Carousel Builder",
     href: "/design/free-social-media-carousel-builder",
-    description: "Create professional social media carousels in seconds for Instagram, LinkedIn, and TikTok. High-conversion templates, continuous backgrounds, and easy PDF/PN...",
+    description: "Create professional social media carousels in seconds for Instagram, LinkedIn, and TikTok.",
     category: "Design",
   },
   {
@@ -273,31 +273,31 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Fuel Cost Calculator 2026",
     href: "/utility/fuel-cost-calculator",
-    description: "Free fuel cost calculator for road trips and daily commuting. Calculate gas costs by mileage, MPG, and fuel price. Compare vehicle fuel efficiency, estimate ...",
+    description: "Free fuel cost calculator for road trips and daily commuting. Calculate gas costs by mileage, MPG, and fuel price.",
     category: "Utility",
   },
   {
     name: "GPA Calculator",
     href: "/utility/gpa-calculator",
-    description: "Free GPA calculator for high school and college. Calculate my GPA unweighted or weighted (AP/IB/Honors), convert grades to GPA, percentage to GPA, and find y...",
+    description: "Free GPA calculator for high school and college.",
     category: "Utility",
   },
   {
     name: "Gas Mileage Calculator",
     href: "/utility/gas-mileage-calculator",
-    description: "Free gas mileage calculator to calculate MPG, trip fuel costs, and annual gas savings. High-tech HUD diagnostic interface for vehicle efficiency tracking and...",
+    description: "Free gas mileage calculator to calculate MPG, trip fuel costs, and annual gas savings.",
     category: "Utility",
   },
   {
     name: "General Liability Insurance Cost Estimator 2026",
     href: "/finance/general-liability-insurance-cost-estimator",
-    description: "Free general liability insurance cost estimator for small businesses. Calculate premiums by industry, revenue, location, employees, and coverage limits. Get ...",
+    description: "Free general liability insurance cost estimator for small businesses. Calculate premiums by industry, revenue, location, employees, and coverage limits.",
     category: "Finance",
   },
   {
     name: "Halal Mortgage Calculator",
     href: "/finance/halal-mortgage-calculator",
-    description: "Compare Halal home finance structures: Diminishing Musharakah, Murabaha, and Ijara. Instant monthly payments and full schedules for Sharia-compliant home buy...",
+    description: "Compare Halal home finance structures: Diminishing Musharakah, Murabaha, and Ijara.",
     category: "Finance",
   },
   {
@@ -309,7 +309,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "House Affordability Calculator Australia",
     href: "/finance/house-affordability-calculator-australia",
-    description: "Free house affordability calculator for Australia. Calculate stamp duty by state, LMI, FHOG, monthly repayments and borrowing capacity with the APRA 3% servi...",
+    description: "Australian home affordability calculator with October 2026 stamp duty for every state, LMI, first home grants, repayments and APRA's 3% buffer.",
     category: "Finance",
   },
   {
@@ -333,19 +333,19 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Income Tax Calculator Ireland 2026",
     href: "/finance/income-tax-calculator-ireland",
-    description: "Free Ireland income tax calculator for 2025/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI. Accurate for employe...",
+    description: "Free Ireland income tax calculator for 2025/2026. Calculate your exact take-home pay after PAYE, Universal Social Charge (USC) and PRSI.",
     category: "Finance",
   },
   {
     name: "India Income Tax Calculator 2026\u201326",
     href: "/finance/income-tax-calculator-india",
-    description: "Free India income tax calculator FY 2026\u201326. Compare Old vs New Tax Regime side by side. Includes Section 80C, 80D, HRA, NPS deductions, surcharge, 4% cess a...",
+    description: "Free India income tax calculator FY 2026\u201326. Compare Old vs New Tax Regime side by side.",
     category: "Finance",
   },
   {
     name: "Inheritance Tax Calculator 2026",
     href: "/finance/inheritance-tax-calculator",
-    description: "Free inheritance tax calculator for UK, USA, Ireland, France, Germany, Spain, Italy, Canada, Australia & India. Calculate estate tax, succession duty, and ca...",
+    description: "Free inheritance tax calculator for UK, USA, Ireland, France, Germany, Spain, Italy, Canada, Australia & India.",
     category: "Finance",
   },
   {
@@ -357,7 +357,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Marketing ROI Calculator",
     href: "/marketing/marketing-roi-calculator",
-    description: "Calculate your marketing ROI instantly. Analyze ROAS, ROMI, CAC, and LTV with our professional-grade calculator. Includes 1,500+ word guide on growth unit ec...",
+    description: "Calculate your marketing ROI instantly. Analyze ROAS, ROMI, CAC, and LTV with our professional-grade calculator.",
     category: "Marketing",
   },
   {
@@ -387,7 +387,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Net Salary Calculator 2026",
     href: "/finance/net-salary-calculator",
-    description: "Free gross to net salary calculator and net to gross income calculator for 2026. Calculate net pay from gross income with federal, state, FICA taxes. Accurat...",
+    description: "Free gross to net salary calculator and net to gross income calculator for 2026. Calculate net pay from gross income with federal, state, FICA taxes.",
     category: "Finance",
   },
   {
@@ -411,7 +411,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Price per Square Foot Calculator",
     href: "/real-estate/price-per-square-foot-calculator",
-    description: "Calculate price per square foot or square metre, reverse-calculate total property value, compare properties, and check rent or sale rates on the same size-ad...",
+    description: "Calculate price per square foot or square metre, reverse-calculate total property value, and compare properties side by side.",
     category: "Real Estate",
   },
   {
@@ -421,9 +421,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
-    name: "Canada Income Tax Calculator",
+    name: "Canada Income Tax Calculator 2026",
     href: "/finance/canada-income-tax-calculator",
-    description: "Calculate your Canada income tax, including RRSP contributions and marginal tax rates.",
+    description: "Estimate 2026 Canadian federal and provincial tax, CPP, EI and take-home pay for every province and territory, using CRA's latest brackets.",
     category: "Finance",
   },
   {
@@ -435,13 +435,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Rent vs Buy Calculator",
     href: "/real-estate/rent-vs-buy-calculator",
-    description: "Should you rent or buy a house? Our rent vs buy calculator factors in mortgage interest tax savings, property appreciation, opportunity cost, and the SALT de...",
+    description: "Should you rent or buy a house? Our rent vs buy calculator factors in mortgage interest, property appreciation, maintenance and the opportunity cost of your deposit.",
     category: "Real Estate",
   },
   {
     name: "Rental Yield Calculator",
     href: "/real-estate/rental-yield-calculator",
-    description: "Free rental yield calculator for property investors in the UK, US, and Australia. Calculate gross yield, net yield, cash-on-cash return, and cap rate. Compar...",
+    description: "Free rental yield calculator for property investors in the UK, US, and Australia. Calculate gross yield, net yield, cash-on-cash return, and cap rate.",
     category: "Real Estate",
   },
   {
@@ -453,13 +453,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Roofing Material Calculator",
     href: "/construction/roofing-material-calculator",
-    description: "Free professional roofing calculator. Estimate squares, bundles, and accessory materials like ridge caps and underlayment with pitch adjustment and waste fac...",
+    description: "Free professional roofing calculator. Estimate squares, bundles, and accessory materials like ridge caps and underlayment with pitch adjustment and a waste allowance.",
     category: "Construction",
   },
   {
     name: "Rule of 72 Calculator",
     href: "/finance/rule-of-72-calculator",
-    description: "Free Rule of 72 calculator with steps, monthly compounding mode, and contribution support. Understand the rule of 72 formula in finance, see how fast your mo...",
+    description: "Free Rule of 72 calculator with steps, monthly compounding mode, and contribution support.",
     category: "Finance",
   },
   {
@@ -471,7 +471,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "SIP Calculator India 2026",
     href: "/finance/india-sip-calculator",
-    description: "Free India SIP calculator with step-up SIP, lumpsum and SWP modes. Calculate mutual fund returns, wealth gained, and maturity value with inflation adjustment...",
+    description: "Free India SIP calculator with step-up SIP, lumpsum and SWP modes.",
     category: "Finance",
   },
   {
@@ -481,15 +481,15 @@ export const ALL_TOOLS: Tool[] = [
     category: "Finance",
   },
   {
-    name: "Saudi End of Service Calculator",
+    name: "Saudi End of Service Calculator 2026",
     href: "/finance/saudi-end-of-service-calculator",
-    description: "Free Saudi Arabia end of service benefit calculator. Accurate EOSB calculation per Saudi Labor Law Articles 84\u201388. Covers resignation, termination, and contr...",
+    description: "Saudi EOSB calculator under Labor Law Arts. 84\u201388 as amended in 2025: resignation scale, termination, Art. 87 exceptions.",
     category: "Finance",
   },
   {
     name: "Scotland LBTT Calculator",
     href: "/real-estate/scotland-lbtt-calculator",
-    description: "Calculate Scotland LBTT with current residential bands, first-time buyer relief, and Additional Dwelling Supplement. Budget Scottish property tax before comp...",
+    description: "Calculate Scotland LBTT with current residential bands, first-time buyer relief, and Additional Dwelling Supplement.",
     category: "Real Estate",
   },
   {
@@ -537,19 +537,19 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Sydney Stamp Duty Calculator",
     href: "/real-estate/stamp-duty-calculator-nsw",
-    description: "Calculate NSW stamp duty (transfer duty) for Sydney property purchases. Includes 2026 rates, first home buyer exemptions ($800k), foreign buyer surcharge (8%...",
+    description: "Calculate NSW stamp duty (transfer duty) for Sydney property purchases.",
     category: "Real Estate",
   },
   {
     name: "TDS Calculator India 2025-26",
     href: "/finance/india-tds-calculator",
-    description: "Free India TDS calculator for FY 2025-26 (AY 2026-27). Calculate TDS on salary, rent, professional fees, contractor payments, interest & commission. Includes...",
+    description: "Free India TDS calculator for FY 2025-26 (AY 2026-27). Calculate TDS on salary, rent, professional fees, contractor payments, interest & commission.",
     category: "Finance",
   },
   {
     name: "Tip Calculator",
     href: "/finance/tip-calculator",
-    description: "Free tip calculator for restaurants, bars, hotels and more. Calculate tip by percentage, split the bill between any number of people, use our tip converter t...",
+    description: "Free tip calculator for restaurants, bars, hotels and more.",
     category: "Finance",
   },
   {
@@ -579,7 +579,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "UK Student Loan Repayment Calculator",
     href: "/finance/uk-student-loan-repayment-calculator",
-    description: "Free UK student loan repayment calculator for Plans 1, 2, 4 and 5. See your monthly repayments, total repaid, interest charged, and whether your loan gets wr...",
+    description: "UK student loan calculator for Plans 1, 2, 4, 5 and Postgraduate with 2026/27 thresholds, Sept 2026 interest rates and write-off dates.",
     category: "Finance",
   },
   {
@@ -591,13 +591,13 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "US Navy Body Fat Calculator 2026",
     href: "/health/us-navy-body-fat-calculator",
-    description: "Official US Navy body fat calculator using OPNAVINST 6110.1J tape measurement standards. Calculate Navy PRT body fat percentage for males and females. Accura...",
+    description: "US Navy body fat calculator using the OPNAVINST 6110.1J tape measurement method. Calculate Navy PRT body fat percentage for males and females.",
     category: "Health",
   },
   {
     name: "US Self-Employment Tax Calculator 2026",
     href: "/finance/us-self-employment-tax-calculator",
-    description: "Free US self-employment tax calculator for 2026. Calculate Social Security and Medicare taxes for freelancers, contractors, and sole proprietors. Includes de...",
+    description: "Free US self-employment tax calculator for 2026. Calculate Social Security and Medicare taxes for freelancers, contractors, and sole proprietors.",
     category: "Finance",
   },
   {
@@ -639,7 +639,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "Workers Comp Premium Calculator by Industry 2026",
     href: "/finance/workers-comp-premium-calculator",
-    description: "Free workers compensation insurance premium calculator by industry and state. Estimate costs using class codes, payroll, experience mods, and state rates. Up...",
+    description: "Free workers compensation insurance premium calculator by industry and state. Estimate costs using class codes, payroll, experience mods, and state rates.",
     category: "Finance",
   },
   {
@@ -655,9 +655,9 @@ export const ALL_TOOLS: Tool[] = [
     category: "Seo",
   },
   {
-    name: "Zakat Calculator 2026",
+    name: "Zakat Calculator",
     href: "/finance/zakat-calculator",
-    description: "Free online zakat calculator. Calculate zakat on gold, silver, savings, salary, business inventory and investments. Up-to-date nisab threshold. Trusted by Mu...",
+    description: "Free zakat calculator for gold, silver, savings, business stock and investments. Nisab from today's gold or silver price at 2.5%.",
     category: "Finance",
   },
   {
@@ -669,7 +669,7 @@ export const ALL_TOOLS: Tool[] = [
   {
     name: "xG Calculator",
     href: "/utility/xg-expected-goals-calculator",
-    description: "Calculate the expected goals (xG) value of any football shot. Interactive pitch tool \u2014 adjust distance, angle, shot type, pressure and assist type. Free, ins...",
+    description: "Calculate the expected goals (xG) value of any football shot. Interactive pitch tool \u2014 adjust distance, angle, shot type, pressure and assist type.",
     category: "Utility",
   },
 ];

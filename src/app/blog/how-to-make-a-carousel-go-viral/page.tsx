@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { Check, Info, TrendingUp, Heart, Share2, Bookmark } from "lucide-react";
@@ -53,6 +54,7 @@ export default function ViralCarouselBlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="how-to-make-a-carousel-go-viral" />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -79,7 +81,7 @@ export default function ViralCarouselBlogPage() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
             <span>13 min read</span>
             <span>•</span>
-            <span>Published April 2026</span>
+            <PostDates slug="how-to-make-a-carousel-go-viral" />
           </div>
         </div>
       </header>

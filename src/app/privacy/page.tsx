@@ -1,11 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
 
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Privacy Policy | FindBest Tools',
+  description:
+    'How FindBest Tools handles your data: which tools run in your browser, which use a server, and which advertising and analytics partners set cookies.',
+  path: '/privacy',
+});
+
 export default function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl font-black text-slate-900 mb-4">Privacy Policy</h1>
-      <p className="text-slate-500 mb-12">Last Updated: May 10, 2026</p>
+      <p className="text-slate-500 mb-12">Last Updated: October 27, 2026</p>
 
       <div className="prose prose-slate max-w-none space-y-12 text-slate-600 leading-relaxed">
         <section>
@@ -20,7 +29,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mb-4">1. General Data Handling Philosophy</h2>
           <p>
-            FindBest Tools is designed as a local-first platform where possible. Many utilities — including text converters, financial calculators, and image tools — process data entirely within your browser. However, some tools make server-side or third-party API requests by design. These include the DNS checker (which queries DNS servers), the IP address lookup (which calls geo-IP APIs), and any tool that fetches live external data. The specific data handling for each tool is described in its methodology section.
+            FindBest Tools is designed as a local-first platform where possible. Many utilities — including text converters, financial calculators, and image tools — process data entirely within your browser. However, some tools make server-side or third-party API requests by design. These include the DNS checker (which queries DNS servers), the IP address lookup (which calls geo-IP APIs), the quote image generator (which fetches images from Pixabay), and the AI humanizer (which sends the text you submit to an AI model through OpenRouter to generate the rewrite). Don&apos;t submit confidential or personal information to the AI humanizer.
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>We do not store your tool inputs on our servers for browser-based tools.</li>
@@ -46,8 +55,19 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-2xl font-bold text-slate-900 mb-4">4. Advertising Partners Privacy Policies</h2>
           <p>
-            You may consult this list to find the Privacy Policy for each of the advertising partners of FindBest Tools.
+            Advertising and analytics scripts load only after you accept cookies in the consent banner. FindBest Tools works with the following partners. Their privacy policies explain what they collect and how to opt out:
           </p>
+          <ul className="list-disc pl-6 space-y-2">
+            <li>
+              <strong>Google AdSense</strong>: <a href="https://policies.google.com/technologies/ads" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">How Google uses cookies in advertising</a>. You can turn off personalised ads in <a href="https://adssettings.google.com" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Google Ad Settings</a>.
+            </li>
+            <li>
+              <strong>Adsterra</strong>: <a href="https://adsterra.com/privacy-policy/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Adsterra privacy policy</a>.
+            </li>
+            <li>
+              <strong>Google Analytics</strong>: <a href="https://policies.google.com/privacy" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Google privacy policy</a>. You can opt out with the <a href="https://tools.google.com/dlpage/gaoptout" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Google Analytics opt-out add-on</a>.
+            </li>
+          </ul>
           <p>
             Third-party ad servers or ad networks uses technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on FindBest Tools, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
           </p>

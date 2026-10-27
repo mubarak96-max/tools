@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { AuthorSection } from "@/components/blog/AuthorSection";
+import { PostDates } from "@/components/blog/BlogPostMeta";
 
 const styles = `
 .shopify-utm-blog {
@@ -1305,6 +1306,9 @@ export default function ShopifyUtmTrackingBlogClient() {
       <div className="hero" style={{ padding: '0 40px' }}>
         <div style={{ maxWidth: '860px', margin: '0 auto' }}>
           <AuthorSection />
+          <p style={{ marginTop: '8px', fontSize: '13px', color: '#64748b' }}>
+            <PostDates slug="shopify-utm-tracking" />
+          </p>
         </div>
       </div>
       <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />

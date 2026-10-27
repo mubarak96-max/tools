@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
@@ -52,6 +53,7 @@ export default function BinaryCybersecurityBlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="binary-code-in-cybersecurity" />
       {faqJsonLd ? <JsonLd data={serializeJsonLd(faqJsonLd)} /> : null}
 
       <header className="mb-12">
@@ -78,7 +80,7 @@ export default function BinaryCybersecurityBlogPage() {
           <div className="flex items-center gap-4 text-sm text-muted-foreground font-medium pt-2">
             <span>7 min read</span>
             <span>•</span>
-            <span>Published April 2026</span>
+            <PostDates slug="binary-code-in-cybersecurity" />
           </div>
         </div>
       </header>

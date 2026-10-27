@@ -90,6 +90,7 @@ export default function HouseAffordabilityCalculator() {
   const [propValue,     setPropValue]     = useState(750000);
   const [state,         setState]         = useState<AustralianState>("VIC");
   const [isFHB,         setIsFHB]         = useState(false);
+  const [isNewHome,     setIsNewHome]     = useState(false);
   const [isApartment,   setIsApartment]   = useState(false);
   const [extraCosts,    setExtraCosts]    = useState(5000);
 
@@ -103,14 +104,14 @@ export default function HouseAffordabilityCalculator() {
     grossAnnualIncome: income, partnerIncome, otherIncome,
     monthlyLivingExpenses: expenses, existingDebtMonthly: debts,
     savings, propertyValue: propValue, state,
-    isFirstHomeBuyer: isFHB, isApartment,
+    isFirstHomeBuyer: isFHB, isNewHome, isApartment,
     interestRate: rate, loanTermYears: term,
     additionalUpfrontCosts: extraCosts,
   };
 
   const r = useMemo(() => calculateAffordability(inputs), [
     income, partnerIncome, otherIncome, expenses, debts,
-    savings, propValue, state, isFHB, isApartment, extraCosts, rate, term,
+    savings, propValue, state, isFHB, isNewHome, isApartment, extraCosts, rate, term,
   ]);
 
   const affordColour = r.canAfford
@@ -204,12 +205,13 @@ export default function HouseAffordabilityCalculator() {
             </Field>
             <div className="space-y-2.5 p-3 bg-stone-50 rounded-xl border border-stone-100">
               <Toggle checked={isFHB} onChange={setIsFHB} label="First home buyer" />
+              <Toggle checked={isNewHome} onChange={setIsNewHome} label="Newly built home (never lived in)" />
               <Toggle checked={isApartment} onChange={setIsApartment} label="Apartment / unit (not house)" />
             </div>
             {isFHB && (
               <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-xs text-green-700 leading-relaxed">
                 <strong>First Home Buyer ({state})</strong><br />
-                FHOG: {r.fhogGrant > 0 ? fmtAUD(r.fhogGrant) : "Not applicable at this price"}<br />
+                First home grant: {r.fhogGrant > 0 ? fmtAUD(r.fhogGrant) : STATES[state].fhogAmount === 0 ? "Not offered in this state" : !isNewHome ? "New homes only" : "Not available at this price"}<br />
                 Stamp duty: {r.stampDutyConcessionApplied ? "Concession applied ✓" : "No concession at this price"}<br />
                 {STATES[state].fhbStampDutyExemptionNote}
               </div>
@@ -218,7 +220,7 @@ export default function HouseAffordabilityCalculator() {
 
           <SectionLabel>Mortgage details</SectionLabel>
           <div className="space-y-3">
-            <Field label="Interest rate (p.a.)" hint="Variable rate ~6.0–6.5% for owner-occupier P&I (2024)">
+            <Field label="Interest rate (p.a.)" hint="Use the owner-occupier P&I rate your lender is quoting you">
               <PctInput value={rate} onChange={setRate} />
             </Field>
             <Field label="Loan term">
@@ -251,7 +253,7 @@ export default function HouseAffordabilityCalculator() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <Metric label="Monthly repayment (actual)" value={fmtAUD(r.monthlyRepayment)} sub={`At ${fmtPct(rate)} p.a.`} accent="stone" />
-                <Metric label="Assessment rate repayment" value={fmtAUD(r.monthlyRepaymentAtAssessment)} sub={`At ${fmtPct(r.assessmentRate)} (APRA buffer +3%)`} accent="amber" />
+                <Metric label="Assessment rate repayment" value={fmtAUD(r.monthlyRepaymentAtAssessment)} sub={`At ${fmtPct(r.assessmentRate)} (APRA buffer +3 pts)`} accent="amber" />
                 <Metric label="Loan amount" value={fmtAUDShort(r.loanAmount)} sub={`LVR ${fmtPct(r.lvr)}`} accent={r.lvr > 80 ? "amber" : "stone"} />
                 <Metric label="Deposit" value={fmtAUDShort(r.depositAmount)} sub={`${fmtPct(r.depositPct)} of property`} accent="green" />
                 <Metric label="Repayment-to-income" value={fmtPct(r.repaymentToIncomeRatio)} sub="< 30% is comfortable" accent={r.repaymentToIncomeRatio > 35 ? "red" : r.repaymentToIncomeRatio > 30 ? "amber" : "green"} />
@@ -277,7 +279,8 @@ export default function HouseAffordabilityCalculator() {
               {/* LMI warning */}
               {r.lmi > 0 && (
                 <div className="bg-amber-50 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-700 leading-relaxed">
-                  <strong>LMI applies ({fmtAUD(r.lmi)}):</strong> With an LVR of {fmtPct(r.lvr)}, Lenders Mortgage Insurance is required. This can be capitalised into the loan (added to borrowing). A 20% deposit ({fmtAUDShort(propValue * 0.2)}) would avoid LMI.
+                  <strong>LMI applies ({fmtAUD(r.lmi)}):</strong> With an LVR of {fmtPct(r.lvr)}, Lenders Mortgage Insurance is normally required. This can be capitalised into the loan (added to borrowing). A 20% deposit ({fmtAUDShort(propValue * 0.2)}) would avoid LMI.
+                  {isFHB && " Eligible first home buyers can also avoid LMI with a 5% deposit under the Australian Government 5% Deposit Scheme (location-based price caps apply)."}
                 </div>
               )}
 
@@ -326,7 +329,7 @@ export default function HouseAffordabilityCalculator() {
                     { label: "Lenders Mortgage Insurance (LMI)", value: r.lmi, bold: false, cls: r.lmi > 0 ? "text-amber-600" : "text-stone-400" },
                     { label: "Legal / conveyancing / inspections", value: extraCosts, bold: false, cls: "text-stone-600" },
                     { label: "Total upfront costs", value: r.totalUpfrontCosts, bold: true, cls: "text-stone-900" },
-                    ...(r.fhogGrant > 0 ? [{ label: "Less: FHOG grant", value: -r.fhogGrant, bold: false, cls: "text-green-600" }] : []),
+                    ...(r.fhogGrant > 0 ? [{ label: "Less: first home grant", value: -r.fhogGrant, bold: false, cls: "text-green-600" }] : []),
                     { label: "Your savings",             value: savings, bold: false, cls: "text-green-700" },
                     { label: "Remaining deposit for home", value: r.depositAmount, bold: true, cls: "text-green-700" },
                   ].map((row, i) => (

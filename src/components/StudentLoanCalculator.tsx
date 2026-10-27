@@ -95,12 +95,12 @@ export default function StudentLoanCalculator() {
   const [balance,         setBalance]         = useState(45000);
   const [salary,          setSalary]          = useState(30000);
   const [salaryGrowth,    setSalaryGrowth]     = useState(3);
-  const [interestRate,    setInterestRate]     = useState(7.3);
+  const [interestRate,    setInterestRate]     = useState(6);
   const [yearsGrace,      setYearsGrace]       = useState(0);
 
   const [inclPostgrad,    setInclPostgrad]     = useState(false);
   const [pgBalance,       setPgBalance]        = useState(12000);
-  const [pgInterestRate,  setPgInterestRate]   = useState(7.3);
+  const [pgInterestRate,  setPgInterestRate]   = useState(6);
 
   const [tab, setTab] = useState<"summary" | "schedule" | "compare">("summary");
 
@@ -222,7 +222,7 @@ export default function StudentLoanCalculator() {
           </div>
           <p className="text-[11px] text-stone-400 mb-1 leading-snug">{planDef.who}</p>
           <div className={`text-[11px] leading-relaxed px-3 py-2 rounded-lg ${colours.light} ${colours.border} border mt-2 mb-1`}>
-            <span className="font-semibold">Threshold:</span> {fmtGBP(planDef.threshold2024)}/yr ·{" "}
+            <span className="font-semibold">Threshold (2026/27):</span> {fmtGBP(planDef.threshold2024)}/yr ·{" "}
             <span className="font-semibold">Rate:</span> {planDef.repaymentRate * 100}% above threshold ·{" "}
             <span className="font-semibold">Write-off:</span> {planDef.writeOffNote}
           </div>
@@ -249,7 +249,7 @@ export default function StudentLoanCalculator() {
           </div>
 
           <SectionLabel>Interest rate</SectionLabel>
-          <Field label="Annual interest rate" hint="Current Plan 2/5 rate is ~7.3% (RPI-linked, changes Sept each year)">
+          <Field label="Annual interest rate" hint="From 1 Sept 2026: Plan 2 is 4.1%–6% depending on income; Plans 1, 4 and 5 are 4.1%">
             <NumInput value={interestRate} onChange={setInterestRate} suffix="%" step={0.1} min={0} max={15} />
           </Field>
           <div className="mt-2 text-[11px] text-stone-400 leading-relaxed">
@@ -265,7 +265,7 @@ export default function StudentLoanCalculator() {
                 <Field label="Postgraduate loan balance">
                   <NumInput value={pgBalance} onChange={setPgBalance} prefix="£" step={500} />
                 </Field>
-                <Field label="Postgrad interest rate" hint="PGL rate is RPI + 3% — currently ~7.3%">
+                <Field label="Postgrad interest rate" hint="PGL rate is RPI + 3% (7.1%), capped at 6% from 1 Sept 2026 to 31 Aug 2027">
                   <NumInput value={pgInterestRate} onChange={setPgInterestRate} suffix="%" step={0.1} min={0} max={15} />
                 </Field>
                 <div className="text-[11px] text-stone-400 p-2.5 bg-stone-50 rounded-lg leading-relaxed">

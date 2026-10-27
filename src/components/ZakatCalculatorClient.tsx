@@ -18,6 +18,7 @@ import {
   ShieldCheck, 
   Plane 
 } from "lucide-react";
+import { ZAKAT_CSS } from "@/app/finance/zakat-calculator/zakatStyles";
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const fmt = (n: number, d = 2) =>
@@ -30,15 +31,14 @@ const fmtC = (n: number, currency = "USD") => {
   return new Intl.NumberFormat("en-US", { style: "currency", currency, minimumFractionDigits: 2 }).format(n);
 };
 
-// Nisab values (approximate — users should verify with local scholars)
-// Gold nisab: 87.48g of gold  |  Silver nisab: 612.36g of silver
-const GOLD_NISAB_GRAMS = 87.48;
-const SILVER_NISAB_GRAMS = 612.36;
-const ZAKAT_RATE = 0.025; // 2.5%
-
-// Approximate spot prices (users instructed to verify)
-const DEFAULT_GOLD_PRICE_PER_GRAM = 92.50;  // USD per gram (~$2,875/oz)
-const DEFAULT_SILVER_PRICE_PER_GRAM = 1.05;   // USD per gram (~$32.5/oz)
+// Both weight conventions are held by recognised scholars and zakat bodies
+// (20 mithqal / 200 dirham), so the user picks one rather than us choosing.
+const NISAB_STANDARDS = {
+  "85": { gold: 85, silver: 595, label: "85 g gold / 595 g silver" },
+  "87.48": { gold: 87.48, silver: 612.36, label: "87.48 g gold / 612.36 g silver" },
+} as const;
+type NisabStandard = keyof typeof NISAB_STANDARDS;
+const ZAKAT_RATE = 0.025;
 
 const CURRENCIES = [
   { code: "USD", symbol: "$", label: "US Dollar" },
@@ -56,7 +56,7 @@ const ASSET_COLORS = [
   "#a67c3d", "#f0d89a", "#6b4f1a",
 ];
 
-const CustomPieTooltip = ({ active, payload }: any) => {
+const CustomPieTooltip = ({ active, payload, currency }: any) => {
   if (active && payload && payload.length) {
     return (
       <div style={{
@@ -65,8 +65,8 @@ const CustomPieTooltip = ({ active, payload }: any) => {
         fontSize: 12, color: "#e8d5a0",
       }}>
         <p style={{ fontWeight: 700, color: "#c9a84c", marginBottom: 3 }}>{payload[0].name}</p>
-        <p>Value: {fmtC(payload[0].payload.value)}</p>
-        <p>Zakat: {fmtC(payload[0].payload.zakat)}</p>
+        <p>Value: {fmtC(payload[0].payload.value, currency)}</p>
+        <p>Zakat: {fmtC(payload[0].payload.zakat, currency)}</p>
       </div>
     );
   }
@@ -77,8 +77,9 @@ const CustomPieTooltip = ({ active, payload }: any) => {
 export default function ZakatCalculatorClient() {
   const [nisabBasis, setNisabBasis] = useState("gold"); // "gold" | "silver"
   const [currency, setCurrency] = useState("USD");
-  const [goldPriceG, setGoldPriceG] = useState(DEFAULT_GOLD_PRICE_PER_GRAM.toString());
-  const [silverPriceG, setSilverPriceG] = useState(DEFAULT_SILVER_PRICE_PER_GRAM.toString());
+  const [nisabStandard, setNisabStandard] = useState<NisabStandard>("85");
+  const [goldPriceG, setGoldPriceG] = useState("");
+  const [silverPriceG, setSilverPriceG] = useState("");
   const [activeTab, setActiveTab] = useState("summary");
 
   // Asset inputs
@@ -107,12 +108,14 @@ export default function ZakatCalculatorClient() {
 
   // ── Calculations ─────────────────────────────────────────────────────────
   const calc = useMemo(() => {
-    const gp = parseFloat(goldPriceG) || DEFAULT_GOLD_PRICE_PER_GRAM;
-    const sp = parseFloat(silverPriceG) || DEFAULT_SILVER_PRICE_PER_GRAM;
+    const gp = parseFloat(goldPriceG) || 0;
+    const sp = parseFloat(silverPriceG) || 0;
+    const std = NISAB_STANDARDS[nisabStandard];
 
-    const nisabGold = GOLD_NISAB_GRAMS * gp;
-    const nisabSilver = SILVER_NISAB_GRAMS * sp;
+    const nisabGold = std.gold * gp;
+    const nisabSilver = std.silver * sp;
     const nisabValue = nisabBasis === "gold" ? nisabGold : nisabSilver;
+    const priceEntered = nisabValue > 0;
 
     const totalAssets = Object.values(assets)
       .filter(a => a.zakatable)
@@ -122,449 +125,30 @@ export default function ZakatCalculatorClient() {
       .reduce((s, l) => s + (parseFloat(l.value) || 0), 0);
 
     const netZakatableWealth = Math.max(0, totalAssets - totalLiabilities);
-    const aboveNisab = netZakatableWealth >= nisabValue;
+    const aboveNisab = priceEntered && netZakatableWealth >= nisabValue;
     const zakatDue = aboveNisab ? netZakatableWealth * ZAKAT_RATE : 0;
+    const zakatIfDue = netZakatableWealth * ZAKAT_RATE;
 
     const assetBreakdown = Object.entries(assets).map(([key, a]) => ({
       key, name: a.label,
       value: parseFloat(a.value) || 0,
-      zakat: aboveNisab ? (parseFloat(a.value) || 0) * ZAKAT_RATE : 0,
+      zakat: aboveNisab || !priceEntered ? (parseFloat(a.value) || 0) * ZAKAT_RATE : 0,
     })).filter(a => a.value > 0);
 
     return {
-      nisabGold, nisabSilver, nisabValue,
+      nisabGold, nisabSilver, nisabValue, priceEntered,
       totalAssets, totalLiabilities, netZakatableWealth,
-      aboveNisab, zakatDue, assetBreakdown,
+      aboveNisab, zakatDue, zakatIfDue, assetBreakdown,
     };
-  }, [assets, liabilities, nisabBasis, goldPriceG, silverPriceG]);
+  }, [assets, liabilities, nisabBasis, nisabStandard, goldPriceG, silverPriceG]);
+
+  const std = NISAB_STANDARDS[nisabStandard];
 
   const sym = CURRENCIES.find(c => c.code === currency)?.symbol || "$";
 
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
-        :root {
-          --bg:       #0e1a0e;
-          --bg2:      #132013;
-          --bg3:      #162816;
-          --surface:  #1a2e1a;
-          --surface2: #1f3620;
-          --border:   #2a4a2a;
-          --border2:  #3a6040;
-          --gold:     #c9a84c;
-          --gold2:    #e8c97a;
-          --gold-dim: #2a1f05;
-          --gold-faint: rgba(201,168,76,0.08);
-          --text:     #e8d5a0;
-          --muted:    #7a9a7a;
-          --muted2:   #a8c4a8;
-          --white:    #f5edd8;
-          --red:      #c0392b;
-          --red-dim:  #2a0e0e;
-          --green-ok: #27ae60;
-          --font-d:   'Cormorant Garamond', Georgia, serif;
-          --font-b:   'Plus Jakarta Sans', sans-serif;
-          --font-m:   'JetBrains Mono', monospace;
-          --r:        14px;
-        }
-
-        .zakat-wrapper {
-          font-family: var(--font-b);
-          background: var(--bg);
-          color: var(--text);
-          -webkit-font-smoothing: antialiased;
-          line-height: 1.65;
-          position: relative;
-        }
-
-        /* ── Arabesque geometric overlay ── */
-        .zakat-wrapper::before {
-          content: '';
-          position: absolute; inset: 0; z-index: 0; pointer-events: none;
-          background-image:
-            repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 30px,
-              rgba(201,168,76,0.018) 30px,
-              rgba(201,168,76,0.018) 31px
-            ),
-            repeating-linear-gradient(
-              -45deg,
-              transparent,
-              transparent 30px,
-              rgba(201,168,76,0.018) 30px,
-              rgba(201,168,76,0.018) 31px
-            );
-        }
-
-        .zwrap { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 0 20px; }
-
-        /* ── Hero ── */
-        .zhero {
-          padding: 60px 0 52px;
-          border-bottom: 1px solid var(--border);
-          position: relative; overflow: hidden;
-        }
-        .zhero::after {
-          content: '';
-          position: absolute; top: -100px; right: -80px;
-          width: 480px; height: 480px;
-          background: radial-gradient(circle, rgba(201,168,76,0.09) 0%, transparent 65%);
-          pointer-events: none;
-        }
-        .zbismillah {
-          font-family: var(--font-d);
-          font-size: 1.4rem; font-style: italic;
-          color: var(--gold); opacity: 0.8;
-          margin-bottom: 18px; letter-spacing: 0.04em;
-        }
-        .zbadge {
-          display: inline-flex; align-items: center; gap: 6px;
-          background: var(--gold-dim);
-          color: var(--gold);
-          border: 1px solid rgba(201,168,76,0.3);
-          font-size: 0.69rem; font-weight: 600; letter-spacing: 0.1em;
-          text-transform: uppercase; padding: 4px 13px; border-radius: 20px;
-          margin-bottom: 18px; font-family: var(--font-b);
-        }
-        .zhero h1 {
-          font-family: var(--font-d);
-          font-size: clamp(2.4rem, 5.5vw, 4rem);
-          font-weight: 700; line-height: 1.1;
-          color: var(--white); max-width: 820px; margin-bottom: 16px;
-          letter-spacing: -0.01em;
-        }
-        .zhero h1 em { color: var(--gold); font-style: italic; }
-        .zhero-sub {
-          font-size: 1rem; color: var(--muted2);
-          max-width: 620px; line-height: 1.75; margin-bottom: 32px;
-        }
-        .zhero-stats { display: flex; gap: 44px; flex-wrap: wrap; }
-        .zhstat { display: flex; flex-direction: column; }
-        .zhstat-num {
-          font-family: var(--font-d);
-          font-size: 2rem; font-weight: 700; color: var(--gold);
-        }
-        .zhstat-lbl { font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
-
-        /* ── Section ── */
-        .zsection { padding: 56px 0; border-top: 1px solid var(--border); }
-
-        /* ── Sec title ── */
-        .zsec-badge {
-          display: inline-block;
-          font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
-          text-transform: uppercase; color: var(--gold);
-          font-family: var(--font-b); margin-bottom: 10px;
-        }
-        .zsec-title {
-          font-family: var(--font-d);
-          font-size: clamp(1.7rem, 3.5vw, 2.4rem);
-          font-weight: 700; color: var(--white); line-height: 1.18;
-          margin-bottom: 10px;
-        }
-        .zsec-title em { color: var(--gold); font-style: italic; }
-        .zsec-lead {
-          font-size: 0.96rem; color: var(--muted2);
-          line-height: 1.78; max-width: 680px; margin-bottom: 28px;
-        }
-
-        /* ── Card ── */
-        .zcard {
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: var(--r); padding: 24px;
-        }
-        .zcard-title {
-          font-family: var(--font-d);
-          font-size: 1.1rem; font-weight: 600;
-          color: var(--gold); margin-bottom: 18px;
-          display: flex; align-items: center; gap: 10px;
-          letter-spacing: 0.01em;
-        }
-        .zcard-title-line {
-          flex: 1; height: 1px; background: linear-gradient(90deg, var(--border2), transparent);
-        }
-
-        /* ── Ornament ── */
-        .zornament {
-          display: flex; align-items: center; gap: 10px;
-          margin: 8px 0 20px;
-        }
-        .zornament-line { flex: 1; height: 1px; background: var(--border); }
-        .zornament-diamond {
-          width: 6px; height: 6px; background: var(--gold);
-          transform: rotate(45deg); flex-shrink: 0;
-        }
-
-        /* ── Nisab toggle ── */
-        .znisab-toggle {
-          display: flex; gap: 0; margin-bottom: 22px;
-          border: 1px solid var(--border2); border-radius: 10px; overflow: hidden;
-        }
-        .znisab-btn {
-          flex: 1; padding: 11px 16px; border: none;
-          background: transparent; color: var(--muted2);
-          font-family: var(--font-b); font-size: 0.84rem; font-weight: 600;
-          cursor: pointer; transition: all 0.15s; text-align: center;
-        }
-        .znisab-btn.zactive {
-          background: var(--gold-dim);
-          color: var(--gold);
-          border-right: none;
-        }
-        .znisab-btn:first-child { border-right: 1px solid var(--border2); }
-
-        /* ── Fields ── */
-        .zfield { margin-bottom: 14px; }
-        .zfield label {
-          display: block; font-size: 0.74rem; font-weight: 600;
-          color: var(--muted); text-transform: uppercase;
-          letter-spacing: 0.07em; margin-bottom: 5px;
-        }
-        .ziw {
-          display: flex; align-items: center;
-          background: var(--bg2); border: 1px solid var(--border2);
-          border-radius: 8px; overflow: hidden;
-          transition: border-color 0.15s;
-        }
-        .ziw:focus-within { border-color: var(--gold); }
-        .zipfx {
-          padding: 0 11px; height: 38px;
-          font-size: 0.82rem; color: var(--muted);
-          background: var(--surface2);
-          border-right: 1px solid var(--border2);
-          display: flex; align-items: center;
-          font-family: var(--font-m); user-select: none; min-width: 38px;
-          justify-content: center;
-        }
-        .ziw input, .ziw select {
-          flex: 1; border: none; background: transparent;
-          padding: 0 12px; height: 38px;
-          font-family: var(--font-m); font-size: 0.88rem;
-          color: var(--white); outline: none;
-        }
-        .ziw select option { background: var(--bg2); }
-
-        /* ── Asset rows ── */
-        .zasset-row {
-          display: grid; grid-template-columns: 1fr 160px;
-          gap: 10px; align-items: center;
-          padding: 10px 0; border-bottom: 1px solid var(--border);
-        }
-        .zasset-row:last-of-type { border-bottom: none; }
-        .zasset-label { font-size: 0.87rem; color: var(--text); font-weight: 500; }
-        .zasset-hint  { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
-
-        /* ── Tabs ── */
-        .ztabs {
-          display: flex; gap: 3px;
-          background: var(--bg2); border: 1px solid var(--border);
-          padding: 4px; border-radius: 10px; margin-bottom: 22px;
-        }
-        .ztab {
-          flex: 1; padding: 8px 12px;
-          font-size: 0.79rem; font-weight: 600; border: none;
-          border-radius: 7px; background: transparent;
-          color: var(--muted); cursor: pointer;
-          transition: all 0.15s; text-align: center;
-          font-family: var(--font-b);
-        }
-        .ztab.zactive {
-          background: var(--surface2);
-          color: var(--gold);
-          border: 1px solid var(--border2);
-        }
-
-        /* ── Result display ── */
-        .zresult-hero {
-          background: linear-gradient(135deg, #1f3205 0%, var(--surface) 100%);
-          border: 1px solid rgba(201,168,76,0.35);
-          border-radius: 12px; padding: 28px 24px;
-          text-align: center; margin-bottom: 16px;
-          position: relative; overflow: hidden;
-        }
-        .zresult-hero::before {
-          content: '◆';
-          position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-          font-size: 0.5rem; color: var(--gold); opacity: 0.5;
-          letter-spacing: 12px;
-        }
-        .zresult-lbl {
-          font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
-          color: var(--muted); font-weight: 600; margin-bottom: 8px;
-          font-family: var(--font-b);
-        }
-        .zresult-amt {
-          font-family: var(--font-d);
-          font-size: 3rem; font-weight: 700;
-          color: var(--gold); line-height: 1;
-        }
-        .zresult-sub {
-          font-size: 0.8rem; color: var(--muted2); margin-top: 8px;
-        }
-
-        .zmetric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-        .zmetric {
-          background: var(--bg2); border: 1px solid var(--border);
-          border-radius: 9px; padding: 13px 14px;
-        }
-        .zmetric-lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 5px; font-weight: 600; }
-        .zmetric-val { font-family: var(--font-d); font-size: 1.3rem; font-weight: 600; color: var(--white); }
-
-        .znisab-status {
-          border-radius: 9px; padding: 12px 16px;
-          font-size: 0.84rem; margin-bottom: 14px;
-          display: flex; align-items: center; gap: 10px;
-        }
-        .znisab-status.zabove {
-          background: rgba(39,174,96,0.1);
-          border: 1px solid rgba(39,174,96,0.3);
-          color: #6fcf97;
-        }
-        .znisab-status.zbelow {
-          background: var(--red-dim);
-          border: 1px solid rgba(192,57,43,0.3);
-          color: #e57373;
-        }
-
-        /* ── Grids ── */
-        .ztwo-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-        @media(max-width:860px){ .ztwo-col { grid-template-columns: 1fr; } }
-        .zthree-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-        @media(max-width:800px){ .zthree-col { grid-template-columns: 1fr 1fr; } }
-        @media(max-width:500px){ .zthree-col { grid-template-columns: 1fr; } }
-
-        /* ── Content body ── */
-        .zcbody { font-size: 0.93rem; color: var(--muted2); line-height: 1.82; }
-        .zcbody p { margin-bottom: 15px; }
-        .zcbody h3 {
-          font-family: var(--font-d); font-size: 1.25rem;
-          font-weight: 600; font-style: italic;
-          color: var(--white); margin: 26px 0 10px;
-        }
-        .zcbody strong { color: var(--text); font-weight: 600; }
-
-        /* ── Info cards ── */
-        .zicard {
-          background: var(--bg2); border: 1px solid var(--border);
-          border-radius: 10px; padding: 20px;
-          transition: border-color 0.2s, transform 0.2s;
-        }
-        .zicard:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-2px); }
-        .zicard-icon {
-          font-size: 1.3rem; margin-bottom: 11px; display: block;
-        }
-        .zicard h4 { font-family: var(--font-d); font-size: 1.05rem; font-weight: 600; color: var(--gold2); margin-bottom: 7px; }
-        .zicard p  { font-size: 0.83rem; color: var(--muted2); line-height: 1.65; }
-
-        /* ── Table ── */
-        .ztbl-wrap {
-          overflow-x: auto; border: 1px solid var(--border);
-          border-radius: var(--r); margin-top: 20px;
-        }
-        .ztbl-wrap table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
-        .ztbl-wrap thead { background: var(--surface2); }
-        .ztbl-wrap thead th {
-          padding: 11px 14px; text-align: left;
-          font-family: var(--font-b); font-weight: 700;
-          font-size: 0.73rem; text-transform: uppercase;
-          letter-spacing: 0.07em; color: var(--gold);
-        }
-        .ztbl-wrap tbody tr { border-top: 1px solid var(--border); }
-        .ztbl-wrap tbody tr:hover { background: var(--surface); }
-        .ztbl-wrap tbody td { padding: 11px 14px; color: var(--muted2); vertical-align: top; }
-        .ztbl-wrap tbody td:first-child { color: var(--text); font-weight: 500; }
-        .ztd-gold { color: var(--gold) !important; font-weight: 600 !important; }
-        .ztd-yes  { color: #6fcf97 !important; font-weight: 600 !important; }
-        .ztd-no   { color: #e57373 !important; }
-        .ztd-cond { color: #f2c94c !important; }
-
-        /* ── Steps ── */
-        .zsteps { list-style: none; counter-reset: steps; }
-        .zstep { display: flex; gap: 16px; margin-bottom: 22px; }
-        .zstep-num {
-          width: 30px; height: 30px; border-radius: 50%;
-          background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.4);
-          color: var(--gold); font-size: 0.78rem; font-weight: 700;
-          display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0; margin-top: 2px; font-family: var(--font-b);
-        }
-        .zstep h4 { font-weight: 600; font-size: 0.93rem; color: var(--white); margin-bottom: 4px; }
-        .zstep p  { font-size: 0.87rem; color: var(--muted2); line-height: 1.65; }
-
-        /* ── FAQ ── */
-        .zfaq-item { border-bottom: 1px solid var(--border); padding: 19px 0; }
-        .zfaq-q { font-family: var(--font-d); font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 8px; }
-        .zfaq-a { font-size: 0.87rem; color: var(--muted2); line-height: 1.78; }
-
-        /* ── Disclaimer ── */
-        .zdisclaimer {
-          background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2);
-          border-radius: 10px; padding: 14px 18px;
-          font-size: 0.8rem; color: var(--muted2); line-height: 1.65;
-          margin-bottom: 20px;
-        }
-        .zdisclaimer strong { color: var(--gold); }
-
-        /* ── CTA ── */
-        .zcta {
-          background: linear-gradient(135deg, var(--surface2) 0%, var(--bg2) 100%);
-          border: 1px solid rgba(201,168,76,0.2);
-          border-radius: 16px; padding: 48px 40px;
-          text-align: center; margin: 20px 0 40px;
-          position: relative; overflow: hidden;
-        }
-        .zcta::before {
-          content: '';
-          position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-          width: 300px; height: 300px;
-          background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
-          pointer-events: none;
-        }
-        .zcta h2 { font-family: var(--font-d); font-size: 2rem; color: var(--white); margin-bottom: 10px; font-style: italic; }
-        .zcta p  { color: var(--muted2); margin-bottom: 22px; font-size: 0.97rem; }
-        .zbtn {
-          display: inline-flex; align-items: center; gap: 6px;
-          padding: 11px 28px; border-radius: 8px;
-          font-size: 0.85rem; font-weight: 700;
-          cursor: pointer; border: none; transition: all 0.15s;
-          font-family: var(--font-b); text-decoration: none;
-        }
-        .zbtn-gold { background: var(--gold); color: #0e1a0e; }
-        .zbtn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
-
-        /* ── Footer ── */
-        .zfooter {
-          border-top: 1px solid var(--border);
-          padding: 28px 0; text-align: center;
-          font-size: 0.78rem; color: var(--muted);
-        }
-        .zfooter a { color: var(--muted2); text-decoration: none; }
-        .zfooter a:hover { color: var(--gold); }
-
-        /* ── Anim ── */
-        @keyframes zfadeUp {
-          from { opacity: 0; transform: translateY(18px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .zanim { animation: zfadeUp 0.5s ease both; }
-        .zd1 { animation-delay: 0.05s; }
-        .zd2 { animation-delay: 0.12s; }
-        .zd3 { animation-delay: 0.2s; }
-
-        @media(max-width:600px){
-          .zhero { padding: 40px 0 36px; }
-          .zcard { padding: 16px; }
-          .zcta  { padding: 32px 20px; }
-          .zresult-amt { font-size: 2.2rem; }
-          .zmetric-grid { grid-template-columns: 1fr 1fr; }
-          .zasset-row { grid-template-columns: 1fr; }
-        }
-      `}</style>
+      <style>{ZAKAT_CSS}</style>
 
       <div className="zakat-wrapper">
         <div className="zwrap">
@@ -576,14 +160,14 @@ export default function ZakatCalculatorClient() {
             <h1>Zakat Calculator<br /><em>Purify Your Wealth</em></h1>
             <p className="zhero-sub">
               Calculate your zakat al-mal accurately — on gold, silver, cash, savings, investments,
-              business inventory, and more. Based on the latest nisab threshold. Trusted by Muslims
-              in over 80 countries.
+              business inventory, and more. Enter today&apos;s gold or silver price and the nisab is
+              worked out for you in your own currency.
             </p>
             <div className="zhero-stats">
               {[
                 { num: "2.5%", label: "Zakat Rate (Mal)" },
-                { num: "87.48g", label: "Gold Nisab" },
-                { num: "612g", label: "Silver Nisab" },
+                { num: "85g", label: "Gold Nisab (or 87.48g)" },
+                { num: "595g", label: "Silver Nisab (or 612.36g)" },
               ].map(s => (
                 <div className="zhstat" key={s.label}>
                   <span className="zhstat-num">{s.num}</span>
@@ -607,18 +191,33 @@ export default function ZakatCalculatorClient() {
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 160 }}>
-                <div style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 5, fontWeight: 600 }}>Gold Price (per gram)</div>
+                <div style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 5, fontWeight: 600 }}>Today&apos;s Gold Price (per gram, 24k)</div>
                 <div className="ziw">
                   <span className="zipfx">{sym}</span>
-                  <input type="number" min="0" step="0.1" value={goldPriceG} onChange={e => setGoldPriceG(e.target.value)} />
+                  <input type="number" min="0" step="0.1" placeholder="Enter price" value={goldPriceG} onChange={e => setGoldPriceG(e.target.value)} />
                 </div>
               </div>
               <div style={{ flex: 1, minWidth: 160 }}>
-                <div style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 5, fontWeight: 600 }}>Silver Price (per gram)</div>
+                <div style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 5, fontWeight: 600 }}>Today&apos;s Silver Price (per gram)</div>
                 <div className="ziw">
                   <span className="zipfx">{sym}</span>
-                  <input type="number" min="0" step="0.01" value={silverPriceG} onChange={e => setSilverPriceG(e.target.value)} />
+                  <input type="number" min="0" step="0.01" placeholder="Enter price" value={silverPriceG} onChange={e => setSilverPriceG(e.target.value)} />
                 </div>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: 24 }}>
+              <div style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 8, fontWeight: 600 }}>Nisab Weight Standard</div>
+              <div className="znisab-toggle" style={{ marginBottom: 8 }}>
+                {(Object.keys(NISAB_STANDARDS) as NisabStandard[]).map(k => (
+                  <button key={k} className={`znisab-btn ${nisabStandard === k ? "zactive" : ""}`} onClick={() => setNisabStandard(k)}>
+                    {NISAB_STANDARDS[k].label}
+                  </button>
+                ))}
+              </div>
+              <div style={{ fontSize: "0.75rem", color: "var(--muted)", lineHeight: 1.6 }}>
+                Gold and silver prices change daily, so this calculator does not store a nisab amount. Enter today&apos;s price per gram in your currency
+                (for example from your local bullion dealer or a zakat body that publishes daily nisab values).
               </div>
             </div>
 
@@ -627,15 +226,15 @@ export default function ZakatCalculatorClient() {
               <div style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 8, fontWeight: 600 }}>Nisab Basis</div>
               <div className="znisab-toggle">
                 <button className={`znisab-btn ${nisabBasis === "gold" ? "zactive" : ""}`} onClick={() => setNisabBasis("gold")}>
-                  ◆ Gold Nisab — {sym}{fmt(calc.nisabGold, 0)}
+                  ◆ Gold Nisab — {calc.nisabGold > 0 ? `${sym}${fmt(calc.nisabGold, 0)}` : "enter gold price"}
                 </button>
                 <button className={`znisab-btn ${nisabBasis === "silver" ? "zactive" : ""}`} onClick={() => setNisabBasis("silver")}>
-                  ◇ Silver Nisab — {sym}{fmt(calc.nisabSilver, 0)}
+                  ◇ Silver Nisab — {calc.nisabSilver > 0 ? `${sym}${fmt(calc.nisabSilver, 0)}` : "enter silver price"}
                 </button>
               </div>
               <div style={{ fontSize: "0.75rem", color: "var(--muted)", lineHeight: 1.6 }}>
-                Gold nisab = 87.48g × gold price. Silver nisab = 612.36g × silver price.
-                Many scholars recommend using the silver nisab as it is lower and ensures more people give zakat.
+                Gold nisab = {std.gold}g × gold price. Silver nisab = {std.silver}g × silver price.
+                Many scholars and zakat bodies recommend the silver nisab when you hold a mix of assets, as it is lower and benefits more recipients.
                 Consult your local scholar for guidance.
               </div>
             </div>
@@ -657,7 +256,7 @@ export default function ZakatCalculatorClient() {
                       <div>
                         <div className="zasset-label">{a.label}</div>
                         {key === "gold" && <div className="zasset-hint">Jewelry worn regularly may be exempt — consult your scholar</div>}
-                        {key === "investments" && <div className="zasset-hint">Use zakatable portion: current market value of shares</div>}
+                        {key === "investments" && <div className="zasset-hint">Shares held for trading: full market value. Long-term holdings: see the investments guide below</div>}
                         {key === "business" && <div className="zasset-hint">Stock/inventory held for sale, not fixed assets</div>}
                         {key === "receivables" && <div className="zasset-hint">Include only debts you expect to recover</div>}
                       </div>
@@ -712,19 +311,23 @@ export default function ZakatCalculatorClient() {
 
                 {activeTab === "summary" && (
                   <>
-                    <div className={`znisab-status ${calc.aboveNisab ? "zabove" : "zbelow"}`}>
-                      <span style={{ fontSize: "1.1rem" }}>{calc.aboveNisab ? "✓" : "✗"}</span>
+                    <div className={`znisab-status ${!calc.priceEntered ? "zpending" : calc.aboveNisab ? "zabove" : "zbelow"}`}>
+                      <span style={{ fontSize: "1.1rem" }}>{!calc.priceEntered ? "!" : calc.aboveNisab ? "✓" : "✗"}</span>
                       <span>
-                        {calc.aboveNisab
+                        {!calc.priceEntered
+                          ? `Enter today's ${nisabBasis} price per gram above to check your net wealth of ${sym}${fmt(calc.netZakatableWealth)} against the nisab.`
+                          : calc.aboveNisab
                           ? `Your net wealth of ${sym}${fmt(calc.netZakatableWealth)} exceeds the nisab threshold of ${sym}${fmt(calc.nisabValue)}. Zakat is obligatory.`
                           : `Your net wealth of ${sym}${fmt(calc.netZakatableWealth)} is below the nisab threshold of ${sym}${fmt(calc.nisabValue)}. No zakat is due.`}
                       </span>
                     </div>
                     <div className="zresult-hero">
-                      <div className="zresult-lbl">Total Zakat Due (2.5%)</div>
-                      <div className="zresult-amt">{sym}{fmt(calc.zakatDue)}</div>
+                      <div className="zresult-lbl">{calc.priceEntered ? "Total Zakat Due (2.5%)" : "Zakat if Above Nisab (2.5%)"}</div>
+                      <div className="zresult-amt">{sym}{fmt(calc.priceEntered ? calc.zakatDue : calc.zakatIfDue)}</div>
                       <div className="zresult-sub">
-                        {calc.aboveNisab
+                        {!calc.priceEntered
+                          ? "Enter a gold or silver price to confirm whether zakat is due"
+                          : calc.aboveNisab
                           ? `On ${sym}${fmt(calc.netZakatableWealth)} net zakatable wealth`
                           : "Below nisab — no zakat due this year"}
                       </div>
@@ -744,7 +347,7 @@ export default function ZakatCalculatorClient() {
                       </div>
                       <div className="zmetric">
                         <div className="zmetric-lbl">Nisab ({nisabBasis})</div>
-                        <div className="zmetric-val" style={{ fontSize: "1.1rem" }}>{sym}{fmt(calc.nisabValue)}</div>
+                        <div className="zmetric-val" style={{ fontSize: "1.1rem" }}>{calc.priceEntered ? `${sym}${fmt(calc.nisabValue)}` : "—"}</div>
                       </div>
                     </div>
                     <div className="zdisclaimer" style={{ marginBottom: 0 }}>
@@ -779,7 +382,7 @@ export default function ZakatCalculatorClient() {
                         ))}
                         <div style={{ display: "flex", justifyContent: "space-between", padding: "14px 0 0", fontWeight: 700 }}>
                           <span style={{ color: "var(--white)", fontFamily: "var(--font-d)", fontSize: "1.05rem" }}>Total Zakat Due</span>
-                          <span style={{ color: "var(--gold)", fontFamily: "var(--font-m)", fontSize: "1.05rem" }}>{sym}{fmt(calc.zakatDue)}</span>
+                          <span style={{ color: "var(--gold)", fontFamily: "var(--font-m)", fontSize: "1.05rem" }}>{sym}{fmt(calc.priceEntered ? calc.zakatDue : calc.zakatIfDue)}</span>
                         </div>
                       </div>
                     )}
@@ -806,7 +409,7 @@ export default function ZakatCalculatorClient() {
                               <Cell key={i} fill={ASSET_COLORS[i % ASSET_COLORS.length]} />
                             ))}
                           </Pie>
-                          <Tooltip content={<CustomPieTooltip />} />
+                          <Tooltip content={<CustomPieTooltip currency={currency} />} />
                           <Legend
                             iconType="circle" iconSize={8}
                             wrapperStyle={{ fontSize: 11, fontFamily: "var(--font-b)", color: "var(--muted2)" }}
@@ -844,7 +447,7 @@ export default function ZakatCalculatorClient() {
                   <strong>1. Muslim ownership.</strong> Zakat applies only to Muslims. Non-Muslims have no zakat obligation.
                 </p>
                 <p>
-                  <strong>2. Nisab.</strong> The total zakatable wealth must reach or exceed the nisab threshold — the minimum amount of wealth above which zakat becomes due. The nisab is defined as the value of 87.48 grams of gold or 612.36 grams of silver. Because gold and silver prices fluctuate, the <strong>zakat nisab</strong> changes regularly — which is why this calculator uses live spot prices.
+                  <strong>2. Nisab.</strong> The total zakatable wealth must reach or exceed the nisab threshold — the minimum amount of wealth above which zakat becomes due. The nisab is defined as the value of 20 mithqal of gold or 200 dirhams of silver — 85 grams of gold or 595 grams of silver in a common conversion (some bodies use 87.48 g and 612.36 g). Because gold and silver prices fluctuate, the <strong>zakat nisab</strong> changes daily — which is why this calculator asks you for today&apos;s price instead of storing a fixed amount.
                 </p>
                 <p>
                   <strong>3. Hawl (one lunar year).</strong> The wealth must have been in the owner's possession for a complete Islamic lunar year (approximately 354 days). Wealth acquired mid-year is included in the calculation if it exists at the end of the hawl, but the hawl date is determined by when the wealth first reached nisab.
@@ -881,24 +484,24 @@ export default function ZakatCalculatorClient() {
           {/* ── NISAB SECTION ── */}
           <section className="zsection" id="nisab">
             <div className="zsec-badge">Nisab Threshold</div>
-            <h2 className="zsec-title">Understanding the <em>Zakat Nisab 2024</em></h2>
+            <h2 className="zsec-title">Understanding the <em>Zakat Nisab Today</em></h2>
             <p className="zsec-lead">
               The nisab is the minimum wealth threshold above which zakat becomes obligatory. It was defined by the Prophet ﷺ in weight of gold and silver — and must be recalculated regularly as spot prices change.
             </p>
             <div className="ztwo-col">
               <div className="zcbody">
                 <p>
-                  The Prophet Muhammad ﷺ established two parallel nisab thresholds: <strong>85 grams of gold</strong> (or 87.48g using the more commonly accepted scholarly measure) and <strong>595 grams of silver</strong> (or 612.36g in many scholarly calculations). Both are equivalent minimum thresholds — zakat is due if your total zakatable wealth equals or exceeds the value of either one.
+                  The Prophet Muhammad ﷺ established two parallel nisab thresholds: 20 mithqal of gold and 200 dirhams of silver. Converted to modern weights these are usually given as <strong>85 grams of gold</strong> and <strong>595 grams of silver</strong>; some institutions, such as the UK&apos;s National Zakat Foundation, use a slightly different conversion of 87.48 g and 612.36 g. The calculator lets you choose either standard — the difference is about 3%.
                 </p>
                 <p>
-                  Historically, both thresholds produced roughly similar monetary values because the gold-to-silver exchange ratio was relatively stable. In modern times, gold has appreciated dramatically relative to silver, meaning the <strong>gold nisab threshold</strong> is significantly higher in dollar terms than the <strong>silver nisab threshold</strong>. For example, if gold is priced at $92.50/gram and silver at $1.05/gram:
+                  Historically, both thresholds produced roughly similar monetary values because the gold-to-silver exchange ratio was relatively stable. In modern times, gold has appreciated dramatically relative to silver, meaning the <strong>gold nisab threshold</strong> is many times higher than the <strong>silver nisab threshold</strong>. For example, using round illustrative prices (not today&apos;s prices) of $100/gram for gold and $1.25/gram for silver with the 85 g / 595 g standard:
                 </p>
                 <div style={{ background: "var(--bg2)", border: "1px solid var(--border2)", borderRadius: 10, padding: "16px 18px", fontFamily: "var(--font-m)", fontSize: "0.83rem", color: "var(--muted2)", lineHeight: 2, margin: "16px 0" }}>
-                  <span style={{ color: "var(--gold)" }}>Gold Nisab</span>  = 87.48g × $92.50 = <span style={{ color: "var(--white)", fontWeight: 700 }}>${fmt(87.48 * DEFAULT_GOLD_PRICE_PER_GRAM)}</span><br />
-                  <span style={{ color: "var(--muted)" }}>Silver Nisab</span> = 612.36g × $1.05 = <span style={{ color: "var(--white)", fontWeight: 700 }}>${fmt(612.36 * DEFAULT_SILVER_PRICE_PER_GRAM)}</span>
+                  <span style={{ color: "var(--gold)" }}>Gold Nisab</span>  = 85g × $100 = <span style={{ color: "var(--white)", fontWeight: 700 }}>$8,500.00</span><br />
+                  <span style={{ color: "var(--muted)" }}>Silver Nisab</span> = 595g × $1.25 = <span style={{ color: "var(--white)", fontWeight: 700 }}>$743.75</span>
                 </div>
                 <p>
-                  This gap means that using the silver nisab standard makes many more people eligible to pay zakat — and eligible to pay a larger amount. Scholars differ on which to use. Many contemporary scholars and charitable organizations, particularly in South Asia, recommend the silver nisab precisely because it extends the obligation to a broader population, ensuring more redistribution of wealth within the Muslim community. Others, particularly in the Gulf tradition, use the gold nisab. Consult your local imam or zakat institution for the ruling in your community.
+                  This gap means that using the silver nisab standard makes many more people eligible to pay zakat — and eligible to pay a larger amount. Scholars differ on which to use. Many contemporary scholars and zakat organizations recommend the silver nisab when your wealth is a mix of cash and other assets, precisely because it extends the obligation to a broader population and benefits more recipients; if your only zakatable asset is gold, the gold nisab applies. Others use the gold nisab for all wealth. Consult your local imam or zakat institution for the ruling in your community.
                 </p>
                 <h3>Does the Nisab Have to Be Held for a Full Year?</h3>
                 <p>
@@ -908,7 +511,7 @@ export default function ZakatCalculatorClient() {
               <div className="zcbody">
                 <h3>Gold Nisab vs. Silver Nisab — Which Should You Use?</h3>
                 <p>
-                  The difference in practical outcomes is significant. Using the gold nisab (approximately $8,000+ at current prices in USD), many middle-income Muslims may find their net zakatable wealth falls below the threshold. Using the silver nisab (approximately $640 at current prices), almost any Muslim with regular savings would be above nisab.
+                  The difference in practical outcomes is significant. Because the gold nisab is many times the silver nisab, many middle-income Muslims fall below the gold threshold but above the silver one. With the silver nisab, almost any Muslim with regular savings will be above nisab. Enter today&apos;s prices in the calculator to see both thresholds in your currency.
                 </p>
                 <p>
                   The scholarly reasoning for each position is well-developed. Proponents of the gold nisab argue that gold is the more enduring store of value and was the primary monetary standard in Islamic history, and that applying the silver nisab today produces a threshold far lower than the Prophet ﷺ intended in real-wealth terms. Proponents of the silver nisab counter that the silver standard ensures a wider net of zakat payers, which aligns with the social redistribution function of zakat, and that choosing gold nisab primarily to reduce one's obligation is a problematic motivation.
@@ -1023,7 +626,7 @@ export default function ZakatCalculatorClient() {
                 </p>
                 <h3>Zakat on Investments and Stocks</h3>
                 <p>
-                  <strong>Zakat on investments</strong> in stocks and funds is calculated based on the underlying zakatable assets of the company, not simply the market price of the share. The purist method is to determine what percentage of the company's assets are zakatable (cash, receivables, inventory) and apply your ownership percentage. In practice, many scholars accept using 25–40% of the total market value of shares as an approximation, or following the guidance of the specific zakat fund or institution you use.
+                  <strong>Zakat on investments</strong> in stocks and funds is calculated based on the underlying zakatable assets of the company, not simply the market price of the share. The purist method is to determine what percentage of the company's assets are zakatable (cash, receivables, inventory) and apply your ownership percentage. Shares bought to trade in the short term are treated like trade goods, so zakat is due on their full market value. For long-term holdings, some zakat institutions accept a simplified proxy percentage of market value when company accounts are not practical to analyse — follow the method of the scholar or zakat institution you rely on.
                 </p>
                 <p>
                   For pension funds and 401(k) accounts, scholars differ on whether inaccessible locked-in funds are zakatable. Many contemporary scholars hold that you should pay zakat on accessible pension balances and defer on genuinely inaccessible funds until withdrawal, at which point zakat becomes due.
@@ -1072,11 +675,11 @@ export default function ZakatCalculatorClient() {
               {[
                 {
                   q: "How do I calculate zakat on gold?",
-                  a: "To calculate zakat on gold, multiply the total weight of your gold (in grams) by the current market price per gram to get the market value. Then multiply that value by 2.5%. For example: 100g of gold × $92.50/g = $9,250 value. Zakat = $9,250 × 2.5% = $231.25. Note that some scholars exempt gold jewelry that is regularly worn — consult your scholar on this point. Our zakat calculator handles this automatically once you enter the market value of your gold."
+                  a: "To calculate zakat on gold, multiply the total weight of your gold (in grams) by the current market price per gram to get the market value. Then multiply that value by 2.5%. For example, with an illustrative price of $100/g: 100g of gold × $100/g = $10,000 value. Zakat = $10,000 × 2.5% = $250. Use today's price for your own calculation. Note that some scholars exempt gold jewelry that is regularly worn — consult your scholar on this point. Our zakat calculator handles this automatically once you enter the market value of your gold."
                 },
                 {
-                  q: "What is the zakat nisab in 2024?",
-                  a: "The zakat nisab in 2024 changes with gold and silver prices. As of mid-2024 with gold at approximately $90–95 per gram, the gold nisab is roughly $7,870–$8,300 USD. With silver at approximately $1.00–1.10 per gram, the silver nisab is approximately $610–675 USD. Check current spot prices and update the calculator above for the most accurate nisab threshold for your currency."
+                  q: "What is the zakat nisab today?",
+                  a: "The nisab is the value of 85 grams of gold or 595 grams of silver (87.48 g and 612.36 g under another common conversion), so its cash amount changes every day with metal prices. Multiply today's price per gram in your currency by the weight: gold nisab = 85 × gold price; silver nisab = 595 × silver price. Some zakat bodies, such as the UK's National Zakat Foundation, publish nisab values updated daily. Enter today's prices in the calculator above to get the nisab in your currency."
                 },
                 {
                   q: "Do I pay zakat on my salary every month?",
@@ -1120,7 +723,7 @@ export default function ZakatCalculatorClient() {
 
           <footer className="zfooter">
             <p style={{ marginBottom: 6 }}>
-              This zakat calculator is provided for educational guidance. Always verify your calculation with a qualified Islamic scholar or certified zakat institution. Nisab values are based on current spot prices — update the price fields for accuracy.
+              This zakat calculator is provided for educational guidance. Always verify your calculation with a qualified Islamic scholar or certified zakat institution. Nisab values are calculated from the gold and silver prices you enter — use today&apos;s prices for accuracy.
             </p>
             <p>
               <a href="#calculator">Calculator</a> · <a href="#nisab">Nisab</a> · <a href="#assets">Asset Guide</a> · <a href="#method">Method</a> · <a href="#recipients">Recipients</a> · <a href="#faq">FAQ</a>

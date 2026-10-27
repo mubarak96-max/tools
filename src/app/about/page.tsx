@@ -2,6 +2,14 @@ import React from 'react';
 import { Shield, Zap, Target, Code2, Users, Heart } from 'lucide-react';
 import Link from 'next/link';
 import { AuthorSection } from "@/components/blog/AuthorSection";
+import { buildMetadata } from "@/lib/seo/metadata";
+
+export const metadata = buildMetadata({
+  title: "About FindBest Tools | Who Builds and Maintains the Tools",
+  description:
+    "FindBest Tools is an independent collection of free calculators and browser-based utilities built and maintained by Mubarak Mutesasira. How the tools are built, sourced and kept up to date.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

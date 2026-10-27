@@ -5,7 +5,7 @@ import { Calculator, TrendingUp, PoundSterling, Wallet } from "lucide-react";
 export const metadata: Metadata = {
   title: "UK Student Loan Repayment Calculator — Plans 1, 2, 4, 5 & Postgraduate",
   description:
-    "Free UK student loan repayment calculator for Plans 1, 2, 4 and 5. See your monthly repayments, total repaid, interest charged, and whether your loan gets written off. Accurate 2024/25 thresholds.",
+    "Free UK student loan repayment calculator for Plans 1, 2, 4 and 5. See your monthly repayments, total repaid, interest charged, and whether your loan gets written off. Updated for 2026/27 thresholds.",
   keywords: [
     "uk student loan repayment calculator",
     "student loan calculator uk",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "plan 5 student loan calculator",
     "how much student loan will i repay",
     "student loan write off calculator uk",
-    "student loan repayment threshold 2024",
+    "student loan repayment threshold 2026/27",
     "how does student loan repayment work uk",
     "student loan monthly repayment calculator",
     "postgraduate loan repayment calculator",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     "student loan interest calculator uk",
   ],
   openGraph: {
-    title: "UK Student Loan Repayment Calculator — All Plans 2024/25",
+    title: "UK Student Loan Repayment Calculator — All Plans 2026/27",
     description:
       "Calculate exactly how much you'll repay on your UK student loan, whether it'll be written off, and your monthly deductions at any salary.",
     url: "https://findbest.tools/finance/uk-student-loan-repayment-calculator",
@@ -39,7 +39,8 @@ const schema = {
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
   description:
-    "Free UK student loan repayment calculator covering Plans 1, 2, 4, 5 and Postgraduate loans with accurate 2024/25 thresholds, write-off modelling and yearly schedule.",
+    "Free UK student loan repayment calculator covering Plans 1, 2, 4, 5 and Postgraduate loans with 2026/27 repayment thresholds, September 2026 interest rates, write-off modelling and a yearly schedule.",
+  dateModified: "2026-10-27",
   areaServed: "GB",
 };
 
@@ -47,27 +48,27 @@ const PLAN_COMPARISON = [
   {
     plan: "Plan 1",
     who: "England/Wales before Sept 2012; all NI students",
-    threshold: "£24,990",
+    threshold: "£26,900",
     rate: "9%",
-    interest: "Lower of RPI or BoE base + 1%",
+    interest: "Lower of RPI or BoE base + 1% (4.1%)",
     writeOff: "25 years",
     badge: "bg-blue-100 text-blue-700",
   },
   {
     plan: "Plan 2",
-    who: "England/Wales Sept 2012 – July 2023",
-    threshold: "£27,295",
+    who: "England Sept 2012 – July 2023; Wales from Sept 2012",
+    threshold: "£29,385",
     rate: "9%",
-    interest: "RPI + 0% to 3% (sliding by income)",
+    interest: "RPI to RPI + 3% by income (4.1%–6%, capped)",
     writeOff: "30 years",
     badge: "bg-purple-100 text-purple-700",
   },
   {
     plan: "Plan 4",
     who: "Scotland (post-1998 entrants)",
-    threshold: "£31,395",
+    threshold: "£33,795",
     rate: "9%",
-    interest: "RPI only",
+    interest: "Lower of RPI or BoE base + 1% (4.1%)",
     writeOff: "30 years",
     badge: "bg-emerald-100 text-emerald-700",
   },
@@ -76,7 +77,7 @@ const PLAN_COMPARISON = [
     who: "England, from August 2023 onwards",
     threshold: "£25,000",
     rate: "9%",
-    interest: "RPI only",
+    interest: "RPI only (4.1%)",
     writeOff: "40 years",
     badge: "bg-orange-100 text-orange-700",
   },
@@ -85,7 +86,7 @@ const PLAN_COMPARISON = [
     who: "Postgraduate Master's or Doctoral (England/Wales)",
     threshold: "£21,000",
     rate: "6%",
-    interest: "RPI + 3% always",
+    interest: "RPI + 3%, capped at 6% for 2026/27",
     writeOff: "30 years",
     badge: "bg-rose-100 text-rose-700",
   },
@@ -94,23 +95,23 @@ const PLAN_COMPARISON = [
 const FAQS = [
   {
     q: "How does UK student loan repayment work?",
-    a: "UK student loan repayment is income-contingent — you only repay when your income exceeds a threshold, and repayments are calculated as a percentage of what you earn above that threshold, not on your total salary. For most graduates (Plans 2 and 5), you repay 9% of income above the threshold. On a £35,000 salary under Plan 2 (threshold £27,295), you pay 9% of £7,705 = £693.45 per year, or about £57.79/month. Deductions are made automatically through PAYE by your employer, just like income tax and National Insurance. If your income drops below the threshold, repayments stop automatically.",
+    a: "UK student loan repayment is income-contingent — you only repay when your income exceeds a threshold, and repayments are calculated as a percentage of what you earn above that threshold, not on your total salary. For most graduates (Plans 2 and 5), you repay 9% of income above the threshold. On a £35,000 salary under Plan 2 (threshold £29,385), you pay 9% of £5,615 = £505.35 per year, or about £42.11/month. Deductions are made automatically through PAYE by your employer, just like income tax and National Insurance. If your income drops below the threshold, repayments stop automatically.",
   },
   {
-    q: "What is the student loan repayment threshold in 2024/25?",
-    a: "The thresholds for 2024/25 are: Plan 1: £24,990/year (£2,082.50/month); Plan 2: £27,295/year (£2,274.58/month); Plan 4 (Scotland): £31,395/year (£2,616.25/month); Plan 5: £25,000/year (£2,083.33/month); Postgraduate Loan: £21,000/year (£1,750/month). These thresholds apply to gross income including salary, self-employment profits, and savings interest above the PSA. The thresholds are reviewed annually — Plan 2 thresholds were frozen for several years and are now rising with RPI; Plan 5 thresholds are fixed until 2027.",
+    q: "What is the student loan repayment threshold in 2026/27?",
+    a: "The thresholds for the 2026/27 tax year (6 April 2026 to 5 April 2027) are: Plan 1: £26,900/year (£2,241/month); Plan 2: £29,385/year (£2,448/month); Plan 4 (Scotland): £33,795/year (£2,816/month); Plan 5: £25,000/year (£2,083/month); Postgraduate Loan: £21,000/year (£1,750/month). For employees, deductions are worked out on pay in each pay period; if you are self-employed, HMRC uses your total taxable income through Self Assessment. Thresholds are reviewed each year — the Plan 1 threshold is already confirmed to rise to £28,005 from 6 April 2027.",
   },
   {
     q: "Will my student loan be written off?",
-    a: "The majority of Plan 2 graduates are projected to have their loans written off rather than fully repaid, according to the Institute for Fiscal Studies. The write-off period depends on your plan: Plan 1 — 25 years; Plans 2 and 4 — 30 years; Plan 5 — 40 years; Postgraduate — 30 years. Whether your specific loan is written off depends on your balance, earnings trajectory, and interest rate. Higher earners are more likely to clear their balance; lower and median earners typically see a significant write-off. This calculator models both outcomes so you can see which applies to your numbers.",
+    a: "The majority of Plan 2 graduates are projected to have their loans written off rather than fully repaid, according to the Institute for Fiscal Studies. Loans are written off a set number of years after the April you were first due to repay: Plan 1 — 25 years; Plans 2 and 4 — 30 years; Plan 5 — 40 years; Postgraduate — 30 years. Older Plan 1 and Plan 4 loans can instead be written off at age 65. Whether your specific loan is written off depends on your balance, earnings trajectory, and interest rate. Higher earners are more likely to clear their balance; lower and median earners typically see a significant write-off. This calculator models both outcomes so you can see which applies to your numbers.",
   },
   {
     q: "How does student loan interest work in the UK?",
-    a: "Student loan interest in the UK is linked to the Retail Price Index (RPI) measure of inflation, and is updated each September. Plan 1: capped at the lower of RPI or Bank of England base rate + 1%, meaning real interest is approximately zero. Plan 2: RPI + 0% while earning below the threshold, rising on a sliding scale to RPI + 3% for incomes above £49,130. Plan 4 (Scotland): RPI only. Plan 5: RPI only. Postgraduate Loan: RPI + 3% always. For 2024/25, with RPI at around 4.3%, Plan 2 interest ranges from approximately 4.3% to 7.3% depending on income.",
+    a: "Student loan interest in the UK is linked to the Retail Price Index (RPI) measure of inflation, and is updated each September. Plans 1 and 4: the lower of RPI or Bank of England base rate + 1%. Plan 2: RPI while earning at or below the threshold, rising on a sliding scale to RPI + 3% for higher earners. Plan 5: RPI only. Postgraduate Loan: RPI + 3%. From 1 September 2026 to 31 August 2027, RPI is 4.1%, so Plans 1, 4 and 5 charge 4.1%. The government has capped Plan 2 and Postgraduate Loan interest at 6% for that year, so Plan 2 ranges from 4.1% to 6% depending on income and the Postgraduate Loan is 6% instead of 7.1%.",
   },
   {
     q: "What is the difference between Plan 2 and Plan 5?",
-    a: "Plan 2 applies to students who started in England or Wales between September 2012 and July 2023. Plan 5 applies to new students starting from August 2023 onwards in England. The key differences: Plan 2 has a higher threshold (£27,295 vs £25,000 for Plan 5), which means Plan 2 graduates start repaying at a higher income. Plan 5 has a 40-year write-off versus 30 years for Plan 2 — meaning Plan 5 graduates who don't repay fully will be repaying for a decade longer. Both plans charge 9% above their respective thresholds. Plan 5 interest is RPI-only, while Plan 2 charges RPI + up to 3%.",
+    a: "Plan 2 applies to students who started in England between September 2012 and July 2023, and to Welsh students who started from September 2012. Plan 5 applies to students in England starting from August 2023 onwards. The key differences: Plan 2 has a higher threshold (£29,385 vs £25,000 for Plan 5 in 2026/27), which means Plan 2 graduates start repaying at a higher income. Plan 5 has a 40-year write-off versus 30 years for Plan 2 — meaning Plan 5 graduates who don't repay fully will be repaying for a decade longer. Both plans charge 9% above their respective thresholds. Plan 5 interest is RPI-only, while Plan 2 charges RPI + up to 3%.",
   },
   {
     q: "Can I make voluntary overpayments on my student loan?",
@@ -118,7 +119,7 @@ const FAQS = [
   },
   {
     q: "How does repayment work for the Postgraduate Loan?",
-    a: "Postgraduate Loans are repaid on a separate track from undergraduate loans. The repayment rate is 6% (not 9%) of income above £21,000. If you have both an undergraduate loan and a Postgraduate Loan, you repay both simultaneously — the undergraduate plan's 9% and the postgrad's 6% are calculated independently from your gross income. Both have their own 30-year write-off clocks. The Postgraduate Loan always accrues interest at RPI + 3%, regardless of income level — unlike Plan 2 undergraduate loans which use a sliding scale.",
+    a: "Postgraduate Loans are repaid on a separate track from undergraduate loans. The repayment rate is 6% (not 9%) of income above £21,000. If you have both an undergraduate loan and a Postgraduate Loan, you repay both simultaneously — the undergraduate plan's 9% and the postgrad's 6% are calculated independently from your gross income. Both have their own 30-year write-off clocks. The Postgraduate Loan accrues interest at RPI + 3% regardless of income level — unlike Plan 2 undergraduate loans which use a sliding scale — although it is capped at 6% from 1 September 2026 to 31 August 2027.",
   },
   {
     q: "Is student loan repayment affected by self-employment?",
@@ -150,7 +151,7 @@ export default function StudentLoanPage() {
         <div className="mb-8 max-w-2xl">
           <div className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 text-xs font-medium px-3 py-1.5 rounded-full mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 inline-block" />
-            Plans 1, 2, 4, 5 & Postgraduate · 2024/25 thresholds · Free
+            Plans 1, 2, 4, 5 & Postgraduate · 2026/27 thresholds · Free
           </div>
           <h1 className="text-4xl font-bold text-stone-900 leading-tight mb-3">
             UK Student Loan Repayment Calculator
@@ -183,13 +184,13 @@ export default function StudentLoanPage() {
           This design has an important implication: for many graduates, especially those on
           Plan 2 who started university between 2012 and 2023, the loan functions more like
           a graduate tax than a traditional debt. The Institute for Fiscal Studies has
-          projected that around 75–80% of Plan 2 graduates will not repay their loans in
+          projected that most Plan 2 graduates will not repay their loans in
           full before the 30-year write-off. For those graduates, total repayments are
           capped by income — the balance simply evaporates at write-off without affecting
           your credit score.
         </P>
 
-        <H2>UK student loan plans explained (2024/25)</H2>
+        <H2>UK student loan plans explained (2026/27)</H2>
         <P>
           There are five distinct loan plans in England, Wales, Scotland, and Northern
           Ireland, each with different repayment thresholds, interest rates, and write-off
@@ -203,7 +204,7 @@ export default function StudentLoanPage() {
               <tr className="bg-indigo-50 border border-indigo-100">
                 <th className="text-left py-2.5 px-4 text-xs font-semibold text-stone-600">Plan</th>
                 <th className="text-left py-2.5 px-4 text-xs font-semibold text-stone-600">Who</th>
-                <th className="text-right py-2.5 px-4 text-xs font-semibold text-stone-600">Threshold 24/25</th>
+                <th className="text-right py-2.5 px-4 text-xs font-semibold text-stone-600">Threshold 26/27</th>
                 <th className="text-right py-2.5 px-4 text-xs font-semibold text-stone-600">Rate</th>
                 <th className="text-left py-2.5 px-4 text-xs font-semibold text-stone-600">Interest</th>
                 <th className="text-right py-2.5 px-4 text-xs font-semibold text-stone-600">Write-off</th>
@@ -229,12 +230,12 @@ export default function StudentLoanPage() {
         <H3>Plan 2 — the most common and most misunderstood</H3>
         <P>
           Plan 2 covers the largest cohort of current graduates — anyone who started an
-          undergraduate degree in England or Wales between September 2012 and July 2023.
-          The threshold is £27,295 for 2024/25. Repayments are 9% of income above this
-          figure. On a £35,000 salary, you repay 9% × (£35,000 − £27,295) = £693/year
-          (£57.79/month). The interest rate is RPI + 0% for incomes below the threshold,
-          rising on a sliding scale to RPI + 3% for incomes above £49,130. In 2024/25,
-          this means effective rates between approximately 4.3% and 7.3%.
+          undergraduate degree in England between September 2012 and July 2023, or in Wales
+          from September 2012. The threshold is £29,385 for 2026/27. Repayments are 9% of
+          income above this figure. On a £35,000 salary, you repay 9% × (£35,000 − £29,385)
+          = £505/year (£42.11/month). The interest rate is RPI for incomes at or below the
+          threshold, rising on a sliding scale to RPI + 3% for higher earners. From
+          1 September 2026, with RPI at 4.1% and a 6% cap, that means rates between 4.1% and 6%.
         </P>
 
         <H3>Plan 5 — the new system from 2023</H3>
@@ -242,7 +243,7 @@ export default function StudentLoanPage() {
           Students starting in England from August 2023 onwards are on Plan 5. The threshold
           is lower (£25,000), meaning repayments begin at a lower income. Critically, the
           write-off period is 40 years — ten years longer than Plan 2. The interest rate is
-          RPI only, removing the additional +3% premium for high earners. The lower threshold
+          RPI only (4.1% from 1 September 2026), removing the additional +3% premium for high earners. The lower threshold
           combined with a 40-year term means the overall lifetime repayment for median earners
           is significantly higher than Plan 2 — Plan 5 was designed to increase graduate
           repayment rates and reduce the proportion of loans written off.
@@ -279,12 +280,12 @@ export default function StudentLoanPage() {
           When you apply for a mortgage, lenders conduct strict affordability checks to ensure you can manage monthly repayments even if interest rates rise. Your student loan affects these checks, but not in the way traditional debt does. Mortgage lenders do not look at your total outstanding student loan balance. Having a £10,000 balance or a £100,000 balance makes zero difference to a mortgage underwriter.
         </P>
         <P>
-          What lenders *do* care about is your monthly cash flow. Because your student loan repayment is deducted automatically from your payslip, it reduces your net monthly take-home pay. Mortgage affordability calculators will factor in this reduced net income when deciding how much they are willing to lend you. For example, if you earn £40,000, your gross monthly income is £3,333, but after tax, National Insurance, and a £95 Plan 2 student loan deduction, your net income is lower. The lender assesses your ability to pay a mortgage based on the post-deduction figure. So, while a student loan won't stop you from getting a mortgage, it will slightly reduce the maximum amount you can borrow.
+          What lenders *do* care about is your monthly cash flow. Because your student loan repayment is deducted automatically from your payslip, it reduces your net monthly take-home pay. Mortgage affordability calculators will factor in this reduced net income when deciding how much they are willing to lend you. For example, if you earn £40,000, your gross monthly income is £3,333, but after tax, National Insurance, and an £80 Plan 2 student loan deduction (2026/27 threshold), your net income is lower. The lender assesses your ability to pay a mortgage based on the post-deduction figure. So, while a student loan won't stop you from getting a mortgage, it will slightly reduce the maximum amount you can borrow.
         </P>
 
         <H3>The impact of inflation and interest rates</H3>
         <P>
-          Because UK student loan interest rates are pegged to the Retail Price Index (RPI), periods of high inflation (such as the cost-of-living crisis experienced in the early 2020s) cause interest rates to spike. When RPI surged past 10%, the government had to implement emergency interest rate caps to prevent Plan 2 interest from skyrocketing to 15%. 
+          Because UK student loan interest rates are pegged to the Retail Price Index (RPI), periods of high inflation (such as the cost-of-living crisis experienced in the early 2020s) cause interest rates to spike. The government has repeatedly stepped in with temporary caps — most recently limiting Plan 2 and Postgraduate Loan interest to 6% from 1 September 2026 to 31 August 2027, when RPI + 3% would otherwise have been 7.1%. 
         </P>
         <P>
           Despite the headlines, high interest rates on student loans only truly affect the highest earners. If your loan is destined to be written off, the interest rate is irrelevant to your day-to-day life — whether your balance is growing at 2% or 12%, your monthly repayment remains exactly the same (9% of your income above the threshold). The only people harmed by high interest rates are those who earn enough to actually pay off the loan, as the high interest extends the number of years they must make repayments before the balance hits zero.
@@ -295,7 +296,7 @@ export default function StudentLoanPage() {
           If you take out a Master's or Doctoral loan, you are placed on the Postgraduate Loan plan. This operates simultaneously alongside your undergraduate loan. The threshold is much lower (£21,000), and the repayment rate is 6%. 
         </P>
         <P>
-          Crucially, these deductions stack. If you earn £35,000, you will pay 9% on your income above £27,295 (for a Plan 2 undergrad loan) *plus* 6% on your income above £21,000 (for your postgrad loan). This creates an effective marginal tax rate that is exceptionally high for young professionals. When combining basic rate Income Tax (20%), National Insurance (8%), Plan 2 repayments (9%), and Postgraduate repayments (6%), your marginal deduction rate hits 43%. This means for every extra £100 you earn via a pay rise or bonus, you only keep £57. This "double deduction" is why postgraduates often feel their take-home pay does not reflect their gross salary.
+          Crucially, these deductions stack. If you earn £35,000, you will pay 9% on your income above £29,385 (for a Plan 2 undergrad loan) *plus* 6% on your income above £21,000 (for your postgrad loan). This creates an effective marginal tax rate that is exceptionally high for young professionals. When combining basic rate Income Tax (20%), National Insurance (8%), Plan 2 repayments (9%), and Postgraduate repayments (6%), your marginal deduction rate hits 43%. This means for every extra £100 you earn via a pay rise or bonus, you only keep £57. This "double deduction" is why postgraduates often feel their take-home pay does not reflect their gross salary.
         </P>
 
         <H2>Frequently asked questions</H2>
@@ -311,6 +312,23 @@ export default function StudentLoanPage() {
               </div>
             </details>
           ))}
+        </div>
+
+        <div className="mt-12 p-4 bg-stone-50 rounded-xl border border-stone-200">
+          <p className="text-sm font-semibold text-stone-800 mb-2">Sources &amp; last checked</p>
+          <ul className="space-y-1 text-xs text-stone-600 leading-relaxed list-disc pl-4">
+            {[
+              { label: "GOV.UK — Repaying your student loan: what you pay (2026/27 thresholds)", href: "https://www.gov.uk/repaying-your-student-loan/what-you-pay" },
+              { label: "GOV.UK — Student loans interest rates and repayment threshold announcement (10 August 2026)", href: "https://www.gov.uk/government/news/student-loans-interest-rates-and-repayment-threshold-announcement--7" },
+              { label: "GOV.UK — Interest rate cap introduced to protect Plan 2 borrowers (7 April 2026)", href: "https://www.gov.uk/government/news/interest-rate-cap-introduced-to-protect-plan-2-borrowers" },
+              { label: "GOV.UK — When your student loan gets written off or cancelled", href: "https://www.gov.uk/repaying-your-student-loan/when-your-student-loan-gets-written-off-or-cancelled" },
+            ].map((src) => (
+              <li key={src.href}>
+                <a href={src.href} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{src.label}</a>
+              </li>
+            ))}
+          </ul>
+          <p className="text-xs text-stone-500 mt-2">Last checked: October 2026.</p>
         </div>
 
         <div className="mt-16 border-t border-stone-200 pt-12">
@@ -335,8 +353,8 @@ export default function StudentLoanPage() {
         <div className="mt-12 p-4 bg-stone-50 rounded-xl border border-stone-200">
           <p className="text-xs text-stone-500 leading-relaxed">
             <strong className="text-stone-700">Disclaimer:</strong> This calculator uses
-            2024/25 repayment thresholds and interest rate assumptions for illustrative
-            purposes. Thresholds, interest rates, and write-off rules are set by the UK
+            2026/27 repayment thresholds and holds them flat for future years, with interest
+            rate assumptions you can edit, for illustrative purposes. Thresholds, interest rates, and write-off rules are set by the UK
             government and Student Loans Company and change annually. This tool does not
             constitute financial advice. For official repayment information visit{" "}
             <span className="text-stone-700">gov.uk/repaying-your-student-loan</span> or

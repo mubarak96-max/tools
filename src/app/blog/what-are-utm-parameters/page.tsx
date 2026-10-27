@@ -2,6 +2,7 @@ import Link from "next/link";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema, PostDates } from "@/components/blog/BlogPostMeta";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import { absoluteUrl } from "@/lib/seo/metadata";
 
@@ -32,6 +33,7 @@ export default function UtmParametersBlogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
+      <BlogPostSchema slug="what-are-utm-parameters" />
 
       <header className="mb-16">
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-500 mb-8 uppercase tracking-widest font-bold">
@@ -51,7 +53,7 @@ export default function UtmParametersBlogPage() {
           <div className="pt-4">
             <AuthorSection />
             <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-2 ml-1">
-              Published March 2026
+              <PostDates slug="what-are-utm-parameters" />
             </div>
           </div>
         </div>

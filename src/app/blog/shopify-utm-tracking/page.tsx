@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
+import { BlogPostSchema } from "@/components/blog/BlogPostMeta";
 import { absoluteUrl } from "@/lib/seo/metadata";
 import { buildBreadcrumbJsonLd, serializeJsonLd } from "@/lib/seo/jsonld";
 import ShopifyUtmTrackingBlogClient from "./ShopifyUtmTrackingBlogClient";
@@ -67,19 +68,6 @@ export default function ShopifyUtmTrackingBlogPage() {
     { name: "Shopify UTM Tracking", path: PAGE_PATH },
   ]);
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Shopify UTM Tracking: Complete Setup Guide for 2026",
-    description:
-      "Everything Shopify merchants need to know about UTM tracking — parameters, templates, GA4 setup, and fixing attribution gaps.",
-    author: { "@type": "Organization", name: "FindBest.Tools" },
-    publisher: { "@type": "Organization", name: "FindBest.Tools" },
-    datePublished: "2026-05-01",
-    dateModified: "2026-05-01",
-    mainEntityOfPage: PAGE_URL,
-  };
-
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -96,7 +84,7 @@ export default function ShopifyUtmTrackingBlogPage() {
   return (
     <div className="-mx-4 sm:-mx-6 lg:-mx-8">
       <JsonLd data={serializeJsonLd(breadcrumbs)} />
-      <JsonLd data={serializeJsonLd(articleJsonLd)} />
+      <BlogPostSchema slug="shopify-utm-tracking" />
       <JsonLd data={serializeJsonLd(faqJsonLd)} />
       <ShopifyUtmTrackingBlogClient />
     </div>
