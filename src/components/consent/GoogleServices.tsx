@@ -58,6 +58,12 @@ export default function GoogleServices() {
         crossOrigin="anonymous"
       />
 
+      <Script
+        id="adsterra"
+        src="https://pl32046734.profitableratecpmnetwork.com/03/9e/d2/039ed2f2e38b44bad309e3caaad4b288.js"
+        strategy="afterInteractive"
+      />
+
       {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ? (
         <>
           <Script
